@@ -65,3 +65,12 @@ export const SCENARIOS = [
 
 export function getScenario(id) { return SCENARIOS.find(s => s.id === id) || SCENARIOS[0]; }
 export function scenarioForChapter(id) { return SCENARIOS.find(s => s.nodes.some(n => n.chapter === id)) || SCENARIOS[0]; }
+
+// 返回上下文只接受本站已知且與本章相符的節點，不信任網址中的任意文字。
+export function chapterReturnContext(chapter, value) {
+  const parts = (value || '').split('/');
+  if (parts.length !== 2) return null;
+  const scenario = SCENARIOS.find(s => s.id === parts[0]);
+  const node = scenario?.nodes.find(n => n.id === parts[1] && n.chapter === chapter);
+  return node ? { scenario, node, value: `${scenario.id}/${node.id}` } : null;
+}

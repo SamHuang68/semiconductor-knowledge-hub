@@ -11,7 +11,7 @@ import { FAB_FLOW_NODES } from './data/fab-flow.js';
 import { GLOSSARY_DATA, JARGON_DATA } from './data/glossary-data.js';
 import { SEARCH_INDEX } from './data/search-index.js';
 import { renderExplorer } from './情境探索.js';
-import { scenarioForChapter } from './data/情境路徑.js';
+import { scenarioForChapter, chapterReturnContext } from './data/情境路徑.js';
 import { normalizeChapterHref } from './章節連結.js';
 
 (() => {
@@ -189,7 +189,7 @@ import { normalizeChapterHref } from './章節連結.js';
   /**
    * 2. 載入並渲染指定章節
    */
-  function loadChapter(chId) {
+  function loadChapter(chId, from = null) {
     document.body.classList.remove('is-exploring');
     const chapter = CHAPTERS_DATA.find(c => c.id === chId) || CHAPTERS_DATA[0];
     currentChapterId = chapter.id;
@@ -198,8 +198,10 @@ import { normalizeChapterHref } from './章節連結.js';
     markChapterRead(chapter.id);
 
     // 更新網址 Hash (若不同)
-    if (window.location.hash !== `#${chapter.id}`) {
-      history.replaceState(null, '', `#${chapter.id}`);
+    const returnContext = chapterReturnContext(chapter.id, from);
+    const chapterHash = `#${chapter.id}${returnContext ? `?from=${encodeURIComponent(returnContext.value)}` : ''}`;
+    if (window.location.hash !== chapterHash) {
+      history.replaceState(null, '', chapterHash);
     }
 
     // 計算上一章與下一章
@@ -242,7 +244,7 @@ import { normalizeChapterHref } from './章節連結.js';
 
     const relatedScenario = scenarioForChapter(chapter.id);
     mainCanvasEl.innerHTML = `
-      <a href="#explore/${relatedScenario.id}" class="chapter-scenario-link"><span>用流程圖理解：${escapeHtml(relatedScenario.title)}</span><span>開啟互動情境 ↗</span></a>
+      <a href="#explore/${returnContext ? returnContext.value : relatedScenario.id}" class="chapter-scenario-link"><span>${returnContext ? `返回剛才的步驟：${escapeHtml(returnContext.node.title)}` : `用流程圖理解：${escapeHtml(relatedScenario.title)}`}</span><span>${returnContext ? '繼續探索' : '開啟互動情境'} ↗</span></a>
       ${trackHtml}
       <header class="article-header">
         <div class="article-top-bar">
@@ -584,14 +586,15 @@ import { normalizeChapterHref } from './章節連結.js';
     if (window.location.hash !== normalized) history.replaceState(null, '', normalized);
     const hash = normalized.slice(1);
     if (hash === 'explore' || hash.startsWith('explore/')) {
-      const wasExploring = document.body.classList.contains('is-exploring');
       renderExplorer(mainCanvasEl, hash);
       tocListEl.innerHTML = '';
       appSidebarEl.classList.remove('is-open');
       sidebarBackdropEl.classList.remove('is-active');
-      if (!wasExploring) window.scrollTo({ top: 0, behavior: 'instant' });
-    } else if (CHAPTERS_DATA.some(ch => ch.id === hash)) loadChapter(hash);
-    else loadChapter('ch00');
+    } else {
+      const [chapterId, query = ''] = hash.split('?');
+      if (CHAPTERS_DATA.some(ch => ch.id === chapterId)) loadChapter(chapterId, new URLSearchParams(query).get('from'));
+      else loadChapter('ch00');
+    }
   }
   window.addEventListener('hashchange', renderRoute);
 

@@ -66,7 +66,7 @@ try {
       for (const n of s.nodes) {
         await page.locator(`.flow-node[href="#explore/${s.id}/${n.id}"]`).click();
         await page.waitForFunction(title => document.querySelector('#detailTitle')?.textContent === title, n.title);
-        assert.equal(await page.locator('.source-chapter').getAttribute('href'), '#' + n.chapter);
+        assert.equal(await page.locator('.source-chapter').getAttribute('href'), `#${n.chapter}?from=${s.id}%2F${n.id}`);
       }
       await noOverflow();
     }
