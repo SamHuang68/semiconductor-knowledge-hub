@@ -1,0 +1,908 @@
+/* ══════════════════════════════════════════════════════════════════════════════
+   SEMICONDUCTOR KNOWLEDGE HUB — STYLESHEET (RULE 0003 PRECISION LIGHT SYSTEM)
+   微暖精密晶圓工程美學 · 高對比度無障礙設計 (WCAG AA >= 7:1) · 零中系依賴
+   ══════════════════════════════════════════════════════════════════════════════ */
+
+:root {
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+  --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+
+  /* 背景與表面層次 */
+  --bg-app: #f8fafc;
+  --bg-surface: #ffffff;
+  --bg-surface-alt: #f1f5f9;
+  --bg-surface-trans: rgba(255, 255, 255, 0.92);
+  --border-subtle: #e2e8f0;
+  --border-strong: #cbd5e1;
+  --border-active: #0284c7;
+
+  /* 文字階層 (深色高對比) */
+  --text-main: #0f172a;        /* 對比度 > 14:1 */
+  --text-secondary: #334155;   /* 對比度 > 8.5:1 */
+  --text-muted: #64748b;       /* 對比度 > 4.8:1 (符合 WCAG AA) */
+  --text-invert: #ffffff;
+
+  /* 半導體工程主題色彩 (矽光藍、微影青、現場琥珀) */
+  --semi-blue: #0284c7;
+  --semi-blue-light: #e0f2fe;
+  --semi-blue-dark: #0369a1;
+  --semi-teal: #0f766e;
+  --semi-teal-light: #ccfbf1;
+  --semi-amber: #b45309;
+  --semi-amber-light: #fef3c7;
+  --semi-amber-border: #f59e0b;
+  --semi-emerald: #059669;
+  --semi-emerald-light: #d1fae5;
+
+  /* 陰影與圓角 */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-full: 9999px;
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.03);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.04);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
+  --shadow-popup: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+
+  --header-height: 64px;
+  --sidebar-width: 320px;
+  --toc-width: 240px;
+  --ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* 全域重設 */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text-main);
+  background-color: var(--bg-app);
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  background: 
+    linear-gradient(rgba(248, 250, 252, 0.96), rgba(248, 250, 252, 0.96)),
+    repeating-linear-gradient(0deg, transparent, transparent 39px, #e2e8f0 39px, #e2e8f0 40px),
+    repeating-linear-gradient(90deg, transparent, transparent 39px, #e2e8f0 39px, #e2e8f0 40px);
+  background-size: 100% 100%, 40px 40px, 40px 40px;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   1. 頂部導覽列 (TOP APPLICATION BAR)
+   ══════════════════════════════════════════════════════════════════════════════ */
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  height: var(--header-height);
+  background: var(--bg-surface-trans);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+}
+
+.brand-cluster {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.wafer-logo-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #0284c7 0%, #0f766e 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 0 2px rgba(2, 132, 199, 0.2);
+}
+
+.wafer-logo-icon svg {
+  width: 20px;
+  height: 20px;
+  color: #ffffff;
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-title {
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text-main);
+}
+
+.brand-subtitle {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--semi-blue);
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.tool-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-surface);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.2s var(--ease-smooth);
+}
+
+.tool-btn:hover {
+  background: var(--bg-surface-alt);
+  color: var(--text-main);
+  border-color: var(--border-strong);
+}
+
+.tool-btn-primary {
+  background: var(--semi-blue);
+  color: #ffffff;
+  border-color: var(--semi-blue-dark);
+}
+
+.tool-btn-primary:hover {
+  background: var(--semi-blue-dark);
+  color: #ffffff;
+}
+
+.kbd-badge {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  padding: 2px 6px;
+  background: var(--bg-surface-alt);
+  border: 1px solid var(--border-subtle);
+  border-radius: 4px;
+  color: var(--text-muted);
+}
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   2. 主工作版面 (LAYOUT: SIDEBAR + CONTENT + TOC)
+   ══════════════════════════════════════════════════════════════════════════════ */
+.app-container {
+  display: flex;
+  flex: 1;
+  max-width: 1600px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* 左側章節樹導覽列 */
+.app-sidebar {
+  width: var(--sidebar-width);
+  height: calc(100vh - var(--header-height));
+  position: sticky;
+  top: var(--header-height);
+  overflow-y: auto;
+  border-right: 1px solid var(--border-subtle);
+  background: var(--bg-surface);
+  padding: 20px 16px;
+  flex-shrink: 0;
+}
+
+.sidebar-header {
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.sidebar-filter {
+  width: 100%;
+  padding: 8px 12px;
+  font-size: 13px;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  background: var(--bg-app);
+  color: var(--text-main);
+  outline: none;
+}
+
+.sidebar-filter:focus {
+  border-color: var(--semi-blue);
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15);
+}
+
+.part-group {
+  margin-bottom: 16px;
+}
+
+.part-title {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  padding: 6px 8px;
+  margin-bottom: 4px;
+}
+
+.chapter-nav-list {
+  list-style: none;
+}
+
+.chapter-nav-item {
+  margin-bottom: 2px;
+}
+
+.chapter-nav-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 7px 10px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-decoration: none;
+  border-radius: var(--radius-sm);
+  transition: all 0.15s ease;
+}
+
+.chapter-nav-link:hover {
+  background: var(--bg-app);
+  color: var(--text-main);
+}
+
+.chapter-nav-link.is-active {
+  background: var(--semi-blue-light);
+  color: var(--semi-blue-dark);
+  font-weight: 700;
+  box-shadow: 0 0 0 1px rgba(2, 132, 199, 0.2) inset;
+}
+
+.ch-number {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-right: 8px;
+  flex-shrink: 0;
+}
+
+.chapter-nav-link.is-active .ch-number {
+  color: var(--semi-blue-dark);
+}
+
+/* 中央主要閱讀區域 */
+.main-canvas {
+  flex: 1;
+  min-width: 0;
+  padding: 36px 48px;
+  background: var(--bg-surface);
+  border-right: 1px solid var(--border-subtle);
+  min-height: calc(100vh - var(--header-height));
+}
+
+/* 晶圓旅程站點追蹤列 (Wafer Stage Tracker) */
+.wafer-track-banner {
+  background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+  border: 1px solid #bae6fd;
+  border-radius: var(--radius-md);
+  padding: 16px 20px;
+  margin-bottom: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.track-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.track-kicker {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--semi-blue-dark);
+}
+
+.track-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.track-badge {
+  padding: 4px 10px;
+  font-size: 12px;
+  font-weight: 700;
+  border-radius: var(--radius-full);
+  background: #ffffff;
+  color: var(--semi-blue-dark);
+  border: 1px solid #7dd3fc;
+  box-shadow: var(--shadow-sm);
+}
+
+/* 文章內容排版 */
+.article-header {
+  margin-bottom: 32px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.article-part-label {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--semi-blue);
+  background: var(--semi-blue-light);
+  padding: 3px 10px;
+  border-radius: var(--radius-sm);
+  margin-bottom: 12px;
+}
+
+.article-headline {
+  font-size: clamp(28px, 3.5vw, 38px);
+  font-weight: 800;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  color: var(--text-main);
+}
+
+.article-body {
+  font-size: 16.5px;
+  line-height: 1.8;
+  color: var(--text-main);
+}
+
+.article-body h2 {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text-main);
+  margin: 44px 0 18px 0;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.article-body h3 {
+  font-size: 19px;
+  font-weight: 700;
+  color: var(--text-main);
+  margin: 32px 0 14px 0;
+}
+
+.article-body p.semi-p {
+  margin-bottom: 18px;
+  color: var(--text-secondary);
+}
+
+.article-body strong {
+  color: var(--text-main);
+  font-weight: 700;
+}
+
+/* 列表排版 */
+.semi-ul, .semi-ol {
+  margin: 16px 0 20px 24px;
+  color: var(--text-secondary);
+}
+
+.semi-ul li, .semi-ol li {
+  margin-bottom: 8px;
+  line-height: 1.7;
+}
+
+/* 核心名詞框 (Glossary Callout) */
+.callout-glossary {
+  background: #f0f9ff;
+  border: 1px solid #bae6fd;
+  border-left: 4px solid var(--semi-blue);
+  border-radius: var(--radius-md);
+  padding: 18px 22px;
+  margin: 28px 0;
+  box-shadow: var(--shadow-sm);
+}
+
+.callout-badge {
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--semi-blue-dark);
+  margin-bottom: 8px;
+}
+
+/* 現場實務框 (Fab Know-how Callout) */
+.callout-knowhow {
+  background: #fffbeb;
+  border: 1px solid #fde68a;
+  border-left: 4px solid var(--semi-amber-border);
+  border-radius: var(--radius-md);
+  padding: 18px 22px;
+  margin: 28px 0;
+  box-shadow: var(--shadow-sm);
+}
+
+.callout-knowhow .callout-badge {
+  color: var(--semi-amber);
+}
+
+.callout-wafer-pos {
+  background: #f8fafc;
+  border: 1px solid #cbd5e1;
+  border-left: 4px solid #64748b;
+  border-radius: var(--radius-md);
+  padding: 16px 20px;
+  margin: 24px 0;
+}
+
+.callout-wafer-pos .callout-badge {
+  color: #475569;
+}
+
+/* 精密表格 */
+.table-container {
+  overflow-x: auto;
+  margin: 24px 0;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  background: #ffffff;
+}
+
+.semi-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14.5px;
+  text-align: left;
+}
+
+.semi-table th {
+  background: var(--bg-surface-alt);
+  color: var(--text-main);
+  font-weight: 700;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border-subtle);
+  white-space: nowrap;
+}
+
+.semi-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+}
+
+.semi-table tr:last-child td {
+  border-bottom: none;
+}
+
+.semi-table tr:hover td {
+  background: #f8fafc;
+}
+
+/* 程式碼與圖表 */
+.code-pre {
+  background: #0f172a;
+  color: #f8fafc;
+  font-family: var(--font-mono);
+  font-size: 13.5px;
+  padding: 18px;
+  border-radius: var(--radius-md);
+  overflow-x: auto;
+  margin: 20px 0;
+  line-height: 1.6;
+}
+
+.inline-code {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  background: var(--bg-surface-alt);
+  color: #0369a1;
+  padding: 2px 6px;
+  border-radius: 4px;
+  border: 1px solid var(--border-subtle);
+}
+
+.semi-figure {
+  margin: 28px 0;
+  text-align: center;
+}
+
+.semi-img {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-md);
+}
+
+figcaption {
+  font-size: 12.5px;
+  color: var(--text-muted);
+  margin-top: 8px;
+}
+
+/* 章節底部前後篇切換 */
+.chapter-pagination {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 56px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.page-nav-card {
+  display: flex;
+  flex-direction: column;
+  padding: 16px 20px;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  background: var(--bg-surface);
+  text-decoration: none;
+  flex: 1;
+  transition: all 0.2s var(--ease-smooth);
+}
+
+.page-nav-card:hover {
+  border-color: var(--semi-blue);
+  box-shadow: var(--shadow-md);
+  background: #f0f9ff;
+}
+
+.nav-direction {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+
+.nav-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+/* 右側段落目錄 (TOC) */
+.app-toc {
+  width: var(--toc-width);
+  height: calc(100vh - var(--header-height));
+  position: sticky;
+  top: var(--header-height);
+  padding: 32px 20px;
+  overflow-y: auto;
+  flex-shrink: 0;
+  background: var(--bg-app);
+}
+
+.toc-heading {
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+}
+
+.toc-list {
+  list-style: none;
+}
+
+.toc-item {
+  margin-bottom: 6px;
+}
+
+.toc-link {
+  font-size: 13px;
+  color: var(--text-muted);
+  text-decoration: none;
+  display: block;
+  line-height: 1.5;
+  transition: color 0.15s ease;
+}
+
+.toc-link:hover, .toc-link.is-active {
+  color: var(--semi-blue-dark);
+  font-weight: 600;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   3. 互動製程全景流視窗 (FAB FLOW ATLAS MODAL)
+   ══════════════════════════════════════════════════════════════════════════════ */
+.atlas-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(15, 23, 42, 0.45);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.atlas-modal.is-open {
+  display: flex;
+}
+
+.atlas-dialog {
+  background: #ffffff;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  max-width: 1200px;
+  width: 100%;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-popup);
+  overflow: hidden;
+}
+
+.atlas-header {
+  padding: 20px 28px;
+  border-bottom: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.atlas-title {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--text-main);
+}
+
+.atlas-body {
+  padding: 28px;
+  overflow-y: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 18px;
+}
+
+.atlas-card {
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  background: #f8fafc;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: all 0.2s var(--ease-smooth);
+}
+
+.atlas-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--semi-blue);
+  background: #f0f9ff;
+  box-shadow: var(--shadow-md);
+}
+
+.atlas-step-num {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--semi-blue);
+}
+
+.atlas-card-title {
+  font-size: 16px;
+  font-weight: 700;
+  margin: 6px 0 10px 0;
+  color: var(--text-main);
+}
+
+.atlas-card-desc {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 14px;
+}
+
+.atlas-card-meta {
+  font-size: 11.5px;
+  color: var(--text-muted);
+  border-top: 1px dashed var(--border-subtle);
+  padding-top: 10px;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   4. 行話與術語字典抽屜 (FAB JARGON & GLOSSARY EXPLORER)
+   ══════════════════════════════════════════════════════════════════════════════ */
+.jargon-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(15, 23, 42, 0.45);
+  backdrop-filter: blur(8px);
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.jargon-modal.is-open {
+  display: flex;
+}
+
+.jargon-dialog {
+  background: #ffffff;
+  border-radius: var(--radius-lg);
+  max-width: 960px;
+  width: 100%;
+  max-height: 88vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-popup);
+  overflow: hidden;
+}
+
+.jargon-search-bar {
+  padding: 16px 24px;
+  border-bottom: 1px solid var(--border-subtle);
+  display: flex;
+  gap: 12px;
+}
+
+.jargon-input {
+  flex: 1;
+  padding: 10px 14px;
+  font-size: 15px;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  outline: none;
+}
+
+.jargon-input:focus {
+  border-color: var(--semi-blue);
+  box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15);
+}
+
+.jargon-tabs {
+  display: flex;
+  gap: 8px;
+  padding: 12px 24px;
+  background: var(--bg-app);
+  border-bottom: 1px solid var(--border-subtle);
+  overflow-x: auto;
+}
+
+.tab-pill {
+  padding: 6px 14px;
+  font-size: 12.5px;
+  font-weight: 600;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border-subtle);
+  background: #ffffff;
+  color: var(--text-secondary);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.tab-pill.is-active {
+  background: var(--semi-blue);
+  color: #ffffff;
+  border-color: var(--semi-blue);
+}
+
+.jargon-list {
+  padding: 24px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.jargon-item-card {
+  padding: 14px 18px;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  background: #ffffff;
+}
+
+.jargon-item-card:hover {
+  background: #f8fafc;
+  border-color: var(--border-strong);
+}
+
+.jargon-term {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 4px;
+}
+
+.jargon-meaning {
+  font-size: 13.5px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.jargon-example {
+  margin-top: 6px;
+  font-size: 12.5px;
+  color: var(--semi-amber);
+  background: #fffbeb;
+  padding: 4px 8px;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   5. 頁尾致敬宣告 (ATTRIBUTION FOOTER)
+   ══════════════════════════════════════════════════════════════════════════════ */
+.app-footer {
+  background: var(--bg-surface);
+  border-top: 1px solid var(--border-subtle);
+  padding: 32px 24px;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.footer-inner {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.footer-attribution {
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.footer-attribution a {
+  color: var(--semi-blue-dark);
+  text-decoration: underline;
+}
+
+/* 響應式佈局適配 */
+@media (max-width: 1200px) {
+  .app-toc {
+    display: none;
+  }
+}
+
+@media (max-width: 860px) {
+  .app-sidebar {
+    display: none;
+  }
+  .main-canvas {
+    padding: 24px 20px;
+  }
+}

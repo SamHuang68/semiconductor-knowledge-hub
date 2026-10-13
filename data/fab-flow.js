@@ -1,0 +1,162 @@
+/**
+ * fab-flow.js
+ * 晶圓廠 12 大核心製程模組與互動全景流資料
+ */
+export const FAB_FLOW_NODES = [
+  {
+    id: "step-01",
+    num: "01",
+    phase: "Substrate",
+    nameZh: "長晶與切片拋光",
+    nameEn: "Ingot & Wafer Prep",
+    chapterId: "ch03",
+    chapterTitle: "第 3 章　從沙子到晶圓",
+    summary: "從二氧化矽純化出 99.9999999% 電子級矽（EGS），以 CZ 柴氏拉晶法生長單晶矽棒，經鑽石線切片、邊緣倒角與鏡面拋光。",
+    keyTool: "長晶爐、線切機、拋光機",
+    fabRole: "基板供應商 / 材料站",
+    badge: "SUBSTRATE"
+  },
+  {
+    id: "step-02",
+    num: "02",
+    phase: "FEOL",
+    nameZh: "熱氧化與表面薄膜",
+    nameEn: "Thermal Oxidation",
+    chapterId: "ch05",
+    chapterTitle: "第 5 章　薄膜",
+    summary: "在高溫爐管中通入氧氣或水蒸氣，在矽表面生長一層厚度高度均勻、缺陷極少的二氧化矽層，作為阻擋層或閘極氧化層。",
+    keyTool: "水平/垂直擴散爐 (Furnace)",
+    fabRole: "擴散/薄膜模組 (DIFF/TF)",
+    badge: "FEOL"
+  },
+  {
+    id: "step-03",
+    num: "03",
+    phase: "FEOL",
+    nameZh: "黃光微影曝光",
+    nameEn: "Lithography",
+    chapterId: "ch04",
+    chapterTitle: "第 4 章　微影",
+    summary: "晶圓廠最昂貴的瓶頸站。塗佈光阻、精密對準、使用 193nm 浸潤式 DUV 或 13.5nm EUV 光源將光罩圖形縮小曝光轉印至晶圓，顯影後檢查 ADI。",
+    keyTool: "光阻塗佈顯影機 (Track)、曝光機 (Scanner: DUV / EUV)",
+    fabRole: "黃光微影模組 (PHOTO)",
+    badge: "CORE"
+  },
+  {
+    id: "step-04",
+    num: "04",
+    phase: "FEOL",
+    nameZh: "電漿乾蝕刻",
+    nameEn: "Plasma Etching",
+    chapterId: "ch06",
+    chapterTitle: "第 6 章　蝕刻",
+    summary: "利用反應性離子蝕刻（RIE）將光阻圖形精準雕刻至下層材料。關鍵指標包含非等向性、垂直輪廓、高選擇比與終點偵測（EPD）。",
+    keyTool: "ICP/CCP 電漿蝕刻機 (Etcher)",
+    fabRole: "蝕刻模組 (ETCH)",
+    badge: "FEOL"
+  },
+  {
+    id: "step-05",
+    num: "05",
+    phase: "FEOL",
+    nameZh: "離子佈植與熱活化",
+    nameEn: "Ion Implantation & Anneal",
+    chapterId: "ch07",
+    chapterTitle: "第 7 章　離子佈植與熱處理",
+    summary: "以幾十萬伏特電壓加速摻雜原子（硼/磷/砷）轟入晶圓特定區域，改變導電型態（形成井區或源汲極），接著透過快速高溫退火（RTA）活化雜質並修復晶格晶損。",
+    keyTool: "高電流/高能量離子佈植機 (Implanter)、快速熱退火機 (RTA/RTP)",
+    fabRole: "離子佈植模組 (IMP)",
+    badge: "FEOL"
+  },
+  {
+    id: "step-06",
+    num: "06",
+    phase: "FEOL/MOL",
+    nameZh: "原子層沉積與化學氣相沉積",
+    nameEn: "ALD / CVD / PVD",
+    chapterId: "ch05",
+    chapterTitle: "第 5 章　薄膜",
+    summary: "堆疊各種導電與絕緣層。CVD 用於沉積介電層與多晶矽；ALD 則是以自我限制化學反應達到原子級單層膜厚控制，在 FinFET/GAA 高深寬比結構上表現極致階梯覆蓋率。",
+    keyTool: "ALD 機台、PECVD/LPCVD 機台、濺鍍機 (Sputter)",
+    fabRole: "薄膜模組 (TF)",
+    badge: "FEOL"
+  },
+  {
+    id: "step-07",
+    num: "07",
+    phase: "MOL/BEOL",
+    nameZh: "化學機械平坦化",
+    nameEn: "Chemical Mechanical Planarization (CMP)",
+    chapterId: "ch08",
+    chapterTitle: "第 8 章　CMP",
+    summary: "晶圓上一層一層蓋上去會變得崎嶇不平。利用研磨液（Slurry）的化學腐蝕配合研磨墊（Pad）的機械磨擦，把整個晶圓表面磨至原子級絕對平整，使微影景深（DOF）不至於失效。",
+    keyTool: "CMP 研磨機 (Polisher) 與 清洗刷洗模組",
+    fabRole: "研磨模組 (CMP)",
+    badge: "PLANAR"
+  },
+  {
+    id: "step-08",
+    num: "08",
+    phase: "Clean",
+    nameZh: "濕式清洗與表面淨化",
+    nameEn: "RCA Clean & Contamination Control",
+    chapterId: "ch09",
+    chapterTitle: "第 9 章　清洗與污染控制",
+    summary: "半導體製程中每經過一道步驟就要洗一次。RCA 清洗去除有機物、顆粒（Particle）與金屬離子；並嚴格控管每一站的等待時間（Q-Time）防止自然氧化物生長。",
+    keyTool: "批次式清洗槽 (Wet Bench)、單晶圓旋轉清洗機 (Single Wafer Tool)",
+    fabRole: "清洗模組 (WET)",
+    badge: "CLEAN"
+  },
+  {
+    id: "step-09",
+    num: "09",
+    phase: "BEOL",
+    nameZh: "多層金屬化導線",
+    nameEn: "Metallization & Damascene",
+    chapterId: "ch10",
+    chapterTitle: "第 10 章　金屬化",
+    summary: "以接觸窗（Contact）連接底層電晶體，並使用銅雙大馬士革製程（Dual Damascene）鋪設 10 至 15 層精密金屬導線（M1~Mx），搭配低介電常數（Low-k）材料降低電阻電容延遲（RC Delay）。",
+    keyTool: "電鍍銅機 (ECD/ECP)、阻障層 PVD、Low-k PECVD",
+    fabRole: "後段金屬化 (BEOL)",
+    badge: "BEOL"
+  },
+  {
+    id: "step-10",
+    num: "10",
+    phase: "Integration",
+    nameZh: "先進製程整合 (FinFET / GAA)",
+    nameEn: "Advanced Integration & GAA",
+    chapterId: "ch12",
+    chapterTitle: "第 12 章　先進電晶體結構",
+    summary: "整合前段幾百道工序，從平面 MOSFET 到立體 3D FinFET，再演進為全環繞閘極（GAA 奈米片）與背面供電網路（BSPDN），實現 2nm 以下極致密度與漏電流控制。",
+    keyTool: "高選擇比磊晶機 (EPI)、原子層蝕刻 (ALE)、極紫外光 (EUV)",
+    fabRole: "製程整合部門 (PIE)",
+    badge: "INTEGRATION"
+  },
+  {
+    id: "step-11",
+    num: "11",
+    phase: "Control",
+    nameZh: "量測檢測與良率控制",
+    nameEn: "Metrology & Yield Control",
+    chapterId: "ch15",
+    chapterTitle: "第 15 章　量測與檢測",
+    summary: "以光學與電子顯微鏡（CD-SEM、TEM、橢偏儀）在線監控膜厚、線寬與對準，配合自動光學缺陷檢測（AOI）、統計製程管制（SPC）與機台故障診斷（FDC），守住晶圓良率底線。",
+    keyTool: "光學缺陷檢測機、CD-SEM、橢偏儀 (Ellipsometer)、TEM",
+    fabRole: "量測品管部門 (MET / YED)",
+    badge: "QUALITY"
+  },
+  {
+    id: "step-12",
+    num: "12",
+    phase: "Packaging",
+    nameZh: "晶圓針測與先進封裝 (CoWoS/SoIC)",
+    nameEn: "Wafer Probe & Advanced Packaging",
+    chapterId: "ch21",
+    chapterTitle: "第 21 章　先進封裝",
+    summary: "晶圓出廠前經 WAT/CP 探針測試分類合格晶粒（KGD），送往先進封裝廠進行矽中介層（Interposer）、TSV 矽穿孔、混合鍵合（Hybrid Bonding）與 2.5D/3D Chiplet 異質整合。",
+    keyTool: "晶圓針測機 (Prober)、晶圓研磨減薄機、覆晶黏晶機、熱壓焊機",
+    fabRole: "封裝測試 (OSAT / Adv Packaging)",
+    badge: "ADV-PKG"
+  }
+];

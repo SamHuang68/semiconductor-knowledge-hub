@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Semiconductor Knowledge Hub · 半導體製造概論知識庫</title>
+  <meta name="description" content="從沙子到晶片的完整晶圓製造旅程，涵蓋 25 章 FEOL/BEOL 模組、CMOS/FinFET/GAA 整合、良率量測與 CoWoS/SoIC 先進封裝。">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" type="image/svg+xml" href="assets/cover.svg">
+</head>
+<body>
+
+  <!-- 頂部導覽列 -->
+  <header class="app-header">
+    <a href="#ch00" class="brand-cluster">
+      <div class="wafer-logo-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"></circle>
+          <path d="M12 2v20M2 12h20M4.93 4.93l14.14 14.14M4.93 19.07l14.14-14.14"></path>
+        </svg>
+      </div>
+      <div class="brand-text">
+        <span class="brand-title">Semiconductor Knowledge Hub</span>
+        <span class="brand-subtitle">半導體製造概論 · 25 章完整工程知識庫</span>
+      </div>
+    </a>
+
+    <div class="header-actions">
+      <button type="button" class="tool-btn" id="openAtlasBtn" title="開啟 12 大製程全景流程圖">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+        <span>製程全景圖</span>
+      </button>
+
+      <button type="button" class="tool-btn" id="openJargonBtn" title="查詢 245 筆名詞與 43 筆晶圓廠現場行話">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        <span>行話與術語字典</span>
+      </button>
+
+      <button type="button" class="tool-btn tool-btn-primary" id="openSearchBtn" title="全域即時檢索 (快捷鍵: / 或 Ctrl+K)">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        <span>檢索</span>
+        <span class="kbd-badge">/</span>
+      </button>
+
+      <a href="https://samhuang68.github.io/" class="tool-btn" title="返回 Portal 專案入口" target="_blank" rel="noopener">
+        <span>Portal ↗</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- 主佈局區塊 -->
+  <div class="app-container">
+    
+    <!-- 左側側邊欄導覽 -->
+    <aside class="app-sidebar">
+      <div class="sidebar-header">
+        <input type="text" id="chapterFilter" class="sidebar-filter" placeholder="過濾章節名稱...">
+      </div>
+      <nav id="sidebarNav" aria-label="章節樹狀導覽"></nav>
+    </aside>
+
+    <!-- 中央主要閱讀主體 -->
+    <main class="main-canvas" id="mainContentArea" tabindex="-1">
+      <div style="padding: 40px; text-align: center; color: var(--text-muted);">
+        正在載入半導體製造核心教材...
+      </div>
+    </main>
+
+    <!-- 右側頁內目錄 -->
+    <aside class="app-toc" aria-label="本頁大綱">
+      <div class="toc-heading">本頁段落大綱</div>
+      <ul class="toc-list" id="tocList"></ul>
+    </aside>
+
+  </div>
+
+  <!-- 頁尾版權與致敬宣告 -->
+  <footer class="app-footer">
+    <div class="footer-inner">
+      <p class="footer-attribution">
+        本專案基於開源教材 
+        <a href="https://github.com/chenwei810/Semiconductor_Manufacturing_Introduction" target="_blank" rel="noopener">
+          chenwei810/Semiconductor_Manufacturing_Introduction
+        </a> 
+        （採 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hant" target="_blank" rel="noopener">CC BY-NC-SA 4.0 創用 CC 姓名標示-非商業性-相同方式分享</a> 授權）重製與架構升級。
+      </p>
+      <p style="margin-top: 6px;">
+        涵蓋 25 章從沙子到晶片的完整晶圓製造旅程 · 245 筆核心術語與現場實務行話 · 純前端極速架構 · 零中系依賴
+      </p>
+    </div>
+  </footer>
+
+  <!-- 1. 製程全景流程圖 Modal -->
+  <div class="atlas-modal" id="atlasModal" role="dialog" aria-modal="true" aria-labelledby="atlasTitle">
+    <div class="atlas-dialog">
+      <div class="atlas-header">
+        <h2 class="atlas-title" id="atlasTitle">晶圓廠 12 大核心製程全景圖譜 (Fab Flow Atlas)</h2>
+        <button type="button" class="tool-btn" id="closeAtlasBtn">關閉 (Esc)</button>
+      </div>
+      <div class="atlas-body" id="atlasGrid"></div>
+    </div>
+  </div>
+
+  <!-- 2. 行話與術語字典 Modal -->
+  <div class="jargon-modal" id="jargonModal" role="dialog" aria-modal="true" aria-labelledby="jargonTitle">
+    <div class="jargon-dialog">
+      <div class="atlas-header">
+        <div>
+          <h2 class="atlas-title" id="jargonTitle">晶圓廠現場行話與術語字典</h2>
+          <div style="font-size: 13px; color: var(--text-muted); margin-top: 4px;">收錄 245 筆核心術語與 43 筆現場口語行話</div>
+        </div>
+        <button type="button" class="tool-btn" id="closeJargonBtn">關閉 (Esc)</button>
+      </div>
+      <div class="jargon-search-bar">
+        <input type="text" id="jargonSearchInput" class="jargon-input" placeholder="輸入名詞、縮寫、行話或定義（例如: Q-Time, CMP, Hot Lot, 浸潤式）...">
+      </div>
+      <div class="jargon-tabs">
+        <button type="button" class="tab-pill is-active" data-tab="all">全部收錄</button>
+        <button type="button" class="tab-pill" data-tab="glossary">術語總表 (附錄 A)</button>
+        <button type="button" class="tab-pill" data-tab="jargon">現場行話 (附錄 B)</button>
+        <button type="button" class="tab-pill" data-tab="wafer">晶圓與批次</button>
+        <button type="button" class="tab-pill" data-tab="tool">機台操作</button>
+        <button type="button" class="tab-pill" data-tab="system">系統與流程</button>
+        <button type="button" class="tab-pill" data-tab="quality">品質與異常</button>
+      </div>
+      <div class="jargon-list" id="jargonList"></div>
+    </div>
+  </div>
+
+  <!-- 3. 全文搜尋 Modal -->
+  <div class="jargon-modal" id="searchModal" role="dialog" aria-modal="true" aria-labelledby="searchModalTitle">
+    <div class="jargon-dialog" style="max-width: 720px;">
+      <div class="atlas-header">
+        <h2 class="atlas-title" id="searchModalTitle">全域教材檢索</h2>
+        <button type="button" class="tool-btn" id="closeSearchBtn">關閉 (Esc)</button>
+      </div>
+      <div class="jargon-search-bar">
+        <input type="text" id="searchModalInput" class="jargon-input" placeholder="搜尋 25 章內容、技術主題或製程步驟...">
+      </div>
+      <div class="jargon-list" id="searchResultsList" style="max-height: 50vh;"></div>
+    </div>
+  </div>
+
+  <!-- 引入主應用程式模組 -->
+  <script type="module" src="app.js"></script>
+
+</body>
+</html>
