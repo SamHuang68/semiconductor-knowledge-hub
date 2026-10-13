@@ -1,0 +1,83 @@
+.signal-toggle, .signal-lab button { min-height: 44px; border: 1px solid #9aafb4; border-radius: 4px; padding: 9px 14px; background: #fff; color: #153b48; font: inherit; font-size: 15px; cursor: pointer; }
+.signal-toggle { margin: 0 0 16px; border-color: #497d82; font-weight: 600; }
+.signal-toggle:hover, .signal-lab button:hover:not(:disabled) { background: #e3f4f1; }
+.signal-lab button:disabled { opacity: .5; cursor: default; }
+.signal-lab { margin-top: 24px; padding: 26px; border: 1px solid #bdced0; border-radius: 7px; background: #f3f7f8; color: #193a47; }
+.signal-lab[hidden] { display: none; }
+.signal-heading { display: flex; align-items: flex-start; justify-content: space-between; gap: 18px; }
+.signal-heading h3 { margin: 0; font-size: 28px; line-height: 1.4; font-weight: 600; }
+.signal-heading button { flex-shrink: 0; }
+.signal-intro { margin: 14px 0; line-height: 1.8; }
+.signal-examples { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0; }
+.signal-examples button { flex: 1; }
+.signal-examples [aria-pressed="true"] { background: #173f4b; border-color: #173f4b; color: white; box-shadow: inset 0 -3px #71ece3; }
+.signal-examples [aria-pressed="true"]:hover { color: #153b48; }
+.signal-workspace { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(240px, 1fr); gap: 20px; align-items: stretch; }
+.signal-plot { min-width: 0; padding: 18px 16px 12px; border-radius: 5px; background: #092b39; color: #dcebec; }
+.signal-plot-label { display: flex; gap: 8px; justify-content: space-between; flex-wrap: wrap; font-size: 15px; }
+.signal-plot-label span { color: #bcd3db; font-size: 13px; }
+.signal-chart { display: grid; grid-template-columns: 90px minmax(0, 1fr); gap: 8px; height: 240px; }
+.signal-chart svg { width: 100%; height: 240px; overflow: visible; }
+.signal-axis { position: relative; color: #dcebec; font-size: 13px; white-space: nowrap; }
+.signal-axis span { position: absolute; right: 0; transform: translateY(-50%); }
+.signal-axis span:nth-child(1) { top: 25%; }
+.signal-axis span:nth-child(2) { top: 50%; }
+.signal-axis span:nth-child(3) { top: 75%; }
+.signal-limit, .signal-center, .signal-trace, .signal-point, .signal-cross { vector-effect: non-scaling-stroke; }
+.signal-limit { fill: none; stroke: #9ab3bc; stroke-width: 1.5px; stroke-dasharray: 6 5; }
+.signal-center { fill: none; stroke: #9ab3bc; stroke-width: 1px; }
+.signal-trace { fill: none; stroke: #71ece3; stroke-width: 2.5px; }
+.signal-point { fill: #71ece3; stroke: #71ece3; stroke-width: 2px; }
+.signal-point.is-outside { fill: #e1ad70; stroke: #e1ad70; stroke-width: 5px; }
+.signal-cross { fill: none; stroke: #092b39; stroke-width: 1.5px; }
+.signal-order { display: flex; justify-content: space-between; gap: 4px; margin: -10px 0 0 98px; color: #c3d5db; font-size: 12px; }
+.signal-key { font-size: 13px; color: #dcebec; margin: 16px 0 0; line-height: 1.7; }
+.signal-preview .signal-chart, .signal-preview .signal-chart svg { height: 192px; }
+.signal-preview .signal-chart svg { margin: 0; }
+.signal-preview .signal-chart { grid-template-columns: 84px minmax(0, 1fr); }
+.signal-preview .signal-order { margin-left: 92px; }
+.signal-preview > p { margin: 15px 0 0; color: #dcebec; text-align: center; font-size: 13px; }
+.signal-reading { align-self: center; min-width: 0; }
+.signal-reading strong { display: block; font-size: 21px; font-weight: 600; line-height: 1.5; }
+.signal-reading p { line-height: 1.8; margin: 10px 0; }
+.signal-last { border-top: 1px solid #bdced0; padding-top: 12px; font-size: 14px; }
+.signal-controls { margin-top: 22px; }
+.signal-controls label { display: block; font-size: 16px; font-weight: 600; }
+.signal-controls input { display: block; width: 100%; height: 44px; margin: 5px 0; accent-color: #215966; cursor: pointer; }
+.signal-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.signal-data, .signal-explanation { margin-top: 16px; border-top: 1px solid #bdced0; }
+.signal-lab summary { padding: 14px 0; cursor: pointer; line-height: 1.6; }
+.signal-lab details p { line-height: 1.8; }
+.signal-data table { width: 100%; border-collapse: collapse; background: white; font-size: 14px; }
+.signal-data caption { text-align: left; padding: 4px 0 10px; font-size: 13px; }
+.signal-data th, .signal-data td { padding: 9px 12px; border: 1px solid #ccd8db; text-align: left; }
+.signal-data th { font-weight: 500; }
+.signal-paths { margin-top: 22px; padding-top: 20px; border-top: 1px solid #bdced0; }
+.signal-paths h4 { margin: 0; font-size: 19px; font-weight: 600; }
+.signal-paths p { line-height: 1.8; }
+.signal-paths nav { display: flex; flex-wrap: wrap; gap: 10px; }
+.signal-paths a { display: block; padding: 12px; min-height: 44px; color: #164b5b; background: #fff; border: 1px solid #9aafb4; border-radius: 4px; font-size: 14px; line-height: 1.6; }
+.signal-boundary { margin: 20px 0 12px; font-size: 14px; line-height: 1.8; color: #425b65; }
+.signal-source { display: inline-block; padding: 10px 0; color: #164b5b; font-size: 14px; line-height: 1.7; }
+@media (max-width: 1100px) {
+  .signal-workspace { grid-template-columns: 1fr; gap: 18px; }
+}
+@media (max-width: 560px) {
+  .signal-lab { padding: 18px 12px; }
+  .signal-heading { flex-direction: column; gap: 10px; }
+  .signal-heading h3 { font-size: 24px; }
+  .signal-examples button { flex: 1 1 100%; }
+  .signal-plot { padding: 14px 8px; }
+  .signal-chart { grid-template-columns: 80px minmax(0, 1fr); gap: 6px; }
+  .signal-axis { font-size: 12px; }
+  .signal-order { display: grid; grid-template-columns: 1fr 1fr; margin-left: 86px; font-size: 12px; }
+  .signal-order span:nth-child(2) { grid-column: 1 / -1; grid-row: 2; text-align: center; }
+  .signal-order span:last-child { grid-column: 2; grid-row: 1; text-align: right; }
+  .signal-actions button { flex: 1 1 35%; }
+  .signal-actions button:first-child { flex-basis: 100%; }
+  .signal-paths nav { flex-direction: column; }
+}
+@media print {
+  .signal-toggle, .signal-heading button, .signal-examples, .signal-controls { display: none !important; }
+  .signal-plot { print-color-adjust: exact; }
+}
