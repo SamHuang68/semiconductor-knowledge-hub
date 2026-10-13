@@ -52,7 +52,7 @@ try {
       }, selector, { timeout: 5000 }); }
       catch (error) {
         console.log(JSON.stringify(await page.evaluate(selector => ({ selector, viewport: [innerWidth, innerHeight], target: document.querySelector(selector)?.getBoundingClientRect().toJSON(), toolbar: document.querySelector('.explorer-toolbar')?.getBoundingClientRect().toJSON(), header: document.querySelector('.app-header')?.getBoundingClientRect().toJSON(), focus: document.activeElement.id }), selector)));
-        await shot(`1.2.0_定位診斷_${page.viewportSize().width}`);
+        await shot(`1.3.0_定位診斷_${page.viewportSize().width}`);
         throw error;
       }
     };
@@ -63,7 +63,7 @@ try {
       await page.waitForFunction(() => document.querySelector('#detailTitle')?.textContent === '曝光與顯影');
       await visibleBelowToolbar('#detailTitle');
       assert.equal(await page.evaluate(() => document.activeElement.id), 'detailTitle');
-      await shot('1.2.0_手機點選節點');
+      await shot('1.3.0_手機點選節點');
       await page.locator('.source-chapter').click();
       await page.locator('.article-headline').waitFor();
       assert.ok(page.url().endsWith('#ch04?from=pattern%2Fexpose'));
@@ -92,7 +92,7 @@ try {
       assert.ok((await page.locator('#stepUrl').inputValue()).endsWith('#explore/pattern/etch'));
       assert.equal(await page.evaluate(() => document.activeElement.id), 'stepUrl');
       assert.match(await page.locator('#shareStatus').innerText(), /手動複製/);
-      await page.locator('[data-explorer-view="detail"]').click();
+      await page.locator('.explorer-tools [data-explorer-view="detail"]').click();
       await visibleBelowToolbar('#detailTitle');
       console.log('通過：同節點再次開啟、鍵盤下一站、分享成功與權限拒絕的手動複製');
 
@@ -155,7 +155,7 @@ try {
         assert.ok(overflow.scroll <= overflow.width + 1, JSON.stringify(overflow));
         assert.deepEqual(overflow.clipped, []);
         await page.locator('[data-explorer-view="practice"]').click();
-        await shot(`1.2.0_情境練習_${width}`);
+        await shot(`1.3.0_情境練習_${width}`);
         await page.locator('[data-explorer-view="map"]').click();
         await visibleBelowToolbar('#workbenchHeading');
       }
