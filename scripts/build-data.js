@@ -4,9 +4,11 @@
  */
 import fs from 'fs';
 import path from 'path';
+import { fileURLToPath } from 'url';
+import { normalizeChapterHref } from '../章節連結.js';
 
 const REF_DIR = 'C:/Users/Sam/AI-Workspace/reference/Semiconductor_Manufacturing_Introduction/zh-TW';
-const OUTPUT_DATA_DIR = 'C:/Users/Sam/AI-Workspace/projects/semiconductor-knowledge-hub/data';
+const OUTPUT_DATA_DIR = fileURLToPath(new URL('../data/', import.meta.url));
 
 if (!fs.existsSync(OUTPUT_DATA_DIR)) {
   fs.mkdirSync(OUTPUT_DATA_DIR, { recursive: true });
@@ -231,13 +233,7 @@ function formatInline(str) {
     })
     .replace(/\[(.*?)\]\((.*?)\)/g, (match, text, href) => {
       // 處理相對章節連結
-      let cleanHref = href;
-      if (href.includes('.md')) {
-        let chMatch = href.match(/(\d\d-[^/]+)/);
-        if (chMatch) {
-          cleanHref = `#node-${chMatch[1].substring(0, 2)}`;
-        }
-      }
+      const cleanHref = normalizeChapterHref(href);
       return `<a href="${cleanHref}" class="semi-link">${text}</a>`;
     });
 }

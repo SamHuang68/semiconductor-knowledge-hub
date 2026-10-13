@@ -10,6 +10,9 @@ import { CHAPTERS_DATA } from './data/chapters-data.js';
 import { FAB_FLOW_NODES } from './data/fab-flow.js';
 import { GLOSSARY_DATA, JARGON_DATA } from './data/glossary-data.js';
 import { SEARCH_INDEX } from './data/search-index.js';
+import { renderExplorer } from './情境探索.js';
+import { scenarioForChapter } from './data/情境路徑.js';
+import { normalizeChapterHref } from './章節連結.js';
 
 (() => {
   'use strict';
@@ -187,6 +190,7 @@ import { SEARCH_INDEX } from './data/search-index.js';
    * 2. 載入並渲染指定章節
    */
   function loadChapter(chId) {
+    document.body.classList.remove('is-exploring');
     const chapter = CHAPTERS_DATA.find(c => c.id === chId) || CHAPTERS_DATA[0];
     currentChapterId = chapter.id;
 
@@ -210,7 +214,7 @@ import { SEARCH_INDEX } from './data/search-index.js';
         <div class="wafer-track-banner">
           <div class="track-info">
             <span class="track-kicker">📍 晶圓位置旅程</span>
-            <span class="track-title">${chapter.waferTrack.replace(/\n/g, ' · ')}</span>
+            <span class="track-title chapter-track-parts">${chapter.waferTrack.split(/\r?\n/).map(line => `<span>${escapeHtml(line.replace(/^-\s*/, '').replace(/\*\*/g, ''))}</span>`).join('')}</span>
           </div>
           <span class="track-badge">WAFER TRACK</span>
         </div>
@@ -236,7 +240,9 @@ import { SEARCH_INDEX } from './data/search-index.js';
 
     const isBookmarked = bookmarkedChapters.has(chapter.id);
 
+    const relatedScenario = scenarioForChapter(chapter.id);
     mainCanvasEl.innerHTML = `
+      <a href="#explore/${relatedScenario.id}" class="chapter-scenario-link"><span>用流程圖理解：${escapeHtml(relatedScenario.title)}</span><span>開啟互動情境 ↗</span></a>
       ${trackHtml}
       <header class="article-header">
         <div class="article-top-bar">
@@ -258,6 +264,20 @@ import { SEARCH_INDEX } from './data/search-index.js';
       </div>
       ${paginationHtml}
     `;
+
+    // 同一份教材保留原文與錨點，只移除與頁首完全相同的重複標題。
+    const duplicateHeading = mainCanvasEl.querySelector('.article-body > h1');
+    if (duplicateHeading) {
+      const title = duplicateHeading.cloneNode(true);
+      title.querySelectorAll('.anchor-link').forEach(a => a.remove());
+      if (title.textContent.trim() === chapter.fullTitle.trim()) {
+        mainCanvasEl.querySelector('.article-headline').id = duplicateHeading.id;
+        duplicateHeading.remove();
+      }
+    }
+    mainCanvasEl.querySelectorAll('.article-body a[href]').forEach(link => {
+      link.setAttribute('href', normalizeChapterHref(link.getAttribute('href')));
+    });
 
     // 重新高亮側邊欄
     renderSidebar(chapterFilterEl ? chapterFilterEl.value : '');
@@ -354,7 +374,7 @@ import { SEARCH_INDEX } from './data/search-index.js';
     let html = '';
     FAB_FLOW_NODES.forEach(node => {
       html += `
-        <div class="atlas-card" data-jump-ch="${node.chapterId}">
+        <button type="button" class="atlas-card" data-jump-ch="${node.chapterId}">
           <div>
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
               <span class="atlas-step-num">STEP ${node.num}</span>
@@ -367,7 +387,7 @@ import { SEARCH_INDEX } from './data/search-index.js';
             <div><strong>關鍵機台：</strong>${escapeHtml(node.keyTool)}</div>
             <div><strong>所屬站點：</strong>${escapeHtml(node.chapterTitle)}</div>
           </div>
-        </div>
+        </button>
       `;
     });
     atlasGridEl.innerHTML = html;
@@ -460,11 +480,11 @@ import { SEARCH_INDEX } from './data/search-index.js';
     let html = '';
     hits.forEach(hit => {
       html += `
-        <div class="jargon-item-card" data-search-target="${hit.chId}" style="cursor: pointer; margin-bottom: 8px;">
+        <button type="button" class="jargon-item-card search-result-button" data-search-target="${hit.chId}" style="cursor: pointer; margin-bottom: 8px;">
           <div style="font-size: 11px; font-weight: 700; color: var(--semi-blue);">${hit.part}</div>
           <div class="jargon-term">${escapeHtml(hit.title)}</div>
           <div class="jargon-meaning" style="font-size: 13px;">${escapeHtml(hit.snippet)}...</div>
-        </div>
+        </button>
       `;
     });
     searchResultsEl.innerHTML = html;
@@ -558,22 +578,76 @@ import { SEARCH_INDEX } from './data/search-index.js';
     });
   });
 
-  // 3. Hash 路由監聽
-  window.addEventListener('hashchange', () => {
-    const hash = window.location.hash.replace('#', '');
-    if (hash.startsWith('ch') || hash.startsWith('app')) {
-      loadChapter(hash);
+  // 3. 情境與教材共用 Hash 路由，保留舊章節網址。
+  function renderRoute() {
+    const normalized = normalizeChapterHref(window.location.hash || '#explore');
+    if (window.location.hash !== normalized) history.replaceState(null, '', normalized);
+    const hash = normalized.slice(1);
+    if (hash === 'explore' || hash.startsWith('explore/')) {
+      const wasExploring = document.body.classList.contains('is-exploring');
+      renderExplorer(mainCanvasEl, hash);
+      tocListEl.innerHTML = '';
+      appSidebarEl.classList.remove('is-open');
+      sidebarBackdropEl.classList.remove('is-active');
+      if (!wasExploring) window.scrollTo({ top: 0, behavior: 'instant' });
+    } else if (CHAPTERS_DATA.some(ch => ch.id === hash)) loadChapter(hash);
+    else loadChapter('ch00');
+  }
+  window.addEventListener('hashchange', renderRoute);
+
+  // 沿用現有彈窗入口，補齊焦點圈限、背景隔離與關閉後的焦點返回。
+  const dialogs = [atlasModalEl, jargonModalEl, searchModalEl, shortcutsModalEl];
+  let activeDialog = null;
+  let dialogOpener = null;
+  document.addEventListener('focusin', e => {
+    if (!activeDialog && !e.target.closest('[role="dialog"]')) dialogOpener = e.target;
+  });
+  const backgroundRegions = [document.querySelector('.app-header'), document.querySelector('.app-container'), document.querySelector('.app-footer')];
+  const modalObserver = new MutationObserver(() => {
+    const nextDialog = dialogs.find(dialog => dialog.classList.contains('is-open')) || null;
+    if (nextDialog === activeDialog) return;
+    if (nextDialog) {
+      if (!activeDialog && !document.activeElement.closest('[role="dialog"]')) dialogOpener = document.activeElement;
+      backgroundRegions.forEach(region => { region.inert = true; });
+      const target = nextDialog.querySelector('input') || nextDialog.querySelector('button');
+      target?.focus();
+    } else {
+      backgroundRegions.forEach(region => { region.inert = false; });
+      if (dialogOpener?.isConnected && !dialogOpener.closest('[role="dialog"]')) dialogOpener.focus({ preventScroll: true });
+      else mainCanvasEl.focus({ preventScroll: true });
     }
+    activeDialog = nextDialog;
+  });
+  dialogs.forEach(dialog => modalObserver.observe(dialog, { attributes: true, attributeFilter: ['class'] }));
+  document.addEventListener('keydown', e => {
+    if (e.key !== 'Tab' || !activeDialog) return;
+    const focusable = [...activeDialog.querySelectorAll('a[href], button:not([disabled]), input, [tabindex="0"]')].filter(el => el.getClientRects().length);
+    const first = focusable[0], last = focusable[focusable.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last?.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first?.focus(); }
   });
 
   // 4. 事件代理：點擊導航與跨頁跳轉
   document.addEventListener('click', (e) => {
+    // 情境／章節的原生連結使用瀏覽器歷史，段落錨點保留章節資訊。
+    const localLink = e.target.closest('a[href^="#"]');
+    if (localLink && (e.ctrlKey || e.metaKey || e.shiftKey || e.altKey)) return;
+    if (localLink && (localLink.classList.contains('toc-link') || localLink.closest('.article-body'))) {
+      const href = normalizeChapterHref(localLink.getAttribute('href'));
+      if (!/^#(?:ch\d{2}|app-|explore)/.test(href)) {
+        let id;
+        try { id = decodeURIComponent(href.slice(1)); } catch { return; }
+        const target = document.getElementById(id);
+        if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'instant', block: 'start' }); }
+      }
+    }
     // 側邊欄點擊
     const navLink = e.target.closest('.chapter-nav-link');
     if (navLink) {
       e.preventDefault();
       const targetId = navLink.getAttribute('data-ch-id');
-      loadChapter(targetId);
+      if (window.location.hash === `#${targetId}`) loadChapter(targetId);
+      else window.location.hash = targetId;
       return;
     }
 
@@ -582,7 +656,7 @@ import { SEARCH_INDEX } from './data/search-index.js';
     if (pageNav) {
       e.preventDefault();
       const targetId = pageNav.getAttribute('data-nav-target');
-      loadChapter(targetId);
+      window.location.hash = targetId;
       return;
     }
 
@@ -753,6 +827,7 @@ import { SEARCH_INDEX } from './data/search-index.js';
     // / 或 Ctrl+K 開啟全域搜尋
     if ((e.key === '/' && !isInputActive) || (e.key === 'k' && (e.ctrlKey || e.metaKey))) {
       e.preventDefault();
+      dialogs.filter(dialog => dialog !== searchModalEl).forEach(dialog => dialog.classList.remove('is-open'));
       searchModalEl.classList.add('is-open');
       if (searchInputEl) {
         searchInputEl.value = '';
@@ -762,10 +837,11 @@ import { SEARCH_INDEX } from './data/search-index.js';
       return;
     }
 
-    if (isInputActive) return;
+    if (isInputActive || document.querySelector('.atlas-modal.is-open, .jargon-modal.is-open')) return;
 
     // [ 前往上一章
     if (e.key === '[') {
+      if (document.body.classList.contains('is-exploring')) return;
       const idx = CHAPTERS_DATA.findIndex(c => c.id === currentChapterId);
       if (idx > 0) loadChapter(CHAPTERS_DATA[idx - 1].id);
       return;
@@ -773,6 +849,7 @@ import { SEARCH_INDEX } from './data/search-index.js';
 
     // ] 前往下一章
     if (e.key === ']') {
+      if (document.body.classList.contains('is-exploring')) return;
       const idx = CHAPTERS_DATA.findIndex(c => c.id === currentChapterId);
       if (idx < CHAPTERS_DATA.length - 1) loadChapter(CHAPTERS_DATA[idx + 1].id);
       return;
@@ -794,6 +871,7 @@ import { SEARCH_INDEX } from './data/search-index.js';
 
     // B 收藏當前章節
     if (e.key === 'b' || e.key === 'B') {
+      if (document.body.classList.contains('is-exploring')) return;
       toggleBookmark(currentChapterId);
       return;
     }
@@ -819,9 +897,7 @@ import { SEARCH_INDEX } from './data/search-index.js';
   applyFontSize(currentFontSize);
   updateStudyProgress();
 
-  const initHash = window.location.hash.replace('#', '');
-  const initialId = (initHash.startsWith('ch') || initHash.startsWith('app')) ? initHash : 'ch00';
   renderSidebar();
-  loadChapter(initialId);
+  renderRoute();
 
 })();
