@@ -1,7 +1,8 @@
 /**
  * app.js
  * Semiconductor Knowledge Hub — 主控制器
- * 支援純前端單頁式極速閱讀、路由切換、全文搜尋、術語字典與製程圖譜
+ * 支援純前端單頁式極速閱讀、路由切換、全文搜尋、術語字典、製程圖譜、
+ * 手機端抽屜導覽、字級縮放、學習進度追蹤與捲動進度指示
  */
 
 import { CHAPTERS_DATA } from './data/chapters-data.js';
@@ -15,11 +16,26 @@ import { SEARCH_INDEX } from './data/search-index.js';
   let currentChapterId = 'ch00';
   let activeJargonTab = 'all';
 
+  // 本地學習進度與偏好記憶
+  const READ_STORAGE_KEY = 'semi_read_chapters';
+  const FONT_STORAGE_KEY = 'semi_font_size';
+
+  const readChapters = new Set(JSON.parse(localStorage.getItem(READ_STORAGE_KEY) || '[]'));
+  let currentFontSize = parseFloat(localStorage.getItem(FONT_STORAGE_KEY) || '16.5');
+
   // DOM 節點快取
+  const appSidebarEl = document.getElementById('appSidebar');
   const sidebarNavEl = document.getElementById('sidebarNav');
+  const sidebarBackdropEl = document.getElementById('sidebarBackdrop');
+  const mobileToggleBtn = document.getElementById('mobileToggleBtn');
   const chapterFilterEl = document.getElementById('chapterFilter');
   const mainCanvasEl = document.getElementById('mainContentArea');
   const tocListEl = document.getElementById('tocList');
+  const readingProgressBar = document.getElementById('readingProgressBar');
+  const backToTopBtn = document.getElementById('backToTopBtn');
+  const studyProgressText = document.getElementById('studyProgressText');
+  const studyProgressBar = document.getElementById('studyProgressBar');
+
   const atlasModalEl = document.getElementById('atlasModal');
   const atlasGridEl = document.getElementById('atlasGrid');
   const jargonModalEl = document.getElementById('jargonModal');
@@ -28,6 +44,48 @@ import { SEARCH_INDEX } from './data/search-index.js';
   const searchModalEl = document.getElementById('searchModal');
   const searchInputEl = document.getElementById('searchModalInput');
   const searchResultsEl = document.getElementById('searchResultsList');
+
+  // 字級調節按鈕
+  const fontSizeDecBtn = document.getElementById('fontSizeDecBtn');
+  const fontSizeResetBtn = document.getElementById('fontSizeResetBtn');
+  const fontSizeIncBtn = document.getElementById('fontSizeIncBtn');
+
+  /**
+   * 套用字級
+   */
+  function applyFontSize(size) {
+    currentFontSize = Math.min(22, Math.max(14, size));
+    document.documentElement.style.setProperty('--article-font-size', `${currentFontSize}px`);
+    localStorage.setItem(FONT_STORAGE_KEY, String(currentFontSize));
+  }
+
+  /**
+   * 更新學習進度條 (0 ~ 25 章)
+   */
+  function updateStudyProgress() {
+    const totalCoreChapters = 25; // 0 到 24 章
+    const coreCount = [...readChapters].filter(id => id.startsWith('ch')).length;
+    const pct = Math.min(100, Math.round((coreCount / totalCoreChapters) * 100));
+
+    if (studyProgressText) {
+      studyProgressText.textContent = `${coreCount} / ${totalCoreChapters} 章 (${pct}%)`;
+    }
+    if (studyProgressBar) {
+      studyProgressBar.style.width = `${pct}%`;
+    }
+  }
+
+  /**
+   * 標記當前章節為已讀
+   */
+  function markChapterRead(chId) {
+    if (!readChapters.has(chId)) {
+      readChapters.add(chId);
+      localStorage.setItem(READ_STORAGE_KEY, JSON.stringify([...readChapters]));
+      updateStudyProgress();
+      renderSidebar(chapterFilterEl ? chapterFilterEl.value : '');
+    }
+  }
 
   /**
    * 1. 初始化側邊欄目錄樹
@@ -56,6 +114,7 @@ import { SEARCH_INDEX } from './data/search-index.js';
       `;
       chapters.forEach(ch => {
         const isActive = ch.id === currentChapterId;
+        const isRead = readChapters.has(ch.id);
         const numStr = ch.num < 10 ? `0${ch.num}` : `${ch.num}`;
         html += `
           <li class="chapter-nav-item">
@@ -64,6 +123,7 @@ import { SEARCH_INDEX } from './data/search-index.js';
                 <span class="ch-number">${ch.id.startsWith('app') ? '附錄' : `CH ${numStr}`}</span>
                 <span>${escapeHtml(ch.shortTitle)}</span>
               </span>
+              ${isRead ? '<span class="read-check-indicator" title="已閱讀完成">✓</span>' : ''}
             </a>
           </li>
         `;
@@ -84,6 +144,9 @@ import { SEARCH_INDEX } from './data/search-index.js';
   function loadChapter(chId) {
     const chapter = CHAPTERS_DATA.find(c => c.id === chId) || CHAPTERS_DATA[0];
     currentChapterId = chapter.id;
+
+    // 標記已讀
+    markChapterRead(chapter.id);
 
     // 更新網址 Hash (若不同)
     if (window.location.hash !== `#${chapter.id}`) {
@@ -129,7 +192,15 @@ import { SEARCH_INDEX } from './data/search-index.js';
     mainCanvasEl.innerHTML = `
       ${trackHtml}
       <header class="article-header">
-        <span class="article-part-label">${chapter.part}</span>
+        <div class="article-top-bar">
+          <span class="article-part-label">${chapter.part}</span>
+          <div class="article-action-cluster">
+            <button type="button" class="article-action-btn" id="copyLinkBtn">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+              <span>複製章節連結</span>
+            </button>
+          </div>
+        </div>
         <h1 class="article-headline">${escapeHtml(chapter.fullTitle)}</h1>
       </header>
       <div class="article-body">
@@ -146,6 +217,14 @@ import { SEARCH_INDEX } from './data/search-index.js';
 
     // 捲動至頁首
     window.scrollTo({ top: 0, behavior: 'instant' });
+
+    // 手機版自動收合側邊欄
+    if (appSidebarEl) {
+      appSidebarEl.classList.remove('is-open');
+    }
+    if (sidebarBackdropEl) {
+      sidebarBackdropEl.classList.remove('is-active');
+    }
   }
 
   /**
@@ -170,9 +249,26 @@ import { SEARCH_INDEX } from './data/search-index.js';
   }
 
   /**
-   * 4. 滾動聯動高亮 (ScrollSpy)
+   * 4. 滾動聯動高亮 (ScrollSpy) 與頂部進度條
    */
   window.addEventListener('scroll', () => {
+    // 頂部進度條
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    if (docHeight > 0 && readingProgressBar) {
+      const scrollPct = Math.min(100, Math.max(0, (window.scrollY / docHeight) * 100));
+      readingProgressBar.style.width = `${scrollPct}%`;
+    }
+
+    // 回到頂部按鈕可見度
+    if (backToTopBtn) {
+      if (window.scrollY > 320) {
+        backToTopBtn.classList.add('is-visible');
+      } else {
+        backToTopBtn.classList.remove('is-visible');
+      }
+    }
+
+    // TOC ScrollSpy
     const headingEls = mainCanvasEl.querySelectorAll('h2[id], h3[id]');
     if (headingEls.length === 0) return;
 
@@ -382,6 +478,18 @@ import { SEARCH_INDEX } from './data/search-index.js';
       return;
     }
 
+    // 複製章節連結按鈕
+    if (e.target.closest('#copyLinkBtn')) {
+      const btn = e.target.closest('#copyLinkBtn');
+      const url = window.location.href;
+      navigator.clipboard.writeText(url).then(() => {
+        const originalText = btn.innerHTML;
+        btn.innerHTML = '<span>已複製連結！</span>';
+        setTimeout(() => { btn.innerHTML = originalText; }, 2000);
+      });
+      return;
+    }
+
     // 開啟全景圖譜
     if (e.target.closest('#openAtlasBtn')) {
       atlasModalEl.classList.add('is-open');
@@ -434,6 +542,20 @@ import { SEARCH_INDEX } from './data/search-index.js';
       searchModalEl.classList.remove('is-open');
       return;
     }
+
+    // 手機側邊欄切換
+    if (e.target.closest('#mobileToggleBtn')) {
+      if (appSidebarEl) appSidebarEl.classList.toggle('is-open');
+      if (sidebarBackdropEl) sidebarBackdropEl.classList.toggle('is-active');
+      return;
+    }
+
+    // 點擊手機側邊欄遮罩
+    if (e.target === sidebarBackdropEl) {
+      if (appSidebarEl) appSidebarEl.classList.remove('is-open');
+      if (sidebarBackdropEl) sidebarBackdropEl.classList.remove('is-active');
+      return;
+    }
   });
 
   // 4. 行話字典即時搜尋輸入
@@ -450,13 +572,33 @@ import { SEARCH_INDEX } from './data/search-index.js';
     });
   }
 
-  // 6. 全域熱鍵 (Keyboard Shortcuts)
+  // 6. 字級按鈕
+  if (fontSizeDecBtn) {
+    fontSizeDecBtn.addEventListener('click', () => applyFontSize(currentFontSize - 1));
+  }
+  if (fontSizeResetBtn) {
+    fontSizeResetBtn.addEventListener('click', () => applyFontSize(16.5));
+  }
+  if (fontSizeIncBtn) {
+    fontSizeIncBtn.addEventListener('click', () => applyFontSize(currentFontSize + 1));
+  }
+
+  // 7. 回到頂部按鈕
+  if (backToTopBtn) {
+    backToTopBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  // 8. 全域熱鍵 (Keyboard Shortcuts)
   window.addEventListener('keydown', (e) => {
     // Esc 關閉所有彈窗
     if (e.key === 'Escape') {
       if (atlasModalEl) atlasModalEl.classList.remove('is-open');
       if (jargonModalEl) jargonModalEl.classList.remove('is-open');
       if (searchModalEl) searchModalEl.classList.remove('is-open');
+      if (appSidebarEl) appSidebarEl.classList.remove('is-open');
+      if (sidebarBackdropEl) sidebarBackdropEl.classList.remove('is-active');
       return;
     }
 
@@ -473,6 +615,9 @@ import { SEARCH_INDEX } from './data/search-index.js';
   });
 
   // 初始載入
+  applyFontSize(currentFontSize);
+  updateStudyProgress();
+
   const initHash = window.location.hash.replace('#', '');
   const initialId = (initHash.startsWith('ch') || initHash.startsWith('app')) ? initHash : 'ch00';
   renderSidebar();

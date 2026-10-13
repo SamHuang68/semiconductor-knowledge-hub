@@ -10,20 +10,31 @@
 </head>
 <body>
 
+  <!-- 頂部閱讀進度指示條 -->
+  <div class="reading-progress-track" aria-hidden="true">
+    <div class="reading-progress-bar" id="readingProgressBar"></div>
+  </div>
+
   <!-- 頂部導覽列 -->
   <header class="app-header">
-    <a href="#ch00" class="brand-cluster">
-      <div class="wafer-logo-icon" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <circle cx="12" cy="12" r="10"></circle>
-          <path d="M12 2v20M2 12h20M4.93 4.93l14.14 14.14M4.93 19.07l14.14-14.14"></path>
-        </svg>
-      </div>
-      <div class="brand-text">
-        <span class="brand-title">Semiconductor Knowledge Hub</span>
-        <span class="brand-subtitle">半導體製造概論 · 25 章完整工程知識庫</span>
-      </div>
-    </a>
+    <div style="display: flex; align-items: center; gap: 10px;">
+      <button type="button" class="mobile-toggle-btn" id="mobileToggleBtn" aria-label="切換章節目錄" title="展開章節目錄">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+      </button>
+
+      <a href="#ch00" class="brand-cluster">
+        <div class="wafer-logo-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <path d="M12 2v20M2 12h20M4.93 4.93l14.14 14.14M4.93 19.07l14.14-14.14"></path>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-title">Semiconductor Knowledge Hub</span>
+          <span class="brand-subtitle">半導體製造概論 · 25 章完整工程知識庫</span>
+        </div>
+      </a>
+    </div>
 
     <div class="header-actions">
       <button type="button" class="tool-btn" id="openAtlasBtn" title="開啟 12 大製程全景流程圖">
@@ -42,18 +53,34 @@
         <span class="kbd-badge">/</span>
       </button>
 
+      <a href="https://hub.samhuang68.org/" class="tool-btn ext-hub-btn" title="切換至 NVM Knowledge Hub (Silicon IP)" target="_blank" rel="noopener">
+        <span>NVM Hub ↗</span>
+      </a>
+
       <a href="https://samhuang68.github.io/" class="tool-btn" title="返回 Portal 專案入口" target="_blank" rel="noopener">
         <span>Portal ↗</span>
       </a>
     </div>
   </header>
 
+  <!-- 手機端側邊欄遮罩 -->
+  <div class="sidebar-backdrop" id="sidebarBackdrop" aria-hidden="true"></div>
+
   <!-- 主佈局區塊 -->
   <div class="app-container">
     
     <!-- 左側側邊欄導覽 -->
-    <aside class="app-sidebar">
+    <aside class="app-sidebar" id="appSidebar">
       <div class="sidebar-header">
+        <div class="study-progress-card">
+          <div class="progress-label-row">
+            <span class="progress-title">學習進度</span>
+            <span class="progress-count" id="studyProgressText">0 / 25 章</span>
+          </div>
+          <div class="progress-meter-bar">
+            <div class="progress-meter-fill" id="studyProgressBar" style="width: 0%;"></div>
+          </div>
+        </div>
         <input type="text" id="chapterFilter" class="sidebar-filter" placeholder="過濾章節名稱...">
       </div>
       <nav id="sidebarNav" aria-label="章節樹狀導覽"></nav>
@@ -68,11 +95,24 @@
 
     <!-- 右側頁內目錄 -->
     <aside class="app-toc" aria-label="本頁大綱">
+      <div class="reading-controls-bar">
+        <span class="controls-label">閱讀字級</span>
+        <div class="font-size-btns">
+          <button type="button" class="font-btn" id="fontSizeDecBtn" title="縮小字體">A-</button>
+          <button type="button" class="font-btn" id="fontSizeResetBtn" title="預設字體">A</button>
+          <button type="button" class="font-btn" id="fontSizeIncBtn" title="放大字體">A+</button>
+        </div>
+      </div>
       <div class="toc-heading">本頁段落大綱</div>
       <ul class="toc-list" id="tocList"></ul>
     </aside>
 
   </div>
+
+  <!-- 浮動回到頂部按鈕 -->
+  <button type="button" class="back-to-top-btn" id="backToTopBtn" aria-label="回到頂部" title="回到頂部">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 15l-6-6-6 6"/></svg>
+  </button>
 
   <!-- 頁尾版權與致敬宣告 -->
   <footer class="app-footer">
