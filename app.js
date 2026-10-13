@@ -1,8 +1,9 @@
 /**
  * app.js
- * Semiconductor Knowledge Hub — 主控制器
+ * Semiconductor Knowledge Hub — 主控制器 (深度優化旗艦版)
  * 支援純前端單頁式極速閱讀、路由切換、全文搜尋、術語字典、製程圖譜、
- * 手機端抽屜導覽、字級縮放、學習進度追蹤與捲動進度指示
+ * 手機端抽屜導覽、字級縮放、學習進度追蹤、書籤收藏、Mermaid 向量渲染、
+ * 代碼一鍵複製與全套鍵盤極速導航。
  */
 
 import { CHAPTERS_DATA } from './data/chapters-data.js';
@@ -15,12 +16,15 @@ import { SEARCH_INDEX } from './data/search-index.js';
 
   let currentChapterId = 'ch00';
   let activeJargonTab = 'all';
+  let activeSidebarFilterMode = 'all'; // 'all' | 'read' | 'starred'
 
-  // 本地學習進度與偏好記憶
+  // 本地學習進度、收藏與字級偏好記憶
   const READ_STORAGE_KEY = 'semi_read_chapters';
+  const BOOKMARK_STORAGE_KEY = 'semi_bookmarked_chapters';
   const FONT_STORAGE_KEY = 'semi_font_size';
 
   const readChapters = new Set(JSON.parse(localStorage.getItem(READ_STORAGE_KEY) || '[]'));
+  const bookmarkedChapters = new Set(JSON.parse(localStorage.getItem(BOOKMARK_STORAGE_KEY) || '[]'));
   let currentFontSize = parseFloat(localStorage.getItem(FONT_STORAGE_KEY) || '16.5');
 
   // DOM 節點快取
@@ -44,6 +48,7 @@ import { SEARCH_INDEX } from './data/search-index.js';
   const searchModalEl = document.getElementById('searchModal');
   const searchInputEl = document.getElementById('searchModalInput');
   const searchResultsEl = document.getElementById('searchResultsList');
+  const shortcutsModalEl = document.getElementById('shortcutsModal');
 
   // 字級調節按鈕
   const fontSizeDecBtn = document.getElementById('fontSizeDecBtn');
@@ -88,17 +93,53 @@ import { SEARCH_INDEX } from './data/search-index.js';
   }
 
   /**
+   * 切換收藏狀態
+   */
+  function toggleBookmark(chId) {
+    if (bookmarkedChapters.has(chId)) {
+      bookmarkedChapters.delete(chId);
+    } else {
+      bookmarkedChapters.add(chId);
+    }
+    localStorage.setItem(BOOKMARK_STORAGE_KEY, JSON.stringify([...bookmarkedChapters]));
+    renderSidebar(chapterFilterEl ? chapterFilterEl.value : '');
+    updateBookmarkButtonUI(chId);
+  }
+
+  function updateBookmarkButtonUI(chId) {
+    const btn = document.getElementById('toggleBookmarkBtn');
+    if (!btn) return;
+    const isBookmarked = bookmarkedChapters.has(chId);
+    if (isBookmarked) {
+      btn.classList.add('is-bookmarked');
+      btn.innerHTML = '⭐ 已收藏';
+    } else {
+      btn.classList.remove('is-bookmarked');
+      btn.innerHTML = '☆ 收藏此章';
+    }
+  }
+
+  /**
    * 1. 初始化側邊欄目錄樹
    */
   function renderSidebar(filterText = '') {
     if (!sidebarNavEl) return;
     const partsMap = new Map();
 
-    // 分組
+    // 分組與模式過濾
     CHAPTERS_DATA.forEach(ch => {
+      // 搜尋文字過濾
       if (filterText && !ch.fullTitle.toLowerCase().includes(filterText.toLowerCase()) && !ch.shortTitle.toLowerCase().includes(filterText.toLowerCase())) {
         return;
       }
+      // 模式過濾
+      if (activeSidebarFilterMode === 'read' && !readChapters.has(ch.id)) {
+        return;
+      }
+      if (activeSidebarFilterMode === 'starred' && !bookmarkedChapters.has(ch.id)) {
+        return;
+      }
+
       if (!partsMap.has(ch.part)) {
         partsMap.set(ch.part, []);
       }
@@ -115,6 +156,7 @@ import { SEARCH_INDEX } from './data/search-index.js';
       chapters.forEach(ch => {
         const isActive = ch.id === currentChapterId;
         const isRead = readChapters.has(ch.id);
+        const isStarred = bookmarkedChapters.has(ch.id);
         const numStr = ch.num < 10 ? `0${ch.num}` : `${ch.num}`;
         html += `
           <li class="chapter-nav-item">
@@ -123,7 +165,10 @@ import { SEARCH_INDEX } from './data/search-index.js';
                 <span class="ch-number">${ch.id.startsWith('app') ? '附錄' : `CH ${numStr}`}</span>
                 <span>${escapeHtml(ch.shortTitle)}</span>
               </span>
-              ${isRead ? '<span class="read-check-indicator" title="已閱讀完成">✓</span>' : ''}
+              <span style="display: flex; align-items: center;">
+                ${isStarred ? '<span class="star-indicator" title="已收藏">★</span>' : ''}
+                ${isRead ? '<span class="read-check-indicator" title="已閱讀完成">✓</span>' : ''}
+              </span>
             </a>
           </li>
         `;
@@ -132,7 +177,7 @@ import { SEARCH_INDEX } from './data/search-index.js';
     }
 
     if (partsMap.size === 0) {
-      html = '<div style="padding: 16px; font-size: 13px; color: var(--text-muted);">查無相符章節</div>';
+      html = '<div style="padding: 16px; font-size: 13px; color: var(--text-muted); text-align: center;">查無相符章節</div>';
     }
 
     sidebarNavEl.innerHTML = html;
@@ -189,13 +234,18 @@ import { SEARCH_INDEX } from './data/search-index.js';
       </div>
     `;
 
+    const isBookmarked = bookmarkedChapters.has(chapter.id);
+
     mainCanvasEl.innerHTML = `
       ${trackHtml}
       <header class="article-header">
         <div class="article-top-bar">
           <span class="article-part-label">${chapter.part}</span>
           <div class="article-action-cluster">
-            <button type="button" class="article-action-btn" id="copyLinkBtn">
+            <button type="button" class="article-action-btn ${isBookmarked ? 'is-bookmarked' : ''}" id="toggleBookmarkBtn" title="收藏此章節 (快捷鍵: B)">
+              ${isBookmarked ? '⭐ 已收藏' : '☆ 收藏此章'}
+            </button>
+            <button type="button" class="article-action-btn" id="copyLinkBtn" title="複製目前章節連結">
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
               <span>複製章節連結</span>
             </button>
@@ -214,6 +264,10 @@ import { SEARCH_INDEX } from './data/search-index.js';
 
     // 渲染段落 TOC
     renderToc(chapter.headings);
+
+    // 渲染 Mermaid 圖表與代碼複製鈕
+    renderMermaidDiagrams();
+    attachCodeCopyButtons();
 
     // 捲動至頁首
     window.scrollTo({ top: 0, behavior: 'instant' });
@@ -416,6 +470,68 @@ import { SEARCH_INDEX } from './data/search-index.js';
     searchResultsEl.innerHTML = html;
   }
 
+  /**
+   * 8. Mermaid 流程圖動態向量渲染
+   */
+  async function renderMermaidDiagrams() {
+    const diagrams = mainCanvasEl.querySelectorAll('.mermaid-diagram');
+    if (diagrams.length === 0) return;
+
+    try {
+      if (!window.mermaid) {
+        const { default: mermaid } = await import('https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs');
+        window.mermaid = mermaid;
+        window.mermaid.initialize({
+          startOnLoad: false,
+          theme: 'neutral',
+          themeVariables: {
+            primaryColor: '#e0f2fe',
+            primaryBorderColor: '#0284c7',
+            primaryTextColor: '#0f172a',
+            lineColor: '#0284c7',
+            secondaryColor: '#f1f5f9',
+            tertiaryColor: '#ffffff'
+          }
+        });
+      }
+
+      for (let i = 0; i < diagrams.length; i++) {
+        const d = diagrams[i];
+        const rawCode = d.getAttribute('data-mermaid');
+        if (rawCode) {
+          const id = `mermaid-svg-${Date.now()}-${i}`;
+          const { svg } = await window.mermaid.render(id, rawCode);
+          d.innerHTML = `<div class="mermaid-rendered">${svg}</div>`;
+        }
+      }
+    } catch (err) {
+      console.warn('Mermaid 渲染受阻，保留原始代碼區塊:', err);
+    }
+  }
+
+  /**
+   * 9. 代碼區塊右上角一鍵複製
+   */
+  function attachCodeCopyButtons() {
+    mainCanvasEl.querySelectorAll('pre.code-pre').forEach((pre) => {
+      if (pre.querySelector('.copy-code-btn')) return;
+      const copyBtn = document.createElement('button');
+      copyBtn.className = 'copy-code-btn';
+      copyBtn.type = 'button';
+      copyBtn.textContent = '複製';
+      copyBtn.title = '複製代碼內容';
+      copyBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const code = pre.querySelector('code')?.innerText || pre.innerText;
+        navigator.clipboard.writeText(code).then(() => {
+          copyBtn.textContent = '已複製！';
+          setTimeout(() => { copyBtn.textContent = '複製'; }, 2000);
+        });
+      });
+      pre.appendChild(copyBtn);
+    });
+  }
+
   function escapeHtml(str) {
     if (!str) return '';
     return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
@@ -432,7 +548,17 @@ import { SEARCH_INDEX } from './data/search-index.js';
     });
   }
 
-  // 2. Hash 路由監聽
+  // 2. 側邊欄切換 Tab (全部 / 已讀 / 收藏)
+  document.querySelectorAll('.side-tab-pill').forEach(pill => {
+    pill.addEventListener('click', () => {
+      document.querySelectorAll('.side-tab-pill').forEach(p => p.classList.remove('is-active'));
+      pill.classList.add('is-active');
+      activeSidebarFilterMode = pill.getAttribute('data-filter-mode');
+      renderSidebar(chapterFilterEl ? chapterFilterEl.value : '');
+    });
+  });
+
+  // 3. Hash 路由監聽
   window.addEventListener('hashchange', () => {
     const hash = window.location.hash.replace('#', '');
     if (hash.startsWith('ch') || hash.startsWith('app')) {
@@ -440,7 +566,7 @@ import { SEARCH_INDEX } from './data/search-index.js';
     }
   });
 
-  // 3. 事件代理：點擊導航與跨頁跳轉
+  // 4. 事件代理：點擊導航與跨頁跳轉
   document.addEventListener('click', (e) => {
     // 側邊欄點擊
     const navLink = e.target.closest('.chapter-nav-link');
@@ -457,6 +583,12 @@ import { SEARCH_INDEX } from './data/search-index.js';
       e.preventDefault();
       const targetId = pageNav.getAttribute('data-nav-target');
       loadChapter(targetId);
+      return;
+    }
+
+    // 收藏當前章節
+    if (e.target.closest('#toggleBookmarkBtn')) {
+      toggleBookmark(currentChapterId);
       return;
     }
 
@@ -543,6 +675,18 @@ import { SEARCH_INDEX } from './data/search-index.js';
       return;
     }
 
+    // 開啟快捷鍵指南
+    if (e.target.closest('#openShortcutsBtn')) {
+      shortcutsModalEl.classList.add('is-open');
+      return;
+    }
+
+    // 關閉快捷鍵指南
+    if (e.target.closest('#closeShortcutsBtn') || (e.target === shortcutsModalEl)) {
+      shortcutsModalEl.classList.remove('is-open');
+      return;
+    }
+
     // 手機側邊欄切換
     if (e.target.closest('#mobileToggleBtn')) {
       if (appSidebarEl) appSidebarEl.classList.toggle('is-open');
@@ -558,21 +702,21 @@ import { SEARCH_INDEX } from './data/search-index.js';
     }
   });
 
-  // 4. 行話字典即時搜尋輸入
+  // 5. 行話字典即時搜尋輸入
   if (jargonSearchInput) {
     jargonSearchInput.addEventListener('input', (e) => {
       renderJargonModal(e.target.value, activeJargonTab);
     });
   }
 
-  // 5. 全文搜尋即時輸入
+  // 6. 全文搜尋即時輸入
   if (searchInputEl) {
     searchInputEl.addEventListener('input', (e) => {
       runSearch(e.target.value);
     });
   }
 
-  // 6. 字級按鈕
+  // 7. 字級按鈕
   if (fontSizeDecBtn) {
     fontSizeDecBtn.addEventListener('click', () => applyFontSize(currentFontSize - 1));
   }
@@ -583,27 +727,31 @@ import { SEARCH_INDEX } from './data/search-index.js';
     fontSizeIncBtn.addEventListener('click', () => applyFontSize(currentFontSize + 1));
   }
 
-  // 7. 回到頂部按鈕
+  // 8. 回到頂部按鈕
   if (backToTopBtn) {
     backToTopBtn.addEventListener('click', () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 
-  // 8. 全域熱鍵 (Keyboard Shortcuts)
+  // 9. 全域熱鍵 (Keyboard Shortcuts)
   window.addEventListener('keydown', (e) => {
+    // 忽略在輸入框中的按鍵
+    const isInputActive = document.activeElement && (document.activeElement.tagName === 'INPUT' || document.activeElement.tagName === 'TEXTAREA');
+
     // Esc 關閉所有彈窗
     if (e.key === 'Escape') {
       if (atlasModalEl) atlasModalEl.classList.remove('is-open');
       if (jargonModalEl) jargonModalEl.classList.remove('is-open');
       if (searchModalEl) searchModalEl.classList.remove('is-open');
+      if (shortcutsModalEl) shortcutsModalEl.classList.remove('is-open');
       if (appSidebarEl) appSidebarEl.classList.remove('is-open');
       if (sidebarBackdropEl) sidebarBackdropEl.classList.remove('is-active');
       return;
     }
 
     // / 或 Ctrl+K 開啟全域搜尋
-    if ((e.key === '/' && document.activeElement.tagName !== 'INPUT') || (e.key === 'k' && (e.ctrlKey || e.metaKey))) {
+    if ((e.key === '/' && !isInputActive) || (e.key === 'k' && (e.ctrlKey || e.metaKey))) {
       e.preventDefault();
       searchModalEl.classList.add('is-open');
       if (searchInputEl) {
@@ -611,6 +759,59 @@ import { SEARCH_INDEX } from './data/search-index.js';
         searchInputEl.focus();
         runSearch('');
       }
+      return;
+    }
+
+    if (isInputActive) return;
+
+    // [ 前往上一章
+    if (e.key === '[') {
+      const idx = CHAPTERS_DATA.findIndex(c => c.id === currentChapterId);
+      if (idx > 0) loadChapter(CHAPTERS_DATA[idx - 1].id);
+      return;
+    }
+
+    // ] 前往下一章
+    if (e.key === ']') {
+      const idx = CHAPTERS_DATA.findIndex(c => c.id === currentChapterId);
+      if (idx < CHAPTERS_DATA.length - 1) loadChapter(CHAPTERS_DATA[idx + 1].id);
+      return;
+    }
+
+    // M 開啟製程全景圖
+    if (e.key === 'm' || e.key === 'M') {
+      atlasModalEl.classList.add('is-open');
+      renderAtlasModal();
+      return;
+    }
+
+    // J 開啟行話字典
+    if (e.key === 'j' || e.key === 'J') {
+      jargonModalEl.classList.add('is-open');
+      renderJargonModal('', activeJargonTab);
+      return;
+    }
+
+    // B 收藏當前章節
+    if (e.key === 'b' || e.key === 'B') {
+      toggleBookmark(currentChapterId);
+      return;
+    }
+
+    // ? 開啟快捷鍵指南
+    if (e.key === '?') {
+      shortcutsModalEl.classList.add('is-open');
+      return;
+    }
+
+    // + / - 字級縮放
+    if (e.key === '=' || e.key === '+') {
+      applyFontSize(currentFontSize + 1);
+      return;
+    }
+    if (e.key === '-' || e.key === '_') {
+      applyFontSize(currentFontSize - 1);
+      return;
     }
   });
 

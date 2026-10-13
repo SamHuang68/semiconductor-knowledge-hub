@@ -218,6 +218,10 @@ body {
   color: #ffffff;
 }
 
+.icon-only-btn {
+  padding: 7px 11px;
+}
+
 .kbd-badge {
   font-family: var(--font-mono);
   font-size: 11px;
@@ -302,6 +306,36 @@ body {
   background: linear-gradient(90deg, var(--semi-blue), var(--semi-teal));
   border-radius: var(--radius-full);
   transition: width 0.3s ease;
+}
+
+.sidebar-tab-pills {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.side-tab-pill {
+  flex: 1;
+  padding: 5px 8px;
+  font-size: 11.5px;
+  font-weight: 700;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  background: #ffffff;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.side-tab-pill:hover {
+  background: var(--bg-surface-alt);
+  color: var(--text-main);
+}
+
+.side-tab-pill.is-active {
+  background: var(--semi-blue);
+  color: #ffffff;
+  border-color: var(--semi-blue);
 }
 
 .sidebar-header {
@@ -390,6 +424,12 @@ body {
   font-size: 11px;
   color: var(--semi-emerald);
   margin-left: 6px;
+}
+
+.star-indicator {
+  font-size: 11px;
+  color: #f59e0b;
+  margin-left: 4px;
 }
 
 /* 中央主要閱讀區域 */
@@ -487,11 +527,20 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 4px;
+  transition: all 0.15s ease;
 }
 
 .article-action-btn:hover {
   background: var(--bg-surface-alt);
   color: var(--text-main);
+  border-color: var(--border-strong);
+}
+
+.article-action-btn.is-bookmarked {
+  background: #fef3c7;
+  color: #b45309;
+  border-color: #f59e0b;
+  font-weight: 700;
 }
 
 .article-headline {
@@ -638,6 +687,7 @@ body {
 
 /* 程式碼與圖表 */
 .code-pre {
+  position: relative;
   background: #0f172a;
   color: #f8fafc;
   font-family: var(--font-mono);
@@ -647,6 +697,46 @@ body {
   overflow-x: auto;
   margin: 20px 0;
   line-height: 1.6;
+}
+
+.copy-code-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 4px 8px;
+  font-size: 11px;
+  font-weight: 700;
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 4px;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.2s ease, background 0.2s ease;
+}
+
+.code-pre:hover .copy-code-btn {
+  opacity: 1;
+}
+
+.copy-code-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.mermaid-diagram {
+  margin: 28px 0;
+  background: #f8fafc;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  display: flex;
+  justify-content: center;
+  overflow-x: auto;
+}
+
+.mermaid-rendered svg {
+  max-width: 100%;
+  height: auto;
 }
 
 .inline-code {
@@ -1087,7 +1177,7 @@ figcaption {
 }
 
 /* ══════════════════════════════════════════════════════════════════════════════
-   6. 響應式佈局適配 (RWD: DESKTOP / TABLET / MOBILE)
+   6. 響應式佈局適配 (RWD)
    ══════════════════════════════════════════════════════════════════════════════ */
 @media (max-width: 1200px) {
   .app-toc {
@@ -1121,5 +1211,40 @@ figcaption {
   }
   .brand-subtitle {
     display: none;
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   7. 列印樣式 (PRINT STYLESHEET)
+   ══════════════════════════════════════════════════════════════════════════════ */
+@media print {
+  .app-header,
+  .app-sidebar,
+  .app-toc,
+  .reading-progress-track,
+  .back-to-top-btn,
+  .atlas-modal,
+  .jargon-modal,
+  .chapter-pagination,
+  .article-action-cluster {
+    display: none !important;
+  }
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+  .main-canvas {
+    padding: 0 !important;
+    border: none !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  .table-container {
+    box-shadow: none !important;
+    border: 1px solid #94a3b8 !important;
+  }
+  .callout-glossary, .callout-knowhow, .callout-wafer-pos {
+    box-shadow: none !important;
+    page-break-inside: avoid;
   }
 }
