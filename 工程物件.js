@@ -106,7 +106,70 @@ const TEXTS = {
     ch12_node_span: '主流應用製程節點',
     ch12_planar_desc: 'Planar MOSFET 閘極僅覆蓋二維通道頂部 (單面控制)。通道微縮至 20nm 時，汲極電場穿透引發嚴重 DIBL (汲極引致能障降低) 與次臨界漏電，物理微縮面臨極限。',
     ch12_finfet_desc: 'FinFET 將矽通道立體「豎起」成鰭片，金屬閘極三面包覆 (Tri-Gate)，等效通道寬度 Weff = 2·Hfin + Wfin 大幅增加，通道靜電控制力倍增，漏電降低 10 倍以上。',
-    ch12_gaa_desc: 'GAA Nanosheet 將垂直鰭片改為 3-4 層水平超薄矽奈米片，閘極 360° 全方位環繞穿插四周，次臨界擺幅逼近理論極限 (63 mV/dec)，搭配背面供電網路 (BSPDN) 釋放正面互連瓶頸！'
+    ch12_gaa_desc: 'GAA Nanosheet 將垂直鰭片改為 3-4 層水平超薄矽奈米片，閘極 360° 全方位環繞穿插四周，次臨界擺幅逼近理論極限 (63 mV/dec)，搭配背面供電網路 (BSPDN) 釋放正面互連瓶頸！',
+
+    // Ch 07 離子佈植與退火
+    ch07_title: '離子佈植機電磁光路偏轉與晶格退火活化模型',
+    ch07_sub: '探索 90° 分析磁鐵質量分離、高能光束線加速、微觀晶格非晶化損傷與高溫快速退火 (RTA) 活化機制',
+    ch07_tab_beamline: '離子光路與磁場偏轉 (Beamline)',
+    ch07_tab_anneal: '晶格損傷與退火活化 (Lattice Damage & RTA)',
+    ch07_tab_channeling: '通道效應與 7° 傾角 (Channeling & 7° Tilt)',
+    ch07_ion_source: '離子源產生室 (BF₃ / PH₃ / AsH₃ 電漿)',
+    ch07_magnet: '90° 質量分析磁鐵 (Mass Analyzer Magnet)',
+    ch07_slit: '質量分析狹縫 (Mass Resolving Slit)',
+    ch07_accel: '後級高壓加速管 (100-500 keV)',
+    ch07_scanner: '靜電 X-Y 偏轉掃描極板',
+    ch07_endstation: '真空終端晶圓盤 (Wafer Endstation)',
+    ch07_species_b: '硼離子 B⁺ (m/z=11, 質輕 R小)',
+    ch07_species_p: '磷離子 P⁺ (m/z=31)',
+    ch07_species_as: '砷離子 As⁺ (m/z=75, 質重 R大)',
+    ch07_dose_label: '離子劑量 (Dose Φ)',
+    ch07_range_label: '投影平均射程 (Projected Range Rp)',
+    ch07_energy_label: '加速能量 (Beam Energy)',
+    ch07_beamline_desc: '利用磁場勞侖茲力 F = q(v × B)，不同質量電荷比 (m/z) 的離子在均勻磁場中偏轉半徑 r = mv / (qB) 不同。透過精確狹縫濾除雜質，僅讓目標摻質（如純 ¹¹B⁺）進入加速管射入晶圓。',
+    ch07_anneal_desc: '高速離子注入將原本整齊的單晶矽晶格撞擊成混亂非晶層 (Amorphized Layer)，此時摻質未進入格位且無電性。透過快速熱退火 (RTA ~1050°C 數秒) 提供熱能，觸發固相磊晶再結晶，摻質取代矽原子格位達成 95% 以上電性活化！',
+    ch07_channeling_desc: '當離子束沿著晶軸（如 <110>）直射時，將穿過原子間隙長驅直入（通道效應），產生無法控制的過深尾端。工廠標準做法是將晶圓傾斜 7° (Tilt) 並偏轉 27° (Twist)，打亂對齊確保淺接面輪廓受控。',
+
+    // Ch 08 CMP 化學機械研磨
+    ch08_title: '化學機械研磨 (CMP) 運動學與全域平坦化微觀機制模型',
+    ch08_sub: '解析多區壓力研磨頭、Preston 方程材料移除率、化學水解腐蝕與奈米磨粒微磨削之協同作用',
+    ch08_tab_kinematics: 'CMP 機台運動學 (Carrier Head & Pad)',
+    ch08_tab_micro: '化學+機械協同平坦化 (Chemical + Mechanical)',
+    ch08_tab_defects: '研磨缺陷與假圖形 (Dishing & Dummy Fill)',
+    ch08_pad_label: '旋轉研磨墊 (Polyurethane Pad ~100 RPM)',
+    ch08_head_label: '晶圓研磨頭 (Multi-Zone Carrier Head)',
+    ch08_slurry_arm: '研磨液滴注臂 (SiO₂/CeO₂ Slurry + H₂O₂)',
+    ch08_conditioner: '鑽石修整盤 (Diamond Conditioner Disk)',
+    ch08_mrr_label: '材料移除率 (MRR)',
+    ch08_preston_note: '依據 Preston 方程：MRR = Kp · P · V。多區氣囊精確調控晶圓中心至邊緣之接觸壓力 P，研磨墊與研磨頭同向等速旋轉維持相對速度 V 恆定，實現晶圓級全域平坦化。',
+    ch08_micro_desc: '化學氧化劑（如雙氧水）在金屬表面反應生成一層數奈米厚的疏鬆水合氧化薄膜（化學軟化）；突出高點承受磨粒強烈摩擦被刮除，低窪處則受鈍化膜保護免於腐蝕，實現「只磨高處、不磨低處」的平坦化。',
+    ch08_defects_desc: '大寬度銅導線因彈性研磨墊下陷易產生「碟化 (Dishing)」；密集導線區易產生「介電層侵蝕 (Erosion)」。透過在空曠區填入「假圖形 (Dummy Metal Fill)」平衡圖形密度在 30%-50%，是現代晶圓廠必備之微影平坦化對策。',
+
+    // Ch 10 金屬化與雙載子鑲嵌
+    ch10_title: '銅導線雙載子鑲嵌 (Dual Damascene) 與電遷移 (EM) 微觀模型',
+    ch10_sub: '探索 10+ 層金屬互連線雙鑲嵌自底向上電鍍超填 (Superfilling)、Low-k 介電層與電子風推擠效應',
+    ch10_tab_damascene: '雙載子鑲嵌流程 (Dual Damascene Flow)',
+    ch10_tab_superfill: '電鍍銅由底向上超填 (ECD Superfill)',
+    ch10_tab_em: '電遷移可靠度機制 (Electromigration EM)',
+    ch10_step_dama_1: '1. 沉積 Low-k 介電層 (SiCOH, k~2.5)',
+    ch10_step_dama_2: '2. 微影蝕刻通孔 (Via) 與溝槽 (Trench)',
+    ch10_step_dama_3: '3. 沉積 Ta/TaN 擴散阻擋層 (1.5nm)',
+    ch10_step_dama_4: '4. PVD 沉積薄銅晶種層 (Cu Seed)',
+    ch10_step_dama_5: '5. 電鍍銅自底向上超填 (ECD Superfilling)',
+    ch10_step_dama_6: '6. 銅 CMP 磨平並覆蓋介電帽層 (SiCN Cap)',
+    ch10_damascene_desc: '銅無法像鋁一樣進行乾式電漿蝕刻（無室溫揮發性副產物），因此採用「先挖凹槽、再填銅、最後磨平」的大馬士革製程 (Damascene)；雙載子鑲嵌更將導通孔與上方溝槽一次填銅，大幅降低接觸阻抗。',
+    ch10_superfill_desc: '電鍍液中添加「抑制劑 (Suppressor)」在大孔口抑制沉積，而「加速劑 (Accelerator)」在孔底微小曲率處大量累積，使銅由孔底噴泉式向上生長，杜絕深孔中途閉合形成縫隙 (Seam) 或空洞 (Void)！',
+    ch10_em_desc: '在電流密度 > 10⁶ A/cm² 下，高速電子流對銅原子產生衝撞力（電子風 Electron Wind）。銅原子沿晶界遷移，上游形成孔洞 (Void) 引發斷路，下游堆積成凸起 (Hillock) 刺穿相鄰線路引發短路。',
+
+    // Ch 21 先進封裝
+    ch21_title: '2.5D CoWoS 矽中介層與 3D SoIC 混合鍵合立體架構模型',
+    ch21_sub: '探索台積電 2.5D CoWoS 矽中介層 (TSV)、HBM 堆疊微凸塊、與次世代 3D SoIC <1µm 無凸塊銅對銅混合鍵合',
+    ch21_tab_cowos: '2.5D CoWoS 矽中介層架構 (CoWoS-S)',
+    ch21_tab_soic: '3D SoIC 無凸塊混合鍵合 (Cu-Cu Hybrid)',
+    ch21_tab_density: '各世代互連密度對比 (Density & Pitch)',
+    ch21_cowos_desc: '2.5D CoWoS (Chip-on-Wafer-on-Substrate) 透過大面積矽中介層 (Silicon Interposer) 內部超密高頻微導線與垂直矽穿孔 (TSV)，將 SoC 算力晶片與 4~8 顆 HBM 高頻寬記憶體緊密並排互連，頻寬突破數個 TB/s！',
+    ch21_soic_desc: '3D SoIC 徹底拋棄傳統焊錫微凸塊，透過奈米級平坦化表面，在常溫下以介電層分子鍵合 (SiO₂-SiO₂)，再經熱退火使銅金屬原子跨介面互相擴散 (Cu-Cu)，接點間距 < 1µm，互連密度較傳統提升 1500 倍！',
+    ch21_density_desc: '封裝互連演進：傳統打線/BGA (間距 1000µm) → 覆晶 C4 (間距 150µm) → 2.5D 微凸塊 (間距 35µm) → 3D SoIC 混合鍵合 (間距 0.9µm)，晶片間通訊能耗降低 90%，延遲逼近單一晶粒。'
   },
   en: {
     badge_prefix: 'PROCESS OBJECT · ENGINEERING MODEL',
@@ -195,7 +258,70 @@ const TEXTS = {
     ch12_node_span: 'Leading Production Nodes',
     ch12_planar_desc: 'Planar MOSFET gates only control the top 2D surface of the channel. Scaling below 20nm leads to catastrophic DIBL and punch-through leakage, halting planar scaling.',
     ch12_finfet_desc: 'FinFET stands the silicon channel up as a 3D fin, with the metal gate wrapping over 3 sides (Tri-Gate). Weff = 2·Hfin + Wfin triples drive current while slashing leakage by >10x.',
-    ch12_gaa_desc: 'GAA Nanosheet divides the fin into 3-4 vertically stacked horizontal nanosheets, wrapped 360° on all 4 sides by the gate. SS approaches 63 mV/dec, paired with Backside Power Delivery (BSPDN).'
+    ch12_gaa_desc: 'GAA Nanosheet divides the fin into 3-4 vertically stacked horizontal nanosheets, wrapped 360° on all 4 sides by the gate. SS approaches 63 mV/dec, paired with Backside Power Delivery (BSPDN).',
+
+    // Ch 07 Ion Implantation
+    ch07_title: 'Ion Implanter Beamline Magnetics & Lattice Anneal Model',
+    ch07_sub: 'Explore 90° mass analyzer selection, beamline acceleration, lattice amorphization, and rapid thermal anneal (RTA)',
+    ch07_tab_beamline: 'Beamline & Mass Separation',
+    ch07_tab_anneal: 'Lattice Damage & RTA Activation',
+    ch07_tab_channeling: 'Channeling & 7° Tilt Angle',
+    ch07_ion_source: 'Ion Source Plasma Chamber (BF₃ / PH₃ / AsH₃)',
+    ch07_magnet: '90° Mass Analyzer Magnet (Lorentz Force)',
+    ch07_slit: 'Mass Resolving Slit',
+    ch07_accel: 'Post-Acceleration Column (100-500 keV)',
+    ch07_scanner: 'Electrostatic X-Y Deflection Plates',
+    ch07_endstation: 'High-Vacuum Wafer Endstation',
+    ch07_species_b: 'Boron B⁺ (m/z=11, light, small radius)',
+    ch07_species_p: 'Phosphorus P⁺ (m/z=31)',
+    ch07_species_as: 'Arsenic As⁺ (m/z=75, heavy, large radius)',
+    ch07_dose_label: 'Implant Dose (Φ)',
+    ch07_range_label: 'Projected Range (Rp)',
+    ch07_energy_label: 'Beam Energy',
+    ch07_beamline_desc: 'Based on Lorentz force F = q(v × B), ions with different mass-to-charge ratios (m/z) bend with distinct radii r = mv / (qB) in a magnetic field. Resolving slits filter out unwanted contaminants, selecting only target dopants.',
+    ch07_anneal_desc: 'Energetic ion collisions shatter the crystalline silicon into an amorphous damaged layer with zero electrical activity. Rapid Thermal Annealing (RTA ~1050°C) triggers Solid Phase Epitaxial Regrowth, placing dopants into substitution lattice sites (>95% activation).',
+    ch07_channeling_desc: 'Ions incident along major crystal axes (<110>) steer down open atomic corridors without nuclear collisions (channeling effect). Tilting wafers by 7° with a 27° twist de-aligns the axes, ensuring tight, controlled Gaussian profiles.',
+
+    // Ch 08 CMP
+    ch08_title: 'Chemical Mechanical Planarization (CMP) Model',
+    ch08_sub: 'Analyze multi-zone carrier heads, Preston equation kinematics, chemical softening, and abrasive planarization mechanisms',
+    ch08_tab_kinematics: 'CMP Tool Kinematics (Carrier Head & Pad)',
+    ch08_tab_micro: 'Chemical + Mechanical Synergy',
+    ch08_tab_defects: 'Dishing, Erosion & Dummy Fill',
+    ch08_pad_label: 'Rotating Polishing Pad (~100 RPM)',
+    ch08_head_label: 'Wafer Carrier Head (Multi-Zone Air Bladders)',
+    ch08_slurry_arm: 'Slurry Delivery Arm (SiO₂/CeO₂ + H₂O₂)',
+    ch08_conditioner: 'Diamond Conditioner Disk',
+    ch08_mrr_label: 'Material Removal Rate (MRR)',
+    ch08_preston_note: 'Governed by Preston equation: MRR = Kp · P · V. Multi-zone air bladders tune down-force P from center to edge, while synchronized head and pad rotation keeps relative velocity V constant across the 300mm wafer.',
+    ch08_micro_desc: 'Oxidizers chemically react with metal surfaces to form a soft, porous nanometer-thin oxide layer. Abrasives under pressure polish off high-spot peaks, while recessed valleys remain protected by the passivation film, achieving true global planarization.',
+    ch08_defects_desc: 'Pad elasticity causes dishing in wide metal lines and erosion in dense arrays. Inserting non-functional dummy metal fill tiles keeps pattern density uniform at 30%-50%, eliminating topography variations across the die.',
+
+    // Ch 10 BEOL & Dual Damascene
+    ch10_title: 'Copper Dual Damascene & Electromigration (EM) Model',
+    ch10_sub: 'Explore multi-level BEOL metallization, bottom-up ECD superfilling, low-k dielectrics, and electron wind electromigration',
+    ch10_tab_damascene: 'Dual Damascene Process Flow',
+    ch10_tab_superfill: 'ECD Bottom-Up Superfilling',
+    ch10_tab_em: 'Electromigration Reliability (EM)',
+    ch10_step_dama_1: '1. Deposit Low-k Dielectric (SiCOH, k~2.5)',
+    ch10_step_dama_2: '2. Litho & Etch Vias & Trenches',
+    ch10_step_dama_3: '3. Deposit Ta/TaN Diffusion Barrier (1.5nm)',
+    ch10_step_dama_4: '4. PVD Deposit Thin Copper Seed Layer',
+    ch10_step_dama_5: '5. ECD Bottom-Up Copper Superfilling',
+    ch10_step_dama_6: '6. Copper CMP & Dielectric Capping (SiCN)',
+    ch10_damascene_desc: 'Copper lacks volatile byproducts for dry plasma etching, necessitating the Damascene process: etch trenches first, electroplate copper, then polish flat. Dual Damascene fills vias and trenches simultaneously.',
+    ch10_superfill_desc: 'Plating additives orchestrate seamless filling: Suppressors retard deposition at upper openings, while Accelerators concentrate at concave trench bottoms, driving fountain-like bottom-up growth with zero seams or voids.',
+    ch10_em_desc: 'At extreme current densities (> 10⁶ A/cm²), momentum transfer from drifting electrons (Electron Wind) nudges copper atoms along grain boundaries. Atoms migrate away forming voids (opens), or pile up forming hillocks (shorts).',
+
+    // Ch 21 Advanced Packaging
+    ch21_title: '2.5D CoWoS Interposer & 3D SoIC Hybrid Bonding Model',
+    ch21_sub: 'Explore TSV silicon interposers, HBM micro-bumps, and sub-micron bumpless Cu-Cu hybrid bonding',
+    ch21_tab_cowos: '2.5D CoWoS Silicon Interposer (CoWoS-S)',
+    ch21_tab_soic: '3D SoIC Bumpless Cu-Cu Hybrid Bonding',
+    ch21_tab_density: 'Interconnect Density & Pitch Comparison',
+    ch21_cowos_desc: '2.5D CoWoS bridges high-power SoC/GPU compute dies with 4-8 HBM stacks across a large silicon interposer packed with sub-micron RDL wires and Through-Silicon Vias (TSVs), delivering multi-terabyte/s bandwidth.',
+    ch21_soic_desc: '3D SoIC eliminates solder micro-bumps entirely: atomic-flat dielectric surfaces bond at room temperature (SiO₂-SiO₂), followed by thermal annealing where copper contacts diffuse together (Cu-Cu) with <1µm pitch and 1500x density!',
+    ch21_density_desc: 'Interconnect evolution: Wire-Bonding/BGA (1000µm pitch) → Flip-Chip C4 (150µm) → 2.5D Micro-Bump (35µm) → 3D SoIC Hybrid Bonding (0.9µm), slashing communication energy by 90% with near-monolithic latency.'
   }
 };
 
@@ -1373,6 +1499,1068 @@ export function renderTransistor3DObject(container, lang = 'zh') {
 
 /**
  * ══════════════════════════════════════════════════════════════════════════════
+ * 5. Ch 07 離子佈植機光路偏轉與晶格退火活化模型 (Ion Implantation & Anneal)
+ * ══════════════════════════════════════════════════════════════════════════════
+ */
+export function renderIonImplantObject(container, lang = 'zh') {
+  const t = TEXTS[lang] || TEXTS.zh;
+  let activeTab = 'beamline'; // 'beamline' | 'anneal' | 'channeling'
+  let activeSpecies = 'b'; // 'b' | 'p' | 'as'
+
+  const SPECIES_CONFIG = {
+    b: { name: '¹¹B⁺ (硼)', mass: 11, radius: 100, range: '85 nm', dose: '2.0 × 10¹⁵ cm⁻²', energy: '30 keV', color: '#38bdf8' },
+    p: { name: '³¹P⁺ (磷)', mass: 31, radius: 135, range: '45 nm', dose: '1.0 × 10¹⁵ cm⁻²', energy: '30 keV', color: '#f59e0b' },
+    as: { name: '⁷⁵As⁺ (砷)', mass: 75, radius: 170, range: '25 nm', dose: '3.5 × 10¹⁵ cm⁻²', energy: '30 keV', color: '#10b981' }
+  };
+
+  function update() {
+    let controlsHtml = '';
+    let viewportHtml = '';
+    let dashboardHtml = '';
+    let footerNote = '';
+    const cur = SPECIES_CONFIG[activeSpecies];
+
+    if (activeTab === 'beamline') {
+      controlsHtml = `
+        <div class="eng-obj-tab-group" role="tablist">
+          <button type="button" class="eng-obj-tab ${activeSpecies === 'b' ? 'is-active' : ''}" data-species="b">${t.ch07_species_b}</button>
+          <button type="button" class="eng-obj-tab ${activeSpecies === 'p' ? 'is-active' : ''}" data-species="p">${t.ch07_species_p}</button>
+          <button type="button" class="eng-obj-tab ${activeSpecies === 'as' ? 'is-active' : ''}" data-species="as">${t.ch07_species_as}</button>
+        </div>
+      `;
+
+      viewportHtml = `
+        <svg viewBox="0 0 800 440" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ion Implanter Beamline">
+          <!-- 1. 離子源 (Ion Source) -->
+          <rect x="40" y="50" width="110" height="70" rx="4" fill="#0f172a" stroke="#38bdf8" stroke-width="1.5"/>
+          <circle cx="95" cy="85" r="16" fill="rgba(56, 189, 248, 0.4)" filter="drop-shadow(0 0 8px #38bdf8)" class="anim-plasma"/>
+          <text x="95" y="68" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="700">離子源室</text>
+          <text x="95" y="112" text-anchor="middle" fill="#94a3b8" font-size="9.5">電弧放電電漿</text>
+
+          <!-- 取出電極與初始離子束 -->
+          <line x1="150" y1="85" x2="220" y2="85" stroke="${cur.color}" stroke-width="3" stroke-dasharray="6 3" class="anim-beam"/>
+
+          <!-- 2. 90° 質量分析磁鐵 (Mass Analyzer Magnet) -->
+          <path d="M 220,40 L 340,40 A 150 150 0 0 1 340,240 L 220,240 Z" fill="#1e293b" stroke="#f59e0b" stroke-width="1.5" opacity="0.85"/>
+          <text x="270" y="135" text-anchor="middle" fill="#f59e0b" font-size="12" font-weight="700">90° 分析磁鐵</text>
+          <text x="270" y="152" text-anchor="middle" fill="#94a3b8" font-size="10">r = mv / qB</text>
+
+          <!-- 磁場內偏轉離子軌跡 (B vs P vs As) -->
+          <!-- 輕離子 (Boron) 偏轉半徑小 -->
+          <path d="M 220,85 Q 280,85 280,210" fill="none" stroke="#38bdf8" stroke-width="${activeSpecies === 'b' ? 3.5 : 1.2}" stroke-dasharray="${activeSpecies === 'b' ? 'none' : '3 3'}" opacity="${activeSpecies === 'b' ? 1 : 0.4}"/>
+          <!-- 中離子 (Phosphorus) -->
+          <path d="M 220,85 Q 310,85 310,210" fill="none" stroke="#f59e0b" stroke-width="${activeSpecies === 'p' ? 3.5 : 1.2}" stroke-dasharray="${activeSpecies === 'p' ? 'none' : '3 3'}" opacity="${activeSpecies === 'p' ? 1 : 0.4}"/>
+          <!-- 重離子 (Arsenic) 偏轉半徑大 -->
+          <path d="M 220,85 Q 340,85 340,210" fill="none" stroke="#10b981" stroke-width="${activeSpecies === 'as' ? 3.5 : 1.2}" stroke-dasharray="${activeSpecies === 'as' ? 'none' : '3 3'}" opacity="${activeSpecies === 'as' ? 1 : 0.4}"/>
+
+          <!-- 3. 質量分析狹縫 (Resolving Slit) -->
+          <rect x="250" y="210" width="${activeSpecies === 'b' ? 20 : (activeSpecies === 'p' ? 50 : 80)}" height="10" fill="#64748b"/>
+          <rect x="${activeSpecies === 'b' ? 290 : (activeSpecies === 'p' ? 320 : 350)}" y="210" width="80" height="10" fill="#64748b"/>
+          <text x="400" y="218" fill="#e2e8f0" font-size="11">質量分析狹縫 (濾除雜質)</text>
+
+          <!-- 選中目標離子束向下進入加速管 -->
+          <line x1="${activeSpecies === 'b' ? 280 : (activeSpecies === 'p' ? 310 : 340)}" y1="220" x2="480" y2="340" stroke="${cur.color}" stroke-width="3" stroke-dasharray="4 2" class="anim-beam"/>
+
+          <!-- 4. 線性加速管 (Post-Acceleration Column) -->
+          <g transform="translate(430, 290)">
+            <rect x="0" y="0" width="130" height="70" rx="3" fill="#131e2b" stroke="#0284c7" stroke-width="1.2"/>
+            <text x="65" y="24" text-anchor="middle" fill="#38bdf8" font-size="11" font-weight="700">高壓加速管</text>
+            <text x="65" y="42" text-anchor="middle" fill="#94a3b8" font-size="9.5">+300 kV 加速極板</text>
+            <!-- 加速電極環 -->
+            <line x1="20" y1="52" x2="110" y2="52" stroke="#64748b" stroke-width="3"/>
+          </g>
+
+          <!-- 5. 掃描板與終端晶圓盤 (Wafer Endstation) -->
+          <g transform="translate(630, 280)">
+            <rect x="0" y="0" width="130" height="90" rx="4" fill="#0f172a" stroke="#10b981" stroke-width="1.5"/>
+            <!-- 傾斜 7° 晶圓盤 -->
+            <g transform="rotate(-7, 65, 45)">
+              <ellipse cx="65" cy="45" rx="35" ry="12" fill="#334155" stroke="#38bdf8" stroke-width="1.5"/>
+              <text x="65" y="49" text-anchor="middle" fill="#ffffff" font-size="10" font-weight="700">300mm 晶圓</text>
+            </g>
+            <text x="65" y="76" text-anchor="middle" fill="#f59e0b" font-size="10.5" font-weight="700">7° 傾角防通道效應</text>
+          </g>
+        </svg>
+      `;
+
+      dashboardHtml = `
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">${t.ch07_dose_label}</div>
+          <div class="eng-obj-metric-value" style="color: ${cur.color};">${cur.dose}</div>
+          <div class="eng-obj-metric-note">法拉第杯精確計數離子累積電荷</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">${t.ch07_range_label}</div>
+          <div class="eng-obj-metric-value">${cur.range}</div>
+          <div class="eng-obj-metric-note">高斯摻雜濃度峰值深度 (Rp)</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">${t.ch07_energy_label}</div>
+          <div class="eng-obj-metric-value">${cur.energy}</div>
+          <div class="eng-obj-metric-note">${cur.name} 質量電荷比分離</div>
+        </div>
+      `;
+
+      footerNote = t.ch07_beamline_desc;
+    } else if (activeTab === 'anneal') {
+      viewportHtml = `
+        <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Lattice Anneal & Activation">
+          <!-- 左側：佈植後晶格損傷 (As-Implanted) -->
+          <g transform="translate(60, 40)">
+            <rect x="0" y="0" width="310" height="280" rx="4" fill="#131e2b" stroke="#ef4444"/>
+            <text x="155" y="26" text-anchor="middle" fill="#ef4444" font-size="13" font-weight="700">1. 佈植後非晶化損傷 (As-Implanted)</text>
+            <text x="155" y="46" text-anchor="middle" fill="#94a3b8" font-size="11">晶格碎裂 · 摻質無電性</text>
+
+            <!-- 非晶混亂層 (Amorphized Layer) -->
+            <rect x="25" y="70" width="260" height="75" fill="rgba(239, 68, 68, 0.25)" stroke="#ef4444" stroke-dasharray="3 3"/>
+            <text x="155" y="112" text-anchor="middle" fill="#ef4444" font-size="11.5" font-weight="700">非晶破壞層 (空位與間隙原子)</text>
+
+            <!-- 亂七八糟的原子點陣 -->
+            <g fill="#94a3b8">
+              <circle cx="50" cy="85" r="3"/><circle cx="90" cy="120" r="3"/><circle cx="140" cy="90" r="3"/>
+              <circle cx="190" cy="125" r="3"/><circle cx="240" cy="85" r="3"/>
+            </g>
+            <!-- 未活化摻質 (紅點不在格位) -->
+            <g fill="#f59e0b">
+              <circle cx="80" cy="95" r="4"/><circle cx="170" cy="105" r="4"/><circle cx="220" cy="95" r="4"/>
+            </g>
+
+            <!-- 底層完整單晶矽 (Crystalline Si) -->
+            <rect x="25" y="145" width="260" height="95" fill="#1e293b"/>
+            <!-- 整齊晶格點 -->
+            <g fill="#38bdf8">
+              <circle cx="50" cy="170" r="3"/><circle cx="90" cy="170" r="3"/><circle cx="130" cy="170" r="3"/><circle cx="170" cy="170" r="3"/><circle cx="210" cy="170" r="3"/><circle cx="250" cy="170" r="3"/>
+              <circle cx="50" cy="205" r="3"/><circle cx="90" cy="205" r="3"/><circle cx="130" cy="205" r="3"/><circle cx="170" cy="205" r="3"/><circle cx="210" cy="205" r="3"/><circle cx="250" cy="205" r="3"/>
+            </g>
+            <text x="155" y="225" text-anchor="middle" fill="#38bdf8" font-size="11">完整單晶矽底層 (Substrate)</text>
+          </g>
+
+          <!-- 右側：RTA 高溫退火後 (Post-Anneal 1050°C) -->
+          <g transform="translate(430, 40)">
+            <rect x="0" y="0" width="310" height="280" rx="4" fill="#131e2b" stroke="#10b981"/>
+            <text x="155" y="26" text-anchor="middle" fill="#10b981" font-size="13" font-weight="700">2. RTA 快速退火活化 (1050°C 3s)</text>
+            <text x="155" y="46" text-anchor="middle" fill="#94a3b8" font-size="11">固相磊晶再結晶 · 活化率 &gt;95%</text>
+
+            <!-- 熱脈衝指示 -->
+            <path d="M 30,65 Q 155,50 280,65" stroke="#f59e0b" stroke-width="2" class="anim-heat"/>
+
+            <!-- 完整修復之整齊晶格 -->
+            <rect x="25" y="70" width="260" height="170" fill="#1e293b" stroke="#10b981" stroke-width="1"/>
+            <g fill="#38bdf8">
+              <circle cx="50" cy="95" r="3"/><circle cx="130" cy="95" r="3"/><circle cx="210" cy="95" r="3"/><circle cx="250" cy="95" r="3"/>
+              <circle cx="50" cy="130" r="3"/><circle cx="90" cy="130" r="3"/><circle cx="170" cy="130" r="3"/><circle cx="250" cy="130" r="3"/>
+              <circle cx="50" cy="165" r="3"/><circle cx="90" cy="165" r="3"/><circle cx="130" cy="165" r="3"/><circle cx="210" cy="165" r="3"/><circle cx="250" cy="165" r="3"/>
+              <circle cx="50" cy="200" r="3"/><circle cx="90" cy="200" r="3"/><circle cx="130" cy="200" r="3"/><circle cx="170" cy="200" r="3"/><circle cx="210" cy="200" r="3"/><circle cx="250" cy="200" r="3"/>
+            </g>
+            <!-- 摻質原子成功取代格位 (Substitutional Sites) -->
+            <g fill="#10b981">
+              <circle cx="90" cy="95" r="4.5"/><circle cx="170" cy="95" r="4.5"/><circle cx="130" cy="130" r="4.5"/><circle cx="210" cy="130" r="4.5"/>
+            </g>
+            <text x="155" y="115" text-anchor="middle" fill="#10b981" font-size="11.5" font-weight="700">摻質進入矽晶格格位提供自由載子</text>
+          </g>
+        </svg>
+      `;
+
+      dashboardHtml = `
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">電性活化率 (Activation)</div>
+          <div class="eng-obj-metric-value" style="color: #10b981;">&gt; 95%</div>
+          <div class="eng-obj-metric-note">摻質取代矽原子格位釋放自由電子/電洞</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">熱預算控制 (Thermal Budget)</div>
+          <div class="eng-obj-metric-value">1050°C · 1-3 秒</div>
+          <div class="eng-obj-metric-note">抑制摻質側向熱擴散，確保超淺接面</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">接面深度 (Junction Depth Xj)</div>
+          <div class="eng-obj-metric-value">&lt; 20 nm</div>
+          <div class="eng-obj-metric-note">先進節點配合雷射尖峰退火 (LSA)</div>
+        </div>
+      `;
+
+      footerNote = t.ch07_anneal_desc;
+    } else {
+      // Channeling
+      controlsHtml = '';
+      viewportHtml = `
+        <svg viewBox="0 0 800 380" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Channeling Effect">
+          <!-- 0° 垂直入射：通道效應 (嚴重尾端) -->
+          <g transform="translate(80, 40)">
+            <rect x="0" y="0" width="280" height="260" rx="4" fill="#131e2b" stroke="#ef4444"/>
+            <text x="140" y="26" text-anchor="middle" fill="#ef4444" font-size="12.5" font-weight="700">0° 垂直入射：通道效應 (Channeling)</text>
+            <!-- 直穿原子間隙光束 -->
+            <line x1="140" y1="45" x2="140" y2="230" stroke="#ef4444" stroke-width="2.5" stroke-dasharray="4 2"/>
+            <text x="140" y="245" text-anchor="middle" fill="#ef4444" font-size="11">離子無核碰撞長驅直入 · 接面過深</text>
+            <!-- 兩側原子牆 -->
+            <g fill="#64748b">
+              <circle cx="100" cy="80" r="4"/><circle cx="100" cy="130" r="4"/><circle cx="100" cy="180" r="4"/>
+              <circle cx="180" cy="80" r="4"/><circle cx="180" cy="130" r="4"/><circle cx="180" cy="180" r="4"/>
+            </g>
+          </g>
+
+          <!-- 7° 傾角入射：隨機核碰撞 (受控高斯輪廓) -->
+          <g transform="translate(440, 40)">
+            <rect x="0" y="0" width="280" height="260" rx="4" fill="#131e2b" stroke="#10b981"/>
+            <text x="140" y="26" text-anchor="middle" fill="#10b981" font-size="12.5" font-weight="700">7° 傾角 + 27° 旋轉：隨機散射</text>
+            <!-- 傾斜光束撞擊原子停止 -->
+            <line x1="100" y1="45" x2="150" y2="140" stroke="#10b981" stroke-width="2.5" stroke-dasharray="4 2"/>
+            <circle cx="150" cy="140" r="6" fill="#f59e0b"/>
+            <text x="140" y="245" text-anchor="middle" fill="#10b981" font-size="11">打亂晶軸對稱 · 停在預定高斯深度</text>
+            <!-- 偏位原子點陣 -->
+            <g fill="#64748b">
+              <circle cx="100" cy="80" r="4"/><circle cx="100" cy="130" r="4"/><circle cx="100" cy="180" r="4"/>
+              <circle cx="180" cy="80" r="4"/><circle cx="180" cy="130" r="4"/><circle cx="180" cy="180" r="4"/>
+            </g>
+          </g>
+        </svg>
+      `;
+
+      dashboardHtml = `
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">晶圓標準傾角 (Tilt)</div>
+          <div class="eng-obj-metric-value">7°</div>
+          <div class="eng-obj-metric-note">避免離子直接沿 &lt;110&gt; 晶軸通道射入</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">晶圓方位角旋轉 (Twist)</div>
+          <div class="eng-obj-metric-value">22° ~ 27°</div>
+          <div class="eng-obj-metric-note">打破面內高對稱通道，均勻散射</div>
+        </div>
+      `;
+
+      footerNote = t.ch07_channeling_desc;
+    }
+
+    container.innerHTML = `
+      <section class="eng-obj-card" aria-labelledby="engObjCh07Title">
+        <header class="eng-obj-header">
+          <div class="eng-obj-badge-row">
+            <span class="eng-obj-badge">${t.badge_prefix} · CH 07</span>
+            <span class="eng-obj-status">${t.live_sim}</span>
+          </div>
+          <h2 class="eng-obj-title" id="engObjCh07Title">${t.ch07_title}</h2>
+          <p class="eng-obj-subtitle">${t.ch07_sub}</p>
+        </header>
+
+        <div class="eng-obj-controls">
+          <div class="eng-obj-tab-group" role="tablist">
+            <button type="button" class="eng-obj-tab ${activeTab === 'beamline' ? 'is-active' : ''}" data-tab="beamline">${t.ch07_tab_beamline}</button>
+            <button type="button" class="eng-obj-tab ${activeTab === 'anneal' ? 'is-active' : ''}" data-tab="anneal">${t.ch07_tab_anneal}</button>
+            <button type="button" class="eng-obj-tab ${activeTab === 'channeling' ? 'is-active' : ''}" data-tab="channeling">${t.ch07_tab_channeling}</button>
+          </div>
+          ${controlsHtml}
+        </div>
+
+        <div class="eng-obj-viewport">
+          ${viewportHtml}
+        </div>
+
+        <div class="eng-obj-dashboard">
+          ${dashboardHtml}
+        </div>
+
+        <footer class="eng-obj-footer-note">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+          <div>${footerNote}</div>
+        </footer>
+      </section>
+    `;
+
+    // 綁定事件
+    container.querySelectorAll('[data-tab]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        activeTab = btn.getAttribute('data-tab');
+        update();
+      });
+    });
+    container.querySelectorAll('[data-species]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        activeSpecies = btn.getAttribute('data-species');
+        update();
+      });
+    });
+  }
+
+  update();
+}
+
+/**
+ * ══════════════════════════════════════════════════════════════════════════════
+ * 6. Ch 08 CMP 化學機械研磨運動學與微觀平坦化模型 (CMP Kinematics & Planarization)
+ * ══════════════════════════════════════════════════════════════════════════════
+ */
+export function renderCMPObject(container, lang = 'zh') {
+  const t = TEXTS[lang] || TEXTS.zh;
+  let activeTab = 'kinematics'; // 'kinematics' | 'micro' | 'defects'
+  let pressure = 3.0; // psi (1.0 ~ 5.0)
+  let speed = 90;     // RPM (40 ~ 120)
+
+  function update() {
+    let controlsHtml = '';
+    let viewportHtml = '';
+    let dashboardHtml = '';
+    let footerNote = '';
+    const mrr = Math.round(1.5 * pressure * speed);
+
+    if (activeTab === 'kinematics') {
+      viewportHtml = `
+        <svg viewBox="0 0 800 440" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="CMP Tool Kinematics">
+          <!-- 1. 旋轉研磨大盤 (Polishing Pad, 直徑 760mm) -->
+          <g transform="translate(320, 220)">
+            <circle cx="0" cy="0" r="180" fill="#1e293b" stroke="#475569" stroke-width="2"/>
+            <!-- 研磨墊同心圓與同向旋轉動畫 -->
+            <g class="anim-rotate-pad">
+              <circle cx="0" cy="0" r="140" fill="none" stroke="#334155" stroke-dasharray="8 6"/>
+              <circle cx="0" cy="0" r="100" fill="none" stroke="#334155" stroke-dasharray="8 6"/>
+              <circle cx="0" cy="0" r="60" fill="none" stroke="#334155" stroke-dasharray="8 6"/>
+              <line x1="-180" y1="0" x2="180" y2="0" stroke="#38bdf8" stroke-width="1.2" opacity="0.6"/>
+              <line x1="0" y1="-180" x2="0" y2="180" stroke="#38bdf8" stroke-width="1.2" opacity="0.6"/>
+            </g>
+            <text x="-120" y="150" fill="#94a3b8" font-size="11.5">${t.ch08_pad_label}</text>
+          </g>
+
+          <!-- 2. 晶圓研磨頭 (Carrier Head, 倒扣 300mm 晶圓) -->
+          <g transform="translate(420, 170)">
+            <circle cx="0" cy="0" r="80" fill="#0f172a" stroke="#0284c7" stroke-width="2"/>
+            <!-- 研磨頭旋轉與分區環 -->
+            <g class="anim-rotate-head">
+              <circle cx="0" cy="0" r="60" fill="none" stroke="#38bdf8" stroke-dasharray="4 4"/>
+              <circle cx="0" cy="0" r="35" fill="none" stroke="#38bdf8" stroke-dasharray="4 4"/>
+              <circle cx="0" cy="0" r="8" fill="#f59e0b"/>
+            </g>
+            <text x="0" y="-88" text-anchor="middle" fill="#38bdf8" font-size="12" font-weight="700">${t.ch08_head_label}</text>
+            <text x="0" y="98" text-anchor="middle" fill="#94a3b8" font-size="10.5">300mm 晶圓 (下向壓 P: ${pressure.toFixed(1)} psi)</text>
+          </g>
+
+          <!-- 3. 研磨液滴注臂 (Slurry Delivery Arm) -->
+          <g transform="translate(180, 70)">
+            <rect x="0" y="0" width="160" height="14" rx="2" fill="#475569" stroke="#64748b"/>
+            <circle cx="150" cy="7" r="5" fill="#38bdf8"/>
+            <!-- 滴落研磨液滴 -->
+            <circle cx="150" cy="30" r="4" fill="#38bdf8" opacity="0.8"/>
+            <circle cx="150" cy="60" r="5" fill="#38bdf8" opacity="0.85"/>
+            <text x="0" y="-8" fill="#38bdf8" font-size="11">${t.ch08_slurry_arm}</text>
+          </g>
+
+          <!-- 4. 鑽石修整器 (Diamond Conditioner Disk) -->
+          <g transform="translate(190, 290)">
+            <circle cx="0" cy="0" r="38" fill="#334155" stroke="#f59e0b" stroke-width="1.5"/>
+            <text x="0" y="4" text-anchor="middle" fill="#f59e0b" font-size="10" font-weight="700">鑽石修整盤</text>
+            <text x="0" y="52" text-anchor="middle" fill="#94a3b8" font-size="9.5">去除釉質 / 粗糙化</text>
+          </g>
+
+          <!-- 速度與 Preston 標註 -->
+          <text x="680" y="80" text-anchor="middle" fill="#f59e0b" font-size="14" font-weight="700">Preston 方程</text>
+          <text x="680" y="105" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="600">MRR = Kp · P · V</text>
+          <text x="680" y="130" text-anchor="middle" fill="#38bdf8" font-size="16" font-weight="750">≈ ${mrr} nm/min</text>
+        </svg>
+      `;
+
+      dashboardHtml = `
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">${t.ch08_mrr_label}</div>
+          <div class="eng-obj-metric-value">${mrr} nm/min</div>
+          <div class="eng-obj-metric-note">材料移除速率 (Preston Kp=1.5)</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">接觸壓力 P (Down-Force)</div>
+          <div class="eng-obj-metric-value">${pressure.toFixed(1)} psi</div>
+          <div class="eng-obj-metric-note">多區氣囊分區調控晶圓平坦度</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">相對研磨轉速 V (Platen Speed)</div>
+          <div class="eng-obj-metric-value">${speed} RPM</div>
+          <div class="eng-obj-metric-note">同向旋轉確保全晶圓相對速度均勻</div>
+        </div>
+      `;
+
+      footerNote = t.ch08_preston_note;
+    } else if (activeTab === 'micro') {
+      viewportHtml = `
+        <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="CMP Chemical Mechanical Mechanism">
+          <!-- 上方旋轉聚氨酯研磨墊 (Pad Asperities 微孔微突起) -->
+          <g transform="translate(100, 30)">
+            <rect x="0" y="0" width="600" height="40" fill="#334155" stroke="#64748b"/>
+            <!-- 墊表面粗糙微峰 (Asperities) -->
+            <path d="M 0,40 Q 50,55 100,40 Q 150,55 200,40 Q 250,55 300,40 Q 350,55 400,40 Q 450,55 500,40 Q 550,55 600,40 Z" fill="#475569"/>
+            <text x="300" y="24" text-anchor="middle" fill="#e2e8f0" font-size="12" font-weight="700">聚氨酯研磨墊粗糙微峰 (Pad Asperities 下壓磨削)</text>
+          </g>
+
+          <!-- 研磨液納米磨粒 (CeO2 / SiO2 Abrasive Particles) -->
+          <g fill="#38bdf8">
+            <circle cx="220" cy="115" r="7"/><circle cx="350" cy="118" r="7"/><circle cx="480" cy="116" r="7"/>
+            <circle cx="280" cy="140" r="6"/><circle cx="410" cy="142" r="6"/>
+          </g>
+          <text x="650" y="125" fill="#38bdf8" font-size="11">奈米磨粒 (SiO₂ / CeO₂)</text>
+
+          <!-- 下方晶圓表面微觀輪廓：突出高點 vs 低窪處 -->
+          <g transform="translate(100, 180)">
+            <!-- 矽基底 -->
+            <path d="M 0,140 L 0,80 L 150,80 L 150,40 L 300,40 L 300,80 L 450,80 L 450,40 L 600,40 L 600,140 Z" fill="#1e293b" stroke="#334155" stroke-width="2"/>
+            
+            <!-- 表面水合鈍化層 (Chemical Passivation Layer ~3nm) -->
+            <!-- 高點：鈍化層被磨粒強烈磨除 (露出純銅繼續氧化) -->
+            <rect x="150" y="36" width="150" height="6" fill="#f59e0b" opacity="0.6"/>
+            <rect x="450" y="36" width="150" height="6" fill="#f59e0b" opacity="0.6"/>
+            <!-- 低窪處：鈍化層完好無損，阻擋化學溶蝕 -->
+            <rect x="0" y="76" width="150" height="6" fill="#10b981"/>
+            <rect x="300" y="76" width="150" height="6" fill="#10b981"/>
+
+            <text x="225" y="25" text-anchor="middle" fill="#ef4444" font-size="12" font-weight="700">高點受壓：機械磨除氧化層</text>
+            <text x="75" y="115" text-anchor="middle" fill="#10b981" font-size="11" font-weight="700">低處不承受壓力：鈍化保護</text>
+            <text x="375" y="115" text-anchor="middle" fill="#10b981" font-size="11" font-weight="700">低處不承受壓力：鈍化保護</text>
+          </g>
+        </svg>
+      `;
+
+      dashboardHtml = `
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">化學作用 (Chemical)</div>
+          <div class="eng-obj-metric-value" style="font-size: 15px;">氧化鈍化軟化</div>
+          <div class="eng-obj-metric-note">生成疏鬆 CuO/Cu(OH)₂ 水合膜</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">機械作用 (Mechanical)</div>
+          <div class="eng-obj-metric-value" style="font-size: 15px;">高點選擇性磨除</div>
+          <div class="eng-obj-metric-note">奈米磨粒擦碰刮除微峰凸起</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">全域平坦化能力</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-teal);">Planarization &gt; 95%</div>
+          <div class="eng-obj-metric-note">微影焦深 (DOF) 唯一定焦保障技術</div>
+        </div>
+      `;
+
+      footerNote = t.ch08_micro_desc;
+    } else {
+      // Defects & Dummy Fill
+      viewportHtml = `
+        <svg viewBox="0 0 800 380" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="CMP Defects">
+          <!-- 1. 碟化 (Dishing) -->
+          <g transform="translate(60, 40)">
+            <rect x="0" y="0" width="310" height="260" rx="4" fill="#131e2b" stroke="#ef4444"/>
+            <text x="155" y="26" text-anchor="middle" fill="#ef4444" font-size="13" font-weight="700">寬導線碟化 (Dishing)</text>
+            <!-- 介電層 -->
+            <rect x="25" y="80" width="70" height="140" fill="#334155"/>
+            <rect x="215" y="80" width="70" height="140" fill="#334155"/>
+            <!-- 寬銅導線中央下陷 -->
+            <path d="M 95,80 Q 155,105 215,80 L 215,220 L 95,220 Z" fill="#f59e0b"/>
+            <text x="155" y="125" text-anchor="middle" fill="#ef4444" font-size="11" font-weight="700">研磨墊彈性下彎造成中央凹陷</text>
+          </g>
+
+          <!-- 2. 假圖形填補 (Dummy Metal Fill) -->
+          <g transform="translate(430, 40)">
+            <rect x="0" y="0" width="310" height="260" rx="4" fill="#131e2b" stroke="#10b981"/>
+            <text x="155" y="26" text-anchor="middle" fill="#10b981" font-size="13" font-weight="700">假圖形填補 (Dummy Metal Fill)</text>
+            <!-- 均勻平整表面 -->
+            <rect x="25" y="80" width="260" height="140" fill="#334155"/>
+            <!-- 均勻分佈之虛擬金屬方塊 -->
+            <g fill="#10b981">
+              <rect x="45" y="80" width="25" height="140"/><rect x="85" y="80" width="25" height="140"/>
+              <rect x="125" y="80" width="25" height="140"/><rect x="165" y="80" width="25" height="140"/>
+              <rect x="205" y="80" width="25" height="140"/><rect x="245" y="80" width="25" height="140"/>
+            </g>
+            <text x="155" y="125" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="700">金屬密度平衡在 30%-50% · 完美平坦</text>
+          </g>
+        </svg>
+      `;
+
+      dashboardHtml = `
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">圖形密度規範 (Pattern Density)</div>
+          <div class="eng-obj-metric-value">35% ~ 50%</div>
+          <div class="eng-obj-metric-note">晶片全域金屬覆蓋率嚴格約束</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">最大允許碟化深度 (Dishing Spec)</div>
+          <div class="eng-obj-metric-value">&lt; 15 nm</div>
+          <div class="eng-obj-metric-note">避免上層微影對焦不良與阻抗波動</div>
+        </div>
+      `;
+
+      footerNote = t.ch08_defects_desc;
+    }
+
+    container.innerHTML = `
+      <section class="eng-obj-card" aria-labelledby="engObjCh08Title">
+        <header class="eng-obj-header">
+          <div class="eng-obj-badge-row">
+            <span class="eng-obj-badge">${t.badge_prefix} · CH 08</span>
+            <span class="eng-obj-status">${t.live_sim}</span>
+          </div>
+          <h2 class="eng-obj-title" id="engObjCh08Title">${t.ch08_title}</h2>
+          <p class="eng-obj-subtitle">${t.ch08_sub}</p>
+        </header>
+
+        <div class="eng-obj-controls">
+          <div class="eng-obj-tab-group" role="tablist">
+            <button type="button" class="eng-obj-tab ${activeTab === 'kinematics' ? 'is-active' : ''}" data-tab="kinematics">${t.ch08_tab_kinematics}</button>
+            <button type="button" class="eng-obj-tab ${activeTab === 'micro' ? 'is-active' : ''}" data-tab="micro">${t.ch08_tab_micro}</button>
+            <button type="button" class="eng-obj-tab ${activeTab === 'defects' ? 'is-active' : ''}" data-tab="defects">${t.ch08_tab_defects}</button>
+          </div>
+          ${controlsHtml}
+        </div>
+
+        <div class="eng-obj-viewport">
+          ${viewportHtml}
+        </div>
+
+        <div class="eng-obj-dashboard">
+          ${dashboardHtml}
+        </div>
+
+        <footer class="eng-obj-footer-note">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+          <div>${footerNote}</div>
+        </footer>
+      </section>
+    `;
+
+    // 綁定事件
+    container.querySelectorAll('[data-tab]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        activeTab = btn.getAttribute('data-tab');
+        update();
+      });
+    });
+  }
+
+  update();
+}
+
+/**
+ * ══════════════════════════════════════════════════════════════════════════════
+ * 7. Ch 10 金屬化雙載子鑲嵌與電遷移模型 (BEOL Dual Damascene & EM)
+ * ══════════════════════════════════════════════════════════════════════════════
+ */
+export function renderInterconnectObject(container, lang = 'zh') {
+  const t = TEXTS[lang] || TEXTS.zh;
+  let activeTab = 'damascene'; // 'damascene' | 'superfill' | 'em'
+  let damaStep = 1; // 1 ~ 6
+
+  function update() {
+    let viewportHtml = '';
+    let dashboardHtml = '';
+    let footerNote = '';
+    let stepperBarHtml = '';
+
+    if (activeTab === 'damascene') {
+      const stepTitle = t[`ch10_step_dama_${damaStep}`];
+
+      viewportHtml = `
+        <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Dual Damascene Flow">
+          <!-- 步驟標題指示膠囊 -->
+          <rect x="180" y="25" width="440" height="34" rx="4" fill="#0284c7" stroke="#38bdf8"/>
+          <text x="400" y="47" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="700">${stepTitle}</text>
+
+          <!-- 步驟進度膠囊 -->
+          <g transform="translate(190, 75)">
+            ${[1, 2, 3, 4, 5, 6].map(i => `
+              <rect x="${(i - 1) * 72}" y="0" width="60" height="8" rx="2" fill="${damaStep >= i ? '#38bdf8' : '#334155'}"/>
+            `).join('')}
+          </g>
+
+          <!-- 雙鑲嵌微觀剖面演進 -->
+          <g transform="translate(260, 120)">
+            <!-- 下層金屬層 M(n-1) -->
+            <rect x="0" y="180" width="280" height="50" fill="#b45309"/>
+            <text x="140" y="210" text-anchor="middle" fill="#ffffff" font-size="11.5" font-weight="700">下層金屬線 M(n-1) 銅導線</text>
+
+            <!-- 介電層 (Low-k SiCOH) -->
+            <rect x="0" y="0" width="280" height="180" fill="#1e293b" stroke="#334155" stroke-width="2"/>
+
+            <!-- 步驟 1: 介電層實體 -->
+            ${damaStep === 1 ? `
+              <text x="140" y="90" text-anchor="middle" fill="#38bdf8" font-size="13" font-weight="700">Low-k 介電層 (SiCOH, k=2.5)</text>
+            ` : ''}
+
+            <!-- 步驟 2 以上：挖出通孔 (Via) 與上方金屬溝槽 (Trench) -->
+            ${damaStep >= 2 ? `
+              <!-- 溝槽開口 (上段寬 160px, 深 70px) -->
+              <rect x="60" y="0" width="160" height="70" fill="#09131b"/>
+              <!-- 通孔開口 (下段窄 60px, 深 110px) -->
+              <rect x="110" y="70" width="60" height="110" fill="#09131b"/>
+            ` : ''}
+
+            <!-- 步驟 3: 沉積 Ta/TaN 阻擋層 (1.5nm 綠色線) -->
+            ${damaStep >= 3 ? `
+              <path d="M 60,0 L 60,70 L 110,70 L 110,180 L 170,180 L 170,70 L 220,70 L 220,0" fill="none" stroke="#10b981" stroke-width="3"/>
+            ` : ''}
+
+            <!-- 步驟 4: 沉積 Cu Seed 晶種層 (薄橘線) -->
+            ${damaStep >= 4 ? `
+              <path d="M 63,0 L 63,67 L 113,67 L 113,177 L 167,177 L 167,67 L 217,67 L 217,0" fill="none" stroke="#f59e0b" stroke-width="2"/>
+            ` : ''}
+
+            <!-- 步驟 5: 電化學電鍍填滿銅 (ECD Cu) -->
+            ${damaStep === 5 ? `
+              <rect x="60" y="0" width="160" height="70" fill="#f59e0b" opacity="0.95"/>
+              <rect x="110" y="70" width="60" height="110" fill="#f59e0b" opacity="0.95"/>
+              <!-- 頂部過載鍍銅層 (Overburden) -->
+              <rect x="0" y="-15" width="280" height="15" fill="#f59e0b"/>
+              <text x="140" y="-3" text-anchor="middle" fill="#09131b" font-size="10" font-weight="700">電鍍過載銅層 (Overburden)</text>
+            ` : ''}
+
+            <!-- 步驟 6: CMP 磨平與覆蓋頂部帽層 (SiCN Cap) -->
+            ${damaStep === 6 ? `
+              <rect x="60" y="0" width="160" height="70" fill="#f59e0b"/>
+              <rect x="110" y="70" width="60" height="110" fill="#f59e0b"/>
+              <!-- 頂部 SiCN 介電遮罩帽層 -->
+              <rect x="0" y="-6" width="280" height="6" fill="#0f766e"/>
+              <text x="140" y="40" text-anchor="middle" fill="#09131b" font-size="12" font-weight="700">金屬溝槽 Trench (Mn)</text>
+              <text x="140" y="125" text-anchor="middle" fill="#09131b" font-size="11" font-weight="700">導通孔 Via (Vn)</text>
+            ` : ''}
+          </g>
+        </svg>
+      `;
+
+      stepperBarHtml = `
+        <div class="eng-obj-stepper-bar">
+          <div class="eng-obj-stepper-actions">
+            <button type="button" class="eng-obj-btn eng-obj-btn-primary" id="damaNextBtn">${t.btn_next_step}</button>
+            <button type="button" class="eng-obj-btn" id="damaResetBtn">${t.btn_reset}</button>
+          </div>
+          <div class="eng-obj-stepper-info">
+            <span>雙鑲嵌步驟：<strong>${damaStep} / 6</strong></span>
+          </div>
+        </div>
+      `;
+
+      dashboardHtml = `
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">介電常數 Low-k (SiCOH)</div>
+          <div class="eng-obj-metric-value">k ≈ 2.4 ~ 2.7</div>
+          <div class="eng-obj-metric-note">大幅降低相鄰金屬線間寄生電容</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">擴散阻擋層 (Barrier)</div>
+          <div class="eng-obj-metric-value">1.5 nm Ta/TaN</div>
+          <div class="eng-obj-metric-note">阻止銅原子熱擴散進入介電層</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">雙鑲嵌核心優勢</div>
+          <div class="eng-obj-metric-value" style="font-size: 15px;">孔與溝槽一體成型</div>
+          <div class="eng-obj-metric-note">免除接觸介面，接觸電阻降低 40%</div>
+        </div>
+      `;
+
+      footerNote = t.ch10_damascene_desc;
+    } else if (activeTab === 'superfill') {
+      viewportHtml = `
+        <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="ECD Superfilling">
+          <g transform="translate(250, 40)">
+            <rect x="0" y="0" width="300" height="280" rx="4" fill="#131e2b" stroke="#334155" stroke-width="2"/>
+            
+            <!-- 挖空的深孔 (HAR Via) -->
+            <rect x="90" y="0" width="120" height="230" fill="#09131b"/>
+            
+            <!-- 底部銅自底向上噴泉生長 -->
+            <path d="M 90,160 Q 150,110 210,160 L 210,230 L 90,230 Z" fill="#f59e0b"/>
+            <text x="150" y="195" text-anchor="middle" fill="#09131b" font-size="12" font-weight="700">自底向上電鍍生長</text>
+
+            <!-- 抑制劑 Suppressor 在孔口邊角 -->
+            <g fill="#ef4444">
+              <rect x="75" y="0" width="20" height="12" rx="2"/>
+              <rect x="205" y="0" width="20" height="12" rx="2"/>
+            </g>
+            <text x="150" y="-12" text-anchor="middle" fill="#ef4444" font-size="11.5" font-weight="700">抑制劑 Suppressor (開口阻生長)</text>
+
+            <!-- 加速劑 Accelerator 在孔底高曲率處累積 -->
+            <g fill="#10b981">
+              <circle cx="110" cy="175" r="4"/><circle cx="150" cy="155" r="4"/><circle cx="190" cy="175" r="4"/>
+            </g>
+            <text x="150" y="255" text-anchor="middle" fill="#10b981" font-size="11.5" font-weight="700">加速劑 Accelerator (孔底加速填平)</text>
+          </g>
+        </svg>
+      `;
+
+      dashboardHtml = `
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">電鍍填孔模式</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-teal);">無縫超填 (Superfilling)</div>
+          <div class="eng-obj-metric-note">孔底成長速率為孔口的 5 倍以上</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">空洞與接縫 (Voids/Seams)</div>
+          <div class="eng-obj-metric-value">0% 零缺陷</div>
+          <div class="eng-obj-metric-note">徹底消除高深寬比接觸窗孔洞斷線</div>
+        </div>
+      `;
+
+      footerNote = t.ch10_superfill_desc;
+    } else {
+      // Electromigration (EM)
+      viewportHtml = `
+        <svg viewBox="0 0 800 380" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Electromigration">
+          <g transform="translate(150, 60)">
+            <rect x="0" y="0" width="500" height="160" rx="4" fill="#131e2b" stroke="#334155" stroke-width="2"/>
+            
+            <!-- 銅導線 -->
+            <rect x="40" y="45" width="420" height="70" fill="#b45309" stroke="#f59e0b" stroke-width="1.5"/>
+
+            <!-- 電子風方向 (向右大量電子流) -->
+            <g stroke="#38bdf8" stroke-width="2" class="anim-electron">
+              <line x1="80" y1="80" x2="160" y2="80"/>
+              <line x1="220" y1="80" x2="300" y2="80"/>
+              <line x1="360" y1="80" x2="440" y2="80"/>
+            </g>
+            <text x="250" y="30" text-anchor="middle" fill="#38bdf8" font-size="13" font-weight="700">電子風 (Electron Wind Force → 高電流密度 J &gt; 10⁶ A/cm²)</text>
+
+            <!-- 上游形成空洞 (Void - 斷路風險) -->
+            <path d="M 80,45 Q 110,80 80,115 Z" fill="#09131b"/>
+            <text x="75" y="135" fill="#ef4444" font-size="11.5" font-weight="700">空洞 (Void: 斷路)</text>
+
+            <!-- 下游擠出金屬丘陵 (Hillock - 短路風險) -->
+            <path d="M 420,45 Q 445,15 455,45 Z" fill="#f59e0b"/>
+            <text x="430" y="20" fill="#f59e0b" font-size="11.5" font-weight="700">丘陵 (Hillock: 短路)</text>
+
+            <text x="250" y="105" text-anchor="middle" fill="#ffffff" font-size="11">銅原子受碰撞沿晶界遷移 (Grain Boundary Drift)</text>
+          </g>
+        </svg>
+      `;
+
+      dashboardHtml = `
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">極限電流密度 (Current Density)</div>
+          <div class="eng-obj-metric-value">&gt; 1.0 × 10⁶ A/cm²</div>
+          <div class="eng-obj-metric-note">電子衝量足以克服銅金屬擴散活化能</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">Black 方程預測壽命 (MTTF)</div>
+          <div class="eng-obj-metric-value">MTTF ∝ J⁻ⁿ · exp(Ea/kT)</div>
+          <div class="eng-obj-metric-note">高溫與高電流大幅加速失效</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">抗電遷移鍍層對策</div>
+          <div class="eng-obj-metric-value" style="font-size: 15px;">鈷/釕金屬帽層 (Co/Ru)</div>
+          <div class="eng-obj-metric-note">封閉頂部介面，EM 壽命提升 100 倍</div>
+        </div>
+      `;
+
+      footerNote = t.ch10_em_desc;
+    }
+
+    container.innerHTML = `
+      <section class="eng-obj-card" aria-labelledby="engObjCh10Title">
+        <header class="eng-obj-header">
+          <div class="eng-obj-badge-row">
+            <span class="eng-obj-badge">${t.badge_prefix} · CH 10</span>
+            <span class="eng-obj-status">${t.live_sim}</span>
+          </div>
+          <h2 class="eng-obj-title" id="engObjCh10Title">${t.ch10_title}</h2>
+          <p class="eng-obj-subtitle">${t.ch10_sub}</p>
+        </header>
+
+        <div class="eng-obj-controls">
+          <div class="eng-obj-tab-group" role="tablist">
+            <button type="button" class="eng-obj-tab ${activeTab === 'damascene' ? 'is-active' : ''}" data-tab="damascene">${t.ch10_tab_damascene}</button>
+            <button type="button" class="eng-obj-tab ${activeTab === 'superfill' ? 'is-active' : ''}" data-tab="superfill">${t.ch10_tab_superfill}</button>
+            <button type="button" class="eng-obj-tab ${activeTab === 'em' ? 'is-active' : ''}" data-tab="em">${t.ch10_tab_em}</button>
+          </div>
+        </div>
+
+        <div class="eng-obj-viewport">
+          ${viewportHtml}
+        </div>
+
+        ${stepperBarHtml}
+
+        <div class="eng-obj-dashboard">
+          ${dashboardHtml}
+        </div>
+
+        <footer class="eng-obj-footer-note">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+          <div>${footerNote}</div>
+        </footer>
+      </section>
+    `;
+
+    // 綁定事件
+    container.querySelectorAll('[data-tab]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        activeTab = btn.getAttribute('data-tab');
+        update();
+      });
+    });
+
+    const nextBtn = container.querySelector('#damaNextBtn');
+    if (nextBtn) {
+      nextBtn.addEventListener('click', () => {
+        damaStep = (damaStep % 6) + 1;
+        update();
+      });
+    }
+
+    const resetBtn = container.querySelector('#damaResetBtn');
+    if (resetBtn) {
+      resetBtn.addEventListener('click', () => {
+        damaStep = 1;
+        update();
+      });
+    }
+  }
+
+  update();
+}
+
+/**
+ * ══════════════════════════════════════════════════════════════════════════════
+ * 8. Ch 21 先進封裝 2.5D CoWoS 與 3D SoIC 混合鍵合模型 (Advanced Packaging)
+ * ══════════════════════════════════════════════════════════════════════════════
+ */
+export function renderAdvancedPackagingObject(container, lang = 'zh') {
+  const t = TEXTS[lang] || TEXTS.zh;
+  let activeTab = 'cowos'; // 'cowos' | 'soic' | 'density'
+
+  function update() {
+    let viewportHtml = '';
+    let dashboardHtml = '';
+    let footerNote = '';
+
+    if (activeTab === 'cowos') {
+      viewportHtml = `
+        <svg viewBox="0 0 800 440" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="2.5D CoWoS Architecture">
+          <!-- 頂層晶片群組 (Top Die Tier) -->
+          <!-- 左側 HBM 堆疊 (4-16 層 DRAM) -->
+          <g transform="translate(100, 50)">
+            <rect x="0" y="0" width="140" height="90" rx="3" fill="#1e293b" stroke="#f59e0b" stroke-width="1.5"/>
+            <!-- 內部 TSV 穿孔指示 -->
+            <line x1="30" y1="10" x2="30" y2="80" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="2 2"/>
+            <line x1="70" y1="10" x2="70" y2="80" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="2 2"/>
+            <line x1="110" y1="10" x2="110" y2="80" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="2 2"/>
+            <text x="70" y="42" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="700">HBM3e 記憶體</text>
+            <text x="70" y="58" text-anchor="middle" fill="#f59e0b" font-size="10">8-16 層 3D TSV 堆疊</text>
+          </g>
+
+          <!-- 中央高效能運算邏輯晶片 (SoC / GPU Die) -->
+          <g transform="translate(280, 40)">
+            <rect x="0" y="0" width="240" height="100" rx="3" fill="#0f172a" stroke="#0284c7" stroke-width="2"/>
+            <text x="120" y="45" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="750">先進運算核心 (SoC / GPU)</text>
+            <text x="120" y="65" text-anchor="middle" fill="#38bdf8" font-size="11">3nm / 4nm 邏輯晶片</text>
+          </g>
+
+          <!-- 右側 HBM 堆疊 -->
+          <g transform="translate(560, 50)">
+            <rect x="0" y="0" width="140" height="90" rx="3" fill="#1e293b" stroke="#f59e0b" stroke-width="1.5"/>
+            <line x1="30" y1="10" x2="30" y2="80" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="2 2"/>
+            <line x1="70" y1="10" x2="70" y2="80" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="2 2"/>
+            <line x1="110" y1="10" x2="110" y2="80" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="2 2"/>
+            <text x="70" y="42" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="700">HBM3e 記憶體</text>
+            <text x="70" y="58" text-anchor="middle" fill="#f59e0b" font-size="10">8-16 層 3D TSV 堆疊</text>
+          </g>
+
+          <!-- 微凸塊層 (Micro-Bumps: 間距 35µm) -->
+          <g transform="translate(80, 140)">
+            ${Array.from({ length: 28 }, (_, i) => `
+              <circle cx="${i * 23 + 10}" cy="8" r="3.5" fill="#e2e8f0"/>
+            `).join('')}
+            <text x="320" y="12" fill="#94a3b8" font-size="10.5">微凸塊 Micro-Bumps (Pitch 35µm)</text>
+          </g>
+
+          <!-- 中層：大面積矽中介層 (Silicon Interposer, 內含超密 RDL 導線與 TSV) -->
+          <g transform="translate(60, 160)">
+            <rect x="0" y="0" width="680" height="60" rx="3" fill="#1e293b" stroke="#38bdf8" stroke-width="2"/>
+            <!-- 表面高密 RDL 金屬線 -->
+            <path d="M 40,8 L 640,8" stroke="#10b981" stroke-width="2"/>
+            <path d="M 40,14 L 640,14" stroke="#10b981" stroke-width="2"/>
+            <!-- 垂直 TSV 穿孔貫穿中介層 -->
+            ${Array.from({ length: 12 }, (_, i) => `
+              <line x1="${i * 55 + 40}" y1="15" x2="${i * 55 + 40}" y2="55" stroke="#f59e0b" stroke-width="3"/>
+            `).join('')}
+            <text x="340" y="38" text-anchor="middle" fill="#ffffff" font-size="12.5" font-weight="750">2.5D 矽中介層 (Silicon Interposer with TSVs)</text>
+          </g>
+
+          <!-- C4 凸塊層 (C4 Bumps: 間距 150µm) -->
+          <g transform="translate(80, 220)">
+            ${Array.from({ length: 14 }, (_, i) => `
+              <circle cx="${i * 48 + 15}" cy="10" r="6" fill="#f59e0b"/>
+            `).join('')}
+            <text x="320" y="15" fill="#f59e0b" font-size="11">C4 Bumps (Pitch 150µm)</text>
+          </g>
+
+          <!-- 底層：大型 ABF 封裝基板 (Organic Substrate) -->
+          <g transform="translate(40, 245)">
+            <rect x="0" y="0" width="720" height="50" rx="3" fill="#0f172a" stroke="#64748b" stroke-width="1.5"/>
+            <text x="360" y="30" text-anchor="middle" fill="#cbd5e1" font-size="12" font-weight="700">ABF 封裝基板 (Package Substrate)</text>
+          </g>
+
+          <!-- BGA 錫球 (Ball Grid Array 連接至 PCB 主機板) -->
+          <g transform="translate(60, 295)">
+            ${Array.from({ length: 12 }, (_, i) => `
+              <circle cx="${i * 58 + 25}" cy="16" r="10" fill="#94a3b8"/>
+            `).join('')}
+            <text x="340" y="22" text-anchor="middle" fill="#ffffff" font-size="11.5" font-weight="700">BGA 錫球 (Pitch 1.0 mm → PCB 主機板)</text>
+          </g>
+        </svg>
+      `;
+
+      dashboardHtml = `
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">HBM 互連總頻寬</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-blue-dark);">&gt; 1.2 TB/s · 堆疊</div>
+          <div class="eng-obj-metric-note">1024-bit 匯流排超寬平行傳輸</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">中介層面積 (Interposer Size)</div>
+          <div class="eng-obj-metric-value">&gt; 3.3× 光罩視場</div>
+          <div class="eng-obj-metric-note">台積電 CoWoS-S 突破單光罩限制</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">微凸塊間距 (Micro-Bump Pitch)</div>
+          <div class="eng-obj-metric-value">25 - 40 µm</div>
+          <div class="eng-obj-metric-note">每平方毫米數百個高密度接點</div>
+        </div>
+      `;
+
+      footerNote = t.ch21_cowos_desc;
+    } else if (activeTab === 'soic') {
+      viewportHtml = `
+        <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="3D SoIC Bumpless Hybrid Bonding">
+          <!-- 上晶片 (Top Chip) -->
+          <g transform="translate(200, 50)">
+            <rect x="0" y="0" width="400" height="90" rx="3" fill="#0f172a" stroke="#0284c7" stroke-width="1.5"/>
+            <text x="200" y="45" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="700">上層晶片 (Top Chip: 例如 SRAM 快取)</text>
+            <!-- 表面微銅接點 (Cu Pads, 直徑 0.5µm, 間距 0.9µm) -->
+            ${Array.from({ length: 9 }, (_, i) => `
+              <rect x="${i * 42 + 25}" y="76" width="20" height="14" fill="#f59e0b"/>
+            `).join('')}
+          </g>
+
+          <!-- 混合鍵合介面 (Hybrid Bonding Interface: <1µm Pitch, 無凸塊 Bumpless) -->
+          <g transform="translate(200, 140)">
+            <rect x="0" y="0" width="400" height="16" fill="rgba(16, 185, 129, 0.3)" stroke="#10b981" stroke-dasharray="3 3"/>
+            <text x="200" y="12" text-anchor="middle" fill="#10b981" font-size="11" font-weight="700">無凸塊混合鍵合介面 (SiO₂-SiO₂ 親水鍵合 + Cu-Cu 熱擴散)</text>
+          </g>
+
+          <!-- 下晶片 (Bottom Chip) -->
+          <g transform="translate(200, 156)">
+            <!-- 表面微銅接點精確對齊 -->
+            ${Array.from({ length: 9 }, (_, i) => `
+              <rect x="${i * 42 + 25}" y="0" width="20" height="14" fill="#f59e0b"/>
+            `).join('')}
+            <rect x="0" y="14" width="400" height="90" rx="3" fill="#1e293b" stroke="#0284c7" stroke-width="1.5"/>
+            <text x="200" y="65" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="700">下層運算邏輯晶片 (Bottom Compute Die)</text>
+          </g>
+
+          <!-- 說明指標 -->
+          <text x="400" y="300" text-anchor="middle" fill="#10b981" font-size="13" font-weight="750">無焊錫 · 無底部填充膠 · 接點間距 &lt; 1.0 µm</text>
+        </svg>
+      `;
+
+      dashboardHtml = `
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">互連間距 (Bonding Pitch)</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-teal);">&lt; 0.9 µm</div>
+          <div class="eng-obj-metric-note">比傳統微凸塊縮小 40 倍以上</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">互連密度 (Interconnect Density)</div>
+          <div class="eng-obj-metric-value">&gt; 1,200,000 / mm²</div>
+          <div class="eng-obj-metric-note">實現晶粒級單晶片超低延遲</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">通訊能耗改善</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-blue-dark);">&lt; 0.05 pJ / bit</div>
+          <div class="eng-obj-metric-note">寄生電容劇降，能耗僅傳統封裝 10%</div>
+        </div>
+      `;
+
+      footerNote = t.ch21_soic_desc;
+    } else {
+      // Density comparison
+      viewportHtml = `
+        <svg viewBox="0 0 800 380" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Packaging Interconnect Density Comparison">
+          <!-- 橫向柱狀對照圖 -->
+          <g transform="translate(180, 50)">
+            <!-- 1. BGA -->
+            <rect x="0" y="0" width="8" height="28" fill="#64748b"/>
+            <text x="-15" y="19" text-anchor="end" fill="#94a3b8" font-size="12">打線 / BGA</text>
+            <text x="20" y="19" fill="#e2e8f0" font-size="11.5">間距 1000 µm · 密度 1 / mm²</text>
+
+            <!-- 2. Flip-Chip C4 -->
+            <rect x="0" y="55" width="30" height="28" fill="#0284c7"/>
+            <text x="-15" y="74" text-anchor="end" fill="#94a3b8" font-size="12">覆晶 (Flip-Chip C4)</text>
+            <text x="42" y="74" fill="#e2e8f0" font-size="11.5">間距 150 µm · 密度 40 / mm²</text>
+
+            <!-- 3. 2.5D CoWoS 微凸塊 -->
+            <rect x="0" y="110" width="110" height="28" fill="#f59e0b"/>
+            <text x="-15" y="129" text-anchor="end" fill="#f59e0b" font-size="12">2.5D CoWoS 微凸塊</text>
+            <text x="122" y="129" fill="#e2e8f0" font-size="11.5">間距 35 µm · 密度 800 / mm²</text>
+
+            <!-- 4. 3D SoIC 混合鍵合 -->
+            <rect x="0" y="165" width="460" height="34" fill="#10b981"/>
+            <text x="-15" y="187" text-anchor="end" fill="#10b981" font-size="13" font-weight="700">3D SoIC 混合鍵合</text>
+            <text x="475" y="187" fill="#10b981" font-size="13" font-weight="750">&lt; 0.9 µm · 1,200,000 / mm² (↑1500倍)</text>
+          </g>
+        </svg>
+      `;
+
+      dashboardHtml = `
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">互連密度躍升幅度</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-teal);">1,500 倍</div>
+          <div class="eng-obj-metric-note">從 2.5D 微凸塊邁向 3D Cu-Cu 混合鍵合</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">小晶片 (Chiplet) 戰略意義</div>
+          <div class="eng-obj-metric-value" style="font-size: 15px;">打破摩爾定律物理極限</div>
+          <div class="eng-obj-metric-note">算力、快取與高頻寬記憶體異質整合</div>
+        </div>
+      `;
+
+      footerNote = t.ch21_density_desc;
+    }
+
+    container.innerHTML = `
+      <section class="eng-obj-card" aria-labelledby="engObjCh21Title">
+        <header class="eng-obj-header">
+          <div class="eng-obj-badge-row">
+            <span class="eng-obj-badge">${t.badge_prefix} · CH 21</span>
+            <span class="eng-obj-status">${t.live_sim}</span>
+          </div>
+          <h2 class="eng-obj-title" id="engObjCh21Title">${t.ch21_title}</h2>
+          <p class="eng-obj-subtitle">${t.ch21_sub}</p>
+        </header>
+
+        <div class="eng-obj-controls">
+          <div class="eng-obj-tab-group" role="tablist">
+            <button type="button" class="eng-obj-tab ${activeTab === 'cowos' ? 'is-active' : ''}" data-tab="cowos">${t.ch21_tab_cowos}</button>
+            <button type="button" class="eng-obj-tab ${activeTab === 'soic' ? 'is-active' : ''}" data-tab="soic">${t.ch21_tab_soic}</button>
+            <button type="button" class="eng-obj-tab ${activeTab === 'density' ? 'is-active' : ''}" data-tab="density">${t.ch21_tab_density}</button>
+          </div>
+        </div>
+
+        <div class="eng-obj-viewport">
+          ${viewportHtml}
+        </div>
+
+        <div class="eng-obj-dashboard">
+          ${dashboardHtml}
+        </div>
+
+        <footer class="eng-obj-footer-note">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+          <div>${footerNote}</div>
+        </footer>
+      </section>
+    `;
+
+    // 綁定事件
+    container.querySelectorAll('[data-tab]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        activeTab = btn.getAttribute('data-tab');
+        update();
+      });
+    });
+  }
+
+  update();
+}
+
+/**
+ * ══════════════════════════════════════════════════════════════════════════════
  * 總調度入口 (Unified Mount Orchestrator)
  * ══════════════════════════════════════════════════════════════════════════════
  */
@@ -1384,7 +2572,16 @@ export function mountEngineeringObject(chId, container, lang = 'zh') {
     renderDepositionMechanismObject(container, lang);
   } else if (chId === 'ch06') {
     renderPlasmaEtchObject(container, lang);
+  } else if (chId === 'ch07') {
+    renderIonImplantObject(container, lang);
+  } else if (chId === 'ch08') {
+    renderCMPObject(container, lang);
+  } else if (chId === 'ch10') {
+    renderInterconnectObject(container, lang);
   } else if (chId === 'ch12') {
     renderTransistor3DObject(container, lang);
+  } else if (chId === 'ch21') {
+    renderAdvancedPackagingObject(container, lang);
   }
 }
+

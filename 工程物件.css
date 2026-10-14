@@ -331,6 +331,42 @@
   animation: ionStream 1.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 
+@keyframes rotateCW {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.anim-rotate-pad {
+  transform-origin: center;
+  animation: rotateCW 12s linear infinite;
+}
+
+.anim-rotate-head {
+  transform-origin: center;
+  animation: rotateCW 6s linear infinite;
+}
+
+@keyframes heatPulse {
+  0% { opacity: 0.3; transform: scaleY(0.9); }
+  50% { opacity: 0.9; transform: scaleY(1.1); filter: drop-shadow(0 0 12px rgba(245, 158, 11, 0.8)); }
+  100% { opacity: 0.3; transform: scaleY(0.9); }
+}
+
+.anim-heat {
+  animation: heatPulse 1.6s ease-in-out infinite;
+}
+
+@keyframes electronDrift {
+  0% { transform: translateX(0); opacity: 0; }
+  30% { opacity: 1; }
+  70% { opacity: 1; }
+  100% { transform: translateX(40px); opacity: 0; }
+}
+
+.anim-electron {
+  animation: electronDrift 1.0s linear infinite;
+}
+
 /* 手機版適配 */
 @media (max-width: 768px) {
   .eng-obj-header {

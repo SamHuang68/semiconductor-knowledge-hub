@@ -99,10 +99,10 @@ async function verify() {
   }
   console.log('[PASS] 零中系相依性審查：通過 (無中系相依、套件或外部端點)');
 
-  // 3. 驗證四大製程工程物件模組 (Ch 04 / 05 / 06 / 12) 雙語渲染
+  // 3. 驗證八大核心製程工程物件模組 (Ch 04, 05, 06, 07, 08, 10, 12, 21) 雙語渲染
   try {
     const engObj = await import(`file://${ROOT_DIR}/工程物件.js`);
-    const testIds = ['ch04', 'ch05', 'ch06', 'ch12'];
+    const testIds = ['ch04', 'ch05', 'ch06', 'ch07', 'ch08', 'ch10', 'ch12', 'ch21'];
     for (const id of testIds) {
       for (const lang of ['zh', 'en']) {
         const dummy = { innerHTML: '', querySelectorAll: () => [], querySelector: () => null };
@@ -113,7 +113,7 @@ async function verify() {
         }
       }
     }
-    console.log('[PASS] 四大製程工程物件模型 (Ch 04, 05, 06, 12) 中英雙語渲染全數通過');
+    console.log('[PASS] 八大製程工程物件模型 (Ch 04, 05, 06, 07, 08, 10, 12, 21) 中英雙語渲染全數通過');
   } catch (err) {
     console.error('[FAIL] 工程物件載入或渲染失敗:', err);
     errors++;

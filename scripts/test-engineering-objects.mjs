@@ -102,4 +102,48 @@ if (gaaBtn) {
 }
 console.log('[PASS] Ch 12 電晶體 3D 等角演進模型正常');
 
-console.log('=== 全部工程物件互動單元測試通過 (0 錯誤) ===');
+console.log('--- 測試 5: Ch 07 離子佈植模型切換 ---');
+const c7 = new MockElement();
+mountEngineeringObject('ch07', c7, 'zh');
+assert.ok(c7.innerHTML.includes('分析磁鐵'), '預設應展示光路與磁鐵');
+const annealBtn = c7.children.find(c => c.getAttribute('data-tab') === 'anneal');
+if (annealBtn) {
+  annealBtn.dispatchEvent({ type: 'click' });
+  assert.ok(c7.innerHTML.includes('RTA 快速退火'), '點擊退火後應展示退火介面');
+}
+console.log('[PASS] Ch 07 離子佈植與退火模型正常');
+
+console.log('--- 測試 6: Ch 08 CMP 運動學與缺陷模型切換 ---');
+const c8 = new MockElement();
+mountEngineeringObject('ch08', c8, 'zh');
+assert.ok(c8.innerHTML.includes('Preston 方程'), '預設應展示運動學與 Preston');
+const defectBtn = c8.children.find(c => c.getAttribute('data-tab') === 'defects');
+if (defectBtn) {
+  defectBtn.dispatchEvent({ type: 'click' });
+  assert.ok(c8.innerHTML.includes('假圖形填補'), '點擊缺陷後應展示假圖形填補');
+}
+console.log('[PASS] Ch 08 CMP 平坦化模型正常');
+
+console.log('--- 測試 7: Ch 10 金屬化雙鑲嵌單步前進 ---');
+const c10 = new MockElement();
+mountEngineeringObject('ch10', c10, 'zh');
+assert.ok(c10.innerHTML.includes('雙載子鑲嵌'), '預設應展示雙載子鑲嵌');
+const damaNext = c10.querySelector('#damaNextBtn');
+if (damaNext) {
+  damaNext.dispatchEvent({ type: 'click' });
+  assert.ok(c10.innerHTML.includes('2 / 6'), '單步前進後應顯示步驟 2');
+}
+console.log('[PASS] Ch 10 金屬化雙載子鑲嵌模型正常');
+
+console.log('--- 測試 8: Ch 21 先進封裝 CoWoS 與 SoIC 切換 ---');
+const c21 = new MockElement();
+mountEngineeringObject('ch21', c21, 'zh');
+assert.ok(c21.innerHTML.includes('CoWoS'), '預設應展示 CoWoS');
+const soicBtn = c21.children.find(c => c.getAttribute('data-tab') === 'soic');
+if (soicBtn) {
+  soicBtn.dispatchEvent({ type: 'click' });
+  assert.ok(c21.innerHTML.includes('無凸塊混合鍵合'), '點擊 SoIC 後應展示混合鍵合');
+}
+console.log('[PASS] Ch 21 先進封裝架構模型正常');
+
+console.log('=== 全部八大核心工程物件互動單元測試通過 (0 錯誤) ===');

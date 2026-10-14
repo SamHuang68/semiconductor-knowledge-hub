@@ -527,8 +527,8 @@ import { mountEngineeringObject } from './工程物件.js';
     renderMermaidDiagrams();
     attachCodeCopyButtons();
 
-    // 若為四大重點製程章節，掛載精細互動工程物件模型
-    if (['ch04', 'ch05', 'ch06', 'ch12'].includes(chapter.id)) {
+    // 若為核心製程章節，掛載精細互動工程物件模型 (Ch 04, 05, 06, 07, 08, 10, 12, 21)
+    if (['ch04', 'ch05', 'ch06', 'ch07', 'ch08', 'ch10', 'ch12', 'ch21'].includes(chapter.id)) {
       attachEngineeringObjectModel(chapter.id, currentLang);
     }
 
@@ -844,8 +844,16 @@ import { mountEngineeringObject } from './工程物件.js';
       targetEl = articleBody.querySelector('h2[id*="cvd用氣體長出薄膜"], h2[id*="cvd-growing-films-from-gases"], h2[id*="pvd把原子撞下來"], h2[id*="pvd-knocking-atoms-loose"]');
     } else if (chId === 'ch06') {
       targetEl = articleBody.querySelector('h2[id*="電漿蝕刻的工具"], h2[id*="plasma-the-etching-tool"], h2[id*="濕蝕刻與乾蝕刻"], h2[id*="wet-etching-and-dry-etching"]');
+    } else if (chId === 'ch07') {
+      targetEl = articleBody.querySelector('h2[id*="佈植機怎麼運作"], h2[id*="how-an-implanter-works"], h2[id*="為什麼要佈植"], h2[id*="why-implant"]');
+    } else if (chId === 'ch08') {
+      targetEl = articleBody.querySelector('h2[id*="cmp-怎麼運作"], h2[id*="how-cmp-works"], h2[id*="為什麼要磨平"], h2[id*="why-the-wafer-must-be-flat"]');
+    } else if (chId === 'ch10') {
+      targetEl = articleBody.querySelector('h2[id*="大馬士革製程"], h2[id*="the-damascene-process"], h2[id*="從鋁到銅"], h2[id*="from-aluminum-to-copper"]');
     } else if (chId === 'ch12') {
       targetEl = articleBody.querySelector('h2[id*="finfet讓通道站起來"], h2[id*="finfet-making-the-channel-stand-up"], h2[id*="結構演進一覽"], h2[id*="the-evolution-at-a-glance"]');
+    } else if (chId === 'ch21') {
+      targetEl = articleBody.querySelector('h2[id*="25d並排放在中介層上"], h2[id*="25d-side-by-side-on-an-interposer"], h2[id*="為什麼需要先進封裝"], h2[id*="why-advanced-packaging-is-needed"]');
     }
 
     if (!targetEl) {
