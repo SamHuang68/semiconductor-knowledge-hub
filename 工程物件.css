@@ -408,6 +408,24 @@
   animation: liquidFlowDown 1.4s ease-out infinite;
 }
 
+/* 互動按鈕與微觀節點微互動回饋 */
+.journey-node:hover circle,
+.node-btn:hover rect,
+.ocap-sim-btn:hover,
+.qtime-btn:hover,
+.pvt-btn:hover rect,
+.burst-btn:hover {
+  filter: brightness(1.18);
+  transition: filter 0.15s ease;
+}
+
+#rowHammerAttackBtn:hover,
+#rowHammerTrrBtn:hover,
+#rowHammerResetBtn:hover {
+  filter: brightness(1.2);
+  transition: filter 0.15s ease;
+}
+
 
 /* 手機版適配 */
 @media (max-width: 768px) {

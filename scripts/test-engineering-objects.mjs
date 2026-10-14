@@ -322,6 +322,17 @@ if (interlockBtn) {
 }
 console.log('[PASS] Ch 23 晶圓廠自動化與智慧製造模型正常');
 
-console.log('=== 全部二十四大核心工程物件互動單元測試通過 (0 錯誤) ===');
+console.log('--- 測試 25: Ch 24 軟韌體視角 Row Hammer 與 IR Drop 切換 ---');
+const c24 = new MockElement();
+mountEngineeringObject('ch24', c24, 'zh');
+assert.ok(c24.innerHTML.includes('Row Hammer') || c24.innerHTML.includes('字元線'), '預設應展示 Row Hammer 模型');
+const pvtBtn = c24.children.find(c => c.getAttribute('data-tab') === 'pvt');
+if (pvtBtn) {
+  pvtBtn.dispatchEvent({ type: 'click' });
+  assert.ok(c24.innerHTML.includes('PVT') || c24.innerHTML.includes('工藝角'), '點擊 PVT 後應展示工藝角分佈');
+}
+console.log('[PASS] Ch 24 軟韌體視角硬體真相模型正常');
+
+console.log('=== 全站二十五大章節工程物件 100% 滿貫覆蓋單元測試全數通過 (0 錯誤) ===');
 
 

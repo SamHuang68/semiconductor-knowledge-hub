@@ -886,6 +886,8 @@ import { mountEngineeringObject } from './工程物件.js';
       targetEl = articleBody.querySelector('h2[id*="預燒提早篩掉體質不好的晶片"], h2[id*="burn-in-weeding-out-weak-chips-early"], h2[id*="可靠度能用多久"], h2[id*="reliability-how-long-it-lasts"]');
     } else if (chId === 'ch23') {
       targetEl = articleBody.querySelector('h2[id*="工廠裡的主要系統"], h2[id*="the-main-systems-in-a-fab"], h2[id*="防呆讓錯誤無法發生"], h2[id*="interlocks-making-mistakes-impossible"]');
+    } else if (chId === 'ch24') {
+      targetEl = articleBody.querySelector('h2[id*="軟體看不見的硬體真相"], h2[id*="hardware-truths-that-software-never-sees"], h2[id*="row-hammer記憶單元靠得太近"], h2[id*="row-hammer-memory-cells-packed-too-close"]');
     }
 
     if (!targetEl) {
