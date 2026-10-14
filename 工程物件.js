@@ -237,7 +237,59 @@ const TEXTS = {
     ch13_metric_retention: 'DRAM 刷新週期 (tREFI)',
     ch13_dram_desc: 'DRAM 每個記憶胞僅由 1 個存取電晶體與 1 個垂直圓柱微型電容構成 (1T1C)。為克服尺寸縮小帶來的電容值衰減，工程師打造深寬比超過 50:1 的柱狀電容，表面覆蓋超薄高介電 ZAZ (ZrO₂/Al₂O₃/ZrO₂) 薄膜，每 64ms 必須重新刷新電荷避免資料流失。',
     ch13_nand_desc: '3D NAND 擺脫 2D 平面微縮極限，在晶圓表面交替沉積 200+ 層 SiO₂/Si₃N₄ 薄膜，以極高能量電漿一次貫穿數微米深孔 (HAR Etching)，外圍蝕刻成金字塔階梯狀引出數百條字元線 (Word-Lines)，透過電荷陷阱 (Charge Trap CTF) 儲存電子，實現 TB 級非揮發儲存。',
-    ch13_hbm_desc: 'HBM (High Bandwidth Memory) 打破傳統 DDR 匯流排頻寬牆：將 4~16 顆 DRAM 裸晶透過數萬個穿矽孔 (TSV) 與微凸塊 (Micro-bumps) 垂直三維堆疊在邏輯控制基底 (Base Die) 上，提供 1024-bit 超寬並行匯流排，為 AI 算力加速器提供極致吞吐量！'
+    ch13_hbm_desc: 'HBM (High Bandwidth Memory) 打破傳統 DDR 匯流排頻寬牆：將 4~16 顆 DRAM 裸晶透過數萬個穿矽孔 (TSV) 與微凸塊 (Micro-bumps) 垂直三維堆疊在邏輯控制基底 (Base Die) 上，提供 1024-bit 超寬並行匯流排，為 AI 算力加速器提供極致吞吐量！',
+
+    // Ch 15 量測與檢測
+    ch15_title: 'CD-SEM 臨界尺寸掃描電鏡、光學明暗場缺陷與橢偏儀薄膜量測模型',
+    ch15_sub: '解析電子束邊緣二次電子尖峰測量奈米線寬、斜角雷射瑞利散射點亮 15nm 微粒、與偏振光干涉擬合埃級膜厚',
+    ch15_tab_cdsem: 'CD-SEM 電子束臨界尺寸 (CD-SEM)',
+    ch15_tab_optical: '明場 vs 暗場光學檢測 (Bright/Dark Field)',
+    ch15_tab_ellipsometry: '光譜橢偏儀薄膜量測 (Ellipsometry)',
+    ch15_metric_cd_res: 'CD-SEM 測量重複精度',
+    ch15_metric_darkfield: '暗場雷射缺陷檢出極限',
+    ch15_metric_film_thick: '橢偏儀薄膜厚度解析度',
+    ch15_cdsem_desc: 'CD-SEM 採用 300-800 eV 超低著陸能量電子束以防止光阻收縮。當電子束掃描越過垂直奈米圖案側壁時，因表面逃逸深度效應引發二次電子 (SE) 劇烈發射（邊緣效應 Edge Blooming），在偵測器形成特徵雙峰輪廓，精確提取底部臨界尺寸 (Bottom CD) 與線寬粗糙度 (LWR)。',
+    ch15_optical_desc: '明場檢測 (Bright-Field) 收集垂直反射光，高數值孔徑對比度擅長抓取圖案變形與微小橋接；暗場檢測 (Dark-Field) 則以斜角雷射掠射，光滑矽表面鏡面反射避開透鏡，唯獨微粒與凹凸產生瑞利散射 (Rayleigh Scattering) 進入收集器，在漆黑背景中瞬間點亮 15nm 孤立微粒！',
+    ch15_ellipsometry_desc: '橢偏儀利用線偏振光以布魯斯特角 (~70°) 入射多層介電薄膜，反射光因層間干涉轉化為橢圓偏振光。透過精準測量振幅比 Ψ 與相位差 Δ，配合麥克斯韋方程擬合模型，可同時且非破壞性解出多層奈米薄膜的物理厚度與光學折射率 (n, k)。',
+
+    // Ch 16 良率與故障分析
+    ch16_title: '16 種晶圓缺陷圖譜空間分佈、FIB 奈米微割與 TEM 結晶分析模型',
+    ch16_sub: '交互診斷環狀、邊緣、刮痕等晶圓圖缺陷物理根因，微觀探索聚焦離子束原位切片與原子級穿透電鏡 (HR-TEM) 缺陷解析',
+    ch16_tab_wafermap: '晶圓缺陷空間圖譜 (Wafer Map Patterns)',
+    ch16_tab_fib: '雙束 FIB 奈米切片 (Dual-Beam FIB)',
+    ch16_tab_tem: 'HR-TEM 原子級晶格解析 (HR-TEM Lattice)',
+    ch16_metric_yield: '典型先進製程成熟良率',
+    ch16_metric_lamella: 'FIB 試樣薄片厚度',
+    ch16_metric_tem_res: 'TEM 空間解析度',
+    ch16_wafermap_desc: '晶圓圖空間分佈是製程機台的指紋：環狀 (Ring) 常見於 CMP 壓力不均或旋塗乾燥；邊緣 (Edge) 指向光阻邊緣去膠 (EBR) 異常或電漿邊界效應；刮痕 (Scratch) 來自機械手臂或傳送盒摩擦；聚集 (Cluster) 警示微粒爆發。良率工程師透過空間特徵能直接鎖定出問題的腔體。',
+    ch16_fib_desc: 'Dual-Beam FIB 整合高能鎵離子束 (Ga⁺ FIB) 與掃描電鏡 (SEM)：先在失效晶粒上方沉積保護性鉑 (Pt) 沉積層，再利用離子束高速物理濺鍍掏空兩側，切出一片厚度僅 20~30 nm 的微型薄片 (TEM Lamella)，並由奈米機械手臂 (Omniprobe) 原位提取出來。',
+    ch16_tem_desc: '穿透式電子顯微鏡 (TEM @ 200kV) 讓極高能電子束穿透超薄樣片，電子與晶格原子核發生繞射干涉，產生原子級對比像 (HR-TEM)。工程師能親眼看見矽原子柱排列、閘極氧化層穿隧擊穿針孔 (Pinhole) 與晶格差排滑移，為重大良率事故提供定讞證據。',
+
+    // Ch 17 製程控制
+    ch17_title: 'SPC Shewhart 管制圖、Cpk 製程能力常態分佈與 R2R 閉環補償模型',
+    ch17_sub: '探索 3σ/6σ 管制界限與判異規則、Cp/Cpk 製程能力動態漂移計算、與機台批次 Run-to-Run (R2R) 即時配方補償',
+    ch17_tab_spc: 'Shewhart 管制圖與判異 (Control Chart)',
+    ch17_tab_cpk: '製程能力指數 Cpk 動態分佈 (Cpk Capability)',
+    ch17_tab_r2r: 'Run-to-Run (R2R) 閉環回饋補償 (R2R Feedback)',
+    ch17_metric_cpk_target: '晶圓廠六標準差 Cpk 目標',
+    ch17_metric_sigma: '製程管制界限',
+    ch17_metric_ooc: '統計判異 (OOC) 規則數',
+    ch17_spc_desc: '統計製程控制 (SPC) 透過監控均值與標準差，將製程波動嚴格限制於 UCL (+3σ) 與 LCL (-3σ) 內。依據 Western Electric (WECO) 規則，任何單點出界或連續 9 點落於中心線同一側，機台將立即觸發警報並自動停機 (Hold)，防止批量晶圓報廢。',
+    ch17_cpk_desc: 'Cp 衡量製程離散度 (USL - LSL)/6σ；Cpk 則綜合考量中心偏移：Cpk = min((USL-μ)/3σ, (μ-LSL)/3σ)。當 Cpk < 1.0 時不良率高達 0.27%；先進晶圓廠嚴格要求 Cpk ≥ 1.67，確保製程即便受到日常溫度氣壓微小擾動，產出不良率依然低於十億分之幾 (ppb)！',
+    ch17_r2r_desc: '先進製程控制 (APC) 中的 R2R 利用前一批晶圓在線量測結果 (如蝕刻深淺或薄膜厚度偏差)，透過 EWMA 指數平滑演算法動態計算修正量，在下一批晶圓進爐前自動調整配方 (如增減 1.5 秒蝕刻時間)，將機台老化漂移完全撫平在閉環控制中。',
+
+    // Ch 19 晶圓測試
+    ch19_title: 'WAT 劃線區參數測試與 CP 晶粒針測 (Probe Card Touchdown) 模型',
+    ch19_sub: '解析劃線道 PCM 測試鍵對 FEOL/BEOL 晶體特性的參數化驗收、垂直探針卡高頻觸地針測與 Bin Map 晶粒分類圖',
+    ch19_tab_wat: 'WAT 劃線區參數測試 (WAT / PCM)',
+    ch19_tab_cp: 'CP 晶粒針測與觸地 (CP Probe Card)',
+    ch19_tab_binmap: 'Bin Map 晶粒分類圖 (Die Bin Map)',
+    ch19_metric_pins: '高階探針卡針數',
+    ch19_metric_force: '單針觸地接觸壓力',
+    ch19_metric_freq: 'CP 高頻數位測試時脈',
+    ch19_wat_desc: 'WAT (晶圓驗收測試) 在晶圓製造完成後，直接在切割劃線道 (Scribe-line) 的 PCM 測試鍵上量測電晶體飽和電流 (Ion)、關斷漏電 (Ioff)、臨界電壓 (Vth) 與接觸電阻 (Rc)。WAT 是晶圓廠出廠前的嚴格成績單，唯有全數過關才能將晶圓放行交給客戶或後段測試。',
+    ch19_cp_desc: 'CP (晶片針測) 透過垂直式多層微彈簧探針卡 (Vertical Probe Card)，一次對數個或十數個晶粒 (Multi-Site) 的微凸塊施加數萬支微針接觸 (Touchdown)。在數 GHz 高頻下灌入全套功能性測試向量 (Scan Test / BIST)，精確標記每一顆晶粒的好壞。',
+    ch19_binmap_desc: 'CP 測試完成後生成電子晶圓圖 (Wafer Bin Map)：綠色 Bin 1 (全功能良品)、黃色 Bin 2 (降頻/部分核心可用)、紅色 Bin 7/8/9 (開路、短路或靜態功耗超標)。這份電子地圖隨晶圓送往封裝廠，自動揀晶機 (Die Bonder) 只吸取合格晶粒進行高成本先進封裝。'
   },
   en: {
     badge_prefix: 'PROCESS OBJECT · ENGINEERING MODEL',
@@ -457,7 +509,59 @@ const TEXTS = {
     ch13_metric_retention: 'DRAM Refresh Cycle (tREFI)',
     ch13_dram_desc: 'DRAM stores data using 1 access transistor and 1 vertical cylinder capacitor (1T1C). To preserve capacitance as cell area shrinks, capacitors feature extreme >50:1 aspect ratios lined with ZAZ (ZrO₂/Al₂O₃/ZrO₂) high-k films, requiring 64ms refresh cycles to replenish leakage.',
     ch13_nand_desc: '3D NAND overcomes 2D planar lithography scaling by vertically stacking 200+ alternating SiO₂/Si₃N₄ tiers. High-aspect-ratio (HAR) plasma etching drills vertical channel holes through the entire stack, while staircase word-line landings contact individual flash gates.',
-    ch13_hbm_desc: 'HBM (High Bandwidth Memory) shatters traditional memory bus bottlenecks by stacking 4 to 16 DRAM dies atop a base logic die via thousands of Through-Silicon Vias (TSVs) and micro-bumps, providing a massive 1024-bit wide interface exceeding 1.2 TB/s for AI acceleration.'
+    ch13_hbm_desc: 'HBM (High Bandwidth Memory) shatters traditional memory bus bottlenecks by stacking 4 to 16 DRAM dies atop a base logic die via thousands of Through-Silicon Vias (TSVs) and micro-bumps, providing a massive 1024-bit wide interface exceeding 1.2 TB/s for AI acceleration.',
+
+    // Ch 15 Metrology & Inspection
+    ch15_title: 'CD-SEM Metrology, Bright/Dark-Field Inspection & Ellipsometry Model',
+    ch15_sub: 'Analyze low-energy secondary electron edge bloom for CD/LWR, grazing laser Rayleigh scattering for 15nm defects, and polarized interferometry for angstrom film thickness',
+    ch15_tab_cdsem: 'CD-SEM Electron Beam Metrology',
+    ch15_tab_optical: 'Bright-Field vs Dark-Field Inspection',
+    ch15_tab_ellipsometry: 'Spectroscopic Ellipsometry',
+    ch15_metric_cd_res: 'CD-SEM Measurement Repeatability',
+    ch15_metric_darkfield: 'Dark-Field Laser Defect Detection Limit',
+    ch15_metric_film_thick: 'Ellipsometry Film Thickness Resolution',
+    ch15_cdsem_desc: 'CD-SEM uses an ultra-low landing energy (300-800 eV) electron beam to prevent photoresist shrinkage. When scanning across steep pattern sidewalls, the escape depth blooming of secondary electrons creates a characteristic double-peak profile, precisely extracting bottom CD and line width roughness (LWR).',
+    ch15_optical_desc: 'Bright-field inspection captures normal specular reflections, with high numerical aperture contrast excelling at pattern deformities and bridging. Dark-field inspection uses grazing-angle laser illumination: pristine planar surfaces reflect light away, while 15nm particles scatter light into detectors, glowing brightly against a pitch-black background.',
+    ch15_ellipsometry_desc: 'Spectroscopic ellipsometry illuminates dielectric thin films with linearly polarized light near Brewster angle (~70°). Interfacial reflections transform it into elliptically polarized light. Measuring amplitude ratio Ψ and phase shift Δ enables simultaneous, non-destructive extraction of multi-layer thickness and complex refractive indices (n, k).',
+
+    // Ch 16 Yield & Failure Analysis
+    ch16_title: 'Wafer Defect Spatial Signatures, FIB In-Situ Milling & TEM Failure Analysis Model',
+    ch16_sub: 'Diagnose ring, edge, scratch defect signatures on 300mm wafer maps, and examine Dual-Beam FIB lamella lift-out and HR-TEM lattice imaging',
+    ch16_tab_wafermap: 'Wafer Map Spatial Signatures',
+    ch16_tab_fib: 'Dual-Beam FIB In-Situ Milling',
+    ch16_tab_tem: 'HR-TEM Atomic Lattice Analysis',
+    ch16_metric_yield: 'Typical Advanced Node Mature Yield',
+    ch16_metric_lamella: 'FIB Lamella Thickness',
+    ch16_metric_tem_res: 'TEM Spatial Resolution',
+    ch16_wafermap_desc: 'Wafer map spatial signatures serve as process equipment fingerprints: Rings indicate CMP slurry distribution or spin-dry anomalies; Edge defects point to edge bead removal (EBR) issues; Scratches indicate robotic handler abrasion; Clusters reveal particle showers. Spatial classification directs engineers straight to faulty chambers.',
+    ch16_fib_desc: 'Dual-Beam FIB pairs a focused Gallium ion beam (Ga⁺ FIB) with high-resolution SEM. It deposits protective Platinum (Pt) over the defective transistor, sputters trenches on both flanks to mill out a 20-30nm ultra-thin lamella, which a robotic micromanipulator lifts out in-situ for TEM grid mounting.',
+    ch16_tem_desc: 'Transmission Electron Microscopy (TEM @ 200kV) directs highly energetic electrons through the sub-30nm lamella. Diffraction interference with crystalline atomic columns generates sub-angstrom phase-contrast images (HR-TEM), revealing individual atomic lattices, gate dielectric breakdown pinholes, and dislocations.',
+
+    // Ch 17 Statistical Process Control
+    ch17_title: 'SPC Shewhart Charts, Cpk Normal Distribution & R2R Closed-Loop Control Model',
+    ch17_sub: 'Explore 3σ/6σ control limits, Western Electric rules, dynamic Cpk shift/spread, and real-time Run-to-Run recipe feedback compensation',
+    ch17_tab_spc: 'Shewhart Chart & OOC Rules',
+    ch17_tab_cpk: 'Process Capability (Cp & Cpk)',
+    ch17_tab_r2r: 'Run-to-Run Closed-Loop Control',
+    ch17_metric_cpk_target: 'Fab 6-Sigma Cpk Target',
+    ch17_metric_sigma: 'Statistical Control Limits',
+    ch17_metric_ooc: 'Out-of-Control Rules',
+    ch17_spc_desc: 'Statistical Process Control (SPC) continuously monitors process mean and dispersion, bounding natural variation within Upper (+3σ) and Lower (-3σ) Control Limits. Violations of Western Electric (WECO) rules trigger immediate automated tool holds, preventing catastrophic scrap events.',
+    ch17_cpk_desc: 'Cp gauges potential capability: (USL - LSL)/6σ. Cpk accounts for mean centering: min((USL-μ)/3σ, (μ-LSL)/3σ). While Cpk < 1.0 yields 2700 ppm defects, advanced foundries enforce Cpk ≥ 1.67, ensuring defect rates remain below parts-per-billion even under thermal or barometric drifts.',
+    ch17_r2r_desc: 'Run-to-Run (R2R) control exploits metrology feedback from immediately preceding wafer lots. An Exponentially Weighted Moving Average (EWMA) algorithm calculates optimal recipe offsets (e.g. trimming etch duration by 1.2s), continuously steering chamber drift back to baseline.',
+
+    // Ch 19 Wafer Testing
+    ch19_title: 'WAT Parametric Test & CP Die Sort Probe Card Touchdown Model',
+    ch19_sub: 'Examine scribe-line PCM parametric electrical verification, vertical probe card high-frequency touchdown, and pass/fail die Bin Mapping',
+    ch19_tab_wat: 'WAT Scribe-Line PCM Test',
+    ch19_tab_cp: 'CP Die Sort Touchdown',
+    ch19_tab_binmap: 'Wafer Bin Map Classification',
+    ch19_metric_pins: 'Probe Card Pin Count',
+    ch19_metric_force: 'Single-Pin Touchdown Force',
+    ch19_metric_freq: 'CP High-Speed Test Clock',
+    ch19_wat_desc: 'Wafer Acceptance Test (WAT) directly tests Process Control Monitor (PCM) test keys in scribe-line streets post-fab, verifying saturation drive current (Ion), subthreshold leakage (Ioff), threshold voltage (Vth), and contact resistance (Rc). Only 100% compliant wafers are released for sorting.',
+    ch19_cp_desc: 'Chip Probing (CP) uses multi-layer vertical probe cards with tens of thousands of microscopic spring needles to contact die micro-bumps (touchdown). Automated Test Equipment (ATE) injects gigahertz scan vectors and BIST algorithms to validate complete digital logic, SRAM cells, and analog interfaces.',
+    ch19_binmap_desc: 'CP results produce an electronic Wafer Bin Map: Green Bin 1 (Prime passing dies), Yellow Bin 2 (Speed-binned / degraded core functional dies), Red Bins (Short, open, or excessive leakage dies). This map guides high-speed automated die bonders during advanced packaging assembly.'
   }
 };
 
@@ -3727,6 +3831,1161 @@ export function renderMemoryTechObject(container, lang = 'zh') {
 
 /**
  * ══════════════════════════════════════════════════════════════════════════════
+ * 13. Ch 15 CD-SEM 臨界尺寸掃描電鏡、光學明暗場缺陷與橢偏儀薄膜量測模型 (Metrology & Inspection)
+ * ══════════════════════════════════════════════════════════════════════════════
+ */
+export function renderMetrologyInspectionObject(container, lang = 'zh') {
+  const t = TEXTS[lang] || TEXTS.zh;
+  let activeTab = 'cdsem'; // 'cdsem' | 'optical' | 'ellipsometry'
+
+  function update() {
+    let viewportHtml = '';
+    let dashboardHtml = '';
+    let footerNote = '';
+
+    if (activeTab === 'cdsem') {
+      viewportHtml = `
+        <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="CD-SEM Electron Beam Metrology and Line Profile">
+          <!-- 上方低能電子槍與磁透鏡組 (FEG @ 500 eV) -->
+          <g transform="translate(300, 20)">
+            <rect x="50" y="0" width="100" height="35" rx="4" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5"/>
+            <text x="100" y="22" text-anchor="middle" fill="#38bdf8" font-size="11" font-weight="750">場發射電子槍 (FEG)</text>
+            <text x="100" y="48" text-anchor="middle" fill="#94a3b8" font-size="9.5">低著陸能量 500 eV (防光阻收縮)</text>
+
+            <!-- 電磁聚焦透鏡與偏轉掃描極板 (Deflection Plates) -->
+            <polygon points="70,55 130,55 110,80 90,80" fill="#334155" stroke="#cbd5e1" stroke-width="1"/>
+            <rect x="65" y="85" width="15" height="20" fill="#f59e0b"/>
+            <rect x="120" y="85" width="15" height="20" fill="#f59e0b"/>
+            <text x="100" y="100" text-anchor="middle" fill="#ffffff" font-size="9">X-Y 掃描極板</text>
+
+            <!-- 聚焦電子束微探針 (Focused E-Beam Probe: 直徑 < 1nm) -->
+            <line x1="100" y1="105" x2="100" y2="180" stroke="#38bdf8" stroke-width="2" stroke-dasharray="3 2"/>
+            <circle cx="100" cy="180" r="3" fill="#38bdf8"/>
+          </g>
+
+          <!-- 中段：晶圓奈米溝槽微觀剖面與二次電子 (SE) 逃逸 -->
+          <g transform="translate(150, 180)">
+            <!-- 矽基底 -->
+            <rect x="0" y="60" width="500" height="40" fill="#1e293b" stroke="#475569" stroke-width="1.5"/>
+            <text x="250" y="85" text-anchor="middle" fill="#94a3b8" font-size="11">矽晶圓基板 (Silicon Wafer Substrate)</text>
+
+            <!-- 奈米線條光阻/金屬圖案 (Line/Space Pattern) -->
+            <g transform="translate(180, 0)">
+              <rect x="0" y="0" width="140" height="60" fill="#334155" stroke="#38bdf8" stroke-width="1.5"/>
+              <text x="70" y="35" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="750">奈米圖案 (Line)</text>
+              <text x="70" y="50" text-anchor="middle" fill="#38bdf8" font-size="9.5">CD = 14.2 nm</text>
+
+              <!-- 側壁二次電子逃逸 (Edge Blooming) -->
+              <circle cx="2" cy="30" r="4" fill="#fbbf24"/>
+              <line x1="2" y1="30" x2="-25" y2="10" stroke="#fbbf24" stroke-width="1.5" marker-end="url(#arrow)"/>
+              <circle cx="138" cy="30" r="4" fill="#fbbf24"/>
+              <line x1="138" y1="30" x2="165" y2="10" stroke="#fbbf24" stroke-width="1.5" marker-end="url(#arrow)"/>
+              <text x="-35" y="5" fill="#fbbf24" font-size="9.5">SE 二次電子逃逸</text>
+            </g>
+          </g>
+
+          <!-- 下方：二次電子信號強度波形圖 (SE Intensity Profile: 經典雙峰曲線) -->
+          <g transform="translate(150, 290)">
+            <rect x="0" y="0" width="500" height="100" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
+            <text x="250" y="20" text-anchor="middle" fill="#38bdf8" font-size="11" font-weight="700">二次電子信號強度波形 (SE Signal Profile)</text>
+            <!-- 雙峰波形曲線 (Peaks at edges due to blooming) -->
+            <path d="M 20,70 L 150,70 Q 170,70 178,30 Q 182,75 190,65 L 310,65 Q 318,75 322,30 Q 330,70 350,70 L 480,70" fill="none" stroke="#10b981" stroke-width="2.5"/>
+            <!-- 標註兩峰值與量測 CD -->
+            <line x1="178" y1="25" x2="178" y2="85" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="2 2"/>
+            <line x1="322" y1="25" x2="322" y2="85" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="2 2"/>
+            <line x1="178" y1="85" x2="322" y2="85" stroke="#f59e0b" stroke-width="2"/>
+            <text x="250" y="80" text-anchor="middle" fill="#fbbf24" font-size="10.5" font-weight="750">← 演算法提取 Bottom CD (14.2 nm) →</text>
+          </g>
+        </svg>
+      `;
+
+      dashboardHtml = `
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">${t.ch15_metric_cd_res}</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-blue-dark);">± 0.1 nm (3σ)</div>
+          <div class="eng-obj-metric-note">亞埃級電子束聚焦探針量測重複性</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">電子著陸能量 (Landing Energy)</div>
+          <div class="eng-obj-metric-value">300 ~ 800 eV</div>
+          <div class="eng-obj-metric-note">低能量電子避免 EUV 有機光阻微觀灼傷收縮</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">線寬邊緣粗糙度 (LWR / LER)</div>
+          <div class="eng-obj-metric-value">1.8 nm</div>
+          <div class="eng-obj-metric-note">直接影響電晶體通道漏電與飽和電流分佈</div>
+        </div>
+      `;
+
+      footerNote = t.ch15_cdsem_desc;
+    } else if (activeTab === 'optical') {
+      viewportHtml = `
+        <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Bright-field vs Dark-field Wafer Defect Inspection">
+          <!-- 左側：明場光學檢測 (Bright-field Inspection) -->
+          <g transform="translate(60, 30)">
+            <rect x="0" y="0" width="320" height="350" fill="#0f172a" stroke="#38bdf8" stroke-width="1.5" rx="6"/>
+            <text x="160" y="28" text-anchor="middle" fill="#38bdf8" font-size="12.5" font-weight="750">明場檢測 (Bright-Field: 垂直入射)</text>
+            <text x="160" y="46" text-anchor="middle" fill="#94a3b8" font-size="10">高 NA 透鏡 · 收集正向反射光 · 偵測圖案變形</text>
+
+            <!-- 光路結構 -->
+            <g transform="translate(160, 60)">
+              <!-- 光源與物鏡 -->
+              <rect x="-40" y="0" width="80" height="30" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5" rx="3"/>
+              <text x="0" y="18" text-anchor="middle" fill="#ffffff" font-size="10">明場物鏡 (NA 0.95)</text>
+              <!-- 垂直光線 -->
+              <line x1="0" y1="35" x2="0" y2="120" stroke="#38bdf8" stroke-width="3"/>
+              <line x1="-15" y1="35" x2="-15" y2="120" stroke="#38bdf8" stroke-width="1.5"/>
+              <line x1="15" y1="35" x2="15" y2="120" stroke="#38bdf8" stroke-width="1.5"/>
+            </g>
+
+            <!-- 晶圓表面圖案與橋接缺陷 (Bridge Defect) -->
+            <g transform="translate(40, 200)">
+              <rect x="0" y="40" width="240" height="30" fill="#1e293b"/>
+              <rect x="30" y="10" width="40" height="30" fill="#64748b"/>
+              <rect x="170" y="10" width="40" height="30" fill="#64748b"/>
+              <!-- 缺陷短路橋 (Bridging Pattern Defect) -->
+              <rect x="70" y="20" width="100" height="15" fill="#ef4444" stroke="#f87171" stroke-width="1"/>
+              <text x="120" y="14" text-anchor="middle" fill="#f87171" font-size="10" font-weight="700">短路橋接缺陷 (Bridge Defect)</text>
+              <text x="120" y="90" text-anchor="middle" fill="#38bdf8" font-size="10">反射光強度改變 → 灰階影像對比抓取</text>
+            </g>
+          </g>
+
+          <!-- 右側：暗場雷射散射檢測 (Dark-field Inspection) -->
+          <g transform="translate(420, 30)">
+            <rect x="0" y="0" width="320" height="350" fill="#0f172a" stroke="#f59e0b" stroke-width="1.5" rx="6"/>
+            <text x="160" y="28" text-anchor="middle" fill="#fbbf24" font-size="12.5" font-weight="750">暗場檢測 (Dark-Field: 斜角掠射)</text>
+            <text x="160" y="46" text-anchor="middle" fill="#94a3b8" font-size="10">雷射斜射 · 鏡面反射避開透鏡 · 偵測微小微粒</text>
+
+            <!-- 斜入射雷射 (Grazing Angle Laser) -->
+            <line x1="20" y1="70" x2="150" y2="210" stroke="#f59e0b" stroke-width="2.5"/>
+            <text x="40" y="65" fill="#fbbf24" font-size="10">雷射斜入射 ↘</text>
+
+            <!-- 鏡面反射光被傾斜擋板濾除 -->
+            <line x1="150" y1="210" x2="280" y2="70" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="3 3"/>
+            <text x="270" y="65" fill="#64748b" font-size="9.5">鏡面反射光 (不入透鏡)</text>
+
+            <!-- 頂部高靈敏光學收集透鏡與 PMT -->
+            <g transform="translate(160, 60)">
+              <rect x="-40" y="0" width="80" height="30" fill="#1e293b" stroke="#10b981" stroke-width="1.5" rx="3"/>
+              <text x="0" y="18" text-anchor="middle" fill="#34d399" font-size="10">暗場收集器 (PMT)</text>
+            </g>
+
+            <!-- 表面微粒與瑞利散射 (Rayleigh Scattering) -->
+            <g transform="translate(40, 210)">
+              <rect x="0" y="0" width="240" height="30" fill="#1e293b"/>
+              <!-- 15nm 孤立微粒 (Particle) -->
+              <circle cx="110" cy="0" r="5" fill="#ef4444" stroke="#ffffff" stroke-width="1"/>
+              <!-- 向上發散的瑞利散射光 -->
+              <path d="M 110,0 L 110,-120" stroke="#34d399" stroke-width="2.5"/>
+              <path d="M 110,0 L 95,-120" stroke="#34d399" stroke-width="1.5"/>
+              <path d="M 110,0 L 125,-120" stroke="#34d399" stroke-width="1.5"/>
+              <text x="110" y="-40" text-anchor="middle" fill="#34d399" font-size="10" font-weight="700">瑞利散射光 ⇡</text>
+              <text x="120" y="55" text-anchor="middle" fill="#fbbf24" font-size="10.5" font-weight="750">漆黑背景下瞬間點亮 15nm 孤立微粒！</text>
+            </g>
+          </g>
+        </svg>
+      `;
+
+      dashboardHtml = `
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">${t.ch15_metric_darkfield}</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-blue-dark);">&lt; 15 nm 微粒</div>
+          <div class="eng-obj-metric-note">DUV 266nm 紫外雷射暗場瑞利散射</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">晶圓掃描檢測吞吐量</div>
+          <div class="eng-obj-metric-value">&gt; 60 Wafers/hr</div>
+          <div class="eng-obj-metric-note">光學全檢能在幾分鐘內掃描百億晶粒</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">明場缺陷辨識率</div>
+          <div class="eng-obj-metric-value">&gt; 99.5%</div>
+          <div class="eng-obj-metric-note">Die-to-Database 即時影像對照演算法</div>
+        </div>
+      `;
+
+      footerNote = t.ch15_optical_desc;
+    } else if (activeTab === 'ellipsometry') {
+      viewportHtml = `
+        <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Spectroscopic Ellipsometry for Thin Film Metrology">
+          <!-- 入射光源與起偏器 (Polarizer @ 70° Brewster Angle) -->
+          <g transform="translate(100, 50)">
+            <rect x="0" y="0" width="120" height="35" rx="3" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5"/>
+            <text x="60" y="22" text-anchor="middle" fill="#38bdf8" font-size="11" font-weight="700">寬頻光源 + 起偏器</text>
+            <!-- 照射光線 -->
+            <line x1="120" y1="35" x2="300" y2="220" stroke="#38bdf8" stroke-width="2.5"/>
+            <text x="170" y="110" fill="#38bdf8" font-size="10">線偏振光 (Linearly Polarized)</text>
+            <text x="250" y="195" fill="#f59e0b" font-size="11" font-weight="700">θ = 70°</text>
+          </g>
+
+          <!-- 晶圓多層薄膜微觀干涉區 (Thin Film Stack) -->
+          <g transform="translate(250, 220)">
+            <!-- 頂部超薄介電薄膜 (Film to measure: 例如 1.8nm HfO2) -->
+            <rect x="0" y="0" width="300" height="20" fill="#0284c7" stroke="#38bdf8" stroke-width="1.5"/>
+            <text x="150" y="14" text-anchor="middle" fill="#ffffff" font-size="10" font-weight="700">待測超薄薄膜 (High-k Film: d = 1.82 nm, n = 2.05)</text>
+
+            <!-- 中間介面層 (Interfacial SiO2 layer) -->
+            <rect x="0" y="20" width="300" height="15" fill="#334155"/>
+            <text x="150" y="31" text-anchor="middle" fill="#94a3b8" font-size="9">介面氧化層 (IL SiO₂ ~0.8 nm)</text>
+
+            <!-- 矽基底 (Si Substrate) -->
+            <rect x="0" y="35" width="300" height="40" fill="#0f172a" stroke="#475569" stroke-width="1.5"/>
+            <text x="150" y="60" text-anchor="middle" fill="#cbd5e1" font-size="11">矽晶圓基板 (Si Substrate)</text>
+          </g>
+
+          <!-- 反射光路、檢偏器與光譜儀 (Analyzer & Spectrometer) -->
+          <g transform="translate(550, 50)">
+            <line x1="-150" y1="170" x2="30" y2="35" stroke="#f59e0b" stroke-width="2.5"/>
+            <!-- 橢圓偏振光標示 -->
+            <ellipse cx="-50" cy="110" rx="14" ry="7" fill="none" stroke="#f59e0b" stroke-width="1.5" transform="rotate(-35 -50 110)"/>
+            <text x="-40" y="90" fill="#fbbf24" font-size="10">橢圓偏振光 (Elliptically Polarized)</text>
+
+            <rect x="30" y="10" width="130" height="40" rx="3" fill="#1e293b" stroke="#f59e0b" stroke-width="1.5"/>
+            <text x="95" y="28" text-anchor="middle" fill="#fbbf24" font-size="11" font-weight="750">檢偏器 + CCD 光譜儀</text>
+            <text x="95" y="42" text-anchor="middle" fill="#94a3b8" font-size="9.5">測量 Ψ (振幅) 與 Δ (相位)</text>
+          </g>
+
+          <!-- 下方：擬合曲線說明 -->
+          <g transform="translate(180, 320)">
+            <rect x="0" y="0" width="440" height="60" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+            <text x="220" y="24" text-anchor="middle" fill="#34d399" font-size="11" font-weight="700">tan(Ψ)·e^(iΔ) = R_p / R_s (麥克斯韋電磁場嚴密擬合)</text>
+            <text x="220" y="45" text-anchor="middle" fill="#cbd5e1" font-size="10">同時精準解算多層奈米薄膜物理厚度 (d) 與複數折射率 (n, k)</text>
+          </g>
+        </svg>
+      `;
+
+      dashboardHtml = `
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">${t.ch15_metric_film_thick}</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-teal);">± 0.01 nm (0.1 Å)</div>
+          <div class="eng-obj-metric-note">光波干涉相位超高靈敏度</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">折射率測量精度</div>
+          <div class="eng-obj-metric-value">± 0.001</div>
+          <div class="eng-obj-metric-note">即時反演材料化學計量比與緻密度</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">量測特性</div>
+          <div class="eng-obj-metric-value">100% 非破壞性</div>
+          <div class="eng-obj-metric-note">晶圓量測完畢後可直接進入下一站繼續加工</div>
+        </div>
+      `;
+
+      footerNote = t.ch15_ellipsometry_desc;
+    }
+
+    container.innerHTML = `
+      <section class="eng-obj-card" aria-labelledby="engObjCh15Title">
+        <header class="eng-obj-header">
+          <div class="eng-obj-badge-row">
+            <span class="eng-obj-badge">${t.badge_prefix} · CH 15</span>
+            <span class="eng-obj-status">${t.live_sim}</span>
+          </div>
+          <h2 class="eng-obj-title" id="engObjCh15Title">${t.ch15_title}</h2>
+          <p class="eng-obj-subtitle">${t.ch15_sub}</p>
+        </header>
+
+        <div class="eng-obj-controls">
+          <div class="eng-obj-tab-group" role="tablist">
+            <button type="button" class="eng-obj-tab ${activeTab === 'cdsem' ? 'is-active' : ''}" data-tab="cdsem">${t.ch15_tab_cdsem}</button>
+            <button type="button" class="eng-obj-tab ${activeTab === 'optical' ? 'is-active' : ''}" data-tab="optical">${t.ch15_tab_optical}</button>
+            <button type="button" class="eng-obj-tab ${activeTab === 'ellipsometry' ? 'is-active' : ''}" data-tab="ellipsometry">${t.ch15_tab_ellipsometry}</button>
+          </div>
+        </div>
+
+        <div class="eng-obj-viewport">
+          ${viewportHtml}
+        </div>
+
+        <div class="eng-obj-dashboard">
+          ${dashboardHtml}
+        </div>
+
+        <footer class="eng-obj-footer-note">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+          <div>${footerNote}</div>
+        </footer>
+      </section>
+    `;
+
+    container.querySelectorAll('[data-tab]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        activeTab = btn.getAttribute('data-tab');
+        update();
+      });
+    });
+  }
+
+  update();
+}
+
+/**
+ * ══════════════════════════════════════════════════════════════════════════════
+ * 14. Ch 16 晶圓缺陷圖譜空間分佈、雙束 FIB 與 HR-TEM 結晶分析模型 (Yield & FA)
+ * ══════════════════════════════════════════════════════════════════════════════
+ */
+export function renderYieldFailureAnalysisObject(container, lang = 'zh') {
+  const t = TEXTS[lang] || TEXTS.zh;
+  let activeTab = 'wafermap'; // 'wafermap' | 'fib' | 'tem'
+  let activePattern = 'ring'; // 'ring' | 'edge' | 'scratch' | 'cluster'
+
+  function update() {
+    let viewportHtml = '';
+    let dashboardHtml = '';
+    let footerNote = '';
+
+    if (activeTab === 'wafermap') {
+      // 動態生成 300mm 晶圓圖上的晶粒矩陣
+      const dies = [];
+      const rows = 9;
+      const cols = 9;
+      const rLimit = 3.8;
+
+      for (let r = -4; r <= 4; r++) {
+        for (let c = -4; c <= 4; c++) {
+          const dist = Math.sqrt(r * r + c * c);
+          if (dist <= rLimit) {
+            let isDefect = false;
+            if (activePattern === 'ring') {
+              isDefect = dist >= 2.0 && dist <= 2.8;
+            } else if (activePattern === 'edge') {
+              isDefect = dist >= 3.0;
+            } else if (activePattern === 'scratch') {
+              isDefect = Math.abs(r - c * 0.8) < 0.6 && c >= -2 && c <= 3;
+            } else if (activePattern === 'cluster') {
+              isDefect = Math.sqrt((r + 1.8) ** 2 + (c - 1.5) ** 2) < 1.6;
+            }
+            dies.push({ x: c * 26 + 180, y: r * 26 + 180, isDefect });
+          }
+        }
+      }
+
+      let patternName = '';
+      let patternCause = '';
+      let patternAction = '';
+      if (activePattern === 'ring') {
+        patternName = lang === 'zh' ? '同心圓環狀缺陷 (Ring Signature)' : 'Concentric Ring Defect Signature';
+        patternCause = lang === 'zh' ? 'CMP 研磨頭多區氣囊壓力失衡、研磨液離心分佈或光阻旋塗乾燥不均' : 'CMP multi-zone carrier pressure imbalance or spin-dry air turbulence';
+        patternAction = lang === 'zh' ? '校正 CMP 研磨墊調節器切削深度與各區氣壓' : 'Calibrate CMP pad conditioner profile & carrier zone pressure';
+      } else if (activePattern === 'edge') {
+        patternName = lang === 'zh' ? '晶圓邊緣失效 (Edge Ring Signature)' : 'Wafer Edge Exclusion Signature';
+        patternCause = lang === 'zh' ? '光阻邊緣去膠 (EBR) 噴嘴角度偏斜、蝕刻機邊緣聚焦環 (Focus Ring) 磨耗' : 'EBR nozzle alignment shift or plasma edge focus ring erosion';
+        patternAction = lang === 'zh' ? '更換電漿腔體邊緣 Focus Ring 與校準光阻塗佈去膠線' : 'Replace chamber edge focus ring and re-align EBR dispense line';
+      } else if (activePattern === 'scratch') {
+        patternName = lang === 'zh' ? '弧形劃痕 (Scratch Signature)' : 'Curved Handling Scratch Signature';
+        patternCause = lang === 'zh' ? '自動化晶圓機械手臂真空吸盤夾爪微粒摩擦或 FOUP 晶圓盒導軌刮碰' : 'Robotic handler end-effector particle drag or FOUP cassette contact';
+        patternAction = lang === 'zh' ? '立即停機檢查機器人搬送軌跡 (Teach) 並清潔機械手接觸墊' : 'Check robot transfer trajectory & clean end-effector vacuum pads';
+      } else if (activePattern === 'cluster') {
+        patternName = lang === 'zh' ? '局部團塊缺陷 (Cluster Signature)' : 'Localized Cluster Defect Signature';
+        patternCause = lang === 'zh' ? '製程腔體內部微粒爆發 (Flaking) 或清洗液滴噴嘴冷凝物掉落' : 'Chamber wall polymer flaking or chemical spray nozzle condensation drip';
+        patternAction = lang === 'zh' ? '執行腔體乾蝕刻清機 (Dry Clean) 或定期濕式 PM 保養' : 'Execute chamber plasma dry clean or schedule immediate wet PM';
+      }
+
+      viewportHtml = `
+        <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Wafer Defect Spatial Signatures Interactive Map">
+          <!-- 左側：300mm 晶圓圖繪製區 -->
+          <g transform="translate(60, 30)">
+            <!-- 晶圓邊界圓形 (Notch 缺口位於下方) -->
+            <circle cx="180" cy="180" r="170" fill="#0f172a" stroke="#38bdf8" stroke-width="2.5"/>
+            <!-- 下方 Notch 凹口 -->
+            <polygon points="175,348 185,348 180,356" fill="#38bdf8"/>
+            <text x="180" y="372" text-anchor="middle" fill="#64748b" font-size="10">SEMI 300mm Notch</text>
+
+            <!-- 晶粒陣列 (Die Grid) -->
+            ${dies.map(d => `
+              <rect x="${d.x - 10}" y="${d.y - 10}" width="20" height="20" rx="2"
+                    fill="${d.isDefect ? '#ef4444' : '#10b981'}"
+                    stroke="#0f172a" stroke-width="1.5"/>
+            `).join('')}
+          </g>
+
+          <!-- 右側：缺陷特徵診斷資訊面板 -->
+          <g transform="translate(450, 40)">
+            <rect x="0" y="0" width="300" height="340" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
+            <text x="20" y="35" fill="#38bdf8" font-size="13" font-weight="750">${patternName}</text>
+
+            <!-- 模式選擇按鈕 -->
+            <g transform="translate(20, 55)">
+              <text x="0" y="15" fill="#94a3b8" font-size="11">切換圖案 (Pattern Select):</text>
+              <g transform="translate(0, 25)">
+                ${['ring', 'edge', 'scratch', 'cluster'].map((p, idx) => `
+                  <rect x="${idx * 65}" y="0" width="60" height="26" rx="3"
+                        fill="${activePattern === p ? '#0284c7' : '#1e293b'}"
+                        stroke="${activePattern === p ? '#38bdf8' : '#475569'}"
+                        style="cursor: pointer;" data-pattern="${p}"/>
+                  <text x="${idx * 65 + 30}" y="17" text-anchor="middle"
+                        fill="${activePattern === p ? '#ffffff' : '#94a3b8'}"
+                        font-size="10.5" font-weight="700" style="pointer-events: none;">${p.toUpperCase()}</text>
+                `).join('')}
+              </g>
+            </g>
+
+            <!-- 診斷說明卡片 -->
+            <g transform="translate(20, 135)">
+              <rect x="0" y="0" width="260" height="85" rx="4" fill="#1e293b" stroke="#f59e0b" stroke-width="1"/>
+              <text x="12" y="24" fill="#fbbf24" font-size="11" font-weight="750">可能物理根因 (Root Cause):</text>
+              <foreignObject x="12" y="32" width="236" height="48">
+                <div xmlns="http://www.w3.org/1999/xhtml" style="font-size: 11px; color: #cbd5e1; line-height: 1.4;">
+                  ${patternCause}
+                </div>
+              </foreignObject>
+            </g>
+
+            <g transform="translate(20, 235)">
+              <rect x="0" y="0" width="260" height="85" rx="4" fill="#1e293b" stroke="#10b981" stroke-width="1"/>
+              <text x="12" y="24" fill="#34d399" font-size="11" font-weight="750">工程排查行動 (Action Plan):</text>
+              <foreignObject x="12" y="32" width="236" height="48">
+                <div xmlns="http://www.w3.org/1999/xhtml" style="font-size: 11px; color: #cbd5e1; line-height: 1.4;">
+                  ${patternAction}
+                </div>
+              </foreignObject>
+            </g>
+          </g>
+        </svg>
+      `;
+
+      dashboardHtml = `
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">晶圓整體評估良率</div>
+          <div class="eng-obj-metric-value" style="color: ${activePattern === 'cluster' ? '#f59e0b' : 'var(--semi-teal)'};">
+            ${activePattern === 'cluster' ? '86.4%' : '92.8%'}
+          </div>
+          <div class="eng-obj-metric-note">圖譜分類演算法自動對齊機台日誌</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">共通性分析 (Commonality)</div>
+          <div class="eng-obj-metric-value">99.8% 匹配腔體</div>
+          <div class="eng-obj-metric-note">快速排除其它 90% 無辜設備</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">良率停損反應時間</div>
+          <div class="eng-obj-metric-value">&lt; 15 分鐘</div>
+          <div class="eng-obj-metric-note">即時攔截整批晶圓防止連續報廢</div>
+        </div>
+      `;
+
+      footerNote = t.ch16_wafermap_desc;
+    } else if (activeTab === 'fib') {
+      viewportHtml = `
+        <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Dual-Beam FIB In-situ Lamella Preparation">
+          <!-- 雙束 FIB 系統結構：Ga+ 離子束 (52° 傾角) + 垂直 SEM 電子束 -->
+          <g transform="translate(400, 30)">
+            <!-- 垂直 SEM 電子束柱 (Vertical SEM Column) -->
+            <rect x="-40" y="0" width="80" height="40" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5" rx="3"/>
+            <text x="0" y="24" text-anchor="middle" fill="#38bdf8" font-size="11" font-weight="700">SEM 電子束柱 (監控)</text>
+            <line x1="0" y1="40" x2="0" y2="180" stroke="#38bdf8" stroke-width="2" stroke-dasharray="3 2"/>
+
+            <!-- 52° 傾角 Ga+ 聚焦離子束柱 (FIB Column @ 30kV) -->
+            <g transform="rotate(52 0 180)">
+              <rect x="-35" y="0" width="70" height="40" fill="#1e293b" stroke="#f59e0b" stroke-width="1.5" rx="3"/>
+              <text x="0" y="24" text-anchor="middle" fill="#fbbf24" font-size="10" font-weight="700">Ga⁺ FIB 離子柱</text>
+              <line x1="0" y1="40" x2="0" y2="180" stroke="#f59e0b" stroke-width="3"/>
+            </g>
+          </g>
+
+          <!-- 樣品表面奈米微切剖面 (In-Situ Milling & Lamella) -->
+          <g transform="translate(180, 210)">
+            <!-- 矽晶片主體 -->
+            <rect x="0" y="40" width="440" height="120" fill="#1e293b" stroke="#475569" stroke-width="1.5"/>
+            <text x="220" y="145" text-anchor="middle" fill="#94a3b8" font-size="11">失效晶粒基底 (Defective Die Area)</text>
+
+            <!-- 兩側被 Ga+ 離子束物理掏空的深坑 (Trench Cross-Sections) -->
+            <polygon points="120,40 160,110 80,110" fill="#09131b" stroke="#f59e0b" stroke-width="1.5"/>
+            <polygon points="280,40 320,110 240,110" fill="#09131b" stroke="#f59e0b" stroke-width="1.5"/>
+            <text x="120" y="80" text-anchor="middle" fill="#f59e0b" font-size="9.5">離子掏空深坑</text>
+            <text x="280" y="80" text-anchor="middle" fill="#f59e0b" font-size="9.5">離子掏空深坑</text>
+
+            <!-- 中間留下的超薄樣品薄片 (TEM Lamella: 厚度 25nm) -->
+            <rect x="195" y="20" width="10" height="90" fill="#cbd5e1" stroke="#38bdf8" stroke-width="1.5"/>
+            <!-- 頂部保護性鉑沉積層 (Pt Protective Cap) -->
+            <rect x="190" y="10" width="20" height="10" fill="#94a3b8" stroke="#ffffff" stroke-width="1"/>
+            <text x="200" y="0" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="750">Pt 保護帽層</text>
+            <text x="200" y="70" text-anchor="middle" fill="#38bdf8" font-size="10" font-weight="700" transform="rotate(-90 200 70)">TEM Lamella (&lt; 25nm)</text>
+
+            <!-- 奈米機械手鎢探針 (Omniprobe Needle) 提取薄片 -->
+            <path d="M 380,0 L 210,18" stroke="#10b981" stroke-width="3"/>
+            <circle cx="210" cy="18" r="4" fill="#34d399"/>
+            <text x="360" y="-10" fill="#34d399" font-size="11" font-weight="700">奈米機械手臂 (Omniprobe 提取)</text>
+          </g>
+        </svg>
+      `;
+
+      dashboardHtml = `
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">${t.ch16_metric_lamella}</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-blue-dark);">&lt; 25 nm</div>
+          <div class="eng-obj-metric-note">使 200kV 高能電子束完全透射</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">切片定位精度</div>
+          <div class="eng-obj-metric-value">± 5 nm</div>
+          <div class="eng-obj-metric-note">精準直擊單一電晶體閘極擊穿點</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">樣品製備時間</div>
+          <div class="eng-obj-metric-value">&lt; 1.5 小時</div>
+          <div class="eng-obj-metric-note">原位提取 (In-situ Lift-Out) 大幅加速 FA 流程</div>
+        </div>
+      `;
+
+      footerNote = t.ch16_fib_desc;
+    } else if (activeTab === 'tem') {
+      viewportHtml = `
+        <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="HR-TEM Atomic Lattice and Gate Dielectric Breakdown">
+          <!-- HR-TEM 高分辨晶格視野 (Atomic Columns Grid) -->
+          <g transform="translate(100, 30)">
+            <rect x="0" y="0" width="600" height="340" fill="#09131b" stroke="#334155" stroke-width="2" rx="6"/>
+
+            <!-- 矽基底單晶原子陣列 (<110> 晶帶軸原子柱) -->
+            ${Array.from({ length: 11 }, (_, r) => 
+              Array.from({ length: 16 }, (_, c) => `
+                <circle cx="${c * 35 + 40}" cy="${r * 22 + 100}" r="4" fill="#64748b" opacity="0.8"/>
+              `).join('')
+            ).join('')}
+            <text x="300" y="315" text-anchor="middle" fill="#94a3b8" font-size="11">單晶矽基底原子柱陣列 (Si Lattice Columns &lt;110&gt;)</text>
+
+            <!-- 閘極 High-k 氧化層 (1.5nm HfO2) -->
+            <rect x="30" y="55" width="540" height="30" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="4 2"/>
+            <text x="140" y="74" fill="#38bdf8" font-size="11" font-weight="700">High-k 閘極介電層 (1.5nm HfO₂)</text>
+
+            <!-- 介電層原子擊穿針孔 (Dielectric Breakdown Pinhole: 漏電根因) -->
+            <g transform="translate(380, 50)">
+              <circle cx="15" cy="20" r="16" fill="#ef4444" opacity="0.6"/>
+              <!-- 晶格畸變與熔穿短路通道 -->
+              <path d="M 5,5 Q 15,35 25,10" stroke="#f87171" stroke-width="2.5"/>
+              <text x="15" y="-12" text-anchor="middle" fill="#f87171" font-size="11" font-weight="800">擊穿熔孔 (Breakdown Pinhole)</text>
+              <text x="15" y="4" text-anchor="middle" fill="#fbbf24" font-size="9.5">原子穿隧短路通道 (Short Circuit)</text>
+            </g>
+          </g>
+        </svg>
+      `;
+
+      dashboardHtml = `
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">${t.ch16_metric_tem_res}</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-teal);">&lt; 0.05 nm (次埃級)</div>
+          <div class="eng-obj-metric-note">球差校正 (Cs-Corrected) 透射電鏡</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">電子束加速電壓</div>
+          <div class="eng-obj-metric-value">200 ~ 300 kV</div>
+          <div class="eng-obj-metric-note">極短德布羅意波長解析原子間距</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">失效分析判定</div>
+          <div class="eng-obj-metric-value" style="color: #ef4444;">TDDB 介電質擊穿</div>
+          <div class="eng-obj-metric-note">物理定讞證據指向局部電場過高</div>
+        </div>
+      `;
+
+      footerNote = t.ch16_tem_desc;
+    }
+
+    container.innerHTML = `
+      <section class="eng-obj-card" aria-labelledby="engObjCh16Title">
+        <header class="eng-obj-header">
+          <div class="eng-obj-badge-row">
+            <span class="eng-obj-badge">${t.badge_prefix} · CH 16</span>
+            <span class="eng-obj-status">${t.live_sim}</span>
+          </div>
+          <h2 class="eng-obj-title" id="engObjCh16Title">${t.ch16_title}</h2>
+          <p class="eng-obj-subtitle">${t.ch16_sub}</p>
+        </header>
+
+        <div class="eng-obj-controls">
+          <div class="eng-obj-tab-group" role="tablist">
+            <button type="button" class="eng-obj-tab ${activeTab === 'wafermap' ? 'is-active' : ''}" data-tab="wafermap">${t.ch16_tab_wafermap}</button>
+            <button type="button" class="eng-obj-tab ${activeTab === 'fib' ? 'is-active' : ''}" data-tab="fib">${t.ch16_tab_fib}</button>
+            <button type="button" class="eng-obj-tab ${activeTab === 'tem' ? 'is-active' : ''}" data-tab="tem">${t.ch16_tab_tem}</button>
+          </div>
+        </div>
+
+        <div class="eng-obj-viewport">
+          ${viewportHtml}
+        </div>
+
+        <div class="eng-obj-dashboard">
+          ${dashboardHtml}
+        </div>
+
+        <footer class="eng-obj-footer-note">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+          <div>${footerNote}</div>
+        </footer>
+      </section>
+    `;
+
+    container.querySelectorAll('[data-tab]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        activeTab = btn.getAttribute('data-tab');
+        update();
+      });
+    });
+
+    container.querySelectorAll('[data-pattern]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        activePattern = btn.getAttribute('data-pattern');
+        update();
+      });
+    });
+  }
+
+  update();
+}
+
+/**
+ * ══════════════════════════════════════════════════════════════════════════════
+ * 15. Ch 17 統計製程控制 (SPC)、Cpk 常態分佈與 R2R 閉環模型 (Process Control)
+ * ══════════════════════════════════════════════════════════════════════════════
+ */
+export function renderProcessControlObject(container, lang = 'zh') {
+  const t = TEXTS[lang] || TEXTS.zh;
+  let activeTab = 'spc'; // 'spc' | 'cpk' | 'r2r'
+  let spcMode = 'normal'; // 'normal' | 'shift' | 'drift'
+
+  function update() {
+    let viewportHtml = '';
+    let dashboardHtml = '';
+    let footerNote = '';
+
+    if (activeTab === 'spc') {
+      // 產生 18 個批次點
+      const points = [];
+      for (let i = 0; i < 18; i++) {
+        let val = 150; // 中心線 CL
+        if (spcMode === 'normal') {
+          val += Math.sin(i * 1.5) * 18 + (i % 2 === 0 ? 8 : -8);
+        } else if (spcMode === 'shift') {
+          // 後 9 點連續在 CL 上方 (WECO Rule 2)
+          val += i < 8 ? (Math.sin(i) * 15) : (25 + (i % 3) * 6);
+        } else if (spcMode === 'drift') {
+          // 連續遞增出界 (WECO Rule 3)
+          val += (i - 8) * 8;
+        }
+        points.push({ x: i * 36 + 80, y: 300 - val });
+      }
+
+      const pathStr = points.map((p, idx) => `${idx === 0 ? 'M' : 'L'} ${p.x},${p.y}`).join(' ');
+
+      let oocMessage = lang === 'zh' ? '製程受控 (In-Control): 數據均勻隨機分佈在中心線兩側' : 'Process In-Control: Natural random variation around center line';
+      let oocColor = '#10b981';
+      if (spcMode === 'shift') {
+        oocMessage = lang === 'zh' ? '警報觸發: WECO 規則 2 (連續 9 點在中心線同側，均值發生位移！)' : 'ALARM: WECO Rule 2 (9 consecutive points on same side of center line)';
+        oocColor = '#ef4444';
+      } else if (spcMode === 'drift') {
+        oocMessage = lang === 'zh' ? '警報觸發: WECO 規則 1 & 3 (連續 6 點遞增且單點超出 +3σ 管制上限！)' : 'ALARM: WECO Rule 1 & 3 (6 points trending up & point exceeds +3σ UCL)';
+        oocColor = '#ef4444';
+      }
+
+      viewportHtml = `
+        <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="SPC Shewhart Control Chart and Western Electric Rules">
+          <!-- 圖表繪製區背景 -->
+          <g transform="translate(60, 40)">
+            <rect x="0" y="0" width="680" height="300" fill="#0f172a" stroke="#334155" stroke-width="1.5" rx="6"/>
+
+            <!-- 管制界限與規格線 -->
+            <!-- UCL (+3σ) -->
+            <line x1="20" y1="60" x2="660" y2="60" stroke="#ef4444" stroke-width="1.8" stroke-dasharray="5 3"/>
+            <text x="665" y="64" fill="#f87171" font-size="10.5" font-weight="700">UCL (+3σ)</text>
+
+            <!-- CL (中心線) -->
+            <line x1="20" y1="150" x2="660" y2="150" stroke="#38bdf8" stroke-width="2"/>
+            <text x="665" y="154" fill="#38bdf8" font-size="11" font-weight="750">CL (目標值)</text>
+
+            <!-- LCL (-3σ) -->
+            <line x1="20" y1="240" x2="660" y2="240" stroke="#ef4444" stroke-width="1.8" stroke-dasharray="5 3"/>
+            <text x="665" y="244" fill="#f87171" font-size="10.5" font-weight="700">LCL (-3σ)</text>
+
+            <!-- 時序數據折線與數據點 -->
+            <path d="${pathStr}" fill="none" stroke="${oocColor}" stroke-width="2.5"/>
+            ${points.map(p => `
+              <circle cx="${p.x}" cy="${p.y}" r="4.5" fill="${p.y < 60 || p.y > 240 ? '#ef4444' : '#38bdf8'}" stroke="#ffffff" stroke-width="1.5"/>
+            `).join('')}
+
+            <!-- 狀態文字條 -->
+            <rect x="40" y="265" width="600" height="26" rx="3" fill="#1e293b" stroke="${oocColor}" stroke-width="1"/>
+            <text x="340" y="282" text-anchor="middle" fill="${oocColor}" font-size="11" font-weight="750">${oocMessage}</text>
+          </g>
+
+          <!-- 模式控制按鈕 -->
+          <g transform="translate(180, 360)">
+            ${[
+              { id: 'normal', zh: '正常受控 (Normal)', en: 'In-Control' },
+              { id: 'shift', zh: '均值偏移 (Mean Shift)', en: 'Mean Shift' },
+              { id: 'drift', zh: '腔體磨損漂移 (Drift)', en: 'Tool Drift' }
+            ].map((m, idx) => `
+              <rect x="${idx * 160}" y="0" width="140" height="28" rx="4"
+                    fill="${spcMode === m.id ? '#0284c7' : '#1e293b'}"
+                    stroke="${spcMode === m.id ? '#38bdf8' : '#475569'}"
+                    style="cursor: pointer;" data-spc-mode="${m.id}"/>
+              <text x="${idx * 160 + 70}" y="18" text-anchor="middle"
+                    fill="${spcMode === m.id ? '#ffffff' : '#94a3b8'}"
+                    font-size="11" font-weight="700" style="pointer-events: none;">${lang === 'zh' ? m.zh : m.en}</text>
+            `).join('')}
+          </g>
+        </svg>
+      `;
+
+      dashboardHtml = `
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">${t.ch17_metric_sigma}</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-blue-dark);">± 3σ (99.73%)</div>
+          <div class="eng-obj-metric-note">自然常態分佈管制界限</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">${t.ch17_metric_ooc}</div>
+          <div class="eng-obj-metric-value">WECO 8 大規則</div>
+          <div class="eng-obj-metric-note">靈敏捕捉均值位移、趨勢與週期異常</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">自動停機機制 (Auto-Hold)</div>
+          <div class="eng-obj-metric-value" style="color: ${spcMode === 'normal' ? 'var(--semi-teal)' : '#ef4444'};">
+            ${spcMode === 'normal' ? 'READY (正常)' : 'HOLD (機台鎖定)'}
+          </div>
+          <div class="eng-obj-metric-note">杜絕異常批次晶圓向下流竄</div>
+        </div>
+      `;
+
+      footerNote = t.ch17_spc_desc;
+    } else if (activeTab === 'cpk') {
+      viewportHtml = `
+        <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Process Capability Cpk Gaussian Distribution">
+          <!-- 高斯常態分佈曲線 (Gaussian Bell Curves Comparison) -->
+          <g transform="translate(100, 40)">
+            <rect x="0" y="0" width="600" height="320" fill="#0f172a" stroke="#334155" stroke-width="1.5" rx="6"/>
+
+            <!-- 規格界限 (USL / LSL) -->
+            <line x1="80" y1="40" x2="80" y2="280" stroke="#f59e0b" stroke-width="2.5"/>
+            <text x="80" y="32" text-anchor="middle" fill="#fbbf24" font-size="11" font-weight="800">LSL (規格下限)</text>
+
+            <line x1="520" y1="40" x2="520" y2="280" stroke="#f59e0b" stroke-width="2.5"/>
+            <text x="520" y="32" text-anchor="middle" fill="#fbbf24" font-size="11" font-weight="800">USL (規格上限)</text>
+
+            <!-- 目標中心線 Target -->
+            <line x1="300" y1="40" x2="300" y2="280" stroke="#64748b" stroke-width="1.5" stroke-dasharray="3 3"/>
+            <text x="300" y="32" text-anchor="middle" fill="#94a3b8" font-size="10.5">Target (目標中心 μ)</text>
+
+            <!-- 綠色：Cpk = 1.67+ 優秀分佈 (緊縮於中央，零超出) -->
+            <path d="M 160,270 Q 260,270 290,90 Q 300,60 310,90 Q 340,270 440,270" fill="none" stroke="#10b981" stroke-width="3"/>
+            <text x="300" y="95" text-anchor="middle" fill="#34d399" font-size="11" font-weight="750">Cpk = 1.67 (六標準差卓越製程)</text>
+            <text x="300" y="112" text-anchor="middle" fill="#34d399" font-size="9.5">不良率 &lt; 3.4 PPB (十億分之 3.4)</text>
+
+            <!-- 紅色：Cpk = 0.8 不合格分佈 (寬鬆散漫，溢出 LSL/USL) -->
+            <path d="M 20,270 Q 150,260 250,160 Q 300,140 350,160 Q 450,260 580,270" fill="none" stroke="#ef4444" stroke-width="2" stroke-dasharray="4 3"/>
+            <text x="470" y="170" fill="#f87171" font-size="10.5" font-weight="700">Cpk = 0.8 (能力不足)</text>
+            <text x="470" y="185" fill="#f87171" font-size="9.5">不良率 ~ 1.6% (大量報廢)</text>
+
+            <!-- 陰影溢出標記 -->
+            <polygon points="20,270 80,270 80,225 20,270" fill="#ef4444" opacity="0.4"/>
+            <text x="45" y="260" text-anchor="middle" fill="#f87171" font-size="9">報廢品</text>
+          </g>
+        </svg>
+      `;
+
+      dashboardHtml = `
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">${t.ch17_metric_cpk_target}</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-teal);">&ge; 1.67 (6-Sigma)</div>
+          <div class="eng-obj-metric-note">半導體量產放行之黃金標準門檻</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">Cp 與 Cpk 的差異</div>
+          <div class="eng-obj-metric-value">考慮中心偏移 |μ - T|</div>
+          <div class="eng-obj-metric-note">Cp 代表潛在能力，Cpk 代表真實水準</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">預期不良率 (Defect Rate)</div>
+          <div class="eng-obj-metric-value">&lt; 3.4 PPB</div>
+          <div class="eng-obj-metric-note">百億顆電晶體集成的良率基石</div>
+        </div>
+      `;
+
+      footerNote = t.ch17_cpk_desc;
+    } else if (activeTab === 'r2r') {
+      viewportHtml = `
+        <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Run-to-Run Closed-Loop Feedback Control">
+          <!-- 閉環控制方塊圖 (Closed-Loop Diagram) -->
+          <!-- 1. 機台加工 (Process Chamber) -->
+          <g transform="translate(100, 100)">
+            <rect x="0" y="0" width="160" height="70" rx="4" fill="#1e293b" stroke="#38bdf8" stroke-width="2"/>
+            <text x="80" y="32" text-anchor="middle" fill="#38bdf8" font-size="12" font-weight="750">1. 機台加工</text>
+            <text x="80" y="52" text-anchor="middle" fill="#cbd5e1" font-size="10">蝕刻 / 沉積 (Recipe)</text>
+          </g>
+
+          <line x1="260" y1="135" x2="330" y2="135" stroke="#38bdf8" stroke-width="3" marker-end="url(#arrow)"/>
+
+          <!-- 2. 在線量測 (In-line Metrology) -->
+          <g transform="translate(340, 100)">
+            <rect x="0" y="0" width="160" height="70" rx="4" fill="#1e293b" stroke="#10b981" stroke-width="2"/>
+            <text x="80" y="32" text-anchor="middle" fill="#34d399" font-size="12" font-weight="750">2. 在線量測</text>
+            <text x="80" y="52" text-anchor="middle" fill="#cbd5e1" font-size="10">CD-SEM / 橢偏儀</text>
+          </g>
+
+          <line x1="500" y1="135" x2="570" y2="135" stroke="#10b981" stroke-width="3" marker-end="url(#arrow)"/>
+
+          <!-- 3. R2R 控制器 (EWMA Algorithm) -->
+          <g transform="translate(580, 100)">
+            <rect x="0" y="0" width="160" height="70" rx="4" fill="#1e293b" stroke="#f59e0b" stroke-width="2"/>
+            <text x="80" y="32" text-anchor="middle" fill="#fbbf24" font-size="12" font-weight="750">3. R2R 控制核心</text>
+            <text x="80" y="52" text-anchor="middle" fill="#cbd5e1" font-size="10">EWMA 指數平滑反饋</text>
+          </g>
+
+          <!-- 閉環回饋回路 (Feedback Loop) -->
+          <path d="M 660,170 L 660,260 L 180,260 L 180,175" fill="none" stroke="#f59e0b" stroke-width="2.5" stroke-dasharray="6 4" marker-end="url(#arrow)"/>
+          <text x="420" y="285" text-anchor="middle" fill="#fbbf24" font-size="11.5" font-weight="750">⇦ 即時配方補償 (動態調整下一批蝕刻時間 -1.2s 或沉積氣體流量) ⇦</text>
+        </svg>
+      `;
+
+      dashboardHtml = `
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">閉環控制演算法</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-blue-dark);">EWMA (λ = 0.3)</div>
+          <div class="eng-obj-metric-note">兼顧響應靈敏度與濾除單次量測雜訊</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">腔體漂移抑制率</div>
+          <div class="eng-obj-metric-value">&gt; 90%</div>
+          <div class="eng-obj-metric-note">徹底撫平聚合物沉積造成的腔體老化衰減</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">控制響應週期</div>
+          <div class="eng-obj-metric-value">1 Run (即時補償)</div>
+          <div class="eng-obj-metric-note">晶圓批次間自動閉環下發更新配方</div>
+        </div>
+      `;
+
+      footerNote = t.ch17_r2r_desc;
+    }
+
+    container.innerHTML = `
+      <section class="eng-obj-card" aria-labelledby="engObjCh17Title">
+        <header class="eng-obj-header">
+          <div class="eng-obj-badge-row">
+            <span class="eng-obj-badge">${t.badge_prefix} · CH 17</span>
+            <span class="eng-obj-status">${t.live_sim}</span>
+          </div>
+          <h2 class="eng-obj-title" id="engObjCh17Title">${t.ch17_title}</h2>
+          <p class="eng-obj-subtitle">${t.ch17_sub}</p>
+        </header>
+
+        <div class="eng-obj-controls">
+          <div class="eng-obj-tab-group" role="tablist">
+            <button type="button" class="eng-obj-tab ${activeTab === 'spc' ? 'is-active' : ''}" data-tab="spc">${t.ch17_tab_spc}</button>
+            <button type="button" class="eng-obj-tab ${activeTab === 'cpk' ? 'is-active' : ''}" data-tab="cpk">${t.ch17_tab_cpk}</button>
+            <button type="button" class="eng-obj-tab ${activeTab === 'r2r' ? 'is-active' : ''}" data-tab="r2r">${t.ch17_tab_r2r}</button>
+          </div>
+        </div>
+
+        <div class="eng-obj-viewport">
+          ${viewportHtml}
+        </div>
+
+        <div class="eng-obj-dashboard">
+          ${dashboardHtml}
+        </div>
+
+        <footer class="eng-obj-footer-note">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+          <div>${footerNote}</div>
+        </footer>
+      </section>
+    `;
+
+    container.querySelectorAll('[data-tab]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        activeTab = btn.getAttribute('data-tab');
+        update();
+      });
+    });
+
+    container.querySelectorAll('[data-spc-mode]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        spcMode = btn.getAttribute('data-spc-mode');
+        update();
+      });
+    });
+  }
+
+  update();
+}
+
+/**
+ * ══════════════════════════════════════════════════════════════════════════════
+ * 16. Ch 19 WAT 劃線區參數測試與 CP 晶粒針測模型 (WAT & CP Die Sort)
+ * ══════════════════════════════════════════════════════════════════════════════
+ */
+export function renderWaferTestObject(container, lang = 'zh') {
+  const t = TEXTS[lang] || TEXTS.zh;
+  let activeTab = 'wat'; // 'wat' | 'cp' | 'binmap'
+
+  function update() {
+    let viewportHtml = '';
+    let dashboardHtml = '';
+    let footerNote = '';
+
+    if (activeTab === 'wat') {
+      viewportHtml = `
+        <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="WAT Scribe-line PCM Test Pattern and Probes">
+          <!-- 晶圓切割劃線道 (Scribe-Line Street @ 80µm 寬) -->
+          <g transform="translate(60, 40)">
+            <!-- 左右兩相鄰實體晶片 (Adjacent Product Dies) -->
+            <rect x="0" y="0" width="180" height="320" fill="#0f172a" stroke="#334155" stroke-width="1.5" rx="4"/>
+            <text x="90" y="160" text-anchor="middle" fill="#64748b" font-size="12" font-weight="700">產品晶粒 A (Die A)</text>
+
+            <rect x="500" y="0" width="180" height="320" fill="#0f172a" stroke="#334155" stroke-width="1.5" rx="4"/>
+            <text x="590" y="160" text-anchor="middle" fill="#64748b" font-size="12" font-weight="700">產品晶粒 B (Die B)</text>
+
+            <!-- 中間劃線道 (Scribe-Line PCM Street) -->
+            <rect x="200" y="0" width="280" height="320" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5" rx="4"/>
+            <text x="340" y="25" text-anchor="middle" fill="#38bdf8" font-size="12" font-weight="750">劃線道 PCM 測試鍵 (Process Control Monitor)</text>
+
+            <!-- PCM 測試結構矩陣與探針下壓 (Test Pads & Probes) -->
+            <g transform="translate(230, 45)">
+              ${[
+                { name: 'NMOS Ion/Ioff', y: 0 },
+                { name: 'PMOS Ion/Ioff', y: 65 },
+                { name: 'Kelvin Contact Rc', y: 130 },
+                { name: 'Comb-Serpentine', y: 195 }
+              ].map(item => `
+                <g transform="translate(0, ${item.y})">
+                  <rect x="0" y="0" width="220" height="50" rx="3" fill="#0f172a" stroke="#475569" stroke-width="1"/>
+                  <!-- 4 個測試焊墊 (Test Pads: 40µm x 40µm) -->
+                  <rect x="15" y="15" width="20" height="20" fill="#f59e0b" rx="2"/>
+                  <rect x="45" y="15" width="20" height="20" fill="#f59e0b" rx="2"/>
+                  <rect x="75" y="15" width="20" height="20" fill="#f59e0b" rx="2"/>
+                  <rect x="105" y="15" width="20" height="20" fill="#f59e0b" rx="2"/>
+                  <!-- 垂直探針接觸 (Probes) -->
+                  <line x1="25" y1="-10" x2="25" y2="15" stroke="#e2e8f0" stroke-width="2"/>
+                  <line x1="55" y1="-10" x2="55" y2="15" stroke="#e2e8f0" stroke-width="2"/>
+                  <text x="160" y="30" text-anchor="middle" fill="#38bdf8" font-size="10" font-weight="700">${item.name}</text>
+                </g>
+              `).join('')}
+            </g>
+          </g>
+        </svg>
+      `;
+
+      dashboardHtml = `
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">電晶體飽和驅動電流 (Ion)</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-teal);">1.25 mA/µm (PASS)</div>
+          <div class="eng-obj-metric-note">符合設計規範模型標稱值</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">次臨界關斷漏電 (Ioff)</div>
+          <div class="eng-obj-metric-value">&lt; 15 pA/µm</div>
+          <div class="eng-obj-metric-note">短通道效應與 DIBL 抑制良好</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">WAT 晶圓出廠檢驗判定</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-blue-dark);">100% 合格放行</div>
+          <div class="eng-obj-metric-note">晶圓製造完成之正式結案成績單</div>
+        </div>
+      `;
+
+      footerNote = t.ch19_wat_desc;
+    } else if (activeTab === 'cp') {
+      viewportHtml = `
+        <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="CP Probe Card Touchdown on Die Micro-Bumps">
+          <!-- 上方探針卡基板 (Probe Card PCB & Space Transformer) -->
+          <g transform="translate(100, 30)">
+            <rect x="0" y="0" width="600" height="40" rx="3" fill="#1e293b" stroke="#38bdf8" stroke-width="2"/>
+            <text x="300" y="25" text-anchor="middle" fill="#38bdf8" font-size="12.5" font-weight="750">探針卡主體 (Vertical Probe Card: 數萬微彈簧針)</text>
+          </g>
+
+          <!-- 微彈簧垂直探針束 (Micro-Spring Cantilever Probes) -->
+          <g transform="translate(140, 70)">
+            ${Array.from({ length: 16 }, (_, i) => `
+              <g transform="translate(${i * 34 + 10}, 0)">
+                <!-- 彈簧針主體 -->
+                <line x1="0" y1="0" x2="0" y2="90" stroke="#cbd5e1" stroke-width="2.5"/>
+                <!-- 針尖微彎曲下壓 (Overdrive Touchdown) -->
+                <path d="M 0,90 Q 5,100 0,110" fill="none" stroke="#f59e0b" stroke-width="2"/>
+                <circle cx="0" cy="112" r="3" fill="#fbbf24"/>
+              </g>
+            `).join('')}
+            <text x="260" y="60" text-anchor="middle" fill="#94a3b8" font-size="11">數萬針高密度微間距 (Pitch 35µm) · 觸地壓力 3.5 gf/pin</text>
+          </g>
+
+          <!-- 下方被測晶粒微凸塊 (Die Micro-Bumps) 與晶圓 -->
+          <g transform="translate(100, 200)">
+            <!-- 晶片凸塊陣列 (Micro-Bumps) -->
+            ${Array.from({ length: 16 }, (_, i) => `
+              <circle cx="${i * 34 + 50}" cy="10" r="7" fill="#f59e0b" stroke="#ffffff" stroke-width="1.5"/>
+            `).join('')}
+
+            <!-- 被測晶粒主體 (DUT: Device Under Test) -->
+            <rect x="20" y="18" width="560" height="90" rx="4" fill="#0f172a" stroke="#10b981" stroke-width="2"/>
+            <text x="300" y="55" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="750">待測晶片 (Die Under Test: CPU/GPU 核心)</text>
+            <text x="300" y="75" text-anchor="middle" fill="#34d399" font-size="11">高速測試向量激勵 (2.4 GHz Clock · Scan Chain · BIST 自檢)</text>
+          </g>
+
+          <!-- 下方晶圓真空吸盤 (Wafer Chuck) -->
+          <rect x="80" y="320" width="640" height="30" fill="#334155" rx="3"/>
+          <text x="400" y="340" text-anchor="middle" fill="#cbd5e1" font-size="11">晶圓真空吸盤載台 (Wafer Prober Chuck with Thermal Control -40°C ~ 125°C)</text>
+        </svg>
+      `;
+
+      dashboardHtml = `
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">${t.ch19_metric_pins}</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-blue-dark);">45,000+ 針</div>
+          <div class="eng-obj-metric-note">垂直 MEMS 微彈簧針高密度佈置</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">${t.ch19_metric_freq}</div>
+          <div class="eng-obj-metric-value">&gt; 2.4 GHz</div>
+          <div class="eng-obj-metric-note">高速信號完整性 (SI) 匹配與受控阻抗</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">並行測試站數 (Multi-Site)</div>
+          <div class="eng-obj-metric-value">16 Dies / 觸地</div>
+          <div class="eng-obj-metric-note">大幅壓低單顆晶片測試成本 (CoT)</div>
+        </div>
+      `;
+
+      footerNote = t.ch19_cp_desc;
+    } else if (activeTab === 'binmap') {
+      // 繪製完整的 Bin Map 晶粒分類圖
+      const dies = [];
+      const rows = 8;
+      const cols = 8;
+      for (let r = -3; r <= 3; r++) {
+        for (let c = -3; c <= 3; c++) {
+          if (r * r + c * c <= 11) {
+            let bin = 1; // 預設良品
+            if (r === 2 && c === 2) bin = 7; // 短路
+            else if (r === -2 && c === 1) bin = 9; // 漏電
+            else if (r === 0 && c === -3) bin = 2; // 降頻
+            dies.push({ x: c * 32 + 180, y: r * 32 + 180, bin });
+          }
+        }
+      }
+
+      viewportHtml = `
+        <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Wafer Bin Map Classification Diagram">
+          <!-- 左側：晶圓 Bin Map 分類圖 -->
+          <g transform="translate(60, 30)">
+            <circle cx="180" cy="180" r="160" fill="#0f172a" stroke="#38bdf8" stroke-width="2"/>
+            <polygon points="175,338 185,338 180,344" fill="#38bdf8"/>
+
+            ${dies.map(d => {
+              let fill = '#10b981'; // Bin 1
+              if (d.bin === 2) fill = '#f59e0b'; // Bin 2
+              else if (d.bin === 7) fill = '#ef4444'; // Bin 7
+              else if (d.bin === 9) fill = '#8b5cf6'; // Bin 9
+              return `
+                <rect x="${d.x - 12}" y="${d.y - 12}" width="24" height="24" rx="2" fill="${fill}" stroke="#0f172a" stroke-width="1.5"/>
+              `;
+            }).join('')}
+          </g>
+
+          <!-- 右側：Bin 分類圖例與封裝對接說明 -->
+          <g transform="translate(440, 40)">
+            <rect x="0" y="0" width="310" height="320" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
+            <text x="20" y="32" fill="#38bdf8" font-size="13" font-weight="750">CP 晶粒分類結果 (Bin Classification)</text>
+
+            <g transform="translate(20, 55)">
+              <!-- Bin 1 -->
+              <rect x="0" y="0" width="20" height="20" fill="#10b981" rx="2"/>
+              <text x="30" y="15" fill="#34d399" font-size="11" font-weight="750">Bin 1: Prime 良品 (全功能通過 · 94.2%)</text>
+
+              <!-- Bin 2 -->
+              <rect x="0" y="35" width="20" height="20" fill="#f59e0b" rx="2"/>
+              <text x="30" y="50" fill="#fbbf24" font-size="11" font-weight="750">Bin 2: Speed Bin (降頻/部分核心可用 · 3.1%)</text>
+
+              <!-- Bin 7 -->
+              <rect x="0" y="70" width="20" height="20" fill="#ef4444" rx="2"/>
+              <text x="30" y="85" fill="#f87171" font-size="11" font-weight="750">Bin 7: Gross Fail (開路/短路失效 · 1.8%)</text>
+
+              <!-- Bin 9 -->
+              <rect x="0" y="105" width="20" height="20" fill="#8b5cf6" rx="2"/>
+              <text x="30" y="120" fill="#a78bfa" font-size="11" font-weight="750">Bin 9: Parametric Fail (漏電超標 · 0.9%)</text>
+            </g>
+
+            <!-- 封裝揀晶對接流程 -->
+            <g transform="translate(20, 205)">
+              <rect x="0" y="0" width="270" height="95" rx="4" fill="#1e293b" stroke="#38bdf8" stroke-width="1"/>
+              <text x="12" y="24" fill="#38bdf8" font-size="11" font-weight="750">傳送至先進封裝廠 (To Assembly):</text>
+              <foreignObject x="12" y="32" width="246" height="55">
+                <div xmlns="http://www.w3.org/1999/xhtml" style="font-size: 11px; color: #cbd5e1; line-height: 1.4;">
+                  電子 Bin Map XML 隨晶圓出貨。自動揀晶機 (Die Bonder) 只吸取綠色 Bin 1 良品進入 2.5D/3D 封裝，杜絕浪費高價中介層！
+                </div>
+              </foreignObject>
+            </g>
+          </g>
+        </svg>
+      `;
+
+      dashboardHtml = `
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">CP 晶粒合格良率 (Prime Yield)</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-teal);">94.2% (584 / 620 顆)</div>
+          <div class="eng-obj-metric-note">成熟旗艦節點的高良率量產典範</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">次級可用晶粒 (Bin 2)</div>
+          <div class="eng-obj-metric-value">3.1% (可做降頻版)</div>
+          <div class="eng-obj-metric-note">熔斷禁用瑕疵運算單元 (eFuse) 轉售市場</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">封裝對接格式</div>
+          <div class="eng-obj-metric-value">SEMI E142 XML</div>
+          <div class="eng-obj-metric-note">晶圓圖座標直接驅動高精度固晶機</div>
+        </div>
+      `;
+
+      footerNote = t.ch19_binmap_desc;
+    }
+
+    container.innerHTML = `
+      <section class="eng-obj-card" aria-labelledby="engObjCh19Title">
+        <header class="eng-obj-header">
+          <div class="eng-obj-badge-row">
+            <span class="eng-obj-badge">${t.badge_prefix} · CH 19</span>
+            <span class="eng-obj-status">${t.live_sim}</span>
+          </div>
+          <h2 class="eng-obj-title" id="engObjCh19Title">${t.ch19_title}</h2>
+          <p class="eng-obj-subtitle">${t.ch19_sub}</p>
+        </header>
+
+        <div class="eng-obj-controls">
+          <div class="eng-obj-tab-group" role="tablist">
+            <button type="button" class="eng-obj-tab ${activeTab === 'wat' ? 'is-active' : ''}" data-tab="wat">${t.ch19_tab_wat}</button>
+            <button type="button" class="eng-obj-tab ${activeTab === 'cp' ? 'is-active' : ''}" data-tab="cp">${t.ch19_tab_cp}</button>
+            <button type="button" class="eng-obj-tab ${activeTab === 'binmap' ? 'is-active' : ''}" data-tab="binmap">${t.ch19_tab_binmap}</button>
+          </div>
+        </div>
+
+        <div class="eng-obj-viewport">
+          ${viewportHtml}
+        </div>
+
+        <div class="eng-obj-dashboard">
+          ${dashboardHtml}
+        </div>
+
+        <footer class="eng-obj-footer-note">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+          <div>${footerNote}</div>
+        </footer>
+      </section>
+    `;
+
+    container.querySelectorAll('[data-tab]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        activeTab = btn.getAttribute('data-tab');
+        update();
+      });
+    });
+  }
+
+  update();
+}
+
+/**
+ * ══════════════════════════════════════════════════════════════════════════════
  * 總調度入口 (Unified Mount Orchestrator)
  * ══════════════════════════════════════════════════════════════════════════════
  */
@@ -3754,9 +5013,18 @@ export function mountEngineeringObject(chId, container, lang = 'zh') {
     renderTransistor3DObject(container, lang);
   } else if (chId === 'ch13') {
     renderMemoryTechObject(container, lang);
+  } else if (chId === 'ch15') {
+    renderMetrologyInspectionObject(container, lang);
+  } else if (chId === 'ch16') {
+    renderYieldFailureAnalysisObject(container, lang);
+  } else if (chId === 'ch17') {
+    renderProcessControlObject(container, lang);
+  } else if (chId === 'ch19') {
+    renderWaferTestObject(container, lang);
   } else if (chId === 'ch21') {
     renderAdvancedPackagingObject(container, lang);
   }
 }
+
 
 

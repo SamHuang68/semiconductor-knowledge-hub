@@ -190,5 +190,50 @@ if (nandBtn) {
 }
 console.log('[PASS] Ch 13 記憶體 DRAM / 3D NAND / HBM 模型正常');
 
-console.log('=== 全部十二大核心工程物件互動單元測試通過 (0 錯誤) ===');
+console.log('--- 測試 13: Ch 15 CD-SEM 與光學檢測切換 ---');
+const c15 = new MockElement();
+mountEngineeringObject('ch15', c15, 'zh');
+assert.ok(c15.innerHTML.includes('二次電子'), '預設應展示 CD-SEM 二次電子');
+const opticalBtn = c15.children.find(c => c.getAttribute('data-tab') === 'optical');
+if (opticalBtn) {
+  opticalBtn.dispatchEvent({ type: 'click' });
+  assert.ok(c15.innerHTML.includes('明場檢測'), '點擊光學後應展示明場/暗場檢測');
+}
+console.log('[PASS] Ch 15 CD-SEM 與光學檢測模型正常');
+
+console.log('--- 測試 14: Ch 16 晶圓缺陷空間圖譜與 FIB 切片切換 ---');
+const c16 = new MockElement();
+mountEngineeringObject('ch16', c16, 'zh');
+assert.ok(c16.innerHTML.includes('缺陷特徵診斷') || c16.innerHTML.includes('同心圓環狀缺陷'), '預設應展示晶圓缺陷圖譜');
+const fibBtn = c16.children.find(c => c.getAttribute('data-tab') === 'fib');
+if (fibBtn) {
+  fibBtn.dispatchEvent({ type: 'click' });
+  assert.ok(c16.innerHTML.includes('TEM Lamella') || c16.innerHTML.includes('Ga⁺ FIB'), '點擊 FIB 後應展示雙束 FIB 切片');
+}
+console.log('[PASS] Ch 16 良率缺陷圖譜與 FIB/TEM 模型正常');
+
+console.log('--- 測試 15: Ch 17 SPC 管制圖與判異規則切換 ---');
+const c17 = new MockElement();
+mountEngineeringObject('ch17', c17, 'zh');
+assert.ok(c17.innerHTML.includes('UCL (+3σ)'), '預設應展示 SPC 3σ 管制界限');
+const shiftBtn = c17.children.find(c => c.getAttribute('data-spc-mode') === 'shift');
+if (shiftBtn) {
+  shiftBtn.dispatchEvent({ type: 'click' });
+  assert.ok(c17.innerHTML.includes('WECO 規則 2'), '點擊 Shift 後應觸發 WECO 規則 2 警報');
+}
+console.log('[PASS] Ch 17 SPC 管制圖與 Cpk 模型正常');
+
+console.log('--- 測試 16: Ch 19 WAT 劃線區與 CP 針測切換 ---');
+const c19 = new MockElement();
+mountEngineeringObject('ch19', c19, 'zh');
+assert.ok(c19.innerHTML.includes('PCM 測試鍵'), '預設應展示 WAT PCM 劃線區測試');
+const cpBtn = c19.children.find(c => c.getAttribute('data-tab') === 'cp');
+if (cpBtn) {
+  cpBtn.dispatchEvent({ type: 'click' });
+  assert.ok(c19.innerHTML.includes('Vertical Probe Card') || c19.innerHTML.includes('微彈簧針'), '點擊 CP 後應展示垂直探針卡');
+}
+console.log('[PASS] Ch 19 WAT 與 CP 晶圓測試模型正常');
+
+console.log('=== 全部十六大核心工程物件互動單元測試通過 (0 錯誤) ===');
+
 
