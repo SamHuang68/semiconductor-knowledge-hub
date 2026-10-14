@@ -161,6 +161,19 @@
         <h2 class="atlas-title" id="atlasTitle" data-i18n="atlas_title">晶圓廠 12 大核心製程全景圖譜 (Fab Flow Atlas)</h2>
         <button type="button" class="tool-btn" id="closeAtlasBtn" data-i18n="btn_close">關閉 (Esc)</button>
       </div>
+      <!-- Atlas 2.0 動態晶圓剖面流展示區 -->
+      <div class="atlas-stream-banner" id="atlasStreamBanner">
+        <div class="atlas-stream-header">
+          <div class="atlas-stream-title">
+            <span class="atlas-stream-pulse"></span>
+            <span id="atlasStreamTitleText">晶圓多層微觀橫截面動態演變流 (Wafer Cross-Section Evolution)</span>
+          </div>
+          <div class="atlas-stream-step-badge" id="atlasStreamStepBadge">滑鼠懸停卡片即時預覽剖面演變</div>
+        </div>
+        <div class="atlas-stream-canvas-wrap">
+          <svg viewBox="0 0 1000 120" xmlns="http://www.w3.org/2000/svg" id="atlasWaferSvg" role="img" aria-label="Wafer Cross-Section Stream"></svg>
+        </div>
+      </div>
       <div class="atlas-body" id="atlasGrid"></div>
     </div>
   </div>

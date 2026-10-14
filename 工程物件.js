@@ -26,6 +26,18 @@ const TEXTS = {
     btn_auto_play: '自動循環 ▶',
     btn_pause: '暫停 ⏸',
     btn_reset: '重設計數 ↺',
+    btn_fullscreen: '⛶ 全螢幕',
+    btn_fullscreen_exit: '✕ 退出全螢幕',
+    btn_copy_svg: '📋 複製 SVG',
+    btn_copied_svg: '✓ 已複製向量圖',
+    physics_slider_k1: 'k₁ 因子：',
+    physics_slider_na: '數值孔徑 NA：',
+    physics_slider_p: '下壓力 P：',
+    physics_slider_v: '轉速 V：',
+    physics_slider_shift: '中心偏移 μ：',
+    physics_slider_spread: '離散度 σ：',
+    physics_slider_temp: '應力溫度 T：',
+    physics_slider_ea: '活化能 Ea：',
     legend_title: '材料與光路標記：',
 
     // Ch 04 微影
@@ -412,7 +424,43 @@ const TEXTS = {
     ch24_metric_irdrop_v: '瞬態動態壓降幅度 (ΔV)',
     ch24_rowhammer_desc: '隨著 DRAM 製程微縮至 10nm 級別，相鄰電容物理距離僅數十奈米。以百萬次/秒的高頻重複存取單一「攻擊行 (Aggressor Row)」時，閘極電壓頻繁劇烈波動誘發電容電荷加速穿隧洩漏，導致未被讀取的相鄰「受害行 (Victim Row)」電位被破壞翻轉 (Bit Flip)，構成重大資安硬體漏洞。硬體透過 TRR (目標行刷新) 即時補償。',
     ch24_pvt_desc: '由於晶圓製造的微觀統計波動，「世界上沒有兩顆一模一樣的晶片」：製程 (P: Slow/Typical/Fast)、電壓 (V: ±10%)、溫度 (T: -40°C~125°C) 構成 PVT 工藝角空間。軟韌體透過 DVFS (動態電壓頻率調整) 配合晶片體質 (Speed Binned) 動態調配工作電壓與頻率，平衡性能與熱耗。',
-    ch24_irdrop_desc: '當 CPU 核心從休眠突然全核爆發運算時，數十安培電流瞬間湧入供電網路。金屬導線的寄生電阻 (R) 引發顯著的 IR Drop 壓降 (ΔV = I·R)，核心實際電壓瞬間掉落 100mV 以上，導致電晶體充放電速度驟降，若軟韌體未預留時序餘量 (Timing Slack)，將直接引發時序違規當機！'
+    ch24_irdrop_desc: '當 CPU 核心從休眠突然全核爆發運算時，數十安培電流瞬間湧入供電網路。金屬導線的寄生電阻 (R) 引發顯著的 IR Drop 壓降 (ΔV = I·R)，核心實際電壓瞬間掉落 100mV 以上，導致電晶體充放電速度驟降，若軟韌體未預留時序餘量 (Timing Slack)，將直接引發時序違規當機！',
+
+    // App-Glossary 附錄 A 術語知識星系
+    app_glossary_title: '半導體全域術語知識拓撲星系與領域雷達圖',
+    app_glossary_sub: '245 條跨學科核心術語多維分類、六大工程領域分佈雷達與關聯拓撲網絡',
+    app_glossary_tab_radar: '六大領域術語雷達圖 (Domain Radar)',
+    app_glossary_tab_galaxy: '拓撲知識星系網絡 (Knowledge Galaxy)',
+    app_glossary_tab_acronyms: '必備縮寫高頻矩陣 (Top Acronyms)',
+    app_glossary_metric_terms: '全域權威術語總數',
+    app_glossary_metric_domains: '涵蓋工程子領域',
+    app_glossary_metric_bilingual: '雙語定義對齊度',
+    app_glossary_radar_desc: '全書 245 條專業術語橫跨微影 (Litho)、薄膜沉積 (Thin Films)、電漿蝕刻 (Etch)、擴散佈植 (Implant/Diff)、良率檢測 (Metrology/Yield) 與先進封裝 (Packaging) 六大軸線，形成完整的半導體製造語意網絡。',
+    app_glossary_galaxy_desc: '每一項半導體技術都不是孤立存在的：微影決定了蝕刻的深寬比極限，CMP 決定了金屬化互連的平坦度，而線上量測即時為所有站點提供 SPC 閉環數據回饋。',
+
+    // App-Jargon 附錄 B 晶圓廠黑話情境解碼器
+    app_jargon_title: '晶圓廠現場黑話情境解碼器與 24 小時輪班現場模擬',
+    app_jargon_sub: '解析交接班 (Handover)、帶線催貨、機台 Down 機、跑貨壓線之晶圓廠原汁原味現場語彙',
+    app_jargon_tab_scenarios: '四大高頻現場情境 (Fab Scenarios)',
+    app_jargon_tab_culture: '24 小時四班二輪作息 (Shift Roster)',
+    app_jargon_tab_decoder: '黑話速查對照字典 (Jargon Decoder)',
+    app_jargon_metric_jargons: '收錄廠務現場黑話',
+    app_jargon_metric_shifts: '晶圓廠輪班排班制',
+    app_jargon_metric_poka: '防呆防錯核心目標',
+    app_jargon_scenarios_desc: '「這批貨 Q-Time 壓線了快找天車拉」、「機台 Alarm 叫不停先 Hold 住別亂放」、「交接班時請把所有 WIP 卡批講清楚」——晶圓廠黑話反映了極致效率、嚴苛防呆與 24/7 不停機運轉的工程現場文化。',
+    app_jargon_culture_desc: '四班二輪 (Day/Night 12hr) 確保了晶圓廠全年 365 天 8760 小時運轉不中斷。任何一次口頭交接不清都可能造成百萬美元晶圓報廢，因此行話是現場最簡潔有力的溝通協議。',
+
+    // App-Reading 附錄 C 半導體工程師技能樹與路徑圖
+    app_reading_title: '半導體工程師全技能樹與階梯式進階修煉路徑圖',
+    app_reading_sub: '從零基礎入門 (L1)、模組工程師 (L2)、製程整合 (L3) 到首席架構師 (L4) 的專業成長指南',
+    app_reading_tab_tree: '全領域技能進階樹 (Mastery Tree)',
+    app_reading_tab_classics: '經典權威聖經著作 (Classic Books)',
+    app_reading_tab_cert: '工程思維與跨界藍圖 (Cross-Domain Roadmap)',
+    app_reading_metric_levels: '專業進階階梯',
+    app_reading_metric_bibles: '收錄全球經典聖經',
+    app_reading_metric_mindset: '核心第一性原理',
+    app_reading_tree_desc: '半導體工程師的進階路徑：L1 掌握物理化學基本原理與安全規範；L2 精通單一機台配方與微觀反應機制；L3 具備跨模組整合、WAT/CP 關聯與良率除錯能力；L4 洞悉架構微縮、DTCO 與系統封裝協同設計。',
+    app_reading_classics_desc: '站在巨人的肩膀上：從 Sze (施敏)《半導體元件物理》、Campbell《微電子製造工程》到 Plummer《矽 VLSI 技術》，經典理論永不褪色，是貫通所有先進節點的第一性原理基石。'
   },
   en: {
     badge_prefix: 'PROCESS OBJECT · ENGINEERING MODEL',
@@ -421,6 +469,18 @@ const TEXTS = {
     btn_auto_play: 'Auto Cycle ▶',
     btn_pause: 'Pause ⏸',
     btn_reset: 'Reset ↺',
+    btn_fullscreen: '⛶ Fullscreen',
+    btn_fullscreen_exit: '✕ Exit Fullscreen',
+    btn_copy_svg: '📋 Copy SVG',
+    btn_copied_svg: '✓ SVG Copied',
+    physics_slider_k1: 'k₁ Factor:',
+    physics_slider_na: 'Aperture NA:',
+    physics_slider_p: 'Down-force P:',
+    physics_slider_v: 'Platen Speed V:',
+    physics_slider_shift: 'Mean Shift μ:',
+    physics_slider_spread: 'Dispersion σ:',
+    physics_slider_temp: 'Stress Temp T:',
+    physics_slider_ea: 'Activation Ea:',
     legend_title: 'Materials & Optical Key:',
 
     // Ch 04 Lithography
@@ -807,7 +867,43 @@ const TEXTS = {
     ch24_metric_irdrop_v: 'Transient Dynamic Voltage Drop (ΔV)',
     ch24_rowhammer_desc: 'As DRAM scales below 15nm, microscopic storage capacitors sit only nanometers apart. Rapidly toggling an "Aggressor Row" at millions of cycles per second induces electromagnetic cross-talk and electron tunneling, draining charge from adjacent "Victim Rows" and inducing bit flips. Modern controllers defend against this via Target Row Refresh (TRR).',
     ch24_pvt_desc: 'Due to atomistic process variations, no two silicon dies are physically identical: Process (P: Slow/Typical/Fast), Voltage (V), and Temperature (T: -40°C to 125°C) form the PVT operational matrix. Firmware leverages DVFS (Dynamic Voltage and Frequency Scaling) tuned to the die’s speed-binned characteristics to maximize efficiency.',
-    ch24_irdrop_desc: 'When processor execution units burst from idle to maximum compute, tens of amperes surge through the on-die power delivery network (PDN). Parasitic wire resistance induces an instantaneous IR drop (ΔV = I·R), collapsing local supply voltage. The resulting transistor propagation delay spike can violate timing margins and crash firmware without adequate guardbands.'
+    ch24_irdrop_desc: 'When processor execution units burst from idle to maximum compute, tens of amperes surge through the on-die power delivery network (PDN). Parasitic wire resistance induces an instantaneous IR drop (ΔV = I·R), collapsing local supply voltage. The resulting transistor propagation delay spike can violate timing margins and crash firmware without adequate guardbands.',
+
+    // App-Glossary Appendix A Knowledge Galaxy
+    app_glossary_title: 'Semiconductor Terminology Topology Galaxy & Domain Radar',
+    app_glossary_sub: 'Multidimensional classification of 245 terms across 6 domains with topological cross-links',
+    app_glossary_tab_radar: 'Six-Domain Terminology Radar',
+    app_glossary_tab_galaxy: 'Topological Knowledge Galaxy',
+    app_glossary_tab_acronyms: 'Top Industry Acronyms Matrix',
+    app_glossary_metric_terms: 'Total Authoritative Terms',
+    app_glossary_metric_domains: 'Covered Engineering Domains',
+    app_glossary_metric_bilingual: 'Bilingual Alignment Score',
+    app_glossary_radar_desc: 'All 245 terms span six key manufacturing pillars: Lithography, Thin Films, Plasma Etch, Ion Implant & Thermal, Metrology & Yield, and Advanced Packaging, building an interconnected semantic graph.',
+    app_glossary_galaxy_desc: 'Semiconductor disciplines do not exist in silos: lithography bounds etch aspect ratios, CMP dictates copper metallization planarity, and inline metrology continuously feeds closed-loop SPC data.',
+
+    // App-Jargon Appendix B Fab Jargon Decoder
+    app_jargon_title: 'Fab On-Site Jargon Scenario Decoder & 24-Hour Shift Simulator',
+    app_jargon_sub: 'Decode authentic on-site terminology: shift handovers, lot expediting, tool down alarms, and Q-time rushes',
+    app_jargon_tab_scenarios: 'Four High-Frequency Scenarios',
+    app_jargon_tab_culture: '24/7 Shift Roster Culture',
+    app_jargon_tab_decoder: 'Interactive Jargon Decoder',
+    app_jargon_metric_jargons: 'Cataloged Fab Jargons',
+    app_jargon_metric_shifts: 'Fab 24/7 Shift Rotation',
+    app_jargon_metric_poka: 'Poka-Yoke Zero Error Target',
+    app_jargon_scenarios_desc: '"This lot is hitting Q-time, get an OHT crane now", "Alarm won\'t stop, place a defensive hold", "List all stalled WIP during handover" — fab jargon embodies relentless speed, strict poka-yoke, and 24/7 continuous discipline.',
+    app_jargon_culture_desc: 'Four-crew two-shift rotations keep cleanrooms humming 8,760 hours a year. A single ambiguous handover can scrap millions of dollars in silicon; jargon serves as an ultra-compact, fail-safe communication protocol.',
+
+    // App-Reading Appendix C Engineer Mastery Tree
+    app_reading_title: 'Semiconductor Engineer Mastery Tree & Career Stepping Roadmap',
+    app_reading_sub: 'Comprehensive professional progression guide from Junior (L1) to Module Expert (L2), Integration Engineer (L3), and Chief Architect (L4)',
+    app_reading_tab_tree: 'Domain Mastery Skill Tree',
+    app_reading_tab_classics: 'Essential Literature Bibles',
+    app_reading_tab_cert: 'First-Principles Roadmap',
+    app_reading_metric_levels: 'Professional Mastery Tiers',
+    app_reading_metric_bibles: 'Semiconductor Classic Bibles',
+    app_reading_metric_mindset: 'Core First Principles',
+    app_reading_tree_desc: 'Engineering progression: L1 masters physical/chemical safety fundamentals; L2 commands unit tool recipes and micro-kinetics; L3 leads cross-module integration and yield debugging; L4 pioneers DTCO scaling and 3D system architecture.',
+    app_reading_classics_desc: 'Standing on the shoulders of giants: from Sze\'s Physics of Semiconductor Devices to Campbell\'s Microelectronic Fabrication and Plummer\'s Silicon VLSI Technology, foundational physics never expires.'
   }
 };
 
@@ -821,6 +917,8 @@ export function renderLithoOpticalObject(container, lang = 'zh') {
   let activeTab = 'path'; // 'path' | 'pr' | 'scan'
   let activeOpticalMode = 'imm'; // 'dry' | 'imm' | 'euv' | 'high_na'
   let activePRMode = 'pos'; // 'pos' | 'neg' | 'car'
+  let customK1 = 0.28;
+  let customNA = 1.35;
 
   // 光學參數設定
   const OPTICAL_PRESETS = {
@@ -832,6 +930,15 @@ export function renderLithoOpticalObject(container, lang = 'zh') {
 
   function update() {
     const cur = OPTICAL_PRESETS[activeOpticalMode];
+    const isEUV = activeOpticalMode === 'euv' || activeOpticalMode === 'high_na';
+    const isImm = activeOpticalMode === 'imm';
+    const beamColor = isEUV ? '#38bdf8' : '#71ece3';
+    const beamCore = isEUV ? '#e0f2fe' : '#ccfbf1';
+
+    // 即時物理推算
+    const calcR = ((customK1 * cur.lambda) / customNA).toFixed(1);
+    const calcDOF = ((0.50 * cur.lambda) / (customNA * customNA)).toFixed(1);
+    const apertureGap = Math.max(16, Math.min(60, Math.round(customNA * 28)));
 
     let controlsHtml = '';
     let viewportHtml = '';
@@ -846,12 +953,22 @@ export function renderLithoOpticalObject(container, lang = 'zh') {
           <button type="button" class="eng-obj-tab ${activeOpticalMode === 'euv' ? 'is-active' : ''}" data-mode="euv">${t.ch04_mode_euv}</button>
           <button type="button" class="eng-obj-tab ${activeOpticalMode === 'high_na' ? 'is-active' : ''}" data-mode="high_na">${t.ch04_mode_high_na}</button>
         </div>
+        <div class="eng-obj-slider-panel">
+          <div class="eng-obj-slider-item">
+            <label for="ch04K1">${t.physics_slider_k1}</label>
+            <input type="range" class="eng-obj-range-input" id="ch04K1" min="0.25" max="0.55" step="0.01" value="${customK1}">
+            <span class="eng-obj-slider-val">${customK1.toFixed(2)}</span>
+          </div>
+          <div class="eng-obj-slider-item">
+            <label for="ch04NA">${t.physics_slider_na}</label>
+            <input type="range" class="eng-obj-range-input" id="ch04NA" min="${isEUV ? '0.25' : '0.70'}" max="${isEUV ? '0.75' : '1.45'}" step="0.01" value="${customNA}">
+            <span class="eng-obj-slider-val">${customNA.toFixed(2)}</span>
+          </div>
+          <div style="font-size: 11.5px; color: #94a3b8; margin-left: auto;">
+            λ = <strong style="color: #38bdf8;">${cur.lambda} nm</strong>
+          </div>
+        </div>
       `;
-
-      const isEUV = activeOpticalMode === 'euv' || activeOpticalMode === 'high_na';
-      const isImm = activeOpticalMode === 'imm';
-      const beamColor = isEUV ? '#38bdf8' : '#71ece3';
-      const beamCore = isEUV ? '#e0f2fe' : '#ccfbf1';
 
       viewportHtml = `
         <svg viewBox="0 0 800 460" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Scanner Optical Path 4x Reduction">
@@ -915,14 +1032,14 @@ export function renderLithoOpticalObject(container, lang = 'zh') {
           <!-- 雙凸透鏡 1 -->
           <path d="M 320,230 Q 400,215 480,230 Q 400,245 320,230 Z" fill="url(#lensGrad)" stroke="#38bdf8" stroke-width="1"/>
           
-          <!-- 光闌 Aperture Stop (NA 控制器) -->
-          <rect x="310" y="255" width="60" height="8" fill="#475569"/>
-          <rect x="430" y="255" width="60" height="8" fill="#475569"/>
-          <text x="510" y="262" fill="#38bdf8" font-size="11" font-family="sans-serif">NA Aperture Stop (${cur.na})</text>
+          <!-- 光闌 Aperture Stop (隨 NA 滑桿連動開合) -->
+          <rect x="${400 - apertureGap - 50}" y="255" width="50" height="8" fill="#475569"/>
+          <rect x="${400 + apertureGap}" y="255" width="50" height="8" fill="#475569"/>
+          <text x="510" y="262" fill="#38bdf8" font-size="11" font-family="sans-serif">NA Aperture Stop (${customNA.toFixed(2)})</text>
 
           <!-- 雙凸透鏡 2 與收斂光錐 -->
           <path d="M 340,280 Q 400,268 460,280 Q 400,292 340,280 Z" fill="url(#lensGrad)" stroke="#38bdf8" stroke-width="1"/>
-          <polygon points="360,290 440,290 405,372 395,372" fill="url(#beamGrad)" opacity="0.9" filter="url(#glow)"/>
+          <polygon points="${400 - apertureGap},290 ${400 + apertureGap},290 405,372 395,372" fill="url(#beamGrad)" opacity="0.9" filter="url(#glow)"/>
           
           <!-- 投影透鏡組說明 -->
           <text x="180" y="245" text-anchor="end" fill="#94a3b8" font-size="11.5" font-family="sans-serif">${t.ch04_proj_lens}</text>
@@ -937,31 +1054,30 @@ export function renderLithoOpticalObject(container, lang = 'zh') {
           <!-- 6. 晶圓載台與 1x 光阻成像層 (Wafer Stage) -->
           <rect x="260" y="376" width="280" height="32" rx="3" fill="#1e293b" stroke="#0284c7" stroke-width="1.5"/>
           <rect x="280" y="376" width="240" height="6" fill="#f59e0b"/>
-          <!-- 縮小成像圖案 1x (28nm Pitch) -->
+          <!-- 縮小成像圖案 1x (隨解析度動態計算) -->
           <g fill="#38bdf8">
-            <rect x="390" y="376" width="5" height="6"/>
-            <rect x="400" y="376" width="5" height="6"/>
-            <rect x="410" y="376" width="5" height="6"/>
+            <rect x="${395 - calcR / 10}" y="376" width="${Math.max(3, calcR / 10)}" height="6"/>
+            <rect x="${405}" y="376" width="${Math.max(3, calcR / 10)}" height="6"/>
           </g>
-          <text x="400" y="399" text-anchor="middle" fill="#f8fafc" font-size="12" font-weight="700" font-family="sans-serif">${t.ch04_wafer_stage} [1x: 28nm Pitch]</text>
-          <text x="560" y="392" fill="#38bdf8" font-size="11.5" font-weight="700" font-family="sans-serif">Focus DOF: ±${cur.dof}</text>
+          <text x="400" y="399" text-anchor="middle" fill="#f8fafc" font-size="12" font-weight="700" font-family="sans-serif">${t.ch04_wafer_stage} [R = ${calcR} nm]</text>
+          <text x="560" y="392" fill="#38bdf8" font-size="11.5" font-weight="700" font-family="sans-serif">Focus DOF: ±${calcDOF} nm</text>
         </svg>
       `;
 
       dashboardHtml = `
         <div class="eng-obj-metric-card">
           <div class="eng-obj-metric-label">${t.ch04_metric_res}</div>
-          <div class="eng-obj-metric-value">${cur.r}</div>
-          <div class="eng-obj-metric-note">R = k₁·(λ/NA) · k₁=${cur.k1}</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-teal);">${calcR} nm</div>
+          <div class="eng-obj-metric-note">R = k₁·(λ/NA) · k₁=${customK1.toFixed(2)}</div>
         </div>
         <div class="eng-obj-metric-card">
           <div class="eng-obj-metric-label">${t.ch04_metric_dof}</div>
-          <div class="eng-obj-metric-value">${cur.dof}</div>
-          <div class="eng-obj-metric-note">DOF = k₂·(λ/NA²) · k₂=${cur.k2}</div>
+          <div class="eng-obj-metric-value">${calcDOF} nm</div>
+          <div class="eng-obj-metric-note">DOF = 0.5·(λ/NA²)</div>
         </div>
         <div class="eng-obj-metric-card">
           <div class="eng-obj-metric-label">${t.ch04_metric_na}</div>
-          <div class="eng-obj-metric-value">${cur.na}</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-blue-dark);">${customNA.toFixed(2)}</div>
           <div class="eng-obj-metric-note">${isImm ? 'Immersion Water (n=1.44)' : (isEUV ? 'Mo/Si Reflective Optics' : 'Standard Dry Air Lens')}</div>
         </div>
         <div class="eng-obj-metric-card">
@@ -1157,6 +1273,11 @@ export function renderLithoOpticalObject(container, lang = 'zh') {
     container.querySelectorAll('[data-mode]').forEach(btn => {
       btn.addEventListener('click', () => {
         activeOpticalMode = btn.getAttribute('data-mode');
+        const p = OPTICAL_PRESETS[activeOpticalMode];
+        if (p) {
+          customK1 = p.k1;
+          customNA = p.na;
+        }
         update();
       });
     });
@@ -1166,6 +1287,21 @@ export function renderLithoOpticalObject(container, lang = 'zh') {
         update();
       });
     });
+
+    const k1Slider = container.querySelector('#ch04K1');
+    if (k1Slider) {
+      k1Slider.addEventListener('input', (e) => {
+        customK1 = parseFloat(e.target.value);
+        update();
+      });
+    }
+    const naSlider = container.querySelector('#ch04NA');
+    if (naSlider) {
+      naSlider.addEventListener('input', (e) => {
+        customNA = parseFloat(e.target.value);
+        update();
+      });
+    }
   }
 
   update();
@@ -2290,6 +2426,23 @@ export function renderCMPObject(container, lang = 'zh') {
     const mrr = Math.round(1.5 * pressure * speed);
 
     if (activeTab === 'kinematics') {
+      controlsHtml = `
+        <div class="eng-obj-slider-panel">
+          <div class="eng-obj-slider-item">
+            <label for="ch08Pressure">${t.physics_slider_p}</label>
+            <input type="range" class="eng-obj-range-input" id="ch08Pressure" min="1.0" max="6.0" step="0.2" value="${pressure}">
+            <span class="eng-obj-slider-val">${pressure.toFixed(1)} psi</span>
+          </div>
+          <div class="eng-obj-slider-item">
+            <label for="ch08Speed">${t.physics_slider_v}</label>
+            <input type="range" class="eng-obj-range-input" id="ch08Speed" min="40" max="150" step="5" value="${speed}">
+            <span class="eng-obj-slider-val">${speed} RPM</span>
+          </div>
+          <div style="font-size: 11.5px; color: #f59e0b; margin-left: auto;">
+            Preston MRR = <strong style="color: #38bdf8;">${mrr} nm/min</strong>
+          </div>
+        </div>
+      `;
       viewportHtml = `
         <svg viewBox="0 0 800 440" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="CMP Tool Kinematics">
           <!-- 1. 旋轉研磨大盤 (Polishing Pad, 直徑 760mm) -->
@@ -2510,6 +2663,21 @@ export function renderCMPObject(container, lang = 'zh') {
         update();
       });
     });
+
+    const pSlider = container.querySelector('#ch08Pressure');
+    if (pSlider) {
+      pSlider.addEventListener('input', (e) => {
+        pressure = parseFloat(e.target.value);
+        update();
+      });
+    }
+    const sSlider = container.querySelector('#ch08Speed');
+    if (sSlider) {
+      sSlider.addEventListener('input', (e) => {
+        speed = parseInt(e.target.value, 10);
+        update();
+      });
+    }
   }
 
   update();
@@ -4689,8 +4857,11 @@ export function renderProcessControlObject(container, lang = 'zh') {
   const t = TEXTS[lang] || TEXTS.zh;
   let activeTab = 'spc'; // 'spc' | 'cpk' | 'r2r'
   let spcMode = 'normal'; // 'normal' | 'shift' | 'drift'
+  let cpkShift = 0.0;     // -1.5 ~ +1.5 σ
+  let cpkSpread = 1.0;    // 0.6 ~ 1.8 mult
 
   function update() {
+    let controlsHtml = '';
     let viewportHtml = '';
     let dashboardHtml = '';
     let footerNote = '';
@@ -4795,55 +4966,91 @@ export function renderProcessControlObject(container, lang = 'zh') {
 
       footerNote = t.ch17_spc_desc;
     } else if (activeTab === 'cpk') {
+      const usl = 520;
+      const lsl = 80;
+      const target = 300;
+      const baseSigma = 44;
+      const curSigma = Math.max(15, baseSigma * cpkSpread);
+      const curMean = target + cpkShift * baseSigma;
+      const calcCp = ((usl - lsl) / (6 * curSigma)).toFixed(2);
+      const calcCpk = Math.min((usl - curMean) / (3 * curSigma), (curMean - lsl) / (3 * curSigma)).toFixed(2);
+      const isAcceptable = calcCpk >= 1.67;
+
+      // 動態高斯鐘型曲線取樣點
+      const gaussPts = [];
+      for (let x = 20; x <= 580; x += 15) {
+        const z = (x - curMean) / curSigma;
+        const y = 270 - Math.min(220, Math.round(210 * Math.exp(-0.5 * z * z)));
+        gaussPts.push({ x, y });
+      }
+      const gaussPath = gaussPts.map((p, i) => `${i === 0 ? 'M' : 'L'} ${p.x},${p.y}`).join(' ');
+
+      controlsHtml = `
+        <div class="eng-obj-slider-panel">
+          <div class="eng-obj-slider-item">
+            <label for="ch17Shift">${t.physics_slider_shift}</label>
+            <input type="range" class="eng-obj-range-input" id="ch17Shift" min="-1.5" max="1.5" step="0.1" value="${cpkShift}">
+            <span class="eng-obj-slider-val">${cpkShift >= 0 ? '+' : ''}${cpkShift.toFixed(1)}σ</span>
+          </div>
+          <div class="eng-obj-slider-item">
+            <label for="ch17Spread">${t.physics_slider_spread}</label>
+            <input type="range" class="eng-obj-range-input" id="ch17Spread" min="0.6" max="1.8" step="0.1" value="${cpkSpread}">
+            <span class="eng-obj-slider-val">${cpkSpread.toFixed(1)}×</span>
+          </div>
+          <div style="font-size: 11.5px; margin-left: auto;">
+            Cpk = <strong style="color: ${isAcceptable ? 'var(--semi-teal)' : '#ef4444'}; font-size: 14px;">${calcCpk}</strong>
+          </div>
+        </div>
+      `;
+
       viewportHtml = `
         <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Process Capability Cpk Gaussian Distribution">
-          <!-- 高斯常態分佈曲線 (Gaussian Bell Curves Comparison) -->
+          <!-- 高斯常態分佈曲線動態渲染 -->
           <g transform="translate(100, 40)">
             <rect x="0" y="0" width="600" height="320" fill="#0f172a" stroke="#334155" stroke-width="1.5" rx="6"/>
 
             <!-- 規格界限 (USL / LSL) -->
             <line x1="80" y1="40" x2="80" y2="280" stroke="#f59e0b" stroke-width="2.5"/>
-            <text x="80" y="32" text-anchor="middle" fill="#fbbf24" font-size="11" font-weight="800">LSL (規格下限)</text>
+            <text x="80" y="32" text-anchor="middle" fill="#fbbf24" font-size="11" font-weight="800">LSL (規格下限 80)</text>
 
             <line x1="520" y1="40" x2="520" y2="280" stroke="#f59e0b" stroke-width="2.5"/>
-            <text x="520" y="32" text-anchor="middle" fill="#fbbf24" font-size="11" font-weight="800">USL (規格上限)</text>
+            <text x="520" y="32" text-anchor="middle" fill="#fbbf24" font-size="11" font-weight="800">USL (規格上限 520)</text>
 
             <!-- 目標中心線 Target -->
             <line x1="300" y1="40" x2="300" y2="280" stroke="#64748b" stroke-width="1.5" stroke-dasharray="3 3"/>
-            <text x="300" y="32" text-anchor="middle" fill="#94a3b8" font-size="10.5">Target (目標中心 μ)</text>
+            <text x="300" y="32" text-anchor="middle" fill="#94a3b8" font-size="10.5">Target (目標中心 300)</text>
 
-            <!-- 綠色：Cpk = 1.67+ 優秀分佈 (緊縮於中央，零超出) -->
-            <path d="M 160,270 Q 260,270 290,90 Q 300,60 310,90 Q 340,270 440,270" fill="none" stroke="#10b981" stroke-width="3"/>
-            <text x="300" y="95" text-anchor="middle" fill="#34d399" font-size="11" font-weight="750">Cpk = 1.67 (六標準差卓越製程)</text>
-            <text x="300" y="112" text-anchor="middle" fill="#34d399" font-size="9.5">不良率 &lt; 3.4 PPB (十億分之 3.4)</text>
+            <!-- 實際均值線 μ -->
+            <line x1="${curMean}" y1="45" x2="${curMean}" y2="280" stroke="${isAcceptable ? '#38bdf8' : '#ef4444'}" stroke-width="1.5" stroke-dasharray="4 2"/>
+            <text x="${curMean}" y="295" text-anchor="middle" fill="${isAcceptable ? '#38bdf8' : '#ef4444'}" font-size="10.5" font-weight="700">μ = ${curMean.toFixed(0)}</text>
 
-            <!-- 紅色：Cpk = 0.8 不合格分佈 (寬鬆散漫，溢出 LSL/USL) -->
-            <path d="M 20,270 Q 150,260 250,160 Q 300,140 350,160 Q 450,260 580,270" fill="none" stroke="#ef4444" stroke-width="2" stroke-dasharray="4 3"/>
-            <text x="470" y="170" fill="#f87171" font-size="10.5" font-weight="700">Cpk = 0.8 (能力不足)</text>
-            <text x="470" y="185" fill="#f87171" font-size="9.5">不良率 ~ 1.6% (大量報廢)</text>
+            <!-- 動態常態分佈鐘型曲線 -->
+            <path d="${gaussPath}" fill="none" stroke="${isAcceptable ? '#10b981' : '#ef4444'}" stroke-width="3"/>
 
-            <!-- 陰影溢出標記 -->
-            <polygon points="20,270 80,270 80,225 20,270" fill="#ef4444" opacity="0.4"/>
-            <text x="45" y="260" text-anchor="middle" fill="#f87171" font-size="9">報廢品</text>
+            <text x="300" y="70" text-anchor="middle" fill="${isAcceptable ? '#34d399' : '#f87171'}" font-size="13" font-weight="800">
+              Cp = ${calcCp} · Cpk = ${calcCpk} ${isAcceptable ? '✓ (受控卓越 6-Sigma)' : '✗ (失控能力不足)'}
+            </text>
           </g>
         </svg>
       `;
 
       dashboardHtml = `
         <div class="eng-obj-metric-card">
-          <div class="eng-obj-metric-label">${t.ch17_metric_cpk_target}</div>
-          <div class="eng-obj-metric-value" style="color: var(--semi-teal);">&ge; 1.67 (6-Sigma)</div>
-          <div class="eng-obj-metric-note">半導體量產放行之黃金標準門檻</div>
+          <div class="eng-obj-metric-label">即時製程能力 Cpk</div>
+          <div class="eng-obj-metric-value" style="color: ${isAcceptable ? 'var(--semi-teal)' : '#ef4444'};">${calcCpk}</div>
+          <div class="eng-obj-metric-note">量產合格標準門檻 ≥ 1.67</div>
         </div>
         <div class="eng-obj-metric-card">
-          <div class="eng-obj-metric-label">Cp 與 Cpk 的差異</div>
-          <div class="eng-obj-metric-value">考慮中心偏移 |μ - T|</div>
-          <div class="eng-obj-metric-note">Cp 代表潛在能力，Cpk 代表真實水準</div>
+          <div class="eng-obj-metric-label">潛在製程能力 Cp</div>
+          <div class="eng-obj-metric-value">${calcCp}</div>
+          <div class="eng-obj-metric-note">不考慮中心偏移之離散度極限</div>
         </div>
         <div class="eng-obj-metric-card">
-          <div class="eng-obj-metric-label">預期不良率 (Defect Rate)</div>
-          <div class="eng-obj-metric-value">&lt; 3.4 PPB</div>
-          <div class="eng-obj-metric-note">百億顆電晶體集成的良率基石</div>
+          <div class="eng-obj-metric-label">放行狀態判定</div>
+          <div class="eng-obj-metric-value" style="color: ${isAcceptable ? 'var(--semi-teal)' : '#ef4444'};">
+            ${isAcceptable ? 'PASS (晶圓放行)' : 'HOLD (鎖機重工)'}
+          </div>
+          <div class="eng-obj-metric-note">自動比對 MES 批次規格門檻</div>
         </div>
       `;
 
@@ -4951,6 +5158,21 @@ export function renderProcessControlObject(container, lang = 'zh') {
         update();
       });
     });
+
+    const shiftSlider = container.querySelector('#ch17Shift');
+    if (shiftSlider) {
+      shiftSlider.addEventListener('input', (e) => {
+        cpkShift = parseFloat(e.target.value);
+        update();
+      });
+    }
+    const spreadSlider = container.querySelector('#ch17Spread');
+    if (spreadSlider) {
+      spreadSlider.addEventListener('input', (e) => {
+        cpkSpread = parseFloat(e.target.value);
+        update();
+      });
+    }
   }
 
   update();
@@ -6046,8 +6268,11 @@ export function renderPackagingFlowObject(container, lang = 'zh') {
 export function renderReliabilityTestingObject(container, lang = 'zh') {
   const t = TEXTS[lang] || TEXTS.zh;
   let activeTab = 'bathtub'; // 'bathtub' | 'burnin' | 'esd'
+  let stressTemp = 125;      // 85 ~ 175 °C
+  let activationEa = 0.70;   // 0.3 ~ 1.1 eV
 
   function update() {
+    let controlsHtml = '';
     let viewportHtml = '';
     let dashboardHtml = '';
     let footerNote = '';
@@ -6113,13 +6338,40 @@ export function renderReliabilityTestingObject(container, lang = 'zh') {
 
       footerNote = t.ch22_bathtub_desc;
     } else if (activeTab === 'burnin') {
+      const kB = 8.617333262145e-5;
+      const Tuse = 55 + 273.15;
+      const Tstress = stressTemp + 273.15;
+      const tempAF = Math.exp((activationEa / kB) * (1 / Tuse - 1 / Tstress));
+      const voltAF = 1.69;
+      const totalAF = Math.max(1, Math.round(tempAF * voltAF));
+      const equivDays = Math.round((48 * totalAF) / 24);
+      const equivYears = (equivDays / 365).toFixed(1);
+
+      controlsHtml = `
+        <div class="eng-obj-slider-panel">
+          <div class="eng-obj-slider-item">
+            <label for="ch22Temp">${t.physics_slider_temp}</label>
+            <input type="range" class="eng-obj-range-input" id="ch22Temp" min="85" max="175" step="5" value="${stressTemp}">
+            <span class="eng-obj-slider-val">${stressTemp}°C</span>
+          </div>
+          <div class="eng-obj-slider-item">
+            <label for="ch22Ea">${t.physics_slider_ea}</label>
+            <input type="range" class="eng-obj-range-input" id="ch22Ea" min="0.30" max="1.10" step="0.05" value="${activationEa}">
+            <span class="eng-obj-slider-val">${activationEa.toFixed(2)} eV</span>
+          </div>
+          <div style="font-size: 11.5px; color: #f59e0b; margin-left: auto;">
+            AF = <strong style="color: #38bdf8; font-size: 13.5px;">${totalAF.toLocaleString()}×</strong>
+          </div>
+        </div>
+      `;
+
       viewportHtml = `
         <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Burn-in Chamber and Arrhenius Acceleration Formula">
-          <!-- 高溫預燒爐 (Burn-In Chamber @ 125°C ~ 150°C) -->
+          <!-- 高溫預燒爐 (Burn-In Chamber @ stressTemp) -->
           <g transform="translate(80, 40)">
             <rect x="0" y="0" width="300" height="320" fill="#0f172a" stroke="#ef4444" stroke-width="2" rx="6"/>
             <text x="150" y="32" text-anchor="middle" fill="#f87171" font-size="13" font-weight="750">高溫預燒爐 (Burn-In Chamber)</text>
-            <text x="150" y="52" text-anchor="middle" fill="#f59e0b" font-size="11">環境溫度 125°C ~ 150°C · 過電壓 1.3× Vdd</text>
+            <text x="150" y="52" text-anchor="middle" fill="#f59e0b" font-size="11">即時應力：${stressTemp}°C · 過電壓 1.3× Vdd</text>
 
             <!-- 預燒插槽板陣列 (Burn-In Boards BIB) -->
             ${Array.from({ length: 4 }, (_, r) => 
@@ -6137,17 +6389,17 @@ export function renderReliabilityTestingObject(container, lang = 'zh') {
 
             <g transform="translate(20, 65)">
               <rect x="0" y="0" width="280" height="70" rx="4" fill="#1e293b" stroke="#38bdf8" stroke-width="1"/>
-              <text x="140" y="32" text-anchor="middle" fill="#38bdf8" font-size="13" font-weight="800">AF = exp[(Ea/k)·(1/Tuse - 1/Tstress)]</text>
-              <text x="140" y="55" text-anchor="middle" fill="#94a3b8" font-size="10.5">熱激活能 Ea ≈ 0.7 eV · 波茲曼常數 k</text>
+              <text x="140" y="30" text-anchor="middle" fill="#38bdf8" font-size="12" font-weight="800">AF = exp[(Ea/k)·(1/Tuse - 1/Tstress)]</text>
+              <text x="140" y="52" text-anchor="middle" fill="#94a3b8" font-size="10.5">Ea = ${activationEa.toFixed(2)} eV · Tstress = ${stressTemp}°C</text>
             </g>
 
             <g transform="translate(20, 155)">
               <rect x="0" y="0" width="280" height="135" rx="4" fill="#1e293b" stroke="#10b981" stroke-width="1"/>
-              <text x="14" y="25" fill="#34d399" font-size="11.5" font-weight="750">加速時間等效換算 (Equivalence):</text>
+              <text x="14" y="25" fill="#34d399" font-size="11.5" font-weight="750">即時加速等效換算 (Live Equivalence):</text>
               <text x="14" y="50" fill="#cbd5e1" font-size="11">• 正常使用環境：55°C</text>
-              <text x="14" y="70" fill="#cbd5e1" font-size="11">• 預燒應力環境：125°C + 1.3× 電壓</text>
-              <text x="14" y="95" fill="#fbbf24" font-size="12" font-weight="800">總加速因子 AF ≈ 128 倍！</text>
-              <text x="14" y="118" fill="#38bdf8" font-size="10.5">預燒 48 小時 ≡ 正常運轉 250 天 (8.3 個月)</text>
+              <text x="14" y="70" fill="#cbd5e1" font-size="11">• 預燒應力環境：${stressTemp}°C + 1.3× 電壓</text>
+              <text x="14" y="95" fill="#fbbf24" font-size="12" font-weight="800">總加速因子 AF ≈ ${totalAF.toLocaleString()} 倍！</text>
+              <text x="14" y="118" fill="#38bdf8" font-size="10.5">預燒 48 小時 ≡ 正常運轉 ${equivDays.toLocaleString()} 天 (${equivYears} 年)</text>
             </g>
           </g>
         </svg>
@@ -6156,18 +6408,18 @@ export function renderReliabilityTestingObject(container, lang = 'zh') {
       dashboardHtml = `
         <div class="eng-obj-metric-card">
           <div class="eng-obj-metric-label">${t.ch22_metric_af}</div>
-          <div class="eng-obj-metric-value" style="color: var(--semi-blue-dark);">~ 128 倍加速</div>
-          <div class="eng-obj-metric-note">Arrhenius 溫度指數與電壓平方模型疊加</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-blue-dark);">${totalAF.toLocaleString()} 倍</div>
+          <div class="eng-obj-metric-note">Arrhenius 溫度指數與電壓平方模型</div>
         </div>
         <div class="eng-obj-metric-card">
-          <div class="eng-obj-metric-label">預燒測試時間</div>
-          <div class="eng-obj-metric-value">48 ~ 168 小時</div>
-          <div class="eng-obj-metric-note">幾天內等效經歷數年使用老化歷程</div>
+          <div class="eng-obj-metric-label">等效老化年數</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-teal);">${equivYears} 年</div>
+          <div class="eng-obj-metric-note">預燒 48 小時累積之壽命加速</div>
         </div>
         <div class="eng-obj-metric-card">
-          <div class="eng-obj-metric-label">測試覆蓋範圍</div>
-          <div class="eng-obj-metric-value">動態翻轉 (Dynamic Pattern)</div>
-          <div class="eng-obj-metric-note">灌入連續測試向量確保每個閘極皆承受應力</div>
+          <div class="eng-obj-metric-label">缺陷活化能 Ea</div>
+          <div class="eng-obj-metric-value">${activationEa.toFixed(2)} eV</div>
+          <div class="eng-obj-metric-note">閘極氧化層與金屬電遷移熱物理障礙</div>
         </div>
       `;
 
@@ -6278,6 +6530,21 @@ export function renderReliabilityTestingObject(container, lang = 'zh') {
         update();
       });
     });
+
+    const tempSlider = container.querySelector('#ch22Temp');
+    if (tempSlider) {
+      tempSlider.addEventListener('input', (e) => {
+        stressTemp = parseInt(e.target.value, 10);
+        update();
+      });
+    }
+    const eaSlider = container.querySelector('#ch22Ea');
+    if (eaSlider) {
+      eaSlider.addEventListener('input', (e) => {
+        activationEa = parseFloat(e.target.value);
+        update();
+      });
+    }
   }
 
   update();
@@ -8019,7 +8286,756 @@ export function renderSoftwareHardwareTruthObject(container, lang = 'zh') {
 
 /**
  * ══════════════════════════════════════════════════════════════════════════════
- * 總調度入口 (Unified Mount Orchestrator) — 覆蓋全站 25 大章節 100% 滿貫
+ * 26. App-Glossary 附錄 A：半導體全域術語拓撲星系與領域雷達圖模型
+ * ══════════════════════════════════════════════════════════════════════════════
+ */
+export function renderGlossaryGalaxyObject(container, lang = 'zh') {
+  const t = TEXTS[lang] || TEXTS.zh;
+  let activeTab = 'radar'; // 'radar' | 'galaxy' | 'acronyms'
+
+  function update() {
+    let viewportHtml = '';
+    let dashboardHtml = '';
+    let footerNote = '';
+
+    if (activeTab === 'radar') {
+      viewportHtml = `
+        <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Semiconductor Glossary Six Domain Radar">
+          <!-- 雷達圖中心 (cx=400, cy=200, r=130) -->
+          <g transform="translate(0, 0)">
+            <!-- 蜘蛛網同心多邊形 (6邊形) -->
+            ${[0.25, 0.5, 0.75, 1.0].map(s => {
+              const r = 130 * s;
+              const pts = [0, 1, 2, 3, 4, 5].map(i => {
+                const angle = (i * 60 - 90) * Math.PI / 180;
+                return `${400 + r * Math.cos(angle)},${200 + r * Math.sin(angle)}`;
+              }).join(' ');
+              return `<polygon points="${pts}" fill="none" stroke="#334155" stroke-width="1.2" stroke-dasharray="${s < 1 ? '3,3' : 'none'}"/>`;
+            }).join('')}
+
+            <!-- 6 根放射軸線 -->
+            ${[0, 1, 2, 3, 4, 5].map(i => {
+              const angle = (i * 60 - 90) * Math.PI / 180;
+              return `<line x1="400" y1="200" x2="${400 + 130 * Math.cos(angle)}" y2="${200 + 130 * Math.sin(angle)}" stroke="#475569" stroke-width="1.5"/>`;
+            }).join('')}
+
+            <!-- 雷達覆蓋區域 (245 筆術語分佈權重) -->
+            <!-- 0:微影 (85%), 1:薄膜 (90%), 2:蝕刻 (80%), 3:擴散/佈植 (75%), 4:良率檢測 (95%), 5:先進封裝 (88%) -->
+            ${(() => {
+              const weights = [0.85, 0.90, 0.80, 0.75, 0.95, 0.88];
+              const pts = weights.map((w, i) => {
+                const angle = (i * 60 - 90) * Math.PI / 180;
+                const r = 130 * w;
+                return `${400 + r * Math.cos(angle)},${200 + r * Math.sin(angle)}`;
+              }).join(' ');
+              return `
+                <polygon points="${pts}" fill="rgba(56, 189, 248, 0.25)" stroke="#38bdf8" stroke-width="2.5"/>
+                ${weights.map((w, i) => {
+                  const angle = (i * 60 - 90) * Math.PI / 180;
+                  const r = 130 * w;
+                  return `<circle cx="${400 + r * Math.cos(angle)}" cy="${200 + r * Math.sin(angle)}" r="5" fill="#f59e0b"/>`;
+                }).join('')}
+              `;
+            })()}
+
+            <!-- 6 大頂點文字標記 -->
+            <!-- 0 (頂部): 微影技術 -->
+            <text x="400" y="45" text-anchor="middle" fill="#38bdf8" font-size="12" font-weight="800">微影與圖形化 (Litho & Patterning)</text>
+            <text x="400" y="60" text-anchor="middle" fill="#94a3b8" font-size="10">EUV / NA / CD / Overlay (48 詞)</text>
+
+            <!-- 1 (右上): 薄膜沉積 -->
+            <text x="560" y="130" text-anchor="start" fill="#10b981" font-size="12" font-weight="800">薄膜沉積 (Thin Films)</text>
+            <text x="560" y="145" text-anchor="start" fill="#94a3b8" font-size="10">ALD / PVD / CVD / CMP (42 詞)</text>
+
+            <!-- 2 (右下): 電漿蝕刻 -->
+            <text x="560" y="275" text-anchor="start" fill="#f59e0b" font-size="12" font-weight="800">電漿蝕刻 (Plasma Etch)</text>
+            <text x="560" y="290" text-anchor="start" fill="#94a3b8" font-size="10">ICP / RIE / Selectivity (38 詞)</text>
+
+            <!-- 3 (底部): 擴散佈植 -->
+            <text x="400" y="360" text-anchor="middle" fill="#c084fc" font-size="12" font-weight="800">佈植與熱處理 (Implant & Thermal)</text>
+            <text x="400" y="375" text-anchor="middle" fill="#94a3b8" font-size="10">RTA / Junction / Channelling (32 詞)</text>
+
+            <!-- 4 (左下): 量測良率 -->
+            <text x="240" y="275" text-anchor="end" fill="#34d399" font-size="12" font-weight="800">線上量測與良率 (Metrology & Yield)</text>
+            <text x="240" y="290" text-anchor="end" fill="#94a3b8" font-size="10">CD-SEM / SPC / FIB / TEM (50 詞)</text>
+
+            <!-- 5 (左上): 先進封裝 -->
+            <text x="240" y="130" text-anchor="end" fill="#ec4899" font-size="12" font-weight="800">先進封裝 (Advanced Packaging)</text>
+            <text x="240" y="145" text-anchor="end" fill="#94a3b8" font-size="10">2.5D CoWoS / SoIC / TSV (35 詞)</text>
+          </g>
+        </svg>
+      `;
+
+      dashboardHtml = `
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">${t.app_glossary_metric_terms}</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-blue-dark);">245 條</div>
+          <div class="eng-obj-metric-note">涵蓋半導體製造全產業鏈核心語彙</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">${t.app_glossary_metric_domains}</div>
+          <div class="eng-obj-metric-value">6 大核心軸線</div>
+          <div class="eng-obj-metric-note">微影 · 薄膜 · 蝕刻 · 佈植 · 檢測 · 封裝</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">${t.app_glossary_metric_bilingual}</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-teal);">100% 雙語對齊</div>
+          <div class="eng-obj-metric-note">附權威英文縮寫與完整定義解釋</div>
+        </div>
+      `;
+
+      footerNote = t.app_glossary_radar_desc;
+    } else if (activeTab === 'galaxy') {
+      viewportHtml = `
+        <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Knowledge Galaxy Topological Network">
+          <g transform="translate(400, 210)">
+            <!-- 背景發光核心軌道 -->
+            <circle cx="0" cy="0" r="160" fill="none" stroke="#1e293b" stroke-width="1.5" stroke-dasharray="6,6"/>
+            <circle cx="0" cy="0" r="90" fill="none" stroke="#1e293b" stroke-width="1.5"/>
+
+            <!-- 中心太陽：300mm 晶圓實體 -->
+            <circle cx="0" cy="0" r="42" fill="#0f172a" stroke="#38bdf8" stroke-width="3"/>
+            <text x="0" y="5" text-anchor="middle" fill="#38bdf8" font-size="12" font-weight="800">300mm 晶圓</text>
+            <text x="0" y="20" text-anchor="middle" fill="#94a3b8" font-size="9">全域拓撲核心</text>
+
+            <!-- 環繞衛星節點 (6大星系群) -->
+            ${[
+              { name: '微影 Litho', color: '#38bdf8', angle: 0, r: 150 },
+              { name: '薄膜 CVD/ALD', color: '#10b981', angle: 60, r: 155 },
+              { name: '電漿蝕刻 Etch', color: '#f59e0b', angle: 120, r: 145 },
+              { name: '離子佈植 Implant', color: '#c084fc', angle: 180, r: 155 },
+              { name: 'SPC 良率控制', color: '#34d399', angle: 240, r: 150 },
+              { name: '3D 異質封裝', color: '#ec4899', angle: 300, r: 160 }
+            ].map(sat => {
+              const rad = sat.angle * Math.PI / 180;
+              const x = sat.r * Math.cos(rad);
+              const y = sat.r * Math.sin(rad);
+              return `
+                <line x1="0" y1="0" x2="${x}" y2="${y}" stroke="${sat.color}" stroke-width="1.5" opacity="0.4"/>
+                <g transform="translate(${x}, ${y})">
+                  <circle cx="0" cy="0" r="28" fill="#09131b" stroke="${sat.color}" stroke-width="2"/>
+                  <text x="0" y="4" text-anchor="middle" fill="${sat.color}" font-size="9.5" font-weight="750">${sat.name.split(' ')[0]}</text>
+                  <text x="0" y="16" text-anchor="middle" fill="#cbd5e1" font-size="8.5">${sat.name.split(' ')[1] || ''}</text>
+                </g>
+              `;
+            }).join('')}
+          </g>
+        </svg>
+      `;
+
+      dashboardHtml = `
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">跨章節關聯引用鏈</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-blue-dark);">&gt; 380 處</div>
+          <div class="eng-obj-metric-note">點擊術語可無縫跨章跳轉學習</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">最密集關鍵字</div>
+          <div class="eng-obj-metric-value">CD, CMP, SPC, GAA</div>
+          <div class="eng-obj-metric-note">半導體跨學科共通高頻術語</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">學習效率增益</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-teal);">+ 300% 脈絡理解</div>
+          <div class="eng-obj-metric-note">打通前後段與軟硬體知識邊界</div>
+        </div>
+      `;
+
+      footerNote = t.app_glossary_galaxy_desc;
+    } else {
+      // acronyms 矩陣
+      const topAcronyms = [
+        { ac: 'ALD', full: 'Atomic Layer Deposition', zh: '原子層沉積 (四步自限循環)' },
+        { ac: 'EUV', full: 'Extreme Ultraviolet', zh: '極紫外光微影 (13.5nm)' },
+        { ac: 'CMP', full: 'Chemical Mechanical Planarization', zh: '化學機械平坦化' },
+        { ac: 'TSV', full: 'Through-Silicon Via', zh: '矽穿孔 (先進封裝互連)' },
+        { ac: 'GAA', full: 'Gate-All-Around', zh: '全環繞閘極 (奈米片電晶體)' },
+        { ac: 'Cpk', full: 'Process Capability Index', zh: '製程能力指數 (目標≥1.67)' },
+        { ac: 'WAT', full: 'Wafer Acceptance Test', zh: '晶圓允收測試 (劃線區驗收)' },
+        { ac: 'OCAP', full: 'Out of Control Action Plan', zh: '失控應變作業準則' }
+      ];
+
+      viewportHtml = `
+        <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Top Semiconductor Acronyms Matrix">
+          <g transform="translate(60, 30)">
+            <text x="340" y="20" text-anchor="middle" fill="#38bdf8" font-size="13" font-weight="750">工程師必備高頻英語縮寫矩陣 (Top Industry Acronyms)</text>
+            <g transform="translate(0, 40)">
+              ${topAcronyms.map((item, idx) => {
+                const r = Math.floor(idx / 4);
+                const c = idx % 4;
+                return `
+                  <g transform="translate(${c * 175}, ${r * 140})">
+                    <rect x="0" y="0" width="165" height="120" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
+                    <rect x="0" y="0" width="165" height="36" rx="6" fill="#1e293b"/>
+                    <text x="82" y="24" text-anchor="middle" fill="#38bdf8" font-size="14" font-weight="800">${item.ac}</text>
+                    <text x="82" y="60" text-anchor="middle" fill="#10b981" font-size="10.5" font-weight="700">${item.full}</text>
+                    <text x="82" y="90" text-anchor="middle" fill="#cbd5e1" font-size="10">${item.zh}</text>
+                  </g>
+                `;
+              }).join('')}
+            </g>
+          </g>
+        </svg>
+      `;
+
+      dashboardHtml = `
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">收錄英文縮寫</div>
+          <div class="eng-obj-metric-value">&gt; 180 個</div>
+          <div class="eng-obj-metric-note">國際 SEMI 標準術語規範</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">常用會議行話縮寫</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-blue-dark);">Hold, WIP, OOC, Scrap</div>
+          <div class="eng-obj-metric-note">跨廠工程溝通零障礙</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">查詢與導覽相容</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-teal);">快捷鍵 J 鍵速開</div>
+          <div class="eng-obj-metric-note">任何頁面隨時召喚行話與術語字典</div>
+        </div>
+      `;
+
+      footerNote = t.app_glossary_radar_desc;
+    }
+
+    container.innerHTML = `
+      <section class="eng-obj-card" aria-labelledby="engObjGlossaryTitle">
+        <header class="eng-obj-header">
+          <div class="eng-obj-badge-row">
+            <span class="eng-obj-badge">${t.badge_prefix} · APPENDIX A</span>
+            <span class="eng-obj-status">${t.live_sim}</span>
+          </div>
+          <h2 class="eng-obj-title" id="engObjGlossaryTitle">${t.app_glossary_title}</h2>
+          <p class="eng-obj-subtitle">${t.app_glossary_sub}</p>
+        </header>
+
+        <div class="eng-obj-controls">
+          <div class="eng-obj-tab-group" role="tablist">
+            <button type="button" class="eng-obj-tab ${activeTab === 'radar' ? 'is-active' : ''}" data-tab="radar">${t.app_glossary_tab_radar}</button>
+            <button type="button" class="eng-obj-tab ${activeTab === 'galaxy' ? 'is-active' : ''}" data-tab="galaxy">${t.app_glossary_tab_galaxy}</button>
+            <button type="button" class="eng-obj-tab ${activeTab === 'acronyms' ? 'is-active' : ''}" data-tab="acronyms">${t.app_glossary_tab_acronyms}</button>
+          </div>
+        </div>
+
+        <div class="eng-obj-viewport">
+          ${viewportHtml}
+        </div>
+
+        <div class="eng-obj-dashboard">
+          ${dashboardHtml}
+        </div>
+
+        <footer class="eng-obj-footer-note">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+          <div>${footerNote}</div>
+        </footer>
+      </section>
+    `;
+
+    container.querySelectorAll('[data-tab]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        activeTab = btn.getAttribute('data-tab');
+        update();
+      });
+    });
+  }
+
+  update();
+}
+
+/**
+ * ══════════════════════════════════════════════════════════════════════════════
+ * 27. App-Jargon 附錄 B：晶圓廠現場黑話情境解碼器模型
+ * ══════════════════════════════════════════════════════════════════════════════
+ */
+export function renderFabJargonDecoderObject(container, lang = 'zh') {
+  const t = TEXTS[lang] || TEXTS.zh;
+  let activeTab = 'scenarios'; // 'scenarios' | 'culture' | 'decoder'
+  let selectedJargon = 'hold';
+
+  function update() {
+    let viewportHtml = '';
+    let dashboardHtml = '';
+    let footerNote = '';
+
+    if (activeTab === 'scenarios') {
+      viewportHtml = `
+        <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Fab High-Frequency Real Scenarios">
+          <g transform="translate(60, 40)">
+            <!-- 情境 1: 交接班 Handover -->
+            <g transform="translate(0, 0)">
+              <rect x="0" y="0" width="330" height="140" rx="6" fill="#0f172a" stroke="#38bdf8" stroke-width="2"/>
+              <rect x="0" y="0" width="330" height="32" rx="6" fill="#38bdf8"/>
+              <text x="165" y="21" text-anchor="middle" fill="#09131b" font-size="12" font-weight="800">1. 四班二輪交接班 (Shift Handover)</text>
+              <text x="15" y="55" fill="#f59e0b" font-size="11" font-weight="750">「卡批狀況與機台 Alarm 請務必逐項交接」</text>
+              <text x="15" y="78" fill="#cbd5e1" font-size="10">• 交代在線 WIP、當機機台 (Tool Down) 與等待 PM</text>
+              <text x="15" y="98" fill="#cbd5e1" font-size="10">• 確認 Hot Lot (急件批) 當前站點與天車優先級</text>
+              <text x="15" y="118" fill="#34d399" font-size="10" font-weight="700">✓ 核心原則：不留隱患給下一班，交接不清是最大殺手</text>
+            </g>
+
+            <!-- 情境 2: 帶線催貨 Expediting -->
+            <g transform="translate(350, 0)">
+              <rect x="0" y="0" width="330" height="140" rx="6" fill="#0f172a" stroke="#10b981" stroke-width="2"/>
+              <rect x="0" y="0" width="330" height="32" rx="6" fill="#10b981"/>
+              <text x="165" y="21" text-anchor="middle" fill="#09131b" font-size="12" font-weight="800">2. 帶線跑貨 (Lot Expediting)</text>
+              <text x="15" y="55" fill="#38bdf8" font-size="11" font-weight="750">「這批 Super Hot Run 客戶在催，一路綠燈通行」</text>
+              <text x="15" y="78" fill="#cbd5e1" font-size="10">• OHT 天車插隊搶先搬運，不進 Stocker 緩存倉</text>
+              <text x="15" y="98" fill="#cbd5e1" font-size="10">• 預先預約機台 Load Port，到站零等待直接進機</text>
+              <text x="15" y="118" fill="#38bdf8" font-size="10" font-weight="700">✓ 核心指標：極限壓縮 Cycle Time (生產週期)</text>
+            </g>
+
+            <!-- 情境 3: 機台警報 Tool Alarm -->
+            <g transform="translate(0, 160)">
+              <rect x="0" y="0" width="330" height="140" rx="6" fill="#0f172a" stroke="#ef4444" stroke-width="2"/>
+              <rect x="0" y="0" width="330" height="32" rx="6" fill="#ef4444"/>
+              <text x="165" y="21" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="800">3. 機台警報排除 (Tool Alarm)</text>
+              <text x="15" y="55" fill="#ef4444" font-size="11" font-weight="750">「Alarm 狂響先下 Hold，絕對不要盲目按 Clear！」</text>
+              <text x="15" y="78" fill="#cbd5e1" font-size="10">• 檢查真空值 (Vacuum)、射頻反射波 (Reflected Power)</text>
+              <text x="15" y="98" fill="#cbd5e1" font-size="10">• 若懷疑破片 (Wafer Breakage) 立即停機，不可移動晶圓</text>
+              <text x="15" y="118" fill="#ef4444" font-size="10" font-weight="700">✓ 核心原則：保全現場第一證據，啟動 OCAP 流程</text>
+            </g>
+
+            <!-- 情境 4: Q-Time 壓線急救 -->
+            <g transform="translate(350, 160)">
+              <rect x="0" y="0" width="330" height="140" rx="6" fill="#0f172a" stroke="#f59e0b" stroke-width="2"/>
+              <rect x="0" y="0" width="330" height="32" rx="6" fill="#f59e0b"/>
+              <text x="165" y="21" text-anchor="middle" fill="#09131b" font-size="12" font-weight="800">4. Q-Time 逾時壓線 (Q-Time Rush)</text>
+              <text x="15" y="55" fill="#f59e0b" font-size="11" font-weight="750">「剩 15 分鐘自然氧化層要長出來了，手刀推車！」</text>
+              <text x="15" y="78" fill="#cbd5e1" font-size="10">• 清洗出槽至高溫爐管嚴格限制 4 小時以內</text>
+              <text x="15" y="98" fill="#cbd5e1" font-size="10">• 倒數響起 MES 自動觸發高優先級調度</text>
+              <text x="15" y="118" fill="#10b981" font-size="10" font-weight="700">✓ 逾時後果：一旦超過 1 秒強制退回重新洗淨</text>
+            </g>
+          </g>
+        </svg>
+      `;
+
+      dashboardHtml = `
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">${t.app_jargon_metric_jargons}</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-blue-dark);">43 筆道地行話</div>
+          <div class="eng-obj-metric-note">台積電/聯電/世界先進晶圓廠原味術語</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">${t.app_jargon_metric_shifts}</div>
+          <div class="eng-obj-metric-value">四班二輪 (12hr)</div>
+          <div class="eng-obj-metric-note">日班 07:30-19:30 · 夜班 19:30-07:30</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">${t.app_jargon_metric_poka}</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-teal);">零疏失 (Zero Error)</div>
+          <div class="eng-obj-metric-note">黑話是現場最簡潔的抗失誤通訊協議</div>
+        </div>
+      `;
+
+      footerNote = t.app_jargon_scenarios_desc;
+    } else if (activeTab === 'culture') {
+      viewportHtml = `
+        <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Fab 24 Hours Shift Roster Clock">
+          <g transform="translate(400, 210)">
+            <!-- 24 小時時鐘外環 (直徑 320) -->
+            <circle cx="0" cy="0" r="140" fill="#09131b" stroke="#334155" stroke-width="16"/>
+
+            <!-- 上半圓：日班 Day Shift (07:30 - 19:30) -->
+            <path d="M -135,0 A 135,135 0 0,1 135,0" fill="none" stroke="#f59e0b" stroke-width="12"/>
+            <text x="0" y="-80" text-anchor="middle" fill="#f59e0b" font-size="14" font-weight="800">日班 (Day Shift) 07:30 ~ 19:30</text>
+            <text x="0" y="-60" text-anchor="middle" fill="#cbd5e1" font-size="10.5">晨會 · 帶線 · 異常批處置 · 製程實驗 (Split)</text>
+
+            <!-- 下半圓：夜班 Night Shift (19:30 - 07:30) -->
+            <path d="M 135,0 A 135,135 0 0,1 -135,0" fill="none" stroke="#38bdf8" stroke-width="12"/>
+            <text x="0" y="70" text-anchor="middle" fill="#38bdf8" font-size="14" font-weight="800">夜班 (Night Shift) 19:30 ~ 07:30</text>
+            <text x="0" y="90" text-anchor="middle" fill="#cbd5e1" font-size="10.5">全力跑貨 · 機台 PM 定期保養 · 突發除錯</text>
+
+            <!-- 交接班交接點 (07:30 & 19:30) -->
+            <circle cx="-135" cy="0" r="10" fill="#ef4444"/>
+            <text x="-155" y="5" text-anchor="end" fill="#ef4444" font-size="11" font-weight="800">07:30 早交接</text>
+
+            <circle cx="135" cy="0" r="10" fill="#ef4444"/>
+            <text x="155" y="5" text-anchor="start" fill="#ef4444" font-size="11" font-weight="800">19:30 晚交接</text>
+
+            <circle cx="0" cy="0" r="15" fill="#38bdf8"/>
+            <text x="0" y="4" text-anchor="middle" fill="#09131b" font-size="9" font-weight="800">365天</text>
+          </g>
+        </svg>
+      `;
+
+      dashboardHtml = `
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">全年運轉時數</div>
+          <div class="eng-obj-metric-value">8,760 小時</div>
+          <div class="eng-obj-metric-note">全年無休 · 即使農曆新年亦全速生產</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">交接黃金 30 分鐘</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-blue-dark);">資訊 100% 傳遞</div>
+          <div class="eng-obj-metric-note">口頭 + 電子交接簿 (E-Logbook) 雙重覆核</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">無塵服穿戴規範</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-teal);">&lt; 3 分鐘完成</div>
+          <div class="eng-obj-metric-note">防靜電連身服 + 護目鏡 + 雙層乳膠手套</div>
+        </div>
+      `;
+
+      footerNote = t.app_jargon_culture_desc;
+    } else {
+      // decoder 模式
+      const jargons = {
+        hold: { name: '卡批 / Hold 批', real: '系統級凍結晶圓批號，防止問題晶圓流入下一道站點', risk: '若未即時處置將引發下游產線斷料或 Q-Time 逾時報廢' },
+        broken: { name: '破片 (Wafer Break)', real: '晶圓在機械手臂搬運或腔體內碎裂成碎片', risk: '極度重大異常！電漿腔體與全線真空管道面臨微粒污染，需停機 PM 清機數天' },
+        qtime: { name: '壓線 (Q-Time Excursion)', real: '兩道工序等待時間即將超過物理上限 (如清洗至氧化)', risk: '超過時間自然氧化層會長出，導致金屬接觸電阻倍增或晶片失效' },
+        poka: { name: '防呆 (Poka-Yoke)', real: '機台透過條碼、RFID 與配方版本連鎖，阻絕一切人為操作失誤', risk: '嚴禁任何人私自繞過防呆開門，這是晶圓廠的最高天條' }
+      };
+      const cur = jargons[selectedJargon] || jargons.hold;
+
+      viewportHtml = `
+        <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Interactive Fab Jargon Decoder">
+          <!-- 上方黑話切換按鈕 -->
+          <g transform="translate(60, 20)">
+            ${Object.keys(jargons).map((k, i) => `
+              <g class="jargon-btn" data-jargon="${k}" style="cursor: pointer;" transform="translate(${i * 175}, 0)">
+                <rect x="0" y="0" width="165" height="30" rx="4" fill="${selectedJargon === k ? '#38bdf8' : '#1e293b'}" stroke="${selectedJargon === k ? '#ffffff' : '#334155'}" stroke-width="1.5"/>
+                <text x="82" y="19" text-anchor="middle" fill="${selectedJargon === k ? '#09131b' : '#cbd5e1'}" font-size="11.5" font-weight="750">${jargons[k].name.split(' ')[0]}</text>
+              </g>
+            `).join('')}
+          </g>
+
+          <!-- 中央：解碼卡片 -->
+          <g transform="translate(80, 75)">
+            <rect x="0" y="0" width="640" height="290" rx="8" fill="#09131b" stroke="#334155" stroke-width="1.5"/>
+
+            <text x="40" y="45" fill="#f59e0b" font-size="18" font-weight="800">現場口頭語：【${cur.name}】</text>
+
+            <rect x="40" y="70" width="560" height="75" rx="4" fill="#0f172a" stroke="#10b981" stroke-width="1"/>
+            <text x="60" y="95" fill="#10b981" font-size="12" font-weight="750">工程實質真義 (Engineering Truth)：</text>
+            <text x="60" y="125" fill="#cbd5e1" font-size="11.5">${cur.real}</text>
+
+            <rect x="40" y="165" width="560" height="75" rx="4" fill="#0f172a" stroke="#ef4444" stroke-width="1"/>
+            <text x="60" y="190" fill="#ef4444" font-size="12" font-weight="750">背後物理與品質風險 (Physical Risk)：</text>
+            <text x="60" y="220" fill="#cbd5e1" font-size="11.5">${cur.risk}</text>
+
+            <text x="320" y="270" text-anchor="middle" fill="#64748b" font-size="11">晶圓廠黑話不是無聊的密碼，而是千錘百鍊、防止百萬美元損失的工業安全防線</text>
+          </g>
+        </svg>
+      `;
+
+      dashboardHtml = `
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">現場黑話術語分類</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-blue-dark);">${cur.name.split('/')[0]}</div>
+          <div class="eng-obj-metric-note">即時直擊晶圓廠日常真實語境</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">風險層級</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-teal);">Critical 安全/良率</div>
+          <div class="eng-obj-metric-note">牽一髮動全身的製造防護線</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">對應標準作業書</div>
+          <div class="eng-obj-metric-value">Fab SOP / OCAP 規範</div>
+          <div class="eng-obj-metric-note">每一句黑話都有對應的嚴格作業規程</div>
+        </div>
+      `;
+
+      footerNote = t.app_jargon_scenarios_desc;
+    }
+
+    container.innerHTML = `
+      <section class="eng-obj-card" aria-labelledby="engObjJargonTitle">
+        <header class="eng-obj-header">
+          <div class="eng-obj-badge-row">
+            <span class="eng-obj-badge">${t.badge_prefix} · APPENDIX B</span>
+            <span class="eng-obj-status">${t.live_sim}</span>
+          </div>
+          <h2 class="eng-obj-title" id="engObjJargonTitle">${t.app_jargon_title}</h2>
+          <p class="eng-obj-subtitle">${t.app_jargon_sub}</p>
+        </header>
+
+        <div class="eng-obj-controls">
+          <div class="eng-obj-tab-group" role="tablist">
+            <button type="button" class="eng-obj-tab ${activeTab === 'scenarios' ? 'is-active' : ''}" data-tab="scenarios">${t.app_jargon_tab_scenarios}</button>
+            <button type="button" class="eng-obj-tab ${activeTab === 'culture' ? 'is-active' : ''}" data-tab="culture">${t.app_jargon_tab_culture}</button>
+            <button type="button" class="eng-obj-tab ${activeTab === 'decoder' ? 'is-active' : ''}" data-tab="decoder">${t.app_jargon_tab_decoder}</button>
+          </div>
+        </div>
+
+        <div class="eng-obj-viewport">
+          ${viewportHtml}
+        </div>
+
+        <div class="eng-obj-dashboard">
+          ${dashboardHtml}
+        </div>
+
+        <footer class="eng-obj-footer-note">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+          <div>${footerNote}</div>
+        </footer>
+      </section>
+    `;
+
+    container.querySelectorAll('[data-tab]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        activeTab = btn.getAttribute('data-tab');
+        update();
+      });
+    });
+
+    container.querySelectorAll('.jargon-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        selectedJargon = btn.getAttribute('data-jargon');
+        update();
+      });
+    });
+  }
+
+  update();
+}
+
+/**
+ * ══════════════════════════════════════════════════════════════════════════════
+ * 28. App-Reading 附錄 C：半導體工程師技能樹與階梯路徑圖模型
+ * ══════════════════════════════════════════════════════════════════════════════
+ */
+export function renderMasteryRoadmapObject(container, lang = 'zh') {
+  const t = TEXTS[lang] || TEXTS.zh;
+  let activeTab = 'tree'; // 'tree' | 'classics' | 'cert'
+  let selectedLevel = 2; // 1, 2, 3, 4
+
+  function update() {
+    let viewportHtml = '';
+    let dashboardHtml = '';
+    let footerNote = '';
+
+    if (activeTab === 'tree') {
+      const levels = [
+        { lvl: 'L1', title: '零基礎新手入門 (Freshman)', desc: '矽晶圓長晶切拋、Class 1 無塵室規範、基礎物理與 CMOS 電晶體基本運作原理', ch: 'Ch 00 ~ Ch 03' },
+        { lvl: 'L2', title: '製程模組工程師 (Module Engineer)', desc: '微影光路與光阻化學、薄膜沉積 (ALD/PVD/CVD)、電漿蝕刻腔體、CMP 運動學與離子佈植', ch: 'Ch 04 ~ Ch 10' },
+        { lvl: 'L3', title: '製程整合與良率專家 (PIE / Yield)', desc: '完整 CMOS 整合迴路、WAT 劃線道 PCM 測試、CP 針測、SPC 3σ 管制、缺陷圖譜與 OCAP 應變', ch: 'Ch 11 ~ Ch 19' },
+        { lvl: 'L4', title: '首席晶片架構師 (Chief Architect)', desc: '2.5D CoWoS 與 3D SoIC 先進封裝、DTCO 微縮設計、智慧製造 MES 調度、DVFS 與軟韌體硬體真相', ch: 'Ch 20 ~ Ch 24' }
+      ];
+
+      viewportHtml = `
+        <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Semiconductor Engineer Career Mastery Tree">
+          <g transform="translate(60, 30)">
+            <text x="340" y="20" text-anchor="middle" fill="#38bdf8" font-size="13" font-weight="750">半導體工程師四階階梯式技能修煉樹 (Engineer Mastery Tree)</text>
+
+            <!-- 垂直進階梯形階梯 (從 L1 底到 L4 頂) -->
+            <g transform="translate(40, 45)">
+              ${levels.map((item, idx) => {
+                const isSelected = selectedLevel === (idx + 1);
+                const y = idx * 75;
+                return `
+                  <g class="level-bar" data-level="${idx + 1}" style="cursor: pointer;" transform="translate(0, ${y})">
+                    <rect x="0" y="0" width="600" height="65" rx="6" fill="${isSelected ? '#1e293b' : '#0f172a'}" stroke="${isSelected ? '#38bdf8' : '#334155'}" stroke-width="${isSelected ? 2.5 : 1}"/>
+                    <!-- 左側徽章 -->
+                    <rect x="15" y="12" width="48" height="40" rx="4" fill="${isSelected ? '#38bdf8' : '#334155'}"/>
+                    <text x="39" y="37" text-anchor="middle" fill="${isSelected ? '#09131b' : '#cbd5e1'}" font-size="16" font-weight="800">${item.lvl}</text>
+                    <!-- 標題與對應章節 -->
+                    <text x="75" y="28" fill="${isSelected ? '#38bdf8' : '#ffffff'}" font-size="12" font-weight="750">${item.title}</text>
+                    <text x="580" y="28" text-anchor="end" fill="#f59e0b" font-size="11" font-weight="700">${item.ch}</text>
+                    <text x="75" y="48" fill="#94a3b8" font-size="10.5">${item.desc}</text>
+                  </g>
+                `;
+              }).join('')}
+            </g>
+          </g>
+        </svg>
+      `;
+
+      dashboardHtml = `
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">當前選中技能等級</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-blue-dark);">${levels[selectedLevel - 1].lvl}</div>
+          <div class="eng-obj-metric-note">${levels[selectedLevel - 1].title.split(' ')[0]}</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">修煉對應章節</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-teal);">${levels[selectedLevel - 1].ch}</div>
+          <div class="eng-obj-metric-note">配備專屬微觀物理機制工程物件</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">核心第一性原理</div>
+          <div class="eng-obj-metric-value">微觀物理 + 統計管制</div>
+          <div class="eng-obj-metric-note">從原子層到百億晶體統計良率</div>
+        </div>
+      `;
+
+      footerNote = t.app_reading_tree_desc;
+    } else if (activeTab === 'classics') {
+      const bibles = [
+        { author: 'S. M. Sze (施敏)', title: 'Physics of Semiconductor Devices', zh: '《半導體元件物理》全球權威聖經' },
+        { author: 'Stephen A. Campbell', title: 'The Science and Engineering of Microelectronic Fabrication', zh: '《微電子製造科學與工程》製程技術經典' },
+        { author: 'James D. Plummer', title: 'Silicon VLSI Technology', zh: '《矽 VLSI 技術：基礎、實作與模型》史丹佛殿堂教材' },
+        { author: 'Dieter K. Schroder', title: 'Semiconductor Material and Device Characterization', zh: '《半導體材料與元件量測特性分析》檢測百科' }
+      ];
+
+      viewportHtml = `
+        <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Semiconductor Classic Bibles">
+          <g transform="translate(60, 30)">
+            <text x="340" y="20" text-anchor="middle" fill="#38bdf8" font-size="13" font-weight="750">站在巨人的肩膀上：四大半導體全球公認聖經著作 (Classic Bibles)</text>
+            <g transform="translate(0, 40)">
+              ${bibles.map((b, idx) => {
+                const y = idx * 75;
+                return `
+                  <g transform="translate(0, ${y})">
+                    <rect x="0" y="0" width="680" height="65" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
+                    <rect x="15" y="12" width="36" height="40" rx="3" fill="#10b981"/>
+                    <text x="33" y="36" text-anchor="middle" fill="#09131b" font-size="14" font-weight="800">#${idx + 1}</text>
+                    <text x="65" y="28" fill="#38bdf8" font-size="12" font-weight="750">${b.title}</text>
+                    <text x="65" y="48" fill="#cbd5e1" font-size="10.5">${b.zh}</text>
+                    <text x="660" y="38" text-anchor="end" fill="#f59e0b" font-size="11" font-weight="700">${b.author}</text>
+                  </g>
+                `;
+              }).join('')}
+            </g>
+          </g>
+        </svg>
+      `;
+
+      dashboardHtml = `
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">${t.app_reading_metric_bibles}</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-blue-dark);">4 大聖經巨著</div>
+          <div class="eng-obj-metric-note">半導體物理、製程、量測三足鼎立</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">理論永恆度</div>
+          <div class="eng-obj-metric-value">歷久彌新 50+ 年</div>
+          <div class="eng-obj-metric-note">摩爾定律微縮背後不變的物理定律</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">建議研讀方式</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-teal);">本站導覽 + 聖經深入</div>
+          <div class="eng-obj-metric-note">本站作為快速全景地圖，聖經作為微積分深度推導</div>
+        </div>
+      `;
+
+      footerNote = t.app_reading_classics_desc;
+    } else {
+      // cert 模式 (第一性原理)
+      viewportHtml = `
+        <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="First Principles Mindset Roadmap">
+          <g transform="translate(60, 40)">
+            <text x="340" y="20" text-anchor="middle" fill="#38bdf8" font-size="13" font-weight="750">半導體工程師的核心第一性原理思維藍圖 (First Principles)</text>
+
+            <g transform="translate(20, 50)">
+              <!-- 維度 1 -->
+              <g transform="translate(0, 0)">
+                <rect x="0" y="0" width="300" height="110" rx="6" fill="#0f172a" stroke="#38bdf8" stroke-width="1.5"/>
+                <text x="20" y="28" fill="#38bdf8" font-size="12" font-weight="750">1. 微觀物理熱力學第一性原理</text>
+                <text x="20" y="52" fill="#cbd5e1" font-size="10">• 能帶量子穿隧、化學反應活化能 (Arrhenius)</text>
+                <text x="20" y="72" fill="#cbd5e1" font-size="10">• Preston CMP 摩擦磨削動能平衡</text>
+                <text x="20" y="92" fill="#94a3b8" font-size="10">⇒ 任何異常都可以拆解為微觀力熱光電反應</text>
+              </g>
+
+              <!-- 維度 2 -->
+              <g transform="translate(340, 0)">
+                <rect x="0" y="0" width="300" height="110" rx="6" fill="#0f172a" stroke="#10b981" stroke-width="1.5"/>
+                <text x="20" y="28" fill="#10b981" font-size="12" font-weight="750">2. 天文尺度下的統計管制紀律</text>
+                <text x="20" y="52" fill="#cbd5e1" font-size="10">• 單片 300mm 晶圓含數百億電晶體</text>
+                <text x="20" y="72" fill="#cbd5e1" font-size="10">• 6-Sigma Cpk ≥ 1.67、WECO 八大判異</text>
+                <text x="20" y="92" fill="#94a3b8" font-size="10">⇒ 不相信運氣，只相信數據與常態分佈</text>
+              </g>
+
+              <!-- 維度 3 -->
+              <g transform="translate(0, 130)">
+                <rect x="0" y="0" width="300" height="110" rx="6" fill="#0f172a" stroke="#f59e0b" stroke-width="1.5"/>
+                <text x="20" y="28" fill="#f59e0b" font-size="12" font-weight="750">3. 跨模組製程協同效應 (DTCO)</text>
+                <text x="20" y="52" fill="#cbd5e1" font-size="10">• 微影解析度受限於蝕刻側壁鈍化</text>
+                <text x="20" y="72" fill="#cbd5e1" font-size="10">• 封裝應力反向影響矽晶片電晶體遷移率</text>
+                <text x="20" y="92" fill="#94a3b8" font-size="10">⇒ 絕不能只守著自己的單一站台當井底之蛙</text>
+              </g>
+
+              <!-- 維度 4 -->
+              <g transform="translate(340, 130)">
+                <rect x="0" y="0" width="300" height="110" rx="6" fill="#ec4899" stroke="#ec4899" stroke-width="1.5"/>
+                <text x="20" y="28" fill="#ec4899" font-size="12" font-weight="750">4. 軟韌體與硬體真實物理邊界</text>
+                <text x="20" y="52" fill="#cbd5e1" font-size="10">• DRAM Row Hammer 漏電翻轉真實存在</text>
+                <text x="20" y="72" fill="#cbd5e1" font-size="10">• IR Drop 壓降與 PVT 工藝角決定軟體極限</text>
+                <text x="20" y="92" fill="#94a3b8" font-size="10">⇒ 優秀架構師必須穿透抽象層看見矽晶片本體</text>
+              </g>
+            </g>
+          </g>
+        </svg>
+      `;
+
+      dashboardHtml = `
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">${t.app_reading_metric_mindset}</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-blue-dark);">4 大思維支柱</div>
+          <div class="eng-obj-metric-note">物理 · 統計 · 跨模組 · 軟硬體貫通</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">工程解決能力</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-teal);">8D 根因分析</div>
+          <div class="eng-obj-metric-note">永遠追溯物理機理，杜絕盲改與止血掩蓋</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">終極目標</div>
+          <div class="eng-obj-metric-value">全域系統性卓越</div>
+          <div class="eng-obj-metric-note">在極致物理極限中創造人類最強算力</div>
+        </div>
+      `;
+
+      footerNote = t.app_reading_tree_desc;
+    }
+
+    container.innerHTML = `
+      <section class="eng-obj-card" aria-labelledby="engObjReadingTitle">
+        <header class="eng-obj-header">
+          <div class="eng-obj-badge-row">
+            <span class="eng-obj-badge">${t.badge_prefix} · APPENDIX C</span>
+            <span class="eng-obj-status">${t.live_sim}</span>
+          </div>
+          <h2 class="eng-obj-title" id="engObjReadingTitle">${t.app_reading_title}</h2>
+          <p class="eng-obj-subtitle">${t.app_reading_sub}</p>
+        </header>
+
+        <div class="eng-obj-controls">
+          <div class="eng-obj-tab-group" role="tablist">
+            <button type="button" class="eng-obj-tab ${activeTab === 'tree' ? 'is-active' : ''}" data-tab="tree">${t.app_reading_tab_tree}</button>
+            <button type="button" class="eng-obj-tab ${activeTab === 'classics' ? 'is-active' : ''}" data-tab="classics">${t.app_reading_tab_classics}</button>
+            <button type="button" class="eng-obj-tab ${activeTab === 'cert' ? 'is-active' : ''}" data-tab="cert">${t.app_reading_tab_cert}</button>
+          </div>
+        </div>
+
+        <div class="eng-obj-viewport">
+          ${viewportHtml}
+        </div>
+
+        <div class="eng-obj-dashboard">
+          ${dashboardHtml}
+        </div>
+
+        <footer class="eng-obj-footer-note">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+          <div>${footerNote}</div>
+        </footer>
+      </section>
+    `;
+
+    container.querySelectorAll('[data-tab]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        activeTab = btn.getAttribute('data-tab');
+        update();
+      });
+    });
+
+    container.querySelectorAll('.level-bar').forEach(btn => {
+      btn.addEventListener('click', () => {
+        selectedLevel = parseInt(btn.getAttribute('data-level'), 10);
+        update();
+      });
+    });
+  }
+
+  update();
+}
+
+/**
+ * ══════════════════════════════════════════════════════════════════════════════
+ * 總調度入口 (Unified Mount Orchestrator) — 覆蓋全站 25 正式章 + 3 附錄 = 28 全模組 100% 滿貫
  * ══════════════════════════════════════════════════════════════════════════════
  */
 export function mountEngineeringObject(chId, container, lang = 'zh') {
@@ -8074,9 +9090,94 @@ export function mountEngineeringObject(chId, container, lang = 'zh') {
     renderSmartFabAutomationObject(container, lang);
   } else if (chId === 'ch24') {
     renderSoftwareHardwareTruthObject(container, lang);
+  } else if (chId === 'app-glossary') {
+    renderGlossaryGalaxyObject(container, lang);
+  } else if (chId === 'app-jargon') {
+    renderFabJargonDecoderObject(container, lang);
+  } else if (chId === 'app-reading') {
+    renderMasteryRoadmapObject(container, lang);
+  }
+
+  // 統一掛載 Fullscreen HUD 與 SVG 向量複製動作群
+  const card = container.querySelector ? container.querySelector('.eng-obj-card') : null;
+  if (card) {
+    attachCardHudActions(card, lang);
   }
 }
 
+/**
+ * 專業工程 HUD 控制項 (一鍵全螢幕檢視 + 一鍵複製向量 SVG 代碼)
+ */
+function attachCardHudActions(cardEl, lang) {
+  if (!cardEl || !cardEl.querySelector) return;
+  const t = TEXTS[lang] || TEXTS.zh;
+  
+  let hudActions = cardEl.querySelector('.eng-obj-hud-actions');
+  if (!hudActions) {
+    const badgeRow = cardEl.querySelector('.eng-obj-badge-row');
+    if (badgeRow && badgeRow.appendChild) {
+      hudActions = document.createElement('div');
+      hudActions.className = 'eng-obj-hud-actions';
+      hudActions.innerHTML = `
+        <button type="button" class="eng-obj-hud-btn" data-action="fullscreen" title="${t.btn_fullscreen}">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+          <span class="hud-btn-text">${t.btn_fullscreen}</span>
+        </button>
+        <button type="button" class="eng-obj-hud-btn" data-action="copy-svg" title="${t.btn_copy_svg}">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          <span class="hud-btn-text">${t.btn_copy_svg}</span>
+        </button>
+      `;
+      badgeRow.appendChild(hudActions);
+    }
+  }
 
+  if (hudActions && hudActions.querySelector) {
+    const fsBtn = hudActions.querySelector('[data-action="fullscreen"]');
+    if (fsBtn) {
+      fsBtn.onclick = (e) => {
+        if (e && e.stopPropagation) e.stopPropagation();
+        const isFs = cardEl.classList.toggle('is-fullscreen');
+        const textSpan = fsBtn.querySelector('.hud-btn-text');
+        if (textSpan) {
+          textSpan.textContent = isFs ? t.btn_fullscreen_exit : t.btn_fullscreen;
+        }
+        if (typeof document !== 'undefined' && document.body) {
+          if (isFs) {
+            document.body.style.overflow = 'hidden';
+            const onKey = (ev) => {
+              if (ev.key === 'Escape') {
+                cardEl.classList.remove('is-fullscreen');
+                if (textSpan) textSpan.textContent = t.btn_fullscreen;
+                document.body.style.overflow = '';
+                window.removeEventListener('keydown', onKey);
+              }
+            };
+            window.addEventListener('keydown', onKey);
+          } else {
+            document.body.style.overflow = '';
+          }
+        }
+      };
+    }
 
-
+    const copyBtn = hudActions.querySelector('[data-action="copy-svg"]');
+    if (copyBtn) {
+      copyBtn.onclick = (e) => {
+        if (e && e.stopPropagation) e.stopPropagation();
+        const svgEl = cardEl.querySelector('.eng-obj-viewport svg');
+        if (svgEl && typeof navigator !== 'undefined' && navigator.clipboard) {
+          const svgCode = svgEl.outerHTML;
+          navigator.clipboard.writeText(svgCode).then(() => {
+            const textSpan = copyBtn.querySelector('.hud-btn-text');
+            if (textSpan) {
+              const orig = textSpan.textContent;
+              textSpan.textContent = t.btn_copied_svg;
+              setTimeout(() => { textSpan.textContent = orig; }, 2000);
+            }
+          });
+        }
+      };
+    }
+  }
+}

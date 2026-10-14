@@ -196,12 +196,14 @@ import { mountEngineeringObject } from './工程物件.js';
   // 本地偏好記憶
   const READ_STORAGE_KEY = 'semi_read_chapters';
   const BOOKMARK_STORAGE_KEY = 'semi_bookmarked_chapters';
+  const EXPLORED_STORAGE_KEY = 'semi_explored_models';
   const FONT_STORAGE_KEY = 'semi_font_size';
   const LANG_STORAGE_KEY = 'semi_preferred_lang';
 
   let currentLang = localStorage.getItem(LANG_STORAGE_KEY) || 'zh';
   const readChapters = new Set(JSON.parse(localStorage.getItem(READ_STORAGE_KEY) || '[]'));
   const bookmarkedChapters = new Set(JSON.parse(localStorage.getItem(BOOKMARK_STORAGE_KEY) || '[]'));
+  const exploredModels = new Set(JSON.parse(localStorage.getItem(EXPLORED_STORAGE_KEY) || '[]'));
   let currentFontSize = parseFloat(localStorage.getItem(FONT_STORAGE_KEY) || '16.5');
 
   // DOM 節點快取
@@ -313,7 +315,39 @@ import { mountEngineeringObject } from './工程物件.js';
       } else {
         link.removeAttribute('aria-current');
       }
+
+      const targetId = link.getAttribute('data-ch-id');
+      const badgeWrap = link.querySelector('.ch-status-indicators');
+      if (badgeWrap && exploredModels.has(targetId) && !badgeWrap.querySelector('.explored-model-badge')) {
+        const badge = document.createElement('span');
+        badge.className = 'explored-model-badge';
+        badge.title = currentLang === 'en' ? 'Interactive physical model explored' : '已完成微觀物理模型互動探索';
+        badge.textContent = '⚡';
+        badgeWrap.prepend(badge);
+      }
     });
+  }
+
+  /**
+   * 標記章節工程物件模型為已探索
+   */
+  function markModelExplored(chId) {
+    if (!chId || exploredModels.has(chId)) return;
+    exploredModels.add(chId);
+    try {
+      localStorage.setItem(EXPLORED_STORAGE_KEY, JSON.stringify([...exploredModels]));
+    } catch (_) {}
+    if (sidebarNavEl) {
+      sidebarNavEl.querySelectorAll(`.chapter-nav-link[data-ch-id="${chId}"] .ch-status-indicators`).forEach(wrap => {
+        if (!wrap.querySelector('.explored-model-badge')) {
+          const badge = document.createElement('span');
+          badge.className = 'explored-model-badge';
+          badge.title = currentLang === 'en' ? 'Interactive physical model explored' : '已完成微觀物理模型互動探索';
+          badge.textContent = '⚡';
+          wrap.prepend(badge);
+        }
+      });
+    }
   }
 
   /**
@@ -383,6 +417,7 @@ import { mountEngineeringObject } from './工程物件.js';
         const isActive = ch.id === currentChapterId;
         const isRead = readChapters.has(ch.id);
         const isStarred = bookmarkedChapters.has(ch.id);
+        const isExplored = exploredModels.has(ch.id);
         const numStr = ch.num < 10 ? `0${ch.num}` : `${ch.num}`;
         const prefix = ch.id.startsWith('app') ? t.appendix_prefix : `CH ${numStr}`;
         html += `
@@ -392,7 +427,8 @@ import { mountEngineeringObject } from './工程物件.js';
                 <span class="ch-number">${prefix}</span>
                 <span>${escapeHtml(ch.shortTitle)}</span>
               </span>
-              <span style="display: flex; align-items: center;">
+              <span class="ch-status-indicators" style="display: flex; align-items: center; gap: 3px;">
+                ${isExplored ? `<span class="explored-model-badge" title="${currentLang === 'en' ? 'Interactive physical model explored' : '已完成微觀物理模型互動探索'}">⚡</span>` : ''}
                 ${isStarred ? `<span class="star-indicator" title="${t.indicator_starred}">★</span>` : ''}
                 ${isRead ? `<span class="read-check-indicator" title="${t.indicator_completed}">✓</span>` : ''}
               </span>
@@ -527,10 +563,8 @@ import { mountEngineeringObject } from './工程物件.js';
     renderMermaidDiagrams();
     attachCodeCopyButtons();
 
-    // 若為核心製程章節，掛載精細互動工程物件模型 (Ch 04, 05, 06, 07, 08, 10, 12, 21)
-    if (['ch04', 'ch05', 'ch06', 'ch07', 'ch08', 'ch10', 'ch12', 'ch21'].includes(chapter.id)) {
-      attachEngineeringObjectModel(chapter.id, currentLang);
-    }
+    // 掛載全站專屬精細互動工程物件模型 (覆蓋全站 25 正式章 + 3 附錄 = 28 全模組 100% 滿貫)
+    attachEngineeringObjectModel(chapter.id, currentLang);
 
     // 捲動至頁首
     window.scrollTo({ top: 0, behavior: 'instant' });
@@ -614,14 +648,92 @@ import { mountEngineeringObject } from './工程物件.js';
   }, { passive: true });
 
   /**
-   * 5. 渲染製程全景圖譜 (Atlas Modal)
+   * 5. 渲染製程全景圖譜 (Atlas 2.0 Modal) — 動態晶圓剖面流與深度模型直達
    */
   function renderAtlasModal() {
     if (!atlasGridEl) return;
     const isEn = currentLang === 'en';
     const t = I18N[currentLang] || I18N.zh;
-    let html = '';
+    const waferSvgEl = document.getElementById('atlasWaferSvg');
+    const badgeEl = document.getElementById('atlasStreamStepBadge');
+    const titleEl = document.getElementById('atlasStreamTitleText');
 
+    function renderAtlasWaferCrossSection(stepNum = 1) {
+      if (!waferSvgEl) return;
+      const progress = Math.max(1, Math.min(12, stepNum));
+      
+      let layersHtml = '';
+      // 基底矽晶圓
+      layersHtml += `<rect x="60" y="70" width="880" height="35" rx="3" fill="#1e293b" stroke="#475569" stroke-width="1.5"/>`;
+      layersHtml += `<text x="500" y="92" text-anchor="middle" fill="#94a3b8" font-size="11" font-family="sans-serif">單晶矽基底 (Si Substrate)</text>`;
+
+      if (progress >= 2) {
+        // 氧化層
+        layersHtml += `<rect x="60" y="62" width="880" height="8" fill="#0284c7" opacity="0.8"/>`;
+      }
+      if (progress >= 3) {
+        // 微影光阻層與開口
+        layersHtml += `
+          <rect x="60" y="46" width="380" height="16" fill="#f59e0b" opacity="0.85"/>
+          <rect x="560" y="46" width="380" height="16" fill="#f59e0b" opacity="0.85"/>
+          <text x="500" y="58" text-anchor="middle" fill="#38bdf8" font-size="10" font-weight="700">微影開窗 (Litho Opening)</text>
+        `;
+      }
+      if (progress >= 4) {
+        // 蝕刻深槽
+        layersHtml += `<rect x="440" y="62" width="120" height="25" fill="#090e17" stroke="#38bdf8" stroke-dasharray="2 2"/>`;
+      }
+      if (progress >= 5) {
+        // 離子摻雜區 (源極/汲極)
+        layersHtml += `
+          <rect x="360" y="70" width="70" height="15" fill="#10b981" opacity="0.75"/>
+          <rect x="570" y="70" width="70" height="15" fill="#10b981" opacity="0.75"/>
+        `;
+      }
+      if (progress >= 6) {
+        // ALD 閘極介電與金屬閘
+        layersHtml += `<rect x="440" y="70" width="120" height="17" fill="#f59e0b" opacity="0.9"/>`;
+      }
+      if (progress >= 7) {
+        // CMP 平坦化平整標記
+        layersHtml += `<line x1="60" y1="46" x2="940" y2="46" stroke="#10b981" stroke-width="2"/>`;
+      }
+      if (progress >= 8) {
+        // 銅金屬化雙鑲嵌導線 (M1, M2)
+        layersHtml += `
+          <rect x="200" y="22" width="60" height="24" fill="#f59e0b"/>
+          <rect x="470" y="22" width="60" height="24" fill="#f59e0b"/>
+          <rect x="740" y="22" width="60" height="24" fill="#f59e0b"/>
+          <line x1="500" y1="46" x2="500" y2="70" stroke="#f59e0b" stroke-width="6"/>
+        `;
+      }
+      if (progress >= 9) {
+        // 檢測光束指示
+        layersHtml += `<line x1="500" y1="0" x2="500" y2="22" stroke="#38bdf8" stroke-width="2" stroke-dasharray="3 2"/>`;
+      }
+      if (progress >= 10) {
+        // CP 測試觸地標記
+        layersHtml += `<circle cx="230" cy="22" r="4" fill="#10b981"/><circle cx="500" cy="22" r="4" fill="#10b981"/>`;
+      }
+      if (progress >= 11) {
+        // 切割道
+        layersHtml += `<line x1="330" y1="10" x2="330" y2="105" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="4 2"/>`;
+      }
+      if (progress >= 12) {
+        // 微凸塊 Micro-bump (先進封裝)
+        layersHtml += `
+          <circle cx="230" cy="14" r="8" fill="#e2e8f0" stroke="#0284c7" stroke-width="2"/>
+          <circle cx="500" cy="14" r="8" fill="#e2e8f0" stroke="#0284c7" stroke-width="2"/>
+          <circle cx="770" cy="14" r="8" fill="#e2e8f0" stroke="#0284c7" stroke-width="2"/>
+        `;
+      }
+
+      waferSvgEl.innerHTML = layersHtml;
+    }
+
+    renderAtlasWaferCrossSection(1);
+
+    let html = '';
     FAB_FLOW_NODES.forEach(node => {
       const name = isEn ? (node.nameEn || node.nameZh) : node.nameZh;
       const chTitle = isEn ? (node.chapterTitleEn || node.chapterTitleZh || node.chapterTitle) : (node.chapterTitleZh || node.chapterTitle);
@@ -629,7 +741,7 @@ import { mountEngineeringObject } from './工程物件.js';
       const keyTool = isEn ? (node.keyToolEn || node.keyToolZh || node.keyTool) : (node.keyToolZh || node.keyTool);
 
       html += `
-        <button type="button" class="atlas-card" data-jump-ch="${node.chapterId}">
+        <button type="button" class="atlas-card" data-jump-ch="${node.chapterId}" data-step-num="${node.num}">
           <div>
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
               <span class="atlas-step-num">STEP ${node.num}</span>
@@ -638,14 +750,47 @@ import { mountEngineeringObject } from './工程物件.js';
             <h3 class="atlas-card-title">${escapeHtml(name)}</h3>
             <p class="atlas-card-desc">${escapeHtml(summary)}</p>
           </div>
-          <div class="atlas-card-meta">
-            <div><strong>${t.tool_label}</strong>${escapeHtml(keyTool)}</div>
-            <div><strong>${t.module_label}</strong>${escapeHtml(chTitle)}</div>
+          <div>
+            <div class="atlas-card-meta">
+              <div><strong>${t.tool_label}</strong>${escapeHtml(keyTool)}</div>
+              <div><strong>${t.module_label}</strong>${escapeHtml(chTitle)}</div>
+            </div>
+            <div class="atlas-jump-badge">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              <span>${isEn ? 'Explore Microscopic Model →' : '探索微觀工程模型 →'}</span>
+            </div>
           </div>
         </button>
       `;
     });
     atlasGridEl.innerHTML = html;
+
+    // 綁定 Hover 晶圓剖面演變與點擊直達
+    atlasGridEl.querySelectorAll('.atlas-card').forEach(card => {
+      const stepNum = parseInt(card.getAttribute('data-step-num'), 10);
+      const chId = card.getAttribute('data-jump-ch');
+      const node = FAB_FLOW_NODES.find(n => n.num === stepNum);
+
+      card.addEventListener('mouseenter', () => {
+        renderAtlasWaferCrossSection(stepNum);
+        if (badgeEl && node) {
+          badgeEl.textContent = `STEP ${node.num} · ${isEn ? (node.nameEn || node.nameZh) : node.nameZh}`;
+        }
+      });
+
+      card.addEventListener('click', () => {
+        if (atlasModalEl) atlasModalEl.classList.remove('is-open');
+        window.location.hash = chId;
+        setTimeout(() => {
+          const mountEl = mainCanvasEl.querySelector('.engineering-object-mount');
+          if (mountEl) {
+            mountEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            mountEl.classList.add('flash-highlight');
+            setTimeout(() => mountEl.classList.remove('flash-highlight'), 2000);
+          }
+        }, 150);
+      });
+    });
   }
 
   /**
@@ -781,11 +926,21 @@ import { mountEngineeringObject } from './工程物件.js';
       const snippet = isEn ? (hit.snippetEn || hit.snippet) : hit.snippet;
 
       html += `
-        <button type="button" class="jargon-item-card search-result-button" data-search-target="${hit.chId}" style="cursor: pointer; margin-bottom: 8px;">
-          <div style="font-size: 11px; font-weight: 700; color: var(--semi-blue);">${escapeHtml(part)}</div>
-          <div class="jargon-term">${escapeHtml(title)}</div>
-          <div class="jargon-meaning" style="font-size: 13px;">${escapeHtml(snippet)}...</div>
-        </button>
+        <div class="jargon-item-card search-result-item" style="margin-bottom: 10px; padding: 12px 14px; text-align: left;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; flex-wrap: wrap; gap: 6px;">
+            <span style="font-size: 11px; font-weight: 700; color: var(--semi-blue);">${escapeHtml(part)}</span>
+            <div style="display: flex; align-items: center; gap: 6px;">
+              <button type="button" class="search-direct-model-btn" data-search-target="${hit.chId}" data-jump-model="true" style="display: inline-flex; align-items: center; gap: 4px; font-size: 11px; padding: 3px 8px; background: rgba(56, 189, 248, 0.12); color: #0284c7; border: 1px solid rgba(56, 189, 248, 0.35); border-radius: 4px; font-weight: 600; cursor: pointer;">
+                ⚡ ${isEn ? 'Direct to Model' : '直達微觀模型'}
+              </button>
+              <button type="button" class="search-read-chapter-btn" data-search-target="${hit.chId}" data-jump-model="false" style="display: inline-flex; align-items: center; gap: 4px; font-size: 11px; padding: 3px 8px; background: var(--bg-hover); color: var(--text-secondary); border: 1px solid var(--border-color); border-radius: 4px; font-weight: 600; cursor: pointer;">
+                📖 ${isEn ? 'Read Chapter' : '閱讀本章'}
+              </button>
+            </div>
+          </div>
+          <div class="jargon-term" style="cursor: pointer;" data-search-target="${hit.chId}" data-jump-model="false">${escapeHtml(title)}</div>
+          <div class="jargon-meaning" style="font-size: 13px; cursor: pointer;" data-search-target="${hit.chId}" data-jump-model="false">${escapeHtml(snippet)}...</div>
+        </div>
       `;
     });
     searchResultsEl.innerHTML = html;
@@ -888,6 +1043,12 @@ import { mountEngineeringObject } from './工程物件.js';
       targetEl = articleBody.querySelector('h2[id*="工廠裡的主要系統"], h2[id*="the-main-systems-in-a-fab"], h2[id*="防呆讓錯誤無法發生"], h2[id*="interlocks-making-mistakes-impossible"]');
     } else if (chId === 'ch24') {
       targetEl = articleBody.querySelector('h2[id*="軟體看不見的硬體真相"], h2[id*="hardware-truths-that-software-never-sees"], h2[id*="row-hammer記憶單元靠得太近"], h2[id*="row-hammer-memory-cells-packed-too-close"]');
+    } else if (chId === 'app-glossary') {
+      targetEl = articleBody.querySelector('h2[id*="名詞總表"], h2[id*="glossary"], h2[id*="常用縮寫"], h2[id*="common-acronyms"]');
+    } else if (chId === 'app-jargon') {
+      targetEl = articleBody.querySelector('h2[id*="台積與晶圓廠常見行話"], h2[id*="common-fab-jargon"], h2[id*="為什麼有這些行話"], h2[id*="why-this-jargon-exists"]');
+    } else if (chId === 'app-reading') {
+      targetEl = articleBody.querySelector('h2[id*="經典書籍推薦"], h2[id*="recommended-classic-books"], h2[id*="線上資源"], h2[id*="online-resources"]');
     }
 
     if (!targetEl) {
@@ -903,6 +1064,14 @@ import { mountEngineeringObject } from './工程物件.js';
     }
 
     mountEngineeringObject(chId, container, lang);
+
+    // 監聽使用者互動事件，即時標記為已探索
+    const onInteract = () => {
+      markModelExplored(chId);
+    };
+    container.addEventListener('pointerdown', onInteract, { passive: true });
+    container.addEventListener('input', onInteract, { passive: true });
+    container.addEventListener('change', onInteract, { passive: true });
   }
 
   /**
@@ -1161,8 +1330,19 @@ import { mountEngineeringObject } from './工程物件.js';
     const searchCard = e.target.closest('[data-search-target]');
     if (searchCard) {
       const targetId = searchCard.getAttribute('data-search-target');
+      const jumpModel = searchCard.getAttribute('data-jump-model') === 'true' || !!e.target.closest('[data-jump-model="true"]');
       searchModalEl.classList.remove('is-open');
       loadChapter(targetId);
+      if (jumpModel) {
+        setTimeout(() => {
+          const mountEl = mainCanvasEl.querySelector('.engineering-object-mount');
+          if (mountEl) {
+            mountEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            mountEl.classList.add('flash-highlight');
+            setTimeout(() => mountEl.classList.remove('flash-highlight'), 2000);
+          }
+        }, 150);
+      }
       return;
     }
 

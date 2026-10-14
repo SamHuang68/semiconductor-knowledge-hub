@@ -99,10 +99,10 @@ async function verify() {
   }
   console.log('[PASS] 零中系相依性審查：通過 (無中系相依、套件或外部端點)');
 
-  // 3. 驗證二十五大全站製程工程物件模組 (Ch 00 ~ 24 滿貫覆蓋) 雙語渲染
+  // 3. 驗證全站二十八大工程物件模組 (Ch 00 ~ 24 + 附錄 A/B/C 滿貫覆蓋) 雙語渲染
   try {
     const engObj = await import(`file://${ROOT_DIR}/工程物件.js`);
-    const testIds = ['ch00', 'ch01', 'ch02', 'ch03', 'ch04', 'ch05', 'ch06', 'ch07', 'ch08', 'ch09', 'ch10', 'ch11', 'ch12', 'ch13', 'ch14', 'ch15', 'ch16', 'ch17', 'ch18', 'ch19', 'ch20', 'ch21', 'ch22', 'ch23', 'ch24'];
+    const testIds = ['ch00', 'ch01', 'ch02', 'ch03', 'ch04', 'ch05', 'ch06', 'ch07', 'ch08', 'ch09', 'ch10', 'ch11', 'ch12', 'ch13', 'ch14', 'ch15', 'ch16', 'ch17', 'ch18', 'ch19', 'ch20', 'ch21', 'ch22', 'ch23', 'ch24', 'app-glossary', 'app-jargon', 'app-reading'];
     for (const id of testIds) {
       for (const lang of ['zh', 'en']) {
         const dummy = { innerHTML: '', querySelectorAll: () => [], querySelector: () => null };
@@ -113,7 +113,7 @@ async function verify() {
         }
       }
     }
-    console.log('[PASS] 二十五大全站製程工程物件模型 (Ch 00 ~ 24 滿貫覆蓋) 中英雙語渲染全數通過');
+    console.log('[PASS] 二十八大全站工程物件模型 (Ch 00 ~ 24 + 附錄 A/B/C 滿貫覆蓋) 中英雙語渲染全數通過');
   } catch (err) {
     console.error('[FAIL] 工程物件載入或渲染失敗:', err);
     errors++;

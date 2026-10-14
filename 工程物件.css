@@ -426,8 +426,131 @@
   transition: filter 0.15s ease;
 }
 
+/* ══════════════════════════════════════════════════════════════════════════
+ * Live Physics Engine 連續滑桿組樣式
+ * ══════════════════════════════════════════════════════════════════════════ */
+.eng-obj-slider-panel {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+  padding: 8px 14px;
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid var(--semi-border, #334155);
+  border-radius: 6px;
+  margin-top: 8px;
+}
 
-/* 手機版適配 */
+.eng-obj-slider-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  color: #cbd5e1;
+}
+
+.eng-obj-slider-item label {
+  font-weight: 600;
+  color: #94a3b8;
+  white-space: nowrap;
+}
+
+.eng-obj-range-input {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 130px;
+  height: 6px;
+  border-radius: 3px;
+  background: #334155;
+  outline: none;
+  transition: background 0.2s;
+  cursor: pointer;
+}
+
+.eng-obj-range-input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #38bdf8;
+  box-shadow: 0 0 8px rgba(56, 189, 248, 0.6);
+  cursor: pointer;
+  transition: transform 0.15s, background 0.15s;
+}
+
+.eng-obj-range-input::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+  background: #71ece3;
+}
+
+.eng-obj-slider-val {
+  min-width: 48px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-weight: 700;
+  color: #38bdf8;
+  font-size: 12.5px;
+}
+
+/* HUD 控制按鈕群 (全螢幕 + SVG 複製/匯出) */
+.eng-obj-hud-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: auto;
+}
+
+.eng-obj-hud-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 9px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #94a3b8;
+  background: rgba(30, 41, 59, 0.7);
+  border: 1px solid #334155;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.eng-obj-hud-btn:hover {
+  color: #f8fafc;
+  background: #334155;
+  border-color: #38bdf8;
+  transform: translateY(-1px);
+}
+
+.eng-obj-hud-btn svg {
+  width: 12px;
+  height: 12px;
+}
+
+/* 全螢幕沉浸檢視模式 */
+.eng-obj-card.is-fullscreen {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  border-radius: 0;
+  background: #090e17;
+  overflow-y: auto;
+  box-shadow: none;
+  border: none;
+  padding: 24px 36px;
+  display: flex;
+  flex-direction: column;
+}
+
+.eng-obj-card.is-fullscreen .eng-obj-viewport {
+  flex: 1;
+  min-height: 550px;
+}
+
+
 @media (max-width: 768px) {
   .eng-obj-header {
     padding: 16px 16px 12px;

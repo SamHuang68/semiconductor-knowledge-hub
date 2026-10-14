@@ -333,6 +333,40 @@ if (pvtBtn) {
 }
 console.log('[PASS] Ch 24 軟韌體視角硬體真相模型正常');
 
-console.log('=== 全站二十五大章節工程物件 100% 滿貫覆蓋單元測試全數通過 (0 錯誤) ===');
+console.log('--- 測試 26: 附錄 A (app-glossary) 術語拓撲星系與雷達切換 ---');
+const cGlossary = new MockElement();
+mountEngineeringObject('app-glossary', cGlossary, 'zh');
+assert.ok(cGlossary.innerHTML.includes('雷達') || cGlossary.innerHTML.includes('Radar') || cGlossary.innerHTML.includes('術語'), '預設應展示領域雷達圖');
+const galaxyBtn = cGlossary.children.find(c => c.getAttribute('data-tab') === 'galaxy');
+if (galaxyBtn) {
+  galaxyBtn.dispatchEvent({ type: 'click' });
+  assert.ok(cGlossary.innerHTML.includes('星系') || cGlossary.innerHTML.includes('FEOL') || cGlossary.innerHTML.includes('BEOL'), '點擊星系後應展示拓撲星系網絡');
+}
+console.log('[PASS] 附錄 A 術語拓撲星系與領域雷達模型正常');
+
+console.log('--- 測試 27: 附錄 B (app-jargon) 晶圓廠現場四大情境與作息時鐘切換 ---');
+const cJargon = new MockElement();
+mountEngineeringObject('app-jargon', cJargon, 'zh');
+assert.ok(cJargon.innerHTML.includes('交接') || cJargon.innerHTML.includes('情境') || cJargon.innerHTML.includes('帶線'), '預設應展示現場情境模擬');
+const clockBtn = cJargon.children.find(c => c.getAttribute('data-tab') === 'clock');
+if (clockBtn) {
+  clockBtn.dispatchEvent({ type: 'click' });
+  assert.ok(cJargon.innerHTML.includes('時鐘') || cJargon.innerHTML.includes('四班二輪') || cJargon.innerHTML.includes('Clock'), '點擊時鐘後應展示 24hr 作息盤');
+}
+console.log('[PASS] 附錄 B 晶圓廠現場行話與交接作息模型正常');
+
+console.log('--- 測試 28: 附錄 C (app-reading) 4階工程修煉技能樹與經典聖經切換 ---');
+const cReading = new MockElement();
+mountEngineeringObject('app-reading', cReading, 'zh');
+assert.ok(cReading.innerHTML.includes('技能樹') || cReading.innerHTML.includes('修煉') || cReading.innerHTML.includes('Tree'), '預設應展示技能樹');
+const classicsBtn = cReading.children.find(c => c.getAttribute('data-tab') === 'classics');
+if (classicsBtn) {
+  classicsBtn.dispatchEvent({ type: 'click' });
+  assert.ok(cReading.innerHTML.includes('Sze') || cReading.innerHTML.includes('Campbell') || cReading.innerHTML.includes('聖經'), '點擊經典書籍後應展示四大聖經著作');
+}
+console.log('[PASS] 附錄 C 半導體工程師修煉地圖與經典著作模型正常');
+
+console.log('=== 全站二十八大章節與附錄工程物件 100% 滿貫覆蓋單元測試全數通過 (0 錯誤) ===');
+
 
 
