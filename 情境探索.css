@@ -249,6 +249,20 @@ body.is-exploring .app-sidebar { width: 260px; }
   .comparison-steps a { flex: 1 1 40%; font-size: 13px; }
   .package-option { padding: 14px; }
 }
+.related-exploration { margin: 28px 0; padding: 24px; background: #edf3f1; border: 1px solid #cfdfda; border-radius: 12px; }
+.related-heading h3 { margin: 0 0 8px; font-size: 24px; color: #163e37; }
+.related-heading > p:last-child { margin: 0 0 18px; color: #4f625f; line-height: 1.7; }
+.related-links { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 12px; }
+.related-link { display: flex; flex-direction: column; gap: 7px; padding: 18px; min-width: 0; border: 1px solid #bccfc8; border-radius: 8px; background: #fff; color: #163e37; text-decoration: none; overflow-wrap: anywhere; }
+.related-meta { display: flex; justify-content: space-between; gap: 12px; font-size: 13px; color: #46655e; }
+.related-link strong { font-size: 19px; line-height: 1.5; }
+.related-reason { font-size: 15px; line-height: 1.7; color: #4f625f; }
+.related-link:hover { border-color: #137c6e; background: #f9fffc; }
+.related-link:focus-visible { outline: 3px solid #137c6e; outline-offset: 3px; }
+@media (max-width: 560px) {
+  .related-exploration { padding: 20px 16px; }
+  .related-link { padding: 16px; }
+}
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }

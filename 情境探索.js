@@ -1,4 +1,5 @@
 import { bindDiagramViewer } from './圖例檢視.js';
+import { renderConnections, bindConnections } from './延伸探索.js';
 import { SCENARIOS, getScenario } from './data/情境路徑.js';
 import { CHAPTERS_DATA } from './data/chapters-data.js';
 import { waferArt, crossSection, packageArt, journeyArt, dispatchArt, renderComparison, bindComparison, comparisonIsOpen } from './情境圖例.js';
@@ -95,10 +96,12 @@ export function renderExplorer(container, hash) {
     ${renderComparison(s, n)}
     ${s.id === 'quality' ? renderSignalLab() : ''}
     <p class="scenario-boundary"><strong>閱讀這張圖時</strong>${esc(s.boundary)}</p><p class="explorer-status" role="status" aria-live="polite">目前查看：${esc(s.title)}／${esc(n.title)}。${s.kind === 'compare' ? '可切換其他結構進行比較。' : '可點選節點或使用步驟按鈕繼續。'}</p></section>
+    ${renderConnections(s, n)}
     ${renderPractice(s.id)}
     <section class="explorer-library"><div><p class="explorer-kicker">延伸 / 深入理解</p><h2>圖是入口，教材是底稿</h2><p>回到完整章節，繼續查看技術細節、現場實務與延伸閱讀。</p></div><div class="library-links"><a href="#ch00">從第 0 章開始 →</a><a href="#app-glossary">查看術語總表 →</a><a href="#app-reading">延伸閱讀與來源 →</a></div></section>
   </div>`;
   bindNavigation(container, s, n);
+  bindConnections(container);
   bindDiagramViewer(container, s, n);
   bindPractice(container, s.id);
   bindSignalLab(container, () => reveal(container, 'signal'));
