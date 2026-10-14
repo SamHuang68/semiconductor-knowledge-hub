@@ -53,10 +53,10 @@ assert.match(packaging.boundary, /並列選項.*並非先後步驟/, '比較應�
 // 正常化換行後核對已讀取的基準來源，防止導覽改版刪減教材。
 // 基準：中英雙語原生擴充版（包含 28 章中英完整教材與雙語字典）。
 const sourceHashes = {
-  'chapters-data.js': '2bd1d6a00f44564c56e48bbf6e4c04131beba7d90048da00825dc46971498cc3',
+  'chapters-data.js': '631dda7b35d52b456b5fb3fe7457e564b86d80549659940c649c85ed793f7f43',
   'fab-flow.js': 'd3c1d4a4dbd621105a823e9a34b7874e78734c55eebba7bbbbbe3f874a65c176',
   'glossary-data.js': '4d071075359776e02058d61a745b9d246c59fe55c4622be2b746ac55e00dd815',
-  'search-index.js': '41d3ea1222b6b0b3080689f5e8e151a43d176f013d35bac48be31c8090297f2d'
+  'search-index.js': 'bf31788586399322aaf36f15a0d4626819aaff63d09fd0d86f415d3215102560'
 };
 for (const [file, expected] of Object.entries(sourceHashes)) {
   const source = readFileSync(new URL(`../data/${file}`, import.meta.url), 'utf8').replace(/\r\n/g, '\n');
@@ -75,7 +75,9 @@ const linkCases = [
   ['../../README.md', '#explore'],
   ['glossary.md', '#app-glossary'],
   ['../appendix/fab-jargon.md', '#app-jargon'],
+  ['../appendix/README.md', '#app-glossary'],
   ['further-reading.md#網站', '#app-reading'],
+  ['../../TRANSLATIONS.md', 'https://github.com/chenwei810/Semiconductor_Manufacturing_Introduction/blob/main/TRANSLATIONS.md'],
   ['#ch18', '#ch18'],
   ['#常見異常', '#常見異常'],
   ['https://github.com/chenwei810/Semiconductor_Manufacturing_Introduction', 'https://github.com/chenwei810/Semiconductor_Manufacturing_Introduction'],

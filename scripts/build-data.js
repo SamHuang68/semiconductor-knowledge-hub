@@ -327,7 +327,7 @@ function build() {
       partEn: def.partEn,
       snippet: plainZh.substring(0, 260),
       snippetEn: plainEn.substring(0, 260),
-      keywords: `${plainZh.substring(0, 1600)} ${plainEn.substring(0, 1600)}`
+      keywords: `${plainZh} ${plainEn}`
     });
 
     chapters.push({

@@ -587,6 +587,7 @@ body {
   line-height: 1.25;
   letter-spacing: -0.02em;
   color: var(--text-main);
+  scroll-margin-top: calc(var(--header-height) + 24px);
 }
 
 .article-body {
@@ -605,6 +606,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  scroll-margin-top: calc(var(--header-height) + 24px);
 }
 
 .article-body h3 {
@@ -612,6 +614,7 @@ body {
   font-weight: 700;
   color: var(--text-main);
   margin: 32px 0 14px 0;
+  scroll-margin-top: calc(var(--header-height) + 24px);
 }
 
 .article-body p.semi-p {
@@ -1249,6 +1252,43 @@ figcaption {
   }
   .brand-subtitle {
     display: none;
+  }
+  /* 在窄螢幕/手機端將工具按鈕收斂為圖示按鈕，避免雙語字串長度溢出 */
+  .header-actions .tool-btn span:not(.kbd-badge) {
+    display: none;
+  }
+  .header-actions .tool-btn {
+    padding: 7px 10px;
+    gap: 0;
+  }
+  .header-actions .kbd-badge {
+    display: none;
+  }
+  .header-actions .explore-entry {
+    display: none; /* 側邊欄頂部已具備明顯的情境探索入口 */
+  }
+  #openShortcutsBtn {
+    display: none; /* 觸控與行動裝置無硬體鍵盤快捷鍵需求 */
+  }
+  .header-actions {
+    gap: 6px;
+  }
+}
+
+@media (max-width: 560px) {
+  .brand-title {
+    font-size: 13.5px;
+    max-width: 140px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .app-header {
+    padding: 0 12px;
+  }
+  .lang-switch-cluster .lang-btn {
+    padding: 4px 8px;
+    font-size: 11px;
   }
 }
 

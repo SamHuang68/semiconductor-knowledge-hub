@@ -83,7 +83,25 @@ import { normalizeChapterHref } from './章節連結.js';
       btn_copy_code: '複製',
       btn_copied_code: '已複製！',
       tool_label: '關鍵機台：',
-      module_label: '所屬站點：'
+      module_label: '所屬站點：',
+      lang_btn_zh_title: '切換為繁體中文',
+      lang_btn_en_title: 'Switch to English',
+      btn_menu_aria: '切換章節目錄',
+      btn_menu_title: '展開章節目錄',
+      btn_atlas_title: '開啟 12 大製程全景流程圖 (快捷鍵: M)',
+      btn_jargon_title: '查詢 245 筆名詞與 43 筆晶圓廠現場行話 (快捷鍵: J)',
+      btn_search_title: '全域即時檢索 (快捷鍵: / 或 Ctrl+K)',
+      btn_shortcuts_title: '查看鍵盤快捷鍵指南 (快捷鍵: ?)',
+      btn_font_dec_title: '縮小閱讀字體',
+      btn_font_reset_title: '預設閱讀字體 (16.5px)',
+      btn_font_inc_title: '放大閱讀字體',
+      btn_back_to_top_aria: '回到頂部',
+      btn_back_to_top_title: '回到頂部',
+      sidebar_nav_aria: '章節樹狀導覽',
+      app_toc_aria: '本頁大綱',
+      or_word: '或',
+      indicator_starred: '已收藏',
+      indicator_completed: '已讀完'
     },
     en: {
       brand_subtitle: 'Semiconductor Manufacturing · 25-Chapter Engineering Hub',
@@ -148,7 +166,25 @@ import { normalizeChapterHref } from './章節連結.js';
       btn_copy_code: 'Copy',
       btn_copied_code: 'Copied!',
       tool_label: 'Key Tools: ',
-      module_label: 'Station: '
+      module_label: 'Station: ',
+      lang_btn_zh_title: 'Switch to Traditional Chinese',
+      lang_btn_en_title: 'Switch to English',
+      btn_menu_aria: 'Toggle chapter navigation',
+      btn_menu_title: 'Expand chapter navigation',
+      btn_atlas_title: 'Open 12 Core Fab Flow Atlas (Shortcut: M)',
+      btn_jargon_title: 'Search 245 glossary terms & 43 fab floor jargon (Shortcut: J)',
+      btn_search_title: 'Global curriculum search (Shortcut: / or Ctrl+K)',
+      btn_shortcuts_title: 'Keyboard shortcuts guide (Shortcut: ?)',
+      btn_font_dec_title: 'Decrease reading font size',
+      btn_font_reset_title: 'Reset reading font size (16.5px)',
+      btn_font_inc_title: 'Increase reading font size',
+      btn_back_to_top_aria: 'Back to top',
+      btn_back_to_top_title: 'Back to top',
+      sidebar_nav_aria: 'Chapter navigation tree',
+      app_toc_aria: 'Table of contents',
+      or_word: 'or',
+      indicator_starred: 'Starred',
+      indicator_completed: 'Completed'
     }
   };
 
@@ -248,8 +284,35 @@ import { normalizeChapterHref } from './章節連結.js';
       readChapters.add(chId);
       localStorage.setItem(READ_STORAGE_KEY, JSON.stringify([...readChapters]));
       updateStudyProgress();
-      renderSidebar(chapterFilterEl ? chapterFilterEl.value : '');
+      if (activeSidebarFilterMode === 'read') {
+        renderSidebar(chapterFilterEl ? chapterFilterEl.value : '');
+      } else {
+        const link = sidebarNavEl?.querySelector(`.chapter-nav-link[data-ch-id="${chId}"]`);
+        if (link && !link.querySelector('.read-check-indicator')) {
+          const t = I18N[currentLang] || I18N.zh;
+          const statusWrap = link.querySelector('span[style*="align-items: center"]');
+          if (statusWrap) {
+            statusWrap.insertAdjacentHTML('beforeend', `<span class="read-check-indicator" title="${t.indicator_completed}">✓</span>`);
+          }
+        }
+      }
     }
+  }
+
+  /**
+   * 輕量更新側邊欄章節啟用狀態，避免每次切換章節都全量重建 DOM
+   */
+  function updateSidebarActive(chId) {
+    if (!sidebarNavEl) return;
+    sidebarNavEl.querySelectorAll('.chapter-nav-link').forEach(link => {
+      const match = link.getAttribute('data-ch-id') === chId;
+      link.classList.toggle('is-active', match);
+      if (match) {
+        link.setAttribute('aria-current', 'page');
+      } else {
+        link.removeAttribute('aria-current');
+      }
+    });
   }
 
   /**
@@ -329,8 +392,8 @@ import { normalizeChapterHref } from './章節連結.js';
                 <span>${escapeHtml(ch.shortTitle)}</span>
               </span>
               <span style="display: flex; align-items: center;">
-                ${isStarred ? '<span class="star-indicator" title="Starred">★</span>' : ''}
-                ${isRead ? '<span class="read-check-indicator" title="Completed">✓</span>' : ''}
+                ${isStarred ? `<span class="star-indicator" title="${t.indicator_starred}">★</span>` : ''}
+                ${isRead ? `<span class="read-check-indicator" title="${t.indicator_completed}">✓</span>` : ''}
               </span>
             </a>
           </li>
@@ -408,10 +471,13 @@ import { normalizeChapterHref } from './章節連結.js';
 
     const isBookmarked = bookmarkedChapters.has(chapter.id);
     const relatedScenario = scenarioForChapter(chapter.id);
+    const isEn = currentLang === 'en';
+    const returnNodeTitle = returnContext ? (isEn ? (returnContext.node.titleEn || returnContext.node.title) : returnContext.node.title) : '';
+    const scenarioTitle = relatedScenario ? (isEn ? (relatedScenario.titleEn || relatedScenario.title) : relatedScenario.title) : '';
 
     mainCanvasEl.innerHTML = `
       <a href="#explore/${returnContext ? returnContext.value : relatedScenario.id}${originQuery(origin)}" class="chapter-scenario-link">
-        <span>${returnContext ? t.explore_scenario_return(escapeHtml(returnContext.node.title)) : t.explore_scenario_intro(escapeHtml(relatedScenario.title))}</span>
+        <span>${returnContext ? t.explore_scenario_return(escapeHtml(returnNodeTitle)) : t.explore_scenario_intro(escapeHtml(scenarioTitle))}</span>
         <span>${returnContext ? t.explore_continue : t.explore_open}</span>
       </a>
       ${trackHtml}
@@ -450,8 +516,8 @@ import { normalizeChapterHref } from './章節連結.js';
       link.setAttribute('href', normalizeChapterHref(link.getAttribute('href')));
     });
 
-    // 重新高亮側邊欄
-    renderSidebar(chapterFilterEl ? chapterFilterEl.value : '');
+    // 輕量更新側邊欄高亮，避免重複重建整個目錄 DOM
+    updateSidebarActive(chapter.id);
 
     // 渲染段落 TOC
     renderToc(chapter.headings);
@@ -644,9 +710,9 @@ import { normalizeChapterHref } from './章節連結.js';
 
             items.push({
               type: 'jargon',
-              term: `【${catDisplay}】${mainTerm}${twFab}`,
+              term: isEn ? `[${catDisplay}] ${mainTerm}${twFab}` : `【${catDisplay}】${mainTerm}${twFab}`,
               meaning: meaning,
-              example: example ? (isEn ? `Example: ${example}` : `💬 例句：${example}`) : ''
+              example: example ? (isEn ? `💡 Example: ${example}` : `💬 例句：${example}`) : ''
             });
           }
         }
@@ -815,13 +881,27 @@ import { normalizeChapterHref } from './章節連結.js';
       }
     });
 
-    // 更新語言按鈕啟動狀態
-    document.querySelectorAll('.lang-btn').forEach(btn => {
-      if (btn.getAttribute('data-lang') === currentLang) {
-        btn.classList.add('is-active');
-      } else {
-        btn.classList.remove('is-active');
+    // 更新 title 屬性
+    document.querySelectorAll('[data-i18n-title]').forEach(el => {
+      const key = el.getAttribute('data-i18n-title');
+      if (t[key]) {
+        el.setAttribute('title', t[key]);
       }
+    });
+
+    // 更新 aria-label 屬性
+    document.querySelectorAll('[data-i18n-aria]').forEach(el => {
+      const key = el.getAttribute('data-i18n-aria');
+      if (t[key]) {
+        el.setAttribute('aria-label', t[key]);
+      }
+    });
+
+    // 更新語言按鈕啟動狀態與 aria-pressed
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      const isActive = btn.getAttribute('data-lang') === currentLang;
+      btn.classList.toggle('is-active', isActive);
+      btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
     });
 
     // 更新進度條文字
@@ -846,11 +926,21 @@ import { normalizeChapterHref } from './章節連結.js';
     localStorage.setItem(LANG_STORAGE_KEY, currentLang);
     applyLanguageUI();
 
-    // 若非情境探索，即時刷新當前章節以呈現新語言
     const hash = (window.location.hash || '#ch00').slice(1);
     if (!hash.startsWith('explore')) {
       const [chapterId, query = ''] = hash.split('?');
+      const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollRatio = maxScroll > 0 ? window.scrollY / maxScroll : 0;
       loadChapter(chapterId || currentChapterId, new URLSearchParams(query).get('from'), new URLSearchParams(query).get('via'));
+      requestAnimationFrame(() => {
+        const newMaxScroll = document.documentElement.scrollHeight - window.innerHeight;
+        if (newMaxScroll > 0) {
+          window.scrollTo({ top: scrollRatio * newMaxScroll, behavior: 'instant' });
+        }
+      });
+    } else {
+      // 在情境探索模式下切換語言，立即重繪探索畫面
+      renderRoute(window.location.hash);
     }
   }
 
