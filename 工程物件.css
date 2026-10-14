@@ -1,0 +1,354 @@
+/* ══════════════════════════════════════════════════════════════════════════════
+   SEMICONDUCTOR KNOWLEDGE HUB — ENGINEERING OBJECTS STYLESHEET
+   微暖精密晶圓工程美學 · 物理幾何物件模型與微觀機制互動視圖
+   零中系依賴 · 高對比度無障礙 (WCAG AA >= 7:1) · RWD 自適應響應
+   ══════════════════════════════════════════════════════════════════════════════ */
+
+.eng-obj-card {
+  margin: 32px 0 40px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.08), 0 2px 6px -1px rgba(15, 23, 42, 0.04);
+  overflow: hidden;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.eng-obj-card:hover {
+  border-color: var(--semi-blue);
+  box-shadow: 0 8px 26px -4px rgba(2, 132, 199, 0.12), 0 4px 10px -2px rgba(15, 23, 42, 0.06);
+}
+
+/* 頂部標題區 */
+.eng-obj-header {
+  padding: 20px 24px 16px;
+  background: linear-gradient(180deg, rgba(241, 245, 249, 0.7) 0%, rgba(255, 255, 255, 0.95) 100%);
+  border-bottom: 1px solid var(--border-subtle);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.eng-obj-badge-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.eng-obj-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--semi-blue-dark);
+  background: var(--semi-blue-light);
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(2, 132, 199, 0.25);
+}
+
+.eng-obj-status {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--semi-teal);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.eng-obj-status::before {
+  content: '';
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--semi-teal);
+  box-shadow: 0 0 6px rgba(15, 118, 110, 0.6);
+}
+
+.eng-obj-title {
+  margin: 0;
+  font-size: 19px;
+  font-weight: 750;
+  color: var(--text-main);
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+}
+
+.eng-obj-subtitle {
+  margin: 0;
+  font-size: 13.5px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+/* 控制列與選項按鈕 */
+.eng-obj-controls {
+  padding: 12px 24px;
+  background: var(--bg-surface-alt);
+  border-bottom: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.eng-obj-tab-group {
+  display: inline-flex;
+  background: #e2e8f0;
+  padding: 3px;
+  border-radius: var(--radius-sm);
+  gap: 2px;
+}
+
+.eng-obj-tab {
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.eng-obj-tab:hover {
+  color: var(--text-main);
+}
+
+.eng-obj-tab.is-active {
+  background: var(--bg-surface);
+  color: var(--semi-blue-dark);
+  font-weight: 700;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* 幾何繪圖畫布視窗 */
+.eng-obj-viewport {
+  position: relative;
+  background: #09131b;
+  width: 100%;
+  min-height: 380px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  user-select: none;
+}
+
+.eng-obj-viewport svg {
+  width: 100%;
+  height: auto;
+  max-height: 480px;
+  display: block;
+}
+
+/* 互動懸浮資訊窗與圖例 */
+.eng-obj-legend {
+  padding: 10px 24px;
+  background: var(--bg-surface);
+  border-top: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  font-size: 12.5px;
+  color: var(--text-secondary);
+}
+
+.eng-obj-legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 500;
+}
+
+.eng-obj-legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  display: inline-block;
+}
+
+/* 數值儀表板與物理指標 */
+.eng-obj-dashboard {
+  padding: 16px 24px;
+  background: var(--bg-app);
+  border-top: 1px solid var(--border-subtle);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 14px;
+}
+
+.eng-obj-metric-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.eng-obj-metric-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.eng-obj-metric-value {
+  font-family: var(--font-mono);
+  font-size: 17px;
+  font-weight: 750;
+  color: var(--semi-blue-dark);
+}
+
+.eng-obj-metric-note {
+  font-size: 12px;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+/* 步進控制器 (ALD 與動態模擬) */
+.eng-obj-stepper-bar {
+  padding: 12px 24px;
+  background: var(--bg-surface-alt);
+  border-top: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.eng-obj-stepper-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.eng-obj-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-strong);
+  background: var(--bg-surface);
+  color: var(--text-main);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.eng-obj-btn:hover {
+  background: #f8fafc;
+  border-color: var(--semi-blue);
+  color: var(--semi-blue-dark);
+}
+
+.eng-obj-btn-primary {
+  background: var(--semi-blue);
+  color: #ffffff;
+  border-color: var(--semi-blue-dark);
+}
+
+.eng-obj-btn-primary:hover {
+  background: var(--semi-blue-dark);
+  color: #ffffff;
+}
+
+.eng-obj-stepper-info {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+/* 說明文字底欄 */
+.eng-obj-footer-note {
+  padding: 12px 24px;
+  background: #fdfefe;
+  border-top: 1px solid var(--border-subtle);
+  font-size: 12.5px;
+  color: var(--text-muted);
+  line-height: 1.5;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.eng-obj-footer-note svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: var(--semi-blue);
+}
+
+/* 動態光束與粒子動畫 */
+@keyframes beamGlow {
+  0% { opacity: 0.65; stroke-dashoffset: 0; }
+  50% { opacity: 0.95; stroke-dashoffset: -20; }
+  100% { opacity: 0.65; stroke-dashoffset: -40; }
+}
+
+.anim-beam {
+  stroke-dasharray: 8 4;
+  animation: beamGlow 1.8s linear infinite;
+}
+
+@keyframes plasmaPulse {
+  0% { filter: drop-shadow(0 0 4px rgba(113, 236, 227, 0.4)); }
+  50% { filter: drop-shadow(0 0 14px rgba(113, 236, 227, 0.8)); }
+  100% { filter: drop-shadow(0 0 4px rgba(113, 236, 227, 0.4)); }
+}
+
+.anim-plasma {
+  animation: plasmaPulse 2.4s ease-in-out infinite;
+}
+
+@keyframes ionStream {
+  0% { transform: translateY(-8px); opacity: 0; }
+  20% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { transform: translateY(24px); opacity: 0; }
+}
+
+.anim-ion {
+  animation: ionStream 1.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+/* 手機版適配 */
+@media (max-width: 768px) {
+  .eng-obj-header {
+    padding: 16px 16px 12px;
+  }
+  .eng-obj-controls {
+    padding: 10px 16px;
+  }
+  .eng-obj-viewport {
+    min-height: 300px;
+  }
+  .eng-obj-dashboard {
+    padding: 12px 16px;
+    grid-template-columns: 1fr;
+  }
+  .eng-obj-stepper-bar {
+    padding: 10px 16px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

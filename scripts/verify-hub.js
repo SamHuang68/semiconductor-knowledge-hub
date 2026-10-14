@@ -82,7 +82,7 @@ async function verify() {
   }
 
   // 2. 驗證零中系依賴與安全性
-  const filesToScan = ['index.html', 'styles.css', 'app.js', 'package.json', 'README.md'];
+  const filesToScan = ['index.html', 'styles.css', 'app.js', 'package.json', 'README.md', '工程物件.js', '工程物件.css'];
   const bannedKeywords = ['deepseek', 'qwen', 'kimi', 'moonshot', 'baidu', 'aliyun', 'tencent', 'bytedance', 'volcengine'];
 
   for (const f of filesToScan) {
@@ -99,8 +99,28 @@ async function verify() {
   }
   console.log('[PASS] 零中系相依性審查：通過 (無中系相依、套件或外部端點)');
 
-  // 3. 驗證靜態資產
-  const assets = ['assets/cover.svg', 'assets/16-wafer-map-patterns.svg', '.nojekyll', '.github/workflows/deploy.yml'];
+  // 3. 驗證四大製程工程物件模組 (Ch 04 / 05 / 06 / 12) 雙語渲染
+  try {
+    const engObj = await import(`file://${ROOT_DIR}/工程物件.js`);
+    const testIds = ['ch04', 'ch05', 'ch06', 'ch12'];
+    for (const id of testIds) {
+      for (const lang of ['zh', 'en']) {
+        const dummy = { innerHTML: '', querySelectorAll: () => [], querySelector: () => null };
+        engObj.mountEngineeringObject(id, dummy, lang);
+        if (!dummy.innerHTML || dummy.innerHTML.length < 500) {
+          console.error(`[FAIL] 工程物件 ${id} (${lang}) 渲染輸出異常`);
+          errors++;
+        }
+      }
+    }
+    console.log('[PASS] 四大製程工程物件模型 (Ch 04, 05, 06, 12) 中英雙語渲染全數通過');
+  } catch (err) {
+    console.error('[FAIL] 工程物件載入或渲染失敗:', err);
+    errors++;
+  }
+
+  // 4. 驗證靜態資產
+  const assets = ['assets/cover.svg', 'assets/16-wafer-map-patterns.svg', '.nojekyll', '.github/workflows/deploy.yml', '工程物件.js', '工程物件.css'];
   for (const a of assets) {
     const ap = path.join(ROOT_DIR, a);
     if (!fs.existsSync(ap)) {

@@ -14,6 +14,7 @@ import { renderExplorer } from './情境探索.js';
 import { connectionOrigin, originQuery } from './延伸探索.js';
 import { scenarioForChapter, chapterReturnContext } from './data/情境路徑.js';
 import { normalizeChapterHref } from './章節連結.js';
+import { mountEngineeringObject } from './工程物件.js';
 
 (() => {
   'use strict';
@@ -526,6 +527,11 @@ import { normalizeChapterHref } from './章節連結.js';
     renderMermaidDiagrams();
     attachCodeCopyButtons();
 
+    // 若為四大重點製程章節，掛載精細互動工程物件模型
+    if (['ch04', 'ch05', 'ch06', 'ch12'].includes(chapter.id)) {
+      attachEngineeringObjectModel(chapter.id, currentLang);
+    }
+
     // 捲動至頁首
     window.scrollTo({ top: 0, behavior: 'instant' });
 
@@ -822,6 +828,39 @@ import { normalizeChapterHref } from './章節連結.js';
     } catch (err) {
       console.warn('Mermaid 渲染受阻，保留原始代碼區塊:', err);
     }
+  }
+
+  /**
+   * 8.5 掛載重點製程章節之互動工程物件模型
+   */
+  function attachEngineeringObjectModel(chId, lang) {
+    const articleBody = mainCanvasEl.querySelector('.article-body');
+    if (!articleBody) return;
+
+    let targetEl = null;
+    if (chId === 'ch04') {
+      targetEl = articleBody.querySelector('h2[id*="微影的三個主角"], h2[id*="the-three-key-players"], h2[id*="微影的流程"], h2[id*="the-lithography-flow"]');
+    } else if (chId === 'ch05') {
+      targetEl = articleBody.querySelector('h2[id*="cvd用氣體長出薄膜"], h2[id*="cvd-growing-films-from-gases"], h2[id*="pvd把原子撞下來"], h2[id*="pvd-knocking-atoms-loose"]');
+    } else if (chId === 'ch06') {
+      targetEl = articleBody.querySelector('h2[id*="電漿蝕刻的工具"], h2[id*="plasma-the-etching-tool"], h2[id*="濕蝕刻與乾蝕刻"], h2[id*="wet-etching-and-dry-etching"]');
+    } else if (chId === 'ch12') {
+      targetEl = articleBody.querySelector('h2[id*="finfet讓通道站起來"], h2[id*="finfet-making-the-channel-stand-up"], h2[id*="結構演進一覽"], h2[id*="the-evolution-at-a-glance"]');
+    }
+
+    if (!targetEl) {
+      targetEl = articleBody.querySelector('h2');
+    }
+
+    const container = document.createElement('div');
+    container.className = 'engineering-object-mount';
+    if (targetEl) {
+      targetEl.parentNode.insertBefore(container, targetEl);
+    } else {
+      articleBody.prepend(container);
+    }
+
+    mountEngineeringObject(chId, container, lang);
   }
 
   /**
