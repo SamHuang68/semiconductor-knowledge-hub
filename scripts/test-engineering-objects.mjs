@@ -234,6 +234,50 @@ if (cpBtn) {
 }
 console.log('[PASS] Ch 19 WAT 與 CP 晶圓測試模型正常');
 
-console.log('=== 全部十六大核心工程物件互動單元測試通過 (0 錯誤) ===');
+console.log('--- 測試 17: Ch 01 晶圓廠無塵室與天車 OHT 切換 ---');
+const c1 = new MockElement();
+mountEngineeringObject('ch01', c1, 'zh');
+assert.ok(c1.innerHTML.includes('垂直層流'), '預設應展示 Class 1 無塵室層流');
+const ohtBtn = c1.children.find(c => c.getAttribute('data-tab') === 'oht');
+if (ohtBtn) {
+  ohtBtn.dispatchEvent({ type: 'click' });
+  assert.ok(c1.innerHTML.includes('OHT') || c1.innerHTML.includes('空中行走軌道'), '點擊 OHT 後應展示天車搬運');
+}
+console.log('[PASS] Ch 01 晶圓廠運作與自動化搬運模型正常');
+
+console.log('--- 測試 18: Ch 02 固態物理能帶與 MOSFET 切換 ---');
+const c2 = new MockElement();
+mountEngineeringObject('ch02', c2, 'zh');
+assert.ok(c2.innerHTML.includes('能帶結構') || c2.innerHTML.includes('導帶'), '預設應展示能帶結構');
+const mosfetBtn = c2.children.find(c => c.getAttribute('data-tab') === 'mosfet');
+if (mosfetBtn) {
+  mosfetBtn.dispatchEvent({ type: 'click' });
+  assert.ok(c2.innerHTML.includes('強反轉層') || c2.innerHTML.includes('源極') || c2.innerHTML.includes('MOSFET'), '點擊 MOSFET 後應展示開關通道');
+}
+console.log('[PASS] Ch 02 固態物理能帶與電晶體開關模型正常');
+
+console.log('--- 測試 19: Ch 20 傳統封裝與覆晶切換 ---');
+const c20 = new MockElement();
+mountEngineeringObject('ch20', c20, 'zh');
+assert.ok(c20.innerHTML.includes('打線鍵合') || c20.innerHTML.includes('金線'), '預設應展示打線鍵合');
+const flipBtn = c20.children.find(c => c.getAttribute('data-tab') === 'flipchip');
+if (flipBtn) {
+  flipBtn.dispatchEvent({ type: 'click' });
+  assert.ok(c20.innerHTML.includes('C4 錫球') || c20.innerHTML.includes('覆晶'), '點擊覆晶後應展示覆晶封裝');
+}
+console.log('[PASS] Ch 20 傳統封裝到覆晶模型正常');
+
+console.log('--- 測試 20: Ch 22 浴缸曲線與 ESD 靜電放電切換 ---');
+const c22 = new MockElement();
+mountEngineeringObject('ch22', c22, 'zh');
+assert.ok(c22.innerHTML.includes('浴缸曲線') || c22.innerHTML.includes('早夭期'), '預設應展示浴缸曲線');
+const esdBtn = c22.children.find(c => c.getAttribute('data-tab') === 'esd');
+if (esdBtn) {
+  esdBtn.dispatchEvent({ type: 'click' });
+  assert.ok(c22.innerHTML.includes('GGNMOS') || c22.innerHTML.includes('靜電'), '點擊 ESD 後應展示靜電放電防護電路');
+}
+console.log('[PASS] Ch 22 可靠度與測試模型正常');
+
+console.log('=== 全部二十大核心工程物件互動單元測試通過 (0 錯誤) ===');
 
 

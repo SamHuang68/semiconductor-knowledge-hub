@@ -289,7 +289,59 @@ const TEXTS = {
     ch19_metric_freq: 'CP 高頻數位測試時脈',
     ch19_wat_desc: 'WAT (晶圓驗收測試) 在晶圓製造完成後，直接在切割劃線道 (Scribe-line) 的 PCM 測試鍵上量測電晶體飽和電流 (Ion)、關斷漏電 (Ioff)、臨界電壓 (Vth) 與接觸電阻 (Rc)。WAT 是晶圓廠出廠前的嚴格成績單，唯有全數過關才能將晶圓放行交給客戶或後段測試。',
     ch19_cp_desc: 'CP (晶片針測) 透過垂直式多層微彈簧探針卡 (Vertical Probe Card)，一次對數個或十數個晶粒 (Multi-Site) 的微凸塊施加數萬支微針接觸 (Touchdown)。在數 GHz 高頻下灌入全套功能性測試向量 (Scan Test / BIST)，精確標記每一顆晶粒的好壞。',
-    ch19_binmap_desc: 'CP 測試完成後生成電子晶圓圖 (Wafer Bin Map)：綠色 Bin 1 (全功能良品)、黃色 Bin 2 (降頻/部分核心可用)、紅色 Bin 7/8/9 (開路、短路或靜態功耗超標)。這份電子地圖隨晶圓送往封裝廠，自動揀晶機 (Die Bonder) 只吸取合格晶粒進行高成本先進封裝。'
+    ch19_binmap_desc: 'CP 測試完成後生成電子晶圓圖 (Wafer Bin Map)：綠色 Bin 1 (全功能良品)、黃色 Bin 2 (降頻/部分核心可用)、紅色 Bin 7/8/9 (開路、短路或靜態功耗超標)。這份電子地圖隨晶圓送往封裝廠，自動揀晶機 (Die Bonder) 只吸取合格晶粒進行高成本先進封裝。',
+
+    // Ch 01 晶圓廠運作環境
+    ch01_title: 'Class 1 垂直層流無塵室氣流、OHT 天車與 FOUP 氣密對接模型',
+    ch01_sub: '解析 ULPA 超高效過濾 0.45 m/s 垂直下壓層流、300 m/min 空中天車派送與充氮 FOUP 自動開門隔離微觀環境',
+    ch01_tab_cleanroom: '垂直層流無塵室 (Laminar Cleanroom)',
+    ch01_tab_amhs: 'OHT 天車與 FOUP 裝卸 (OHT & FOUP)',
+    ch01_tab_facility: '廠務超純水與特氣系統 (Fab Facilities)',
+    ch01_metric_iso: '無塵室潔淨等級',
+    ch01_metric_flow: '垂直層流均勻風速',
+    ch01_metric_oht_speed: 'OHT 天車巡航速度',
+    ch01_cleanroom_desc: 'Class 1 (ISO 1) 無塵室是人類科技最潔淨環境：天花板密佈 FFU (風機過濾單元) 搭配 ULPA 濾網 (0.12µm 過濾效率 99.99995%)，以 0.45 m/s 垂直均勻層流將人體與機台散落的微粒瞬間壓制向下，經高架穿孔地板抽走回風，徹底消除水平氣流對流造成的微粒交叉污染！',
+    ch01_amhs_desc: 'AMHS (自動化物料搬運系統) 是晶圓廠的高速空中神經：數百台 OHT 天車在天花板單軌以 300 m/min 奔馳，透過高精度 Hoist 纜繩將 25 片裝 300mm FOUP 精準下放至機台 Load Port。在微正壓高純氮氣 (N₂) 保護下，機械門吸附開啟，晶圓始終處於 mini-environment 零污染氣幕中。',
+    ch01_facility_desc: '現代晶圓廠廠務是巨型生命維持系統：每日消耗數萬噸 18.2 MΩ·cm 電阻率極限超純水 (TOC < 1 ppb) 沖洗晶圓；高純特氣 (SiH₄, WF₆, Cl₂) 經雙層同軸套管傳輸；燃燒水洗局部處理器 (Point-of-Use Scrubber) 在設備排氣口第一時間裂解劇毒溫室氣體，落實綠色製造。',
+
+    // Ch 02 物理基礎到電晶體通道
+    ch02_title: '半導體能帶圖、PN 接面空乏區與 MOSFET 強反轉層物理模型',
+    ch02_sub: '微觀展示本質與摻雜能隙費米能階 $E_F$ 躍遷、PN 接面載子擴散/漂移平衡、與閘極正電壓感應強反轉電子通道',
+    ch02_tab_band: '能帶圖與費米能階 (Band Diagram & EF)',
+    ch02_tab_pn: 'PN 接面與空乏區 (PN Junction Depletion)',
+    ch02_tab_inversion: 'MOSFET 強反轉層通道 (Inversion Channel)',
+    ch02_metric_bandgap: '單晶矽室溫能隙 Eg',
+    ch02_metric_built_in: 'PN 接面內建電位 Vbi',
+    ch02_metric_inversion: '表面強反轉臨界條件',
+    ch02_band_desc: '半導體介於導體與絕緣體之間：價帶 (EV) 被電子填滿，傳導帶 (EC) 在絕對零度時全空，兩者相隔 1.12 eV 能隙。摻入五價磷 (N 型) 引入靠近 EC 的施體能階，費米能階 EF 向上逼近傳導帶；摻入三價硼 (P 型) 費米能階向下貼近價帶，賦予矽材料電性可控的神奇魔力。',
+    ch02_pn_desc: '當 P 型與 N 型半導體緊密結合，P 區電洞與 N 區電子相互擴散複合，在交界面留下帶正電的不可移動施體離子與帶負電的受體離子，形成「空間電荷區 (空乏區)」。此區建立高達 10⁵ V/cm 的強大內建電場，推動漂移電流與擴散電流精確抵消，形成單向導電二極體！',
+    ch02_inversion_desc: 'MOSFET 開關核心在於「場效 (Field Effect)」：在金屬閘極施加正電壓 (VG > Vth)，電場穿透氧化鉿介電層，先將 P 型基板表面的電洞排斥形成空乏層；隨電壓增加，表面能帶劇烈向下彎曲，將少數載子電子吸聚到介面，在 P 型基板表面硬生生形成一層高導電的 N 型「反轉層 (Channel)」，連通源極與汲極！',
+
+    // Ch 20 傳統封裝到覆晶技術
+    ch20_title: '打線鍵合 (Wire Bonding) 與覆晶 (Flip-Chip C4) 及底部填膠模型',
+    ch20_sub: '對比陶瓷劈刀超音波熱壓金線走弧、晶片 180° 翻轉 C4 焊錫凸塊迴焊自對準、與微間隙毛細底部填充膠應力釋放',
+    ch20_tab_wirebond: '引線鍵合工藝 (Wire Bonding)',
+    ch20_tab_flipchip: '覆晶 C4 凸塊技術 (Flip-Chip C4)',
+    ch20_tab_underfill: '底部填充膠毛細流動 (Capillary Underfill)',
+    ch20_metric_bond_speed: '高速打線速度',
+    ch20_metric_c4_pitch: '覆晶 C4 凸塊間距',
+    ch20_metric_inductance: '覆晶互連寄生電感降低',
+    ch20_wirebond_desc: '傳統打線鍵合 (Wire Bonding) 利用陶瓷劈刀 (Capillary) 與電子打火 (EFO) 在金/銅線尾端融出圓球，在 200°C 與超音波震盪下完成第一焊點 (Ball Bond)；接著劈刀依設定軌跡走弧 (Looping)，在導線架引腳壓出第二焊點 (Wedge Bond)，速度高達每秒 18 條線，是成本最低的經典封裝工藝。',
+    ch20_flipchip_desc: '覆晶技術 (Flip-Chip) 徹底消除長引線：晶片表面生長數千顆 SnAg 鉛錫/無鉛 C4 凸塊，將晶片正面翻轉 180° 直接壓在基板焊墊上，在迴焊爐 (250°C) 融化時利用熔融焊料的表面張力達成「自我對準 (Self-Alignment)」，寄生電感暴跌 85%，滿足高速高頻處理器需求。',
+    ch20_underfill_desc: '覆晶晶片 (Si, CTE ~2.6 ppm/K) 與有機基板 (BT/ABF, CTE ~15 ppm/K) 熱膨脹係數差異極大，冷熱循環中焊球極易被剪切應力撕裂。在晶片邊緣點入液態環氧樹脂 (Underfill)，利用毛細作用自發鑽入 50µm 微間隙填滿，固化後硬化鎖死結構，將熱應力壽命提升 10 倍以上！',
+
+    // Ch 22 可靠度與測試驗證
+    ch22_title: '浴缸曲線 (Bathtub Curve)、高溫預燒 Arrhenius 方程式與 ESD 防護模型',
+    ch22_sub: '解析晶片生命週期三階段失效率、125°C 高溫過電壓加速老化篩除早夭品、與 GGNMOS 奈秒瞬間萬伏放電防護機制',
+    ch22_tab_bathtub: '浴缸失效率曲線 (Bathtub Curve)',
+    ch22_tab_burnin: '高溫加速預燒 (Burn-In Kinetics)',
+    ch22_tab_esd: 'ESD 靜電放電箝位防護 (ESD Protection)',
+    ch22_metric_fit: '晶片失效率單位 (FIT)',
+    ch22_metric_af: '預燒加速老化因子 (AF)',
+    ch22_metric_esd_level: '人體放電模式 (HBM) 防護',
+    ch22_bathtub_desc: '晶片壽命遵循浴缸曲線 (Bathtub Curve)：1. 早期失效期 (Infant Mortality)：微觀結構缺陷（顆粒、薄膜針孔）在剛通電初期迅速夭折；2. 隨機失效期 (Useful Life)：長達數年失效率恆定在超低水準 (< 10 FIT)；3. 磨損老化期 (Wear-out)：TDDB 介電質擊穿、NBTI 臨界漂移與電遷移導致壽命告終。',
+    ch22_burnin_desc: '車用與伺服器晶片在出廠前必須經過「預燒 (Burn-In / HTOL)」：放入 125°C ~ 150°C 預燒爐並施加 1.3× 額定工作電壓。根據 Arrhenius 化學反應速率方程式與電壓加速模型，在 48 小時內等效經歷 1~2 年運轉壽命，將早期體質不良品 100% 迫使其提前陣亡，確保交付客戶的晶片零早夭！',
+    ch22_esd_desc: '人體或機台攜帶的靜電高達數千伏特，直接打入裸露引腳會瞬間將 1.5nm 閘極氧化層打穿炭化。晶片 I/O 端配置 GGNMOS 或雙向二極體 ESD 箝位電路：平時呈高阻抗絕緣；當 > 8V 靜電脈衝來襲，雪崩崩潰在 0.5 奈秒內觸發 Parasitic BJT 導通，將數安培大電流安全旁路洩入地線！'
   },
   en: {
     badge_prefix: 'PROCESS OBJECT · ENGINEERING MODEL',
@@ -561,7 +613,59 @@ const TEXTS = {
     ch19_metric_freq: 'CP High-Speed Test Clock',
     ch19_wat_desc: 'Wafer Acceptance Test (WAT) directly tests Process Control Monitor (PCM) test keys in scribe-line streets post-fab, verifying saturation drive current (Ion), subthreshold leakage (Ioff), threshold voltage (Vth), and contact resistance (Rc). Only 100% compliant wafers are released for sorting.',
     ch19_cp_desc: 'Chip Probing (CP) uses multi-layer vertical probe cards with tens of thousands of microscopic spring needles to contact die micro-bumps (touchdown). Automated Test Equipment (ATE) injects gigahertz scan vectors and BIST algorithms to validate complete digital logic, SRAM cells, and analog interfaces.',
-    ch19_binmap_desc: 'CP results produce an electronic Wafer Bin Map: Green Bin 1 (Prime passing dies), Yellow Bin 2 (Speed-binned / degraded core functional dies), Red Bins (Short, open, or excessive leakage dies). This map guides high-speed automated die bonders during advanced packaging assembly.'
+    ch19_binmap_desc: 'CP results produce an electronic Wafer Bin Map: Green Bin 1 (Prime passing dies), Yellow Bin 2 (Speed-binned / degraded core functional dies), Red Bins (Short, open, or excessive leakage dies). This map guides high-speed automated die bonders during advanced packaging assembly.',
+
+    // Ch 01 Fab Environment
+    ch01_title: 'Class 1 Laminar Flow Cleanroom, OHT Skyrail & FOUP Docking Model',
+    ch01_sub: 'Examine ULPA filtration 0.45 m/s unidirectional vertical flow, 300 m/min OHT skyrail dispatch, and N₂-purged FOUP automated load-port docking',
+    ch01_tab_cleanroom: 'Vertical Laminar Cleanroom',
+    ch01_tab_amhs: 'OHT Skyrail & FOUP Docking',
+    ch01_tab_facility: 'UPW & Specialty Gas Facilities',
+    ch01_metric_iso: 'Cleanroom Cleanliness Class',
+    ch01_metric_flow: 'Laminar Airflow Velocity',
+    ch01_metric_oht_speed: 'OHT Skyrail Cruise Speed',
+    ch01_cleanroom_desc: 'Class 1 (ISO 1) cleanrooms maintain the cleanest manufacturing environment engineered: ceiling Fan Filter Units (FFUs) fitted with ULPA filters (99.99995% efficiency @ 0.12µm) drive a 0.45 m/s unidirectional laminar downflow, sweeping human- and tool-generated particulates down through raised perforated floor tiles to eliminate cross-contamination.',
+    ch01_amhs_desc: 'Automated Material Handling Systems (AMHS) serve as the fab’s high-speed overhead circulatory network: hundreds of OHT vehicles cruise along ceiling monorails at 300 m/min, lowering 25-wafer 300mm FOUPs onto machine load ports. High-purity N₂ purge and automated door seals maintain an unbroken mini-environment.',
+    ch01_facility_desc: 'Modern fab facilities operate as vast life-support grids: circulating millions of gallons of 18.2 MΩ·cm Ultrapure Water (TOC < 1 ppb) for wafer rinses; feeding ultra-toxic pyrophoric specialty gases (SiH₄, WF₆, Cl₂) through double-walled coaxial stainless lines; and scrubbing effluent gases at point-of-use.',
+
+    // Ch 02 Solid State Physics to MOSFET
+    ch02_title: 'Semiconductor Band Diagram, PN Junction Depletion & Inversion Channel Model',
+    ch02_sub: 'Microscopic physics of bandgap Fermi level $E_F$ shift, PN junction carrier diffusion/drift equilibrium, and gate field-induced electron inversion layer',
+    ch02_tab_band: 'Band Diagram & Fermi Level',
+    ch02_tab_pn: 'PN Junction & Depletion Region',
+    ch02_tab_inversion: 'MOSFET Strong Inversion Channel',
+    ch02_metric_bandgap: 'Silicon Bandgap Eg @ 300K',
+    ch02_metric_built_in: 'Built-in Potential Vbi',
+    ch02_metric_inversion: 'Strong Inversion Threshold Condition',
+    ch02_band_desc: 'Semiconductors occupy the middle ground between conductors and insulators: a full valence band (EV) separated from an empty conduction band (EC) by a 1.12 eV bandgap. Group V phosphorus doping (N-type) moves the Fermi level EF toward EC; Group III boron (P-type) shifts EF near EV, granting tunable conductivity.',
+    ch02_pn_desc: 'When P-type and N-type regions interface, diffusing holes and electrons recombine, exposing uncompensated ionized donor (ND+) and acceptor (NA-) atoms. This forms a space-charge depletion region with an internal electric field exceeding 10⁵ V/cm, balancing drift and diffusion currents in dynamic equilibrium.',
+    ch02_inversion_desc: 'The MOSFET operates on the field effect: applying a positive gate voltage (VG > Vth) drives an electric field across the high-k oxide, initially repelling substrate holes to create a depletion zone. As gate bias rises, surface band-bending pulls minority electrons to the interface, generating a highly conductive N-type inversion channel connecting source to drain.',
+
+    // Ch 20 Wire Bonding to Flip-Chip
+    ch20_title: 'Wire Bonding, Flip-Chip C4 Bumping & Capillary Underfill Model',
+    ch20_sub: 'Compare ceramic capillary thermosonic gold wire looping, 180° flip-chip C4 solder reflow self-alignment, and capillary underfill epoxy flow',
+    ch20_tab_wirebond: 'Thermosonic Wire Bonding',
+    ch20_tab_flipchip: 'Flip-Chip C4 Solder Bumps',
+    ch20_tab_underfill: 'Capillary Underfill (CUF)',
+    ch20_metric_bond_speed: 'High-Speed Bonding Rate',
+    ch20_metric_c4_pitch: 'Flip-Chip C4 Bump Pitch',
+    ch20_metric_inductance: 'Interconnect Parasitic Inductance Drop',
+    ch20_wirebond_desc: 'Traditional wire bonding uses a ceramic capillary and Electronic Flame-Off (EFO) spark to melt a Free Air Ball (FAB) at the wire tip, welding a ball bond to the die pad under 200°C heat and ultrasonic energy. The capillary loops over to form a wedge bond on the leadframe lead, firing at up to 18 wires per second.',
+    ch20_flipchip_desc: 'Flip-Chip technology eliminates peripheral wire loops: thousands of SnAg lead-free solder C4 bumps populate the die active area. The die is flipped 180° face down onto the substrate; surface tension in reflow ovens (250°C) self-aligns the die, slashing parasitic interconnect inductance by >85%.',
+    ch20_underfill_desc: 'Thermal expansion mismatch between the silicon die (CTE ~2.6 ppm/K) and organic substrate (CTE ~15 ppm/K) creates extreme thermal fatigue shear on solder joints. Capillary underfill (CUF) liquid epoxy dispenses along the die edge, wick-filling the 50µm standoff gap to lock the assembly and multiply thermal cycle life by >10x.',
+
+    // Ch 22 Reliability & Burn-In Kinetics
+    ch22_title: 'Bathtub Curve, Burn-In Arrhenius Kinetics & ESD Protection Model',
+    ch22_sub: 'Examine three-stage bathtub hazard rates, 125°C thermal-voltage acceleration screening, and GGNMOS sub-nanosecond ESD protection clamps',
+    ch22_tab_bathtub: 'Bathtub Hazard Rate Curve',
+    ch22_tab_burnin: 'High-Temperature Burn-In (HTOL)',
+    ch22_tab_esd: 'ESD Clamp Circuit Protection',
+    ch22_metric_fit: 'Failure Rate Metric (FIT)',
+    ch22_metric_af: 'Burn-In Acceleration Factor (AF)',
+    ch22_metric_esd_level: 'Human Body Model (HBM) ESD Immunity',
+    ch22_bathtub_desc: 'Semiconductor product reliability tracks the Bathtub Curve: 1. Infant Mortality: manufacturing defects (particles, gate oxide pinholes) fail rapidly in early hours; 2. Useful Life: ultra-low random failure rate (< 10 FIT) lasting years; 3. Wear-out: physical degradation (TDDB, NBTI, electromigration) reaches end of life.',
+    ch22_burnin_desc: 'Automotive and mission-critical chips undergo High-Temperature Operating Life (HTOL) burn-in at 125°C - 150°C and 1.3x operating voltage. Under Arrhenius chemical acceleration and voltage exponent models, 48 hours of burn-in simulates 1-2 years of field stress, weeding out 100% of infant mortality failures.',
+    ch22_esd_desc: 'Electrostatic discharge strikes can impart thousands of volts in nanoseconds, puncturing 1.5nm gate oxides. I/O pads incorporate GGNMOS or dual-diode ESD clamp networks: remaining high-impedance during normal operation, but avalanche-triggering parasitic BJTs in <0.5 ns to shunt multi-ampere ESD pulses safely to ground.'
   }
 };
 
@@ -4986,12 +5090,1069 @@ export function renderWaferTestObject(container, lang = 'zh') {
 
 /**
  * ══════════════════════════════════════════════════════════════════════════════
+ * 17. Ch 01 Class 1 垂直層流無塵室、OHT 天車與 FOUP 氣密對接模型 (Fab Environment)
+ * ══════════════════════════════════════════════════════════════════════════════
+ */
+export function renderFabEnvironmentObject(container, lang = 'zh') {
+  const t = TEXTS[lang] || TEXTS.zh;
+  let activeTab = 'cleanroom'; // 'cleanroom' | 'amhs' | 'facility'
+
+  function update() {
+    let viewportHtml = '';
+    let dashboardHtml = '';
+    let footerNote = '';
+
+    if (activeTab === 'cleanroom') {
+      viewportHtml = `
+        <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Class 1 Cleanroom Vertical Laminar Airflow">
+          <!-- 上方天花板 Plenum 靜壓箱與 FFU (Fan Filter Units) -->
+          <g transform="translate(60, 20)">
+            <rect x="0" y="0" width="680" height="50" rx="4" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5"/>
+            <text x="340" y="25" text-anchor="middle" fill="#38bdf8" font-size="12" font-weight="750">靜壓箱與風機過濾單元 (Plenum & FFU Array)</text>
+            <!-- ULPA 濾網層 (0.12µm 過濾效率 99.99995%) -->
+            <rect x="0" y="38" width="680" height="12" fill="#0284c7" stroke="#38bdf8" stroke-width="1"/>
+            <text x="340" y="47" text-anchor="middle" fill="#ffffff" font-size="9.5" font-weight="700">ULPA 濾網層 (Ultra-Low Penetration Air Filter: 99.99995%)</text>
+          </g>
+
+          <!-- 潔淨室加工區 (Clean Zone)：垂直單向層流 (Laminar Downflow 0.45 m/s) -->
+          <g transform="translate(60, 75)">
+            <!-- 垂直氣流箭頭 (Laminar Flow Streamlines) -->
+            ${Array.from({ length: 14 }, (_, i) => `
+              <g transform="translate(${i * 48 + 25}, 0)" class="anim-liquid-flow">
+                <line x1="0" y1="10" x2="0" y2="180" stroke="#38bdf8" stroke-width="1.8" stroke-dasharray="6 4" opacity="0.75"/>
+                <polygon points="-3,180 3,180 0,186" fill="#38bdf8"/>
+              </g>
+            `).join('')}
+
+            <!-- 兩側回風夾道 (Return Air Chases) -->
+            <rect x="0" y="0" width="30" height="200" fill="#09131b" stroke="#475569" stroke-width="1.5"/>
+            <text x="15" y="100" text-anchor="middle" fill="#94a3b8" font-size="10" transform="rotate(-90 15 100)">回風夾道 ↑</text>
+
+            <rect x="650" y="0" width="30" height="200" fill="#09131b" stroke="#475569" stroke-width="1.5"/>
+            <text x="665" y="100" text-anchor="middle" fill="#94a3b8" font-size="10" transform="rotate(90 665 100)">回風夾道 ↑</text>
+
+            <!-- 機台設備與無塵衣操作員 (Equipment in clean zone) -->
+            <g transform="translate(180, 70)">
+              <rect x="0" y="0" width="160" height="130" rx="4" fill="#0f172a" stroke="#cbd5e1" stroke-width="2"/>
+              <text x="80" y="40" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="700">微影 / 蝕刻機台</text>
+              <rect x="25" y="60" width="110" height="50" rx="3" fill="#1e293b" stroke="#38bdf8" stroke-width="1"/>
+              <text x="80" y="90" text-anchor="middle" fill="#38bdf8" font-size="11">Load Port 裝載口</text>
+            </g>
+
+            <g transform="translate(420, 90)">
+              <circle cx="20" cy="20" r="14" fill="#cbd5e1"/>
+              <rect x="5" y="34" width="30" height="76" rx="4" fill="#cbd5e1"/>
+              <text x="20" y="70" text-anchor="middle" fill="#0f172a" font-size="10" font-weight="800">無塵衣</text>
+              <text x="20" y="130" text-anchor="middle" fill="#cbd5e1" font-size="10">工程師</text>
+            </g>
+          </g>
+
+          <!-- 下方高架穿孔地板 (Raised Perforated Floor Grid) -->
+          <g transform="translate(60, 275)">
+            <rect x="0" y="0" width="680" height="24" fill="#334155" stroke="#cbd5e1" stroke-width="1.5"/>
+            ${Array.from({ length: 34 }, (_, i) => `
+              <circle cx="${i * 20 + 10}" cy="12" r="4.5" fill="#09131b"/>
+            `).join('')}
+            <text x="340" y="45" text-anchor="middle" fill="#cbd5e1" font-size="11">高架穿孔地板 (Perforated Floor: 下吸微粒消除對流)</text>
+          </g>
+        </svg>
+      `;
+
+      dashboardHtml = `
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">${t.ch01_metric_iso}</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-blue-dark);">ISO Class 1</div>
+          <div class="eng-obj-metric-note">每立方米大於 0.1µm 微粒 &lt; 10 顆</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">${t.ch01_metric_flow}</div>
+          <div class="eng-obj-metric-value">0.45 ± 0.05 m/s</div>
+          <div class="eng-obj-metric-note">垂直向下無亂流均勻層流壓制顆粒</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">室內微正壓 (Positive Pressure)</div>
+          <div class="eng-obj-metric-value">+15 ~ +25 Pa</div>
+          <div class="eng-obj-metric-note">開門時氣流向外噴湧，外界污染無法侵入</div>
+        </div>
+      `;
+
+      footerNote = t.ch01_cleanroom_desc;
+    } else if (activeTab === 'amhs') {
+      viewportHtml = `
+        <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="OHT Skyrail and FOUP Automated Load Port Docking">
+          <!-- 天花板 OHT 單軌空中軌道 (Ceiling Monorail Track) -->
+          <g transform="translate(60, 30)">
+            <rect x="0" y="0" width="680" height="20" fill="#334155" stroke="#64748b" stroke-width="1.5"/>
+            <text x="340" y="14" text-anchor="middle" fill="#94a3b8" font-size="10.5">OHT 天車空中高速單軌 (Ceiling Skyrail Monorail)</text>
+          </g>
+
+          <!-- OHT 天車本體與昇降吊具 (OHT Vehicle with Hoist) -->
+          <g transform="translate(300, 50)">
+            <!-- 天車小車 (OHT Vehicle: 300 m/min 高速驅動) -->
+            <rect x="0" y="0" width="200" height="50" rx="4" fill="#0f172a" stroke="#0ea5e9" stroke-width="2"/>
+            <text x="100" y="28" text-anchor="middle" fill="#38bdf8" font-size="12" font-weight="750">OHT 天車 (300 m/min 奔馳)</text>
+
+            <!-- 垂直升降纜繩 (Hoist Belts) -->
+            <line x1="40" y1="50" x2="40" y2="130" stroke="#e2e8f0" stroke-width="2.5"/>
+            <line x1="160" y1="50" x2="160" y2="130" stroke="#e2e8f0" stroke-width="2.5"/>
+
+            <!-- 300mm FOUP (Front Opening Unified Pod: 盛裝 25 片晶圓) -->
+            <g transform="translate(25, 130)">
+              <rect x="0" y="0" width="150" height="110" rx="6" fill="#1e293b" stroke="#f59e0b" stroke-width="2"/>
+              <!-- 晶圓盒把手 -->
+              <rect x="50" y="-12" width="50" height="12" rx="2" fill="#475569" stroke="#cbd5e1" stroke-width="1"/>
+              <!-- 內部充氮 N2 與 25 片晶圓橫線 -->
+              ${Array.from({ length: 9 }, (_, i) => `
+                <line x1="20" y1="${i * 10 + 20}" x2="130" y2="${i * 10 + 20}" stroke="#38bdf8" stroke-width="1.5"/>
+              `).join('')}
+              <text x="75" y="80" text-anchor="middle" fill="#fbbf24" font-size="11" font-weight="750">300mm FOUP</text>
+              <text x="75" y="96" text-anchor="middle" fill="#ffffff" font-size="9.5">充氮 N₂ 氣密盒 (25片裝)</text>
+            </g>
+          </g>
+
+          <!-- 下方機台裝載埠 (Load Port & EFEM) -->
+          <g transform="translate(240, 290)">
+            <rect x="0" y="0" width="320" height="90" rx="4" fill="#0f172a" stroke="#10b981" stroke-width="2"/>
+            <!-- 氣動定位定位銷 (Kinematic Coupling Pins) -->
+            <polygon points="40,0 46,-8 34,-8" fill="#fbbf24"/>
+            <polygon points="160,0 166,-8 154,-8" fill="#fbbf24"/>
+            <polygon points="280,0 286,-8 274,-8" fill="#fbbf24"/>
+            <text x="160" y="35" text-anchor="middle" fill="#34d399" font-size="12.5" font-weight="750">機台裝載埠 (Equipment Load Port)</text>
+            <text x="160" y="55" text-anchor="middle" fill="#cbd5e1" font-size="10.5">真空吸盤自動開門 (Door Opener) · 晶圓零暴露傳送</text>
+            <text x="160" y="75" text-anchor="middle" fill="#38bdf8" font-size="10">微正壓氣幕 (Mini-Environment ISO 1) 防止顆粒侵入</text>
+          </g>
+        </svg>
+      `;
+
+      dashboardHtml = `
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">${t.ch01_metric_oht_speed}</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-blue-dark);">300 m/min (5 m/s)</div>
+          <div class="eng-obj-metric-note">空中單軌智能排程自動避碰與派車</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">FOUP 晶圓盒容量</div>
+          <div class="eng-obj-metric-value">25 片 300mm 晶圓</div>
+          <div class="eng-obj-metric-note">全封閉微環境隔絕外部無塵室化學氣體</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">晶圓傳送對位精度</div>
+          <div class="eng-obj-metric-value">± 0.05 mm</div>
+          <div class="eng-obj-metric-note">Kinematic Pins 保證每一次下放完美對齊</div>
+        </div>
+      `;
+
+      footerNote = t.ch01_amhs_desc;
+    } else if (activeTab === 'facility') {
+      viewportHtml = `
+        <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Fab Facilities Ultrapure Water and Specialty Gas Systems">
+          <!-- 左側：18.2 MΩ·cm 超純水 (UPW) 循環管路 -->
+          <g transform="translate(60, 40)">
+            <rect x="0" y="0" width="320" height="340" fill="#0f172a" stroke="#0ea5e9" stroke-width="1.5" rx="6"/>
+            <text x="160" y="32" text-anchor="middle" fill="#38bdf8" font-size="13" font-weight="750">超純水系統 (UPW Facility)</text>
+            <text x="160" y="52" text-anchor="middle" fill="#94a3b8" font-size="10.5">水分子純化極限 · TOC &lt; 1 ppb</text>
+
+            <!-- 淨化流程模組 (RO → EDI → UV 185nm → 脫氣膜) -->
+            <g transform="translate(30, 75)">
+              <rect x="0" y="0" width="260" height="40" rx="3" fill="#1e293b" stroke="#38bdf8" stroke-width="1"/>
+              <text x="130" y="25" text-anchor="middle" fill="#ffffff" font-size="11">1. RO 逆滲透 + EDI 電去離子</text>
+
+              <rect x="0" y="60" width="260" height="40" rx="3" fill="#1e293b" stroke="#38bdf8" stroke-width="1"/>
+              <text x="130" y="85" text-anchor="middle" fill="#ffffff" font-size="11">2. 185nm 紫外線 (UV) TOC 降解</text>
+
+              <rect x="0" y="120" width="260" height="40" rx="3" fill="#1e293b" stroke="#38bdf8" stroke-width="1"/>
+              <text x="130" y="145" text-anchor="middle" fill="#ffffff" font-size="11">3. 膜式脫氣 (脫除溶氧 DO &lt; 1 ppb)</text>
+
+              <rect x="0" y="180" width="260" height="40" rx="3" fill="#0284c7" stroke="#38bdf8" stroke-width="1.5"/>
+              <text x="130" y="205" text-anchor="middle" fill="#ffffff" font-size="11.5" font-weight="750">送至機台: 18.2 MΩ·cm (@25°C)</text>
+            </g>
+          </g>
+
+          <!-- 右側：劇毒特氣雙壁套管與洗滌塔 (Specialty Gas & Scrubbers) -->
+          <g transform="translate(420, 40)">
+            <rect x="0" y="0" width="320" height="340" fill="#0f172a" stroke="#f59e0b" stroke-width="1.5" rx="6"/>
+            <text x="160" y="32" text-anchor="middle" fill="#fbbf24" font-size="13" font-weight="750">特氣與廢氣處理 (Gas & Scrubber)</text>
+            <text x="160" y="52" text-anchor="middle" fill="#94a3b8" font-size="10.5">雙層不銹鋼同軸管 · 燃燒洗滌零排放</text>
+
+            <g transform="translate(30, 75)">
+              <!-- 雙層同軸套管剖面 (Coaxial Tubing) -->
+              <rect x="0" y="0" width="260" height="50" rx="3" fill="#1e293b" stroke="#cbd5e1" stroke-width="1"/>
+              <text x="130" y="20" text-anchor="middle" fill="#f87171" font-size="11" font-weight="700">劇毒特氣 (SiH₄, WF₆, Cl₂)</text>
+              <text x="130" y="38" text-anchor="middle" fill="#94a3b8" font-size="10">內管輸氣 · 外管負壓抽氣偵測</text>
+
+              <!-- Point-of-Use 燃燒水洗機 (Burn-Wet Scrubber) -->
+              <rect x="0" y="70" width="260" height="70" rx="4" fill="#09131b" stroke="#f59e0b" stroke-width="1.5"/>
+              <text x="130" y="95" text-anchor="middle" fill="#fbbf24" font-size="12" font-weight="750">局部燃燒式洗滌器 (POU Scrubber)</text>
+              <text x="130" y="115" text-anchor="middle" fill="#cbd5e1" font-size="10.5">1400°C 燃燒裂解溫室氣體 PFCs</text>
+              <text x="130" y="130" text-anchor="middle" fill="#34d399" font-size="10">水洗中和酸性廢氣 → 達標排放</text>
+
+              <!-- 廠級中央洗滌塔 (Central Wet Scrubber) -->
+              <rect x="0" y="160" width="260" height="50" rx="3" fill="#1e293b" stroke="#10b981" stroke-width="1"/>
+              <text x="130" y="185" text-anchor="middle" fill="#34d399" font-size="11" font-weight="700">中央廢氣洗滌塔 (Central Scrubber)</text>
+              <text x="130" y="202" text-anchor="middle" fill="#94a3b8" font-size="9.5">酸鹼排氣鹼液逆向噴淋中和</text>
+            </g>
+          </g>
+        </svg>
+      `;
+
+      dashboardHtml = `
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">超純水電阻率 (UPW Resistivity)</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-teal);">18.2 MΩ·cm</div>
+          <div class="eng-obj-metric-note">水分子去離子化理論物理極限</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">總有機碳含量 (TOC)</div>
+          <div class="eng-obj-metric-value">&lt; 1 ppb</div>
+          <div class="eng-obj-metric-note">十億分之一有機物殘留防晶圓積碳</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">劇毒特氣管路標準</div>
+          <div class="eng-obj-metric-value">雙層同軸 (Coaxial)</div>
+          <div class="eng-obj-metric-note">外管連續真空抽檢，杜絕微漏風險</div>
+        </div>
+      `;
+
+      footerNote = t.ch01_facility_desc;
+    }
+
+    container.innerHTML = `
+      <section class="eng-obj-card" aria-labelledby="engObjCh01Title">
+        <header class="eng-obj-header">
+          <div class="eng-obj-badge-row">
+            <span class="eng-obj-badge">${t.badge_prefix} · CH 01</span>
+            <span class="eng-obj-status">${t.live_sim}</span>
+          </div>
+          <h2 class="eng-obj-title" id="engObjCh01Title">${t.ch01_title}</h2>
+          <p class="eng-obj-subtitle">${t.ch01_sub}</p>
+        </header>
+
+        <div class="eng-obj-controls">
+          <div class="eng-obj-tab-group" role="tablist">
+            <button type="button" class="eng-obj-tab ${activeTab === 'cleanroom' ? 'is-active' : ''}" data-tab="cleanroom">${t.ch01_tab_cleanroom}</button>
+            <button type="button" class="eng-obj-tab ${activeTab === 'amhs' ? 'is-active' : ''}" data-tab="amhs">${t.ch01_tab_amhs}</button>
+            <button type="button" class="eng-obj-tab ${activeTab === 'facility' ? 'is-active' : ''}" data-tab="facility">${t.ch01_tab_facility}</button>
+          </div>
+        </div>
+
+        <div class="eng-obj-viewport">
+          ${viewportHtml}
+        </div>
+
+        <div class="eng-obj-dashboard">
+          ${dashboardHtml}
+        </div>
+
+        <footer class="eng-obj-footer-note">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+          <div>${footerNote}</div>
+        </footer>
+      </section>
+    `;
+
+    container.querySelectorAll('[data-tab]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        activeTab = btn.getAttribute('data-tab');
+        update();
+      });
+    });
+  }
+
+  update();
+}
+
+/**
+ * ══════════════════════════════════════════════════════════════════════════════
+ * 18. Ch 02 固態物理基礎、PN 接面空乏區與 MOSFET 強反轉層模型 (Solid State Physics)
+ * ══════════════════════════════════════════════════════════════════════════════
+ */
+export function renderSemiconductorPhysicsObject(container, lang = 'zh') {
+  const t = TEXTS[lang] || TEXTS.zh;
+  let activeTab = 'band'; // 'band' | 'pn' | 'inversion'
+
+  function update() {
+    let viewportHtml = '';
+    let dashboardHtml = '';
+    let footerNote = '';
+
+    if (activeTab === 'band') {
+      viewportHtml = `
+        <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Semiconductor Band Diagram Intrinsic vs N-type vs P-type">
+          <!-- 三大能帶圖對比區域 -->
+          <!-- 1. 本質半導體 (Intrinsic Si) -->
+          <g transform="translate(60, 40)">
+            <rect x="0" y="0" width="200" height="320" fill="#0f172a" stroke="#334155" stroke-width="1.5" rx="6"/>
+            <text x="100" y="30" text-anchor="middle" fill="#38bdf8" font-size="12" font-weight="750">本質矽 (Intrinsic)</text>
+            <text x="100" y="48" text-anchor="middle" fill="#94a3b8" font-size="10">未摻雜 · 純度 11N</text>
+
+            <!-- 傳導帶 (Conduction Band Ec) -->
+            <rect x="20" y="70" width="160" height="45" fill="#0284c7" opacity="0.6"/>
+            <line x1="20" y1="115" x2="180" y2="115" stroke="#38bdf8" stroke-width="2"/>
+            <text x="30" y="105" fill="#ffffff" font-size="11" font-weight="700">Ec 傳導帶底</text>
+
+            <!-- 費米能階 EF (正中央) -->
+            <line x1="20" y1="175" x2="180" y2="175" stroke="#fbbf24" stroke-width="1.8" stroke-dasharray="4 2"/>
+            <text x="100" y="168" text-anchor="middle" fill="#fbbf24" font-size="10.5" font-weight="700">EF = Ei (中性費米階)</text>
+
+            <!-- 價帶 (Valence Band Ev) -->
+            <rect x="20" y="235" width="160" height="45" fill="#ea580c" opacity="0.6"/>
+            <line x1="20" y1="235" x2="180" y2="235" stroke="#f97316" stroke-width="2"/>
+            <text x="30" y="255" fill="#ffffff" font-size="11" font-weight="700">Ev 價帶頂</text>
+
+            <text x="100" y="210" text-anchor="middle" fill="#94a3b8" font-size="10">能隙 Eg = 1.12 eV</text>
+          </g>
+
+          <!-- 2. N 型半導體 (N-type: 摻五價磷 P) -->
+          <g transform="translate(300, 40)">
+            <rect x="0" y="0" width="200" height="320" fill="#0f172a" stroke="#0ea5e9" stroke-width="1.5" rx="6"/>
+            <text x="100" y="30" text-anchor="middle" fill="#38bdf8" font-size="12" font-weight="750">N 型矽 (摻雜磷 P⁺)</text>
+            <text x="100" y="48" text-anchor="middle" fill="#38bdf8" font-size="10">施體摻雜 · 電子多數載子</text>
+
+            <rect x="20" y="70" width="160" height="45" fill="#0284c7" opacity="0.6"/>
+            <line x1="20" y1="115" x2="180" y2="115" stroke="#38bdf8" stroke-width="2"/>
+            <text x="30" y="105" fill="#ffffff" font-size="11" font-weight="700">Ec 傳導帶底</text>
+
+            <!-- 施體能階 Ed 與向上躍升的費米能階 EF -->
+            <line x1="20" y1="130" x2="180" y2="130" stroke="#f87171" stroke-width="1.5" stroke-dasharray="2 2"/>
+            <text x="140" y="126" fill="#f87171" font-size="9.5">Ed 施體階</text>
+
+            <line x1="20" y1="140" x2="180" y2="140" stroke="#fbbf24" stroke-width="2"/>
+            <text x="100" y="155" text-anchor="middle" fill="#fbbf24" font-size="11" font-weight="750">EF ⇑ 躍升接近 Ec</text>
+
+            <rect x="20" y="235" width="160" height="45" fill="#ea580c" opacity="0.6"/>
+            <line x1="20" y1="235" x2="180" y2="235" stroke="#f97316" stroke-width="2"/>
+            <text x="30" y="255" fill="#ffffff" font-size="11" font-weight="700">Ev 價帶頂</text>
+
+            <text x="100" y="300" text-anchor="middle" fill="#38bdf8" font-size="10.5">容易激發自由電子導電</text>
+          </g>
+
+          <!-- 3. P 型半導體 (P-type: 摻三價硼 B) -->
+          <g transform="translate(540, 40)">
+            <rect x="0" y="0" width="200" height="320" fill="#0f172a" stroke="#f59e0b" stroke-width="1.5" rx="6"/>
+            <text x="100" y="30" text-anchor="middle" fill="#fbbf24" font-size="12" font-weight="750">P 型矽 (摻雜硼 B⁻)</text>
+            <text x="100" y="48" text-anchor="middle" fill="#fbbf24" font-size="10">受體摻雜 · 電洞多數載子</text>
+
+            <rect x="20" y="70" width="160" height="45" fill="#0284c7" opacity="0.6"/>
+            <line x1="20" y1="115" x2="180" y2="115" stroke="#38bdf8" stroke-width="2"/>
+            <text x="30" y="105" fill="#ffffff" font-size="11" font-weight="700">Ec 傳導帶底</text>
+
+            <!-- 受體能階 Ea 與向下沉降的費米能階 EF -->
+            <line x1="20" y1="210" x2="180" y2="210" stroke="#fbbf24" stroke-width="2"/>
+            <text x="100" y="200" text-anchor="middle" fill="#fbbf24" font-size="11" font-weight="750">EF ⇓ 沉降貼近 Ev</text>
+
+            <line x1="20" y1="220" x2="180" y2="220" stroke="#34d399" stroke-width="1.5" stroke-dasharray="2 2"/>
+            <text x="140" y="230" fill="#34d399" font-size="9.5">Ea 受體階</text>
+
+            <rect x="20" y="235" width="160" height="45" fill="#ea580c" opacity="0.6"/>
+            <line x1="20" y1="235" x2="180" y2="235" stroke="#f97316" stroke-width="2"/>
+            <text x="30" y="255" fill="#ffffff" font-size="11" font-weight="700">Ev 價帶頂</text>
+
+            <text x="100" y="300" text-anchor="middle" fill="#fbbf24" font-size="10.5">容易吸納電子產生電洞導電</text>
+          </g>
+        </svg>
+      `;
+
+      dashboardHtml = `
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">${t.ch02_metric_bandgap}</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-blue-dark);">1.12 eV</div>
+          <div class="eng-obj-metric-note">矽材料決定了 0.7V 導通門檻與高溫穩定性</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">熱電壓 (Thermal Voltage kT)</div>
+          <div class="eng-obj-metric-value">25.9 meV (@ 300K)</div>
+          <div class="eng-obj-metric-note">決定載子波茲曼分佈與次臨界擺幅理論極限</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">本質載子濃度 (ni)</div>
+          <div class="eng-obj-metric-value">1.0 × 10¹⁰ cm⁻³</div>
+          <div class="eng-obj-metric-note">摻雜濃度 10¹⁶ ~ 10²⁰ 徹底主導材料導電度</div>
+        </div>
+      `;
+
+      footerNote = t.ch02_band_desc;
+    } else if (activeTab === 'pn') {
+      viewportHtml = `
+        <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="PN Junction Depletion Region and Built-in Electric Field">
+          <!-- PN 接面整體主體結構 -->
+          <g transform="translate(100, 50)">
+            <!-- P 區主體 (左側: 大量電洞多數載子) -->
+            <rect x="0" y="0" width="220" height="240" fill="#1e293b" stroke="#f59e0b" stroke-width="2"/>
+            <text x="110" y="40" text-anchor="middle" fill="#fbbf24" font-size="16" font-weight="800">P 區 (P-type)</text>
+            <text x="110" y="65" text-anchor="middle" fill="#94a3b8" font-size="11">多數載子: 電洞 (h⁺)</text>
+            <!-- 電洞圓圈示意 -->
+            ${Array.from({ length: 8 }, (_, i) => `
+              <circle cx="${(i % 3) * 50 + 40}" cy="${Math.floor(i / 3) * 45 + 100}" r="10" fill="#f59e0b"/>
+              <text x="${(i % 3) * 50 + 40}" y="${Math.floor(i / 3) * 45 + 104}" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="800">+</text>
+            `).join('')}
+
+            <!-- N 區主體 (右側: 大量電子多數載子) -->
+            <rect x="380" y="0" width="220" height="240" fill="#1e293b" stroke="#0ea5e9" stroke-width="2"/>
+            <text x="490" y="40" text-anchor="middle" fill="#38bdf8" font-size="16" font-weight="800">N 區 (N-type)</text>
+            <text x="490" y="65" text-anchor="middle" fill="#94a3b8" font-size="11">多數載子: 電子 (e⁻)</text>
+            <!-- 電子圓圈示意 -->
+            ${Array.from({ length: 8 }, (_, i) => `
+              <circle cx="${(i % 3) * 50 + 420}" cy="${Math.floor(i / 3) * 45 + 100}" r="10" fill="#0ea5e9"/>
+              <text x="${(i % 3) * 50 + 420}" y="${Math.floor(i / 3) * 45 + 103}" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="800">-</text>
+            `).join('')}
+
+            <!-- 中間空間電荷區 (空乏區 Depletion Region: W ~ 0.3µm) -->
+            <rect x="220" y="0" width="160" height="240" fill="#09131b" stroke="#ef4444" stroke-width="2"/>
+            <text x="300" y="30" text-anchor="middle" fill="#f87171" font-size="12" font-weight="750">空乏區 (Depletion)</text>
+            <text x="300" y="48" text-anchor="middle" fill="#94a3b8" font-size="9.5">載子耗盡 · 裸露不可移動離子</text>
+
+            <!-- 左側帶負電的受體離子 NA- -->
+            ${[90, 150, 210].map(y => `
+              <circle cx="255" cy="${y}" r="12" fill="#334155" stroke="#f87171" stroke-width="1.5"/>
+              <text x="255" y="${y + 4}" text-anchor="middle" fill="#f87171" font-size="11" font-weight="800">-</text>
+            `).join('')}
+
+            <!-- 右側帶正電的施體離子 ND+ -->
+            ${[90, 150, 210].map(y => `
+              <circle cx="345" cy="${y}" r="12" fill="#334155" stroke="#38bdf8" stroke-width="1.5"/>
+              <text x="345" y="${y + 4}" text-anchor="middle" fill="#38bdf8" font-size="11" font-weight="800">+</text>
+            `).join('')}
+
+            <!-- 內建電場向量 Ebi (由正離子指向負離子 ←) -->
+            <line x1="330" y1="120" x2="275" y2="120" stroke="#f59e0b" stroke-width="3" marker-end="url(#arrow)"/>
+            <text x="300" y="140" text-anchor="middle" fill="#fbbf24" font-size="11" font-weight="800">⇦ 內建電場 Ebi</text>
+          </g>
+
+          <!-- 下方電流平衡說明條 -->
+          <g transform="translate(160, 320)">
+            <rect x="0" y="0" width="480" height="50" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+            <text x="240" y="24" text-anchor="middle" fill="#34d399" font-size="11.5" font-weight="750">擴散電流 (Diffusion) ⇄ 漂移電流 (Drift) 精確相抵 (Inet = 0)</text>
+            <text x="240" y="42" text-anchor="middle" fill="#cbd5e1" font-size="10.5">順偏電壓克服 0.7V 內建能障導通；逆偏擴大空乏區杜絕漏電</text>
+          </g>
+        </svg>
+      `;
+
+      dashboardHtml = `
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">${t.ch02_metric_built_in}</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-blue-dark);">~ 0.7 V</div>
+          <div class="eng-obj-metric-note">矽二極體與 PN 接面導通能障</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">空乏區內部電場</div>
+          <div class="eng-obj-metric-value">&gt; 10⁵ V/cm</div>
+          <div class="eng-obj-metric-note">強大微觀靜電場阻止載子進一步擴散</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">接面電容效應 (Cj)</div>
+          <div class="eng-obj-metric-value">~ 0.5 fF/µm²</div>
+          <div class="eng-obj-metric-note">隨逆向偏壓增加而降低寄生電容</div>
+        </div>
+      `;
+
+      footerNote = t.ch02_pn_desc;
+    } else if (activeTab === 'inversion') {
+      viewportHtml = `
+        <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="MOSFET Strong Inversion Channel Physics Model">
+          <!-- MOSFET 橫截面主體 (MOS Structure with Inversion Layer) -->
+          <g transform="translate(120, 40)">
+            <!-- 頂部金屬閘極 (Gate Electrode @ VG > Vth) -->
+            <rect x="180" y="20" width="200" height="40" fill="#334155" stroke="#f59e0b" stroke-width="2" rx="3"/>
+            <text x="280" y="45" text-anchor="middle" fill="#fbbf24" font-size="13" font-weight="750">金屬閘極 (Gate: VG &gt; Vth)</text>
+
+            <!-- 閘極介電層 (High-k Dielectric: 1.5nm HfO2) -->
+            <rect x="180" y="60" width="200" height="15" fill="#0284c7" stroke="#38bdf8" stroke-width="1.5"/>
+            <text x="280" y="72" text-anchor="middle" fill="#ffffff" font-size="9.5" font-weight="700">氧化鉿介電薄膜 (1.5nm High-k)</text>
+
+            <!-- 強反轉導電通道 (Strong Inversion Layer: 聚集大量電子形成 N-Channel) -->
+            <rect x="180" y="75" width="200" height="12" fill="#10b981" stroke="#34d399" stroke-width="1.5"/>
+            <text x="280" y="85" text-anchor="middle" fill="#ffffff" font-size="9.5" font-weight="800">反轉層導電通道 (N-Inversion Channel: 1.5nm)</text>
+
+            <!-- 下方 P 型矽基板 (P-Substrate) 與空乏層 -->
+            <rect x="0" y="87" width="560" height="180" fill="#0f172a" stroke="#475569" stroke-width="1.5"/>
+
+            <!-- 兩側 N+ 源極與汲極 (Source & Drain) -->
+            <rect x="20" y="87" width="160" height="70" fill="#0284c7" stroke="#38bdf8" stroke-width="1.5" rx="2"/>
+            <text x="100" y="130" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="750">源極 N⁺ (Source)</text>
+
+            <rect x="380" y="87" width="160" height="70" fill="#0284c7" stroke="#38bdf8" stroke-width="1.5" rx="2"/>
+            <text x="460" y="130" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="750">汲極 N⁺ (Drain)</text>
+
+            <text x="280" y="210" text-anchor="middle" fill="#94a3b8" font-size="13">P 型矽基板 (P-Type Silicon Substrate)</text>
+            <text x="280" y="235" text-anchor="middle" fill="#34d399" font-size="11" font-weight="700">⇦ 電子在反轉通道中高速漂移連通源極與汲極 ⇨</text>
+          </g>
+
+          <!-- 說明標註 -->
+          <g transform="translate(160, 335)">
+            <rect x="0" y="0" width="480" height="45" rx="4" fill="#0f172a" stroke="#10b981" stroke-width="1"/>
+            <text x="240" y="22" text-anchor="middle" fill="#34d399" font-size="11" font-weight="750">表面電位滿足 ψs ≥ 2ψB 時觸發「強反轉 (Strong Inversion)」</text>
+            <text x="240" y="38" text-anchor="middle" fill="#cbd5e1" font-size="10">閘極電場把 P 區表面的電子濃度提升到超過基板電洞，開關完全導通！</text>
+          </g>
+        </svg>
+      `;
+
+      dashboardHtml = `
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">${t.ch02_metric_inversion}</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-teal);">ψs &ge; 2ψB</div>
+          <div class="eng-obj-metric-note">表面少數載子電子濃度反超多數載子</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">反轉通道物理厚度</div>
+          <div class="eng-obj-metric-value">1 ~ 2 nm</div>
+          <div class="eng-obj-metric-note">極薄二維電子氣 (2DEG) 高速導通通道</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">開關臨界電壓 (Vth)</div>
+          <div class="eng-obj-metric-value">~ 0.35 V</div>
+          <div class="eng-obj-metric-note">由功函數金屬與介電層厚度精準調控</div>
+        </div>
+      `;
+
+      footerNote = t.ch02_inversion_desc;
+    }
+
+    container.innerHTML = `
+      <section class="eng-obj-card" aria-labelledby="engObjCh02Title">
+        <header class="eng-obj-header">
+          <div class="eng-obj-badge-row">
+            <span class="eng-obj-badge">${t.badge_prefix} · CH 02</span>
+            <span class="eng-obj-status">${t.live_sim}</span>
+          </div>
+          <h2 class="eng-obj-title" id="engObjCh02Title">${t.ch02_title}</h2>
+          <p class="eng-obj-subtitle">${t.ch02_sub}</p>
+        </header>
+
+        <div class="eng-obj-controls">
+          <div class="eng-obj-tab-group" role="tablist">
+            <button type="button" class="eng-obj-tab ${activeTab === 'band' ? 'is-active' : ''}" data-tab="band">${t.ch02_tab_band}</button>
+            <button type="button" class="eng-obj-tab ${activeTab === 'pn' ? 'is-active' : ''}" data-tab="pn">${t.ch02_tab_pn}</button>
+            <button type="button" class="eng-obj-tab ${activeTab === 'inversion' ? 'is-active' : ''}" data-tab="inversion">${t.ch02_tab_inversion}</button>
+          </div>
+        </div>
+
+        <div class="eng-obj-viewport">
+          ${viewportHtml}
+        </div>
+
+        <div class="eng-obj-dashboard">
+          ${dashboardHtml}
+        </div>
+
+        <footer class="eng-obj-footer-note">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+          <div>${footerNote}</div>
+        </footer>
+      </section>
+    `;
+
+    container.querySelectorAll('[data-tab]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        activeTab = btn.getAttribute('data-tab');
+        update();
+      });
+    });
+  }
+
+  update();
+}
+
+/**
+ * ══════════════════════════════════════════════════════════════════════════════
+ * 19. Ch 20 引線鍵合 (Wire Bonding)、覆晶 C4 凸塊與底部填充膠模型 (Packaging Flow)
+ * ══════════════════════════════════════════════════════════════════════════════
+ */
+export function renderPackagingFlowObject(container, lang = 'zh') {
+  const t = TEXTS[lang] || TEXTS.zh;
+  let activeTab = 'wirebond'; // 'wirebond' | 'flipchip' | 'underfill'
+
+  function update() {
+    let viewportHtml = '';
+    let dashboardHtml = '';
+    let footerNote = '';
+
+    if (activeTab === 'wirebond') {
+      viewportHtml = `
+        <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Thermosonic Wire Bonding Flow and Tool Capillary">
+          <!-- 底部基板與導線架 (Substrate & Leadframe) -->
+          <g transform="translate(100, 260)">
+            <rect x="0" y="40" width="600" height="50" rx="3" fill="#0f172a" stroke="#475569" stroke-width="1.5"/>
+            <text x="300" y="70" text-anchor="middle" fill="#94a3b8" font-size="11">封裝導線架 / 基板 (Package Leadframe / Substrate)</text>
+
+            <!-- 兩側外引腳 (Outer Leads) -->
+            <rect x="20" y="10" width="80" height="30" fill="#f59e0b" rx="2"/>
+            <text x="60" y="30" text-anchor="middle" fill="#0f172a" font-size="10.5" font-weight="750">引腳 1</text>
+
+            <rect x="500" y="10" width="80" height="30" fill="#f59e0b" rx="2"/>
+            <text x="540" y="30" text-anchor="middle" fill="#0f172a" font-size="10.5" font-weight="750">引腳 2</text>
+          </g>
+
+          <!-- 中間晶粒 (Die Attached on Substrate with Epoxy) -->
+          <g transform="translate(260, 200)">
+            <rect x="0" y="0" width="280" height="60" rx="3" fill="#1e293b" stroke="#38bdf8" stroke-width="2"/>
+            <text x="140" y="35" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="750">半導體晶片 (Die)</text>
+            <!-- 表面周圍鋁/銅焊墊 (Bond Pads) -->
+            <rect x="20" y="0" width="25" height="10" fill="#cbd5e1" rx="1"/>
+            <rect x="235" y="0" width="25" height="10" fill="#cbd5e1" rx="1"/>
+          </g>
+
+          <!-- 陶瓷劈刀 (Capillary) 正在打第一焊點與金線走弧 (Wire Looping) -->
+          <!-- 左側已打好的金線 (Completed Wire Loop) -->
+          <path d="M 292,200 Q 230,110 160,270" fill="none" stroke="#fbbf24" stroke-width="3"/>
+          <!-- 第一焊點球焊 (Ball Bond) -->
+          <ellipse cx="292" cy="202" rx="7" ry="4" fill="#f59e0b"/>
+          <!-- 第二焊點楔焊 (Wedge Bond) -->
+          <rect x="150" y="268" width="12" height="4" fill="#f59e0b"/>
+          <text x="190" y="140" fill="#fbbf24" font-size="11" font-weight="700">金線走弧 (Looping)</text>
+
+          <!-- 右側正在作業的陶瓷劈刀 (Capillary Tool) -->
+          <g transform="translate(500, 40)">
+            <polygon points="0,0 30,0 20,120 10,120" fill="#e2e8f0" stroke="#64748b" stroke-width="1.5"/>
+            <text x="50" y="50" fill="#ffffff" font-size="11" font-weight="700">陶瓷劈刀 (Capillary)</text>
+            <text x="50" y="68" fill="#94a3b8" font-size="9.5">超音波震盪 (120 kHz) + 200°C 熱壓</text>
+            <!-- 穿出劈刀的金線 -->
+            <line x1="15" y1="0" x2="15" y2="155" stroke="#fbbf24" stroke-width="2.5"/>
+            <!-- 劈刀下方的金屬球 (FAB: Free Air Ball) -->
+            <circle cx="15" cy="155" r="7" fill="#f59e0b"/>
+            <text x="35" y="155" fill="#f59e0b" font-size="10" font-weight="700">打火球 (FAB)</text>
+          </g>
+        </svg>
+      `;
+
+      dashboardHtml = `
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">${t.ch20_metric_bond_speed}</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-blue-dark);">16 ~ 20 條線 / 秒</div>
+          <div class="eng-obj-metric-note">高速音圈馬達劈刀精準飛速穿梭</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">打線材質</div>
+          <div class="eng-obj-metric-value">金線 (Au) / 銅線 (Cu)</div>
+          <div class="eng-obj-metric-note">銅線具更高導電率且節省貴金屬成本</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">焊點剪切破壞力</div>
+          <div class="eng-obj-metric-value">&gt; 15 gf (克拉力)</div>
+          <div class="eng-obj-metric-note">金屬共晶原子鍵合確保抗震耐久</div>
+        </div>
+      `;
+
+      footerNote = t.ch20_wirebond_desc;
+    } else if (activeTab === 'flipchip') {
+      viewportHtml = `
+        <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Flip-Chip C4 Bumps Self-Alignment and Reflow">
+          <!-- 上方晶片主體 (Flip-Chip Die: 正面翻轉朝下 Face Down) -->
+          <g transform="translate(150, 60)">
+            <rect x="0" y="0" width="500" height="90" rx="4" fill="#0f172a" stroke="#38bdf8" stroke-width="2"/>
+            <text x="250" y="45" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="750">覆晶晶片 (Flip-Chip Die: 180° 翻轉朝下)</text>
+            <text x="250" y="68" text-anchor="middle" fill="#38bdf8" font-size="11">無周邊引線 · 全晶片表面二維矩陣佈凸塊 (Area Array)</text>
+          </g>
+
+          <!-- 中段：C4 焊錫凸塊陣列 (Controlled Collapse Chip Connection SnAg Bumps) -->
+          <g transform="translate(180, 150)">
+            ${Array.from({ length: 11 }, (_, i) => `
+              <g transform="translate(${i * 44 + 5}, 0)">
+                <!-- 凸塊球形 (Solder Bump) -->
+                <ellipse cx="0" cy="25" rx="14" ry="12" fill="#cbd5e1" stroke="#f59e0b" stroke-width="2"/>
+                <text x="0" y="29" text-anchor="middle" fill="#0f172a" font-size="8" font-weight="800">C4</text>
+              </g>
+            `).join('')}
+            <text x="220" y="55" text-anchor="middle" fill="#fbbf24" font-size="11" font-weight="750">C4 焊錫凸塊 (間距 150µm · 250°C 迴焊表面張力自我對準)</text>
+          </g>
+
+          <!-- 下方封裝基板 (Package Substrate with Copper Pads) -->
+          <g transform="translate(120, 220)">
+            <!-- 表面接腳焊墊 (Substrate Pads) -->
+            ${Array.from({ length: 11 }, (_, i) => `
+              <rect x="${i * 44 + 65}" y="0" width="28" height="12" rx="2" fill="#f59e0b"/>
+            `).join('')}
+
+            <!-- 有機 BT/ABF 基板主體 (Package Substrate) -->
+            <rect x="0" y="12" width="560" height="70" rx="4" fill="#1e293b" stroke="#cbd5e1" stroke-width="1.5"/>
+            <text x="280" y="52" text-anchor="middle" fill="#cbd5e1" font-size="13" font-weight="750">高密度有機封裝基板 (Package Substrate)</text>
+          </g>
+        </svg>
+      `;
+
+      dashboardHtml = `
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">${t.ch20_metric_c4_pitch}</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-blue-dark);">130 ~ 150 µm</div>
+          <div class="eng-obj-metric-note">面積陣列 (Area Array) 提供數千個 I/O</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">${t.ch20_metric_inductance}</div>
+          <div class="eng-obj-metric-value">&gt; 85% 降幅</div>
+          <div class="eng-obj-metric-note">極短焊球互連大幅壓制信號雜訊與壓降</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">迴焊自我對準 (Self-Alignment)</div>
+          <div class="eng-obj-metric-value">自動修正 &plusmn;15µm</div>
+          <div class="eng-obj-metric-note">液態錫球表面張力拉動晶片精確歸位</div>
+        </div>
+      `;
+
+      footerNote = t.ch20_flipchip_desc;
+    } else if (activeTab === 'underfill') {
+      viewportHtml = `
+        <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Capillary Underfill Epoxy Flow Kinetics">
+          <!-- 晶片與基板間隙 (Die to Substrate Gap) -->
+          <g transform="translate(120, 60)">
+            <!-- 覆晶晶片 (Top Die) -->
+            <rect x="80" y="0" width="440" height="70" rx="3" fill="#0f172a" stroke="#38bdf8" stroke-width="1.5"/>
+            <text x="300" y="40" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="750">矽晶片 (Si: CTE = 2.6 ppm/K)</text>
+
+            <!-- C4 焊錫球陣列 -->
+            ${Array.from({ length: 9 }, (_, i) => `
+              <circle cx="${i * 44 + 120}" cy="100" r="12" fill="#cbd5e1" stroke="#475569" stroke-width="1.5"/>
+            `).join('')}
+
+            <!-- 毛細作用鑽入的底部填充膠 (Capillary Underfill Epoxy Flow) -->
+            <rect x="80" y="70" width="320" height="60" fill="#10b981" opacity="0.35"/>
+            <!-- 推進中的膠水彎月面 (Flow Front) -->
+            <path d="M 400,70 Q 420,100 400,130" fill="#10b981" opacity="0.6"/>
+            <text x="240" y="105" text-anchor="middle" fill="#34d399" font-size="11" font-weight="800">毛細流動充填中 (Capillary Wicking ⇨)</text>
+
+            <!-- 點膠針嘴 (Dispense Needle at edge) -->
+            <g transform="translate(60, 20)">
+              <rect x="0" y="0" width="12" height="60" fill="#94a3b8"/>
+              <path d="M 0,60 L 12,60 L 6,75 Z" fill="#94a3b8"/>
+              <circle cx="6" cy="82" r="5" fill="#10b981"/>
+              <text x="-10" y="40" text-anchor="end" fill="#34d399" font-size="10.5" font-weight="750">點膠針頭 ⇦</text>
+            </g>
+
+            <!-- 下方有機封裝基板 (Organic Substrate) -->
+            <rect x="0" y="130" width="600" height="70" rx="3" fill="#1e293b" stroke="#cbd5e1" stroke-width="1.5"/>
+            <text x="300" y="170" text-anchor="middle" fill="#cbd5e1" font-size="13" font-weight="750">有機基板 (BT/ABF: CTE = 15.0 ppm/K)</text>
+          </g>
+
+          <!-- 應力分析說明 -->
+          <g transform="translate(160, 310)">
+            <rect x="0" y="0" width="480" height="55" rx="4" fill="#0f172a" stroke="#10b981" stroke-width="1"/>
+            <text x="240" y="24" text-anchor="middle" fill="#34d399" font-size="11.5" font-weight="750">消除熱膨脹係數不匹配 (ΔCTE ~ 12.4 ppm/K) 引發的熱疲勞</text>
+            <text x="240" y="42" text-anchor="middle" fill="#cbd5e1" font-size="10.5">環氧樹脂硬化後固鎖焊球，熱應力壽命倍增 10 倍以上！</text>
+          </g>
+        </svg>
+      `;
+
+      dashboardHtml = `
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">毛細填充間隙 (Standoff Gap)</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-teal);">40 ~ 60 µm</div>
+          <div class="eng-obj-metric-note">表面張力自然拉曳高流動性環氧樹脂</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">熱循環壽命增幅</div>
+          <div class="eng-obj-metric-value">&gt; 10 倍 (-55°C ~ 125°C)</div>
+          <div class="eng-obj-metric-note">杜絕焊錫凸塊在冷熱交替中剪切斷裂</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">固化烘烤溫度</div>
+          <div class="eng-obj-metric-value">150°C · 90 min</div>
+          <div class="eng-obj-metric-note">高分子完全交聯形成堅固保護鈍化層</div>
+        </div>
+      `;
+
+      footerNote = t.ch20_underfill_desc;
+    }
+
+    container.innerHTML = `
+      <section class="eng-obj-card" aria-labelledby="engObjCh20Title">
+        <header class="eng-obj-header">
+          <div class="eng-obj-badge-row">
+            <span class="eng-obj-badge">${t.badge_prefix} · CH 20</span>
+            <span class="eng-obj-status">${t.live_sim}</span>
+          </div>
+          <h2 class="eng-obj-title" id="engObjCh20Title">${t.ch20_title}</h2>
+          <p class="eng-obj-subtitle">${t.ch20_sub}</p>
+        </header>
+
+        <div class="eng-obj-controls">
+          <div class="eng-obj-tab-group" role="tablist">
+            <button type="button" class="eng-obj-tab ${activeTab === 'wirebond' ? 'is-active' : ''}" data-tab="wirebond">${t.ch20_tab_wirebond}</button>
+            <button type="button" class="eng-obj-tab ${activeTab === 'flipchip' ? 'is-active' : ''}" data-tab="flipchip">${t.ch20_tab_flipchip}</button>
+            <button type="button" class="eng-obj-tab ${activeTab === 'underfill' ? 'is-active' : ''}" data-tab="underfill">${t.ch20_tab_underfill}</button>
+          </div>
+        </div>
+
+        <div class="eng-obj-viewport">
+          ${viewportHtml}
+        </div>
+
+        <div class="eng-obj-dashboard">
+          ${dashboardHtml}
+        </div>
+
+        <footer class="eng-obj-footer-note">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+          <div>${footerNote}</div>
+        </footer>
+      </section>
+    `;
+
+    container.querySelectorAll('[data-tab]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        activeTab = btn.getAttribute('data-tab');
+        update();
+      });
+    });
+  }
+
+  update();
+}
+
+/**
+ * ══════════════════════════════════════════════════════════════════════════════
+ * 20. Ch 22 浴缸曲線、高溫預燒 Arrhenius 方程式與 ESD 防護模型 (Reliability & Burn-In)
+ * ══════════════════════════════════════════════════════════════════════════════
+ */
+export function renderReliabilityTestingObject(container, lang = 'zh') {
+  const t = TEXTS[lang] || TEXTS.zh;
+  let activeTab = 'bathtub'; // 'bathtub' | 'burnin' | 'esd'
+
+  function update() {
+    let viewportHtml = '';
+    let dashboardHtml = '';
+    let footerNote = '';
+
+    if (activeTab === 'bathtub') {
+      viewportHtml = `
+        <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Bathtub Hazard Rate Curve and Burn-in Truncation">
+          <!-- 浴缸曲線繪圖區 -->
+          <g transform="translate(80, 40)">
+            <rect x="0" y="0" width="640" height="300" fill="#0f172a" stroke="#334155" stroke-width="1.5" rx="6"/>
+
+            <!-- 座標軸 -->
+            <line x1="40" y1="260" x2="600" y2="260" stroke="#64748b" stroke-width="2"/>
+            <text x="610" y="265" fill="#94a3b8" font-size="11">時間 Time (t)</text>
+
+            <line x1="40" y1="260" x2="40" y2="30" stroke="#64748b" stroke-width="2"/>
+            <text x="35" y="20" fill="#94a3b8" font-size="11">失效率 λ(t)</text>
+
+            <!-- 經典浴缸曲線 (Bathtub Curve) -->
+            <path d="M 60,60 Q 120,220 180,220 L 460,220 Q 520,220 580,60" fill="none" stroke="#38bdf8" stroke-width="3.5"/>
+
+            <!-- 區域 1: 早期失效期 (Infant Mortality) -->
+            <rect x="40" y="30" width="140" height="230" fill="#ef4444" opacity="0.15"/>
+            <text x="110" y="55" text-anchor="middle" fill="#f87171" font-size="11" font-weight="750">1. 早期失效期</text>
+            <text x="110" y="75" text-anchor="middle" fill="#f87171" font-size="9.5">(製造缺陷/微裂痕)</text>
+
+            <!-- 預燒篩截標註 (Burn-In Truncation Cutoff Line) -->
+            <line x1="160" y1="30" x2="160" y2="260" stroke="#f59e0b" stroke-width="2" stroke-dasharray="4 2"/>
+            <text x="160" y="140" fill="#fbbf24" font-size="10.5" font-weight="800" transform="rotate(-90 160 140)">⇦ 預燒截斷線 (Burn-In Cutoff)</text>
+
+            <!-- 區域 2: 正常使用期 (Useful Life) -->
+            <rect x="180" y="30" width="280" height="230" fill="#10b981" opacity="0.15"/>
+            <text x="320" y="55" text-anchor="middle" fill="#34d399" font-size="11.5" font-weight="750">2. 正常使用期 (Useful Life)</text>
+            <text x="320" y="75" text-anchor="middle" fill="#34d399" font-size="10">恆定超低失效率 (&lt; 10 FIT · 數年)</text>
+
+            <!-- 區域 3: 磨損老化期 (Wear-out) -->
+            <rect x="460" y="30" width="140" height="230" fill="#8b5cf6" opacity="0.15"/>
+            <text x="530" y="55" text-anchor="middle" fill="#a78bfa" font-size="11" font-weight="750">3. 磨損老化期</text>
+            <text x="530" y="75" text-anchor="middle" fill="#a78bfa" font-size="9.5">(TDDB / 電遷移壽終)</text>
+          </g>
+
+          <text x="400" y="375" text-anchor="middle" fill="#fbbf24" font-size="11.5" font-weight="750">預燒 (Burn-In) 的真諦：在工廠用高溫高壓強迫早期早夭品全數陣亡，確保出廠晶片 100% 落在綠色極低失效率區！</text>
+        </svg>
+      `;
+
+      dashboardHtml = `
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">${t.ch22_metric_fit}</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-teal);">&lt; 10 FIT</div>
+          <div class="eng-obj-metric-note">1 FIT = 10⁹ 晶片小時內發生 1 次失效</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">平均無故障時間 (MTBF)</div>
+          <div class="eng-obj-metric-value">&gt; 1.0 × 10⁸ 小時</div>
+          <div class="eng-obj-metric-note">車規 AEC-Q100 嚴苛可靠度標準</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">預燒篩除效益</div>
+          <div class="eng-obj-metric-value">100% 杜絕早期夭折</div>
+          <div class="eng-obj-metric-note">阻擋缺陷晶片流入終端市場引發召回</div>
+        </div>
+      `;
+
+      footerNote = t.ch22_bathtub_desc;
+    } else if (activeTab === 'burnin') {
+      viewportHtml = `
+        <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Burn-in Chamber and Arrhenius Acceleration Formula">
+          <!-- 高溫預燒爐 (Burn-In Chamber @ 125°C ~ 150°C) -->
+          <g transform="translate(80, 40)">
+            <rect x="0" y="0" width="300" height="320" fill="#0f172a" stroke="#ef4444" stroke-width="2" rx="6"/>
+            <text x="150" y="32" text-anchor="middle" fill="#f87171" font-size="13" font-weight="750">高溫預燒爐 (Burn-In Chamber)</text>
+            <text x="150" y="52" text-anchor="middle" fill="#f59e0b" font-size="11">環境溫度 125°C ~ 150°C · 過電壓 1.3× Vdd</text>
+
+            <!-- 預燒插槽板陣列 (Burn-In Boards BIB) -->
+            ${Array.from({ length: 4 }, (_, r) => 
+              Array.from({ length: 4 }, (_, c) => `
+                <rect x="${c * 60 + 35}" y="${r * 55 + 75}" width="45" height="38" rx="2" fill="#1e293b" stroke="#f59e0b" stroke-width="1.5" class="anim-heat"/>
+                <text x="${c * 60 + 57}" y="${r * 55 + 98}" text-anchor="middle" fill="#ffffff" font-size="9" font-weight="700">IC</text>
+              `).join('')
+            ).join('')}
+          </g>
+
+          <!-- 右側：Arrhenius 方程式與加速因子 (Acceleration Factor) -->
+          <g transform="translate(420, 40)">
+            <rect x="0" y="0" width="320" height="320" fill="#0f172a" stroke="#38bdf8" stroke-width="1.5" rx="6"/>
+            <text x="160" y="32" text-anchor="middle" fill="#38bdf8" font-size="13" font-weight="750">Arrhenius 壽命加速方程式</text>
+
+            <g transform="translate(20, 65)">
+              <rect x="0" y="0" width="280" height="70" rx="4" fill="#1e293b" stroke="#38bdf8" stroke-width="1"/>
+              <text x="140" y="32" text-anchor="middle" fill="#38bdf8" font-size="13" font-weight="800">AF = exp[(Ea/k)·(1/Tuse - 1/Tstress)]</text>
+              <text x="140" y="55" text-anchor="middle" fill="#94a3b8" font-size="10.5">熱激活能 Ea ≈ 0.7 eV · 波茲曼常數 k</text>
+            </g>
+
+            <g transform="translate(20, 155)">
+              <rect x="0" y="0" width="280" height="135" rx="4" fill="#1e293b" stroke="#10b981" stroke-width="1"/>
+              <text x="14" y="25" fill="#34d399" font-size="11.5" font-weight="750">加速時間等效換算 (Equivalence):</text>
+              <text x="14" y="50" fill="#cbd5e1" font-size="11">• 正常使用環境：55°C</text>
+              <text x="14" y="70" fill="#cbd5e1" font-size="11">• 預燒應力環境：125°C + 1.3× 電壓</text>
+              <text x="14" y="95" fill="#fbbf24" font-size="12" font-weight="800">總加速因子 AF ≈ 128 倍！</text>
+              <text x="14" y="118" fill="#38bdf8" font-size="10.5">預燒 48 小時 ≡ 正常運轉 250 天 (8.3 個月)</text>
+            </g>
+          </g>
+        </svg>
+      `;
+
+      dashboardHtml = `
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">${t.ch22_metric_af}</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-blue-dark);">~ 128 倍加速</div>
+          <div class="eng-obj-metric-note">Arrhenius 溫度指數與電壓平方模型疊加</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">預燒測試時間</div>
+          <div class="eng-obj-metric-value">48 ~ 168 小時</div>
+          <div class="eng-obj-metric-note">幾天內等效經歷數年使用老化歷程</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">測試覆蓋範圍</div>
+          <div class="eng-obj-metric-value">動態翻轉 (Dynamic Pattern)</div>
+          <div class="eng-obj-metric-note">灌入連續測試向量確保每個閘極皆承受應力</div>
+        </div>
+      `;
+
+      footerNote = t.ch22_burnin_desc;
+    } else if (activeTab === 'esd') {
+      viewportHtml = `
+        <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="ESD Protection GGNMOS Clamp Circuit">
+          <!-- ESD 衝擊與箝位電路圖 -->
+          <g transform="translate(100, 50)">
+            <rect x="0" y="0" width="600" height="300" fill="#0f172a" stroke="#ef4444" stroke-width="2" rx="6"/>
+            <text x="300" y="32" text-anchor="middle" fill="#f87171" font-size="13" font-weight="750">晶片 I/O 引腳 ESD 箝位保護電路 (GGNMOS Protection)</text>
+
+            <!-- 外部引腳受到 2000V 靜電脈衝襲擊 (HBM Strike) -->
+            <g transform="translate(30, 80)">
+              <rect x="0" y="20" width="80" height="50" rx="3" fill="#ef4444"/>
+              <text x="40" y="45" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="800">I/O Pad</text>
+              <text x="40" y="60" text-anchor="middle" fill="#ffffff" font-size="9">引腳焊墊</text>
+              <!-- 閃電打擊符號 -->
+              <polygon points="10,-20 30,-20 18,5 35,5 5,40 15,12 2,12" fill="#fbbf24"/>
+              <text x="45" y="-5" fill="#f59e0b" font-size="12" font-weight="800">⚡ 2,000V ESD 衝擊！</text>
+            </g>
+
+            <!-- GGNMOS 箝位電晶體 (Gate-Grounded NMOS Clamp) -->
+            <g transform="translate(230, 80)">
+              <rect x="0" y="0" width="140" height="130" rx="4" fill="#1e293b" stroke="#f59e0b" stroke-width="2"/>
+              <text x="70" y="25" text-anchor="middle" fill="#fbbf24" font-size="11" font-weight="750">GGNMOS 箝位器</text>
+              <text x="70" y="45" text-anchor="middle" fill="#94a3b8" font-size="9.5">雪崩崩潰觸發寄生 BJT</text>
+              <!-- 大電流洩放箭頭向下 -->
+              <path d="M 70,60 L 70,115" stroke="#ef4444" stroke-width="4" marker-end="url(#arrow)"/>
+              <text x="70" y="90" text-anchor="middle" fill="#ffffff" font-size="10" font-weight="800">幾安培大電流洩放 ⇓</text>
+            </g>
+
+            <!-- 接地線 (GND) -->
+            <line x1="200" y1="240" x2="400" y2="240" stroke="#64748b" stroke-width="3"/>
+            <text x="300" y="260" text-anchor="middle" fill="#cbd5e1" font-size="11">安全旁路至封裝地線 (GND)</text>
+
+            <!-- 右側被保護的脆弱內部核心電晶體 (Protected Core Gate Oxide) -->
+            <g transform="translate(430, 80)">
+              <rect x="0" y="0" width="140" height="130" rx="4" fill="#09131b" stroke="#10b981" stroke-width="2"/>
+              <text x="70" y="25" text-anchor="middle" fill="#34d399" font-size="11" font-weight="750">核心內部電晶體</text>
+              <text x="70" y="45" text-anchor="middle" fill="#38bdf8" font-size="9.5">1.5nm 脆弱閘極氧化層</text>
+              <circle cx="70" cy="85" r="24" fill="#10b981" opacity="0.3"/>
+              <text x="70" y="90" text-anchor="middle" fill="#34d399" font-size="11" font-weight="800">✓ 100% 安全</text>
+              <text x="70" y="115" text-anchor="middle" fill="#cbd5e1" font-size="9.5">電壓被箝位在 &lt; 5V</text>
+            </g>
+          </g>
+        </svg>
+      `;
+
+      dashboardHtml = `
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">${t.ch22_metric_esd_level}</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-blue-dark);">&gt; 2,000 V (HBM)</div>
+          <div class="eng-obj-metric-note">JEDEC JS-001 人體靜電放電認證標準</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">箝位開通響應時間</div>
+          <div class="eng-obj-metric-value">&lt; 0.5 ns (次奈秒)</div>
+          <div class="eng-obj-metric-note">在靜電脈衝穿入核心前瞬間雪崩導通</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">平時正常靜態漏電</div>
+          <div class="eng-obj-metric-value">&lt; 1.0 nA</div>
+          <div class="eng-obj-metric-note">保護電路平時絕緣，不消耗電池多餘功耗</div>
+        </div>
+      `;
+
+      footerNote = t.ch22_esd_desc;
+    }
+
+    container.innerHTML = `
+      <section class="eng-obj-card" aria-labelledby="engObjCh22Title">
+        <header class="eng-obj-header">
+          <div class="eng-obj-badge-row">
+            <span class="eng-obj-badge">${t.badge_prefix} · CH 22</span>
+            <span class="eng-obj-status">${t.live_sim}</span>
+          </div>
+          <h2 class="eng-obj-title" id="engObjCh22Title">${t.ch22_title}</h2>
+          <p class="eng-obj-subtitle">${t.ch22_sub}</p>
+        </header>
+
+        <div class="eng-obj-controls">
+          <div class="eng-obj-tab-group" role="tablist">
+            <button type="button" class="eng-obj-tab ${activeTab === 'bathtub' ? 'is-active' : ''}" data-tab="bathtub">${t.ch22_tab_bathtub}</button>
+            <button type="button" class="eng-obj-tab ${activeTab === 'burnin' ? 'is-active' : ''}" data-tab="burnin">${t.ch22_tab_burnin}</button>
+            <button type="button" class="eng-obj-tab ${activeTab === 'esd' ? 'is-active' : ''}" data-tab="esd">${t.ch22_tab_esd}</button>
+          </div>
+        </div>
+
+        <div class="eng-obj-viewport">
+          ${viewportHtml}
+        </div>
+
+        <div class="eng-obj-dashboard">
+          ${dashboardHtml}
+        </div>
+
+        <footer class="eng-obj-footer-note">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+          <div>${footerNote}</div>
+        </footer>
+      </section>
+    `;
+
+    container.querySelectorAll('[data-tab]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        activeTab = btn.getAttribute('data-tab');
+        update();
+      });
+    });
+  }
+
+  update();
+}
+
+/**
+ * ══════════════════════════════════════════════════════════════════════════════
  * 總調度入口 (Unified Mount Orchestrator)
  * ══════════════════════════════════════════════════════════════════════════════
  */
 export function mountEngineeringObject(chId, container, lang = 'zh') {
   if (!container) return;
-  if (chId === 'ch03') {
+  if (chId === 'ch01') {
+    renderFabEnvironmentObject(container, lang);
+  } else if (chId === 'ch02') {
+    renderSemiconductorPhysicsObject(container, lang);
+  } else if (chId === 'ch03') {
     renderIngotWaferObject(container, lang);
   } else if (chId === 'ch04') {
     renderLithoOpticalObject(container, lang);
@@ -5021,10 +6182,15 @@ export function mountEngineeringObject(chId, container, lang = 'zh') {
     renderProcessControlObject(container, lang);
   } else if (chId === 'ch19') {
     renderWaferTestObject(container, lang);
+  } else if (chId === 'ch20') {
+    renderPackagingFlowObject(container, lang);
   } else if (chId === 'ch21') {
     renderAdvancedPackagingObject(container, lang);
+  } else if (chId === 'ch22') {
+    renderReliabilityTestingObject(container, lang);
   }
 }
+
 
 
 

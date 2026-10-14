@@ -838,7 +838,11 @@ import { mountEngineeringObject } from './工程物件.js';
     if (!articleBody) return;
 
     let targetEl = null;
-    if (chId === 'ch03') {
+    if (chId === 'ch01') {
+      targetEl = articleBody.querySelector('h2[id*="無塵室比手術室還乾淨"], h2[id*="the-cleanroom-cleaner-than-an-operating-room"], h2[id*="晶圓怎麼移動foup-與自動搬運"], h2[id*="how-wafers-move-foups-and-automation"]');
+    } else if (chId === 'ch02') {
+      targetEl = articleBody.querySelector('h2[id*="半導體可以控制的導體"], h2[id*="semiconductors-conductors-you-can-control"], h2[id*="mosfet晶片裡的開關"], h2[id*="the-mosfet-the-switch-inside-a-chip"]');
+    } else if (chId === 'ch03') {
       targetEl = articleBody.querySelector('h2[id*="長晶拉出一根完美的單晶"], h2[id*="growing-the-crystal"], h2[id*="從晶棒到晶圓"], h2[id*="from-ingot-to-wafer"]');
     } else if (chId === 'ch04') {
       targetEl = articleBody.querySelector('h2[id*="微影的三個主角"], h2[id*="the-three-key-players"], h2[id*="微影的流程"], h2[id*="the-lithography-flow"]');
@@ -868,8 +872,12 @@ import { mountEngineeringObject } from './工程物件.js';
       targetEl = articleBody.querySelector('h2[id*="spc把數據畫成管制圖"], h2[id*="spc-turning-data-into-control-charts"], h2[id*="製程能力cpk"], h2[id*="process-capability-cpk"]');
     } else if (chId === 'ch19') {
       targetEl = articleBody.querySelector('h2[id*="wat製程的成績單"], h2[id*="wat-the-process-report-card"], h2[id*="cp一顆一顆測"], h2[id*="cp-testing-die-by-die"]');
+    } else if (chId === 'ch20') {
+      targetEl = articleBody.querySelector('h2[id*="傳統封裝的流程"], h2[id*="the-traditional-packaging-flow"], h2[id*="覆晶把晶片翻過來"], h2[id*="flip-chip-turning-the-die-over"]');
     } else if (chId === 'ch21') {
       targetEl = articleBody.querySelector('h2[id*="25d並排放在中介層上"], h2[id*="25d-side-by-side-on-an-interposer"], h2[id*="為什麼需要先進封裝"], h2[id*="why-advanced-packaging-is-needed"]');
+    } else if (chId === 'ch22') {
+      targetEl = articleBody.querySelector('h2[id*="預燒提早篩掉體質不好的晶片"], h2[id*="burn-in-weeding-out-weak-chips-early"], h2[id*="可靠度能用多久"], h2[id*="reliability-how-long-it-lasts"]');
     }
 
     if (!targetEl) {
