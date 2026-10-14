@@ -169,7 +169,75 @@ const TEXTS = {
     ch21_tab_density: '各世代互連密度對比 (Density & Pitch)',
     ch21_cowos_desc: '2.5D CoWoS (Chip-on-Wafer-on-Substrate) 透過大面積矽中介層 (Silicon Interposer) 內部超密高頻微導線與垂直矽穿孔 (TSV)，將 SoC 算力晶片與 4~8 顆 HBM 高頻寬記憶體緊密並排互連，頻寬突破數個 TB/s！',
     ch21_soic_desc: '3D SoIC 徹底拋棄傳統焊錫微凸塊，透過奈米級平坦化表面，在常溫下以介電層分子鍵合 (SiO₂-SiO₂)，再經熱退火使銅金屬原子跨介面互相擴散 (Cu-Cu)，接點間距 < 1µm，互連密度較傳統提升 1500 倍！',
-    ch21_density_desc: '封裝互連演進：傳統打線/BGA (間距 1000µm) → 覆晶 C4 (間距 150µm) → 2.5D 微凸塊 (間距 35µm) → 3D SoIC 混合鍵合 (間距 0.9µm)，晶片間通訊能耗降低 90%，延遲逼近單一晶粒。'
+    ch21_density_desc: '封裝互連演進：傳統打線/BGA (間距 1000µm) → 覆晶 C4 (間距 150µm) → 2.5D 微凸塊 (間距 35µm) → 3D SoIC 混合鍵合 (間距 0.9µm)，晶片間通訊能耗降低 90%，延遲逼近單一晶粒。',
+
+    // Ch 03 沙子到晶圓
+    ch03_title: '柴氏長晶爐 (CZ) 提拉單晶矽與晶圓切割拋光幾何模型',
+    ch03_sub: '探索 1425°C 石英坩堝雙向旋轉熔體對流、<100> 籽晶縮頸提拉、金剛石線鋸超薄切片與雙面拋光原子級平坦化',
+    ch03_tab_cz: 'CZ 柴氏長晶爐 (Crystal Puller)',
+    ch03_tab_saw: '金剛石線鋸切片 (Wire Sawing)',
+    ch03_tab_polish: '邊緣倒角與雙面拋光 (Bevel & DSP)',
+    ch03_crucible: '高純度石英坩堝 (Quartz Crucible @ 1425°C)',
+    ch03_seed: '單晶籽晶 (<100> Seed Crystal)',
+    ch03_ingot: '300mm 單晶矽晶棒 (Silicon Ingot)',
+    ch03_melt: '液態矽熔體 (Silicon Melt)',
+    ch03_heater: '石墨加熱器 (Graphite Heater)',
+    ch03_mcz: '超導磁場線圈 (MCZ: 抑制熔體對流與氧缺陷)',
+    ch03_metric_purity: '晶棒純度 (Purity)',
+    ch03_metric_pull: '提拉速率 (Pull Rate)',
+    ch03_metric_thick: '300mm 晶圓標準厚度',
+    ch03_metric_roughness: '表面原子級粗糙度 RMS',
+    ch03_cz_desc: '柴氏長晶法 (Czochralski Method) 先將電子級多晶矽於 1425°C 熔化，浸入 <100> 籽晶後以反向旋轉提拉。初期高速提拉形成細頸 (Dash Necking) 徹底排除晶格差排，再降低速率放肩、等徑拉出直徑 300mm、重達數百公斤的完美無差排單晶矽棒。',
+    ch03_saw_desc: '利用數百條金剛石微粒電鍍鋼線以 30~50 m/s 高速往復運動，將單晶棒一次切割成上百片晶圓。切縫損耗 (Kerf Loss) 控制在 ~100 µm，並精確調控張力以壓低晶圓翹曲 (Warp/Bow)。',
+    ch03_polish_desc: '晶圓邊緣經過 CNC 鑽石砂輪研磨出精確圓弧倒角 (Bevel Edge)，防止後續碎裂與光阻積聚；接著透過行星齒輪帶動上下研磨盤進行雙面研磨 (Double-Side Lapping) 與化學機械雙面拋光 (DSP)，將表面微觀起伏降至原子級 (<0.1nm RMS)！',
+
+    // Ch 09 清洗與微污染
+    ch09_title: 'RCA 濕式清洗化學反應、兆聲波音流與 Marangoni 乾燥模型',
+    ch09_sub: '微觀解析 SC-1 表面蝕刻與 Zeta 電位排斥、SC-2 金屬錯離子清除、1MHz 兆聲波邊界層空化微流與表面張力梯度無水痕乾燥',
+    ch09_tab_rca: '經典 RCA 雙步驟清洗 (SC-1 / DHF / SC-2)',
+    ch09_tab_megasonic: '兆聲波音流除微粒 (Megasonic Streaming)',
+    ch09_tab_marangoni: 'Marangoni 表面張力差乾燥 (Marangoni Drying)',
+    ch09_metric_pre: '微粒去除率 (PRE > 20nm)',
+    ch09_metric_metal: '表面金屬離子殘留',
+    ch09_metric_boundary: '聲學邊界層厚度 δ',
+    ch09_metric_watermark: '乾燥晶圓水痕殘留',
+    ch09_rca_desc: 'SC-1 (NH₄OH/H₂O₂/H₂O @ 70°C) 微蝕刻矽表面氧化層，使顆粒與晶圓表面同時帶強烈負 Zeta 電位，產生強大靜電排斥力防止微粒回附；DHF 咬除化學氧化層；SC-2 (HCl/H₂O₂/H₂O @ 70°C) 則將 Fe、Cu 等重金屬離子轉化為可溶性氯錯離子，徹底溶解重金屬污染。',
+    ch09_megasonic_desc: '傳統流體邊界層 (Boundary Layer) 會保護微米與奈米級微粒免於沖刷。兆聲波 (Megasonic ~1MHz) 在液體中引發聲波微流 (Acoustic Microstreaming) 與受控空化，將水動力邊界層厚度劇烈壓縮至 0.5µm 以下，產生極高表面剪切應力將 10nm 顆粒硬生生扯離表面！',
+    ch09_marangoni_desc: '晶圓由超純水 (UPW) 慢速拉出時注入異丙醇 (IPA) 蒸氣。IPA 溶於頂部彎月面降低液膜表面張力，形成由低表面張力區指向高表面張力區 (Marangoni 效應) 的強大向下毛細拉力，將水膜順暢拉回主液體槽中，達成瞬間乾燥且完全杜絕蒸發水痕 (Water Marks)！',
+
+    // Ch 11 CMOS 完整整合流程
+    ch11_title: 'CMOS 積體電路完整整合剖面與步進製造流程模型 (FEOL → MOL → BEOL)',
+    ch11_sub: '透過全動態微觀剖面展示 NMOS 與 PMOS 對稱結構：淺溝槽隔離 (STI)、雙井離子佈植、High-k 金屬閘極、源汲極磊晶應變、矽化物接點與後段多層銅導線',
+    ch11_tab_feol: '前段製程 (FEOL: 做出電晶體本體)',
+    ch11_tab_mol: '中段製程 (MOL: 接觸孔與接腳引出)',
+    ch11_tab_beol: '後段製程 (BEOL: 10+ 層金屬互連線)',
+    ch11_step_1: '步驟 1: 淺溝槽隔離 (STI) 隔離元件活性區',
+    ch11_step_2: '步驟 2: 雙井區離子佈植 (Twin-Well: N-Well & P-Well)',
+    ch11_step_3: '步驟 3: High-k 介電質 (HfO₂) 與金屬閘極 (HKMG Stack)',
+    ch11_step_4: '步驟 4: 源極/汲極選擇性磊晶 (SiGe for PMOS, Si:C for NMOS)',
+    ch11_step_5: '步驟 5: 自對準矽化物 (NiSi) 與鎢插塞接觸孔 (Tungsten Contact Plug)',
+    ch11_step_6: '步驟 6: 後段雙鑲嵌 10+ 層銅導線 (Dual Damascene Cu M1-M12)',
+    ch11_metric_masks: '典型先進製程光罩層數',
+    ch11_metric_steps: '完整製造工序步數',
+    ch11_metric_cycle: '晶圓廠生產週期 (CT)',
+    ch11_metric_yield: '成熟量產晶圓良率',
+    ch11_feol_desc: 'FEOL (前段製程) 是晶圓廠最精密神經外科手術：在矽基板上鑿出淺溝槽 (STI) 灌入氧化物隔絕相鄰元件，打入硼與磷形成雙井，沉積數奈米級 High-k 氧化鉿與功函數金屬做為開關閘極，再磊晶生長應變應力源汲極。',
+    ch11_mol_desc: 'MOL (中段製程) 是奈米電晶體與微米金屬線的樞紐橋樑：利用自對準矽化物降低寄生電阻，蝕刻高深寬比接觸孔 (Contact)，充填金屬鎢 (W-Plugs)，將數十億顆電晶體的閘極、源極與汲極精確引出。',
+    ch11_beol_desc: 'BEOL (後段製程) 打造晶片內部摩天高速公路：堆疊 10 至 15 層雙載子鑲嵌銅導線與 Low-k 絕緣介電質，底層極細 (M1-M3, 局部短距訊號傳輸) 到頂層粗厚 (M10-M12, 全域時脈分配與電源供電)，最後完成打線引腳平坦化。',
+
+    // Ch 13 記憶體製程技術
+    ch13_title: '三大記憶體架構微觀立體模型 (DRAM 1T1C、3D NAND 200+層階梯、HBM 3D TSV)',
+    ch13_sub: '解析 DRAM 1T1C 超高深寬比圓柱電容與漏電刷新、3D NAND Flash 垂直字元線交替堆疊階梯穿孔、與 HBM 3D TSV 微凸塊高頻寬堆疊架構',
+    ch13_tab_dram: 'DRAM 1T1C 圓柱電容 (DRAM Architecture)',
+    ch13_tab_nand: '3D NAND 200+ 層階梯穿孔 (3D NAND Staircase)',
+    ch13_tab_hbm: 'HBM 3D TSV 高頻寬記憶體堆疊 (HBM 3D Stacking)',
+    ch13_metric_dram_ar: 'DRAM 圓柱電容深寬比',
+    ch13_metric_nand_layers: '3D NAND 量產堆疊層數',
+    ch13_metric_hbm_bw: 'HBM3e 單顆晶片頻寬',
+    ch13_metric_retention: 'DRAM 刷新週期 (tREFI)',
+    ch13_dram_desc: 'DRAM 每個記憶胞僅由 1 個存取電晶體與 1 個垂直圓柱微型電容構成 (1T1C)。為克服尺寸縮小帶來的電容值衰減，工程師打造深寬比超過 50:1 的柱狀電容，表面覆蓋超薄高介電 ZAZ (ZrO₂/Al₂O₃/ZrO₂) 薄膜，每 64ms 必須重新刷新電荷避免資料流失。',
+    ch13_nand_desc: '3D NAND 擺脫 2D 平面微縮極限，在晶圓表面交替沉積 200+ 層 SiO₂/Si₃N₄ 薄膜，以極高能量電漿一次貫穿數微米深孔 (HAR Etching)，外圍蝕刻成金字塔階梯狀引出數百條字元線 (Word-Lines)，透過電荷陷阱 (Charge Trap CTF) 儲存電子，實現 TB 級非揮發儲存。',
+    ch13_hbm_desc: 'HBM (High Bandwidth Memory) 打破傳統 DDR 匯流排頻寬牆：將 4~16 顆 DRAM 裸晶透過數萬個穿矽孔 (TSV) 與微凸塊 (Micro-bumps) 垂直三維堆疊在邏輯控制基底 (Base Die) 上，提供 1024-bit 超寬並行匯流排，為 AI 算力加速器提供極致吞吐量！'
   },
   en: {
     badge_prefix: 'PROCESS OBJECT · ENGINEERING MODEL',
@@ -321,7 +389,75 @@ const TEXTS = {
     ch21_tab_density: 'Interconnect Density & Pitch Comparison',
     ch21_cowos_desc: '2.5D CoWoS bridges high-power SoC/GPU compute dies with 4-8 HBM stacks across a large silicon interposer packed with sub-micron RDL wires and Through-Silicon Vias (TSVs), delivering multi-terabyte/s bandwidth.',
     ch21_soic_desc: '3D SoIC eliminates solder micro-bumps entirely: atomic-flat dielectric surfaces bond at room temperature (SiO₂-SiO₂), followed by thermal annealing where copper contacts diffuse together (Cu-Cu) with <1µm pitch and 1500x density!',
-    ch21_density_desc: 'Interconnect evolution: Wire-Bonding/BGA (1000µm pitch) → Flip-Chip C4 (150µm) → 2.5D Micro-Bump (35µm) → 3D SoIC Hybrid Bonding (0.9µm), slashing communication energy by 90% with near-monolithic latency.'
+    ch21_density_desc: 'Interconnect evolution: Wire-Bonding/BGA (1000µm pitch) → Flip-Chip C4 (150µm) → 2.5D Micro-Bump (35µm) → 3D SoIC Hybrid Bonding (0.9µm), slashing communication energy by 90% with near-monolithic latency.',
+
+    // Ch 03 Silicon Ingot & Wafer Fabrication
+    ch03_title: 'Czochralski (CZ) Silicon Ingot Puller & Wafer Slicing Model',
+    ch03_sub: 'Explore 1425°C quartz crucible counter-rotation, <100> seed necking dislocation-free pulling, diamond wire sawing, and double-side polishing',
+    ch03_tab_cz: 'CZ Crystal Puller & Melt Dynamics',
+    ch03_tab_saw: 'Diamond Wire Sawing & Kerf',
+    ch03_tab_polish: 'Edge Beveling & Double-Side Polish',
+    ch03_crucible: 'Quartz Crucible (@ 1425°C)',
+    ch03_seed: '<100> Seed Crystal',
+    ch03_ingot: '300mm Monocrystalline Silicon Ingot',
+    ch03_melt: 'Liquid Silicon Melt',
+    ch03_heater: 'Graphite Resistance Heater',
+    ch03_mcz: 'Superconducting Magnet (MCZ: Damps Melt Convection)',
+    ch03_metric_purity: 'Ingot Purity',
+    ch03_metric_pull: 'Pull Rate',
+    ch03_metric_thick: '300mm Wafer Thickness',
+    ch03_metric_roughness: 'Surface Roughness RMS',
+    ch03_cz_desc: 'The Czochralski (CZ) technique melts 11N electronic-grade polysilicon at 1425°C. A <100> seed crystal dips into the melt and counter-rotates. High-speed Dash necking eliminates dislocations, followed by crown flaring and body growth into a 300mm single-crystal ingot.',
+    ch03_saw_desc: 'Hundreds of high-tensile steel wires electroplated with diamond particles oscillate at 30-50 m/s to slice the ingot into hundreds of pristine wafers simultaneously. Kerf loss is minimized to ~100 µm while maintaining ultra-low warp and bow.',
+    ch03_polish_desc: 'CNC diamond wheels bevel the wafer edges to prevent chipping and resist beading. Planetary double-side lapping and chemical mechanical double-side polishing (DSP) then flatten surface roughness down to sub-angstrom atomic smoothness (<0.1 nm RMS).',
+
+    // Ch 09 Wet Cleaning & Microcontamination
+    ch09_title: 'RCA Wet Cleaning Chemistry, Megasonics & Marangoni Drying Model',
+    ch09_sub: 'Microscopic analysis of SC-1 zeta potential repulsion, SC-2 metal complexing, 1MHz megasonic acoustic streaming, and surface tension gradient drying',
+    ch09_tab_rca: 'RCA Clean Chemistry (SC-1 / DHF / SC-2)',
+    ch09_tab_megasonic: 'Megasonic Acoustic Streaming',
+    ch09_tab_marangoni: 'Marangoni Surface Tension Drying',
+    ch09_metric_pre: 'Particle Removal Efficiency (PRE > 20nm)',
+    ch09_metric_metal: 'Surface Metal Residue',
+    ch09_metric_boundary: 'Acoustic Boundary Layer δ',
+    ch09_metric_watermark: 'Drying Watermark Residue',
+    ch09_rca_desc: 'SC-1 (NH₄OH/H₂O₂/H₂O @ 70°C) oxidizes and micro-etches silicon, establishing a strong negative zeta potential on both particles and substrate to prevent re-adhesion. DHF strips oxide, and SC-2 (HCl/H₂O₂/H₂O @ 70°C) chelates alkali and heavy metals into soluble chloride complexes.',
+    ch09_megasonic_desc: 'Traditional hydrodynamic boundary layers shield sub-micron particles from bulk fluid drag. High-frequency megasonics (~1 MHz) induce acoustic microstreaming and controlled acoustic cavitation, compressing the boundary layer to <0.5 µm and shearing off 10nm particles.',
+    ch09_marangoni_desc: 'As wafers are slowly withdrawn from ultrapure water (UPW), IPA vapor is introduced. IPA dissolution creates a surface tension gradient, generating downward Marangoni capillary force that pulls the water film smoothly back into the bath with zero watermark defects.',
+
+    // Ch 11 CMOS Integrated Process Flow
+    ch11_title: 'Full CMOS Integrated Process Cross-Section & Stepper Model (FEOL → MOL → BEOL)',
+    ch11_sub: 'Step-by-step cross-sectional visualization of complementary NMOS & PMOS: STI isolation, twin-wells, HKMG gate stacks, S/D epitaxy, contact plugs, and multi-tier BEOL copper metallization',
+    ch11_tab_feol: 'FEOL (Front-End-of-Line: Transistors)',
+    ch11_tab_mol: 'MOL (Middle-of-Line: Contacts)',
+    ch11_tab_beol: 'BEOL (Back-End-of-Line: Interconnects)',
+    ch11_step_1: 'Step 1: Shallow Trench Isolation (STI) isolates active regions',
+    ch11_step_2: 'Step 2: Twin-Well Ion Implantation (N-Well & P-Well)',
+    ch11_step_3: 'Step 3: High-k Dielectric (HfO₂) & Metal Gate Stack (HKMG)',
+    ch11_step_4: 'Step 4: Source/Drain Selective Epitaxy (SiGe PMOS, Si:C NMOS)',
+    ch11_step_5: 'Step 5: Self-Aligned Silicide (NiSi) & Tungsten Contact Plugs',
+    ch11_step_6: 'Step 6: Dual Damascene Multi-Layer Copper Interconnects (M1-M12)',
+    ch11_metric_masks: 'Typical Advanced Mask Count',
+    ch11_metric_steps: 'Total Manufacturing Steps',
+    ch11_metric_cycle: 'Fab Cycle Time (CT)',
+    ch11_metric_yield: 'Mature Production Yield',
+    ch11_feol_desc: 'FEOL (Front-End-of-Line) forms the microscopic transistor switches: etching shallow trench isolation (STI) backfilled with oxide, implanting dopants for twin-wells, laying atomic-thin HfO₂ high-k gates, and epitaxially growing strained source/drain regions.',
+    ch11_mol_desc: 'MOL (Middle-of-Line) provides the electrical bridge between nanoscale transistor terminals and microscale copper wiring: using self-aligned silicide to drop contact resistance, etching vertical contact vias, and plugging with CVD tungsten (W).',
+    ch11_beol_desc: 'BEOL (Back-End-of-Line) constructs the multi-level highway network: stacking 10 to 15 layers of dual damascene copper wires separated by low-k dielectric, from dense tight-pitch M1-M3 to thick top-level power distribution rails (M10-M12).',
+
+    // Ch 13 Memory Technologies
+    ch13_title: 'Three Major Memory Architectures 3D Model (DRAM 1T1C, 3D NAND Staircase, HBM 3D TSV)',
+    ch13_sub: 'Examine DRAM 1T1C ultra-high-aspect capacitor and refresh kinetics, 3D NAND vertical multi-tier staircase HAR etching, and HBM 3D TSV micro-bump wide-bus stacking',
+    ch13_tab_dram: 'DRAM 1T1C Cylinder Capacitor',
+    ch13_tab_nand: '3D NAND 200+ Layer Staircase',
+    ch13_tab_hbm: 'HBM 3D TSV High-Bandwidth Stacking',
+    ch13_metric_dram_ar: 'DRAM Capacitor Aspect Ratio',
+    ch13_metric_nand_layers: '3D NAND Production Layers',
+    ch13_metric_hbm_bw: 'HBM3e Stack Bandwidth',
+    ch13_metric_retention: 'DRAM Refresh Cycle (tREFI)',
+    ch13_dram_desc: 'DRAM stores data using 1 access transistor and 1 vertical cylinder capacitor (1T1C). To preserve capacitance as cell area shrinks, capacitors feature extreme >50:1 aspect ratios lined with ZAZ (ZrO₂/Al₂O₃/ZrO₂) high-k films, requiring 64ms refresh cycles to replenish leakage.',
+    ch13_nand_desc: '3D NAND overcomes 2D planar lithography scaling by vertically stacking 200+ alternating SiO₂/Si₃N₄ tiers. High-aspect-ratio (HAR) plasma etching drills vertical channel holes through the entire stack, while staircase word-line landings contact individual flash gates.',
+    ch13_hbm_desc: 'HBM (High Bandwidth Memory) shatters traditional memory bus bottlenecks by stacking 4 to 16 DRAM dies atop a base logic die via thousands of Through-Silicon Vias (TSVs) and micro-bumps, providing a massive 1024-bit wide interface exceeding 1.2 TB/s for AI acceleration.'
   }
 };
 
@@ -2561,12 +2697,1044 @@ export function renderAdvancedPackagingObject(container, lang = 'zh') {
 
 /**
  * ══════════════════════════════════════════════════════════════════════════════
+ * 9. Ch 03 柴氏長晶提拉與晶圓切片拋光幾何模型 (CZ Ingot Puller & Wafer Slicing)
+ * ══════════════════════════════════════════════════════════════════════════════
+ */
+export function renderIngotWaferObject(container, lang = 'zh') {
+  const t = TEXTS[lang] || TEXTS.zh;
+  let activeTab = 'cz'; // 'cz' | 'saw' | 'polish'
+
+  function update() {
+    let viewportHtml = '';
+    let dashboardHtml = '';
+    let footerNote = '';
+
+    if (activeTab === 'cz') {
+      viewportHtml = `
+        <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Czochralski Crystal Pulling Furnace">
+          <defs>
+            <linearGradient id="czMeltGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.95"/>
+              <stop offset="50%" stop-color="#ea580c" stop-opacity="0.9"/>
+              <stop offset="100%" stop-color="#b45309" stop-opacity="0.85"/>
+            </linearGradient>
+            <linearGradient id="czIngotGrad" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="#64748b"/>
+              <stop offset="50%" stop-color="#94a3b8"/>
+              <stop offset="100%" stop-color="#475569"/>
+            </linearGradient>
+            <radialGradient id="czHeaterGlow" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#ef4444" stop-opacity="0.6"/>
+              <stop offset="100%" stop-color="#ef4444" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+
+          <!-- 爐體外壁 (Water-Cooled Double Chamber Wall) -->
+          <rect x="120" y="20" width="560" height="380" rx="16" fill="#0f172a" stroke="#334155" stroke-width="2"/>
+          <text x="140" y="48" fill="#64748b" font-size="11" font-family="monospace">CZ FURNACE VACUUM CHAMBER · Ar PURGE 10-30 Torr</text>
+
+          <!-- 外圍超導磁體線圈 (MCZ Coils: 產生水平/尖峰磁場抑制對流) -->
+          <g transform="translate(60, 160)">
+            <rect x="0" y="0" width="50" height="150" rx="6" fill="#1e293b" stroke="#0ea5e9" stroke-width="2"/>
+            <text x="25" y="80" text-anchor="middle" fill="#38bdf8" font-size="11" transform="rotate(-90 25 80)">MCZ 磁場線圈</text>
+          </g>
+          <g transform="translate(690, 160)">
+            <rect x="0" y="0" width="50" height="150" rx="6" fill="#1e293b" stroke="#0ea5e9" stroke-width="2"/>
+            <text x="25" y="80" text-anchor="middle" fill="#38bdf8" font-size="11" transform="rotate(90 25 80)">MCZ 磁場線圈</text>
+          </g>
+
+          <!-- 左右兩側石墨電阻加熱器 (Graphite Heaters @ 1450°C) -->
+          <g transform="translate(200, 170)">
+            <rect x="0" y="0" width="24" height="150" rx="4" fill="#dc2626" stroke="#f87171" stroke-width="1.5" class="anim-heat"/>
+            <text x="12" y="80" text-anchor="middle" fill="#ffffff" font-size="10" transform="rotate(-90 12 80)">石墨加熱器</text>
+          </g>
+          <g transform="translate(576, 170)">
+            <rect x="0" y="0" width="24" height="150" rx="4" fill="#dc2626" stroke="#f87171" stroke-width="1.5" class="anim-heat"/>
+            <text x="12" y="80" text-anchor="middle" fill="#ffffff" font-size="10" transform="rotate(90 12 80)">石墨加熱器</text>
+          </g>
+
+          <!-- 石英坩堝外層碳-碳複合托杯與支持軸 (Crucible Shaft with Rotation) -->
+          <g transform="translate(240, 180)">
+            <!-- 石英坩堝主體 (Quartz Crucible) -->
+            <path d="M 20,0 C 20,130 50,150 160,150 C 270,150 300,130 300,0 Z" fill="#1e293b" stroke="#cbd5e1" stroke-width="2.5"/>
+            <!-- 內部液態矽熔體 (Liquid Silicon Melt @ 1425°C) -->
+            <path d="M 25,20 C 25,125 55,145 160,145 C 265,145 295,125 295,20 Z" fill="url(#czMeltGrad)"/>
+            <!-- 熔體表面波紋與微觀熱對流渦旋 -->
+            <ellipse cx="160" cy="22" rx="135" ry="12" fill="#fbbf24" opacity="0.6"/>
+            <!-- 坩堝旋轉標示 (Crucible Rotation CW) -->
+            <line x1="160" y1="150" x2="160" y2="210" stroke="#94a3b8" stroke-width="6"/>
+            <text x="160" y="200" text-anchor="middle" fill="#38bdf8" font-size="11">坩堝順時針旋轉 ↻ (5-15 RPM)</text>
+          </g>
+
+          <!-- 頂部提拉纜繩、夾頭與單晶晶棒 (Ingot with Dash Necking & Pull Motion) -->
+          <g transform="translate(400, 30)" class="anim-crystal-pull">
+            <!-- 提拉鉬軸纜繩 (Pull Cable) -->
+            <line x1="0" y1="0" x2="0" y2="40" stroke="#e2e8f0" stroke-width="3"/>
+            <!-- 籽晶夾頭 (Seed Holder) -->
+            <rect x="-12" y="40" width="24" height="15" rx="2" fill="#475569" stroke="#94a3b8" stroke-width="1"/>
+            <!-- <100> 單晶籽晶 (Seed Crystal) -->
+            <rect x="-4" y="55" width="8" height="18" fill="#e2e8f0"/>
+            <!-- 消除差排之細頸 (Dash Necking: 直徑 3-4mm, 長度 > 50mm) -->
+            <path d="M -4,73 C -2,85 -2,95 -2,105 L 2,105 C 2,95 2,85 4,73 Z" fill="#94a3b8"/>
+            <text x="15" y="92" fill="#38bdf8" font-size="10.5">Dash 細頸 (消除晶格差排)</text>
+
+            <!-- 放肩錐形 (Shoulder / Crown) -->
+            <path d="M -2,105 L -60,140 L 60,140 L 2,105 Z" fill="url(#czIngotGrad)" stroke="#cbd5e1" stroke-width="1"/>
+            <!-- 300mm 單晶矽棒主體 (Crystal Ingot Body) -->
+            <rect x="-60" y="140" width="120" height="140" fill="url(#czIngotGrad)" stroke="#cbd5e1" stroke-width="1"/>
+            <!-- 晶棒反向旋轉標示 (Ingot Counter-Rotation CCW) -->
+            <text x="0" y="200" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="750">300mm 單晶矽棒</text>
+            <text x="0" y="218" text-anchor="middle" fill="#f8fafc" font-size="10.5">&lt;100&gt; 晶向 · 逆時針旋轉 ↺</text>
+            <text x="0" y="235" text-anchor="middle" fill="#38bdf8" font-size="10">向上提拉 ↑ (1.2 mm/min)</text>
+          </g>
+        </svg>
+      `;
+
+      dashboardHtml = `
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">${t.ch03_metric_purity}</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-blue-dark);">11N (99.999999999%)</div>
+          <div class="eng-obj-metric-note">電子級多晶矽 (EGS) 高溫熔融</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">${t.ch03_metric_pull}</div>
+          <div class="eng-obj-metric-value">1.0 ~ 1.5 mm/min</div>
+          <div class="eng-obj-metric-note">Dash 縮頸高速提拉徹底排擠差排</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">超導磁場控制 (MCZ)</div>
+          <div class="eng-obj-metric-value">0.3 ~ 0.4 Tesla</div>
+          <div class="eng-obj-metric-note">勞侖茲阻尼強力抑制熔體熱對流</div>
+        </div>
+      `;
+
+      footerNote = t.ch03_cz_desc;
+    } else if (activeTab === 'saw') {
+      viewportHtml = `
+        <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diamond Wire Sawing Ingot into Wafers">
+          <defs>
+            <pattern id="sawWirePattern" width="16" height="40" patternUnits="userSpaceOnUse">
+              <line x1="8" y1="0" x2="8" y2="40" stroke="#38bdf8" stroke-width="1.5"/>
+            </pattern>
+          </defs>
+
+          <!-- 頂部進給架與進給單晶矽棒 (300mm Ingot Downward Feed) -->
+          <g transform="translate(200, 30)">
+            <rect x="0" y="0" width="400" height="130" rx="8" fill="#475569" stroke="#94a3b8" stroke-width="2"/>
+            <text x="200" y="45" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="700">300mm 單晶矽晶棒 (Silicon Ingot)</text>
+            <text x="200" y="65" text-anchor="middle" fill="#38bdf8" font-size="11">垂直微進給 ↓ (Feed Rate ~0.5 mm/min)</text>
+            <!-- 切割切痕線條 (Slits being cut) -->
+            ${Array.from({ length: 18 }, (_, i) => `
+              <line x1="${i * 20 + 30}" y1="80" x2="${i * 20 + 30}" y2="130" stroke="#0f172a" stroke-width="2.5"/>
+            `).join('')}
+          </g>
+
+          <!-- 中段金剛石多線鋸切割網 (Diamond Multi-Wire Web) -->
+          <g transform="translate(160, 160)" class="anim-saw-wire">
+            <!-- 左右兩側主導向滾輪 (Guide Rollers) -->
+            <circle cx="10" cy="40" r="30" fill="#334155" stroke="#64748b" stroke-width="2"/>
+            <circle cx="470" cy="40" r="30" fill="#334155" stroke="#64748b" stroke-width="2"/>
+            <!-- 金剛石線鋸束 (Diamond Wires Web: 數百條高張力金剛石鋼線) -->
+            ${Array.from({ length: 24 }, (_, i) => `
+              <line x1="20" y1="${i * 3 + 10}" x2="460" y2="${i * 3 + 10}" stroke="#0ea5e9" stroke-width="1.8"/>
+            `).join('')}
+            <text x="240" y="95" text-anchor="middle" fill="#38bdf8" font-size="12" font-weight="700">⇄ 金剛石鋸線高速往復運動 (Wire Speed: 40 m/s)</text>
+            <text x="240" y="112" text-anchor="middle" fill="#94a3b8" font-size="11">電鍍金剛石顆粒 (8-12 µm 磨料) + 冷卻研磨切削液</text>
+          </g>
+
+          <!-- 下方落入之高精度切片晶圓陣列 (Sliced Wafers) -->
+          <g transform="translate(200, 290)">
+            <rect x="0" y="0" width="400" height="90" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
+            ${Array.from({ length: 20 }, (_, i) => `
+              <rect x="${i * 18 + 25}" y="15" width="8" height="60" rx="1.5" fill="#94a3b8" stroke="#38bdf8" stroke-width="1"/>
+            `).join('')}
+            <text x="200" y="48" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="700">一次切出 400+ 片超薄晶圓</text>
+            <text x="200" y="66" text-anchor="middle" fill="#38bdf8" font-size="11">單片厚度 ~775 µm · 切縫損耗 Kerf Loss ~110 µm</text>
+          </g>
+        </svg>
+      `;
+
+      dashboardHtml = `
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">${t.ch03_metric_thick}</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-blue-dark);">775 ± 20 µm</div>
+          <div class="eng-obj-metric-note">SEMI 標準 300mm 晶圓規格</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">切縫損耗 (Kerf Loss)</div>
+          <div class="eng-obj-metric-value">~ 110 µm</div>
+          <div class="eng-obj-metric-note">超細金剛石鋼線大幅降低矽材浪費</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">晶圓翹曲度 (Warp / Bow)</div>
+          <div class="eng-obj-metric-value">&lt; 25 µm</div>
+          <div class="eng-obj-metric-note">恆定線張力控制確保平直切削面</div>
+        </div>
+      `;
+
+      footerNote = t.ch03_saw_desc;
+    } else if (activeTab === 'polish') {
+      viewportHtml = `
+        <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Wafer Bevel Grinding and Double-Side Polishing">
+          <!-- 左側：晶圓邊緣倒角研磨 (Edge Beveling & Profiling) -->
+          <g transform="translate(60, 40)">
+            <rect x="0" y="0" width="320" height="340" rx="8" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
+            <text x="160" y="32" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="750">晶圓邊緣倒角研磨 (Edge Beveling)</text>
+            <text x="160" y="50" text-anchor="middle" fill="#94a3b8" font-size="10.5">消除尖銳直角 · 防碎邊與光阻堆積</text>
+
+            <!-- 晶圓截面放大 (銳角尖端 vs 圓弧 R 倒角) -->
+            <g transform="translate(60, 90)">
+              <!-- 原始未處理直角易裂輪廓 (Sharp Edge) -->
+              <path d="M 0,40 L 80,40 L 80,100 L 0,100" fill="#334155" stroke="#ef4444" stroke-width="2" stroke-dasharray="3 3"/>
+              <text x="90" y="50" fill="#f87171" font-size="10">未倒角尖銳邊緣 (應力集中易碎)</text>
+
+              <!-- 鑽石砂輪 CNC 研磨後的標準圓弧輪廓 (SEMI T-Profile) -->
+              <path d="M 0,140 L 50,140 C 75,140 85,150 85,170 C 85,190 75,200 50,200 L 0,200 Z" fill="#64748b" stroke="#10b981" stroke-width="2"/>
+              <text x="95" y="165" fill="#34d399" font-size="10.5" font-weight="700">圓弧 R 倒角 (R-Profile)</text>
+              <text x="95" y="182" fill="#94a3b8" font-size="9.5">Bevel Radius R ~ 250 µm</text>
+            </g>
+          </g>
+
+          <!-- 右側：化學機械雙面拋光 (DSP: Double-Side Polishing) -->
+          <g transform="translate(420, 40)">
+            <rect x="0" y="0" width="320" height="340" rx="8" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
+            <text x="160" y="32" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="750">雙面化學機械拋光 (DSP)</text>
+            <text x="160" y="50" text-anchor="middle" fill="#38bdf8" font-size="10.5">行星齒輪夾持 · 兩面同時超鏡面拋光</text>
+
+            <!-- 上下旋轉拋光盤與微觀晶圓夾持 -->
+            <g transform="translate(30, 80)">
+              <!-- 上拋光盤 (Top Plate) -->
+              <rect x="0" y="0" width="260" height="30" rx="3" fill="#1e293b" stroke="#cbd5e1" stroke-width="1.5"/>
+              <text x="130" y="20" text-anchor="middle" fill="#cbd5e1" font-size="11">上研磨盤 (Top Polishing Plate ↓ 壓力)</text>
+
+              <!-- 中間游星輪 (Planetary Carrier) 與被拋光矽晶圓 -->
+              <g transform="translate(20, 45)">
+                <rect x="0" y="0" width="220" height="40" rx="4" fill="#09131b" stroke="#0ea5e9" stroke-width="1.5"/>
+                <!-- 旋轉運動箭頭 -->
+                <circle cx="110" cy="20" r="16" fill="#38bdf8" opacity="0.3"/>
+                <text x="110" y="25" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="700">矽晶圓 (自轉 + 公轉)</text>
+              </g>
+
+              <!-- 下拋光盤 (Bottom Plate) -->
+              <rect x="0" y="100" width="260" height="30" rx="3" fill="#1e293b" stroke="#cbd5e1" stroke-width="1.5"/>
+              <text x="130" y="120" text-anchor="middle" fill="#cbd5e1" font-size="11">下研磨盤 (Bottom Plate ↺ 旋轉)</text>
+
+              <!-- 表面奈米粗糙度放大對比 -->
+              <g transform="translate(0, 160)">
+                <rect x="0" y="0" width="260" height="75" rx="4" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+                <text x="10" y="22" fill="#94a3b8" font-size="10.5">拋光前：線鋸機械刮痕 RMS ~ 1 µm</text>
+                <path d="M 10,32 Q 30,22 50,32 T 90,32 T 130,32 T 170,32 T 210,32 T 250,32" fill="none" stroke="#f87171" stroke-width="1.5"/>
+                <text x="10" y="55" fill="#34d399" font-size="10.5" font-weight="700">拋光後：原子級光滑鏡面 RMS &lt; 0.1 nm</text>
+                <line x1="10" y1="65" x2="250" y2="65" stroke="#10b981" stroke-width="2"/>
+              </g>
+            </g>
+          </g>
+        </svg>
+      `;
+
+      dashboardHtml = `
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">${t.ch03_metric_roughness}</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-teal);">&lt; 0.1 nm (次埃級)</div>
+          <div class="eng-obj-metric-note">原子級超平整表面滿足 EUV 微影景深</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">全域平坦度 (GBIR / SFQR)</div>
+          <div class="eng-obj-metric-value">&lt; 0.05 µm</div>
+          <div class="eng-obj-metric-note">整片 300mm 晶圓奈米級厚度一致性</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">邊緣倒角形狀</div>
+          <div class="eng-obj-metric-value">SEMI T-Profile</div>
+          <div class="eng-obj-metric-note">預防高溫製程熱應力碎裂及晶邊脫膜</div>
+        </div>
+      `;
+
+      footerNote = t.ch03_polish_desc;
+    }
+
+    container.innerHTML = `
+      <section class="eng-obj-card" aria-labelledby="engObjCh03Title">
+        <header class="eng-obj-header">
+          <div class="eng-obj-badge-row">
+            <span class="eng-obj-badge">${t.badge_prefix} · CH 03</span>
+            <span class="eng-obj-status">${t.live_sim}</span>
+          </div>
+          <h2 class="eng-obj-title" id="engObjCh03Title">${t.ch03_title}</h2>
+          <p class="eng-obj-subtitle">${t.ch03_sub}</p>
+        </header>
+
+        <div class="eng-obj-controls">
+          <div class="eng-obj-tab-group" role="tablist">
+            <button type="button" class="eng-obj-tab ${activeTab === 'cz' ? 'is-active' : ''}" data-tab="cz">${t.ch03_tab_cz}</button>
+            <button type="button" class="eng-obj-tab ${activeTab === 'saw' ? 'is-active' : ''}" data-tab="saw">${t.ch03_tab_saw}</button>
+            <button type="button" class="eng-obj-tab ${activeTab === 'polish' ? 'is-active' : ''}" data-tab="polish">${t.ch03_tab_polish}</button>
+          </div>
+        </div>
+
+        <div class="eng-obj-viewport">
+          ${viewportHtml}
+        </div>
+
+        <div class="eng-obj-dashboard">
+          ${dashboardHtml}
+        </div>
+
+        <footer class="eng-obj-footer-note">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+          <div>${footerNote}</div>
+        </footer>
+      </section>
+    `;
+
+    container.querySelectorAll('[data-tab]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        activeTab = btn.getAttribute('data-tab');
+        update();
+      });
+    });
+  }
+
+  update();
+}
+
+/**
+ * ══════════════════════════════════════════════════════════════════════════════
+ * 10. Ch 09 RCA 濕式清洗化學反應、兆聲波與 Marangoni 乾燥模型 (Wet Clean & Megasonics)
+ * ══════════════════════════════════════════════════════════════════════════════
+ */
+export function renderWetCleanObject(container, lang = 'zh') {
+  const t = TEXTS[lang] || TEXTS.zh;
+  let activeTab = 'rca'; // 'rca' | 'megasonic' | 'marangoni'
+
+  function update() {
+    let viewportHtml = '';
+    let dashboardHtml = '';
+    let footerNote = '';
+
+    if (activeTab === 'rca') {
+      viewportHtml = `
+        <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="RCA Cleans Chemistry Mechanism">
+          <!-- 背景三區域劃分 -->
+          <rect x="20" y="20" width="240" height="370" rx="6" fill="#0f172a" stroke="#38bdf8" stroke-width="1.5"/>
+          <rect x="280" y="20" width="240" height="370" rx="6" fill="#0f172a" stroke="#10b981" stroke-width="1.5"/>
+          <rect x="540" y="20" width="240" height="370" rx="6" fill="#0f172a" stroke="#f59e0b" stroke-width="1.5"/>
+
+          <!-- 區域 1: SC-1 (RCA-1) 鹼性去微粒 -->
+          <g transform="translate(30, 30)">
+            <text x="110" y="25" text-anchor="middle" fill="#38bdf8" font-size="13" font-weight="750">1. SC-1 (RCA-1 清洗)</text>
+            <text x="110" y="45" text-anchor="middle" fill="#94a3b8" font-size="10.5">NH₄OH : H₂O₂ : H₂O @ 70°C</text>
+
+            <!-- 晶圓矽基板 -->
+            <rect x="10" y="230" width="200" height="40" fill="#334155" rx="3"/>
+            <text x="110" y="255" text-anchor="middle" fill="#cbd5e1" font-size="11">Si 基底 (帶負電 ζ ≈ -40mV)</text>
+
+            <!-- 表面微蝕刻氧化層與 Zeta 電位排斥機制 -->
+            <rect x="10" y="215" width="200" height="15" fill="#38bdf8" opacity="0.3"/>
+            <text x="110" y="205" text-anchor="middle" fill="#38bdf8" font-size="10">微蝕刻脫落氧化層 (~0.5 nm)</text>
+
+            <!-- 漂浮顆粒與排斥電場 -->
+            <circle cx="110" cy="120" r="24" fill="#f87171" stroke="#ffffff" stroke-width="1.5"/>
+            <text x="110" y="125" text-anchor="middle" fill="#ffffff" font-size="10" font-weight="700">微粒 (-)</text>
+            <!-- 負電排斥箭頭 (Repulsion) -->
+            <path d="M 110,150 L 110,190" stroke="#f59e0b" stroke-width="2.5" marker-end="url(#arrow)"/>
+            <text x="110" y="175" text-anchor="middle" fill="#fbbf24" font-size="11" font-weight="700">⇡ 靜電排斥力 ⇣</text>
+            <text x="110" y="320" text-anchor="middle" fill="#38bdf8" font-size="10.5">去除有機物與次微米微粒</text>
+          </g>
+
+          <!-- 區域 2: DHF 稀氫氟酸洗去原生氧化層 -->
+          <g transform="translate(290, 30)">
+            <text x="110" y="25" text-anchor="middle" fill="#34d399" font-size="13" font-weight="750">2. DHF 稀氫氟酸浸泡</text>
+            <text x="110" y="45" text-anchor="middle" fill="#94a3b8" font-size="10.5">HF : H₂O (1:50 ~ 1:100)</text>
+
+            <!-- 晶圓矽基板 -->
+            <rect x="10" y="230" width="200" height="40" fill="#334155" rx="3"/>
+            <text x="110" y="255" text-anchor="middle" fill="#cbd5e1" font-size="11">Si 基底 (氫鍵鈍化 Si-H)</text>
+
+            <!-- SiO2 溶解消失動態 -->
+            <g transform="translate(20, 140)">
+              <text x="100" y="20" text-anchor="middle" fill="#34d399" font-size="11" font-weight="700">SiO₂ + 6HF → H₂SiF₆ + 2H₂O</text>
+              <text x="100" y="45" text-anchor="middle" fill="#94a3b8" font-size="10">化學氧化層快速被溶解咬除</text>
+              <line x1="20" y1="65" x2="180" y2="65" stroke="#10b981" stroke-width="2" stroke-dasharray="4 3"/>
+              <text x="100" y="85" text-anchor="middle" fill="#34d399" font-size="11">形成疏水性 (Hydrophobic) 表面</text>
+            </g>
+            <text x="110" y="320" text-anchor="middle" fill="#34d399" font-size="10.5">移除氧化層中之殘留雜質</text>
+          </g>
+
+          <!-- 區域 3: SC-2 (RCA-2) 酸性金屬離子錯化 -->
+          <g transform="translate(550, 30)">
+            <text x="110" y="25" text-anchor="middle" fill="#f59e0b" font-size="13" font-weight="750">3. SC-2 (RCA-2 清洗)</text>
+            <text x="110" y="45" text-anchor="middle" fill="#94a3b8" font-size="10.5">HCl : H₂O₂ : H₂O @ 70°C</text>
+
+            <!-- 晶圓矽基板 -->
+            <rect x="10" y="230" width="200" height="40" fill="#334155" rx="3"/>
+            <text x="110" y="255" text-anchor="middle" fill="#cbd5e1" font-size="11">Si 基底 (生成潔淨鈍化氧化膜)</text>
+
+            <!-- 金屬離子螯合絡合物反應 -->
+            <g transform="translate(20, 110)">
+              <circle cx="40" cy="30" r="16" fill="#e11d48"/>
+              <text x="40" y="34" text-anchor="middle" fill="#ffffff" font-size="9" font-weight="700">Fe³⁺</text>
+              <circle cx="160" cy="30" r="16" fill="#e11d48"/>
+              <text x="160" y="34" text-anchor="middle" fill="#ffffff" font-size="9" font-weight="700">Cu²⁺</text>
+
+              <path d="M 60,30 L 140,30" stroke="#f59e0b" stroke-width="2"/>
+              <text x="100" y="24" text-anchor="middle" fill="#fbbf24" font-size="10">+ 6Cl⁻</text>
+              <text x="100" y="70" text-anchor="middle" fill="#fbbf24" font-size="11" font-weight="700">[FeCl₆]³⁻ 可溶性氯錯離子</text>
+              <text x="100" y="90" text-anchor="middle" fill="#94a3b8" font-size="10">永遠溶入清洗液，不再沉積</text>
+            </g>
+            <text x="110" y="320" text-anchor="middle" fill="#f59e0b" font-size="10.5">金屬離子殘留 &lt; 1E10 atoms/cm²</text>
+          </g>
+        </svg>
+      `;
+
+      dashboardHtml = `
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">${t.ch09_metric_pre}</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-blue-dark);">&gt; 99.8%</div>
+          <div class="eng-obj-metric-note">SC-1 表面同極性負電排斥脫附</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">${t.ch09_metric_metal}</div>
+          <div class="eng-obj-metric-value">&lt; 1×10¹⁰ atoms/cm²</div>
+          <div class="eng-obj-metric-note">SC-2 鹽酸螯合鐵/銅重金屬離子</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">Zeta 電位 (ζ-potential)</div>
+          <div class="eng-obj-metric-value">-40 ~ -50 mV</div>
+          <div class="eng-obj-metric-note">強烈庫侖排斥杜絕顆粒二次吸附</div>
+        </div>
+      `;
+
+      footerNote = t.ch09_rca_desc;
+    } else if (activeTab === 'megasonic') {
+      viewportHtml = `
+        <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Megasonic Acoustic Streaming and Boundary Layer">
+          <!-- 上方兆聲波石英發振器 (Megasonic Transducer Array @ 1MHz) -->
+          <g transform="translate(100, 30)">
+            <rect x="0" y="0" width="600" height="35" rx="4" fill="#1e293b" stroke="#0ea5e9" stroke-width="2"/>
+            <text x="300" y="22" text-anchor="middle" fill="#38bdf8" font-size="12" font-weight="750">兆聲波壓電換能器陣列 (Megasonic Transducer: 0.8 ~ 2.0 MHz)</text>
+          </g>
+
+          <!-- 高頻縱波聲壓震盪場 (Acoustic Wavefronts) -->
+          <g transform="translate(120, 80)" class="anim-acoustic">
+            ${Array.from({ length: 6 }, (_, i) => `
+              <line x1="0" y1="${i * 24 + 10}" x2="560" y2="${i * 24 + 10}" stroke="#0ea5e9" stroke-width="1.8" stroke-dasharray="6 4" opacity="${0.9 - i * 0.1}"/>
+            `).join('')}
+            <text x="280" y="80" text-anchor="middle" fill="#38bdf8" font-size="11" font-weight="600">高頻聲波壓力場與聲微流 (Acoustic Microstreaming)</text>
+          </g>
+
+          <!-- 下方晶圓表面邊界層微觀剖面 -->
+          <g transform="translate(100, 240)">
+            <!-- 水動力邊界層對照區 -->
+            <rect x="0" y="0" width="280" height="130" fill="#0f172a" stroke="#ef4444" stroke-width="1.5" rx="4"/>
+            <text x="140" y="24" text-anchor="middle" fill="#f87171" font-size="11" font-weight="700">普通清洗水流：厚邊界層 (δ ~ 10µm)</text>
+            <!-- 邊界層死區 -->
+            <rect x="10" y="40" width="260" height="40" fill="#ef4444" opacity="0.2"/>
+            <text x="140" y="65" text-anchor="middle" fill="#f87171" font-size="10">水流停滯死區 (微粒受保護無法沖刷)</text>
+            <!-- 躲在死區內的微粒 -->
+            <circle cx="80" cy="70" r="8" fill="#f87171"/>
+            <circle cx="160" cy="72" r="6" fill="#f87171"/>
+            <circle cx="210" cy="68" r="9" fill="#f87171"/>
+            <rect x="10" y="90" width="260" height="30" fill="#334155"/>
+            <text x="140" y="110" text-anchor="middle" fill="#cbd5e1" font-size="10.5">晶圓表面 (Wafer Surface)</text>
+
+            <!-- 兆聲波清洗區：壓縮邊界層 -->
+            <rect x="320" y="0" width="280" height="130" fill="#0f172a" stroke="#10b981" stroke-width="1.5" rx="4"/>
+            <text x="460" y="24" text-anchor="middle" fill="#34d399" font-size="11" font-weight="700">兆聲波清洗：壓縮邊界層 (δ &lt; 0.5µm)</text>
+            <!-- 薄邊界層 -->
+            <rect x="330" y="75" width="260" height="10" fill="#10b981" opacity="0.3"/>
+            <text x="460" y="70" text-anchor="middle" fill="#34d399" font-size="10">超薄邊界層 (產生極高剪切應力)</text>
+            <!-- 被聲流硬生生扯離的微粒 -->
+            <g transform="translate(460, 45)">
+              <circle cx="-30" cy="-5" r="7" fill="#34d399"/>
+              <path d="M -30,-5 L -10,-25" stroke="#38bdf8" stroke-width="2" marker-end="url(#arrow)"/>
+              <circle cx="30" cy="5" r="6" fill="#34d399"/>
+              <path d="M 30,5 L 50,-15" stroke="#38bdf8" stroke-width="2" marker-end="url(#arrow)"/>
+              <text x="0" y="-12" text-anchor="middle" fill="#38bdf8" font-size="10">微粒被音流剝離捲走 ↗</text>
+            </g>
+            <rect x="330" y="90" width="260" height="30" fill="#334155"/>
+            <text x="460" y="110" text-anchor="middle" fill="#cbd5e1" font-size="10.5">晶圓表面 (Wafer Surface)</text>
+          </g>
+        </svg>
+      `;
+
+      dashboardHtml = `
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">兆聲波頻率 (Frequency)</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-blue-dark);">0.8 ~ 2.0 MHz</div>
+          <div class="eng-obj-metric-note">避免超音波 (20-40kHz) 崩塌破壞奈米線結構</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">${t.ch09_metric_boundary}</div>
+          <div class="eng-obj-metric-value">&lt; 0.5 µm (壓縮 95%)</div>
+          <div class="eng-obj-metric-note">音流突破微觀水流滯留死區</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">微粒脫附剪切應力</div>
+          <div class="eng-obj-metric-value">&gt; 10⁴ N/m²</div>
+          <div class="eng-obj-metric-note">直接粉碎凡得瓦爾 (van der Waals) 吸附力</div>
+        </div>
+      `;
+
+      footerNote = t.ch09_megasonic_desc;
+    } else if (activeTab === 'marangoni') {
+      viewportHtml = `
+        <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Marangoni Surface Tension Gradient Drying">
+          <!-- 水槽槽體 (UPW Bath) -->
+          <rect x="80" y="180" width="640" height="210" rx="4" fill="#0284c7" opacity="0.25" stroke="#0ea5e9" stroke-width="2"/>
+          <text x="400" y="360" text-anchor="middle" fill="#38bdf8" font-size="13" font-weight="700">超純水槽 (Ultrapure Water UPW Bath: 表面張力 γ_high ≈ 72 mN/m)</text>
+
+          <!-- 頂部注入 IPA 蒸氣 (IPA Vapor Injection) -->
+          <g transform="translate(180, 30)">
+            <rect x="0" y="0" width="440" height="30" rx="4" fill="#1e293b" stroke="#f59e0b" stroke-width="1.5"/>
+            <text x="220" y="20" text-anchor="middle" fill="#fbbf24" font-size="11" font-weight="700">IPA (異丙醇蒸氣) + N₂ 載氣噴入</text>
+            <!-- IPA 氣流向下流動 -->
+            <path d="M 120,35 L 120,75" stroke="#f59e0b" stroke-width="2" stroke-dasharray="3 3"/>
+            <path d="M 220,35 L 220,75" stroke="#f59e0b" stroke-width="2" stroke-dasharray="3 3"/>
+            <path d="M 320,35 L 320,75" stroke="#f59e0b" stroke-width="2" stroke-dasharray="3 3"/>
+          </g>
+
+          <!-- 緩慢向上提拉的晶圓 (Wafer Slow Pulling Up) -->
+          <g transform="translate(360, 60)">
+            <rect x="0" y="0" width="80" height="260" rx="3" fill="#64748b" stroke="#cbd5e1" stroke-width="2"/>
+            <text x="40" y="100" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="700" transform="rotate(-90 40 100)">晶圓緩慢向上提拉 ↑ (1-2 mm/s)</text>
+            <text x="40" y="60" text-anchor="middle" fill="#34d399" font-size="10.5">100% 潔淨乾爽</text>
+          </g>
+
+          <!-- 彎月面 (Meniscus) 表面張力差驅動微觀流動 (Marangoni Effect) -->
+          <g transform="translate(440, 150)" class="anim-liquid-flow">
+            <!-- 彎月水膜弧線 -->
+            <path d="M 0,20 Q 30,30 60,60" fill="none" stroke="#38bdf8" stroke-width="4"/>
+            <!-- IPA 融入使得頂部表面張力低 -->
+            <text x="75" y="25" fill="#fbbf24" font-size="11" font-weight="700">頂部低表面張力 (γ_low ≈ 22 mN/m)</text>
+            <!-- 底部純水表面張力高 -->
+            <text x="75" y="70" fill="#38bdf8" font-size="11" font-weight="700">槽內高表面張力 (γ_high ≈ 72 mN/m)</text>
+            <!-- Marangoni 向下拉力箭頭 -->
+            <path d="M 25,25 L 45,55" stroke="#10b981" stroke-width="3" marker-end="url(#arrow)"/>
+            <text x="75" y="48" fill="#34d399" font-size="11.5" font-weight="750">⇓ Marangoni 表面張力梯度拉回力</text>
+            <text x="75" y="95" fill="#cbd5e1" font-size="10">水膜自發被向下吸回水槽，無水滴殘留蒸發</text>
+          </g>
+        </svg>
+      `;
+
+      dashboardHtml = `
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">${t.ch09_metric_watermark}</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-teal);">0 Defects (零水痕)</div>
+          <div class="eng-obj-metric-note">杜絕水滴蒸發析出二氧化矽殘斑</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">表面張力梯度差 (Δγ)</div>
+          <div class="eng-obj-metric-value">~ 50 mN/m</div>
+          <div class="eng-obj-metric-note">強大毛細收縮力牽引液膜下洩</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">晶圓提拉速率</div>
+          <div class="eng-obj-metric-value">1.0 ~ 2.0 mm/s</div>
+          <div class="eng-obj-metric-note">慢速等速脫附形成連續均勻彎月面</div>
+        </div>
+      `;
+
+      footerNote = t.ch09_marangoni_desc;
+    }
+
+    container.innerHTML = `
+      <section class="eng-obj-card" aria-labelledby="engObjCh09Title">
+        <header class="eng-obj-header">
+          <div class="eng-obj-badge-row">
+            <span class="eng-obj-badge">${t.badge_prefix} · CH 09</span>
+            <span class="eng-obj-status">${t.live_sim}</span>
+          </div>
+          <h2 class="eng-obj-title" id="engObjCh09Title">${t.ch09_title}</h2>
+          <p class="eng-obj-subtitle">${t.ch09_sub}</p>
+        </header>
+
+        <div class="eng-obj-controls">
+          <div class="eng-obj-tab-group" role="tablist">
+            <button type="button" class="eng-obj-tab ${activeTab === 'rca' ? 'is-active' : ''}" data-tab="rca">${t.ch09_tab_rca}</button>
+            <button type="button" class="eng-obj-tab ${activeTab === 'megasonic' ? 'is-active' : ''}" data-tab="megasonic">${t.ch09_tab_megasonic}</button>
+            <button type="button" class="eng-obj-tab ${activeTab === 'marangoni' ? 'is-active' : ''}" data-tab="marangoni">${t.ch09_tab_marangoni}</button>
+          </div>
+        </div>
+
+        <div class="eng-obj-viewport">
+          ${viewportHtml}
+        </div>
+
+        <div class="eng-obj-dashboard">
+          ${dashboardHtml}
+        </div>
+
+        <footer class="eng-obj-footer-note">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+          <div>${footerNote}</div>
+        </footer>
+      </section>
+    `;
+
+    container.querySelectorAll('[data-tab]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        activeTab = btn.getAttribute('data-tab');
+        update();
+      });
+    });
+  }
+
+  update();
+}
+
+/**
+ * ══════════════════════════════════════════════════════════════════════════════
+ * 11. Ch 11 CMOS 完整整合剖面與步進模型 (Full CMOS Integrated Stepper Model)
+ * ══════════════════════════════════════════════════════════════════════════════
+ */
+export function renderCMOSFlowObject(container, lang = 'zh') {
+  const t = TEXTS[lang] || TEXTS.zh;
+  let activeStep = 1; // 1 to 6
+
+  function update() {
+    let stepTitle = '';
+    let stepDesc = '';
+    let sectionTag = '';
+
+    if (activeStep === 1) {
+      stepTitle = t.ch11_step_1;
+      stepDesc = '淺溝槽隔離 (STI)：在 P 型基板上透過微影蝕刻出 300nm 溝槽，沉積高密度電漿氧化物 (HDP-CVD SiO₂) 充填，再以 CMP 研磨平整，將相鄰 NMOS 與 PMOS 活性區徹底絕緣隔開。';
+      sectionTag = t.ch11_tab_feol;
+    } else if (activeStep === 2) {
+      stepTitle = t.ch11_step_2;
+      stepDesc = '雙井區離子佈植 (Twin-Well)：光阻遮蔽左側 PMOS 區，高能注入磷 (P⁺) 形成 N-Well；光阻遮蔽右側 NMOS 區，注入硼 (B⁺) 形成 P-Well，界定不同極性電晶體的背底基板。';
+      sectionTag = t.ch11_tab_feol;
+    } else if (activeStep === 3) {
+      stepTitle = t.ch11_step_3;
+      stepDesc = 'High-k 金屬閘極 (HKMG Stack)：沉積 1.5nm 超薄氧化鉿 (HfO₂, k~25) 介電層，上方覆蓋功函數調節金屬層 (TiN/TaN) 與鎢閘極，兩側形成氮化矽 (Si₃N₄) 間隔側牆 (Spacers)。';
+      sectionTag = t.ch11_tab_feol;
+    } else if (activeStep === 4) {
+      stepTitle = t.ch11_step_4;
+      stepDesc = '源極/汲極應變磊晶與佈植：PMOS 區選擇性磊晶成長 SiGe (引入雙軸壓縮應力，電洞遷移率提升 60%)；NMOS 區磊晶 Si:C (引入伸張應力，電子遷移率提升 50%) 並注入重摻雜離子。';
+      sectionTag = t.ch11_tab_feol;
+    } else if (activeStep === 5) {
+      stepTitle = t.ch11_step_5;
+      stepDesc = '中段製程 (MOL: Contact & Plugs)：源汲極表面反應生成低阻抗自對準矽化鎳 (NiSi)；覆蓋層間介電質 (ILD0) 後蝕刻高深寬比接觸孔，並以 CVD 鎢 (Tungsten W) 填滿接腳。';
+      sectionTag = t.ch11_tab_mol;
+    } else if (activeStep === 6) {
+      stepTitle = t.ch11_step_6;
+      stepDesc = '後段製程 (BEOL: 10+ 層金屬互連線)：以雙載子鑲嵌 (Dual Damascene) 工藝依序堆疊 M1 至 M10+ 層銅導線與通孔 (Vias)，並由極低介電常數 (Low-k) 材料隔離，完成全功能晶片！';
+      sectionTag = t.ch11_tab_beol;
+    }
+
+    const viewportHtml = `
+      <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="CMOS Integrated Process Step Cross-Section">
+        <!-- 頂部步進標示 -->
+        <rect x="40" y="15" width="720" height="35" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
+        <text x="60" y="38" fill="#38bdf8" font-size="12" font-weight="750">[${sectionTag}] ${stepTitle}</text>
+        <text x="730" y="38" text-anchor="end" fill="#94a3b8" font-size="11">工步 ${activeStep} / 6</text>
+
+        <!-- 矽基底本體 (P-Substrate @ 底部) -->
+        <g transform="translate(60, 60)">
+          <!-- 矽基板 -->
+          <rect x="0" y="240" width="680" height="90" fill="#1e293b" stroke="#475569" stroke-width="1.5"/>
+          <text x="340" y="295" text-anchor="middle" fill="#94a3b8" font-size="12">P-Type 矽基底 (P-Substrate &lt;100&gt;)</text>
+
+          <!-- 步驟 1+: STI 隔離槽 (中間與兩側) -->
+          <rect x="0" y="200" width="80" height="40" fill="#0284c7" opacity="0.7"/>
+          <rect x="300" y="200" width="80" height="40" fill="#0284c7" opacity="0.7"/>
+          <rect x="600" y="200" width="80" height="40" fill="#0284c7" opacity="0.7"/>
+          <text x="340" y="225" text-anchor="middle" fill="#ffffff" font-size="10" font-weight="700">STI (SiO₂)</text>
+
+          <!-- 步驟 2+: 雙井區 (N-Well 左側 PMOS, P-Well 右側 NMOS) -->
+          ${activeStep >= 2 ? `
+            <rect x="80" y="190" width="220" height="90" fill="#f59e0b" opacity="0.25" stroke="#f59e0b" stroke-dasharray="2 2"/>
+            <text x="190" y="260" text-anchor="middle" fill="#fbbf24" font-size="12" font-weight="700">N-Well (PMOS 區域)</text>
+
+            <rect x="380" y="190" width="220" height="90" fill="#10b981" opacity="0.25" stroke="#10b981" stroke-dasharray="2 2"/>
+            <text x="490" y="260" text-anchor="middle" fill="#34d399" font-size="12" font-weight="700">P-Well (NMOS 區域)</text>
+          ` : `
+            <text x="190" y="225" text-anchor="middle" fill="#64748b" font-size="11">活性區 1 (待做 PMOS)</text>
+            <text x="490" y="225" text-anchor="middle" fill="#64748b" font-size="11">活性區 2 (待做 NMOS)</text>
+          `}
+
+          <!-- 步驟 3+: HKMG 閘極堆疊 -->
+          ${activeStep >= 3 ? `
+            <!-- PMOS 閘極 -->
+            <g transform="translate(160, 145)">
+              <rect x="0" y="50" width="60" height="5" fill="#38bdf8"/>
+              <rect x="0" y="15" width="60" height="35" fill="#64748b" stroke="#cbd5e1" stroke-width="1.5"/>
+              <!-- Spacers -->
+              <rect x="-8" y="15" width="8" height="40" fill="#475569"/>
+              <rect x="60" y="15" width="8" height="40" fill="#475569"/>
+              <text x="30" y="38" text-anchor="middle" fill="#ffffff" font-size="10" font-weight="700">Gate</text>
+            </g>
+            <!-- NMOS 閘極 -->
+            <g transform="translate(460, 145)">
+              <rect x="0" y="50" width="60" height="5" fill="#38bdf8"/>
+              <rect x="0" y="15" width="60" height="35" fill="#64748b" stroke="#cbd5e1" stroke-width="1.5"/>
+              <!-- Spacers -->
+              <rect x="-8" y="15" width="8" height="40" fill="#475569"/>
+              <rect x="60" y="15" width="8" height="40" fill="#475569"/>
+              <text x="30" y="38" text-anchor="middle" fill="#ffffff" font-size="10" font-weight="700">Gate</text>
+            </g>
+          ` : ''}
+
+          <!-- 步驟 4+: 源汲極應變磊晶 (SiGe / Si:C) -->
+          ${activeStep >= 4 ? `
+            <!-- PMOS SiGe S/D -->
+            <rect x="90" y="190" width="55" height="15" fill="#e11d48" rx="2"/>
+            <rect x="235" y="190" width="55" height="15" fill="#e11d48" rx="2"/>
+            <text x="117" y="202" text-anchor="middle" fill="#ffffff" font-size="9" font-weight="700">SiGe S</text>
+            <text x="262" y="202" text-anchor="middle" fill="#ffffff" font-size="9" font-weight="700">SiGe D</text>
+
+            <!-- NMOS Si:C S/D -->
+            <rect x="390" y="190" width="55" height="15" fill="#059669" rx="2"/>
+            <rect x="535" y="190" width="55" height="15" fill="#059669" rx="2"/>
+            <text x="417" y="202" text-anchor="middle" fill="#ffffff" font-size="9" font-weight="700">Si:C S</text>
+            <text x="562" y="202" text-anchor="middle" fill="#ffffff" font-size="9" font-weight="700">Si:C D</text>
+          ` : ''}
+
+          <!-- 步驟 5+: MOL 接觸孔與鎢插塞 (W-Plugs) -->
+          ${activeStep >= 5 ? `
+            <!-- ILD0 介電層 -->
+            <rect x="0" y="80" width="680" height="80" fill="#0f172a" opacity="0.5" stroke="#334155" stroke-dasharray="2 2"/>
+            <!-- 垂直金屬鎢插塞 (Tungsten Plugs) -->
+            ${[117, 190, 262, 417, 490, 562].map(x => `
+              <rect x="${x - 5}" y="80" width="10" height="80" fill="#cbd5e1" stroke="#f59e0b" stroke-width="1"/>
+            `).join('')}
+            <text x="340" y="115" text-anchor="middle" fill="#fbbf24" font-size="11" font-weight="750">MOL Contact 鎢插塞 (W-Plugs)</text>
+          ` : ''}
+
+          <!-- 步驟 6+: BEOL 銅導線 (M1) -->
+          ${activeStep >= 6 ? `
+            <g transform="translate(0, 20)">
+              <rect x="0" y="0" width="680" height="60" fill="#09131b" stroke="#38bdf8" stroke-width="1.5"/>
+              <!-- M1 銅導線區塊 -->
+              <rect x="100" y="10" width="70" height="40" rx="3" fill="#ea580c" stroke="#f97316" stroke-width="1.5"/>
+              <rect x="230" y="10" width="100" height="40" rx="3" fill="#ea580c" stroke="#f97316" stroke-width="1.5"/>
+              <rect x="400" y="10" width="120" height="40" rx="3" fill="#ea580c" stroke="#f97316" stroke-width="1.5"/>
+              <rect x="550" y="10" width="60" height="40" rx="3" fill="#ea580c" stroke="#f97316" stroke-width="1.5"/>
+              <text x="340" y="35" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="800">BEOL M1 / M2 雙鑲嵌銅導線 (Cu Interconnects)</text>
+            </g>
+          ` : ''}
+        </g>
+      </svg>
+    `;
+
+    const dashboardHtml = `
+      <div class="eng-obj-metric-card">
+        <div class="eng-obj-metric-label">${t.ch11_metric_masks}</div>
+        <div class="eng-obj-metric-value" style="color: var(--semi-blue-dark);">60 ~ 80+ 層</div>
+        <div class="eng-obj-metric-note">DUV/EUV 多重曝光精確疊對</div>
+      </div>
+      <div class="eng-obj-metric-card">
+        <div class="eng-obj-metric-label">${t.ch11_metric_steps}</div>
+        <div class="eng-obj-metric-value">1,200 ~ 1,500 步</div>
+        <div class="eng-obj-metric-note">包含薄膜、微影、蝕刻、佈植與 CMP 循環</div>
+      </div>
+      <div class="eng-obj-metric-card">
+        <div class="eng-obj-metric-label">${t.ch11_metric_cycle}</div>
+        <div class="eng-obj-metric-value">2.5 ~ 3.5 個月</div>
+        <div class="eng-obj-metric-note">晶圓在全自動無塵室中穿越數千台設備</div>
+      </div>
+    `;
+
+    container.innerHTML = `
+      <section class="eng-obj-card" aria-labelledby="engObjCh11Title">
+        <header class="eng-obj-header">
+          <div class="eng-obj-badge-row">
+            <span class="eng-obj-badge">${t.badge_prefix} · CH 11</span>
+            <span class="eng-obj-status">${t.live_sim}</span>
+          </div>
+          <h2 class="eng-obj-title" id="engObjCh11Title">${t.ch11_title}</h2>
+          <p class="eng-obj-subtitle">${t.ch11_sub}</p>
+        </header>
+
+        <div class="eng-obj-controls">
+          <div class="eng-obj-stepper-bar" style="display: flex; gap: 6px; flex-wrap: wrap;">
+            ${[1, 2, 3, 4, 5, 6].map(i => `
+              <button type="button" class="eng-obj-tab ${activeStep === i ? 'is-active' : ''}" data-step="${i}">
+                ${lang === 'zh' ? `工步 ${i}` : `Step ${i}`}
+              </button>
+            `).join('')}
+            <button type="button" class="eng-obj-btn eng-obj-btn-primary" data-action="next" style="margin-left: auto;">
+              ${t.btn_next_step}
+            </button>
+          </div>
+        </div>
+
+        <div class="eng-obj-viewport">
+          ${viewportHtml}
+        </div>
+
+        <div class="eng-obj-dashboard">
+          ${dashboardHtml}
+        </div>
+
+        <footer class="eng-obj-footer-note">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+          <div>${stepDesc}</div>
+        </footer>
+      </section>
+    `;
+
+    container.querySelectorAll('[data-step]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        activeStep = parseInt(btn.getAttribute('data-step'), 10);
+        update();
+      });
+    });
+
+    const nextBtn = container.querySelector('[data-action="next"]');
+    if (nextBtn) {
+      nextBtn.addEventListener('click', () => {
+        activeStep = activeStep < 6 ? activeStep + 1 : 1;
+        update();
+      });
+    }
+  }
+
+  update();
+}
+
+/**
+ * ══════════════════════════════════════════════════════════════════════════════
+ * 12. Ch 13 三大記憶體技術微觀立體模型 (DRAM 1T1C, 3D NAND Staircase, HBM 3D)
+ * ══════════════════════════════════════════════════════════════════════════════
+ */
+export function renderMemoryTechObject(container, lang = 'zh') {
+  const t = TEXTS[lang] || TEXTS.zh;
+  let activeTab = 'dram'; // 'dram' | 'nand' | 'hbm'
+
+  function update() {
+    let viewportHtml = '';
+    let dashboardHtml = '';
+    let footerNote = '';
+
+    if (activeTab === 'dram') {
+      viewportHtml = `
+        <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="DRAM 1T1C High-Aspect Capacitor Structure">
+          <!-- 上方超高深寬比圓柱電容陣列 (Aspect Ratio > 50:1) -->
+          <g transform="translate(100, 30)">
+            <rect x="0" y="0" width="600" height="230" fill="#0f172a" stroke="#0ea5e9" stroke-width="1.5" rx="6"/>
+            <text x="300" y="25" text-anchor="middle" fill="#38bdf8" font-size="12.5" font-weight="750">DRAM 圓柱狀立體儲存電容矩陣 (Aspect Ratio &gt; 50:1)</text>
+
+            <!-- 垂直圓柱電容結構 (Cylinder Capacitors with High-k ZAZ Film) -->
+            ${[60, 150, 240, 330, 420, 510].map((x, idx) => `
+              <g transform="translate(${x}, 40)">
+                <!-- 外層金屬電極 (Outer TiN Plate) -->
+                <rect x="-16" y="0" width="32" height="170" rx="4" fill="#1e293b" stroke="#cbd5e1" stroke-width="1.5"/>
+                <!-- 中間高介電薄膜 (High-k ZAZ: ZrO₂ / Al₂O₃ / ZrO₂) -->
+                <rect x="-12" y="2" width="24" height="166" rx="3" fill="#0284c7" opacity="0.6"/>
+                <!-- 內層金屬電極 (Inner TiN Node) -->
+                <rect x="-6" y="5" width="12" height="160" rx="2" fill="#ea580c"/>
+                <!-- 電荷儲存指示 (+) -->
+                <text x="0" y="80" text-anchor="middle" fill="#ffffff" font-size="10" font-weight="800">Q</text>
+                <text x="0" y="195" text-anchor="middle" fill="#38bdf8" font-size="9.5">Cap ${idx + 1}</text>
+              </g>
+            `).join('')}
+            <text x="300" y="222" text-anchor="middle" fill="#94a3b8" font-size="10.5">TiN 內外金屬電極 + 2nm ZrO₂/Al₂O₃/ZrO₂ 高介電絕緣質</text>
+          </g>
+
+          <!-- 下方 1T 存取電晶體與埋入式字元線 (Buried Word-Line bWL) -->
+          <g transform="translate(100, 280)">
+            <rect x="0" y="0" width="600" height="110" fill="#1e293b" stroke="#334155" stroke-width="1.5" rx="6"/>
+            <!-- 埋入式字元線 (bWL) -->
+            <rect x="40" y="40" width="220" height="30" rx="3" fill="#475569" stroke="#f59e0b" stroke-width="1.5"/>
+            <text x="150" y="60" text-anchor="middle" fill="#fbbf24" font-size="11" font-weight="700">埋入式字元線 (Buried Word-Line)</text>
+            <!-- 位元線 (Bit-Line BL) -->
+            <rect x="340" y="40" width="220" height="30" rx="3" fill="#475569" stroke="#10b981" stroke-width="1.5"/>
+            <text x="450" y="60" text-anchor="middle" fill="#34d399" font-size="11" font-weight="700">垂直位元線 (Bit-Line BL)</text>
+            <text x="300" y="95" text-anchor="middle" fill="#94a3b8" font-size="10.5">1T1C 架構：每 64ms 刷新週期 (tREFI) 補充電荷漏電</text>
+          </g>
+        </svg>
+      `;
+
+      dashboardHtml = `
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">${t.ch13_metric_dram_ar}</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-blue-dark);">&gt; 50:1</div>
+          <div class="eng-obj-metric-note">極高深寬比維持 ~25 fF/cell 足額電容</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">${t.ch13_metric_retention}</div>
+          <div class="eng-obj-metric-value">64 ms</div>
+          <div class="eng-obj-metric-note">動態刷新電路補償介電質穿隧漏電</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">記憶體單元面積</div>
+          <div class="eng-obj-metric-value">6F²</div>
+          <div class="eng-obj-metric-note">4F² 3D DRAM 是下世代研發目標</div>
+        </div>
+      `;
+
+      footerNote = t.ch13_dram_desc;
+    } else if (activeTab === 'nand') {
+      viewportHtml = `
+        <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="3D NAND Flash 200+ Layer Staircase Architecture">
+          <!-- 左側：交替疊層與垂直通道孔 (Alternating Stack & HAR Etch) -->
+          <g transform="translate(60, 30)">
+            <rect x="0" y="0" width="340" height="350" fill="#0f172a" stroke="#0ea5e9" stroke-width="1.5" rx="6"/>
+            <text x="170" y="28" text-anchor="middle" fill="#38bdf8" font-size="12.5" font-weight="750">200+ 層交替堆疊與 HAR 穿孔</text>
+
+            <!-- 多層交替氧化層與鎢閘極 (SiO2 / W pairs) -->
+            ${Array.from({ length: 14 }, (_, i) => `
+              <rect x="20" y="${i * 18 + 45}" width="300" height="8" fill="#334155"/>
+              <rect x="20" y="${i * 18 + 53}" width="300" height="10" fill="#ea580c" opacity="0.85"/>
+            `).join('')}
+
+            <!-- 貫穿垂直深孔通道 (HAR Etch Channel Holes) -->
+            ${[90, 170, 250].map(x => `
+              <rect x="${x - 6}" y="45" width="12" height="250" rx="3" fill="#38bdf8" stroke="#ffffff" stroke-width="1"/>
+            `).join('')}
+            <text x="170" y="325" text-anchor="middle" fill="#38bdf8" font-size="11" font-weight="700">HAR 垂直通道孔 (深寬比 &gt; 80:1)</text>
+            <text x="170" y="340" text-anchor="middle" fill="#94a3b8" font-size="9.5">內含電荷陷阱層 (CTF: ONO) + 多晶矽通道</text>
+          </g>
+
+          <!-- 右側：金字塔階梯狀接點引出 (Word-Line Staircase Contact Pads) -->
+          <g transform="translate(420, 30)">
+            <rect x="0" y="0" width="320" height="350" fill="#0f172a" stroke="#f59e0b" stroke-width="1.5" rx="6"/>
+            <text x="160" y="28" text-anchor="middle" fill="#fbbf24" font-size="12.5" font-weight="750">字元線階梯狀引出 (Staircase Pads)</text>
+
+            <!-- 階梯幾何形狀 (逐層向後退縮) -->
+            ${Array.from({ length: 8 }, (_, i) => `
+              <rect x="30" y="${i * 30 + 55}" width="${260 - i * 28}" height="24" fill="#ea580c" rx="2" stroke="#fbbf24" stroke-width="1"/>
+              <!-- 垂直接觸插塞 (Contact Vias) 落在每個階梯上 -->
+              <line x1="${260 - i * 28 + 15}" y1="40" x2="${260 - i * 28 + 15}" y2="${i * 30 + 55}" stroke="#cbd5e1" stroke-width="2.5"/>
+              <circle cx="${260 - i * 28 + 15}" cy="${i * 30 + 55}" r="3" fill="#ffffff"/>
+            `).join('')}
+            <text x="160" y="325" text-anchor="middle" fill="#fbbf24" font-size="11" font-weight="700">微影「修切 (Trim)」工藝製成微型階梯</text>
+            <text x="160" y="340" text-anchor="middle" fill="#94a3b8" font-size="9.5">數百條 Word-Line 分層引出至金屬互連線</text>
+          </g>
+        </svg>
+      `;
+
+      dashboardHtml = `
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">${t.ch13_metric_nand_layers}</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-blue-dark);">232 ~ 300+ 層</div>
+          <div class="eng-obj-metric-note">雙層對準堆疊 (Double-Stack) 工藝</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">HAR 孔深寬比</div>
+          <div class="eng-obj-metric-value">&gt; 80:1</div>
+          <div class="eng-obj-metric-note">一刀穿透數微米交替介電層</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">單顆裸晶儲存容量</div>
+          <div class="eng-obj-metric-value">1 ~ 2 Tb</div>
+          <div class="eng-obj-metric-note">TLC (3-bit) / QLC (4-bit) 電荷精準量化</div>
+        </div>
+      `;
+
+      footerNote = t.ch13_nand_desc;
+    } else if (activeTab === 'hbm') {
+      viewportHtml = `
+        <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="HBM 3D TSV High-Bandwidth Stacking">
+          <!-- 底層邏輯控制基底 (Base Die) -->
+          <g transform="translate(150, 310)">
+            <rect x="0" y="0" width="500" height="50" rx="4" fill="#0f172a" stroke="#0ea5e9" stroke-width="2"/>
+            <text x="250" y="30" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="750">底層邏輯控制晶粒 (Base Logic Die / Buffer Die)</text>
+            <text x="250" y="44" text-anchor="middle" fill="#38bdf8" font-size="10">內建 BIST 自我檢測、修復電路與 1024-bit PHY 介面</text>
+          </g>
+
+          <!-- 垂直堆疊 4 層 DRAM Core Dies (以 TSV 貫穿) -->
+          ${[1, 2, 3, 4].map((layer, idx) => `
+            <g transform="translate(180, ${260 - idx * 55})">
+              <!-- DRAM Die -->
+              <rect x="0" y="0" width="440" height="42" rx="3" fill="#1e293b" stroke="#f59e0b" stroke-width="1.5"/>
+              <text x="220" y="24" text-anchor="middle" fill="#ffffff" font-size="11.5" font-weight="700">DRAM Core Die #${5 - layer} (~30 µm 超薄削磨)</text>
+              <!-- 貫穿 TSV 柱與微凸塊 -->
+              ${[40, 100, 160, 220, 280, 340, 400].map(tx => `
+                <line x1="${tx}" y1="0" x2="${tx}" y2="42" stroke="#38bdf8" stroke-width="2.5"/>
+                <circle cx="${tx}" cy="46" r="3" fill="#fbbf24"/>
+              `).join('')}
+            </g>
+          `).join('')}
+
+          <!-- 側邊標記與匯流排流向 -->
+          <g transform="translate(640, 100)">
+            <path d="M 10,20 L 40,20 L 40,220 L 10,220" fill="none" stroke="#38bdf8" stroke-width="2"/>
+            <text x="50" y="120" fill="#38bdf8" font-size="11.5" font-weight="700">1024-bit</text>
+            <text x="50" y="136" fill="#38bdf8" font-size="10">超寬並行總線</text>
+            <text x="50" y="152" fill="#34d399" font-size="11" font-weight="700">&gt; 1.2 TB/s</text>
+          </g>
+        </svg>
+      `;
+
+      dashboardHtml = `
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">${t.ch13_metric_hbm_bw}</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-blue-dark);">&gt; 1.2 TB/s</div>
+          <div class="eng-obj-metric-note">HBM3e 提供 AI GPU 充足記憶體頻寬</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">匯流排位元寬度 (Bus Width)</div>
+          <div class="eng-obj-metric-value">1024-bit</div>
+          <div class="eng-obj-metric-note">傳統 DDR5 (32-bit/ch) 難以企及之平行度</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">裸晶厚度 (Die Thinning)</div>
+          <div class="eng-obj-metric-value">~ 30 µm</div>
+          <div class="eng-obj-metric-note">精密背磨與微凸塊熱壓鍵合 (TCB)</div>
+        </div>
+      `;
+
+      footerNote = t.ch13_hbm_desc;
+    }
+
+    container.innerHTML = `
+      <section class="eng-obj-card" aria-labelledby="engObjCh13Title">
+        <header class="eng-obj-header">
+          <div class="eng-obj-badge-row">
+            <span class="eng-obj-badge">${t.badge_prefix} · CH 13</span>
+            <span class="eng-obj-status">${t.live_sim}</span>
+          </div>
+          <h2 class="eng-obj-title" id="engObjCh13Title">${t.ch13_title}</h2>
+          <p class="eng-obj-subtitle">${t.ch13_sub}</p>
+        </header>
+
+        <div class="eng-obj-controls">
+          <div class="eng-obj-tab-group" role="tablist">
+            <button type="button" class="eng-obj-tab ${activeTab === 'dram' ? 'is-active' : ''}" data-tab="dram">${t.ch13_tab_dram}</button>
+            <button type="button" class="eng-obj-tab ${activeTab === 'nand' ? 'is-active' : ''}" data-tab="nand">${t.ch13_tab_nand}</button>
+            <button type="button" class="eng-obj-tab ${activeTab === 'hbm' ? 'is-active' : ''}" data-tab="hbm">${t.ch13_tab_hbm}</button>
+          </div>
+        </div>
+
+        <div class="eng-obj-viewport">
+          ${viewportHtml}
+        </div>
+
+        <div class="eng-obj-dashboard">
+          ${dashboardHtml}
+        </div>
+
+        <footer class="eng-obj-footer-note">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+          <div>${footerNote}</div>
+        </footer>
+      </section>
+    `;
+
+    container.querySelectorAll('[data-tab]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        activeTab = btn.getAttribute('data-tab');
+        update();
+      });
+    });
+  }
+
+  update();
+}
+
+/**
+ * ══════════════════════════════════════════════════════════════════════════════
  * 總調度入口 (Unified Mount Orchestrator)
  * ══════════════════════════════════════════════════════════════════════════════
  */
 export function mountEngineeringObject(chId, container, lang = 'zh') {
   if (!container) return;
-  if (chId === 'ch04') {
+  if (chId === 'ch03') {
+    renderIngotWaferObject(container, lang);
+  } else if (chId === 'ch04') {
     renderLithoOpticalObject(container, lang);
   } else if (chId === 'ch05') {
     renderDepositionMechanismObject(container, lang);
@@ -2576,12 +3744,19 @@ export function mountEngineeringObject(chId, container, lang = 'zh') {
     renderIonImplantObject(container, lang);
   } else if (chId === 'ch08') {
     renderCMPObject(container, lang);
+  } else if (chId === 'ch09') {
+    renderWetCleanObject(container, lang);
   } else if (chId === 'ch10') {
     renderInterconnectObject(container, lang);
+  } else if (chId === 'ch11') {
+    renderCMOSFlowObject(container, lang);
   } else if (chId === 'ch12') {
     renderTransistor3DObject(container, lang);
+  } else if (chId === 'ch13') {
+    renderMemoryTechObject(container, lang);
   } else if (chId === 'ch21') {
     renderAdvancedPackagingObject(container, lang);
   }
 }
+
 

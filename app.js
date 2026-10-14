@@ -838,7 +838,9 @@ import { mountEngineeringObject } from './工程物件.js';
     if (!articleBody) return;
 
     let targetEl = null;
-    if (chId === 'ch04') {
+    if (chId === 'ch03') {
+      targetEl = articleBody.querySelector('h2[id*="長晶拉出一根完美的單晶"], h2[id*="growing-the-crystal"], h2[id*="從晶棒到晶圓"], h2[id*="from-ingot-to-wafer"]');
+    } else if (chId === 'ch04') {
       targetEl = articleBody.querySelector('h2[id*="微影的三個主角"], h2[id*="the-three-key-players"], h2[id*="微影的流程"], h2[id*="the-lithography-flow"]');
     } else if (chId === 'ch05') {
       targetEl = articleBody.querySelector('h2[id*="cvd用氣體長出薄膜"], h2[id*="cvd-growing-films-from-gases"], h2[id*="pvd把原子撞下來"], h2[id*="pvd-knocking-atoms-loose"]');
@@ -848,10 +850,16 @@ import { mountEngineeringObject } from './工程物件.js';
       targetEl = articleBody.querySelector('h2[id*="佈植機怎麼運作"], h2[id*="how-an-implanter-works"], h2[id*="為什麼要佈植"], h2[id*="why-implant"]');
     } else if (chId === 'ch08') {
       targetEl = articleBody.querySelector('h2[id*="cmp-怎麼運作"], h2[id*="how-cmp-works"], h2[id*="為什麼要磨平"], h2[id*="why-the-wafer-must-be-flat"]');
+    } else if (chId === 'ch09') {
+      targetEl = articleBody.querySelector('h2[id*="怎麼洗"], h2[id*="how-cleaning-is-done"], h2[id*="污染有哪幾種"], h2[id*="types-of-contamination"]');
     } else if (chId === 'ch10') {
       targetEl = articleBody.querySelector('h2[id*="大馬士革製程"], h2[id*="the-damascene-process"], h2[id*="從鋁到銅"], h2[id*="from-aluminum-to-copper"]');
+    } else if (chId === 'ch11') {
+      targetEl = articleBody.querySelector('h2[id*="一個反覆出現的循環"], h2[id*="a-repeating-cycle"], h2[id*="第一段feol做出電晶體"], h2[id*="stage-1-feol"]');
     } else if (chId === 'ch12') {
       targetEl = articleBody.querySelector('h2[id*="finfet讓通道站起來"], h2[id*="finfet-making-the-channel-stand-up"], h2[id*="結構演進一覽"], h2[id*="the-evolution-at-a-glance"]');
+    } else if (chId === 'ch13') {
+      targetEl = articleBody.querySelector('h2[id*="dram一個電晶體加一個電容"], h2[id*="dram-one-transistor-one-capacitor"], h2[id*="3d-nand往上蓋大樓"], h2[id*="3d-nand-building-upward"]');
     } else if (chId === 'ch21') {
       targetEl = articleBody.querySelector('h2[id*="25d並排放在中介層上"], h2[id*="25d-side-by-side-on-an-interposer"], h2[id*="為什麼需要先進封裝"], h2[id*="why-advanced-packaging-is-needed"]');
     }

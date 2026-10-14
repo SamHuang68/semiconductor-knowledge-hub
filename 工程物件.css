@@ -367,6 +367,48 @@
   animation: electronDrift 1.0s linear infinite;
 }
 
+@keyframes crystalPull {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+  100% { transform: translateY(0); }
+}
+
+.anim-crystal-pull {
+  animation: crystalPull 5s ease-in-out infinite;
+}
+
+@keyframes sawReciprocate {
+  0% { transform: translateX(-20px); }
+  50% { transform: translateX(20px); }
+  100% { transform: translateX(-20px); }
+}
+
+.anim-saw-wire {
+  animation: sawReciprocate 0.6s linear infinite;
+}
+
+@keyframes acousticWave {
+  0% { transform: translateY(6px); opacity: 0.2; }
+  50% { transform: translateY(0); opacity: 0.9; }
+  100% { transform: translateY(-6px); opacity: 0.2; }
+}
+
+.anim-acoustic {
+  animation: acousticWave 1.2s ease-in-out infinite;
+}
+
+@keyframes liquidFlowDown {
+  0% { transform: translateY(-10px); opacity: 0; }
+  30% { opacity: 0.8; }
+  80% { opacity: 0.8; }
+  100% { transform: translateY(20px); opacity: 0; }
+}
+
+.anim-liquid-flow {
+  animation: liquidFlowDown 1.4s ease-out infinite;
+}
+
+
 /* 手機版適配 */
 @media (max-width: 768px) {
   .eng-obj-header {

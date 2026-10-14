@@ -146,4 +146,49 @@ if (soicBtn) {
 }
 console.log('[PASS] Ch 21 先進封裝架構模型正常');
 
-console.log('=== 全部八大核心工程物件互動單元測試通過 (0 錯誤) ===');
+console.log('--- 測試 9: Ch 03 柴氏長晶與切片模型切換 ---');
+const c3 = new MockElement();
+mountEngineeringObject('ch03', c3, 'zh');
+assert.ok(c3.innerHTML.includes('柴氏長晶爐'), '預設應展示 CZ 長晶爐');
+const sawBtn = c3.children.find(c => c.getAttribute('data-tab') === 'saw');
+if (sawBtn) {
+  sawBtn.dispatchEvent({ type: 'click' });
+  assert.ok(c3.innerHTML.includes('金剛石鋸線'), '點擊線鋸後應展示金剛石線鋸切片');
+}
+console.log('[PASS] Ch 03 柴氏長晶與切片拋光模型正常');
+
+console.log('--- 測試 10: Ch 09 清洗與兆聲波模型切換 ---');
+const c9 = new MockElement();
+mountEngineeringObject('ch09', c9, 'zh');
+assert.ok(c9.innerHTML.includes('SC-1'), '預設應展示 RCA-1 清洗');
+const megaBtn = c9.children.find(c => c.getAttribute('data-tab') === 'megasonic');
+if (megaBtn) {
+  megaBtn.dispatchEvent({ type: 'click' });
+  assert.ok(c9.innerHTML.includes('兆聲波'), '點擊兆聲波後應展示音流與邊界層');
+}
+console.log('[PASS] Ch 09 RCA 清洗與兆聲波模型正常');
+
+console.log('--- 測試 11: Ch 11 CMOS 完整整合步進流程 ---');
+const c11 = new MockElement();
+mountEngineeringObject('ch11', c11, 'zh');
+assert.ok(c11.innerHTML.includes('工步 1 / 6'), '預設應展示步驟 1 STI');
+const cmosNext = c11.querySelector('[data-action="next"]');
+if (cmosNext) {
+  cmosNext.dispatchEvent({ type: 'click' });
+  assert.ok(c11.innerHTML.includes('工步 2 / 6'), '單步前進後應展示工步 2 雙井');
+}
+console.log('[PASS] Ch 11 CMOS 完整流程步進模型正常');
+
+console.log('--- 測試 12: Ch 13 記憶體 DRAM 與 3D NAND 切換 ---');
+const c13 = new MockElement();
+mountEngineeringObject('ch13', c13, 'zh');
+assert.ok(c13.innerHTML.includes('DRAM 圓柱狀立體儲存電容'), '預設應展示 DRAM 1T1C');
+const nandBtn = c13.children.find(c => c.getAttribute('data-tab') === 'nand');
+if (nandBtn) {
+  nandBtn.dispatchEvent({ type: 'click' });
+  assert.ok(c13.innerHTML.includes('200+ 層交替堆疊'), '點擊 NAND 後應展示 3D NAND 階梯穿孔');
+}
+console.log('[PASS] Ch 13 記憶體 DRAM / 3D NAND / HBM 模型正常');
+
+console.log('=== 全部十二大核心工程物件互動單元測試通過 (0 錯誤) ===');
+
