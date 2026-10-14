@@ -51,12 +51,12 @@ assert.ok(packaging.nodes.every(n => n.next.length === 0), '封裝比較不能�
 assert.match(packaging.boundary, /並列選項.*並非先後步驟/, '比較應清楚揭露非時序性');
 
 // 正常化換行後核對已讀取的基準來源，防止導覽改版刪減教材。
-// 基準提交：9cc60aece2f53a9db0d627c117bb52d5ff2a5389。
+// 基準：中英雙語原生擴充版（包含 28 章中英完整教材與雙語字典）。
 const sourceHashes = {
-  'chapters-data.js': 'cad0fd3b94d2cb337b8b44388bd7f8636312181f139682c25e4a2fff939e11a1',
-  'fab-flow.js': '2f2b92227665b0f1f401a472bd8bb9c4635235e3a2349f9c2bb54ebf50f285e4',
-  'glossary-data.js': '47338e1c5f7cea20d56146c811468ff0d44862f9e86651245797f0a34f904d4f',
-  'search-index.js': '6ae28b8e9645afe223bc416ea1ad5b9826287d167bc4333b64b6e62c888df70f'
+  'chapters-data.js': '2bd1d6a00f44564c56e48bbf6e4c04131beba7d90048da00825dc46971498cc3',
+  'fab-flow.js': 'd3c1d4a4dbd621105a823e9a34b7874e78734c55eebba7bbbbbe3f874a65c176',
+  'glossary-data.js': '4d071075359776e02058d61a745b9d246c59fe55c4622be2b746ac55e00dd815',
+  'search-index.js': '41d3ea1222b6b0b3080689f5e8e151a43d176f013d35bac48be31c8090297f2d'
 };
 for (const [file, expected] of Object.entries(sourceHashes)) {
   const source = readFileSync(new URL(`../data/${file}`, import.meta.url), 'utf8').replace(/\r\n/g, '\n');

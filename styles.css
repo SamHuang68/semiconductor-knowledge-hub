@@ -218,6 +218,44 @@ body {
   color: #ffffff;
 }
 
+/* 語言切換按鈕群組 */
+.lang-switch-cluster {
+  display: inline-flex;
+  align-items: center;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 2px;
+  gap: 2px;
+}
+
+.lang-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 9px;
+  font-size: 12px;
+  font-weight: 700;
+  border-radius: var(--radius-sm);
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  line-height: 1.2;
+}
+
+.lang-btn:hover {
+  color: var(--text-main);
+  background: var(--bg-surface-alt);
+}
+
+.lang-btn.is-active {
+  background: var(--semi-blue);
+  color: #ffffff;
+  box-shadow: 0 1px 2px rgba(2, 132, 199, 0.25);
+}
+
 .icon-only-btn {
   padding: 7px 11px;
 }

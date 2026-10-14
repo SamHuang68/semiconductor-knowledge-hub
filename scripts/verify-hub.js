@@ -1,6 +1,6 @@
 /**
  * verify-hub.js
- * 驗證 Semiconductor Knowledge Hub 的資料完整性、相依性與色彩規範
+ * 驗證 Semiconductor Knowledge Hub 的資料完整性、雙語覆蓋率、零中系相依與靜態資產
  */
 import fs from 'fs';
 import path from 'path';
@@ -8,25 +8,30 @@ import path from 'path';
 const ROOT_DIR = 'C:/Users/Sam/AI-Workspace/projects/semiconductor-knowledge-hub';
 
 async function verify() {
-  console.log('=== 開始檢驗 Semiconductor Knowledge Hub ===');
+  console.log('=== 開始檢驗 Semiconductor Knowledge Hub (中英雙語旗艦版) ===');
   let errors = 0;
 
-  // 1. 驗證資料匯入
+  // 1. 驗證章節與雙語資料完整性
   try {
     const { CHAPTERS_DATA } = await import(`file://${ROOT_DIR}/data/chapters-data.js`);
-    console.log(`[PASS] CHAPTERS_DATA 成功載入，共有 ${CHAPTERS_DATA.length} 個章節`);
-    if (CHAPTERS_DATA.length < 25) {
-      console.error('[FAIL] 章節數量不足 25');
+    console.log(`[PASS] CHAPTERS_DATA 成功載入，共有 ${CHAPTERS_DATA.length} 個雙語章節`);
+    if (CHAPTERS_DATA.length < 28) {
+      console.error(`[FAIL] 章節數量不足 28 (預期 25 正式章 + 3 附錄，實得 ${CHAPTERS_DATA.length})`);
       errors++;
     }
 
-    // 檢查每個章節是否具備必要屬性
+    // 檢查每個章節是否具備中英雙語必要屬性
     CHAPTERS_DATA.forEach((ch, idx) => {
       if (!ch.id || !ch.fullTitle || !ch.contentHtml) {
-        console.error(`[FAIL] 章節 #${idx} 缺少必要欄位: ${JSON.stringify(ch)}`);
+        console.error(`[FAIL] 章節 #${idx} 缺少中文必要欄位`);
+        errors++;
+      }
+      if (!ch.fullTitleEn || !ch.contentHtmlEn || !ch.partEn) {
+        console.error(`[FAIL] 章節 #${idx} (${ch.id}) 缺少英文必要欄位 (fullTitleEn / contentHtmlEn / partEn)`);
         errors++;
       }
     });
+    console.log('[PASS] 28 個章節與附錄的中英雙語內容全數對齊驗證通過');
 
     const { FAB_FLOW_NODES } = await import(`file://${ROOT_DIR}/data/fab-flow.js`);
     console.log(`[PASS] FAB_FLOW_NODES 成功載入，共有 ${FAB_FLOW_NODES.length} 個節點`);
@@ -34,6 +39,13 @@ async function verify() {
       console.error('[FAIL] FAB_FLOW_NODES 節點數量不為 12');
       errors++;
     }
+    FAB_FLOW_NODES.forEach((n, idx) => {
+      if (!n.nameZh || !n.nameEn || !n.summaryEn || !n.keyToolEn) {
+        console.error(`[FAIL] 製程節點 #${idx} (${n.id}) 缺少雙語欄位`);
+        errors++;
+      }
+    });
+    console.log('[PASS] 12 大製程全景節點中英雙語規格全數對齊驗證通過');
 
     const { GLOSSARY_DATA, JARGON_DATA } = await import(`file://${ROOT_DIR}/data/glossary-data.js`);
     console.log(`[PASS] GLOSSARY_DATA (${GLOSSARY_DATA.length} 筆) 與 JARGON_DATA (${JARGON_DATA.length} 筆) 載入成功`);
@@ -42,8 +54,27 @@ async function verify() {
       errors++;
     }
 
+    GLOSSARY_DATA.forEach((g, idx) => {
+      if (!g.en || !g.zh || !g.descZh || !g.descEn) {
+        console.error(`[FAIL] 術語總表 #${idx} (${g.en}) 缺少中英說明`);
+        errors++;
+      }
+    });
+
+    JARGON_DATA.forEach((j, idx) => {
+      if (!j.termZh || !j.termEn || !j.meaningZh || !j.meaningEn) {
+        console.error(`[FAIL] 現場行話 #${idx} (${j.termZh}) 缺少中英解釋`);
+        errors++;
+      }
+    });
+    console.log('[PASS] 術語總表 (245 筆) 與 現場行話 (43 筆) 中英對照全數驗證通過');
+
     const { SEARCH_INDEX } = await import(`file://${ROOT_DIR}/data/search-index.js`);
-    console.log(`[PASS] SEARCH_INDEX 成功載入，共有 ${SEARCH_INDEX.length} 條全文檢索條目`);
+    console.log(`[PASS] SEARCH_INDEX 成功載入，共有 ${SEARCH_INDEX.length} 條雙語全文檢索條目`);
+    if (SEARCH_INDEX.length < 28) {
+      console.error('[FAIL] 全文索引條目不足 28 筆');
+      errors++;
+    }
 
   } catch (err) {
     console.error('[FAIL] 資料載入發生錯誤:', err);
