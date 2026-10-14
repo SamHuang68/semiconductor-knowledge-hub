@@ -1,4 +1,4 @@
-import { SCENARIOS } from './data/情境路徑.js';
+import { SCENARIOS, chapterReturnContext } from './data/情境路徑.js';
 
 // 編輯關聯只保存目的節點與閱讀理由；名稱、章節與網址取自原情境資料。
 // 這些是學習主題之間的連結，不是製造順序或生產放行條件。
@@ -37,10 +37,51 @@ export function renderConnections(scenario, node) {
     const targetScenario = SCENARIOS.find(item => item.id === scenarioId);
     const targetNode = targetScenario?.nodes.find(item => item.id === nodeId);
     if (!targetNode) return '';
-    return `<a class="related-link" href="#explore/${targetScenario.id}/${targetNode.id}"><span class="related-meta">${esc(targetScenario.title)} <span aria-hidden="true">↗</span></span><strong>${esc(targetNode.title)}</strong><span class="related-reason">${esc(reason)}</span></a>`;
+    return `<a class="related-link" href="#explore/${targetScenario.id}/${targetNode.id}?via=${encodeURIComponent(`${scenario.id}/${node.id}`)}"><span class="related-meta">${esc(targetScenario.title)} <span aria-hidden="true">↗</span></span><strong>${esc(targetNode.title)}</strong><span class="related-reason">${esc(reason)}</span></a>`;
   }).join('');
   if (!links) return '';
   return `<section class="related-exploration" aria-labelledby="relatedHeading"><div class="related-heading"><p class="explorer-kicker">延伸探索</p><h3 id="relatedHeading">把這一站串起來</h3><p>從「${esc(node.title)}」延伸到其他情境。這些連結表示主題關聯，不代表製程先後順序。</p></div><div class="related-links">${links}</div></section>`;
+}
+
+// 來源只接受已存在且確實連到目前情境的編輯關聯，不使用網址中的任意文字或外部網址。
+export function connectionOrigin(scenarioId, value) {
+  if (typeof value !== 'string') return null;
+  const parts = value.split('/');
+  if (parts.length !== 2 || !SCENARIOS.some(item => item.id === scenarioId)) return null;
+  const scenario = SCENARIOS.find(item => item.id === parts[0]);
+  const node = scenario?.nodes.find(item => item.id === parts[1]);
+  if (!node || !CONNECTIONS[value]?.some(([destination]) => destination.split('/')[0] === scenarioId)) return null;
+  return { scenario, node, value: `${scenario.id}/${node.id}` };
+}
+
+export const originQuery = origin => origin ? `?via=${encodeURIComponent(origin.value)}` : '';
+
+export function renderConnectionReturn(origin) {
+  if (!origin) return '';
+  return `<aside class="exploration-return" aria-label="本次延伸來源"><span>延伸來源 · ${esc(origin.scenario.title)}</span><a href="#explore/${origin.value}">← 回到${esc(origin.node.title)}</a></aside>`;
+}
+
+export function carryConnectionOrigin(container, scenario, origin) {
+  if (!origin) return;
+  container.querySelectorAll(`a[href^="#explore/${scenario.id}/"]`).forEach(link => {
+    if (!link.matches('.scenario-choice')) link.setAttribute('href', link.getAttribute('href').split('?')[0] + originQuery(origin));
+  });
+  container.querySelectorAll('a[href^="#ch"]').forEach(link => {
+    const [chapter, query = ''] = link.getAttribute('href').split('?');
+    const params = new URLSearchParams(query);
+    const context = chapterReturnContext(chapter.slice(1), params.get('from'));
+    if (context?.scenario.id === scenario.id) {
+      params.set('via', origin.value);
+      link.setAttribute('href', `${chapter}?${params}`);
+    }
+  });
+  const back = container.querySelector('.exploration-return a');
+  back?.addEventListener('focus', () => {
+    if (!back.matches(':focus-visible')) return;
+    const toolbar = container.querySelector('.explorer-toolbar').getBoundingClientRect();
+    const box = back.getBoundingClientRect();
+    if (box.top < toolbar.bottom + 12 || box.bottom > innerHeight - 12) window.scrollBy({top: box.top - toolbar.bottom - 18, behavior:'instant'});
+  });
 }
 
 export function bindConnections(container) {

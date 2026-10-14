@@ -1,5 +1,5 @@
 import { bindDiagramViewer } from './圖例檢視.js';
-import { renderConnections, bindConnections } from './延伸探索.js';
+import { renderConnections, bindConnections, connectionOrigin, originQuery, renderConnectionReturn, carryConnectionOrigin } from './延伸探索.js';
 import { SCENARIOS, getScenario } from './data/情境路徑.js';
 import { CHAPTERS_DATA } from './data/chapters-data.js';
 import { waferArt, crossSection, packageArt, journeyArt, dispatchArt, renderComparison, bindComparison, comparisonIsOpen } from './情境圖例.js';
@@ -27,7 +27,7 @@ function reveal(container, view) {
   focusTarget.focus({ preventScroll: true });
 }
 
-function bindNavigation(container, s, n) {
+function bindNavigation(container, s, n, origin) {
   container.querySelector('#scenarioSelect').addEventListener('change', e => {
     const selected = getScenario(e.target.value);
     pendingView = 'map';
@@ -44,7 +44,7 @@ function bindNavigation(container, s, n) {
   };
   container.querySelector('#shareStep').addEventListener('click', async () => {
     const url = new URL(location.href);
-    url.hash = route(s.id, n.id);
+    url.hash = route(s.id, n.id) + originQuery(origin);
     const status = container.querySelector('#shareStatus');
     const fallback = container.querySelector('#manualShare');
     try {
@@ -75,9 +75,11 @@ function flowMap(s, active) {
 }
 
 export function renderExplorer(container, hash) {
-  const [, scenarioId, nodeId] = hash.split('/');
+  const [pathname, query = ''] = hash.split('?');
+  const [, scenarioId, nodeId] = pathname.split('/');
   const s = getScenario(scenarioId);
   const n = s.nodes.find(n => n.id === nodeId) || s.nodes[0];
+  const origin = connectionOrigin(s.id, new URLSearchParams(query).get('via'));
   const index = s.nodes.indexOf(n);
   const source = CHAPTERS_DATA.find(c => c.id === n.chapter);
   const view = pendingView || (s.nodes.some(node => node.id === nodeId) ? 'detail' : scenarioId ? 'map' : null);
@@ -100,7 +102,9 @@ export function renderExplorer(container, hash) {
     ${renderPractice(s.id)}
     <section class="explorer-library"><div><p class="explorer-kicker">延伸 / 深入理解</p><h2>圖是入口，教材是底稿</h2><p>回到完整章節，繼續查看技術細節、現場實務與延伸閱讀。</p></div><div class="library-links"><a href="#ch00">從第 0 章開始 →</a><a href="#app-glossary">查看術語總表 →</a><a href="#app-reading">延伸閱讀與來源 →</a></div></section>
   </div>`;
-  bindNavigation(container, s, n);
+  container.querySelector('#detailTitle').insertAdjacentHTML('afterend', renderConnectionReturn(origin));
+  carryConnectionOrigin(container, s, origin);
+  bindNavigation(container, s, n, origin);
   bindConnections(container);
   bindDiagramViewer(container, s, n);
   bindPractice(container, s.id);

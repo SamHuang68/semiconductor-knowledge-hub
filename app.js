@@ -11,6 +11,7 @@ import { FAB_FLOW_NODES } from './data/fab-flow.js';
 import { GLOSSARY_DATA, JARGON_DATA } from './data/glossary-data.js';
 import { SEARCH_INDEX } from './data/search-index.js';
 import { renderExplorer } from './情境探索.js';
+import { connectionOrigin, originQuery } from './延伸探索.js';
 import { scenarioForChapter, chapterReturnContext } from './data/情境路徑.js';
 import { normalizeChapterHref } from './章節連結.js';
 
@@ -189,7 +190,7 @@ import { normalizeChapterHref } from './章節連結.js';
   /**
    * 2. 載入並渲染指定章節
    */
-  function loadChapter(chId, from = null) {
+  function loadChapter(chId, from = null, via = null) {
     document.body.classList.remove('is-exploring');
     const chapter = CHAPTERS_DATA.find(c => c.id === chId) || CHAPTERS_DATA[0];
     currentChapterId = chapter.id;
@@ -199,7 +200,8 @@ import { normalizeChapterHref } from './章節連結.js';
 
     // 更新網址 Hash (若不同)
     const returnContext = chapterReturnContext(chapter.id, from);
-    const chapterHash = `#${chapter.id}${returnContext ? `?from=${encodeURIComponent(returnContext.value)}` : ''}`;
+    const origin = returnContext ? connectionOrigin(returnContext.scenario.id, via) : null;
+    const chapterHash = `#${chapter.id}${returnContext ? `?from=${encodeURIComponent(returnContext.value)}${origin ? `&via=${encodeURIComponent(origin.value)}` : ''}` : ''}`;
     if (window.location.hash !== chapterHash) {
       history.replaceState(null, '', chapterHash);
     }
@@ -244,7 +246,7 @@ import { normalizeChapterHref } from './章節連結.js';
 
     const relatedScenario = scenarioForChapter(chapter.id);
     mainCanvasEl.innerHTML = `
-      <a href="#explore/${returnContext ? returnContext.value : relatedScenario.id}" class="chapter-scenario-link"><span>${returnContext ? `返回剛才的步驟：${escapeHtml(returnContext.node.title)}` : `用流程圖理解：${escapeHtml(relatedScenario.title)}`}</span><span>${returnContext ? '繼續探索' : '開啟互動情境'} ↗</span></a>
+      <a href="#explore/${returnContext ? returnContext.value : relatedScenario.id}${originQuery(origin)}" class="chapter-scenario-link"><span>${returnContext ? `返回剛才的步驟：${escapeHtml(returnContext.node.title)}` : `用流程圖理解：${escapeHtml(relatedScenario.title)}`}</span><span>${returnContext ? '繼續探索' : '開啟互動情境'} ↗</span></a>
       ${trackHtml}
       <header class="article-header">
         <div class="article-top-bar">
@@ -592,7 +594,7 @@ import { normalizeChapterHref } from './章節連結.js';
       sidebarBackdropEl.classList.remove('is-active');
     } else {
       const [chapterId, query = ''] = hash.split('?');
-      if (CHAPTERS_DATA.some(ch => ch.id === chapterId)) loadChapter(chapterId, new URLSearchParams(query).get('from'));
+      if (CHAPTERS_DATA.some(ch => ch.id === chapterId)) loadChapter(chapterId, new URLSearchParams(query).get('from'), new URLSearchParams(query).get('via'));
       else loadChapter('ch00');
     }
   }

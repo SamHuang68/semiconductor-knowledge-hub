@@ -250,6 +250,9 @@ body.is-exploring .app-sidebar { width: 260px; }
   .package-option { padding: 14px; }
 }
 .related-exploration { margin: 28px 0; padding: 24px; background: #edf3f1; border: 1px solid #cfdfda; border-radius: 12px; }
+.exploration-return { display: flex; align-items: center; flex-wrap: wrap; gap: 4px 14px; margin: 14px 0 20px; padding: 10px 14px; border-left: 3px solid #137c6e; background: #edf3f1; color: #46655e; font-size: 13px; }
+.exploration-return a { display: inline-flex; align-items: center; min-height: 44px; color: #155e52; font-size: 15px; font-weight: 700; line-height: 1.6; text-underline-offset: 3px; overflow-wrap: anywhere; }
+.exploration-return a:focus-visible { outline: 3px solid #137c6e; outline-offset: 3px; }
 .related-heading h3 { margin: 0 0 8px; font-size: 24px; color: #163e37; }
 .related-heading > p:last-child { margin: 0 0 18px; color: #4f625f; line-height: 1.7; }
 .related-links { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 12px; }
