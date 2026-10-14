@@ -838,7 +838,9 @@ import { mountEngineeringObject } from './工程物件.js';
     if (!articleBody) return;
 
     let targetEl = null;
-    if (chId === 'ch01') {
+    if (chId === 'ch00') {
+      targetEl = articleBody.querySelector('h2[id*="一片晶圓的旅程"], h2[id*="the-journey-of-one-wafer"], h2[id*="旅程地圖"], h2[id*="map-of-the-journey"]');
+    } else if (chId === 'ch01') {
       targetEl = articleBody.querySelector('h2[id*="無塵室比手術室還乾淨"], h2[id*="the-cleanroom-cleaner-than-an-operating-room"], h2[id*="晶圓怎麼移動foup-與自動搬運"], h2[id*="how-wafers-move-foups-and-automation"]');
     } else if (chId === 'ch02') {
       targetEl = articleBody.querySelector('h2[id*="半導體可以控制的導體"], h2[id*="semiconductors-conductors-you-can-control"], h2[id*="mosfet晶片裡的開關"], h2[id*="the-mosfet-the-switch-inside-a-chip"]');
@@ -864,12 +866,16 @@ import { mountEngineeringObject } from './工程物件.js';
       targetEl = articleBody.querySelector('h2[id*="finfet讓通道站起來"], h2[id*="finfet-making-the-channel-stand-up"], h2[id*="結構演進一覽"], h2[id*="the-evolution-at-a-glance"]');
     } else if (chId === 'ch13') {
       targetEl = articleBody.querySelector('h2[id*="dram一個電晶體加一個電容"], h2[id*="dram-one-transistor-one-capacitor"], h2[id*="3d-nand往上蓋大樓"], h2[id*="3d-nand-building-upward"]');
+    } else if (chId === 'ch14') {
+      targetEl = articleBody.querySelector('h2[id*="真正該看的尺寸"], h2[id*="the-dimensions-that-actually-matter"], h2[id*="3-奈米裡沒有-3-奈米"], h2[id*="there-is-nothing-3-nm-in-3-nm"]');
     } else if (chId === 'ch15') {
       targetEl = articleBody.querySelector('h2[id*="量測與檢測不一樣"], h2[id*="metrology-and-inspection-are-different"], h2[id*="常見的量測"], h2[id*="common-metrology-methods"]');
     } else if (chId === 'ch16') {
       targetEl = articleBody.querySelector('h2[id*="從晶圓圖看出線索"], h2[id*="reading-clues-from-the-wafer-map"], h2[id*="故障分析找到兇手"], h2[id*="failure-analysis-finding-the-culprit"]');
     } else if (chId === 'ch17') {
       targetEl = articleBody.querySelector('h2[id*="spc把數據畫成管制圖"], h2[id*="spc-turning-data-into-control-charts"], h2[id*="製程能力cpk"], h2[id*="process-capability-cpk"]');
+    } else if (chId === 'ch18') {
+      targetEl = articleBody.querySelector('h2[id*="ocap事先寫好的應變步驟"], h2[id*="ocap-response-steps-written-in-advance"], h2[id*="hold先擋下來"], h2[id*="hold-stop-it-first"]');
     } else if (chId === 'ch19') {
       targetEl = articleBody.querySelector('h2[id*="wat製程的成績單"], h2[id*="wat-the-process-report-card"], h2[id*="cp一顆一顆測"], h2[id*="cp-testing-die-by-die"]');
     } else if (chId === 'ch20') {
@@ -878,6 +884,8 @@ import { mountEngineeringObject } from './工程物件.js';
       targetEl = articleBody.querySelector('h2[id*="25d並排放在中介層上"], h2[id*="25d-side-by-side-on-an-interposer"], h2[id*="為什麼需要先進封裝"], h2[id*="why-advanced-packaging-is-needed"]');
     } else if (chId === 'ch22') {
       targetEl = articleBody.querySelector('h2[id*="預燒提早篩掉體質不好的晶片"], h2[id*="burn-in-weeding-out-weak-chips-early"], h2[id*="可靠度能用多久"], h2[id*="reliability-how-long-it-lasts"]');
+    } else if (chId === 'ch23') {
+      targetEl = articleBody.querySelector('h2[id*="工廠裡的主要系統"], h2[id*="the-main-systems-in-a-fab"], h2[id*="防呆讓錯誤無法發生"], h2[id*="interlocks-making-mistakes-impossible"]');
     }
 
     if (!targetEl) {

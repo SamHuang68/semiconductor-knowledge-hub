@@ -278,6 +278,50 @@ if (esdBtn) {
 }
 console.log('[PASS] Ch 22 可靠度與測試模型正常');
 
-console.log('=== 全部二十大核心工程物件互動單元測試通過 (0 錯誤) ===');
+console.log('--- 測試 21: Ch 00 晶片一生全景旅程模型切換 ---');
+const c0 = new MockElement();
+mountEngineeringObject('ch00', c0, 'zh');
+assert.ok(c0.innerHTML.includes('全景製造時間軸') || c0.innerHTML.includes('時間軸'), '預設應展示全景時間軸');
+const bndBtn = c0.children.find(c => c.getAttribute('data-tab') === 'boundary');
+if (bndBtn) {
+  bndBtn.dispatchEvent({ type: 'click' });
+  assert.ok(c0.innerHTML.includes('FEOL 前段') || c0.innerHTML.includes('OSAT'), '點擊邊界後應展示前後段邊界');
+}
+console.log('[PASS] Ch 00 晶片的一生全景旅程模型正常');
+
+console.log('--- 測試 22: Ch 14 製程節點微縮與 Dennard 模型切換 ---');
+const c14 = new MockElement();
+mountEngineeringObject('ch14', c14, 'zh');
+assert.ok(c14.innerHTML.includes('CPP') || c14.innerHTML.includes('Metal Pitch'), '預設應展示幾何標尺對比');
+const dennardBtn = c14.children.find(c => c.getAttribute('data-tab') === 'dennard');
+if (dennardBtn) {
+  dennardBtn.dispatchEvent({ type: 'click' });
+  assert.ok(c14.innerHTML.includes('Dennard') || c14.innerHTML.includes('熱耗牆'), '點擊 Dennard 後應展示縮放終結曲線');
+}
+console.log('[PASS] Ch 14 製程節點與微縮標尺模型正常');
+
+console.log('--- 測試 23: Ch 18 異常處理 OCAP 與重工邊界切換 ---');
+const c18 = new MockElement();
+mountEngineeringObject('ch18', c18, 'zh');
+assert.ok(c18.innerHTML.includes('OCAP') || c18.innerHTML.includes('系統截停'), '預設應展示 OCAP 決策樹');
+const reworkBtn = c18.children.find(c => c.getAttribute('data-tab') === 'rework');
+if (reworkBtn) {
+  reworkBtn.dispatchEvent({ type: 'click' });
+  assert.ok(c18.innerHTML.includes('綠燈區') || c18.innerHTML.includes('紅燈區'), '點擊重工後應展示重工邊界矩陣');
+}
+console.log('[PASS] Ch 18 異常處理與防堵追溯模型正常');
+
+console.log('--- 測試 24: Ch 23 智慧製造 Q-Time 與防呆互鎖切換 ---');
+const c23 = new MockElement();
+mountEngineeringObject('ch23', c23, 'zh');
+assert.ok(c23.innerHTML.includes('Q-Time') || c23.innerHTML.includes('倒數'), '預設應展示 Q-Time 倒數儀表');
+const interlockBtn = c23.children.find(c => c.getAttribute('data-tab') === 'interlock');
+if (interlockBtn) {
+  interlockBtn.dispatchEvent({ type: 'click' });
+  assert.ok(c23.innerHTML.includes('RFID') || c23.innerHTML.includes('防呆'), '點擊防呆後應展示 RFID 互鎖比對');
+}
+console.log('[PASS] Ch 23 晶圓廠自動化與智慧製造模型正常');
+
+console.log('=== 全部二十四大核心工程物件互動單元測試通過 (0 錯誤) ===');
 
 

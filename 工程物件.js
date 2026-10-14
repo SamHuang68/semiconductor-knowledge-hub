@@ -341,7 +341,65 @@ const TEXTS = {
     ch22_metric_esd_level: '人體放電模式 (HBM) 防護',
     ch22_bathtub_desc: '晶片壽命遵循浴缸曲線 (Bathtub Curve)：1. 早期失效期 (Infant Mortality)：微觀結構缺陷（顆粒、薄膜針孔）在剛通電初期迅速夭折；2. 隨機失效期 (Useful Life)：長達數年失效率恆定在超低水準 (< 10 FIT)；3. 磨損老化期 (Wear-out)：TDDB 介電質擊穿、NBTI 臨界漂移與電遷移導致壽命告終。',
     ch22_burnin_desc: '車用與伺服器晶片在出廠前必須經過「預燒 (Burn-In / HTOL)」：放入 125°C ~ 150°C 預燒爐並施加 1.3× 額定工作電壓。根據 Arrhenius 化學反應速率方程式與電壓加速模型，在 48 小時內等效經歷 1~2 年運轉壽命，將早期體質不良品 100% 迫使其提前陣亡，確保交付客戶的晶片零早夭！',
-    ch22_esd_desc: '人體或機台攜帶的靜電高達數千伏特，直接打入裸露引腳會瞬間將 1.5nm 閘極氧化層打穿炭化。晶片 I/O 端配置 GGNMOS 或雙向二極體 ESD 箝位電路：平時呈高阻抗絕緣；當 > 8V 靜電脈衝來襲，雪崩崩潰在 0.5 奈秒內觸發 Parasitic BJT 導通，將數安培大電流安全旁路洩入地線！'
+    ch22_esd_desc: '人體或機台攜帶的靜電高達數千伏特，直接打入裸露引腳會瞬間將 1.5nm 閘極氧化層打穿炭化。晶片 I/O 端配置 GGNMOS 或雙向二極體 ESD 箝位電路：平時呈高阻抗絕緣；當 > 8V 靜電脈衝來襲，雪崩崩潰在 0.5 奈秒內觸發 Parasitic BJT 導通，將數安培大電流安全旁路洩入地線！',
+
+    // Ch 00 晶片的一生
+    ch00_title: '晶片的一生：從沙子到旗艦手機的時空全景旅程模型',
+    ch00_sub: '解析矽石提煉、柴氏長晶、晶圓前段 (FEOL+BEOL 50+ 道光罩)、晶圓測試到先進封裝整合之宏觀製造全景',
+    ch00_tab_timeline: '全景製造時間軸 (Journey Timeline)',
+    ch00_tab_boundary: '前段 vs 後段製造邊界 (FEOL vs BEOL vs OSAT)',
+    ch00_tab_hierarchy: '基本階層單位換算 (Lot / Wafer / Shot / Die)',
+    ch00_step_sand: '1. 矽石石英砂 (SiO₂ 99.9999999% 11N)',
+    ch00_step_ingot: '2. 柴氏拉晶與晶圓切拋 (300mm Ingot/Wafer)',
+    ch00_step_fab: '3. 晶圓廠前段製造 (FEOL+BEOL, ~1500 工步)',
+    ch00_step_test: '4. 晶圓允收測試 (WAT PCM + CP 針測分類)',
+    ch00_step_pkg: '5. 後段先進封裝 (Bumping / 2.5D CoWoS / BGA)',
+    ch00_step_system: '6. SMT 系統主機板組裝至終端產品',
+    ch00_metric_total_time: '全流程累計生產週期',
+    ch00_metric_clean_class: '核心製程最高潔淨度',
+    ch00_metric_die_count: '單片 300mm 晶圓產出',
+    ch00_timeline_desc: '一顆旗艦晶片的製造歷時約 3~4 個月，跨越全球數萬公里：從地球最豐富的二氧化矽砂石，提煉至 99.999999999% 11N 電子級多晶矽，經過拉晶、切片、在 Class 1 無塵室經歷上千道沉積微影蝕刻循環，最終經由微米級封裝安裝進智慧型手機。',
+    ch00_boundary_desc: '半導體製造具有嚴格的產業與物理邊界：FEOL (前段) 在高溫純淨環境製造電晶體開關；BEOL (後段) 鋪設多層金屬高速公路；OSAT (外包封測) 將晶圓薄化切割，透過打線或微凸塊封裝成可耐受惡劣環境的實體晶片。',
+    ch00_hierarchy_desc: '晶圓廠以 Lot (批，通常 25 片晶圓) 為排程骨幹；每片 300mm 晶圓在曝光機下被劃分為數十個 Reticle Shots (光罩曝光場)；每個 Shot 包含多顆微小晶粒 (Dies)，最終經測試分選出品質頂級的良品 (Good Die)。',
+
+    // Ch 14 製程節點與微縮
+    ch14_title: '製程節點微縮標尺對比、Dennard Scaling 終結與電晶體密度模型',
+    ch14_sub: '破解「幾奈米」命名真相，解析 CPP 接觸多晶矽間距、Metal Pitch 金屬間距與電晶體密度 (MTr/mm²) 之真實物理微縮',
+    ch14_tab_pitch: '物理特徵幾何標尺對比 (CPP vs Metal Pitch)',
+    ch14_tab_dennard: 'Dennard Scaling 終結與熱耗牆 (Heat Wall)',
+    ch14_tab_density: '標準單元密度計算 (Standard Cell Track)',
+    ch14_metric_cpp: '接觸多晶矽間距 (CPP / Gate Pitch)',
+    ch14_metric_mp: '底層最小金屬間距 (M1P / Metal Pitch)',
+    ch14_metric_density: '電晶體密度 (Transistor Density)',
+    ch14_pitch_desc: '現代製程如「3nm / 2nm」已非任何單一物理元件尺寸（閘極長度約 12nm、氧化層約 1.5nm）。衡量節點先進程度的權威物理標準是 CPP (Contacted Poly Pitch, 如 N3 為 ~45nm) 與最小金屬間距 (Metal Pitch, 如 N3 為 ~22nm)。',
+    ch14_dennard_desc: '1974 年 Dennard 縮放定律指出：尺寸縮小 30% 時，電壓同比例下降，功耗密度保持不變。但當閘極氧化層薄至 1.5nm 時，量子穿隧漏電流爆炸性激增，電壓無法再依比例下降（約止步於 0.7V），引發「熱耗牆 (Power Wall)」，終結了頻率狂飆時代。',
+    ch14_density_desc: '邏輯標準單元高度等於「單元軌道數 (Tracks) × 金屬間距 (M1P)」。從 9-Track (成熟節點) 演進至 6-Track / 5-Track (先進節點)，搭配 DTCO (設計與製程協同優化)，在相同的微影極限下擠出高達 290+ MTr/mm² 的超高邏輯密度。',
+
+    // Ch 18 異常處理與防堵
+    ch18_title: '晶圓廠 OCAP 應變處置樹、重工判定矩陣與防堵追溯模型',
+    ch18_sub: '模擬出事時的緊急連鎖截停 (Lot Hold)、黃光剝離 vs 乾蝕刻不可逆判定 (Release / Rework / Scrap)、與八爪魚同批風險圍堵',
+    ch18_tab_ocap: 'OCAP 應變標準作業流程 (Decision Tree)',
+    ch18_tab_rework: '重工可行性邊界 (Rework Window Matrix)',
+    ch18_tab_containment: '八爪魚擴大追溯圍堵 (Excursion Containment)',
+    ch18_metric_hold_time: '異常處置反應時效 (Hold-to-Disposition)',
+    ch18_metric_rework_limit: '同一晶圓重工上限次數',
+    ch18_metric_scrap_cost: '單批 12 吋晶圓報廢損失',
+    ch18_ocap_desc: '當機台感測器、SPC 管制圖或線上檢測跳出 OOC/OOS 警報時，系統自動啟動 OCAP (Out of Control Action Plan)：第一時間發送系統級 Lot Hold 截停，凍結機台排程，阻止問題擴大，隨後由製程與整合工程師進行專案調查。',
+    ch18_rework_desc: '晶圓重工有嚴格的物理邊界：光阻顯影後若發現 CD 偏差或對準失誤，可透過氧電漿電漿去膠 (Resist Strip) 與酸洗進行 100% 無損重工 (Rework)；但一旦經過乾蝕刻或離子佈植，晶格已被物理破壞，無法逆轉，只能依嚴重度放行 (Release) 或整批報廢 (Scrap)。',
+    ch18_containment_desc: '單一異常絕非孤立事件：工程師必須立刻啟動八爪魚追溯法，清查同機台、同腔體 (Chamber)、同光罩 (Reticle)、同批次化學品所加工的前後所有批次 (Parent & Child Lots)，全面施加 Hold 鎖定，防堵潛在不良品流向下游客戶。',
+
+    // Ch 23 晶圓廠自動化與智慧製造
+    ch23_title: '晶圓廠 MES 智慧調度、Q-Time 逾時失控連鎖警報與防呆互鎖模型',
+    ch23_sub: '解析百萬步智慧排程、自然氧化層 Q-Time 倒數計時管制、RFID 載具配方硬體防呆互鎖 (Interlock) 與 OEE 綜合效率',
+    ch23_tab_qtime: 'Q-Time 逾時失控預警 (Q-Time Countdown)',
+    ch23_tab_interlock: 'RFID 載具配方防呆互鎖 (Poka-Yoke Interlock)',
+    ch23_tab_oee: '設備綜合效率動態看板 (OEE Dashboard)',
+    ch23_metric_qtime_limit: '關鍵清洗至薄膜 Q-Time 上限',
+    ch23_metric_fab_wip: '晶圓廠線上動態晶圓批數 (WIP)',
+    ch23_metric_oee_target: '世界級晶圓廠 OEE 基準',
+    ch23_qtime_desc: '在氫氟酸 (DHF) 清除原生氧化物後，露出的活性矽表面在空氣中會自發長出不均勻的自然氧化層 (Native Oxide)。MES 系統設定嚴苛的 Q-Time 管制（例如 4 小時以內必須進爐管）：倒數歸零前系統自動發出黃色警告；一旦逾時，系統硬體連鎖鎖定，強迫退回清洗站重新洗淨！',
+    ch23_interlock_desc: '防呆互鎖 (Poka-Yoke) 杜絕所有人為疏失：當 OHT 天車將 FOUP 放上機台 Load Port 時，機台透過光學讀碼器或 RFID 讀取晶圓盒編號，向 MES 伺服器校驗製程工單、配方版本與機台認證狀態。三者 100% 吻合才允許氣密開門，任何不符立刻亮紅燈警報鎖機。',
+    ch23_oee_desc: 'OEE (Overall Equipment Effectiveness) 是晶圓廠機台績效的終極指標：可用率 (Availability: 扣除 PM 維護與當機) × 表現效率 (Performance: 機台跑速對比理論節拍) × 品質良率 (Quality: 產出良品率)。先進晶圓廠 OEE 長期維持在 >90% 的巔峰水準。'
   },
   en: {
     badge_prefix: 'PROCESS OBJECT · ENGINEERING MODEL',
@@ -665,7 +723,65 @@ const TEXTS = {
     ch22_metric_esd_level: 'Human Body Model (HBM) ESD Immunity',
     ch22_bathtub_desc: 'Semiconductor product reliability tracks the Bathtub Curve: 1. Infant Mortality: manufacturing defects (particles, gate oxide pinholes) fail rapidly in early hours; 2. Useful Life: ultra-low random failure rate (< 10 FIT) lasting years; 3. Wear-out: physical degradation (TDDB, NBTI, electromigration) reaches end of life.',
     ch22_burnin_desc: 'Automotive and mission-critical chips undergo High-Temperature Operating Life (HTOL) burn-in at 125°C - 150°C and 1.3x operating voltage. Under Arrhenius chemical acceleration and voltage exponent models, 48 hours of burn-in simulates 1-2 years of field stress, weeding out 100% of infant mortality failures.',
-    ch22_esd_desc: 'Electrostatic discharge strikes can impart thousands of volts in nanoseconds, puncturing 1.5nm gate oxides. I/O pads incorporate GGNMOS or dual-diode ESD clamp networks: remaining high-impedance during normal operation, but avalanche-triggering parasitic BJTs in <0.5 ns to shunt multi-ampere ESD pulses safely to ground.'
+    ch22_esd_desc: 'Electrostatic discharge strikes can impart thousands of volts in nanoseconds, puncturing 1.5nm gate oxides. I/O pads incorporate GGNMOS or dual-diode ESD clamp networks: remaining high-impedance during normal operation, but avalanche-triggering parasitic BJTs in <0.5 ns to shunt multi-ampere ESD pulses safely to ground.',
+
+    // Ch 00 Chip Life Journey
+    ch00_title: "A Chip's Life: Macro Journey from Sand to Smartphone Model",
+    ch00_sub: 'Analyze silica reduction, CZ crystal pulling, front-end fab (FEOL+BEOL 50+ masks), wafer test, and advanced packaging integration',
+    ch00_tab_timeline: 'Full Manufacturing Journey Timeline',
+    ch00_tab_boundary: 'Front-End vs Back-End Boundaries (FEOL / BEOL / OSAT)',
+    ch00_tab_hierarchy: 'Basic Fab Units Hierarchy (Lot / Wafer / Shot / Die)',
+    ch00_step_sand: '1. Quartz Silica Sand (SiO₂ 99.9999999% 11N)',
+    ch00_step_ingot: '2. CZ Ingot Pulling & Slicing (300mm Ingot/Wafer)',
+    ch00_step_fab: '3. Front-End Wafer Fab (FEOL+BEOL, ~1500 Steps)',
+    ch00_step_test: '4. Wafer Sort & Acceptance (WAT PCM + CP Probing)',
+    ch00_step_pkg: '5. Advanced Packaging (Bumping / 2.5D CoWoS / BGA)',
+    ch00_step_system: '6. SMT Board Assembly into End Products',
+    ch00_metric_total_time: 'Total Production Cycle Time',
+    ch00_metric_clean_class: 'Peak Cleanroom Cleanliness',
+    ch00_metric_die_count: 'Typical 300mm Die Output',
+    ch00_timeline_desc: 'Manufacturing a flagship chip spans 3 to 4 months and thousands of miles: starting from Earth’s abundant silica sand refined into 11N electronic-grade polysilicon, pulled into single crystals, sliced, cycled through thousands of deposition-litho-etch steps in Class 1 cleanrooms, and assembled via sub-micron packaging into smartphones.',
+    ch00_boundary_desc: 'Semiconductor manufacturing observes rigid boundaries: FEOL builds nanoscale transistor switches under ultra-clean high-temperature conditions; BEOL lays multi-tier copper highways; and OSAT packages diced silicon into robust physical components capable of withstanding real-world environments.',
+    ch00_hierarchy_desc: 'Fab operations schedule by the Lot (typically 25 wafers); each 300mm wafer is exposed in dozens of Reticle Shots; each Shot prints multiple identical Dies; and probe testing sorts out pristine Known Good Dies (KGD) for packaging.',
+
+    // Ch 14 Process Nodes & Scaling
+    ch14_title: 'Process Node Geometry Benchmarks, Dennard Breakdown & Density Model',
+    ch14_sub: 'Demystify commercial "nanometer" naming, benchmark CPP contacted poly pitch, metal pitch, and transistor density (MTr/mm²)',
+    ch14_tab_pitch: 'Physical Feature Benchmarks (CPP vs Metal Pitch)',
+    ch14_tab_dennard: 'Dennard Scaling Breakdown & Power Wall',
+    ch14_tab_density: 'Standard Cell Track Height & Logic Density',
+    ch14_metric_cpp: 'Contacted Poly Pitch (CPP / Gate Pitch)',
+    ch14_metric_mp: 'Minimum Metal Pitch (M1P / Metal Pitch)',
+    ch14_metric_density: 'Transistor Density',
+    ch14_pitch_desc: 'Modern commercial nodes like "3nm / 2nm" no longer represent any single physical dimension (gate length is ~12nm, oxide is ~1.5nm). True node progress is governed by Contacted Poly Pitch (CPP, ~45nm on N3) and Minimum Metal Pitch (M1P, ~22nm on N3).',
+    ch14_dennard_desc: 'Dennard Scaling (1974) held that shrinking dimensions by 30% allowed simultaneous voltage reduction, keeping power density constant. Below 65nm, quantum mechanical gate tunneling exploded, freezing supply voltages near ~0.7V and erecting the "Power Wall" that ended CPU clock speed scaling.',
+    ch14_density_desc: 'Logic standard cell height equals "Cell Track Count × Metal Pitch (M1P)". Evolving from 9-Track down to 6-Track / 5-Track cells coupled with Design-Technology Co-Optimization (DTCO) yields transistor densities exceeding 290+ MTr/mm² even as lithography scaling slows.',
+
+    // Ch 18 Excursion Control & OCAP
+    ch18_title: 'Fab OCAP Incident Decision Tree, Rework Window & Containment Model',
+    ch18_sub: 'Simulate automated Lot Hold interlocking, photoresist strip vs etch irreversible damage (Release / Rework / Scrap), and octopus risk containment',
+    ch18_tab_ocap: 'OCAP Response Standard Flow (Decision Tree)',
+    ch18_tab_rework: 'Rework Feasibility Window Matrix',
+    ch18_tab_containment: 'Octopus Incident Scope Containment',
+    ch18_metric_hold_time: 'Disposition Response Clock',
+    ch18_metric_rework_limit: 'Maximum Allowed Rework Cycles',
+    ch18_metric_scrap_cost: 'Single Lot Scrap Loss Value',
+    ch18_ocap_desc: 'When tool sensors, SPC charts, or inline metrology flag an OOC/OOS violation, the Out of Control Action Plan (OCAP) automatically triggers an enterprise-wide Lot Hold, freezing tool queues and preventing downstream propagation while engineers investigate root causes.',
+    ch18_rework_desc: 'Wafer rework has strict physical boundaries: lithography errors caught after develop can be 100% stripped with oxygen plasma and re-patterned with zero substrate damage; but once dry etched or ion implanted, crystal damage is permanent and irreversible, leaving only release or scrap.',
+    ch18_containment_desc: 'Process excursions are rarely isolated: engineers deploy the "Octopus" containment protocol, tracking all sister lots processed in the same chamber, matching recipe, reticle, and chemical slurry batch, placing them under defensive holds to protect downstream customer shipments.',
+
+    // Ch 23 Smart Fab Automation & MES
+    ch23_title: 'Fab MES Dispatching, Q-Time Excursion Alarm & Poka-Yoke Interlock Model',
+    ch23_sub: 'Explore million-step smart scheduling, native oxide Q-Time countdown timers, RFID load-port recipe interlocks, and OEE equipment metrics',
+    ch23_tab_qtime: 'Q-Time Excursion Countdown & Alarms',
+    ch23_tab_interlock: 'RFID Carrier Recipe Poka-Yoke Interlock',
+    ch23_tab_oee: 'Equipment Overall Equipment Effectiveness (OEE)',
+    ch23_metric_qtime_limit: 'Critical Clean-to-Furnace Q-Time Window',
+    ch23_metric_fab_wip: 'Active Fab Work-in-Progress (WIP)',
+    ch23_metric_oee_target: 'World-Class Fab OEE Benchmark',
+    ch23_qtime_desc: 'Following DHF native oxide removal, exposed silicon surfaces rapidly regrow uncontrollable native oxide in air. MES enforces a strict Q-Time window (typically <4 hours to furnace entry): approaching deadlines sound warning alarms, and expirations trigger interlock locks forcing wafers back to pre-clean.',
+    ch23_interlock_desc: 'Poka-Yoke hardware interlocks eliminate human error: as OHT cranes dock FOUPs onto machine load ports, optical barcode or RFID scanners query the MES database for active lot dispatch, recipe checksums, and chamber PM status before opening internal isolation valves.',
+    ch23_oee_desc: 'Overall Equipment Effectiveness (OEE) benchmarks tool productivity: Availability (uptime excluding PM and unscheduled downtime) × Performance (actual run rate vs theoretical sprint speed) × Quality (good wafer yield). Advanced foundries sustain fleet-wide OEE exceeding >90%.'
   }
 };
 
@@ -6143,12 +6259,1361 @@ export function renderReliabilityTestingObject(container, lang = 'zh') {
 
 /**
  * ══════════════════════════════════════════════════════════════════════════════
+ * 21. Ch 00 晶片的一生：從沙子到智慧手機的宏觀時空全景旅程模型 (The Chip's Life)
+ * ══════════════════════════════════════════════════════════════════════════════
+ */
+export function renderChipJourneyObject(container, lang = 'zh') {
+  const t = TEXTS[lang] || TEXTS.zh;
+  let activeTab = 'timeline'; // 'timeline' | 'boundary' | 'hierarchy'
+  let activeStage = 2; // 0: 沙子, 1: 晶圓, 2: 前段製造, 3: 測試, 4: 先進封裝, 5: 智慧手機
+
+  function update() {
+    let viewportHtml = '';
+    let dashboardHtml = '';
+    let footerNote = '';
+
+    if (activeTab === 'timeline') {
+      const stages = [
+        { label: lang === 'zh' ? '1. 矽石沙石' : '1. Silica Sand', sub: '99.9999999% 11N' },
+        { label: lang === 'zh' ? '2. 晶棒切片' : '2. Ingot / Slicing', sub: '300mm Wafer' },
+        { label: lang === 'zh' ? '3. 晶圓前段' : '3. Front-End Fab', sub: 'FEOL+BEOL 1500步' },
+        { label: lang === 'zh' ? '4. 晶圓測試' : '4. Wafer Test', sub: 'WAT + CP 針測' },
+        { label: lang === 'zh' ? '5. 先進封裝' : '5. Packaging', sub: '2.5D CoWoS' },
+        { label: lang === 'zh' ? '6. 系統整合' : '6. System Assembly', sub: '智慧手機旗艦機' }
+      ];
+
+      viewportHtml = `
+        <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Chip Life Journey Macro Timeline">
+          <defs>
+            <linearGradient id="journeyFlow" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#38bdf8"/>
+              <stop offset="50%" stop-color="#10b981"/>
+              <stop offset="100%" stop-color="#f59e0b"/>
+            </linearGradient>
+            <radialGradient id="glowPoint" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.8"/>
+              <stop offset="100%" stop-color="#38bdf8" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+
+          <!-- 上方：全景時間軸節點條 -->
+          <g transform="translate(40, 30)">
+            <line x1="40" y1="25" x2="680" y2="25" stroke="#334155" stroke-width="3"/>
+            <line x1="40" y1="25" x2="${40 + activeStage * 128}" y2="25" stroke="url(#journeyFlow)" stroke-width="4"/>
+            ${stages.map((st, idx) => {
+              const cx = 40 + idx * 128;
+              const isCur = idx === activeStage;
+              const isPast = idx <= activeStage;
+              return `
+                <g class="journey-node" data-stage="${idx}" style="cursor: pointer;" transform="translate(${cx}, 25)">
+                  ${isCur ? `<circle cx="0" cy="0" r="18" fill="url(#glowPoint)"/>` : ''}
+                  <circle cx="0" cy="0" r="${isCur ? 10 : 8}" fill="${isCur ? '#38bdf8' : isPast ? '#10b981' : '#1e293b'}" stroke="${isCur ? '#ffffff' : isPast ? '#10b981' : '#475569'}" stroke-width="2.5"/>
+                  <text x="0" y="24" text-anchor="middle" fill="${isCur ? '#38bdf8' : '#94a3b8'}" font-size="10.5" font-weight="${isCur ? '750' : '500'}">${st.label}</text>
+                  <text x="0" y="38" text-anchor="middle" fill="#64748b" font-size="9">${st.sub}</text>
+                </g>
+              `;
+            }).join('')}
+          </g>
+
+          <!-- 中央：代表性實體模型展示區 -->
+          <g transform="translate(60, 110)">
+            <rect x="0" y="0" width="680" height="280" rx="8" fill="#09131b" stroke="#1e293b" stroke-width="1.5"/>
+
+            ${activeStage === 0 ? `
+              <!-- 階段 0: 石英砂提煉成 11N 電子級多晶矽 -->
+              <g transform="translate(60, 40)">
+                <path d="M 40,180 L 160,50 L 280,180 Z" fill="#334155" opacity="0.6"/>
+                <path d="M 80,180 L 160,70 L 240,180 Z" fill="#64748b" opacity="0.8"/>
+                <circle cx="160" cy="50" r="15" fill="#f59e0b" opacity="0.5"/>
+                <text x="160" y="205" text-anchor="middle" fill="#cbd5e1" font-size="12" font-weight="700">高純度石英砂礦 (SiO₂)</text>
+              </g>
+              <g transform="translate(360, 40)">
+                <path d="M 0,110 L 40,110" stroke="#38bdf8" stroke-width="2" marker-end="url(#arrow)"/>
+                <rect x="60" y="40" width="180" height="130" rx="6" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5"/>
+                <text x="150" y="70" text-anchor="middle" fill="#38bdf8" font-size="13" font-weight="750">電子級多晶矽 (EGS)</text>
+                <text x="150" y="95" text-anchor="middle" fill="#10b981" font-size="18" font-weight="800">99.9999999%</text>
+                <text x="150" y="120" text-anchor="middle" fill="#94a3b8" font-size="11">純度 11N (每千億原子僅 1 雜質)</text>
+                <text x="150" y="145" text-anchor="middle" fill="#cbd5e1" font-size="10.5">西門子高溫氣相還原法</text>
+              </g>
+            ` : activeStage === 1 ? `
+              <!-- 階段 1: 柴氏拉晶成單晶矽棒與切片 -->
+              <g transform="translate(100, 30)">
+                <!-- 晶棒 -->
+                <rect x="50" y="40" width="80" height="150" rx="4" fill="#334155" stroke="#38bdf8" stroke-width="2"/>
+                <path d="M 50,40 C 50,15 130,15 130,40 Z" fill="#475569"/>
+                <ellipse cx="90" cy="190" rx="40" ry="12" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5"/>
+                <text x="90" y="220" text-anchor="middle" fill="#cbd5e1" font-size="11" font-weight="700">300mm 單晶矽棒 (Ingot)</text>
+              </g>
+              <g transform="translate(360, 50)">
+                <!-- 金剛石線鋸切出的拋光晶圓 -->
+                <ellipse cx="140" cy="100" rx="120" ry="40" fill="#0f172a" stroke="#38bdf8" stroke-width="3"/>
+                <ellipse cx="140" cy="100" rx="80" ry="25" fill="none" stroke="#38bdf8" stroke-dasharray="4,4" opacity="0.6"/>
+                <path d="M 255,100 L 260,105 L 260,95 Z" fill="#38bdf8"/>
+                <text x="140" y="165" text-anchor="middle" fill="#38bdf8" font-size="12" font-weight="750">300mm 雙面拋光裸晶圓 (Prime Wafer)</text>
+                <text x="140" y="185" text-anchor="middle" fill="#94a3b8" font-size="10.5">厚度 775 µm · 原子級表面平整度 &lt; 0.1 nm</text>
+              </g>
+            ` : activeStage === 2 ? `
+              <!-- 階段 2: 晶圓廠前段製造 (FEOL + BEOL) -->
+              <g transform="translate(80, 25)">
+                <rect x="0" y="20" width="520" height="190" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
+                <!-- BEOL 多層銅導線 (上方) -->
+                <g transform="translate(30, 40)">
+                  <rect x="0" y="0" width="460" height="70" fill="#1e293b" opacity="0.6"/>
+                  <line x1="40" y1="20" x2="420" y2="20" stroke="#f59e0b" stroke-width="4"/>
+                  <line x1="80" y1="45" x2="380" y2="45" stroke="#f59e0b" stroke-width="3"/>
+                  <line x1="120" y1="20" x2="120" y2="45" stroke="#f59e0b" stroke-width="3"/>
+                  <line x1="280" y1="20" x2="280" y2="45" stroke="#f59e0b" stroke-width="3"/>
+                  <text x="230" y="65" text-anchor="middle" fill="#f59e0b" font-size="10" font-weight="700">BEOL: 12~15 層雙鑲嵌銅導線高速公路 (Low-k 介電質隔離)</text>
+                </g>
+                <!-- FEOL 電晶體閘極層 (下方) -->
+                <g transform="translate(30, 120)">
+                  <rect x="0" y="0" width="460" height="70" fill="#09131b"/>
+                  <!-- 閘極與鰭片 -->
+                  ${[80, 160, 240, 320, 400].map(gx => `
+                    <rect x="${gx - 12}" y="15" width="24" height="30" fill="#38bdf8" rx="2"/>
+                    <rect x="${gx - 6}" y="20" width="12" height="25" fill="#10b981"/>
+                  `).join('')}
+                  <line x1="10" y1="50" x2="450" y2="50" stroke="#64748b" stroke-width="2"/>
+                  <text x="230" y="62" text-anchor="middle" fill="#38bdf8" font-size="10" font-weight="700">FEOL: 數百億顆 FinFET / GAA 電晶體奈米開關</text>
+                </g>
+                <text x="260" y="225" text-anchor="middle" fill="#cbd5e1" font-size="11">經由 50+ 道高精度光罩、上千道沉積/微影/蝕刻/佈植/CMP 反覆循環</text>
+              </g>
+            ` : activeStage === 3 ? `
+              <!-- 階段 3: 晶圓允收測試 (WAT PCM + CP 針測) -->
+              <g transform="translate(100, 30)">
+                <!-- 探針卡下針 -->
+                <rect x="30" y="20" width="200" height="30" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5"/>
+                <text x="130" y="40" text-anchor="middle" fill="#38bdf8" font-size="11" font-weight="700">垂直探針卡 (Vertical Probe Card)</text>
+                <!-- 數萬根微彈簧探針 -->
+                ${[60, 80, 100, 120, 140, 160, 180, 200].map(px => `
+                  <line x1="${px}" y1="50" x2="${px}" y2="90" stroke="#f59e0b" stroke-width="1.5"/>
+                `).join('')}
+                <!-- 晶圓測試點 -->
+                <rect x="40" y="90" width="180" height="80" rx="3" fill="#0f172a" stroke="#64748b" stroke-width="1.5"/>
+                <text x="130" y="125" text-anchor="middle" fill="#10b981" font-size="11" font-weight="700">CP 高頻針測 (Touchdown)</text>
+                <text x="130" y="145" text-anchor="middle" fill="#cbd5e1" font-size="9.5">注入百萬條測試向量分選良品</text>
+              </g>
+              <g transform="translate(380, 40)">
+                <!-- 電子晶圓圖 (Wafer Bin Map) -->
+                <circle cx="110" cy="90" r="80" fill="#09131b" stroke="#38bdf8" stroke-width="2"/>
+                <!-- 網格點良品與不良品 -->
+                ${[0, 1, 2, 3, 4, 5].map(r => [0, 1, 2, 3, 4, 5].map(c => {
+                  const pass = !(r === 0 || c === 0 || (r === 2 && c === 4));
+                  return `<rect x="${60 + c * 17}" y="${40 + r * 17}" width="14" height="14" rx="2" fill="${pass ? '#10b981' : '#ef4444'}"/>`;
+                }).join('')).join('')}
+                <text x="110" y="190" text-anchor="middle" fill="#cbd5e1" font-size="11" font-weight="700">電子晶圓圖 (Wafer Bin Map)</text>
+              </g>
+            ` : activeStage === 4 ? `
+              <!-- 階段 4: 先進封裝 (2.5D CoWoS / 3D SoIC) -->
+              <g transform="translate(90, 40)">
+                <rect x="0" y="30" width="500" height="160" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
+                <!-- 頂層 Chiplets (SoC + HBM) -->
+                <g transform="translate(60, 50)">
+                  <rect x="0" y="0" width="140" height="50" rx="3" fill="#38bdf8" stroke="#ffffff" stroke-width="1"/>
+                  <text x="70" y="25" text-anchor="middle" fill="#09131b" font-size="11" font-weight="800">Logic SoC / GPU</text>
+                  <text x="70" y="40" text-anchor="middle" fill="#09131b" font-size="9">3nm 核心算力晶片</text>
+                </g>
+                <g transform="translate(230, 50)">
+                  <rect x="0" y="0" width="90" height="50" rx="3" fill="#10b981"/>
+                  <text x="45" y="25" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="800">HBM3e</text>
+                  <text x="45" y="40" text-anchor="middle" fill="#ffffff" font-size="9">3D 堆疊記憶體</text>
+                </g>
+                <g transform="translate(340, 50)">
+                  <rect x="0" y="0" width="90" height="50" rx="3" fill="#10b981"/>
+                  <text x="45" y="25" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="800">HBM3e</text>
+                  <text x="45" y="40" text-anchor="middle" fill="#ffffff" font-size="9">3D 堆疊記憶體</text>
+                </g>
+                <!-- 中間矽中介層 (Silicon Interposer with TSVs) -->
+                <rect x="40" y="115" width="420" height="25" fill="#334155" stroke="#38bdf8" stroke-width="1.5"/>
+                <text x="250" y="132" text-anchor="middle" fill="#38bdf8" font-size="10.5" font-weight="700">矽中介層 (Silicon Interposer with TSV 矽穿孔)</text>
+                <!-- 底層封裝基板與 BGA 錫球 -->
+                <rect x="20" y="150" width="460" height="25" fill="#1e293b"/>
+                <text x="250" y="167" text-anchor="middle" fill="#cbd5e1" font-size="10.5">ABF 有機載板 (Substrate) + BGA 錫球陣列</text>
+              </g>
+            ` : `
+              <!-- 階段 5: 智慧型手機終端產品系統組裝 -->
+              <g transform="translate(140, 30)">
+                <!-- 手機主機板 -->
+                <rect x="0" y="20" width="400" height="180" rx="8" fill="#064e3b" stroke="#10b981" stroke-width="2"/>
+                <text x="200" y="45" text-anchor="middle" fill="#a7f3d0" font-size="12" font-weight="700">高密度旗艦手機主機板 (HDI / Substrate-Like PCB)</text>
+                <!-- 核心處理器封裝 (SoC) -->
+                <g transform="translate(130, 60)">
+                  <rect x="0" y="0" width="140" height="110" rx="4" fill="#09131b" stroke="#f59e0b" stroke-width="2"/>
+                  <circle cx="70" cy="45" r="24" fill="#f59e0b" opacity="0.3"/>
+                  <text x="70" y="50" text-anchor="middle" fill="#f59e0b" font-size="14" font-weight="800">A18 / M4</text>
+                  <text x="70" y="70" text-anchor="middle" fill="#ffffff" font-size="10">2.5D 先進封裝旗艦晶片</text>
+                  <text x="70" y="90" text-anchor="middle" fill="#38bdf8" font-size="9.5">數百億電晶體 · 終端交付</text>
+                </g>
+                <text x="200" y="225" text-anchor="middle" fill="#cbd5e1" font-size="11">經由數百萬小時全球供應鏈協作，沙子完成終極蛻變，賦能全球數位生活</text>
+              </g>
+            `}
+          </g>
+        </svg>
+      `;
+
+      dashboardHtml = `
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">${t.ch00_metric_total_time}</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-blue-dark);">90 ~ 120 天</div>
+          <div class="eng-obj-metric-note">前段 70 天 + 封測 30 天</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">${t.ch00_metric_clean_class}</div>
+          <div class="eng-obj-metric-value">Class 1 (ISO 1)</div>
+          <div class="eng-obj-metric-note">比外科手術室純淨 10,000 倍</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">${t.ch00_metric_die_count}</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-teal);">500 ~ 1,200 顆</div>
+          <div class="eng-obj-metric-note">依晶片面積與良率 (Yield) 決定</div>
+        </div>
+      `;
+
+      footerNote = t.ch00_timeline_desc;
+    } else if (activeTab === 'boundary') {
+      viewportHtml = `
+        <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="FEOL vs BEOL vs OSAT Boundaries">
+          <!-- 四大領域邊界分割 -->
+          <g transform="translate(50, 40)">
+            <!-- 1. FEOL -->
+            <g transform="translate(0, 0)">
+              <rect x="0" y="0" width="165" height="300" rx="6" fill="#09131b" stroke="#38bdf8" stroke-width="2"/>
+              <rect x="0" y="0" width="165" height="35" rx="6" fill="#38bdf8"/>
+              <text x="82" y="23" text-anchor="middle" fill="#09131b" font-size="12" font-weight="800">1. FEOL 前段</text>
+              <text x="82" y="60" text-anchor="middle" fill="#38bdf8" font-size="11" font-weight="700">電晶體開關製造</text>
+              <text x="15" y="90" fill="#cbd5e1" font-size="10">• 井區離子佈植</text>
+              <text x="15" y="115" fill="#cbd5e1" font-size="10">• STI 淺溝槽隔離</text>
+              <text x="15" y="140" fill="#cbd5e1" font-size="10">• 閘極氧化層 (HfO₂)</text>
+              <text x="15" y="165" fill="#cbd5e1" font-size="10">• 矽鍺/碳源極磊晶</text>
+              <text x="15" y="190" fill="#cbd5e1" font-size="10">• 退火高溫 &gt; 1000°C</text>
+              <rect x="15" y="240" width="135" height="40" rx="4" fill="#1e293b"/>
+              <text x="82" y="265" text-anchor="middle" fill="#38bdf8" font-size="10">Class 1 超潔淨室</text>
+            </g>
+
+            <!-- 2. MOL -->
+            <g transform="translate(178, 0)">
+              <rect x="0" y="0" width="165" height="300" rx="6" fill="#09131b" stroke="#10b981" stroke-width="2"/>
+              <rect x="0" y="0" width="165" height="35" rx="6" fill="#10b981"/>
+              <text x="82" y="23" text-anchor="middle" fill="#09131b" font-size="12" font-weight="800">2. MOL 中間段</text>
+              <text x="82" y="60" text-anchor="middle" fill="#10b981" font-size="11" font-weight="700">奈米接觸插塞</text>
+              <text x="15" y="90" fill="#cbd5e1" font-size="10">• 自對準矽化物 (NiSi)</text>
+              <text x="15" y="115" fill="#cbd5e1" font-size="10">• 接觸孔微影與蝕刻</text>
+              <text x="15" y="140" fill="#cbd5e1" font-size="10">• CVD 鎢金屬 (W) 填充</text>
+              <text x="15" y="165" fill="#cbd5e1" font-size="10">• 鎢 CMP 平坦化</text>
+              <text x="15" y="190" fill="#cbd5e1" font-size="10">• 連接閘極與 M1</text>
+              <rect x="15" y="240" width="135" height="40" rx="4" fill="#1e293b"/>
+              <text x="82" y="265" text-anchor="middle" fill="#10b981" font-size="10">電氣橋樑節點</text>
+            </g>
+
+            <!-- 3. BEOL -->
+            <g transform="translate(356, 0)">
+              <rect x="0" y="0" width="165" height="300" rx="6" fill="#09131b" stroke="#f59e0b" stroke-width="2"/>
+              <rect x="0" y="0" width="165" height="35" rx="6" fill="#f59e0b"/>
+              <text x="82" y="23" text-anchor="middle" fill="#09131b" font-size="12" font-weight="800">3. BEOL 後段</text>
+              <text x="82" y="60" text-anchor="middle" fill="#f59e0b" font-size="11" font-weight="700">多層銅導線網絡</text>
+              <text x="15" y="90" fill="#cbd5e1" font-size="10">• 雙載子鑲嵌製程</text>
+              <text x="15" y="115" fill="#cbd5e1" font-size="10">• Low-k 超低介電質</text>
+              <text x="15" y="140" fill="#cbd5e1" font-size="10">• 銅電鍍超填 (Superfill)</text>
+              <text x="15" y="165" fill="#cbd5e1" font-size="10">• 12~15 層銅導線堆疊</text>
+              <text x="15" y="190" fill="#cbd5e1" font-size="10">• 溫度上限 &lt; 400°C</text>
+              <rect x="15" y="240" width="135" height="40" rx="4" fill="#1e293b"/>
+              <text x="82" y="265" text-anchor="middle" fill="#f59e0b" font-size="10">訊號與供電網路</text>
+            </g>
+
+            <!-- 4. OSAT -->
+            <g transform="translate(534, 0)">
+              <rect x="0" y="0" width="165" height="300" rx="6" fill="#09131b" stroke="#8b5cf6" stroke-width="2"/>
+              <rect x="0" y="0" width="165" height="35" rx="6" fill="#8b5cf6"/>
+              <text x="82" y="23" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="800">4. OSAT 封測廠</text>
+              <text x="82" y="60" text-anchor="middle" fill="#c084fc" font-size="11" font-weight="700">封裝與最終測試</text>
+              <text x="15" y="90" fill="#cbd5e1" font-size="10">• 晶圓薄化 (Grinding)</text>
+              <text x="15" y="115" fill="#cbd5e1" font-size="10">• 晶粒切割 (Dicing)</text>
+              <text x="15" y="140" fill="#cbd5e1" font-size="10">• 覆晶 / 2.5D CoWoS</text>
+              <text x="15" y="165" fill="#cbd5e1" font-size="10">• 膠體封裝 (Molding)</text>
+              <text x="15" y="190" fill="#cbd5e1" font-size="10">• FT 最終測試分選</text>
+              <rect x="15" y="240" width="135" height="40" rx="4" fill="#1e293b"/>
+              <text x="82" y="265" text-anchor="middle" fill="#c084fc" font-size="10">實體防護與互連</text>
+            </g>
+          </g>
+        </svg>
+      `;
+
+      dashboardHtml = `
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">前段與後段熱預算</div>
+          <div class="eng-obj-metric-value">&lt; 400 °C (BEOL)</div>
+          <div class="eng-obj-metric-note">防止銅原子擴散與 Low-k 裂解</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">晶圓光罩層數</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-blue-dark);">50 ~ 80+ 道光罩</div>
+          <div class="eng-obj-metric-note">EUV + DUV 多重圖形化</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">產業分工模式</div>
+          <div class="eng-obj-metric-value">Fabless + Foundry + OSAT</div>
+          <div class="eng-obj-metric-note">台積電晶圓專工 + 封測專業代工</div>
+        </div>
+      `;
+
+      footerNote = t.ch00_boundary_desc;
+    } else {
+      // hierarchy 模式
+      viewportHtml = `
+        <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Lot, Wafer, Reticle Shot, Die Hierarchy">
+          <g transform="translate(60, 40)">
+            <!-- 階層 1: Lot (批) -->
+            <g transform="translate(0, 0)">
+              <rect x="0" y="0" width="150" height="130" rx="6" fill="#09131b" stroke="#38bdf8" stroke-width="2"/>
+              <text x="75" y="28" text-anchor="middle" fill="#38bdf8" font-size="13" font-weight="750">1 Lot (批號)</text>
+              <rect x="35" y="45" width="80" height="40" rx="4" fill="#1e293b" stroke="#38bdf8" stroke-width="1"/>
+              <text x="75" y="68" text-anchor="middle" fill="#38bdf8" font-size="12" font-weight="800">25 片晶圓</text>
+              <text x="75" y="105" text-anchor="middle" fill="#cbd5e1" font-size="10">裝載於單一 FOUP 氣密盒</text>
+            </g>
+
+            <line x1="150" y1="65" x2="190" y2="65" stroke="#475569" stroke-width="2" stroke-dasharray="4,4"/>
+
+            <!-- 階層 2: Wafer (晶圓) -->
+            <g transform="translate(190, 0)">
+              <rect x="0" y="0" width="150" height="130" rx="6" fill="#09131b" stroke="#10b981" stroke-width="2"/>
+              <text x="75" y="28" text-anchor="middle" fill="#10b981" font-size="13" font-weight="750">1 Wafer (單片)</text>
+              <circle cx="75" cy="65" r="24" fill="#1e293b" stroke="#10b981" stroke-width="1.5"/>
+              <text x="75" y="70" text-anchor="middle" fill="#10b981" font-size="11" font-weight="800">300 mm</text>
+              <text x="75" y="105" text-anchor="middle" fill="#cbd5e1" font-size="10">直徑 12 吋 · 面積 706 cm²</text>
+            </g>
+
+            <line x1="340" y1="65" x2="380" y2="65" stroke="#475569" stroke-width="2" stroke-dasharray="4,4"/>
+
+            <!-- 階層 3: Reticle Shot (光罩曝光場) -->
+            <g transform="translate(380, 0)">
+              <rect x="0" y="0" width="150" height="130" rx="6" fill="#09131b" stroke="#f59e0b" stroke-width="2"/>
+              <text x="75" y="28" text-anchor="middle" fill="#f59e0b" font-size="13" font-weight="750">1 Shot (曝光場)</text>
+              <rect x="35" y="45" width="80" height="40" rx="2" fill="#1e293b" stroke="#f59e0b" stroke-width="1"/>
+              <text x="75" y="68" text-anchor="middle" fill="#f59e0b" font-size="11" font-weight="800">26 × 33 mm</text>
+              <text x="75" y="105" text-anchor="middle" fill="#cbd5e1" font-size="10">曝光機單次步進掃描極限</text>
+            </g>
+
+            <line x1="530" y1="65" x2="570" y2="65" stroke="#475569" stroke-width="2" stroke-dasharray="4,4"/>
+
+            <!-- 階層 4: Die (晶粒) -->
+            <g transform="translate(570, 0)">
+              <rect x="0" y="0" width="120" height="130" rx="6" fill="#09131b" stroke="#ec4899" stroke-width="2"/>
+              <text x="60" y="28" text-anchor="middle" fill="#ec4899" font-size="13" font-weight="750">1 Die (晶粒)</text>
+              <rect x="35" y="45" width="50" height="40" rx="2" fill="#ec4899" opacity="0.3"/>
+              <text x="60" y="70" text-anchor="middle" fill="#ec4899" font-size="11" font-weight="800">100 mm²</text>
+              <text x="60" y="105" text-anchor="middle" fill="#cbd5e1" font-size="10">含 150 億電晶體</text>
+            </g>
+
+            <!-- 下方：微縮換算關聯總圖 -->
+            <g transform="translate(0, 160)">
+              <rect x="0" y="0" width="690" height="140" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+              <text x="345" y="35" text-anchor="middle" fill="#38bdf8" font-size="13" font-weight="750">1 個晶圓批 (25 片) = 數萬顆晶粒 = 數百兆個奈米電晶體</text>
+              <text x="345" y="65" text-anchor="middle" fill="#cbd5e1" font-size="11">每一片晶圓都有獨立雷射刻號 (Wafer ID)，在工廠 MES 系統中享有獨立數位履歷</text>
+              <text x="345" y="90" text-anchor="middle" fill="#94a3b8" font-size="10.5">單片晶圓若發生任何單一微粒污染，可能導致數十顆甚至整片 Die 報廢</text>
+              <text x="345" y="115" text-anchor="middle" fill="#10b981" font-size="10.5" font-weight="700">故半導體工程的本質，即是在天文數字等級的幾何規模下實現近乎零缺陷的統計管制</text>
+            </g>
+          </g>
+        </svg>
+      `;
+
+      dashboardHtml = `
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">標準批次大小 (Lot)</div>
+          <div class="eng-obj-metric-value">25 片 300mm 晶圓</div>
+          <div class="eng-obj-metric-note">滿載 1 個 FOUP 晶圓盒</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">曝光場尺寸 (Reticle Field)</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-blue-dark);">26 mm × 33 mm</div>
+          <div class="eng-obj-metric-note">單片晶圓約需 60~80 次 Shot</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">旗艦晶片電晶體數量</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-teal);">&gt; 150 億顆</div>
+          <div class="eng-obj-metric-note">密度達 150~290 MTr/mm²</div>
+        </div>
+      `;
+
+      footerNote = t.ch00_hierarchy_desc;
+    }
+
+    container.innerHTML = `
+      <section class="eng-obj-card" aria-labelledby="engObjCh00Title">
+        <header class="eng-obj-header">
+          <div class="eng-obj-badge-row">
+            <span class="eng-obj-badge">${t.badge_prefix} · CH 00</span>
+            <span class="eng-obj-status">${t.live_sim}</span>
+          </div>
+          <h2 class="eng-obj-title" id="engObjCh00Title">${t.ch00_title}</h2>
+          <p class="eng-obj-subtitle">${t.ch00_sub}</p>
+        </header>
+
+        <div class="eng-obj-controls">
+          <div class="eng-obj-tab-group" role="tablist">
+            <button type="button" class="eng-obj-tab ${activeTab === 'timeline' ? 'is-active' : ''}" data-tab="timeline">${t.ch00_tab_timeline}</button>
+            <button type="button" class="eng-obj-tab ${activeTab === 'boundary' ? 'is-active' : ''}" data-tab="boundary">${t.ch00_tab_boundary}</button>
+            <button type="button" class="eng-obj-tab ${activeTab === 'hierarchy' ? 'is-active' : ''}" data-tab="hierarchy">${t.ch00_tab_hierarchy}</button>
+          </div>
+        </div>
+
+        <div class="eng-obj-viewport">
+          ${viewportHtml}
+        </div>
+
+        <div class="eng-obj-dashboard">
+          ${dashboardHtml}
+        </div>
+
+        <footer class="eng-obj-footer-note">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+          <div>${footerNote}</div>
+        </footer>
+      </section>
+    `;
+
+    container.querySelectorAll('[data-tab]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        activeTab = btn.getAttribute('data-tab');
+        update();
+      });
+    });
+
+    container.querySelectorAll('.journey-node').forEach(node => {
+      node.addEventListener('click', () => {
+        activeStage = parseInt(node.getAttribute('data-stage'), 10);
+        update();
+      });
+    });
+  }
+
+  update();
+}
+
+/**
+ * ══════════════════════════════════════════════════════════════════════════════
+ * 22. Ch 14 製程節點微縮標尺對比、Dennard 縮放終結與密度模型 (Process Nodes & Scaling)
+ * ══════════════════════════════════════════════════════════════════════════════
+ */
+export function renderProcessScalingObject(container, lang = 'zh') {
+  const t = TEXTS[lang] || TEXTS.zh;
+  let activeTab = 'pitch'; // 'pitch' | 'dennard' | 'density'
+  let activeNode = 'n3'; // 'n28' | 'n7' | 'n3' | 'a16'
+
+  function update() {
+    let viewportHtml = '';
+    let dashboardHtml = '';
+    let footerNote = '';
+
+    if (activeTab === 'pitch') {
+      const nodes = {
+        n28: { name: '28nm Planar (2011)', cpp: 115, mp: 90, finp: 60, height: 900, dens: '15 MTr/mm²' },
+        n7: { name: '7nm FinFET (2018)', cpp: 54, mp: 40, finp: 27, height: 240, dens: '95 MTr/mm²' },
+        n3: { name: '3nm FinFET/GAA (2022)', cpp: 45, mp: 22, finp: 21, height: 135, dens: '290 MTr/mm²' },
+        a16: { name: 'A16 1.6nm GAA + BSPDN (2026)', cpp: 40, mp: 18, finp: 18, height: 90, dens: '450 MTr/mm²' }
+      };
+      const cur = nodes[activeNode];
+
+      viewportHtml = `
+        <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Process Nodes Pitch Scale Comparison">
+          <!-- 節點選擇快捷標籤 -->
+          <g transform="translate(60, 20)">
+            ${Object.keys(nodes).map((k, i) => `
+              <g class="node-btn" data-node="${k}" style="cursor: pointer;" transform="translate(${i * 170}, 0)">
+                <rect x="0" y="0" width="160" height="28" rx="4" fill="${activeNode === k ? '#38bdf8' : '#1e293b'}" stroke="${activeNode === k ? '#ffffff' : '#334155'}" stroke-width="1.5"/>
+                <text x="80" y="18" text-anchor="middle" fill="${activeNode === k ? '#09131b' : '#cbd5e1'}" font-size="11" font-weight="750">${nodes[k].name.split(' ')[0]}</text>
+              </g>
+            `).join('')}
+          </g>
+
+          <!-- 幾何標尺可視化區 -->
+          <g transform="translate(60, 70)">
+            <rect x="0" y="0" width="680" height="320" rx="8" fill="#09131b" stroke="#1e293b" stroke-width="1.5"/>
+
+            <!-- 標題與當前節點真實參數 -->
+            <text x="30" y="35" fill="#38bdf8" font-size="14" font-weight="800">${cur.name}</text>
+            <text x="30" y="55" fill="#94a3b8" font-size="11">真實物理標尺：CPP (接觸多晶矽間距) vs Metal Pitch (最小金屬間距)</text>
+
+            <!-- 左側：真實等比例物理結構示意 (Top-down & Cross-section) -->
+            <g transform="translate(50, 80)">
+              <!-- 閘極線 (垂直排列) -->
+              <text x="0" y="15" fill="#cbd5e1" font-size="11" font-weight="700">垂直閘極線 (Gate Lines / Poly)：</text>
+              <g transform="translate(0, 30)">
+                <!-- 根據比例放大繪製 3 根閘極 -->
+                ${(() => {
+                  const scale = activeNode === 'n28' ? 1.4 : activeNode === 'n7' ? 2.5 : activeNode === 'n3' ? 3.4 : 4.0;
+                  const cppPx = cur.cpp * scale;
+                  return [0, 1, 2].map(idx => `
+                    <rect x="${idx * cppPx}" y="0" width="${18 * scale * 0.4}" height="100" rx="2" fill="#38bdf8" opacity="0.8"/>
+                    <line x1="${idx * cppPx}" y1="110" x2="${(idx + 1) * cppPx}" y2="110" stroke="#f59e0b" stroke-width="2"/>
+                  `).join('') + `
+                    <text x="${cppPx / 2}" y="125" text-anchor="middle" fill="#f59e0b" font-size="11" font-weight="800">CPP = ${cur.cpp} nm</text>
+                  `;
+                })()}
+              </g>
+
+              <!-- 底層金屬線 (水平排列) -->
+              <g transform="translate(0, 150)">
+                <text x="0" y="15" fill="#cbd5e1" font-size="11" font-weight="700">底層最小金屬間距 (M1 Pitch)：</text>
+                <g transform="translate(0, 30)">
+                  ${(() => {
+                    const scale = activeNode === 'n28' ? 1.4 : activeNode === 'n7' ? 2.5 : activeNode === 'n3' ? 3.4 : 4.0;
+                    const mpPx = cur.mp * scale;
+                    return [0, 1, 2].map(idx => `
+                      <rect x="0" y="${idx * mpPx * 0.7}" width="280" height="${10 * scale * 0.35}" rx="2" fill="#10b981" opacity="0.8"/>
+                    `).join('') + `
+                      <text x="300" y="${mpPx * 0.7}" fill="#10b981" font-size="11" font-weight="800">M1P = ${cur.mp} nm</text>
+                    `;
+                  })()}
+                </g>
+              </g>
+            </g>
+
+            <!-- 右側：尺寸比對雷達與真相看板 -->
+            <g transform="translate(420, 80)">
+              <rect x="0" y="0" width="230" height="210" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+              <text x="115" y="25" text-anchor="middle" fill="#38bdf8" font-size="12" font-weight="750">微縮真相分析 (Reality Check)</text>
+              <line x1="20" y1="35" x2="210" y2="35" stroke="#334155" stroke-width="1"/>
+
+              <text x="20" y="60" fill="#94a3b8" font-size="10.5">宣傳節點名：</text>
+              <text x="120" y="60" fill="#ffffff" font-size="11" font-weight="700">${nodes[activeNode].name.split(' ')[0]}</text>
+
+              <text x="20" y="85" fill="#94a3b8" font-size="10.5">閘極長度 Lg：</text>
+              <text x="120" y="85" fill="#38bdf8" font-size="11" font-weight="700">~12 - 14 nm</text>
+
+              <text x="20" y="110" fill="#94a3b8" font-size="10.5">氧化層厚度 Tox：</text>
+              <text x="120" y="110" fill="#10b981" font-size="11" font-weight="700">~1.2 - 1.5 nm</text>
+
+              <text x="20" y="135" fill="#94a3b8" font-size="10.5">邏輯密度：</text>
+              <text x="120" y="135" fill="#f59e0b" font-size="11" font-weight="800">${cur.dens}</text>
+
+              <text x="20" y="160" fill="#94a3b8" font-size="10.5">微縮推手：</text>
+              <text x="120" y="160" fill="#cbd5e1" font-size="10.5">DTCO + GAA</text>
+
+              <rect x="15" y="175" width="200" height="25" rx="3" fill="#1e293b"/>
+              <text x="115" y="192" text-anchor="middle" fill="#ec4899" font-size="10" font-weight="700">「3奈米裡沒有任何尺寸是3nm」</text>
+            </g>
+          </g>
+        </svg>
+      `;
+
+      dashboardHtml = `
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">${t.ch14_metric_cpp}</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-blue-dark);">${cur.cpp} nm</div>
+          <div class="eng-obj-metric-note">相鄰閘極中心點物理間隔</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">${t.ch14_metric_mp}</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-teal);">${cur.mp} nm</div>
+          <div class="eng-obj-metric-note">最嚴苛微影金屬連線線寬+間距</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">${t.ch14_metric_density}</div>
+          <div class="eng-obj-metric-value">${cur.dens}</div>
+          <div class="eng-obj-metric-note">百萬電晶體 / 平方毫米</div>
+        </div>
+      `;
+
+      footerNote = t.ch14_pitch_desc;
+    } else if (activeTab === 'dennard') {
+      viewportHtml = `
+        <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Dennard Scaling Breakdown Curve">
+          <!-- 坐標系 -->
+          <g transform="translate(80, 50)">
+            <line x1="0" y1="280" x2="620" y2="280" stroke="#475569" stroke-width="2"/>
+            <line x1="0" y1="0" x2="0" y2="280" stroke="#475569" stroke-width="2"/>
+            <text x="620" y="275" fill="#94a3b8" font-size="11">年份 / 節點</text>
+            <text x="10" y="20" fill="#94a3b8" font-size="11">標準化指標 (Log Scale)</text>
+
+            <!-- 橫坐標節點標記 -->
+            ${[
+              { year: '1985\n1.5µm', x: 50 },
+              { year: '1995\n350nm', x: 150 },
+              { year: '2005\n65nm', x: 280, wall: true },
+              { year: '2015\n14nm', x: 420 },
+              { year: '2025\n2nm', x: 550 }
+            ].map(pt => `
+              <line x1="${pt.x}" y1="280" x2="${pt.x}" y2="285" stroke="#94a3b8" stroke-width="1.5"/>
+              <text x="${pt.x}" y="305" text-anchor="middle" fill="${pt.wall ? '#ef4444' : '#94a3b8'}" font-size="10">${pt.year.split('\n')[0]}</text>
+              <text x="${pt.x}" y="320" text-anchor="middle" fill="#64748b" font-size="9">${pt.year.split('\n')[1]}</text>
+            `).join('')}
+
+            <!-- 2005 年熱耗牆紅色虛線 -->
+            <line x1="280" y1="20" x2="280" y2="280" stroke="#ef4444" stroke-width="2" stroke-dasharray="6,4"/>
+            <rect x="230" y="30" width="100" height="24" rx="3" fill="#ef4444" opacity="0.8"/>
+            <text x="280" y="46" text-anchor="middle" fill="#ffffff" font-size="10.5" font-weight="800">Dennard 縮放終結</text>
+
+            <!-- 曲線 1: 電晶體數量 (持續指數上升) -->
+            <path d="M 50,260 Q 200,230 280,180 T 550,40" fill="none" stroke="#10b981" stroke-width="3"/>
+            <text x="560" y="45" fill="#10b981" font-size="11" font-weight="750">電晶體數量 (摩爾定律繼續)</text>
+
+            <!-- 曲線 2: 時脈頻率 Clock Frequency (2005年撞牆停滯) -->
+            <path d="M 50,270 Q 180,240 280,140 L 550,135" fill="none" stroke="#38bdf8" stroke-width="3"/>
+            <text x="560" y="140" fill="#38bdf8" font-size="11" font-weight="750">主頻極限 (~3-5 GHz 停滯)</text>
+
+            <!-- 曲線 3: 工作電壓 Vdd (停滯在 0.7V 無法再降) -->
+            <path d="M 50,70 L 150,110 L 280,190 L 550,210" fill="none" stroke="#f59e0b" stroke-width="3"/>
+            <text x="560" y="215" fill="#f59e0b" font-size="11" font-weight="750">工作電壓 Vdd (卡在 ~0.7V)</text>
+
+            <!-- 曲線 4: 漏電流密度 (急遽上升) -->
+            <path d="M 50,275 L 200,270 L 280,250 Q 400,200 550,90" fill="none" stroke="#ec4899" stroke-width="3" stroke-dasharray="4,4"/>
+            <text x="560" y="95" fill="#ec4899" font-size="11" font-weight="750">靜態漏電功率 (量子穿隧暴增)</text>
+          </g>
+        </svg>
+      `;
+
+      dashboardHtml = `
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">電壓縮放下限 (Vdd)</div>
+          <div class="eng-obj-metric-value">~ 0.65 - 0.7 V</div>
+          <div class="eng-obj-metric-note">低於此電壓電晶體無法可靠翻轉</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">CPU 單核時脈牆</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-blue-dark);">~ 5.0 GHz</div>
+          <div class="eng-obj-metric-note">散熱熱流密度達核反應爐水準</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">運算力解法</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-teal);">多核心 + 專用加速器 (NPU)</div>
+          <div class="eng-obj-metric-note">轉向平行架構與先進 3D 封裝</div>
+        </div>
+      `;
+
+      footerNote = t.ch14_dennard_desc;
+    } else {
+      // density 模式
+      viewportHtml = `
+        <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Standard Cell Track Height and Density Calculation">
+          <g transform="translate(60, 40)">
+            <text x="340" y="20" text-anchor="middle" fill="#38bdf8" font-size="13" font-weight="750">邏輯標準單元高度 (Cell Height) = Track 軌道數 × Metal Pitch (M1P)</text>
+
+            <!-- 對比 1: 9-Track (成熟節點) -->
+            <g transform="translate(30, 50)">
+              <rect x="0" y="0" width="180" height="240" rx="4" fill="#0f172a" stroke="#64748b" stroke-width="1.5"/>
+              <text x="90" y="25" text-anchor="middle" fill="#94a3b8" font-size="12" font-weight="700">9-Track (28nm)</text>
+              <line x1="20" y1="35" x2="160" y2="35" stroke="#334155"/>
+              ${[0, 1, 2, 3, 4, 5, 6, 7, 8].map(tr => `
+                <line x1="20" y1="${55 + tr * 18}" x2="160" y2="${55 + tr * 18}" stroke="#475569" stroke-width="2"/>
+              `).join('')}
+              <text x="90" y="228" text-anchor="middle" fill="#cbd5e1" font-size="10.5">Cell Height = 9 × 90 = 810 nm</text>
+            </g>
+
+            <!-- 對比 2: 6-Track (先進 FinFET) -->
+            <g transform="translate(250, 50)">
+              <rect x="0" y="0" width="180" height="240" rx="4" fill="#0f172a" stroke="#38bdf8" stroke-width="1.5"/>
+              <text x="90" y="25" text-anchor="middle" fill="#38bdf8" font-size="12" font-weight="750">6-Track (7nm/5nm)</text>
+              <line x1="20" y1="35" x2="160" y2="35" stroke="#334155"/>
+              ${[0, 1, 2, 3, 4, 5].map(tr => `
+                <line x1="20" y1="${65 + tr * 24}" x2="160" y2="${65 + tr * 24}" stroke="#38bdf8" stroke-width="2.5"/>
+              `).join('')}
+              <text x="90" y="228" text-anchor="middle" fill="#38bdf8" font-size="10.5" font-weight="700">Cell Height = 6 × 40 = 240 nm</text>
+            </g>
+
+            <!-- 對比 3: 5-Track / 4.5-Track (2nm GAA + 背面供電) -->
+            <g transform="translate(470, 50)">
+              <rect x="0" y="0" width="180" height="240" rx="4" fill="#0f172a" stroke="#10b981" stroke-width="2"/>
+              <text x="90" y="25" text-anchor="middle" fill="#10b981" font-size="12" font-weight="800">5-Track + 背面供電 (N2/A16)</text>
+              <line x1="20" y1="35" x2="160" y2="35" stroke="#334155"/>
+              ${[0, 1, 2, 3, 4].map(tr => `
+                <line x1="20" y1="${75 + tr * 28}" x2="160" y2="${75 + tr * 28}" stroke="#10b981" stroke-width="3"/>
+              `).join('')}
+              <rect x="20" y="195" width="140" height="18" fill="#f59e0b" opacity="0.3"/>
+              <text x="90" y="208" text-anchor="middle" fill="#f59e0b" font-size="9.5" font-weight="800">背面埋入式供電軌 (BSPDN)</text>
+              <text x="90" y="228" text-anchor="middle" fill="#10b981" font-size="10.5" font-weight="700">Cell Height = 5 × 22 = 110 nm</text>
+            </g>
+          </g>
+        </svg>
+      `;
+
+      dashboardHtml = `
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">標準單元軌道演進</div>
+          <div class="eng-obj-metric-value">9T → 6T → 5T</div>
+          <div class="eng-obj-metric-note">DTCO (設計與製程協同優化)</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">背面供電網路 (BSPDN)</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-teal);">+ 15% 頻率 / -20% 面積</div>
+          <div class="eng-obj-metric-note">將電源線移至晶圓背面，釋放正面空間</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">單元高度壓縮比</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-blue-dark);">&gt; 85% 縮小</div>
+          <div class="eng-obj-metric-note">810nm (28nm) 降至 110nm (N2)</div>
+        </div>
+      `;
+
+      footerNote = t.ch14_density_desc;
+    }
+
+    container.innerHTML = `
+      <section class="eng-obj-card" aria-labelledby="engObjCh14Title">
+        <header class="eng-obj-header">
+          <div class="eng-obj-badge-row">
+            <span class="eng-obj-badge">${t.badge_prefix} · CH 14</span>
+            <span class="eng-obj-status">${t.live_sim}</span>
+          </div>
+          <h2 class="eng-obj-title" id="engObjCh14Title">${t.ch14_title}</h2>
+          <p class="eng-obj-subtitle">${t.ch14_sub}</p>
+        </header>
+
+        <div class="eng-obj-controls">
+          <div class="eng-obj-tab-group" role="tablist">
+            <button type="button" class="eng-obj-tab ${activeTab === 'pitch' ? 'is-active' : ''}" data-tab="pitch">${t.ch14_tab_pitch}</button>
+            <button type="button" class="eng-obj-tab ${activeTab === 'dennard' ? 'is-active' : ''}" data-tab="dennard">${t.ch14_tab_dennard}</button>
+            <button type="button" class="eng-obj-tab ${activeTab === 'density' ? 'is-active' : ''}" data-tab="density">${t.ch14_tab_density}</button>
+          </div>
+        </div>
+
+        <div class="eng-obj-viewport">
+          ${viewportHtml}
+        </div>
+
+        <div class="eng-obj-dashboard">
+          ${dashboardHtml}
+        </div>
+
+        <footer class="eng-obj-footer-note">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+          <div>${footerNote}</div>
+        </footer>
+      </section>
+    `;
+
+    container.querySelectorAll('[data-tab]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        activeTab = btn.getAttribute('data-tab');
+        update();
+      });
+    });
+
+    container.querySelectorAll('.node-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        activeNode = btn.getAttribute('data-node');
+        update();
+      });
+    });
+  }
+
+  update();
+}
+
+/**
+ * ══════════════════════════════════════════════════════════════════════════════
+ * 23. Ch 18 晶圓廠 OCAP 應變處置樹、重工判定矩陣與防堵追溯模型 (Excursion Control)
+ * ══════════════════════════════════════════════════════════════════════════════
+ */
+export function renderExcursionControlObject(container, lang = 'zh') {
+  const t = TEXTS[lang] || TEXTS.zh;
+  let activeTab = 'ocap'; // 'ocap' | 'rework' | 'containment'
+  let simState = 'hold'; // 'normal' | 'ooc' | 'hold' | 'disposed'
+
+  function update() {
+    let viewportHtml = '';
+    let dashboardHtml = '';
+    let footerNote = '';
+
+    if (activeTab === 'ocap') {
+      viewportHtml = `
+        <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="OCAP Decision Tree Flow">
+          <!-- 上方控制切換 -->
+          <g transform="translate(60, 20)">
+            <rect x="0" y="0" width="150" height="26" rx="4" class="ocap-sim-btn" data-sim="normal" fill="${simState === 'normal' ? '#10b981' : '#1e293b'}" style="cursor: pointer;"/>
+            <text x="75" y="17" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="700">模擬正常監控 (Normal)</text>
+
+            <rect x="170" y="0" width="160" height="26" rx="4" class="ocap-sim-btn" data-sim="ooc" fill="${simState === 'ooc' ? '#f59e0b' : '#1e293b'}" style="cursor: pointer;"/>
+            <text x="250" y="17" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="700">觸發 OOC 警報 (Alarm)</text>
+
+            <rect x="350" y="0" width="150" height="26" rx="4" class="ocap-sim-btn" data-sim="hold" fill="${simState === 'hold' ? '#ef4444' : '#1e293b'}" style="cursor: pointer;"/>
+            <text x="425" y="17" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="700">系統連鎖截停 (Lot Hold)</text>
+
+            <rect x="520" y="0" width="160" height="26" rx="4" class="ocap-sim-btn" data-sim="disposed" fill="${simState === 'disposed' ? '#8b5cf6' : '#1e293b'}" style="cursor: pointer;"/>
+            <text x="600" y="17" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="700">工程處置放行 (Disposition)</text>
+          </g>
+
+          <!-- OCAP 四步決策樹主圖 -->
+          <g transform="translate(60, 70)">
+            <!-- 步驟 1: 即時監控 -->
+            <g transform="translate(0, 40)">
+              <rect x="0" y="0" width="140" height="120" rx="6" fill="#09131b" stroke="${simState === 'normal' ? '#10b981' : '#334155'}" stroke-width="2"/>
+              <text x="70" y="30" text-anchor="middle" fill="#38bdf8" font-size="11" font-weight="750">步驟 1: 線上監控</text>
+              <text x="70" y="55" text-anchor="middle" fill="#cbd5e1" font-size="10">• SPC 管制圖 3σ</text>
+              <text x="70" y="75" text-anchor="middle" fill="#cbd5e1" font-size="10">• 機台 FDC 感測器</text>
+              <text x="70" y="95" text-anchor="middle" fill="#cbd5e1" font-size="10">• 線上缺陷檢測</text>
+            </g>
+
+            <line x1="140" y1="100" x2="180" y2="100" stroke="#475569" stroke-width="2"/>
+
+            <!-- 步驟 2: 觸發 OOC & 系統連鎖截停 -->
+            <g transform="translate(180, 40)">
+              <rect x="0" y="0" width="150" height="120" rx="6" fill="#09131b" stroke="${simState === 'ooc' || simState === 'hold' ? '#ef4444' : '#334155'}" stroke-width="${simState === 'hold' ? 3 : 2}"/>
+              <text x="75" y="30" text-anchor="middle" fill="${simState === 'hold' ? '#ef4444' : '#f59e0b'}" font-size="11" font-weight="750">步驟 2: 系統截停</text>
+              <text x="75" y="55" text-anchor="middle" fill="#cbd5e1" font-size="10">• 自動下達 Lot Hold</text>
+              <text x="75" y="75" text-anchor="middle" fill="#cbd5e1" font-size="10">• 機台自動閉鎖 (Down)</text>
+              <text x="75" y="95" text-anchor="middle" fill="#ef4444" font-size="10" font-weight="700">阻止不良品流入下站</text>
+            </g>
+
+            <line x1="330" y1="100" x2="370" y2="100" stroke="#475569" stroke-width="2"/>
+
+            <!-- 步驟 3: 影響範圍清查 -->
+            <g transform="translate(370, 40)">
+              <rect x="0" y="0" width="140" height="120" rx="6" fill="#09131b" stroke="#38bdf8" stroke-width="2"/>
+              <text x="70" y="30" text-anchor="middle" fill="#38bdf8" font-size="11" font-weight="750">步驟 3: 範圍清查</text>
+              <text x="70" y="55" text-anchor="middle" fill="#cbd5e1" font-size="10">• 八爪魚同批追溯</text>
+              <text x="70" y="75" text-anchor="middle" fill="#cbd5e1" font-size="10">• 抽測前後各 2 批</text>
+              <text x="70" y="95" text-anchor="middle" fill="#cbd5e1" font-size="10">• 鎖定受害晶圓清單</text>
+            </g>
+
+            <line x1="510" y1="100" x2="550" y2="100" stroke="#475569" stroke-width="2"/>
+
+            <!-- 步驟 4: 三向處置判定 -->
+            <g transform="translate(550, 0)">
+              <rect x="0" y="0" width="130" height="60" rx="4" fill="#09131b" stroke="#10b981" stroke-width="2"/>
+              <text x="65" y="25" text-anchor="middle" fill="#10b981" font-size="11" font-weight="800">✓ 放行 (Release)</text>
+              <text x="65" y="45" text-anchor="middle" fill="#cbd5e1" font-size="9">評估規格內容許</text>
+
+              <rect x="0" y="75" width="130" height="60" rx="4" fill="#09131b" stroke="#f59e0b" stroke-width="2"/>
+              <text x="65" y="100" text-anchor="middle" fill="#f59e0b" font-size="11" font-weight="800">↺ 重工 (Rework)</text>
+              <text x="65" y="120" text-anchor="middle" fill="#cbd5e1" font-size="9">黃光去膠重新塗佈</text>
+
+              <rect x="0" y="150" width="130" height="60" rx="4" fill="#09131b" stroke="#ef4444" stroke-width="2"/>
+              <text x="65" y="175" text-anchor="middle" fill="#ef4444" font-size="11" font-weight="800">✕ 報廢 (Scrap)</text>
+              <text x="65" y="195" text-anchor="middle" fill="#cbd5e1" font-size="9">蝕刻穿孔物理損毀</text>
+            </g>
+
+            <!-- 下方：防呆閉環 8D -->
+            <g transform="translate(40, 200)">
+              <rect x="0" y="0" width="600" height="60" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+              <text x="300" y="25" text-anchor="middle" fill="#38bdf8" font-size="11.5" font-weight="700">閉環防再發對策：8D 報告 + Poka-Yoke 機台配方互鎖</text>
+              <text x="300" y="45" text-anchor="middle" fill="#94a3b8" font-size="10">確認 Root Cause 根因，修改作業標準書 (SOP)，更新防呆規則後方可釋放機台生產</text>
+            </g>
+          </g>
+        </svg>
+      `;
+
+      dashboardHtml = `
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">${t.ch18_metric_hold_time}</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-blue-dark);">&lt; 2.0 小時</div>
+          <div class="eng-obj-metric-note">防範晶圓停滯超時過期 (Q-Time)</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">${t.ch18_metric_rework_limit}</div>
+          <div class="eng-obj-metric-value">≤ 2 次</div>
+          <div class="eng-obj-metric-note">避免晶圓表面微粗糙度惡化</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">${t.ch18_metric_scrap_cost}</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-teal);">$250,000+ USD</div>
+          <div class="eng-obj-metric-note">25 片 3nm 滿載批次價值驚人</div>
+        </div>
+      `;
+
+      footerNote = t.ch18_ocap_desc;
+    } else if (activeTab === 'rework') {
+      viewportHtml = `
+        <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Rework Feasibility Window Matrix">
+          <g transform="translate(60, 40)">
+            <!-- 綠燈區：可重工 (Reversible) -->
+            <g transform="translate(0, 0)">
+              <rect x="0" y="0" width="330" height="280" rx="8" fill="#09131b" stroke="#10b981" stroke-width="2.5"/>
+              <rect x="0" y="0" width="330" height="40" rx="8" fill="#10b981"/>
+              <text x="165" y="26" text-anchor="middle" fill="#09131b" font-size="13" font-weight="800">✓ 綠燈區：100% 可重工製程 (Reversible)</text>
+
+              <g transform="translate(20, 60)">
+                <text x="0" y="20" fill="#34d399" font-size="12" font-weight="750">1. 光阻顯影後 (Post-Develop / ADI)</text>
+                <text x="15" y="40" fill="#cbd5e1" font-size="10">• 曝光劑量偏差 / CD 偏寬偏窄</text>
+                <text x="15" y="58" fill="#cbd5e1" font-size="10">• 步進掃描對準失誤 (Overlay Shift)</text>
+                <text x="15" y="76" fill="#10b981" font-size="10" font-weight="700">⇒ 處置：氧電漿去膠 (Strip) + SPM 酸洗，晶格無傷</text>
+
+                <text x="0" y="110" fill="#34d399" font-size="12" font-weight="750">2. CMP 研磨不足 (Under-Polish)</text>
+                <text x="15" y="130" fill="#cbd5e1" font-size="10">• 氧化層殘留過厚 / 金屬未完全清除</text>
+                <text x="15" y="148" fill="#10b981" font-size="10" font-weight="700">⇒ 處置：補磨 (Buff Polish)，再研磨 10-15 秒</text>
+
+                <text x="0" y="180" fill="#34d399" font-size="12" font-weight="750">3. 清洗顆粒超標 (Post-Clean Particles)</text>
+                <text x="15" y="200" fill="#10b981" font-size="10" font-weight="700">⇒ 處置：退回 RCA 槽進行兆聲波二次重複清洗</text>
+              </g>
+            </g>
+
+            <!-- 紅燈區：不可逆破壞 (Irreversible) -->
+            <g transform="translate(350, 0)">
+              <rect x="0" y="0" width="330" height="280" rx="8" fill="#09131b" stroke="#ef4444" stroke-width="2.5"/>
+              <rect x="0" y="0" width="330" height="40" rx="8" fill="#ef4444"/>
+              <text x="165" y="26" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="800">✕ 紅燈區：不可逆永久破壞 (Irreversible)</text>
+
+              <g transform="translate(20, 60)">
+                <text x="0" y="20" fill="#f87171" font-size="12" font-weight="750">1. 電漿蝕刻後 (Post-Etch / AEI)</text>
+                <text x="15" y="40" fill="#cbd5e1" font-size="10">• 側壁底切 (Undercut) / 底部穿孔過蝕刻</text>
+                <text x="15" y="58" fill="#cbd5e1" font-size="10">• 實體矽材/氧化層已被化學氣體挖走</text>
+                <text x="15" y="76" fill="#ef4444" font-size="10" font-weight="700">⇒ 後果：無法填補，只能降規或整批報廢 (Scrap)</text>
+
+                <text x="0" y="110" fill="#f87171" font-size="12" font-weight="750">2. 離子佈植打錯劑量/能量</text>
+                <text x="15" y="130" fill="#cbd5e1" font-size="10">• 摻雜深度過深造成接面崩潰</text>
+                <text x="15" y="148" fill="#ef4444" font-size="10" font-weight="700">⇒ 後果：雜質原子已嵌入晶格，物理無法拔出</text>
+
+                <text x="0" y="180" fill="#f87171" font-size="12" font-weight="750">3. CMP 過磨碟化 (Over-Polish Dishing)</text>
+                <text x="15" y="200" fill="#ef4444" font-size="10" font-weight="700">⇒ 後果：銅導線厚度過薄，電阻爆表，無法逆轉</text>
+              </g>
+            </g>
+          </g>
+        </svg>
+      `;
+
+      dashboardHtml = `
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">重工黃金分水嶺</div>
+          <div class="eng-obj-metric-value">蝕刻前 (Pre-Etch)</div>
+          <div class="eng-obj-metric-note">一旦下刀蝕刻即告別重工可能</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">光阻剝除重工良率恢復</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-teal);">&gt; 99.8%</div>
+          <div class="eng-obj-metric-note">及時攔截可挽回數百萬美元損失</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">報廢判定委員會 (MRB)</div>
+          <div class="eng-obj-metric-value">製程 + 整合 + 品保簽核</div>
+          <div class="eng-obj-metric-note">最高層級專案報廢確認機制</div>
+        </div>
+      `;
+
+      footerNote = t.ch18_rework_desc;
+    } else {
+      // containment 模式 (八爪魚)
+      viewportHtml = `
+        <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Octopus Incident Containment Model">
+          <g transform="translate(60, 30)">
+            <!-- 核心：異常觸發點 -->
+            <g transform="translate(260, 110)">
+              <circle cx="80" cy="80" r="60" fill="#ef4444" opacity="0.2"/>
+              <circle cx="80" cy="80" r="45" fill="#ef4444"/>
+              <text x="80" y="75" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="800">異常核心批</text>
+              <text x="80" y="95" text-anchor="middle" fill="#ffffff" font-size="10.5">Lot #A88301</text>
+            </g>
+
+            <!-- 八爪魚放射觸手 (追溯維度) -->
+            <!-- 1. 同機台腔體 (Chamber) -->
+            <g transform="translate(60, 40)">
+              <line x1="280" y1="150" x2="160" y2="70" stroke="#ef4444" stroke-width="2.5" stroke-dasharray="4,4"/>
+              <rect x="0" y="0" width="160" height="60" rx="4" fill="#09131b" stroke="#38bdf8" stroke-width="2"/>
+              <text x="80" y="25" text-anchor="middle" fill="#38bdf8" font-size="11" font-weight="750">1. 同腔體 (Chamber)</text>
+              <text x="80" y="45" text-anchor="middle" fill="#cbd5e1" font-size="9.5">清查 Etch-04 前後 6 批</text>
+            </g>
+
+            <!-- 2. 同配方 (Recipe) -->
+            <g transform="translate(460, 40)">
+              <line x1="400" y1="150" x2="520" y2="70" stroke="#ef4444" stroke-width="2.5" stroke-dasharray="4,4"/>
+              <rect x="0" y="0" width="160" height="60" rx="4" fill="#09131b" stroke="#f59e0b" stroke-width="2"/>
+              <text x="80" y="25" text-anchor="middle" fill="#f59e0b" font-size="11" font-weight="750">2. 同配方版本 (Recipe)</text>
+              <text x="80" y="45" text-anchor="middle" fill="#cbd5e1" font-size="9.5">清查使用 V4.2 的所有機台</text>
+            </g>
+
+            <!-- 3. 同光罩 (Reticle) -->
+            <g transform="translate(60, 240)">
+              <line x1="280" y1="210" x2="160" y2="270" stroke="#ef4444" stroke-width="2.5" stroke-dasharray="4,4"/>
+              <rect x="0" y="0" width="160" height="60" rx="4" fill="#09131b" stroke="#10b981" stroke-width="2"/>
+              <text x="80" y="25" text-anchor="middle" fill="#10b981" font-size="11" font-weight="750">3. 同光罩序號 (Reticle)</text>
+              <text x="80" y="45" text-anchor="middle" fill="#cbd5e1" font-size="9.5">排除光罩表面微塵污染</text>
+            </g>
+
+            <!-- 4. 同批化學品 (Slurry/Gas) -->
+            <g transform="translate(460, 240)">
+              <line x1="400" y1="210" x2="520" y2="270" stroke="#ef4444" stroke-width="2.5" stroke-dasharray="4,4"/>
+              <rect x="0" y="0" width="160" height="60" rx="4" fill="#09131b" stroke="#c084fc" stroke-width="2"/>
+              <text x="80" y="25" text-anchor="middle" fill="#c084fc" font-size="11" font-weight="750">4. 同批化學品 (Chemical)</text>
+              <text x="80" y="45" text-anchor="middle" fill="#cbd5e1" font-size="9.5">清查同一鋼瓶特氣/研磨液</text>
+            </g>
+          </g>
+        </svg>
+      `;
+
+      dashboardHtml = `
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">追溯鎖定批次數量</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-blue-dark);">12 ~ 24 批 (Lots)</div>
+          <div class="eng-obj-metric-note">防禦性暫停 (Defensive Hold)</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">追溯資料來源</div>
+          <div class="eng-obj-metric-value">MES 數位履歷 + FDC</div>
+          <div class="eng-obj-metric-note">即時關聯晶圓在各機台的時間戳記</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">客戶出貨保護率</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-teal);">100% 阻絕不良</div>
+          <div class="eng-obj-metric-note">零瑕疵流出至外部車用/手機客戶</div>
+        </div>
+      `;
+
+      footerNote = t.ch18_containment_desc;
+    }
+
+    container.innerHTML = `
+      <section class="eng-obj-card" aria-labelledby="engObjCh18Title">
+        <header class="eng-obj-header">
+          <div class="eng-obj-badge-row">
+            <span class="eng-obj-badge">${t.badge_prefix} · CH 18</span>
+            <span class="eng-obj-status">${t.live_sim}</span>
+          </div>
+          <h2 class="eng-obj-title" id="engObjCh18Title">${t.ch18_title}</h2>
+          <p class="eng-obj-subtitle">${t.ch18_sub}</p>
+        </header>
+
+        <div class="eng-obj-controls">
+          <div class="eng-obj-tab-group" role="tablist">
+            <button type="button" class="eng-obj-tab ${activeTab === 'ocap' ? 'is-active' : ''}" data-tab="ocap">${t.ch18_tab_ocap}</button>
+            <button type="button" class="eng-obj-tab ${activeTab === 'rework' ? 'is-active' : ''}" data-tab="rework">${t.ch18_tab_rework}</button>
+            <button type="button" class="eng-obj-tab ${activeTab === 'containment' ? 'is-active' : ''}" data-tab="containment">${t.ch18_tab_containment}</button>
+          </div>
+        </div>
+
+        <div class="eng-obj-viewport">
+          ${viewportHtml}
+        </div>
+
+        <div class="eng-obj-dashboard">
+          ${dashboardHtml}
+        </div>
+
+        <footer class="eng-obj-footer-note">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+          <div>${footerNote}</div>
+        </footer>
+      </section>
+    `;
+
+    container.querySelectorAll('[data-tab]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        activeTab = btn.getAttribute('data-tab');
+        update();
+      });
+    });
+
+    container.querySelectorAll('.ocap-sim-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        simState = btn.getAttribute('data-sim');
+        update();
+      });
+    });
+  }
+
+  update();
+}
+
+/**
+ * ══════════════════════════════════════════════════════════════════════════════
+ * 24. Ch 23 晶圓廠 MES 智慧調度、Q-Time 逾時失控連鎖警報與防呆互鎖模型 (Smart Fab)
+ * ══════════════════════════════════════════════════════════════════════════════
+ */
+export function renderSmartFabAutomationObject(container, lang = 'zh') {
+  const t = TEXTS[lang] || TEXTS.zh;
+  let activeTab = 'qtime'; // 'qtime' | 'interlock' | 'oee'
+  let qtimeState = 'safe'; // 'safe' | 'warning' | 'expired'
+
+  function update() {
+    let viewportHtml = '';
+    let dashboardHtml = '';
+    let footerNote = '';
+
+    if (activeTab === 'qtime') {
+      let timeRemaining = qtimeState === 'safe' ? '3h 42m' : qtimeState === 'warning' ? '0h 18m' : '0h 00m (逾時 12m)';
+      let circleStroke = qtimeState === 'safe' ? '#10b981' : qtimeState === 'warning' ? '#f59e0b' : '#ef4444';
+      let strokeDash = qtimeState === 'safe' ? '400, 500' : qtimeState === 'warning' ? '150, 500' : '0, 500';
+
+      viewportHtml = `
+        <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Q-Time Excursion Countdown and Alarm Model">
+          <!-- 上方狀態切換按鈕 -->
+          <g transform="translate(100, 20)">
+            <rect x="0" y="0" width="180" height="26" rx="4" class="qtime-btn" data-q="safe" fill="${qtimeState === 'safe' ? '#10b981' : '#1e293b'}" style="cursor: pointer;"/>
+            <text x="90" y="17" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="700">模擬安全進度 (Safe)</text>
+
+            <rect x="210" y="0" width="180" height="26" rx="4" class="qtime-btn" data-q="warning" fill="${qtimeState === 'warning' ? '#f59e0b' : '#1e293b'}" style="cursor: pointer;"/>
+            <text x="300" y="17" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="700">模擬臨界警報 (Warning)</text>
+
+            <rect x="420" y="0" width="180" height="26" rx="4" class="qtime-btn" data-q="expired" fill="${qtimeState === 'expired' ? '#ef4444' : '#1e293b'}" style="cursor: pointer;"/>
+            <text x="510" y="17" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="700">模擬逾時鎖機 (Expired)</text>
+          </g>
+
+          <!-- 中央：Q-Time 動態倒數計時鐘與物理機制對比 -->
+          <g transform="translate(60, 65)">
+            <rect x="0" y="0" width="680" height="325" rx="8" fill="#09131b" stroke="#1e293b" stroke-width="1.5"/>
+
+            <!-- 左側：倒數圓環儀表 -->
+            <g transform="translate(80, 50)">
+              <circle cx="100" cy="100" r="85" fill="#0f172a" stroke="#334155" stroke-width="12"/>
+              <circle cx="100" cy="100" r="85" fill="none" stroke="${circleStroke}" stroke-width="12" stroke-dasharray="${strokeDash}" stroke-linecap="round" transform="rotate(-90 100 100)"/>
+              <text x="100" y="85" text-anchor="middle" fill="#94a3b8" font-size="12">Q-Time 剩餘時間</text>
+              <text x="100" y="115" text-anchor="middle" fill="${circleStroke}" font-size="20" font-weight="800">${timeRemaining}</text>
+              <text x="100" y="140" text-anchor="middle" fill="#64748b" font-size="10.5">清洗出槽 → 爐管進爐 (上限 4h)</text>
+            </g>
+
+            <!-- 右側：氧化層物理厚度與系統處置動作 -->
+            <g transform="translate(320, 45)">
+              <rect x="0" y="0" width="320" height="230" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+              <text x="160" y="30" text-anchor="middle" fill="#38bdf8" font-size="13" font-weight="750">微觀物理機制與 MES 處置狀態</text>
+              <line x1="20" y1="45" x2="300" y2="45" stroke="#334155" stroke-width="1"/>
+
+              <!-- 矽晶圓表面自然氧化層生長狀況 -->
+              <g transform="translate(20, 60)">
+                <text x="0" y="15" fill="#cbd5e1" font-size="11" font-weight="700">矽表面自然氧化層 (Native Oxide)：</text>
+                <rect x="0" y="25" width="280" height="40" rx="3" fill="#1e293b"/>
+                <!-- 矽基底 -->
+                <rect x="0" y="45" width="280" height="20" fill="#38bdf8" opacity="0.7"/>
+                <text x="140" y="60" text-anchor="middle" fill="#09131b" font-size="10" font-weight="700">純淨單晶矽 (Si Substrate)</text>
+                <!-- 氧化層根據狀態變厚 -->
+                <rect x="0" y="${qtimeState === 'safe' ? 40 : qtimeState === 'warning' ? 34 : 26}" width="280" height="${qtimeState === 'safe' ? 5 : qtimeState === 'warning' ? 11 : 19}" fill="${circleStroke}"/>
+              </g>
+
+              <g transform="translate(20, 150)">
+                <text x="0" y="15" fill="#94a3b8" font-size="11">氧化層物理厚度：</text>
+                <text x="120" y="15" fill="${circleStroke}" font-size="11" font-weight="800">${qtimeState === 'safe' ? '&lt; 0.2 nm (健康)' : qtimeState === 'warning' ? '0.6 nm (臨界粗糙)' : '&gt; 1.5 nm (嚴重失控)'}</text>
+
+                <text x="0" y="40" fill="#94a3b8" font-size="11">MES 系統處置：</text>
+                <text x="120" y="40" fill="${circleStroke}" font-size="11" font-weight="800">${qtimeState === 'safe' ? '正常排程派工' : qtimeState === 'warning' ? 'OHT 天車優先搬運' : '硬體互鎖強制退回重洗'}</text>
+
+                <text x="0" y="65" fill="#94a3b8" font-size="11">接觸電阻衝擊：</text>
+                <text x="120" y="65" fill="${circleStroke}" font-size="11" font-weight="700">${qtimeState === 'safe' ? '符合設計規格' : qtimeState === 'warning' ? '接阻上升 15%' : '接阻爆增 &gt; 300% (報廢)'}</text>
+              </g>
+            </g>
+          </g>
+        </svg>
+      `;
+
+      dashboardHtml = `
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">${t.ch23_metric_qtime_limit}</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-blue-dark);">4.0 小時</div>
+          <div class="eng-obj-metric-note">DHF 清洗後自然氧化層生長視窗</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">逾時後果處置</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-teal);">自動退回前清洗站</div>
+          <div class="eng-obj-metric-note">強制重新去除原生氧化物</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">智慧調度機制</div>
+          <div class="eng-obj-metric-value">Rush Lot 動態提速</div>
+          <div class="eng-obj-metric-note">剩餘 30 分鐘時自動提升 OHT 優先級</div>
+        </div>
+      `;
+
+      footerNote = t.ch23_qtime_desc;
+    } else if (activeTab === 'interlock') {
+      viewportHtml = `
+        <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="RFID Carrier and Recipe Poka-Yoke Interlock">
+          <g transform="translate(60, 40)">
+            <text x="340" y="20" text-anchor="middle" fill="#38bdf8" font-size="13" font-weight="750">機台裝載口 (Load Port) 三重防呆校驗 (Poka-Yoke Interlock)</text>
+
+            <!-- 左側：FOUP 到達 Load Port -->
+            <g transform="translate(40, 60)">
+              <rect x="0" y="0" width="180" height="200" rx="8" fill="#0f172a" stroke="#38bdf8" stroke-width="2"/>
+              <text x="90" y="30" text-anchor="middle" fill="#38bdf8" font-size="12" font-weight="750">300mm FOUP 晶圓盒</text>
+              <rect x="30" y="50" width="120" height="80" rx="4" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5"/>
+              <text x="90" y="95" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="800">Lot #P30912</text>
+              <!-- RFID 標籤與射頻光波 -->
+              <circle cx="90" cy="155" r="14" fill="#f59e0b" opacity="0.4"/>
+              <text x="90" y="160" text-anchor="middle" fill="#f59e0b" font-size="10" font-weight="800">RFID 標籤</text>
+            </g>
+
+            <!-- 中間：MES 伺服器校驗三重檢核 -->
+            <g transform="translate(260, 60)">
+              <rect x="0" y="0" width="220" height="200" rx="6" fill="#09131b" stroke="#10b981" stroke-width="2"/>
+              <text x="110" y="28" text-anchor="middle" fill="#10b981" font-size="12" font-weight="800">MES 核心即時校驗</text>
+
+              <!-- 檢核項 1 -->
+              <g transform="translate(15, 45)">
+                <circle cx="12" cy="12" r="9" fill="#10b981"/>
+                <text x="12" y="16" text-anchor="middle" fill="#ffffff" font-size="10">✓</text>
+                <text x="30" y="16" fill="#cbd5e1" font-size="10.5" font-weight="700">1. 工單合法性驗證</text>
+              </g>
+
+              <!-- 檢核項 2 -->
+              <g transform="translate(15, 85)">
+                <circle cx="12" cy="12" r="9" fill="#10b981"/>
+                <text x="12" y="16" text-anchor="middle" fill="#ffffff" font-size="10">✓</text>
+                <text x="30" y="16" fill="#cbd5e1" font-size="10.5" font-weight="700">2. 配方版本校验 (CheckSum)</text>
+              </g>
+
+              <!-- 檢核項 3 -->
+              <g transform="translate(15, 125)">
+                <circle cx="12" cy="12" r="9" fill="#10b981"/>
+                <text x="12" y="16" text-anchor="middle" fill="#ffffff" font-size="10">✓</text>
+                <text x="30" y="16" fill="#cbd5e1" font-size="10.5" font-weight="700">3. 腔體 PM 有效期驗證</text>
+              </g>
+
+              <rect x="15" y="155" width="190" height="30" rx="4" fill="#10b981" opacity="0.2"/>
+              <text x="110" y="175" text-anchor="middle" fill="#34d399" font-size="11" font-weight="800">100% 匹配 · 允許開門</text>
+            </g>
+
+            <!-- 右側：機台開門允許動作 -->
+            <g transform="translate(520, 60)">
+              <rect x="0" y="0" width="150" height="200" rx="8" fill="#0f172a" stroke="#10b981" stroke-width="2"/>
+              <text x="75" y="30" text-anchor="middle" fill="#10b981" font-size="12" font-weight="750">Load Port 閥門</text>
+              <rect x="25" y="60" width="100" height="90" rx="4" fill="#064e3b" stroke="#10b981" stroke-width="1.5"/>
+              <text x="75" y="105" text-anchor="middle" fill="#34d399" font-size="13" font-weight="800">充氮開門 🔓</text>
+              <text x="75" y="175" text-anchor="middle" fill="#cbd5e1" font-size="10">機器手臂吸取晶圓</text>
+            </g>
+          </g>
+        </svg>
+      `;
+
+      dashboardHtml = `
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">防呆校驗響應時效</div>
+          <div class="eng-obj-metric-value">&lt; 0.2 秒</div>
+          <div class="eng-obj-metric-note">RFID 掃描至開門信號下達</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">錯批進機 (Miscooperation)</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-teal);">0 件 / 百萬批</div>
+          <div class="eng-obj-metric-note">硬體連鎖達成 100% 防呆</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">配方版本簽核</div>
+          <div class="eng-obj-metric-value">電子簽核 (EDC/RMS)</div>
+          <div class="eng-obj-metric-note">未經工程簽核配方無法下載至機台</div>
+        </div>
+      `;
+
+      footerNote = t.ch23_interlock_desc;
+    } else {
+      // oee 模式
+      viewportHtml = `
+        <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Fab Overall Equipment Effectiveness OEE Dashboard">
+          <g transform="translate(60, 40)">
+            <text x="340" y="20" text-anchor="middle" fill="#38bdf8" font-size="14" font-weight="750">OEE (設備綜合效率) = 可用率 (A) × 表現效率 (P) × 品質良率 (Q)</text>
+
+            <!-- 三大指標長條 -->
+            <!-- 1. 可用率 (Availability) -->
+            <g transform="translate(40, 60)">
+              <rect x="0" y="0" width="180" height="200" rx="6" fill="#0f172a" stroke="#38bdf8" stroke-width="2"/>
+              <text x="90" y="30" text-anchor="middle" fill="#38bdf8" font-size="12" font-weight="750">可用率 (Availability)</text>
+              <text x="90" y="70" text-anchor="middle" fill="#38bdf8" font-size="28" font-weight="800">92.5%</text>
+              <line x1="20" y1="90" x2="160" y2="90" stroke="#334155"/>
+              <text x="90" y="115" text-anchor="middle" fill="#cbd5e1" font-size="10.5">總運轉時間 / 計畫時間</text>
+              <text x="90" y="140" text-anchor="middle" fill="#94a3b8" font-size="9.5">• 扣除定期 PM 維護</text>
+              <text x="90" y="160" text-anchor="middle" fill="#94a3b8" font-size="9.5">• 扣除機台意外當機</text>
+            </g>
+
+            <text x="245" y="160" text-anchor="middle" fill="#ffffff" font-size="24" font-weight="800">×</text>
+
+            <!-- 2. 表現效率 (Performance) -->
+            <g transform="translate(270, 60)">
+              <rect x="0" y="0" width="180" height="200" rx="6" fill="#0f172a" stroke="#10b981" stroke-width="2"/>
+              <text x="90" y="30" text-anchor="middle" fill="#10b981" font-size="12" font-weight="750">表現效率 (Performance)</text>
+              <text x="90" y="70" text-anchor="middle" fill="#10b981" font-size="28" font-weight="800">98.2%</text>
+              <line x1="20" y1="90" x2="160" y2="90" stroke="#334155"/>
+              <text x="90" y="115" text-anchor="middle" fill="#cbd5e1" font-size="10.5">實際產出 / 理論極限產能</text>
+              <text x="90" y="140" text-anchor="middle" fill="#94a3b8" font-size="9.5">• 扣除機器人搬運延遲</text>
+              <text x="90" y="160" text-anchor="middle" fill="#94a3b8" font-size="9.5">• 扣除微小降速運轉</text>
+            </g>
+
+            <text x="475" y="160" text-anchor="middle" fill="#ffffff" font-size="24" font-weight="800">×</text>
+
+            <!-- 3. 品質良率 (Quality) -->
+            <g transform="translate(500, 60)">
+              <rect x="0" y="0" width="180" height="200" rx="6" fill="#0f172a" stroke="#f59e0b" stroke-width="2"/>
+              <text x="90" y="30" text-anchor="middle" fill="#f59e0b" font-size="12" font-weight="750">品質良率 (Quality)</text>
+              <text x="90" y="70" text-anchor="middle" fill="#f59e0b" font-size="28" font-weight="800">99.4%</text>
+              <line x1="20" y1="90" x2="160" y2="90" stroke="#334155"/>
+              <text x="90" y="115" text-anchor="middle" fill="#cbd5e1" font-size="10.5">加工良品數 / 總進片數</text>
+              <text x="90" y="140" text-anchor="middle" fill="#94a3b8" font-size="9.5">• 扣除破片與刮傷</text>
+              <text x="90" y="160" text-anchor="middle" fill="#94a3b8" font-size="9.5">• 扣除微粒超標瑕疵</text>
+            </g>
+
+            <!-- 下方：綜合 OEE 得分 -->
+            <g transform="translate(140, 280)">
+              <rect x="0" y="0" width="440" height="50" rx="6" fill="#09131b" stroke="#38bdf8" stroke-width="2"/>
+              <text x="220" y="32" text-anchor="middle" fill="#34d399" font-size="16" font-weight="800">綜合 OEE = 90.3% (世界級旗艦晶圓廠標準)</text>
+            </g>
+          </g>
+        </svg>
+      `;
+
+      dashboardHtml = `
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">${t.ch23_metric_oee_target}</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-teal);">&gt; 90.0%</div>
+          <div class="eng-obj-metric-note">台積電/英特爾高階機台稼動標桿</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">平均故障間隔 (MTBF)</div>
+          <div class="eng-obj-metric-value">&gt; 350 小時</div>
+          <div class="eng-obj-metric-note">預測性維護 (PdM) 預先更換消耗件</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">${t.ch23_metric_fab_wip}</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-blue-dark);">~ 100,000+ 片</div>
+          <div class="eng-obj-metric-note">在製晶圓流暢平衡流動</div>
+        </div>
+      `;
+
+      footerNote = t.ch23_oee_desc;
+    }
+
+    container.innerHTML = `
+      <section class="eng-obj-card" aria-labelledby="engObjCh23Title">
+        <header class="eng-obj-header">
+          <div class="eng-obj-badge-row">
+            <span class="eng-obj-badge">${t.badge_prefix} · CH 23</span>
+            <span class="eng-obj-status">${t.live_sim}</span>
+          </div>
+          <h2 class="eng-obj-title" id="engObjCh23Title">${t.ch23_title}</h2>
+          <p class="eng-obj-subtitle">${t.ch23_sub}</p>
+        </header>
+
+        <div class="eng-obj-controls">
+          <div class="eng-obj-tab-group" role="tablist">
+            <button type="button" class="eng-obj-tab ${activeTab === 'qtime' ? 'is-active' : ''}" data-tab="qtime">${t.ch23_tab_qtime}</button>
+            <button type="button" class="eng-obj-tab ${activeTab === 'interlock' ? 'is-active' : ''}" data-tab="interlock">${t.ch23_tab_interlock}</button>
+            <button type="button" class="eng-obj-tab ${activeTab === 'oee' ? 'is-active' : ''}" data-tab="oee">${t.ch23_tab_oee}</button>
+          </div>
+        </div>
+
+        <div class="eng-obj-viewport">
+          ${viewportHtml}
+        </div>
+
+        <div class="eng-obj-dashboard">
+          ${dashboardHtml}
+        </div>
+
+        <footer class="eng-obj-footer-note">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+          <div>${footerNote}</div>
+        </footer>
+      </section>
+    `;
+
+    container.querySelectorAll('[data-tab]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        activeTab = btn.getAttribute('data-tab');
+        update();
+      });
+    });
+
+    container.querySelectorAll('.qtime-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        qtimeState = btn.getAttribute('data-q');
+        update();
+      });
+    });
+  }
+
+  update();
+}
+
+/**
+ * ══════════════════════════════════════════════════════════════════════════════
  * 總調度入口 (Unified Mount Orchestrator)
  * ══════════════════════════════════════════════════════════════════════════════
  */
 export function mountEngineeringObject(chId, container, lang = 'zh') {
   if (!container) return;
-  if (chId === 'ch01') {
+  if (chId === 'ch00') {
+    renderChipJourneyObject(container, lang);
+  } else if (chId === 'ch01') {
     renderFabEnvironmentObject(container, lang);
   } else if (chId === 'ch02') {
     renderSemiconductorPhysicsObject(container, lang);
@@ -6174,12 +7639,16 @@ export function mountEngineeringObject(chId, container, lang = 'zh') {
     renderTransistor3DObject(container, lang);
   } else if (chId === 'ch13') {
     renderMemoryTechObject(container, lang);
+  } else if (chId === 'ch14') {
+    renderProcessScalingObject(container, lang);
   } else if (chId === 'ch15') {
     renderMetrologyInspectionObject(container, lang);
   } else if (chId === 'ch16') {
     renderYieldFailureAnalysisObject(container, lang);
   } else if (chId === 'ch17') {
     renderProcessControlObject(container, lang);
+  } else if (chId === 'ch18') {
+    renderExcursionControlObject(container, lang);
   } else if (chId === 'ch19') {
     renderWaferTestObject(container, lang);
   } else if (chId === 'ch20') {
@@ -6188,6 +7657,8 @@ export function mountEngineeringObject(chId, container, lang = 'zh') {
     renderAdvancedPackagingObject(container, lang);
   } else if (chId === 'ch22') {
     renderReliabilityTestingObject(container, lang);
+  } else if (chId === 'ch23') {
+    renderSmartFabAutomationObject(container, lang);
   }
 }
 
