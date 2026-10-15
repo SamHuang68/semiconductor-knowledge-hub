@@ -19,6 +19,10 @@ import { renderEngineeringCard, bindEngineeringEvent, registerEngineeringCleanup
 
 const esc = text => String(text).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 
+// 沿用原字串，以同一文字節點分行；閱讀清單與 SVG 匯出仍取相同內容。
+const svgTextLines = (text, x, y, gap = 17) => text.split('\n')
+  .map((line, index) => `<tspan x="${x}" y="${y + index * gap}">${esc(line)}</tspan>`).join(' ');
+
 // 雙語字典
 const TEXTS = {
   zh: {
@@ -2182,32 +2186,32 @@ export function renderPlasmaEtchObject(container, lang = 'zh') {
       viewportHtml = `
         <svg viewBox="0 0 800 380" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Etch Anomalies">
           <!-- 1. 正常垂直 (Ideal) -->
-          <g transform="translate(60, 40)">
-            <text x="70" y="20" text-anchor="middle" fill="#10b981" font-size="12" font-weight="700">${t.ch06_profile_ideal}</text>
+          <g transform="translate(60, 70)">
+            <text text-anchor="middle" fill="#10b981" font-size="12" font-weight="700">${svgTextLines(t.ch06_profile_ideal.replace(' Anisotropic ', '\nAnisotropic ').replace(' (', '\n('), 70, -35)}</text>
             <path d="M 10,40 L 45,40 L 45,220 L 95,220 L 95,40 L 130,40 L 130,240 L 10,240 Z" fill="#1e293b" stroke="#10b981" stroke-width="1.5"/>
             <rect x="10" y="25" width="35" height="15" fill="#f59e0b"/>
             <rect x="95" y="25" width="35" height="15" fill="#f59e0b"/>
           </g>
 
           <!-- 2. 底切掏空 (Undercut) -->
-          <g transform="translate(240, 40)">
-            <text x="70" y="20" text-anchor="middle" fill="#ef4444" font-size="12" font-weight="700">${t.ch06_profile_undercut}</text>
+          <g transform="translate(240, 70)">
+            <text text-anchor="middle" fill="#ef4444" font-size="12" font-weight="700">${svgTextLines(t.ch06_profile_undercut.replace(' (', '\n('), 70, -35)}</text>
             <path d="M 10,40 L 45,40 Q 20,110 45,220 L 95,220 Q 120,110 95,40 L 130,40 L 130,240 L 10,240 Z" fill="#1e293b" stroke="#ef4444" stroke-width="1.5"/>
             <rect x="10" y="25" width="35" height="15" fill="#f59e0b"/>
             <rect x="95" y="25" width="35" height="15" fill="#f59e0b"/>
           </g>
 
           <!-- 3. 側壁鼓出 (Bowing) -->
-          <g transform="translate(420, 40)">
-            <text x="70" y="20" text-anchor="middle" fill="#f59e0b" font-size="12" font-weight="700">${t.ch06_profile_bowing}</text>
+          <g transform="translate(420, 70)">
+            <text text-anchor="middle" fill="#f59e0b" font-size="12" font-weight="700">${svgTextLines(t.ch06_profile_bowing.replace(' (', '\n('), 70, -35)}</text>
             <path d="M 10,40 L 45,40 Q 30,100 45,220 L 95,220 Q 110,100 95,40 L 130,40 L 130,240 L 10,240 Z" fill="#1e293b" stroke="#f59e0b" stroke-width="1.5"/>
             <rect x="10" y="25" width="35" height="15" fill="#f59e0b"/>
             <rect x="95" y="25" width="35" height="15" fill="#f59e0b"/>
           </g>
 
           <!-- 4. RIE 延遲 (RIE Lag) -->
-          <g transform="translate(600, 40)">
-            <text x="70" y="20" text-anchor="middle" fill="#38bdf8" font-size="12" font-weight="700">${t.ch06_profile_lag}</text>
+          <g transform="translate(600, 70)">
+            <text text-anchor="middle" fill="#38bdf8" font-size="12" font-weight="700">${svgTextLines(t.ch06_profile_lag.replace(' / ', '\n/ ').replace(' (', '\n('), 70, -35)}</text>
             <!-- 寬槽 (深) -->
             <path d="M 10,40 L 30,40 L 30,220 L 70,220 L 70,40 L 85,40 L 85,150 L 105,150 L 105,40 L 130,40 L 130,240 L 10,240 Z" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5"/>
             <text x="50" y="235" text-anchor="middle" fill="#38bdf8" font-size="10">寬槽深</text>
@@ -4313,7 +4317,8 @@ export function renderIngotWaferObject(container, lang = 'zh') {
           </g>
 
           <!-- 中段金剛石多線鋸切割網 (Diamond Multi-Wire Web) -->
-          <g transform="translate(160, 160)" class="anim-saw-wire">
+          <g transform="translate(160, 160)">
+            <g class="anim-saw-wire">
             <!-- 左右兩側主導向滾輪 (Guide Rollers) -->
             <circle cx="10" cy="40" r="30" fill="#334155" stroke="#64748b" stroke-width="2"/>
             <circle cx="470" cy="40" r="30" fill="#334155" stroke="#64748b" stroke-width="2"/>
@@ -4323,6 +4328,7 @@ export function renderIngotWaferObject(container, lang = 'zh') {
             `).join('')}
             <text x="240" y="95" text-anchor="middle" fill="#38bdf8" font-size="12" font-weight="700">⇄ 金剛石鋸線高速往復運動 (Wire Speed: 40 m/s)</text>
             <text x="240" y="112" text-anchor="middle" fill="#94a3b8" font-size="11">電鍍金剛石顆粒 (8-12 µm 磨料) + 冷卻研磨切削液</text>
+          </g>
           </g>
 
           <!-- 下方落入之高精度切片晶圓陣列 (Sliced Wafers) -->
@@ -4685,7 +4691,7 @@ export function renderWetCleanObject(container, lang = 'zh') {
       const isDetached = removalRatio >= 1.0;
 
       viewportHtml = `
-        <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Megasonic Acoustic Boundary Layer and Particle Stripping Physics">
+        <svg viewBox="0 0 800 480" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Megasonic Acoustic Boundary Layer and Particle Stripping Physics">
           <!-- 上方兆聲波石英發振器 (Megasonic Transducer Array) -->
           <g transform="translate(80, 25)">
             <rect x="0" y="0" width="640" height="38" rx="5" fill="#1e293b" stroke="#0ea5e9" stroke-width="2"/>
@@ -4695,12 +4701,14 @@ export function renderWetCleanObject(container, lang = 'zh') {
           </g>
 
           <!-- 高頻縱波聲壓震盪場 (Acoustic Wavefronts) 隨頻率密集化 -->
-          <g transform="translate(90, 75)" class="anim-acoustic">
+          <g transform="translate(90, 75)">
+            <g class="anim-acoustic">
             ${Array.from({ length: 5 }, (_, i) => {
-              const yPos = i * 22 + 10;
+              const yPos = i * 16 + 10;
               return `<line x1="10" y1="${yPos}" x2="610" y2="${yPos}" stroke="#0ea5e9" stroke-width="1.8" stroke-dasharray="8 4" opacity="${0.9 - i * 0.12}"/>`;
             }).join('')}
-            <text x="310" y="75" text-anchor="middle" fill="#38bdf8" font-size="11" font-weight="600">
+            </g>
+            <text x="310" y="105" text-anchor="middle" fill="#38bdf8" font-size="11" font-weight="600">
               高頻縱波聲壓場 · 聲微流剪切 (Acoustic Microstreaming Drag: F_drag = ${fDragNn.toFixed(2)} nN)
             </text>
           </g>
@@ -4708,11 +4716,11 @@ export function renderWetCleanObject(container, lang = 'zh') {
           <!-- 下方晶圓表面邊界層微觀物理剖面 -->
           <g transform="translate(80, 190)">
             <!-- 背景水動力層容器 -->
-            <rect x="0" y="0" width="640" height="190" fill="#0b1329" stroke="#334155" stroke-width="1.5" rx="5"/>
+            <rect x="0" y="0" width="640" height="265" fill="#0b1329" stroke="#334155" stroke-width="1.5" rx="5"/>
 
             <!-- 聲學邊界層 δ_ac 動態高度矩形 -->
             <rect x="20" y="${160 - blHeight}" width="600" height="${blHeight}" fill="#0284c7" opacity="0.32" stroke="#38bdf8" stroke-width="1.2" stroke-dasharray="4 2"/>
-            <text x="40" y="${160 - blHeight - 8}" fill="#38bdf8" font-size="11" font-weight="700">
+            <text x="40" y="205" fill="#38bdf8" font-size="11" font-weight="700">
               聲學邊界層厚度: δ_ac = √(ν / πf) = ${deltaAcUm.toFixed(3)} µm ${acousticFreq >= 0.8 ? '(壓縮 >75%)' : '(邊界層過厚)'}
             </text>
 
@@ -4725,7 +4733,7 @@ export function renderWetCleanObject(container, lang = 'zh') {
               <!-- 成功脫附：微粒向上剝離飛出 -->
               <g transform="translate(320, ${160 - blHeight - 25})" class="anim-particle-lift">
                 <circle cx="0" cy="0" r="${pRadius}" fill="#34d399" stroke="#ffffff" stroke-width="2"/>
-                <text x="0" y="4" text-anchor="middle" fill="#0f172a" font-size="9" font-weight="800">${particleSize}nm</text>
+                <text x="-40" y="4" text-anchor="end" fill="#e2e8f0" font-size="9" font-weight="800">${particleSize}nm</text>
 
                 <!-- 向上剪切曳力向量 F_drag -->
                 <path d="M 0,-${pRadius} L 30,-${pRadius + 35}" stroke="#34d399" stroke-width="2.5" marker-end="url(#arrow)"/>
@@ -4735,34 +4743,31 @@ export function renderWetCleanObject(container, lang = 'zh') {
                 <path d="M 0,${pRadius} L 0,${pRadius + 16}" stroke="#f87171" stroke-width="1.5" stroke-dasharray="2 2"/>
                 <text x="25" y="${pRadius + 12}" fill="#f87171" font-size="9.5">F_vdw = ${fVdwNn.toFixed(2)} nN</text>
 
-                <text x="0" y="-${pRadius - 25}" text-anchor="middle" fill="#38bdf8" font-size="11.5" font-weight="750">
-                  微粒克服吸附脫附捲走 (剝離比: ${removalRatio.toFixed(2)}x · PRE: ${prePercent.toFixed(1)}%)
-                </text>
               </g>
+              <text x="320" y="232" text-anchor="middle" fill="#38bdf8" font-size="11.5" font-weight="750"><tspan x="320" y="232">微粒克服吸附脫附捲走 </tspan><tspan x="320" dy="18">(剝離比: ${removalRatio.toFixed(2)}x · PRE: ${prePercent.toFixed(1)}%)</tspan></text>
             ` : `
               <!-- 未達剝離條件：微粒困於滯留死區 -->
               <g transform="translate(320, ${160 - pRadius})">
                 <circle cx="0" cy="0" r="${pRadius}" fill="#ef4444" stroke="#ffffff" stroke-width="2"/>
-                <text x="0" y="4" text-anchor="middle" fill="#ffffff" font-size="9" font-weight="800">${particleSize}nm</text>
+                <text x="-40" y="4" text-anchor="end" fill="#ffffff" font-size="9" font-weight="800">${particleSize}nm</text>
 
                 <!-- 向下凡得瓦爾力主導 -->
                 <path d="M 0,${pRadius} L 0,${pRadius + 18}" stroke="#ef4444" stroke-width="2.5" marker-end="url(#arrow)"/>
-                <text x="25" y="${pRadius + 14}" fill="#ef4444" font-size="10.5" font-weight="700">F_vdw = ${fVdwNn.toFixed(2)} nN (強吸附)</text>
+                <path d="M -35,-43 L -15,-43 L 0,${pRadius + 18}" fill="none" stroke="#ef4444" stroke-width="1" stroke-dasharray="3 2"/>
+                <text x="-45" y="-40" text-anchor="end" fill="#ef4444" font-size="10.5" font-weight="700">F_vdw = ${fVdwNn.toFixed(2)} nN (強吸附)</text>
 
                 <!-- 微弱剪切力 -->
                 <path d="M 0,-${pRadius} L 15,-${pRadius + 10}" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="2 2"/>
                 <text x="25" y="-${pRadius}" fill="#94a3b8" font-size="9.5">F_drag = ${fDragNn.toFixed(2)} nN (受困)</text>
 
-                <text x="0" y="-${pRadius + 16}" text-anchor="middle" fill="#ef4444" font-size="11" font-weight="750">
-                  微粒深陷死區停滯層無法沖刷 (剝離比: ${removalRatio.toFixed(2)}x &lt; 1.0 · PRE: ${prePercent.toFixed(1)}%)
-                </text>
               </g>
+              <text x="320" y="232" text-anchor="middle" fill="#ef4444" font-size="11" font-weight="750"><tspan x="320" y="232">微粒深陷死區停滯層無法沖刷 </tspan><tspan x="320" dy="18">(剝離比: ${removalRatio.toFixed(2)}x &lt; 1.0 · PRE: ${prePercent.toFixed(1)}%)</tspan></text>
             `}
 
             <!-- 物理定律標籤浮水印 -->
-            <rect x="420" y="15" width="200" height="42" rx="4" fill="#0f172a" opacity="0.85" stroke="#38bdf8" stroke-width="1"/>
-            <text x="520" y="32" text-anchor="middle" fill="#38bdf8" font-size="10" font-weight="700">δ_ac = √(ν / πf)</text>
-            <text x="520" y="47" text-anchor="middle" fill="#cbd5e1" font-size="9.5">F_vdw = (A_H · d_p) / (12 z_0²)</text>
+            <rect x="20" y="15" width="200" height="42" rx="4" fill="#0f172a" opacity="0.85" stroke="#38bdf8" stroke-width="1"/>
+            <text x="120" y="32" text-anchor="middle" fill="#38bdf8" font-size="10" font-weight="700">δ_ac = √(ν / πf)</text>
+            <text x="120" y="47" text-anchor="middle" fill="#cbd5e1" font-size="9.5">F_vdw = (A_H · d_p) / (12 z_0²)</text>
           </g>
         </svg>
       `;
@@ -4809,19 +4814,24 @@ export function renderWetCleanObject(container, lang = 'zh') {
           <g transform="translate(360, 60)">
             <rect x="0" y="0" width="80" height="260" rx="3" fill="#64748b" stroke="#cbd5e1" stroke-width="2"/>
             <text x="40" y="100" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="700" transform="rotate(-90 40 100)">晶圓緩慢向上提拉 ↑ (1-2 mm/s)</text>
-            <text x="40" y="60" text-anchor="middle" fill="#34d399" font-size="10.5">100% 潔淨乾爽</text>
+            <path d="M -15,57 L 0,57" fill="none" stroke="#34d399" stroke-width="1"/>
+            <text x="-25" y="60" text-anchor="end" fill="#34d399" font-size="10.5">100% 潔淨乾爽</text>
           </g>
 
           <!-- 彎月面 (Meniscus) 表面張力差驅動微觀流動 (Marangoni Effect) -->
-          <g transform="translate(440, 150)" class="anim-liquid-flow">
+          <g transform="translate(440, 150)">
+            <g class="anim-liquid-flow">
             <!-- 彎月水膜弧線 -->
             <path d="M 0,20 Q 30,30 60,60" fill="none" stroke="#38bdf8" stroke-width="4"/>
+            </g>
             <!-- IPA 融入使得頂部表面張力低 -->
             <text x="75" y="25" fill="#fbbf24" font-size="11" font-weight="700">頂部低表面張力 (γ_low ≈ 22 mN/m)</text>
             <!-- 底部純水表面張力高 -->
             <text x="75" y="70" fill="#38bdf8" font-size="11" font-weight="700">槽內高表面張力 (γ_high ≈ 72 mN/m)</text>
             <!-- Marangoni 向下拉力箭頭 -->
-            <path d="M 25,25 L 45,55" stroke="#10b981" stroke-width="3" marker-end="url(#arrow)"/>
+            <g class="anim-liquid-flow">
+              <path d="M 25,25 L 45,55" stroke="#10b981" stroke-width="3" marker-end="url(#arrow)"/>
+            </g>
             <text x="75" y="48" fill="#34d399" font-size="11.5" font-weight="750">⇓ Marangoni 表面張力梯度拉回力</text>
             <text x="75" y="95" fill="#cbd5e1" font-size="10">水膜自發被向下吸回水槽，無水滴殘留蒸發</text>
           </g>
@@ -5198,15 +5208,15 @@ export function renderMemoryTechObject(container, lang = 'zh') {
       const refiX = Math.round((refreshWindowMs / 128) * 160);
 
       viewportHtml = `
-        <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="DRAM 1T1C High-Aspect Capacitor Structure and Discharge Kinetics">
+        <svg viewBox="0 0 800 470" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="DRAM 1T1C High-Aspect Capacitor Structure and Discharge Kinetics">
           <!-- 上方超高深寬比圓柱電容陣列 (動態深寬比) -->
           <g transform="translate(50, 25)">
-            <rect x="0" y="0" width="470" height="235" fill="#0f172a" stroke="#0ea5e9" stroke-width="1.5" rx="6"/>
+            <rect x="0" y="0" width="470" height="285" fill="#0f172a" stroke="#0ea5e9" stroke-width="1.5" rx="6"/>
             <text x="235" y="24" text-anchor="middle" fill="#38bdf8" font-size="12" font-weight="750">DRAM 圓柱立體電容 (Aspect Ratio ${dramAR}:1 · C = ${cCell.toFixed(1)} fF)</text>
 
             <!-- 垂直圓柱電容結構 (動態視覺高度) -->
             ${[45, 115, 185, 255, 325, 395].map((x, idx) => `
-              <g transform="translate(${x}, ${215 - capVisH})">
+              <g transform="translate(${x}, ${230 - capVisH})">
                 <!-- 外層金屬電極 (Outer TiN Plate) -->
                 <rect x="-14" y="0" width="28" height="${capVisH}" rx="4" fill="#1e293b" stroke="#cbd5e1" stroke-width="1.5"/>
                 <!-- 中間高介電薄膜 (High-k ZAZ: ZrO₂ / Al₂O₃ / ZrO₂) -->
@@ -5218,7 +5228,7 @@ export function renderMemoryTechObject(container, lang = 'zh') {
                 <text x="0" y="${capVisH + 14}" text-anchor="middle" fill="#38bdf8" font-size="9">C${idx + 1}</text>
               </g>
             `).join('')}
-            <text x="235" y="222" text-anchor="middle" fill="#94a3b8" font-size="10">TiN 電極 + 2nm ZrO₂/Al₂O₃/ZrO₂ 高介電質 · 漏電 ${iLeak.toFixed(1)} fA @ ${dramTemp}°C</text>
+            <text x="235" y="268" text-anchor="middle" fill="#94a3b8" font-size="10">TiN 電極 + 2nm ZrO₂/Al₂O₃/ZrO₂ 高介電質 · 漏電 ${iLeak.toFixed(1)} fA @ ${dramTemp}°C</text>
           </g>
 
           <!-- 右側：電容電荷漏電動力學示波器 (Charge Retention Decay) -->
@@ -5247,7 +5257,7 @@ export function renderMemoryTechObject(container, lang = 'zh') {
           </g>
 
           <!-- 下方 1T 存取電晶體與埋入式字元線 (Buried Word-Line bWL) -->
-          <g transform="translate(50, 275)">
+          <g transform="translate(50, 325)">
             <rect x="0" y="0" width="700" height="115" fill="#1e293b" stroke="#334155" stroke-width="1.5" rx="6"/>
             <!-- 埋入式字元線 (bWL) -->
             <rect x="50" y="40" width="270" height="32" rx="3" fill="#475569" stroke="#f59e0b" stroke-width="1.5"/>
@@ -5371,9 +5381,9 @@ export function renderMemoryTechObject(container, lang = 'zh') {
         <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="HBM 3D TSV High-Bandwidth Stacking">
           <!-- 底層邏輯控制基底 (Base Die) -->
           <g transform="translate(150, 310)">
-            <rect x="0" y="0" width="500" height="50" rx="4" fill="#0f172a" stroke="#0ea5e9" stroke-width="2"/>
+            <rect x="0" y="0" width="500" height="64" rx="4" fill="#0f172a" stroke="#0ea5e9" stroke-width="2"/>
             <text x="250" y="30" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="750">底層邏輯控制晶粒 (Base Logic Die / Buffer Die)</text>
-            <text x="250" y="44" text-anchor="middle" fill="#38bdf8" font-size="10">內建 BIST 自我檢測、修復電路與 1024-bit PHY 介面</text>
+            <text x="250" y="54" text-anchor="middle" fill="#38bdf8" font-size="10">內建 BIST 自我檢測、修復電路與 1024-bit PHY 介面</text>
           </g>
 
           <!-- 垂直堆疊 4 層 DRAM Core Dies (以 TSV 貫穿) -->
@@ -5723,7 +5733,8 @@ export function renderMetrologyInspectionObject(container, lang = 'zh') {
             <!-- 照射光線 -->
             <line x1="120" y1="35" x2="300" y2="220" stroke="#38bdf8" stroke-width="2.5"/>
             <text x="170" y="110" fill="#38bdf8" font-size="10">線偏振光 (Linearly Polarized)</text>
-            <text x="250" y="195" fill="#f59e0b" font-size="11" font-weight="700">θ = 70°</text>
+            <path d="M 170,145 L 240,158" fill="none" stroke="#f59e0b" stroke-width="1" stroke-dasharray="3 2"/>
+            <text x="120" y="150" fill="#f59e0b" font-size="11" font-weight="700">θ = 70°</text>
           </g>
 
           <!-- 晶圓多層薄膜微觀干涉區 (Thin Film Stack) -->
@@ -7124,9 +7135,11 @@ export function renderFabEnvironmentObject(container, lang = 'zh') {
             ${Array.from({ length: 14 }, (_, i) => {
               const xPos = i * 44 + 48;
               return `
-                <g transform="translate(${xPos}, 0)" class="anim-liquid-flow">
+                <g transform="translate(${xPos}, 0)">
+                  <g class="anim-liquid-flow">
                   <line x1="0" y1="10" x2="0" y2="180" stroke="${isTurbulentRisk ? '#f87171' : '#38bdf8'}" stroke-width="${lineStrokeWidth}" stroke-dasharray="6 4" opacity="${lineOpacity}"/>
                   <polygon points="-3,180 3,180 0,186" fill="${isTurbulentRisk ? '#f87171' : '#38bdf8'}"/>
+                </g>
                 </g>
               `;
             }).join('')}
@@ -8907,7 +8920,7 @@ export function renderProcessScalingObject(container, lang = 'zh') {
       const cur = nodes[activeNode];
 
       viewportHtml = `
-        <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Process Nodes Pitch Scale Comparison">
+        <svg viewBox="0 0 800 480" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Process Nodes Pitch Scale Comparison">
           <!-- 節點選擇快捷標籤 -->
           <g transform="translate(60, 20)">
             ${Object.keys(nodes).map((k, i) => `
@@ -8920,7 +8933,7 @@ export function renderProcessScalingObject(container, lang = 'zh') {
 
           <!-- 幾何標尺可視化區 -->
           <g transform="translate(60, 70)">
-            <rect x="0" y="0" width="680" height="320" rx="8" fill="#09131b" stroke="#1e293b" stroke-width="1.5"/>
+            <rect x="0" y="0" width="680" height="385" rx="8" fill="#09131b" stroke="#1e293b" stroke-width="1.5"/>
 
             <!-- 標題與當前節點真實參數 -->
             <text x="30" y="35" fill="#38bdf8" font-size="14" font-weight="800">${cur.name}</text>
@@ -8932,28 +8945,29 @@ export function renderProcessScalingObject(container, lang = 'zh') {
               <text x="0" y="15" fill="#cbd5e1" font-size="11" font-weight="700">垂直閘極線 (Gate Lines / Poly)：</text>
               <g transform="translate(0, 30)">
                 ${(() => {
-                  const scale = activeNode === 'n28' ? 1.4 : activeNode === 'n7' ? 2.5 : activeNode === 'n3' ? 3.4 : 4.0;
+                  // 兩種間距採相同顯示倍率，完整保留三組線形與數值。
+                  const scale = (activeNode === 'n28' ? 1.4 : activeNode === 'n7' ? 2.5 : activeNode === 'n3' ? 3.4 : 4.0) * 0.65;
                   const cppPx = cur.cpp * scale;
                   return [0, 1, 2].map(idx => `
-                    <rect x="${idx * cppPx}" y="0" width="${18 * scale * 0.4}" height="100" rx="2" fill="#38bdf8" opacity="0.8"/>
-                    <line x1="${idx * cppPx}" y1="110" x2="${(idx + 1) * cppPx}" y2="110" stroke="#f59e0b" stroke-width="2"/>
+                    <rect x="${idx * cppPx}" y="0" width="${18 * scale * 0.4}" height="70" rx="2" fill="#38bdf8" opacity="0.8"/>
+                    <line x1="${idx * cppPx}" y1="80" x2="${(idx + 1) * cppPx}" y2="80" stroke="#f59e0b" stroke-width="2"/>
                   `).join('') + `
-                    <text x="${cppPx / 2}" y="125" text-anchor="middle" fill="#f59e0b" font-size="11" font-weight="800">CPP = ${cur.cpp} nm</text>
+                    <text x="${cppPx / 2}" y="97" text-anchor="middle" fill="#f59e0b" font-size="11" font-weight="800">CPP = ${cur.cpp} nm</text>
                   `;
                 })()}
               </g>
 
               <!-- 底層金屬線 (水平排列) -->
-              <g transform="translate(0, 150)">
+              <g transform="translate(0, 140)">
                 <text x="0" y="15" fill="#cbd5e1" font-size="11" font-weight="700">底層最小金屬間距 (M1 Pitch)：</text>
                 <g transform="translate(0, 30)">
                   ${(() => {
-                    const scale = activeNode === 'n28' ? 1.4 : activeNode === 'n7' ? 2.5 : activeNode === 'n3' ? 3.4 : 4.0;
+                    const scale = (activeNode === 'n28' ? 1.4 : activeNode === 'n7' ? 2.5 : activeNode === 'n3' ? 3.4 : 4.0) * 0.65;
                     const mpPx = cur.mp * scale;
                     return [0, 1, 2].map(idx => `
-                      <rect x="0" y="${idx * mpPx * 0.7}" width="280" height="${10 * scale * 0.35}" rx="2" fill="#10b981" opacity="0.8"/>
+                      <rect x="0" y="${idx * mpPx * 0.7}" width="240" height="${10 * scale * 0.35}" rx="2" fill="#10b981" opacity="0.8"/>
                     `).join('') + `
-                      <text x="300" y="${mpPx * 0.7}" fill="#10b981" font-size="11" font-weight="800">M1P = ${cur.mp} nm</text>
+                      <text x="250" y="${mpPx * 0.7}" fill="#10b981" font-size="11" font-weight="800">M1P = ${cur.mp} nm</text>
                     `;
                   })()}
                 </g>
@@ -9364,7 +9378,7 @@ export function renderExcursionControlObject(container, lang = 'zh') {
             </g>
 
             <!-- 下方：防呆閉環 8D -->
-            <g transform="translate(40, 200)">
+            <g transform="translate(40, 230)">
               <rect x="0" y="0" width="600" height="60" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1"/>
               <text x="300" y="25" text-anchor="middle" fill="#38bdf8" font-size="11.5" font-weight="700">閉環防再發對策：8D 報告 + Poka-Yoke 機台配方互鎖</text>
               <text x="300" y="45" text-anchor="middle" fill="#94a3b8" font-size="10">確認 Root Cause 根因，修改作業標準書 (SOP)，更新防呆規則後方可釋放機台生產</text>
