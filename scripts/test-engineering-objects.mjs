@@ -150,6 +150,7 @@ console.log('--- 測試 9: Ch 03 柴氏長晶與切片模型切換 ---');
 const c3 = new MockElement();
 mountEngineeringObject('ch03', c3, 'zh');
 assert.ok(c3.innerHTML.includes('柴氏長晶爐'), '預設應展示 CZ 長晶爐');
+assert.ok(c3.innerHTML.includes('Voronkov') || c3.innerHTML.includes('V/G'), '應展示 Voronkov 連續物理準則');
 const sawBtn = c3.children.find(c => c.getAttribute('data-tab') === 'saw');
 if (sawBtn) {
   sawBtn.dispatchEvent({ type: 'click' });
@@ -205,6 +206,7 @@ console.log('--- 測試 14: Ch 16 晶圓缺陷空間圖譜與 FIB 切片切換 -
 const c16 = new MockElement();
 mountEngineeringObject('ch16', c16, 'zh');
 assert.ok(c16.innerHTML.includes('缺陷特徵診斷') || c16.innerHTML.includes('同心圓環狀缺陷'), '預設應展示晶圓缺陷圖譜');
+assert.ok(c16.innerHTML.includes('Murphy') || c16.innerHTML.includes('GDPW'), '應展示 Murphy/Poisson 連續良率缺陷模型');
 const fibBtn = c16.children.find(c => c.getAttribute('data-tab') === 'fib');
 if (fibBtn) {
   fibBtn.dispatchEvent({ type: 'click' });

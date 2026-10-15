@@ -230,7 +230,19 @@ const TEXTS = {
     ch03_metric_pull: '提拉速率 (Pull Rate)',
     ch03_metric_thick: '300mm 晶圓標準厚度',
     ch03_metric_roughness: '表面原子級粗糙度 RMS',
-    ch03_cz_desc: '柴氏長晶法 (Czochralski Method) 先將電子級多晶矽於 1425°C 熔化，浸入 <100> 籽晶後以反向旋轉提拉。初期高速提拉形成細頸 (Dash Necking) 徹底排除晶格差排，再降低速率放肩、等徑拉出直徑 300mm、重達數百公斤的完美無差排單晶矽棒。',
+    ch03_pull_slider: '提拉速度 Pull Speed (V):',
+    ch03_grad_slider: '軸向溫度梯度 Axial Temp Gradient (G):',
+    ch03_voronkov_ratio: 'Voronkov 準則比值 (V/G):',
+    ch03_defect_regime: '晶體微缺陷狀態 (Microdefect Regime):',
+    ch03_yield_impact: '前瞻元件良率衝擊 (Device Yield Impact):',
+    ch03_crit_baseline: '臨界對稱基準 (V/G)crit ≈ 0.134 mm²/(min·K)',
+    ch03_regime_vacancy: '空位過飽和 (Vacancy-Rich) · 八面體 COP 聚集孔洞',
+    ch03_regime_pure: '完美純矽無缺陷邊界 (Defect-Free Pure Silicon Margin)',
+    ch03_regime_interstitial: '間隙矽原子過飽和 (Interstitial-Rich) · 巨大差排環',
+    ch03_impact_vacancy: 'COP 微孔穿透極薄閘極氧化層 (GOI 早期電性擊穿)',
+    ch03_impact_pure: '自間隙與空位動態對稱湮滅 · 達成 100% 理想晶圓零原生微缺陷',
+    ch03_impact_interstitial: '差排環深能階引發接面漏電 (Junction Leakage 功耗暴增)',
+    ch03_cz_desc: '柴氏長晶法 (Czochralski Method) 先將電子級多晶矽於 1425°C 熔化，浸入 <100> 籽晶後以反向旋轉提拉。初期高速提拉形成細頸 (Dash Necking) 徹底排除晶格差排，再依據 Voronkov 準則精密調控 V/G 比值，拉出直徑 300mm、零原生微缺陷的超純單晶矽棒。',
     ch03_saw_desc: '利用數百條金剛石微粒電鍍鋼線以 30~50 m/s 高速往復運動，將單晶棒一次切割成上百片晶圓。切縫損耗 (Kerf Loss) 控制在 ~100 µm，並精確調控張力以壓低晶圓翹曲 (Warp/Bow)。',
     ch03_polish_desc: '晶圓邊緣經過 CNC 鑽石砂輪研磨出精確圓弧倒角 (Bevel Edge)，防止後續碎裂與光阻積聚；接著透過行星齒輪帶動上下研磨盤進行雙面研磨 (Double-Side Lapping) 與化學機械雙面拋光 (DSP)，將表面微觀起伏降至原子級 (<0.1nm RMS)！',
 
@@ -304,7 +316,14 @@ const TEXTS = {
     ch16_metric_yield: '典型先進製程成熟良率',
     ch16_metric_lamella: 'FIB 試樣薄片厚度',
     ch16_metric_tem_res: 'TEM 空間解析度',
-    ch16_wafermap_desc: '晶圓圖空間分佈是製程機台的指紋：環狀 (Ring) 常見於 CMP 壓力不均或旋塗乾燥；邊緣 (Edge) 指向光阻邊緣去膠 (EBR) 異常或電漿邊界效應；刮痕 (Scratch) 來自機械手臂或傳送盒摩擦；聚集 (Cluster) 警示微粒爆發。良率工程師透過空間特徵能直接鎖定出問題的腔體。',
+    ch16_area_slider: '晶片面積 Die Area (A):',
+    ch16_defect_slider: '致命缺陷密度 Defect Density (D₀):',
+    ch16_gross_dies: '單片晶圓總晶粒數 (Gross Dies):',
+    ch16_murphy_yield: 'Murphy 預測良率 (Yield Y):',
+    ch16_gdpw_label: '合格良品晶粒數 (GDPW):',
+    ch16_die_cost: '每顆淨良品裸晶成本 (Die Cost):',
+    ch16_cost_loss: '良率缺陷成本損耗 (Defect Cost Loss):',
+    ch16_wafermap_desc: '晶圓圖空間分佈是製程機台的指紋：環狀 (Ring) 常見於 CMP 壓力不均或旋塗乾燥；邊緣 (Edge) 指向光阻邊緣去膠 (EBR) 異常或電漿邊界效應；刮痕 (Scratch) 來自機械手臂或傳送盒摩擦；聚集 (Cluster) 警示微粒爆發。結合 Murphy/Poisson 缺陷連續方程式可即時預測 GDPW 與單位成本衝擊。',
     ch16_fib_desc: 'Dual-Beam FIB 整合高能鎵離子束 (Ga⁺ FIB) 與掃描電鏡 (SEM)：先在失效晶粒上方沉積保護性鉑 (Pt) 沉積層，再利用離子束高速物理濺鍍掏空兩側，切出一片厚度僅 20~30 nm 的微型薄片 (TEM Lamella)，並由奈米機械手臂 (Omniprobe) 原位提取出來。',
     ch16_tem_desc: '穿透式電子顯微鏡 (TEM @ 200kV) 讓極高能電子束穿透超薄樣片，電子與晶格原子核發生繞射干涉，產生原子級對比像 (HR-TEM)。工程師能親眼看見矽原子柱排列、閘極氧化層穿隧擊穿針孔 (Pinhole) 與晶格差排滑移，為重大良率事故提供定讞證據。',
 
@@ -710,7 +729,19 @@ const TEXTS = {
     ch03_metric_pull: 'Pull Rate',
     ch03_metric_thick: '300mm Wafer Thickness',
     ch03_metric_roughness: 'Surface Roughness RMS',
-    ch03_cz_desc: 'The Czochralski (CZ) technique melts 11N electronic-grade polysilicon at 1425°C. A <100> seed crystal dips into the melt and counter-rotates. High-speed Dash necking eliminates dislocations, followed by crown flaring and body growth into a 300mm single-crystal ingot.',
+    ch03_pull_slider: 'Crystal Pull Speed (V):',
+    ch03_grad_slider: 'Axial Temp Gradient (G):',
+    ch03_voronkov_ratio: 'Voronkov Ratio (V/G):',
+    ch03_defect_regime: 'Microdefect Regime:',
+    ch03_yield_impact: 'Device Yield Impact:',
+    ch03_crit_baseline: 'Critical Baseline (V/G)crit ≈ 0.134 mm²/(min·K)',
+    ch03_regime_vacancy: 'Vacancy-Rich Regime · Octahedral COP / D-defects',
+    ch03_regime_pure: 'Defect-Free Pure Silicon Margin (Ideal Wafer)',
+    ch03_regime_interstitial: 'Interstitial-Rich Regime · Dislocation Loops / A-defects',
+    ch03_impact_vacancy: 'COPs puncture thin gate dielectric (Early GOI breakdown)',
+    ch03_impact_pure: 'Dynamic annihilation of I and V · 100% zero grown-in defects',
+    ch03_impact_interstitial: 'Dislocation loops induce deep traps (Severe junction leakage)',
+    ch03_cz_desc: 'The Czochralski (CZ) technique melts 11N electronic-grade polysilicon at 1425°C. A <100> seed crystal dips into the melt and counter-rotates. High-speed Dash necking eliminates dislocations, followed by Voronkov criterion V/G control to grow defect-free 300mm single-crystal ingots.',
     ch03_saw_desc: 'Hundreds of high-tensile steel wires electroplated with diamond particles oscillate at 30-50 m/s to slice the ingot into hundreds of pristine wafers simultaneously. Kerf loss is minimized to ~100 µm while maintaining ultra-low warp and bow.',
     ch03_polish_desc: 'CNC diamond wheels bevel the wafer edges to prevent chipping and resist beading. Planetary double-side lapping and chemical mechanical double-side polishing (DSP) then flatten surface roughness down to sub-angstrom atomic smoothness (<0.1 nm RMS).',
 
@@ -784,7 +815,14 @@ const TEXTS = {
     ch16_metric_yield: 'Typical Advanced Node Mature Yield',
     ch16_metric_lamella: 'FIB Lamella Thickness',
     ch16_metric_tem_res: 'TEM Spatial Resolution',
-    ch16_wafermap_desc: 'Wafer map spatial signatures serve as process equipment fingerprints: Rings indicate CMP slurry distribution or spin-dry anomalies; Edge defects point to edge bead removal (EBR) issues; Scratches indicate robotic handler abrasion; Clusters reveal particle showers. Spatial classification directs engineers straight to faulty chambers.',
+    ch16_area_slider: 'Die Area (A):',
+    ch16_defect_slider: 'Defect Density (D₀):',
+    ch16_gross_dies: 'Gross Dies per Wafer (N_gross):',
+    ch16_murphy_yield: 'Murphy Model Yield (Y):',
+    ch16_gdpw_label: 'Good Dies per Wafer (GDPW):',
+    ch16_die_cost: 'Net Good Die Cost (USD/Die):',
+    ch16_cost_loss: 'Defect Yield Cost Loss:',
+    ch16_wafermap_desc: 'Wafer map spatial signatures serve as process equipment fingerprints: Rings indicate CMP slurry distribution or spin-dry anomalies; Edge defects point to edge bead removal (EBR) issues; Scratches indicate robotic handler abrasion; Clusters reveal particle showers. Coupled with continuous Murphy/Poisson yield physics, engineers predict GDPW and die unit cost in real time.',
     ch16_fib_desc: 'Dual-Beam FIB pairs a focused Gallium ion beam (Ga⁺ FIB) with high-resolution SEM. It deposits protective Platinum (Pt) over the defective transistor, sputters trenches on both flanks to mill out a 20-30nm ultra-thin lamella, which a robotic micromanipulator lifts out in-situ for TEM grid mounting.',
     ch16_tem_desc: 'Transmission Electron Microscopy (TEM @ 200kV) directs highly energetic electrons through the sub-30nm lamella. Diffraction interference with crystalline atomic columns generates sub-angstrom phase-contrast images (HR-TEM), revealing individual atomic lattices, gate dielectric breakdown pinholes, and dislocations.',
 
@@ -3682,15 +3720,96 @@ export function renderAdvancedPackagingObject(container, lang = 'zh') {
 export function renderIngotWaferObject(container, lang = 'zh') {
   const t = TEXTS[lang] || TEXTS.zh;
   let activeTab = 'cz'; // 'cz' | 'saw' | 'polish'
+  let pullSpeed = 1.20; // 0.40 ~ 2.20 mm/min
+  let tempGrad = 9.0;   // 4.0 ~ 16.0 °C/mm
 
   function update() {
+    let controlsHtml = '';
     let viewportHtml = '';
     let dashboardHtml = '';
     let footerNote = '';
 
+    // Voronkov Criterion 計算: xi = V / G (mm²/(min·K))
+    const xi = pullSpeed / tempGrad;
+    const xiCrit = 0.134; // 臨界中性線
+    let regime = 'pure';
+    let regimeColor = '#10b981';
+    let regimeLabel = t.ch03_regime_pure;
+    let impactLabel = t.ch03_impact_pure;
+
+    if (xi > 0.145) {
+      regime = 'vacancy';
+      regimeColor = '#ef4444';
+      regimeLabel = t.ch03_regime_vacancy;
+      impactLabel = t.ch03_impact_vacancy;
+    } else if (xi < 0.125) {
+      regime = 'interstitial';
+      regimeColor = '#f59e0b';
+      regimeLabel = t.ch03_regime_interstitial;
+      impactLabel = t.ch03_impact_interstitial;
+    }
+
     if (activeTab === 'cz') {
+      controlsHtml = `
+        <div class="eng-obj-slider-panel">
+          <div class="eng-obj-slider-item">
+            <label for="ch03PullSlider">${t.ch03_pull_slider}</label>
+            <input type="range" class="eng-obj-range-input" id="ch03PullSlider" min="0.40" max="2.20" step="0.05" value="${pullSpeed.toFixed(2)}">
+            <span class="eng-obj-slider-val">${pullSpeed.toFixed(2)} mm/min</span>
+          </div>
+          <div class="eng-obj-slider-item">
+            <label for="ch03GradSlider">${t.ch03_grad_slider}</label>
+            <input type="range" class="eng-obj-range-input" id="ch03GradSlider" min="4.0" max="16.0" step="0.5" value="${tempGrad.toFixed(1)}">
+            <span class="eng-obj-slider-val">${tempGrad.toFixed(1)} °C/mm</span>
+          </div>
+          <div style="margin-left: auto; display: flex; align-items: center; gap: 8px;">
+            <span style="font-size: 11px; color: #94a3b8; font-family: monospace;">(V/G) = <strong style="color: ${regimeColor}; font-size: 13px;">${xi.toFixed(3)}</strong></span>
+            <span style="font-size: 11px; padding: 2px 7px; border-radius: 4px; background: rgba(15,23,42,0.6); border: 1px solid ${regimeColor}; color: ${regimeColor}; font-weight: 700;">
+              ${regime === 'pure' ? '✓ DEFECT-FREE' : (regime === 'vacancy' ? '⚠ VACANCY-RICH' : '⚠ INTERSTITIAL-RICH')}
+            </span>
+          </div>
+        </div>
+      `;
+
+      // 晶棒內部微觀缺陷圖形繪製
+      let defectVisual = '';
+      if (regime === 'vacancy') {
+        defectVisual = `
+          <g opacity="0.95">
+            ${Array.from({ length: 14 }, (_, i) => {
+              const x = ((i * 37) % 40) - 20;
+              const y = 155 + ((i * 23) % 95);
+              return `
+                <polygon points="${x},${y - 4} ${x + 4},${y} ${x},${y + 4} ${x - 4},${y}" fill="#ef4444" stroke="#ffffff" stroke-width="0.8"/>
+              `;
+            }).join('')}
+            <text x="0" y="268" text-anchor="middle" fill="#f87171" font-size="9.5" font-weight="700">八面體微孔 COP / D-defects 聚集區</text>
+          </g>
+        `;
+      } else if (regime === 'interstitial') {
+        defectVisual = `
+          <g opacity="0.95">
+            ${Array.from({ length: 5 }, (_, i) => {
+              const y = 160 + i * 20;
+              return `
+                <path d="M -52,${y} Q -35,${y - 8} -50,${y + 12}" fill="none" stroke="#f59e0b" stroke-width="2"/>
+                <path d="M 52,${y} Q 35,${y - 8} 50,${y + 12}" fill="none" stroke="#f59e0b" stroke-width="2"/>
+              `;
+            }).join('')}
+            <text x="0" y="268" text-anchor="middle" fill="#fbbf24" font-size="9.5" font-weight="700">周邊滑移巨大差排環 (Dislocation Loops)</text>
+          </g>
+        `;
+      } else {
+        defectVisual = `
+          <g opacity="0.95">
+            <rect x="-56" y="144" width="112" height="124" rx="4" fill="rgba(16, 185, 129, 0.12)" stroke="#10b981" stroke-dasharray="4 2"/>
+            <text x="0" y="268" text-anchor="middle" fill="#34d399" font-size="9.5" font-weight="700">★ 100% 理想無缺陷純矽 (Pure Silicon)</text>
+          </g>
+        `;
+      }
+
       viewportHtml = `
-        <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Czochralski Crystal Pulling Furnace">
+        <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Czochralski Crystal Pulling Furnace with Voronkov Criterion Physics">
           <defs>
             <linearGradient id="czMeltGrad" x1="0" y1="0" x2="0" y2="1">
               <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.95"/>
@@ -3710,7 +3829,7 @@ export function renderIngotWaferObject(container, lang = 'zh') {
 
           <!-- 爐體外壁 (Water-Cooled Double Chamber Wall) -->
           <rect x="120" y="20" width="560" height="380" rx="16" fill="#0f172a" stroke="#334155" stroke-width="2"/>
-          <text x="140" y="48" fill="#64748b" font-size="11" font-family="monospace">CZ FURNACE VACUUM CHAMBER · Ar PURGE 10-30 Torr</text>
+          <text x="140" y="48" fill="#64748b" font-size="11" font-family="monospace">CZ FURNACE VACUUM CHAMBER · Ar PURGE 10-30 Torr · VORONKOV ENGINE</text>
 
           <!-- 外圍超導磁體線圈 (MCZ Coils: 產生水平/尖峰磁場抑制對流) -->
           <g transform="translate(60, 160)">
@@ -3760,30 +3879,34 @@ export function renderIngotWaferObject(container, lang = 'zh') {
             <!-- 放肩錐形 (Shoulder / Crown) -->
             <path d="M -2,105 L -60,140 L 60,140 L 2,105 Z" fill="url(#czIngotGrad)" stroke="#cbd5e1" stroke-width="1"/>
             <!-- 300mm 單晶矽棒主體 (Crystal Ingot Body) -->
-            <rect x="-60" y="140" width="120" height="140" fill="url(#czIngotGrad)" stroke="#cbd5e1" stroke-width="1"/>
+            <rect x="-60" y="140" width="120" height="140" fill="url(#czIngotGrad)" stroke="${regimeColor}" stroke-width="${regime === 'pure' ? '2.5' : '1.5'}"/>
+            
+            <!-- 動態微缺陷渲染層 -->
+            ${defectVisual}
+
             <!-- 晶棒反向旋轉標示 (Ingot Counter-Rotation CCW) -->
-            <text x="0" y="200" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="750">300mm 單晶矽棒</text>
-            <text x="0" y="218" text-anchor="middle" fill="#f8fafc" font-size="10.5">&lt;100&gt; 晶向 · 逆時針旋轉 ↺</text>
-            <text x="0" y="235" text-anchor="middle" fill="#38bdf8" font-size="10">向上提拉 ↑ (1.2 mm/min)</text>
+            <text x="0" y="195" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="750">300mm 單晶矽棒 (CZ Ingot)</text>
+            <text x="0" y="212" text-anchor="middle" fill="#f8fafc" font-size="10.5">&lt;100&gt; 晶向 · 逆時針旋轉 ↺</text>
+            <text x="0" y="228" text-anchor="middle" fill="${regimeColor}" font-size="10" font-weight="700">提拉 V = ${pullSpeed.toFixed(2)} mm/min · G = ${tempGrad.toFixed(1)} °C/mm</text>
           </g>
         </svg>
       `;
 
       dashboardHtml = `
         <div class="eng-obj-metric-card">
-          <div class="eng-obj-metric-label">${t.ch03_metric_purity}</div>
-          <div class="eng-obj-metric-value" style="color: var(--semi-blue-dark);">11N (99.999999999%)</div>
-          <div class="eng-obj-metric-note">電子級多晶矽 (EGS) 高溫熔融</div>
+          <div class="eng-obj-metric-label">${t.ch03_voronkov_ratio}</div>
+          <div class="eng-obj-metric-value" style="color: ${regimeColor};">${xi.toFixed(3)} mm²/(min·K)</div>
+          <div class="eng-obj-metric-note">${t.ch03_crit_baseline}</div>
         </div>
         <div class="eng-obj-metric-card">
-          <div class="eng-obj-metric-label">${t.ch03_metric_pull}</div>
-          <div class="eng-obj-metric-value">1.0 ~ 1.5 mm/min</div>
-          <div class="eng-obj-metric-note">Dash 縮頸高速提拉徹底排擠差排</div>
+          <div class="eng-obj-metric-label">${t.ch03_defect_regime}</div>
+          <div class="eng-obj-metric-value" style="font-size: 13.5px; color: ${regimeColor};">${regimeLabel}</div>
+          <div class="eng-obj-metric-note">${regime === 'pure' ? '熱力學自間隙矽原子與空位對稱完全湮滅' : (regime === 'vacancy' ? '過飽和空位凝聚聚集為八面體微孔 (D-defect)' : '過剩矽原子凝聚形成大尺寸滑移差排環')}</div>
         </div>
         <div class="eng-obj-metric-card">
-          <div class="eng-obj-metric-label">超導磁場控制 (MCZ)</div>
-          <div class="eng-obj-metric-value">0.3 ~ 0.4 Tesla</div>
-          <div class="eng-obj-metric-note">勞侖茲阻尼強力抑制熔體熱對流</div>
+          <div class="eng-obj-metric-label">${t.ch03_yield_impact}</div>
+          <div class="eng-obj-metric-value" style="font-size: 13.5px; color: ${regime === 'pure' ? 'var(--semi-teal)' : '#f87171'};">${regime === 'pure' ? '100% 理想無原生微缺陷' : (regime === 'vacancy' ? 'GOI 閘極氧化層早期擊穿' : '接面逆向漏電流暴增')}</div>
+          <div class="eng-obj-metric-note">${impactLabel}</div>
         </div>
       `;
 
@@ -3949,6 +4072,7 @@ export function renderIngotWaferObject(container, lang = 'zh') {
             <button type="button" class="eng-obj-tab ${activeTab === 'saw' ? 'is-active' : ''}" data-tab="saw">${t.ch03_tab_saw}</button>
             <button type="button" class="eng-obj-tab ${activeTab === 'polish' ? 'is-active' : ''}" data-tab="polish">${t.ch03_tab_polish}</button>
           </div>
+          ${controlsHtml}
         </div>
 
         <div class="eng-obj-viewport">
@@ -3972,6 +4096,22 @@ export function renderIngotWaferObject(container, lang = 'zh') {
         update();
       });
     });
+
+    const pullSlider = container.querySelector('#ch03PullSlider');
+    if (pullSlider) {
+      pullSlider.addEventListener('input', (e) => {
+        pullSpeed = parseFloat(e.target.value);
+        update();
+      });
+    }
+
+    const gradSlider = container.querySelector('#ch03GradSlider');
+    if (gradSlider) {
+      gradSlider.addEventListener('input', (e) => {
+        tempGrad = parseFloat(e.target.value);
+        update();
+      });
+    }
   }
 
   update();
@@ -5003,35 +5143,89 @@ export function renderMetrologyInspectionObject(container, lang = 'zh') {
 export function renderYieldFailureAnalysisObject(container, lang = 'zh') {
   const t = TEXTS[lang] || TEXTS.zh;
   let activeTab = 'wafermap'; // 'wafermap' | 'fib' | 'tem'
-  let activePattern = 'ring'; // 'ring' | 'edge' | 'scratch' | 'cluster'
+  let activePattern = 'ring'; // 'ring' | 'edge' | 'scratch' | 'cluster' | 'random'
+  let dieArea = 160;          // 50 ~ 800 mm²
+  let defectDensity = 0.08;   // 0.02 ~ 0.40 defects/cm²
 
   function update() {
+    let controlsHtml = '';
     let viewportHtml = '';
     let dashboardHtml = '';
     let footerNote = '';
 
-    if (activeTab === 'wafermap') {
-      // 動態生成 300mm 晶圓圖上的晶粒矩陣
-      const dies = [];
-      const rows = 9;
-      const cols = 9;
-      const rLimit = 3.8;
+    // 半導體良率物理計算 (Murphy & Poisson Models for 300mm Wafer)
+    const R_eff = 147; // 300mm wafer with 3mm edge exclusion
+    const waferArea = Math.PI * (R_eff ** 2); // ~67,887 mm²
+    // Gross Dies per Wafer (GDPW raw theoretical)
+    const N_gross = Math.max(12, Math.floor(waferArea / dieArea - (2 * Math.PI * R_eff) / Math.sqrt(2 * dieArea)));
+    
+    // 缺陷期望值 lambda = (A * D0) / 100
+    const lambda = (dieArea * defectDensity) / 100;
+    const yieldPoisson = Math.exp(-lambda);
+    const yieldMurphy = lambda === 0 ? 1 : Math.pow((1 - Math.exp(-lambda)) / lambda, 2);
+    const yieldPct = (yieldMurphy * 100).toFixed(1);
+    const poissonPct = (yieldPoisson * 100).toFixed(1);
 
-      for (let r = -4; r <= 4; r++) {
-        for (let c = -4; c <= 4; c++) {
-          const dist = Math.sqrt(r * r + c * c);
-          if (dist <= rLimit) {
+    // 合格良品數 GDPW
+    const N_good = Math.max(0, Math.floor(N_gross * yieldMurphy));
+    const waferCost = 12000; // USD
+    const dieCost = N_good > 0 ? (waferCost / N_good).toFixed(2) : '9999';
+    const costLoss = N_good > 0 ? Math.round((N_gross - N_good) * (waferCost / N_good)) : waferCost;
+
+    if (activeTab === 'wafermap') {
+      controlsHtml = `
+        <div class="eng-obj-slider-panel">
+          <div class="eng-obj-slider-item">
+            <label for="ch16AreaSlider">${t.ch16_area_slider}</label>
+            <input type="range" class="eng-obj-range-input" id="ch16AreaSlider" min="50" max="800" step="10" value="${dieArea}">
+            <span class="eng-obj-slider-val">${dieArea} mm²</span>
+          </div>
+          <div class="eng-obj-slider-item">
+            <label for="ch16DefectSlider">${t.ch16_defect_slider}</label>
+            <input type="range" class="eng-obj-range-input" id="ch16DefectSlider" min="0.02" max="0.40" step="0.01" value="${defectDensity.toFixed(2)}">
+            <span class="eng-obj-slider-val">${defectDensity.toFixed(2)} /cm²</span>
+          </div>
+          <div style="margin-left: auto; display: flex; align-items: center; gap: 8px;">
+            <span style="font-size: 11px; color: #94a3b8; font-family: monospace;">Murphy: <strong style="color: ${yieldMurphy >= 0.85 ? '#10b981' : (yieldMurphy >= 0.7 ? '#f59e0b' : '#ef4444')}; font-size: 13px;">${yieldPct}%</strong></span>
+            <span style="font-size: 11px; padding: 2px 7px; border-radius: 4px; background: rgba(15,23,42,0.6); border: 1px solid var(--border-subtle); color: #38bdf8; font-weight: 700;">
+              GDPW: ${N_good} / ${N_gross}
+            </span>
+          </div>
+        </div>
+      `;
+
+      // 依據 dieArea 動態計算 300mm 晶圓上的晶粒網格
+      const dies = [];
+      const gridStep = Math.max(18, Math.min(36, Math.round(Math.sqrt(dieArea) * 1.6)));
+      const dieSize = gridStep - 3;
+      const rLimit = 145; // 晶圓半徑 150，邊緣 145
+
+      for (let y = -140; y <= 140; y += gridStep) {
+        for (let x = -140; x <= 140; x += gridStep) {
+          const dist = Math.sqrt(x * x + y * y);
+          if (dist + dieSize * 0.7 <= rLimit) {
             let isDefect = false;
             if (activePattern === 'ring') {
-              isDefect = dist >= 2.0 && dist <= 2.8;
+              isDefect = dist >= 60 && dist <= 100;
             } else if (activePattern === 'edge') {
-              isDefect = dist >= 3.0;
+              isDefect = dist >= 115;
             } else if (activePattern === 'scratch') {
-              isDefect = Math.abs(r - c * 0.8) < 0.6 && c >= -2 && c <= 3;
+              isDefect = Math.abs(y - x * 0.75) < 18 && x >= -80 && x <= 90;
             } else if (activePattern === 'cluster') {
-              isDefect = Math.sqrt((r + 1.8) ** 2 + (c - 1.5) ** 2) < 1.6;
+              isDefect = Math.sqrt((x + 45) ** 2 + (y - 40) ** 2) < 46;
+            } else if (activePattern === 'random') {
+              const hash = Math.sin(x * 12.9898 + y * 78.233) * 43758.5453;
+              const pseudoRand = hash - Math.floor(hash);
+              isDefect = pseudoRand < (1 - yieldMurphy);
             }
-            dies.push({ x: c * 26 + 180, y: r * 26 + 180, isDefect });
+            if (!isDefect && activePattern !== 'random') {
+              const bgHash = Math.cos(x * 34.567 + y * 91.123) * 23421.123;
+              const bgRand = bgHash - Math.floor(bgHash);
+              if (bgRand < (defectDensity * 0.28)) {
+                isDefect = true;
+              }
+            }
+            dies.push({ x: x + 180, y: y + 180, isDefect });
           }
         }
       }
@@ -5055,66 +5249,78 @@ export function renderYieldFailureAnalysisObject(container, lang = 'zh') {
         patternName = lang === 'zh' ? '局部團塊缺陷 (Cluster Signature)' : 'Localized Cluster Defect Signature';
         patternCause = lang === 'zh' ? '製程腔體內部微粒爆發 (Flaking) 或清洗液滴噴嘴冷凝物掉落' : 'Chamber wall polymer flaking or chemical spray nozzle condensation drip';
         patternAction = lang === 'zh' ? '執行腔體乾蝕刻清機 (Dry Clean) 或定期濕式 PM 保養' : 'Execute chamber plasma dry clean or schedule immediate wet PM';
+      } else if (activePattern === 'random') {
+        patternName = lang === 'zh' ? '隨機泊松缺陷 (Poisson Random Signature)' : 'Poisson Random Defect Signature';
+        patternCause = lang === 'zh' ? '環境空氣微粒落塵、化學品微量不純物或機台微放電隨機碰撞' : 'Random cleanroom airborne particles, chemical trace impurities or micro-arcing';
+        patternAction = lang === 'zh' ? '強化無塵室空氣循環 (HEPA/ULPA) 與藥液多重過濾濾芯更換' : 'Enhance cleanroom air filtration & replace chemical multi-stage point-of-use filters';
       }
 
       viewportHtml = `
-        <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Wafer Defect Spatial Signatures Interactive Map">
+        <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Wafer Defect Spatial Signatures & Continuous Yield Physics Map">
           <!-- 左側：300mm 晶圓圖繪製區 -->
           <g transform="translate(60, 30)">
             <!-- 晶圓邊界圓形 (Notch 缺口位於下方) -->
             <circle cx="180" cy="180" r="170" fill="#0f172a" stroke="#38bdf8" stroke-width="2.5"/>
             <!-- 下方 Notch 凹口 -->
             <polygon points="175,348 185,348 180,356" fill="#38bdf8"/>
-            <text x="180" y="372" text-anchor="middle" fill="#64748b" font-size="10">SEMI 300mm Notch</text>
+            <text x="180" y="372" text-anchor="middle" fill="#64748b" font-size="10">SEMI 300mm Notch · Die Area: ${dieArea} mm²</text>
 
-            <!-- 晶粒陣列 (Die Grid) -->
+            <!-- 動態晶粒陣列 (Die Grid) -->
             ${dies.map(d => `
-              <rect x="${d.x - 10}" y="${d.y - 10}" width="20" height="20" rx="2"
+              <rect x="${d.x - dieSize / 2}" y="${d.y - dieSize / 2}" width="${dieSize}" height="${dieSize}" rx="1.5"
                     fill="${d.isDefect ? '#ef4444' : '#10b981'}"
-                    stroke="#0f172a" stroke-width="1.5"/>
+                    stroke="#0f172a" stroke-width="1.2"/>
             `).join('')}
           </g>
 
-          <!-- 右側：缺陷特徵診斷資訊面板 -->
-          <g transform="translate(450, 40)">
-            <rect x="0" y="0" width="300" height="340" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
-            <text x="20" y="35" fill="#38bdf8" font-size="13" font-weight="750">${patternName}</text>
+          <!-- 右側：缺陷特徵診斷與良率模型面板 -->
+          <g transform="translate(450, 30)">
+            <rect x="0" y="0" width="310" height="360" rx="8" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
+            <text x="20" y="32" fill="#38bdf8" font-size="13" font-weight="750">${patternName}</text>
 
-            <!-- 模式選擇按鈕 -->
-            <g transform="translate(20, 55)">
-              <text x="0" y="15" fill="#94a3b8" font-size="11">切換圖案 (Pattern Select):</text>
-              <g transform="translate(0, 25)">
-                ${['ring', 'edge', 'scratch', 'cluster'].map((p, idx) => `
-                  <rect x="${idx * 65}" y="0" width="60" height="26" rx="3"
+            <!-- 模式選擇按鈕 (5 大模式) -->
+            <g transform="translate(18, 48)">
+              <text x="0" y="14" fill="#94a3b8" font-size="11">切換圖案 (Pattern Select):</text>
+              <g transform="translate(0, 24)">
+                ${['ring', 'edge', 'scratch', 'cluster', 'random'].map((p, idx) => `
+                  <rect x="${idx * 55}" y="0" width="50" height="24" rx="3"
                         fill="${activePattern === p ? '#0284c7' : '#1e293b'}"
                         stroke="${activePattern === p ? '#38bdf8' : '#475569'}"
                         style="cursor: pointer;" data-pattern="${p}"/>
-                  <text x="${idx * 65 + 30}" y="17" text-anchor="middle"
+                  <text x="${idx * 55 + 25}" y="16" text-anchor="middle"
                         fill="${activePattern === p ? '#ffffff' : '#94a3b8'}"
-                        font-size="10.5" font-weight="700" style="pointer-events: none;">${p.toUpperCase()}</text>
+                        font-size="9.5" font-weight="700" style="pointer-events: none;">${p.toUpperCase()}</text>
                 `).join('')}
               </g>
             </g>
 
             <!-- 診斷說明卡片 -->
-            <g transform="translate(20, 135)">
-              <rect x="0" y="0" width="260" height="85" rx="4" fill="#1e293b" stroke="#f59e0b" stroke-width="1"/>
-              <text x="12" y="24" fill="#fbbf24" font-size="11" font-weight="750">可能物理根因 (Root Cause):</text>
-              <foreignObject x="12" y="32" width="236" height="48">
-                <div xmlns="http://www.w3.org/1999/xhtml" style="font-size: 11px; color: #cbd5e1; line-height: 1.4;">
+            <g transform="translate(18, 120)">
+              <rect x="0" y="0" width="274" height="74" rx="4" fill="#1e293b" stroke="#f59e0b" stroke-width="1"/>
+              <text x="12" y="20" fill="#fbbf24" font-size="10.5" font-weight="750">可能物理根因 (Root Cause):</text>
+              <foreignObject x="12" y="26" width="250" height="42">
+                <div xmlns="http://www.w3.org/1999/xhtml" style="font-size: 10.5px; color: #cbd5e1; line-height: 1.35;">
                   ${patternCause}
                 </div>
               </foreignObject>
             </g>
 
-            <g transform="translate(20, 235)">
-              <rect x="0" y="0" width="260" height="85" rx="4" fill="#1e293b" stroke="#10b981" stroke-width="1"/>
-              <text x="12" y="24" fill="#34d399" font-size="11" font-weight="750">工程排查行動 (Action Plan):</text>
-              <foreignObject x="12" y="32" width="236" height="48">
-                <div xmlns="http://www.w3.org/1999/xhtml" style="font-size: 11px; color: #cbd5e1; line-height: 1.4;">
+            <g transform="translate(18, 204)">
+              <rect x="0" y="0" width="274" height="74" rx="4" fill="#1e293b" stroke="#10b981" stroke-width="1"/>
+              <text x="12" y="20" fill="#34d399" font-size="10.5" font-weight="750">工程排查行動 (Action Plan):</text>
+              <foreignObject x="12" y="26" width="250" height="42">
+                <div xmlns="http://www.w3.org/1999/xhtml" style="font-size: 10.5px; color: #cbd5e1; line-height: 1.35;">
                   ${patternAction}
                 </div>
               </foreignObject>
+            </g>
+
+            <!-- 數學良率模型即時公式標註 -->
+            <g transform="translate(18, 288)">
+              <rect x="0" y="0" width="274" height="58" rx="4" fill="#111827" stroke="#38bdf8" stroke-dasharray="3 2" stroke-width="1"/>
+              <text x="12" y="18" fill="#38bdf8" font-size="10" font-family="monospace">MURPHY: Y = [(1 - exp(-λ))/λ]²</text>
+              <text x="12" y="34" fill="#94a3b8" font-size="9.5">λ = (A · D₀)/100 = ${(lambda).toFixed(3)} · Poisson Y = ${poissonPct}%</text>
+              <text x="12" y="48" fill="#cbd5e1" font-size="9.5">預估良率損耗金額: <strong style="color: #ef4444;">$${costLoss.toLocaleString()} USD</strong></text>
             </g>
           </g>
         </svg>
@@ -5122,21 +5328,21 @@ export function renderYieldFailureAnalysisObject(container, lang = 'zh') {
 
       dashboardHtml = `
         <div class="eng-obj-metric-card">
-          <div class="eng-obj-metric-label">晶圓整體評估良率</div>
-          <div class="eng-obj-metric-value" style="color: ${activePattern === 'cluster' ? '#f59e0b' : 'var(--semi-teal)'};">
-            ${activePattern === 'cluster' ? '86.4%' : '92.8%'}
+          <div class="eng-obj-metric-label">${t.ch16_murphy_yield}</div>
+          <div class="eng-obj-metric-value" style="color: ${yieldMurphy >= 0.85 ? 'var(--semi-teal)' : (yieldMurphy >= 0.7 ? '#f59e0b' : '#ef4444')};">
+            ${yieldPct}% <span style="font-size: 11.5px; color: #94a3b8; font-weight: normal;">(Poisson: ${poissonPct}%)</span>
           </div>
-          <div class="eng-obj-metric-note">圖譜分類演算法自動對齊機台日誌</div>
+          <div class="eng-obj-metric-note">Murphy 三角分佈模型 (考慮缺陷局部群聚聚集)</div>
         </div>
         <div class="eng-obj-metric-card">
-          <div class="eng-obj-metric-label">共通性分析 (Commonality)</div>
-          <div class="eng-obj-metric-value">99.8% 匹配腔體</div>
-          <div class="eng-obj-metric-note">快速排除其它 90% 無辜設備</div>
+          <div class="eng-obj-metric-label">${t.ch16_gdpw_label}</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-blue-dark);">${N_good} <span style="font-size: 12px; color: #64748b; font-weight: normal;">/ ${N_gross} Dies</span></div>
+          <div class="eng-obj-metric-note">300mm 晶圓淨良品數 (Gross Dies: ${N_gross} 顆)</div>
         </div>
         <div class="eng-obj-metric-card">
-          <div class="eng-obj-metric-label">良率停損反應時間</div>
-          <div class="eng-obj-metric-value">&lt; 15 分鐘</div>
-          <div class="eng-obj-metric-note">即時攔截整批晶圓防止連續報廢</div>
+          <div class="eng-obj-metric-label">${t.ch16_die_cost}</div>
+          <div class="eng-obj-metric-value" style="color: #0ea5e9;">$${dieCost} USD</div>
+          <div class="eng-obj-metric-note">晶圓基礎成本 $12,000 / 缺陷損耗: $${costLoss.toLocaleString()}</div>
         </div>
       `;
 
@@ -5274,6 +5480,7 @@ export function renderYieldFailureAnalysisObject(container, lang = 'zh') {
             <button type="button" class="eng-obj-tab ${activeTab === 'fib' ? 'is-active' : ''}" data-tab="fib">${t.ch16_tab_fib}</button>
             <button type="button" class="eng-obj-tab ${activeTab === 'tem' ? 'is-active' : ''}" data-tab="tem">${t.ch16_tab_tem}</button>
           </div>
+          ${controlsHtml}
         </div>
 
         <div class="eng-obj-viewport">
@@ -5304,6 +5511,22 @@ export function renderYieldFailureAnalysisObject(container, lang = 'zh') {
         update();
       });
     });
+
+    const areaSlider = container.querySelector('#ch16AreaSlider');
+    if (areaSlider) {
+      areaSlider.addEventListener('input', (e) => {
+        dieArea = parseInt(e.target.value, 10);
+        update();
+      });
+    }
+
+    const defectSlider = container.querySelector('#ch16DefectSlider');
+    if (defectSlider) {
+      defectSlider.addEventListener('input', (e) => {
+        defectDensity = parseFloat(e.target.value);
+        update();
+      });
+    }
   }
 
   update();
