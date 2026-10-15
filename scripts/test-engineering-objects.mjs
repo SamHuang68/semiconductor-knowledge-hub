@@ -188,11 +188,12 @@ console.log('[PASS] Ch 11 CMOS 完整流程步進模型正常');
 console.log('--- 測試 12: Ch 13 記憶體 DRAM 與 3D NAND 切換 ---');
 const c13 = new MockElement();
 mountEngineeringObject('ch13', c13, 'zh');
-assert.ok(c13.innerHTML.includes('DRAM 圓柱狀立體儲存電容'), '預設應展示 DRAM 1T1C');
+assert.ok(c13.innerHTML.includes('DRAM 圓柱') || c13.innerHTML.includes('tREFI'), '預設應展示 DRAM 1T1C 與電荷保持動力學');
+assert.ok(c13.innerHTML.includes('fF') || c13.innerHTML.includes('fA'), '應包含電容值與接面漏電流計算');
 const nandBtn = c13.children.find(c => c.getAttribute('data-tab') === 'nand');
 if (nandBtn) {
   nandBtn.dispatchEvent({ type: 'click' });
-  assert.ok(c13.innerHTML.includes('200+ 層交替堆疊'), '點擊 NAND 後應展示 3D NAND 階梯穿孔');
+  assert.ok(c13.innerHTML.includes('層交替堆疊') || c13.innerHTML.includes('HAR 垂直通道孔'), '點擊 NAND 後應展示 3D NAND 階梯穿孔與 HAR');
 }
 console.log('[PASS] Ch 13 記憶體 DRAM / 3D NAND / HBM 模型正常');
 
@@ -235,10 +236,12 @@ console.log('--- 測試 16: Ch 19 WAT 劃線區與 CP 針測切換 ---');
 const c19 = new MockElement();
 mountEngineeringObject('ch19', c19, 'zh');
 assert.ok(c19.innerHTML.includes('PCM 測試鍵'), '預設應展示 WAT PCM 劃線區測試');
+assert.ok(c19.innerHTML.includes('Kelvin') || c19.innerHTML.includes('R_DUT'), '應展示 Kelvin 四線式接觸阻抗量測法');
 const cpBtn = c19.children.find(c => c.getAttribute('data-tab') === 'cp');
 if (cpBtn) {
   cpBtn.dispatchEvent({ type: 'click' });
   assert.ok(c19.innerHTML.includes('Vertical Probe Card') || c19.innerHTML.includes('微彈簧針'), '點擊 CP 後應展示垂直探針卡');
+  assert.ok(c19.innerHTML.includes('Overdrive') || c19.innerHTML.includes('下壓行程') || c19.innerHTML.includes('接觸電阻'), '點擊 CP 後應展示探針下壓行程與接觸電阻物理');
 }
 console.log('[PASS] Ch 19 WAT 與 CP 晶圓測試模型正常');
 

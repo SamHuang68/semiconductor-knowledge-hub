@@ -299,6 +299,13 @@ const TEXTS = {
     ch13_metric_nand_layers: '3D NAND 量產堆疊層數',
     ch13_metric_hbm_bw: 'HBM3e 單顆晶片頻寬',
     ch13_metric_retention: 'DRAM 刷新週期 (tREFI)',
+    ch13_ar_slider: '圓柱電容深寬比 Aspect Ratio (H/D):',
+    ch13_temp_slider: '接面工作溫度 Junction Temp (T_j):',
+    ch13_layers_slider: '3D NAND 垂直堆疊層數 (Tiers):',
+    ch13_cap_val: '單元儲存電容 C_cell',
+    ch13_leak_val: '接面漏電流 I_leak',
+    ch13_tret_val: '電荷保持時間 t_ret',
+    ch13_refi_val: 'JEDEC 規定刷新週期 t_REFI',
     ch13_dram_desc: 'DRAM 每個記憶胞僅由 1 個存取電晶體與 1 個垂直圓柱微型電容構成 (1T1C)。為克服尺寸縮小帶來的電容值衰減，工程師打造深寬比超過 50:1 的柱狀電容，表面覆蓋超薄高介電 ZAZ (ZrO₂/Al₂O₃/ZrO₂) 薄膜，每 64ms 必須重新刷新電荷避免資料流失。',
     ch13_nand_desc: '3D NAND 擺脫 2D 平面微縮極限，在晶圓表面交替沉積 200+ 層 SiO₂/Si₃N₄ 薄膜，以極高能量電漿一次貫穿數微米深孔 (HAR Etching)，外圍蝕刻成金字塔階梯狀引出數百條字元線 (Word-Lines)，透過電荷陷阱 (Charge Trap CTF) 儲存電子，實現 TB 級非揮發儲存。',
     ch13_hbm_desc: 'HBM (High Bandwidth Memory) 打破傳統 DDR 匯流排頻寬牆：將 4~16 顆 DRAM 裸晶透過數萬個穿矽孔 (TSV) 與微凸塊 (Micro-bumps) 垂直三維堆疊在邏輯控制基底 (Base Die) 上，提供 1024-bit 超寬並行匯流排，為 AI 算力加速器提供極致吞吐量！',
@@ -363,6 +370,13 @@ const TEXTS = {
     ch19_metric_pins: '高階探針卡針數',
     ch19_metric_force: '單針觸地接觸壓力',
     ch19_metric_freq: 'CP 高頻數位測試時脈',
+    ch19_force_slider: '測試驅動電流 Force Current (I_force):',
+    ch19_lead_slider: '探針與導線寄生阻抗 Lead Resistance (R_lead):',
+    ch19_od_slider: '探針下壓行程 Overdrive (OD):',
+    ch19_rdut_label: '待測孔真實電阻 R_DUT',
+    ch19_r2wire_label: '二線量測值 R_2wire',
+    ch19_r4wire_label: 'Kelvin 四線量測值 R_4wire',
+    ch19_rc_label: '探針接觸電阻 R_contact',
     ch19_wat_desc: 'WAT (晶圓驗收測試) 在晶圓製造完成後，直接在切割劃線道 (Scribe-line) 的 PCM 測試鍵上量測電晶體飽和電流 (Ion)、關斷漏電 (Ioff)、臨界電壓 (Vth) 與接觸電阻 (Rc)。WAT 是晶圓廠出廠前的嚴格成績單，唯有全數過關才能將晶圓放行交給客戶或後段測試。',
     ch19_cp_desc: 'CP (晶片針測) 透過垂直式多層微彈簧探針卡 (Vertical Probe Card)，一次對數個或十數個晶粒 (Multi-Site) 的微凸塊施加數萬支微針接觸 (Touchdown)。在數 GHz 高頻下灌入全套功能性測試向量 (Scan Test / BIST)，精確標記每一顆晶粒的好壞。',
     ch19_binmap_desc: 'CP 測試完成後生成電子晶圓圖 (Wafer Bin Map)：綠色 Bin 1 (全功能良品)、黃色 Bin 2 (降頻/部分核心可用)、紅色 Bin 7/8/9 (開路、短路或靜態功耗超標)。這份電子地圖隨晶圓送往封裝廠，自動揀晶機 (Die Bonder) 只吸取合格晶粒進行高成本先進封裝。',
@@ -812,6 +826,13 @@ const TEXTS = {
     ch13_metric_nand_layers: '3D NAND Production Layers',
     ch13_metric_hbm_bw: 'HBM3e Stack Bandwidth',
     ch13_metric_retention: 'DRAM Refresh Cycle (tREFI)',
+    ch13_ar_slider: 'Capacitor Aspect Ratio (H/D):',
+    ch13_temp_slider: 'Junction Temp (T_j):',
+    ch13_layers_slider: '3D NAND Vertical Tiers:',
+    ch13_cap_val: 'Cell Capacitance C_cell',
+    ch13_leak_val: 'Junction Leakage I_leak',
+    ch13_tret_val: 'Retention Time t_ret',
+    ch13_refi_val: 'JEDEC Required t_REFI',
     ch13_dram_desc: 'DRAM stores data using 1 access transistor and 1 vertical cylinder capacitor (1T1C). To preserve capacitance as cell area shrinks, capacitors feature extreme >50:1 aspect ratios lined with ZAZ (ZrO₂/Al₂O₃/ZrO₂) high-k films, requiring 64ms refresh cycles to replenish leakage.',
     ch13_nand_desc: '3D NAND overcomes 2D planar lithography scaling by vertically stacking 200+ alternating SiO₂/Si₃N₄ tiers. High-aspect-ratio (HAR) plasma etching drills vertical channel holes through the entire stack, while staircase word-line landings contact individual flash gates.',
     ch13_hbm_desc: 'HBM (High Bandwidth Memory) shatters traditional memory bus bottlenecks by stacking 4 to 16 DRAM dies atop a base logic die via thousands of Through-Silicon Vias (TSVs) and micro-bumps, providing a massive 1024-bit wide interface exceeding 1.2 TB/s for AI acceleration.',
@@ -876,6 +897,13 @@ const TEXTS = {
     ch19_metric_pins: 'Probe Card Pin Count',
     ch19_metric_force: 'Single-Pin Touchdown Force',
     ch19_metric_freq: 'CP High-Speed Test Clock',
+    ch19_force_slider: 'Test Current Force (I_force):',
+    ch19_lead_slider: 'Lead & Probe Resistance (R_lead):',
+    ch19_od_slider: 'Probe Overdrive (OD):',
+    ch19_rdut_label: 'True Via Resistance R_DUT',
+    ch19_r2wire_label: 'Standard 2-Wire Reading R_2wire',
+    ch19_r4wire_label: 'Kelvin 4-Wire Reading R_4wire',
+    ch19_rc_label: 'Probe Contact Resistance R_contact',
     ch19_wat_desc: 'Wafer Acceptance Test (WAT) directly tests Process Control Monitor (PCM) test keys in scribe-line streets post-fab, verifying saturation drive current (Ion), subthreshold leakage (Ioff), threshold voltage (Vth), and contact resistance (Rc). Only 100% compliant wafers are released for sorting.',
     ch19_cp_desc: 'Chip Probing (CP) uses multi-layer vertical probe cards with tens of thousands of microscopic spring needles to contact die micro-bumps (touchdown). Automated Test Equipment (ATE) injects gigahertz scan vectors and BIST algorithms to validate complete digital logic, SRAM cells, and analog interfaces.',
     ch19_binmap_desc: 'CP results produce an electronic Wafer Bin Map: Green Bin 1 (Prime passing dies), Yellow Bin 2 (Speed-binned / degraded core functional dies), Red Bins (Short, open, or excessive leakage dies). This map guides high-speed automated die bonders during advanced packaging assembly.',
@@ -4734,47 +4762,132 @@ export function renderCMOSFlowObject(container, lang = 'zh') {
 export function renderMemoryTechObject(container, lang = 'zh') {
   const t = TEXTS[lang] || TEXTS.zh;
   let activeTab = 'dram'; // 'dram' | 'nand' | 'hbm'
+  let dramAR = 55;        // 35 ~ 75 (:1)
+  let dramTemp = 85;      // 25 ~ 105 (°C)
+  let nandLayers = 232;   // 128 ~ 320 (tiers)
 
   function update() {
+    let controlsHtml = '';
     let viewportHtml = '';
     let dashboardHtml = '';
     let footerNote = '';
 
-    if (activeTab === 'dram') {
-      viewportHtml = `
-        <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="DRAM 1T1C High-Aspect Capacitor Structure">
-          <!-- 上方超高深寬比圓柱電容陣列 (Aspect Ratio > 50:1) -->
-          <g transform="translate(100, 30)">
-            <rect x="0" y="0" width="600" height="230" fill="#0f172a" stroke="#0ea5e9" stroke-width="1.5" rx="6"/>
-            <text x="300" y="25" text-anchor="middle" fill="#38bdf8" font-size="12.5" font-weight="750">DRAM 圓柱狀立體儲存電容矩陣 (Aspect Ratio &gt; 50:1)</text>
+    // DRAM 1T1C 動力學計算 (Capacitance & Retention Decay Law)
+    // 圓柱電容直徑 D = 18nm, 等效氧化層厚度 EOT = 0.45nm (ZAZ: ZrO2/Al2O3/ZrO2, k_eff ~ 36)
+    // C_cell 隨深寬比線性增長: C_cell = (10.5 + 0.29 * dramAR) fF
+    const cCell = 10.5 + 0.29 * dramAR; // fF
+    // 接面與介電質漏電隨溫度指數暴增: 每 10.5°C 漏電倍增 (SRH generation & Poole-Frenkel conduction)
+    const iLeak = 0.6 * Math.pow(2, (dramTemp - 25) / 10.5); // fA
+    // 電荷保持時間: Sense Amp 最低感測臨界電壓差 Delta V = 0.40 V
+    // t_ret = (C_cell * Delta V / I_leak) * 1000 (ms)
+    const tRet = Math.round((cCell * 0.40 / iLeak) * 1000); // ms
+    // JEDEC 標準刷新週期規定: <= 85°C 為 64ms; > 85°C 為 32ms (雙倍頻率 2x Refresh)
+    const jedecRefi = dramTemp > 85 ? 32 : 64; // ms
+    // 保持裕度 (Retention Safety Margin)
+    const retMargin = (tRet / jedecRefi).toFixed(1);
 
-            <!-- 垂直圓柱電容結構 (Cylinder Capacitors with High-k ZAZ Film) -->
-            ${[60, 150, 240, 330, 420, 510].map((x, idx) => `
-              <g transform="translate(${x}, 40)">
+    // 3D NAND 高深寬比 HAR 穿孔與多層階梯物理
+    // 氧化層-鎢閘極雙層厚度 t_tier = 38nm
+    const stackH = (nandLayers * 0.038).toFixed(2); // um
+    const harAR = Math.round((nandLayers * 38) / 95); // :1 (孔徑 95nm)
+    const decks = nandLayers <= 160 ? 1 : (nandLayers <= 280 ? 2 : 3);
+    const dieCapacity = Math.round(nandLayers * 4.41); // Gb (TLC)
+
+    if (activeTab === 'dram') {
+      controlsHtml = `
+        <div class="eng-obj-slider-panel">
+          <div class="eng-obj-slider-item">
+            <label for="ch13ArSlider">${t.ch13_ar_slider}</label>
+            <input type="range" class="eng-obj-range-input" id="ch13ArSlider" min="35" max="75" step="1" value="${dramAR}">
+            <span class="eng-obj-slider-val">${dramAR}:1</span>
+          </div>
+          <div class="eng-obj-slider-item">
+            <label for="ch13TempSlider">${t.ch13_temp_slider}</label>
+            <input type="range" class="eng-obj-range-input" id="ch13TempSlider" min="25" max="105" step="5" value="${dramTemp}">
+            <span class="eng-obj-slider-val">${dramTemp}°C</span>
+          </div>
+          <div style="margin-left: auto; display: flex; align-items: center; gap: 8px;">
+            <span style="font-size: 11px; color: #94a3b8; font-family: monospace;">${t.ch13_cap_val}: <strong style="color: #38bdf8; font-size: 13px;">${cCell.toFixed(1)} fF</strong></span>
+            <span style="font-size: 11px; padding: 2px 7px; border-radius: 4px; background: rgba(15,23,42,0.6); border: 1px solid var(--border-subtle); color: ${tRet < jedecRefi ? '#ef4444' : '#10b981'}; font-weight: 700;">
+              ${t.ch13_tret_val}: ${tRet} ms (${retMargin}× 裕度)
+            </span>
+          </div>
+        </div>
+      `;
+
+      // 圓柱電容視覺高度動態縮放
+      const capVisH = Math.round(110 + (dramAR - 35) * 1.9);
+      // 放電衰減波形路徑計算 (繪製於右側示波器 0 ~ 128ms)
+      const tau = Math.max(10, tRet);
+      let decayPath = 'M 0,' + Math.round(100 - (1.1 / 1.2) * 80);
+      for (let x = 0; x <= 160; x += 5) {
+        const simTime = (x / 160) * 128; // 0 ~ 128 ms
+        const v = 1.1 * Math.exp(-simTime / tau);
+        const y = Math.round(100 - (v / 1.2) * 80);
+        decayPath += ` L ${x},${y}`;
+      }
+      // tREFI 在示波器上的 X 座標 (128ms 為 160px)
+      const refiX = Math.round((jedecRefi / 128) * 160);
+
+      viewportHtml = `
+        <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="DRAM 1T1C High-Aspect Capacitor Structure and Discharge Kinetics">
+          <!-- 上方超高深寬比圓柱電容陣列 (動態深寬比) -->
+          <g transform="translate(50, 25)">
+            <rect x="0" y="0" width="470" height="235" fill="#0f172a" stroke="#0ea5e9" stroke-width="1.5" rx="6"/>
+            <text x="235" y="24" text-anchor="middle" fill="#38bdf8" font-size="12" font-weight="750">DRAM 圓柱立體電容 (Aspect Ratio ${dramAR}:1 · C = ${cCell.toFixed(1)} fF)</text>
+
+            <!-- 垂直圓柱電容結構 (動態視覺高度) -->
+            ${[45, 115, 185, 255, 325, 395].map((x, idx) => `
+              <g transform="translate(${x}, ${215 - capVisH})">
                 <!-- 外層金屬電極 (Outer TiN Plate) -->
-                <rect x="-16" y="0" width="32" height="170" rx="4" fill="#1e293b" stroke="#cbd5e1" stroke-width="1.5"/>
+                <rect x="-14" y="0" width="28" height="${capVisH}" rx="4" fill="#1e293b" stroke="#cbd5e1" stroke-width="1.5"/>
                 <!-- 中間高介電薄膜 (High-k ZAZ: ZrO₂ / Al₂O₃ / ZrO₂) -->
-                <rect x="-12" y="2" width="24" height="166" rx="3" fill="#0284c7" opacity="0.6"/>
+                <rect x="-10" y="2" width="20" height="${capVisH - 4}" rx="3" fill="#0284c7" opacity="0.6"/>
                 <!-- 內層金屬電極 (Inner TiN Node) -->
-                <rect x="-6" y="5" width="12" height="160" rx="2" fill="#ea580c"/>
+                <rect x="-5" y="4" width="10" height="${capVisH - 8}" rx="2" fill="#ea580c"/>
                 <!-- 電荷儲存指示 (+) -->
-                <text x="0" y="80" text-anchor="middle" fill="#ffffff" font-size="10" font-weight="800">Q</text>
-                <text x="0" y="195" text-anchor="middle" fill="#38bdf8" font-size="9.5">Cap ${idx + 1}</text>
+                <text x="0" y="${Math.round(capVisH / 2)}" text-anchor="middle" fill="#ffffff" font-size="10" font-weight="800">Q</text>
+                <text x="0" y="${capVisH + 14}" text-anchor="middle" fill="#38bdf8" font-size="9">C${idx + 1}</text>
               </g>
             `).join('')}
-            <text x="300" y="222" text-anchor="middle" fill="#94a3b8" font-size="10.5">TiN 內外金屬電極 + 2nm ZrO₂/Al₂O₃/ZrO₂ 高介電絕緣質</text>
+            <text x="235" y="222" text-anchor="middle" fill="#94a3b8" font-size="10">TiN 電極 + 2nm ZrO₂/Al₂O₃/ZrO₂ 高介電質 · 漏電 ${iLeak.toFixed(1)} fA @ ${dramTemp}°C</text>
+          </g>
+
+          <!-- 右側：電容電荷漏電動力學示波器 (Charge Retention Decay) -->
+          <g transform="translate(540, 25)">
+            <rect x="0" y="0" width="210" height="235" fill="#0b1329" stroke="#334155" stroke-width="1.5" rx="6"/>
+            <text x="105" y="22" text-anchor="middle" fill="#fbbf24" font-size="11" font-weight="750">電荷衰減曲線 V(t)</text>
+            <text x="105" y="36" text-anchor="middle" fill="#94a3b8" font-size="9">τ = ${tRet} ms · tREFI = ${jedecRefi} ms</text>
+
+            <!-- 示波器座標系 (X: 0~128ms, Y: 0~1.2V) -->
+            <g transform="translate(25, 55)">
+              <rect x="0" y="0" width="160" height="110" fill="#020617" stroke="#1e293b" stroke-width="1"/>
+              <!-- 感測臨界電壓下限線 (0.7V) -->
+              <line x1="0" y1="53" x2="160" y2="53" stroke="#ef4444" stroke-width="1" stroke-dasharray="3 2"/>
+              <text x="162" y="56" fill="#ef4444" font-size="8">V_min</text>
+              <!-- 刷新時間垂直標記線 -->
+              <line x1="${refiX}" y1="0" x2="${refiX}" y2="110" stroke="#fbbf24" stroke-width="1.5" stroke-dasharray="2 2"/>
+              <text x="${refiX}" y="122" text-anchor="middle" fill="#fbbf24" font-size="8.5">tREFI</text>
+              <!-- 動態電壓衰減軌跡 -->
+              <path d="${decayPath}" fill="none" stroke="#38bdf8" stroke-width="2.5"/>
+              <text x="5" y="15" fill="#38bdf8" font-size="8.5" font-family="monospace">1.1V (VDD)</text>
+            </g>
+
+            <text x="105" y="210" text-anchor="middle" fill="${retMargin >= 2.0 ? '#34d399' : '#ef4444'}" font-size="10" font-weight="700">
+              ${retMargin >= 2.0 ? '✓ 保持壽命超越刷新週期' : '⚠️ 漏電過速，需雙頻刷新！'}
+            </text>
           </g>
 
           <!-- 下方 1T 存取電晶體與埋入式字元線 (Buried Word-Line bWL) -->
-          <g transform="translate(100, 280)">
-            <rect x="0" y="0" width="600" height="110" fill="#1e293b" stroke="#334155" stroke-width="1.5" rx="6"/>
+          <g transform="translate(50, 275)">
+            <rect x="0" y="0" width="700" height="115" fill="#1e293b" stroke="#334155" stroke-width="1.5" rx="6"/>
             <!-- 埋入式字元線 (bWL) -->
-            <rect x="40" y="40" width="220" height="30" rx="3" fill="#475569" stroke="#f59e0b" stroke-width="1.5"/>
-            <text x="150" y="60" text-anchor="middle" fill="#fbbf24" font-size="11" font-weight="700">埋入式字元線 (Buried Word-Line)</text>
+            <rect x="50" y="40" width="270" height="32" rx="3" fill="#475569" stroke="#f59e0b" stroke-width="1.5"/>
+            <text x="185" y="61" text-anchor="middle" fill="#fbbf24" font-size="11" font-weight="700">埋入式字元線 (Buried Word-Line bWL)</text>
             <!-- 位元線 (Bit-Line BL) -->
-            <rect x="340" y="40" width="220" height="30" rx="3" fill="#475569" stroke="#10b981" stroke-width="1.5"/>
-            <text x="450" y="60" text-anchor="middle" fill="#34d399" font-size="11" font-weight="700">垂直位元線 (Bit-Line BL)</text>
-            <text x="300" y="95" text-anchor="middle" fill="#94a3b8" font-size="10.5">1T1C 架構：每 64ms 刷新週期 (tREFI) 補充電荷漏電</text>
+            <rect x="380" y="40" width="270" height="32" rx="3" fill="#475569" stroke="#10b981" stroke-width="1.5"/>
+            <text x="515" y="61" text-anchor="middle" fill="#34d399" font-size="11" font-weight="700">垂直位元線 (Bit-Line BL)</text>
+            <text x="350" y="98" text-anchor="middle" fill="#94a3b8" font-size="10.5">1T1C 電晶體閘極開啟導通字元線，感測放大器 (Sense Amp) 差分讀取位元線電荷</text>
           </g>
         </svg>
       `;
@@ -4782,58 +4895,85 @@ export function renderMemoryTechObject(container, lang = 'zh') {
       dashboardHtml = `
         <div class="eng-obj-metric-card">
           <div class="eng-obj-metric-label">${t.ch13_metric_dram_ar}</div>
-          <div class="eng-obj-metric-value" style="color: var(--semi-blue-dark);">&gt; 50:1</div>
-          <div class="eng-obj-metric-note">極高深寬比維持 ~25 fF/cell 足額電容</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-blue-dark);">${dramAR}:1 (${cCell.toFixed(1)} fF)</div>
+          <div class="eng-obj-metric-note">ZAZ 高介電常數 k ~ 36 · 儲存電荷 ${(cCell * 1.1).toFixed(1)} fC</div>
         </div>
         <div class="eng-obj-metric-card">
           <div class="eng-obj-metric-label">${t.ch13_metric_retention}</div>
-          <div class="eng-obj-metric-value">64 ms</div>
-          <div class="eng-obj-metric-note">動態刷新電路補償介電質穿隧漏電</div>
+          <div class="eng-obj-metric-value" style="color: ${dramTemp > 85 ? '#f59e0b' : '#38bdf8'};">${jedecRefi} ms ${dramTemp > 85 ? '(2× 雙頻)' : ''}</div>
+          <div class="eng-obj-metric-note">漏電流 ${iLeak.toFixed(1)} fA · 保持時間 ${tRet} ms</div>
         </div>
         <div class="eng-obj-metric-card">
-          <div class="eng-obj-metric-label">記憶體單元面積</div>
-          <div class="eng-obj-metric-value">6F²</div>
-          <div class="eng-obj-metric-note">4F² 3D DRAM 是下世代研發目標</div>
+          <div class="eng-obj-metric-label">保持安全裕度</div>
+          <div class="eng-obj-metric-value" style="color: ${retMargin >= 2.0 ? 'var(--semi-teal)' : '#ef4444'};">${retMargin}× Margin</div>
+          <div class="eng-obj-metric-note">${retMargin >= 2.0 ? '電容足以抗衡漏電，資料完好' : '⚠️ 高溫漏電過劇，資料翻轉風險！'}</div>
         </div>
       `;
 
       footerNote = t.ch13_dram_desc;
     } else if (activeTab === 'nand') {
+      controlsHtml = `
+        <div class="eng-obj-slider-panel">
+          <div class="eng-obj-slider-item">
+            <label for="ch13NandSlider">${t.ch13_layers_slider}</label>
+            <input type="range" class="eng-obj-range-input" id="ch13NandSlider" min="128" max="320" step="16" value="${nandLayers}">
+            <span class="eng-obj-slider-val">${nandLayers} 層</span>
+          </div>
+          <div style="margin-left: auto; display: flex; align-items: center; gap: 8px;">
+            <span style="font-size: 11px; color: #94a3b8; font-family: monospace;">總堆疊厚度: <strong style="color: #38bdf8; font-size: 13px;">${stackH} µm</strong></span>
+            <span style="font-size: 11px; padding: 2px 7px; border-radius: 4px; background: rgba(15,23,42,0.6); border: 1px solid var(--border-subtle); color: #fbbf24; font-weight: 700;">
+              HAR 孔深寬比: ${harAR}:1 (${decks} Deck${decks > 1 ? 's' : ''})
+            </span>
+          </div>
+        </div>
+      `;
+
+      // 繪製交替層數量 (依 nandLayers 比例映射為 10~18 條視覺代表層)
+      const visualTiers = Math.min(18, Math.max(10, Math.round(nandLayers / 18)));
+      // Deck 介面位置
+      const deckSeamY = decks > 1 ? Math.round(35 + (290 / decks)) : 0;
+
       viewportHtml = `
-        <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="3D NAND Flash 200+ Layer Staircase Architecture">
+        <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="3D NAND Flash High Aspect Ratio Architecture and Multi-Deck Staircase">
           <!-- 左側：交替疊層與垂直通道孔 (Alternating Stack & HAR Etch) -->
-          <g transform="translate(60, 30)">
-            <rect x="0" y="0" width="340" height="350" fill="#0f172a" stroke="#0ea5e9" stroke-width="1.5" rx="6"/>
-            <text x="170" y="28" text-anchor="middle" fill="#38bdf8" font-size="12.5" font-weight="750">200+ 層交替堆疊與 HAR 穿孔</text>
+          <g transform="translate(50, 25)">
+            <rect x="0" y="0" width="350" height="360" fill="#0f172a" stroke="#0ea5e9" stroke-width="1.5" rx="6"/>
+            <text x="175" y="24" text-anchor="middle" fill="#38bdf8" font-size="12" font-weight="750">${nandLayers} 層交替堆疊 · 總厚度 ${stackH} µm</text>
 
             <!-- 多層交替氧化層與鎢閘極 (SiO2 / W pairs) -->
-            ${Array.from({ length: 14 }, (_, i) => `
-              <rect x="20" y="${i * 18 + 45}" width="300" height="8" fill="#334155"/>
-              <rect x="20" y="${i * 18 + 53}" width="300" height="10" fill="#ea580c" opacity="0.85"/>
+            ${Array.from({ length: visualTiers }, (_, i) => `
+              <rect x="20" y="${i * (290 / visualTiers) + 35}" width="310" height="6" fill="#334155"/>
+              <rect x="20" y="${i * (290 / visualTiers) + 41}" width="310" height="${Math.max(4, Math.round(290 / visualTiers) - 8)}" fill="#ea580c" opacity="0.85"/>
             `).join('')}
 
+            ${decks > 1 ? `
+              <!-- Deck 雙疊對準接合面 (Deck Joint Seam) -->
+              <line x1="15" y1="${deckSeamY}" x2="335" y2="${deckSeamY}" stroke="#fbbf24" stroke-width="2" stroke-dasharray="4 2"/>
+              <text x="335" y="${deckSeamY - 4}" text-anchor="end" fill="#fbbf24" font-size="9" font-weight="700">Deck 拼接介面 (${decks}-Stack)</text>
+            ` : ''}
+
             <!-- 貫穿垂直深孔通道 (HAR Etch Channel Holes) -->
-            ${[90, 170, 250].map(x => `
-              <rect x="${x - 6}" y="45" width="12" height="250" rx="3" fill="#38bdf8" stroke="#ffffff" stroke-width="1"/>
+            ${[90, 175, 260].map(x => `
+              <rect x="${x - 6}" y="35" width="12" height="290" rx="3" fill="#38bdf8" stroke="#ffffff" stroke-width="1"/>
             `).join('')}
-            <text x="170" y="325" text-anchor="middle" fill="#38bdf8" font-size="11" font-weight="700">HAR 垂直通道孔 (深寬比 &gt; 80:1)</text>
-            <text x="170" y="340" text-anchor="middle" fill="#94a3b8" font-size="9.5">內含電荷陷阱層 (CTF: ONO) + 多晶矽通道</text>
+            <text x="175" y="340" text-anchor="middle" fill="#38bdf8" font-size="10.5" font-weight="700">HAR 垂直通道孔 (深寬比 ${harAR}:1 · 直徑 95nm)</text>
+            <text x="175" y="353" text-anchor="middle" fill="#94a3b8" font-size="9">電荷陷阱層 (CTF: ONO) + 多晶矽中空通道</text>
           </g>
 
           <!-- 右側：金字塔階梯狀接點引出 (Word-Line Staircase Contact Pads) -->
-          <g transform="translate(420, 30)">
-            <rect x="0" y="0" width="320" height="350" fill="#0f172a" stroke="#f59e0b" stroke-width="1.5" rx="6"/>
-            <text x="160" y="28" text-anchor="middle" fill="#fbbf24" font-size="12.5" font-weight="750">字元線階梯狀引出 (Staircase Pads)</text>
+          <g transform="translate(420, 25)">
+            <rect x="0" y="0" width="330" height="360" fill="#0f172a" stroke="#f59e0b" stroke-width="1.5" rx="6"/>
+            <text x="165" y="24" text-anchor="middle" fill="#fbbf24" font-size="12" font-weight="750">字元線階梯狀引出 (${nandLayers} Tiers Staircase)</text>
 
             <!-- 階梯幾何形狀 (逐層向後退縮) -->
             ${Array.from({ length: 8 }, (_, i) => `
-              <rect x="30" y="${i * 30 + 55}" width="${260 - i * 28}" height="24" fill="#ea580c" rx="2" stroke="#fbbf24" stroke-width="1"/>
+              <rect x="30" y="${i * 32 + 45}" width="${270 - i * 29}" height="26" fill="#ea580c" rx="2" stroke="#fbbf24" stroke-width="1"/>
               <!-- 垂直接觸插塞 (Contact Vias) 落在每個階梯上 -->
-              <line x1="${260 - i * 28 + 15}" y1="40" x2="${260 - i * 28 + 15}" y2="${i * 30 + 55}" stroke="#cbd5e1" stroke-width="2.5"/>
-              <circle cx="${260 - i * 28 + 15}" cy="${i * 30 + 55}" r="3" fill="#ffffff"/>
+              <line x1="${270 - i * 29 + 15}" y1="35" x2="${270 - i * 29 + 15}" y2="${i * 32 + 45}" stroke="#cbd5e1" stroke-width="2.5"/>
+              <circle cx="${270 - i * 29 + 15}" cy="${i * 32 + 45}" r="3" fill="#ffffff"/>
             `).join('')}
-            <text x="160" y="325" text-anchor="middle" fill="#fbbf24" font-size="11" font-weight="700">微影「修切 (Trim)」工藝製成微型階梯</text>
-            <text x="160" y="340" text-anchor="middle" fill="#94a3b8" font-size="9.5">數百條 Word-Line 分層引出至金屬互連線</text>
+            <text x="165" y="338" text-anchor="middle" fill="#fbbf24" font-size="10.5" font-weight="750">微影「修切 (Trim)」工藝製成微型階梯</text>
+            <text x="165" y="352" text-anchor="middle" fill="#94a3b8" font-size="9">單顆晶粒 TLC 裸晶容量: ${(dieCapacity / 1000).toFixed(2)} Tb (${dieCapacity} Gb)</text>
           </g>
         </svg>
       `;
@@ -4841,18 +4981,18 @@ export function renderMemoryTechObject(container, lang = 'zh') {
       dashboardHtml = `
         <div class="eng-obj-metric-card">
           <div class="eng-obj-metric-label">${t.ch13_metric_nand_layers}</div>
-          <div class="eng-obj-metric-value" style="color: var(--semi-blue-dark);">232 ~ 300+ 層</div>
-          <div class="eng-obj-metric-note">雙層對準堆疊 (Double-Stack) 工藝</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-blue-dark);">${nandLayers} 層 (${stackH} µm)</div>
+          <div class="eng-obj-metric-note">${decks} 層多階對準堆疊 (${decks} Decks Architecture)</div>
         </div>
         <div class="eng-obj-metric-card">
-          <div class="eng-obj-metric-label">HAR 孔深寬比</div>
-          <div class="eng-obj-metric-value">&gt; 80:1</div>
-          <div class="eng-obj-metric-note">一刀穿透數微米交替介電層</div>
+          <div class="eng-obj-metric-label">HAR 深孔高寬比</div>
+          <div class="eng-obj-metric-value" style="color: #fbbf24;">${harAR}:1 Aspect Ratio</div>
+          <div class="eng-obj-metric-note">低溫電漿極速穿透多微米交替介電層</div>
         </div>
         <div class="eng-obj-metric-card">
           <div class="eng-obj-metric-label">單顆裸晶儲存容量</div>
-          <div class="eng-obj-metric-value">1 ~ 2 Tb</div>
-          <div class="eng-obj-metric-note">TLC (3-bit) / QLC (4-bit) 電荷精準量化</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-teal);">${(dieCapacity / 1000).toFixed(2)} Tb / Die</div>
+          <div class="eng-obj-metric-note">TLC (3-bit/cell) 8階電壓臨界量化儲存</div>
         </div>
       `;
 
@@ -4929,6 +5069,7 @@ export function renderMemoryTechObject(container, lang = 'zh') {
             <button type="button" class="eng-obj-tab ${activeTab === 'nand' ? 'is-active' : ''}" data-tab="nand">${t.ch13_tab_nand}</button>
             <button type="button" class="eng-obj-tab ${activeTab === 'hbm' ? 'is-active' : ''}" data-tab="hbm">${t.ch13_tab_hbm}</button>
           </div>
+          ${controlsHtml}
         </div>
 
         <div class="eng-obj-viewport">
@@ -4952,6 +5093,30 @@ export function renderMemoryTechObject(container, lang = 'zh') {
         update();
       });
     });
+
+    const arSlider = container.querySelector('#ch13ArSlider');
+    if (arSlider) {
+      arSlider.addEventListener('input', (e) => {
+        dramAR = parseInt(e.target.value, 10);
+        update();
+      });
+    }
+
+    const tempSlider = container.querySelector('#ch13TempSlider');
+    if (tempSlider) {
+      tempSlider.addEventListener('input', (e) => {
+        dramTemp = parseInt(e.target.value, 10);
+        update();
+      });
+    }
+
+    const nandSlider = container.querySelector('#ch13NandSlider');
+    if (nandSlider) {
+      nandSlider.addEventListener('input', (e) => {
+        nandLayers = parseInt(e.target.value, 10);
+        update();
+      });
+    }
   }
 
   update();
@@ -6046,49 +6211,163 @@ export function renderProcessControlObject(container, lang = 'zh') {
 export function renderWaferTestObject(container, lang = 'zh') {
   const t = TEXTS[lang] || TEXTS.zh;
   let activeTab = 'wat'; // 'wat' | 'cp' | 'binmap'
+  let forceCurrent = 10.0; // 1.0 ~ 50.0 mA
+  let leadResistance = 5.0; // 0.5 ~ 20.0 Ohm
+  let probeOD = 50; // 0 ~ 80 um
 
   function update() {
+    let controlsHtml = '';
     let viewportHtml = '';
     let dashboardHtml = '';
     let footerNote = '';
 
+    // Kelvin 4-Wire 物理計算
+    // 待測真值 (金屬插塞 Via 接觸阻抗 R_DUT = 0.82 Ω)
+    const rDUT = 0.82; // Ohm
+    // 2-Wire 測量值 (包含兩條導線與探針電阻: R_DUT + 2 * R_lead)
+    const r2Wire = rDUT + 2 * leadResistance; // Ohm
+    // 2-Wire 誤差率 (%)
+    const err2Wire = (((r2Wire - rDUT) / rDUT) * 100).toFixed(1);
+    // Kelvin 4-Wire 測量值 (Sense 線高阻抗電壓計 I_sense ≈ 0，消除導線壓降)
+    const r4Wire = rDUT; // 0.82 Ohm
+    const vSense = (forceCurrent * 1e-3 * rDUT * 1000).toFixed(2); // mV
+
+    // CP 探針下壓行程 (Overdrive) 與接觸電阻物理 (Scrubbing Mechanics)
+    // 探針彈簧係數 k = 0.08 gf/um
+    const contactForce = (probeOD * 0.08).toFixed(1); // gf/pin
+    // 接觸電阻 Rc (隨著下壓破除微凸塊表面氧化膜而急遽下降)
+    let rcProbe = 0;
+    let cpStatus = 'pass';
+    if (probeOD < 20) {
+      rcProbe = (12.0 * Math.exp(-probeOD / 6) + 2.8).toFixed(2);
+      cpStatus = 'false_open'; // 氧化層未破除，造成假開路
+    } else if (probeOD <= 65) {
+      rcProbe = (0.12 + 1.6 / (probeOD - 12)).toFixed(2);
+      cpStatus = 'pass'; // 理想接觸
+    } else {
+      rcProbe = (0.15 + (probeOD - 65) * 0.008).toFixed(2);
+      cpStatus = 'over_scrub'; // 過度下壓，凸塊壓傷或探針疲勞
+    }
+
     if (activeTab === 'wat') {
+      controlsHtml = `
+        <div class="eng-obj-slider-panel">
+          <div class="eng-obj-slider-item">
+            <label for="ch19ForceSlider">${t.ch19_force_slider}</label>
+            <input type="range" class="eng-obj-range-input" id="ch19ForceSlider" min="1" max="50" step="1" value="${forceCurrent}">
+            <span class="eng-obj-slider-val">${forceCurrent.toFixed(1)} mA</span>
+          </div>
+          <div class="eng-obj-slider-item">
+            <label for="ch19LeadSlider">${t.ch19_lead_slider}</label>
+            <input type="range" class="eng-obj-range-input" id="ch19LeadSlider" min="0.5" max="20" step="0.5" value="${leadResistance}">
+            <span class="eng-obj-slider-val">${leadResistance.toFixed(1)} Ω</span>
+          </div>
+          <div style="margin-left: auto; display: flex; align-items: center; gap: 8px;">
+            <span style="font-size: 11px; color: #94a3b8; font-family: monospace;">${t.ch19_rdut_label}: <strong style="color: #38bdf8; font-size: 13px;">${rDUT} Ω</strong></span>
+            <span style="font-size: 11px; padding: 2px 7px; border-radius: 4px; background: rgba(15,23,42,0.6); border: 1px solid var(--border-subtle); color: #ef4444; font-weight: 700;">
+              2-Wire: ${r2Wire.toFixed(2)} Ω (+${err2Wire}%)
+            </span>
+            <span style="font-size: 11px; padding: 2px 7px; border-radius: 4px; background: rgba(15,23,42,0.6); border: 1px solid var(--border-subtle); color: #10b981; font-weight: 700;">
+              4-Wire: ${r4Wire.toFixed(2)} Ω (0.0% 誤差)
+            </span>
+          </div>
+        </div>
+      `;
+
       viewportHtml = `
-        <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="WAT Scribe-line PCM Test Pattern and Probes">
-          <!-- 晶圓切割劃線道 (Scribe-Line Street @ 80µm 寬) -->
-          <g transform="translate(60, 40)">
-            <!-- 左右兩相鄰實體晶片 (Adjacent Product Dies) -->
-            <rect x="0" y="0" width="180" height="320" fill="#0f172a" stroke="#334155" stroke-width="1.5" rx="4"/>
-            <text x="90" y="160" text-anchor="middle" fill="#64748b" font-size="12" font-weight="700">產品晶粒 A (Die A)</text>
+        <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="WAT Scribe-line PCM Test Pattern and Kelvin 4-Wire Sensing Principle">
+          <!-- 左側：晶圓切割劃線道 (Scribe-Line Street @ 80µm 寬) 與 PCM 測試結構 -->
+          <g transform="translate(40, 30)">
+            <rect x="0" y="0" width="340" height="360" fill="#0f172a" stroke="#334155" stroke-width="1.5" rx="6"/>
+            <text x="170" y="24" text-anchor="middle" fill="#38bdf8" font-size="12" font-weight="750">劃線道 PCM 測試鍵 (Process Control Monitor)</text>
 
-            <rect x="500" y="0" width="180" height="320" fill="#0f172a" stroke="#334155" stroke-width="1.5" rx="4"/>
-            <text x="590" y="160" text-anchor="middle" fill="#64748b" font-size="12" font-weight="700">產品晶粒 B (Die B)</text>
+            <!-- 左右相鄰實體晶片與中間劃線道 -->
+            <g transform="translate(15, 45)">
+              <rect x="0" y="0" width="85" height="290" fill="#1e293b" stroke="#475569" stroke-width="1" rx="3"/>
+              <text x="42" y="145" text-anchor="middle" fill="#64748b" font-size="11" font-weight="700">Die A</text>
 
-            <!-- 中間劃線道 (Scribe-Line PCM Street) -->
-            <rect x="200" y="0" width="280" height="320" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5" rx="4"/>
-            <text x="340" y="25" text-anchor="middle" fill="#38bdf8" font-size="12" font-weight="750">劃線道 PCM 測試鍵 (Process Control Monitor)</text>
+              <rect x="225" y="0" width="85" height="290" fill="#1e293b" stroke="#475569" stroke-width="1" rx="3"/>
+              <text x="267" y="145" text-anchor="middle" fill="#64748b" font-size="11" font-weight="700">Die B</text>
 
-            <!-- PCM 測試結構矩陣與探針下壓 (Test Pads & Probes) -->
-            <g transform="translate(230, 45)">
+              <!-- 中間劃線道 -->
+              <rect x="95" y="0" width="120" height="290" fill="#090d16" stroke="#38bdf8" stroke-width="1.5" rx="3"/>
+              <text x="155" y="20" text-anchor="middle" fill="#38bdf8" font-size="10" font-weight="700">Scribe 80µm</text>
+
+              <!-- PCM 測試結構單元 (Kelvin Contact Via 測試鍵高亮) -->
               ${[
-                { name: 'NMOS Ion/Ioff', y: 0 },
-                { name: 'PMOS Ion/Ioff', y: 65 },
-                { name: 'Kelvin Contact Rc', y: 130 },
-                { name: 'Comb-Serpentine', y: 195 }
+                { name: 'NMOS Ion/Ioff', y: 35, active: false },
+                { name: 'PMOS Ion/Ioff', y: 95, active: false },
+                { name: 'Kelvin Contact Rc', y: 155, active: true },
+                { name: 'Comb-Serpentine', y: 215, active: false }
               ].map(item => `
-                <g transform="translate(0, ${item.y})">
-                  <rect x="0" y="0" width="220" height="50" rx="3" fill="#0f172a" stroke="#475569" stroke-width="1"/>
-                  <!-- 4 個測試焊墊 (Test Pads: 40µm x 40µm) -->
-                  <rect x="15" y="15" width="20" height="20" fill="#f59e0b" rx="2"/>
-                  <rect x="45" y="15" width="20" height="20" fill="#f59e0b" rx="2"/>
-                  <rect x="75" y="15" width="20" height="20" fill="#f59e0b" rx="2"/>
-                  <rect x="105" y="15" width="20" height="20" fill="#f59e0b" rx="2"/>
-                  <!-- 垂直探針接觸 (Probes) -->
-                  <line x1="25" y1="-10" x2="25" y2="15" stroke="#e2e8f0" stroke-width="2"/>
-                  <line x1="55" y1="-10" x2="55" y2="15" stroke="#e2e8f0" stroke-width="2"/>
-                  <text x="160" y="30" text-anchor="middle" fill="#38bdf8" font-size="10" font-weight="700">${item.name}</text>
+                <g transform="translate(102, ${item.y})">
+                  <rect x="0" y="0" width="106" height="50" rx="3" fill="${item.active ? '#1e293b' : '#0f172a'}" stroke="${item.active ? '#f59e0b' : '#334155'}" stroke-width="${item.active ? 1.5 : 1}"/>
+                  <!-- 4 個測試焊墊 (Test Pads: Force+, Sense+, Sense-, Force-) -->
+                  <rect x="6" y="15" width="18" height="18" fill="#f59e0b" rx="2"/>
+                  <rect x="30" y="15" width="18" height="18" fill="#38bdf8" rx="2"/>
+                  <rect x="58" y="15" width="18" height="18" fill="#38bdf8" rx="2"/>
+                  <rect x="82" y="15" width="18" height="18" fill="#f59e0b" rx="2"/>
+                  <!-- 針尖垂直下壓 -->
+                  <line x1="15" y1="-8" x2="15" y2="15" stroke="#fbbf24" stroke-width="2"/>
+                  <line x1="39" y1="-8" x2="39" y2="15" stroke="#38bdf8" stroke-width="1.5"/>
+                  <line x1="67" y1="-8" x2="67" y2="15" stroke="#38bdf8" stroke-width="1.5"/>
+                  <line x1="91" y1="-8" x2="91" y2="15" stroke="#fbbf24" stroke-width="2"/>
+                  <text x="53" y="44" text-anchor="middle" fill="${item.active ? '#fbbf24' : '#94a3b8'}" font-size="8.5" font-weight="700">${item.name}</text>
                 </g>
               `).join('')}
+            </g>
+          </g>
+
+          <!-- 右側：Kelvin 4-Wire 測量等效電路與誤差解析 -->
+          <g transform="translate(400, 30)">
+            <rect x="0" y="0" width="360" height="360" fill="#0f172a" stroke="#f59e0b" stroke-width="1.5" rx="6"/>
+            <text x="180" y="24" text-anchor="middle" fill="#fbbf24" font-size="12" font-weight="750">Kelvin 四線式接觸阻抗量測法 (4-Wire Sense)</text>
+
+            <!-- 電流源 (Force Loop: 橘線) -->
+            <g transform="translate(30, 45)">
+              <rect x="0" y="0" width="300" height="42" rx="4" fill="#1e293b" stroke="#f59e0b" stroke-width="1.5"/>
+              <text x="150" y="25" text-anchor="middle" fill="#fbbf24" font-size="11" font-weight="700">定電流源 I_force = ${forceCurrent.toFixed(1)} mA</text>
+            </g>
+
+            <!-- 導線與待測電阻 DUT 串聯網格 -->
+            <g transform="translate(30, 110)">
+              <!-- Force+ 導線電阻 -->
+              <rect x="10" y="10" width="70" height="26" fill="#334155" stroke="#f59e0b" stroke-width="1" rx="2"/>
+              <text x="45" y="27" text-anchor="middle" fill="#cbd5e1" font-size="9.5">R_lead: ${leadResistance.toFixed(1)}Ω</text>
+              <line x1="45" y1="-23" x2="45" y2="10" stroke="#f59e0b" stroke-width="2"/>
+
+              <!-- Force- 導線電阻 -->
+              <rect x="220" y="10" width="70" height="26" fill="#334155" stroke="#f59e0b" stroke-width="1" rx="2"/>
+              <text x="255" y="27" text-anchor="middle" fill="#cbd5e1" font-size="9.5">R_lead: ${leadResistance.toFixed(1)}Ω</text>
+              <line x1="255" y1="-23" x2="255" y2="10" stroke="#f59e0b" stroke-width="2"/>
+
+              <!-- 中間待測孔 R_DUT -->
+              <rect x="110" y="2" width="80" height="42" rx="3" fill="#0284c7" stroke="#38bdf8" stroke-width="2"/>
+              <text x="150" y="20" text-anchor="middle" fill="#ffffff" font-size="10.5" font-weight="800">R_DUT</text>
+              <text x="150" y="34" text-anchor="middle" fill="#38bdf8" font-size="10" font-weight="700">${rDUT} Ω (820mΩ)</text>
+
+              <line x1="80" y1="23" x2="110" y2="23" stroke="#f59e0b" stroke-width="2"/>
+              <line x1="190" y1="23" x2="220" y2="23" stroke="#f59e0b" stroke-width="2"/>
+
+              <!-- Sense+ 與 Sense- 內引線 (藍色高阻抗電壓感測) -->
+              <line x1="110" y1="23" x2="110" y2="85" stroke="#38bdf8" stroke-width="2" stroke-dasharray="3 2"/>
+              <circle cx="110" cy="23" r="3" fill="#38bdf8"/>
+              <line x1="190" y1="23" x2="190" y2="85" stroke="#38bdf8" stroke-width="2" stroke-dasharray="3 2"/>
+              <circle cx="190" cy="23" r="3" fill="#38bdf8"/>
+            </g>
+
+            <!-- 高阻抗電壓表 (Sense Meter: 藍框) -->
+            <g transform="translate(80, 205)">
+              <rect x="0" y="0" width="200" height="50" rx="4" fill="#0b1329" stroke="#38bdf8" stroke-width="1.5"/>
+              <text x="100" y="22" text-anchor="middle" fill="#38bdf8" font-size="11" font-weight="750">高阻抗電壓計 (I_sense ≈ 0)</text>
+              <text x="100" y="38" text-anchor="middle" fill="#34d399" font-size="10.5" font-family="monospace" font-weight="700">V_sense = ${vSense} mV</text>
+            </g>
+
+            <!-- 比較結論看板 -->
+            <g transform="translate(25, 275)">
+              <rect x="0" y="0" width="310" height="65" rx="4" fill="#020617" stroke="#334155" stroke-width="1"/>
+              <text x="15" y="24" fill="#ef4444" font-size="10.5" font-weight="700">傳統 2-Wire: ${r2Wire.toFixed(2)} Ω (包含導線壓降，誤差 +${err2Wire}%)</text>
+              <text x="15" y="48" fill="#10b981" font-size="11" font-weight="800">Kelvin 4-Wire: ${r4Wire.toFixed(2)} Ω (Sense 無電流，精準零誤差!)</text>
             </g>
           </g>
         </svg>
@@ -6096,62 +6375,92 @@ export function renderWaferTestObject(container, lang = 'zh') {
 
       dashboardHtml = `
         <div class="eng-obj-metric-card">
-          <div class="eng-obj-metric-label">電晶體飽和驅動電流 (Ion)</div>
-          <div class="eng-obj-metric-value" style="color: var(--semi-teal);">1.25 mA/µm (PASS)</div>
-          <div class="eng-obj-metric-note">符合設計規範模型標稱值</div>
+          <div class="eng-obj-metric-label">接觸孔真實電阻 (R_DUT)</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-teal);">${rDUT} Ω (820 mΩ)</div>
+          <div class="eng-obj-metric-note">Via / Contact Plug 物理真值</div>
         </div>
         <div class="eng-obj-metric-card">
-          <div class="eng-obj-metric-label">次臨界關斷漏電 (Ioff)</div>
-          <div class="eng-obj-metric-value">&lt; 15 pA/µm</div>
-          <div class="eng-obj-metric-note">短通道效應與 DIBL 抑制良好</div>
+          <div class="eng-obj-metric-label">傳統二線量測值 (2-Wire)</div>
+          <div class="eng-obj-metric-value" style="color: #ef4444;">${r2Wire.toFixed(2)} Ω (+${err2Wire}%)</div>
+          <div class="eng-obj-metric-note">寄生導線阻抗 ${leadResistance}×2 Ω 嚴重失真</div>
         </div>
         <div class="eng-obj-metric-card">
-          <div class="eng-obj-metric-label">WAT 晶圓出廠檢驗判定</div>
-          <div class="eng-obj-metric-value" style="color: var(--semi-blue-dark);">100% 合格放行</div>
-          <div class="eng-obj-metric-note">晶圓製造完成之正式結案成績單</div>
+          <div class="eng-obj-metric-label">Kelvin 四線量測值 (4-Wire)</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-blue-dark);">${r4Wire.toFixed(2)} Ω (0.00% 誤差)</div>
+          <div class="eng-obj-metric-note">Sense 端零電流，徹底抵消導線電阻</div>
         </div>
       `;
 
       footerNote = t.ch19_wat_desc;
     } else if (activeTab === 'cp') {
+      controlsHtml = `
+        <div class="eng-obj-slider-panel">
+          <div class="eng-obj-slider-item">
+            <label for="ch19OdSlider">${t.ch19_od_slider}</label>
+            <input type="range" class="eng-obj-range-input" id="ch19OdSlider" min="0" max="80" step="5" value="${probeOD}">
+            <span class="eng-obj-slider-val">${probeOD} µm</span>
+          </div>
+          <div style="margin-left: auto; display: flex; align-items: center; gap: 8px;">
+            <span style="font-size: 11px; color: #94a3b8; font-family: monospace;">下壓力: <strong style="color: #38bdf8; font-size: 13px;">${contactForce} gf/pin</strong></span>
+            <span style="font-size: 11px; padding: 2px 7px; border-radius: 4px; background: rgba(15,23,42,0.6); border: 1px solid var(--border-subtle); color: ${cpStatus === 'pass' ? '#10b981' : (cpStatus === 'false_open' ? '#ef4444' : '#f59e0b')}; font-weight: 700;">
+              ${t.ch19_rc_label}: ${rcProbe} Ω (${cpStatus === 'pass' ? '✓ 良好接觸' : (cpStatus === 'false_open' ? '⚠️ 假開路 (未破氧化膜)' : '⚠️ 過壓 (刮傷凸塊)')})
+            </span>
+          </div>
+        </div>
+      `;
+
+      // 探針下壓垂直位移與滑移刮痕 (Scrubbing) 物理形變
+      const tipDy = Math.round(probeOD * 0.45);
+      const tipDx = Math.round(probeOD * 0.22);
+
       viewportHtml = `
-        <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="CP Probe Card Touchdown on Die Micro-Bumps">
+        <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="CP Probe Card Touchdown and Scrubbing Mechanics">
           <!-- 上方探針卡基板 (Probe Card PCB & Space Transformer) -->
-          <g transform="translate(100, 30)">
-            <rect x="0" y="0" width="600" height="40" rx="3" fill="#1e293b" stroke="#38bdf8" stroke-width="2"/>
-            <text x="300" y="25" text-anchor="middle" fill="#38bdf8" font-size="12.5" font-weight="750">探針卡主體 (Vertical Probe Card: 數萬微彈簧針)</text>
+          <g transform="translate(80, 25)">
+            <rect x="0" y="0" width="640" height="42" rx="3" fill="#1e293b" stroke="#38bdf8" stroke-width="2"/>
+            <text x="320" y="26" text-anchor="middle" fill="#38bdf8" font-size="12.5" font-weight="750">垂直探針卡基板 (Vertical Probe Card: 45,000+ MEMS 微彈簧針)</text>
           </g>
 
-          <!-- 微彈簧垂直探針束 (Micro-Spring Cantilever Probes) -->
-          <g transform="translate(140, 70)">
-            ${Array.from({ length: 16 }, (_, i) => `
-              <g transform="translate(${i * 34 + 10}, 0)">
-                <!-- 彈簧針主體 -->
-                <line x1="0" y1="0" x2="0" y2="90" stroke="#cbd5e1" stroke-width="2.5"/>
-                <!-- 針尖微彎曲下壓 (Overdrive Touchdown) -->
-                <path d="M 0,90 Q 5,100 0,110" fill="none" stroke="#f59e0b" stroke-width="2"/>
-                <circle cx="0" cy="112" r="3" fill="#fbbf24"/>
-              </g>
-            `).join('')}
-            <text x="260" y="60" text-anchor="middle" fill="#94a3b8" font-size="11">數萬針高密度微間距 (Pitch 35µm) · 觸地壓力 3.5 gf/pin</text>
+          <!-- 微彈簧垂直探針束 (動態下壓與滑移 Scrubbing) -->
+          <g transform="translate(110, 67)">
+            ${Array.from({ length: 16 }, (_, i) => {
+              const baseY = 80;
+              const currentTipY = baseY + tipDy;
+              const currentTipX = tipDx;
+              return `
+                <g transform="translate(${i * 36 + 15}, 0)">
+                  <!-- 彈簧針主體 (隨 Overdrive 彎曲) -->
+                  <path d="M 0,0 C 8,${Math.round(currentTipY * 0.4)} -12,${Math.round(currentTipY * 0.7)} ${currentTipX},${currentTipY}" fill="none" stroke="#cbd5e1" stroke-width="2.5"/>
+                  <!-- 探針針尖 (Touchdown Scrub Point) -->
+                  <circle cx="${currentTipX}" cy="${currentTipY}" r="3.5" fill="${cpStatus === 'pass' ? '#10b981' : (cpStatus === 'false_open' ? '#ef4444' : '#f59e0b')}"/>
+                </g>
+              `;
+            }).join('')}
+            <text x="290" y="65" text-anchor="middle" fill="#94a3b8" font-size="11">下壓行程 ${probeOD} µm · 觸地接觸壓力 ${contactForce} gf/pin · 針尖水平滑移破膜 ${tipDx} µm</text>
           </g>
 
           <!-- 下方被測晶粒微凸塊 (Die Micro-Bumps) 與晶圓 -->
-          <g transform="translate(100, 200)">
-            <!-- 晶片凸塊陣列 (Micro-Bumps) -->
+          <g transform="translate(80, 215)">
+            <!-- 晶片凸塊陣列 (Micro-Bumps with Scrub Marks) -->
             ${Array.from({ length: 16 }, (_, i) => `
-              <circle cx="${i * 34 + 50}" cy="10" r="7" fill="#f59e0b" stroke="#ffffff" stroke-width="1.5"/>
+              <g transform="translate(${i * 36 + 45}, 0)">
+                <circle cx="0" cy="0" r="8" fill="#f59e0b" stroke="#ffffff" stroke-width="1.5"/>
+                ${probeOD >= 20 ? `
+                  <!-- 探針刮痕 (Scrub Mark: 刺破氧化層露出新鮮焊料) -->
+                  <line x1="-3" y1="0" x2="${Math.min(5, tipDx - 2)}" y2="0" stroke="#ffffff" stroke-width="2.5"/>
+                ` : ''}
+              </g>
             `).join('')}
 
-            <!-- 被測晶粒主體 (DUT: Device Under Test) -->
-            <rect x="20" y="18" width="560" height="90" rx="4" fill="#0f172a" stroke="#10b981" stroke-width="2"/>
-            <text x="300" y="55" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="750">待測晶片 (Die Under Test: CPU/GPU 核心)</text>
-            <text x="300" y="75" text-anchor="middle" fill="#34d399" font-size="11">高速測試向量激勵 (2.4 GHz Clock · Scan Chain · BIST 自檢)</text>
+            <!-- 被測晶粒主體 (DUT) -->
+            <rect x="10" y="12" width="620" height="95" rx="4" fill="#0f172a" stroke="#10b981" stroke-width="2"/>
+            <text x="320" y="50" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="750">待測晶片 (Die Under Test: CPU/GPU 核心)</text>
+            <text x="320" y="72" text-anchor="middle" fill="#34d399" font-size="11">高速測試向量激勵 (2.4 GHz Clock · Scan Chain · BIST 自檢) · 接觸電阻 Rc = ${rcProbe} Ω</text>
           </g>
 
           <!-- 下方晶圓真空吸盤 (Wafer Chuck) -->
-          <rect x="80" y="320" width="640" height="30" fill="#334155" rx="3"/>
-          <text x="400" y="340" text-anchor="middle" fill="#cbd5e1" font-size="11">晶圓真空吸盤載台 (Wafer Prober Chuck with Thermal Control -40°C ~ 125°C)</text>
+          <rect x="60" y="340" width="680" height="30" fill="#334155" rx="3"/>
+          <text x="400" y="360" text-anchor="middle" fill="#cbd5e1" font-size="11">晶圓真空吸盤載台 (Wafer Prober Chuck with Thermal Control -40°C ~ 125°C)</text>
         </svg>
       `;
 
@@ -6162,14 +6471,14 @@ export function renderWaferTestObject(container, lang = 'zh') {
           <div class="eng-obj-metric-note">垂直 MEMS 微彈簧針高密度佈置</div>
         </div>
         <div class="eng-obj-metric-card">
-          <div class="eng-obj-metric-label">${t.ch19_metric_freq}</div>
-          <div class="eng-obj-metric-value">&gt; 2.4 GHz</div>
-          <div class="eng-obj-metric-note">高速信號完整性 (SI) 匹配與受控阻抗</div>
+          <div class="eng-obj-metric-label">接觸電阻 (Rc)</div>
+          <div class="eng-obj-metric-value" style="color: ${cpStatus === 'pass' ? 'var(--semi-teal)' : '#ef4444'};">${rcProbe} Ω (${contactForce} gf)</div>
+          <div class="eng-obj-metric-note">${cpStatus === 'pass' ? '破膜充分，測試訊號完整度極佳' : (cpStatus === 'false_open' ? '⚠️ 下壓不足，氧化膜未破造成假開路' : '⚠️ 下壓過大，微凸塊刮痕過深！')}</div>
         </div>
         <div class="eng-obj-metric-card">
-          <div class="eng-obj-metric-label">並行測試站數 (Multi-Site)</div>
-          <div class="eng-obj-metric-value">16 Dies / 觸地</div>
-          <div class="eng-obj-metric-note">大幅壓低單顆晶片測試成本 (CoT)</div>
+          <div class="eng-obj-metric-label">${t.ch19_metric_freq}</div>
+          <div class="eng-obj-metric-value">&gt; 2.4 GHz</div>
+          <div class="eng-obj-metric-note">微彈簧同軸屏蔽，阻抗匹配良好</div>
         </div>
       `;
 
@@ -6284,6 +6593,7 @@ export function renderWaferTestObject(container, lang = 'zh') {
             <button type="button" class="eng-obj-tab ${activeTab === 'cp' ? 'is-active' : ''}" data-tab="cp">${t.ch19_tab_cp}</button>
             <button type="button" class="eng-obj-tab ${activeTab === 'binmap' ? 'is-active' : ''}" data-tab="binmap">${t.ch19_tab_binmap}</button>
           </div>
+          ${controlsHtml}
         </div>
 
         <div class="eng-obj-viewport">
@@ -6307,6 +6617,30 @@ export function renderWaferTestObject(container, lang = 'zh') {
         update();
       });
     });
+
+    const forceSlider = container.querySelector('#ch19ForceSlider');
+    if (forceSlider) {
+      forceSlider.addEventListener('input', (e) => {
+        forceCurrent = parseFloat(e.target.value);
+        update();
+      });
+    }
+
+    const leadSlider = container.querySelector('#ch19LeadSlider');
+    if (leadSlider) {
+      leadSlider.addEventListener('input', (e) => {
+        leadResistance = parseFloat(e.target.value);
+        update();
+      });
+    }
+
+    const odSlider = container.querySelector('#ch19OdSlider');
+    if (odSlider) {
+      odSlider.addEventListener('input', (e) => {
+        probeOD = parseInt(e.target.value, 10);
+        update();
+      });
+    }
   }
 
   update();
