@@ -1,6 +1,6 @@
 {
   "name": "semiconductor-knowledge-hub",
-  "version": "1.8.0",
+  "version": "1.8.1",
   "type": "module",
   "private": true,
   "description": "半導體製造概論知識庫：從沙子到晶片的完整製造旅程與互動工程圖譜",

@@ -1352,9 +1352,11 @@ figcaption {
   .header-actions {
     gap: 6px;
   }
+  .app-header .header-actions a.tool-btn span { display: inline; }
 }
 
 @media (max-width: 560px) {
+  :root { --header-height: 108px; }
   .brand-title {
     font-size: 13.5px;
     max-width: 140px;
@@ -1363,8 +1365,13 @@ figcaption {
     text-overflow: ellipsis;
   }
   .app-header {
-    padding: 0 12px;
+    padding: 8px 12px;
+    flex-wrap: wrap;
+    gap: 6px;
   }
+  .app-header > div:first-child { width: 100%; }
+  .header-actions { max-width: 100%; flex-shrink: 0; }
+  .lang-switch-cluster { flex-shrink: 0; white-space: nowrap; }
   .lang-switch-cluster .lang-btn {
     padding: 4px 8px;
     font-size: 11px;

@@ -54,7 +54,7 @@ import { mountEngineeringObject } from './工程物件.js';
       explore_open: '開啟互動情境 ↗',
       no_matching_chapters: '查無相符章節',
       footer_attribution: `本專案基於開源教材 <a href="https://github.com/chenwei810/Semiconductor_Manufacturing_Introduction" target="_blank" rel="noopener">chenwei810/Semiconductor_Manufacturing_Introduction</a> （採 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hant" target="_blank" rel="noopener">CC BY-NC-SA 4.0 創用 CC 姓名標示-非商業性-相同方式分享</a> 授權）重製與架構升級。`,
-      footer_desc: '涵蓋 25 章從沙子到晶片的完整晶圓製造旅程 · 245 筆核心術語與現場實務行話 · 中英雙語無縫支援 · 純前端極速架構 · 零中系依賴 · 版本 1.8.0',
+      footer_desc: '涵蓋 25 章從沙子到晶片的完整晶圓製造旅程 · 245 筆核心術語與現場實務行話 · 中英雙語無縫支援 · 純前端極速架構 · 零中系依賴 · 版本 1.8.1',
       atlas_title: '晶圓廠 12 大核心製程全景圖譜 (Fab Flow Atlas)',
       btn_close: '關閉 (Esc)',
       jargon_title: '晶圓廠現場行話與術語字典',
@@ -137,7 +137,7 @@ import { mountEngineeringObject } from './工程物件.js';
       explore_open: 'Open Scenario ↗',
       no_matching_chapters: 'No matching chapters found',
       footer_attribution: `Adapted from the open-source book <a href="https://github.com/chenwei810/Semiconductor_Manufacturing_Introduction" target="_blank" rel="noopener">chenwei810/Semiconductor_Manufacturing_Introduction</a> licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a>.`,
-      footer_desc: 'Comprehensive 25-chapter wafer fabrication guide from sand to chip · 245 core terms & 43 fab jargon · Native bilingual support · Zero Chinese-origin dependencies · v1.8.0',
+      footer_desc: 'Comprehensive 25-chapter wafer fabrication guide from sand to chip · 245 core terms & 43 fab jargon · Native bilingual support · Zero Chinese-origin dependencies · v1.8.1',
       atlas_title: '12 Core Fab Flow Atlas',
       btn_close: 'Close (Esc)',
       jargon_title: 'Fab Jargon & Terminology Dictionary',
@@ -213,6 +213,7 @@ import { mountEngineeringObject } from './工程物件.js';
   const mobileToggleBtn = document.getElementById('mobileToggleBtn');
   const chapterFilterEl = document.getElementById('chapterFilter');
   const mainCanvasEl = document.getElementById('mainContentArea');
+  let disposeCurrentEngineeringObject = null;
   const tocListEl = document.getElementById('tocList');
   const readingProgressBar = document.getElementById('readingProgressBar');
   const backToTopBtn = document.getElementById('backToTopBtn');
@@ -450,6 +451,8 @@ import { mountEngineeringObject } from './工程物件.js';
    * 2. 載入並渲染指定章節
    */
   function loadChapter(chId, from = null, via = null) {
+    disposeCurrentEngineeringObject?.();
+    disposeCurrentEngineeringObject = null;
     document.body.classList.remove('is-exploring');
     const rawChapter = CHAPTERS_DATA.find(c => c.id === chId) || CHAPTERS_DATA[0];
     const chapter = getChapterData(rawChapter, currentLang);
@@ -1063,7 +1066,7 @@ import { mountEngineeringObject } from './工程物件.js';
       articleBody.prepend(container);
     }
 
-    mountEngineeringObject(chId, container, lang);
+    disposeCurrentEngineeringObject = mountEngineeringObject(chId, container, lang);
 
     // 監聽使用者互動事件，即時標記為已探索
     const onInteract = () => {
@@ -1227,6 +1230,8 @@ import { mountEngineeringObject } from './工程物件.js';
 
   // 3. 情境與教材共用 Hash 路由，保留舊章節網址。
   function renderRoute() {
+    disposeCurrentEngineeringObject?.();
+    disposeCurrentEngineeringObject = null;
     const normalized = normalizeChapterHref(window.location.hash || '#explore');
     if (window.location.hash !== normalized) history.replaceState(null, '', normalized);
     const hash = normalized.slice(1);

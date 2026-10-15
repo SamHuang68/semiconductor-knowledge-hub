@@ -1,3 +1,5 @@
+import { renderEngineeringCard, bindEngineeringEvent, registerEngineeringCleanup, disposeEngineeringObject } from './工程物件操作.js';
+
 /**
  * 工程物件.js
  * Semiconductor Knowledge Hub — 製程工程物件與微觀機制模型控制器
@@ -100,7 +102,7 @@ const TEXTS = {
     ch05_coverage_good: '孔內外膜厚均勻保形 · 無懸掛空洞',
     ch05_coverage_poor: '孔口堆積懸掛 (Overhang) · 產生內部閉合空洞 (Seam/Void)',
     ch05_pvd_desc: 'PVD 濺鍍為視線傳播 (Line-of-Sight)，金屬原子被撞擊後筆直飛行，容易在深孔入口形成「懸垂 (Overhang)」阻擋後續填入，孔底嚴重不足，容易形成空洞 (Void)。',
-    ch05_cvd_desc: 'CVD 利用前驅氣體擴散與表面熱化學反應。依據 Arrhenius 動力學，低溫由表面反應受限（階梯覆蓋率 >85%）；高溫由氣相質傳受限（易在孔口堆積懸垂 Overhang 產生 Seam 閉合空洞）。',
+    ch05_cvd_desc: 'CVD 利用前驅氣體擴散與表面熱化學反應。本教學模型依串聯速率中的較小項判定：ks < hg 為表面反應受限，ks ≥ hg 為質傳受限；溫度與壓力均會影響判定。階梯覆蓋、懸垂與閉合空洞為趨勢示意，並非材料或製程的實測預測。',
     ch05_ald_desc: 'ALD 透過自限性表面化學反應 (Self-Limiting Surface Reaction)，每次循環僅精確沉積 1 個原子單分子層 (~0.1nm/cycle)，實現 100% 完美階梯覆蓋與零空洞！',
 
     // Ch 06 蝕刻
@@ -311,14 +313,14 @@ const TEXTS = {
     ch13_metric_dram_ar: 'DRAM 圓柱電容深寬比',
     ch13_metric_nand_layers: '3D NAND 量產堆疊層數',
     ch13_metric_hbm_bw: 'HBM3e 單顆晶片頻寬',
-    ch13_metric_retention: 'DRAM 刷新週期 (tREFI)',
+    ch13_metric_retention: 'DRAM 刷新週期 (tREFW)',
     ch13_ar_slider: '圓柱電容深寬比 Aspect Ratio (H/D):',
     ch13_temp_slider: '接面工作溫度 Junction Temp (T_j):',
     ch13_layers_slider: '3D NAND 垂直堆疊層數 (Tiers):',
     ch13_cap_val: '單元儲存電容 C_cell',
     ch13_leak_val: '接面漏電流 I_leak',
     ch13_tret_val: '電荷保持時間 t_ret',
-    ch13_refi_val: 'JEDEC 規定刷新週期 t_REFI',
+    ch13_refi_val: '教學刷新視窗 tREFW',
     ch13_dram_desc: 'DRAM 每個記憶胞僅由 1 個存取電晶體與 1 個垂直圓柱微型電容構成 (1T1C)。為克服尺寸縮小帶來的電容值衰減，工程師打造深寬比超過 50:1 的柱狀電容，表面覆蓋超薄高介電 ZAZ (ZrO₂/Al₂O₃/ZrO₂) 薄膜，每 64ms 必須重新刷新電荷避免資料流失。',
     ch13_nand_desc: '3D NAND 擺脫 2D 平面微縮極限，在晶圓表面交替沉積 200+ 層 SiO₂/Si₃N₄ 薄膜，以極高能量電漿一次貫穿數微米深孔 (HAR Etching)，外圍蝕刻成金字塔階梯狀引出數百條字元線 (Word-Lines)，透過電荷陷阱 (Charge Trap CTF) 儲存電子，實現 TB 級非揮發儲存。',
     ch13_hbm_desc: 'HBM (High Bandwidth Memory) 打破傳統 DDR 匯流排頻寬牆：將 4~16 顆 DRAM 裸晶透過數萬個穿矽孔 (TSV) 與微凸塊 (Micro-bumps) 垂直三維堆疊在邏輯控制基底 (Base Die) 上，提供 1024-bit 超寬並行匯流排，為 AI 算力加速器提供極致吞吐量！',
@@ -650,7 +652,7 @@ const TEXTS = {
     ch05_coverage_good: 'Uniform conformal step coverage · Zero overhang voids',
     ch05_coverage_poor: 'Aperture overhang pinch-off · Severe seam/keyhole void risk',
     ch05_pvd_desc: 'PVD sputtering is line-of-sight: knocked metal atoms travel straight, causing rapid overhang at trench mouth, starving lower sidewalls and bottom, leading to keyholes/voids.',
-    ch05_cvd_desc: 'CVD relies on precursor gas diffusion and thermal surface chemistry. Per Arrhenius kinetics, low temps operate in surface reaction limited mode (>85% coverage), while high temps suffer from mass transport starvation with heavy overhang pinch-off.',
+    ch05_cvd_desc: 'CVD relies on precursor gas diffusion and thermal surface chemistry. Per Arrhenius kinetics, ks < hg indicates surface reaction limited mode, while ks ≥ hg indicates mass transport starvation with heavy overhang pinch-off.',
     ch05_ald_desc: 'ALD uses self-limiting surface chemical reactions: each cycle strictly deposits a single atomic monolayer (~0.1nm/cycle), achieving 100% perfect conformality and zero voids.',
 
     // Ch 06 Etch
@@ -861,14 +863,14 @@ const TEXTS = {
     ch13_metric_dram_ar: 'DRAM Capacitor Aspect Ratio',
     ch13_metric_nand_layers: '3D NAND Production Layers',
     ch13_metric_hbm_bw: 'HBM3e Stack Bandwidth',
-    ch13_metric_retention: 'DRAM Refresh Cycle (tREFI)',
+    ch13_metric_retention: 'DRAM Refresh Cycle (tREFW)',
     ch13_ar_slider: 'Capacitor Aspect Ratio (H/D):',
     ch13_temp_slider: 'Junction Temp (T_j):',
     ch13_layers_slider: '3D NAND Vertical Tiers:',
     ch13_cap_val: 'Cell Capacitance C_cell',
     ch13_leak_val: 'Junction Leakage I_leak',
     ch13_tret_val: 'Retention Time t_ret',
-    ch13_refi_val: 'JEDEC Required t_REFI',
+    ch13_refi_val: 'tREFW (ms)',
     ch13_dram_desc: 'DRAM stores data using 1 access transistor and 1 vertical cylinder capacitor (1T1C). To preserve capacitance as cell area shrinks, capacitors feature extreme >50:1 aspect ratios lined with ZAZ (ZrO₂/Al₂O₃/ZrO₂) high-k films, requiring 64ms refresh cycles to replenish leakage.',
     ch13_nand_desc: '3D NAND overcomes 2D planar lithography scaling by vertically stacking 200+ alternating SiO₂/Si₃N₄ tiers. High-aspect-ratio (HAR) plasma etching drills vertical channel holes through the entire stack, while staircase word-line landings contact individual flash gates.',
     ch13_hbm_desc: 'HBM (High Bandwidth Memory) shatters traditional memory bus bottlenecks by stacking 4 to 16 DRAM dies atop a base logic die via thousands of Through-Silicon Vias (TSVs) and micro-bumps, providing a massive 1024-bit wide interface exceeding 1.2 TB/s for AI acceleration.',
@@ -1442,7 +1444,7 @@ export function renderLithoOpticalObject(container, lang = 'zh') {
       footerNote = '步進掃描 (Step-and-Scan) 讓光罩台與晶圓台以 4:1 的精確速度比反向高速動態掃描，僅透過狹窄的光學最佳像差中心狹縫 (Slit) 進行曝光，大幅降低大面積透鏡邊緣畸變。';
     }
 
-    container.innerHTML = `
+    renderEngineeringCard(container, `
       <section class="eng-obj-card" aria-labelledby="engObjCh04Title">
         <header class="eng-obj-header">
           <div class="eng-obj-badge-row">
@@ -1475,17 +1477,17 @@ export function renderLithoOpticalObject(container, lang = 'zh') {
           <div>${footerNote}</div>
         </footer>
       </section>
-    `;
+    `, t);
 
     // 綁定事件
     container.querySelectorAll('[data-tab]').forEach(btn => {
-      btn.addEventListener('click', () => {
+      bindEngineeringEvent(btn, 'click', () => {
         activeTab = btn.getAttribute('data-tab');
         update();
       });
     });
     container.querySelectorAll('[data-mode]').forEach(btn => {
-      btn.addEventListener('click', () => {
+      bindEngineeringEvent(btn, 'click', () => {
         activeOpticalMode = btn.getAttribute('data-mode');
         const p = OPTICAL_PRESETS[activeOpticalMode];
         if (p) {
@@ -1496,7 +1498,7 @@ export function renderLithoOpticalObject(container, lang = 'zh') {
       });
     });
     container.querySelectorAll('[data-prmode]').forEach(btn => {
-      btn.addEventListener('click', () => {
+      bindEngineeringEvent(btn, 'click', () => {
         activePRMode = btn.getAttribute('data-prmode');
         update();
       });
@@ -1504,14 +1506,14 @@ export function renderLithoOpticalObject(container, lang = 'zh') {
 
     const k1Slider = container.querySelector('#ch04K1');
     if (k1Slider) {
-      k1Slider.addEventListener('input', (e) => {
+      bindEngineeringEvent(k1Slider, 'input', (e) => {
         customK1 = parseFloat(e.target.value);
         update();
       });
     }
     const naSlider = container.querySelector('#ch04NA');
     if (naSlider) {
-      naSlider.addEventListener('input', (e) => {
+      bindEngineeringEvent(naSlider, 'input', (e) => {
         customNA = parseFloat(e.target.value);
         update();
       });
@@ -1562,7 +1564,7 @@ export function renderDepositionMechanismObject(container, lang = 'zh') {
     let overhangPx = 8;
     let bottomThickPx = 13;
 
-    if (cvdTemp >= 680) {
+    if (ks >= hg) {
       regime = 'mass';
       regimeLabel = t.ch05_regime_mass;
       regimeColor = '#ef4444';
@@ -1696,7 +1698,7 @@ export function renderDepositionMechanismObject(container, lang = 'zh') {
             <rect x="100" y="${210 - bottomThickPx}" width="100" height="${bottomThickPx}" fill="#0284c7"/>
 
             <!-- 狀態標註 -->
-            <text x="310" y="60" fill="#38bdf8" font-size="12" font-weight="700">${regime === 'surface' ? '表面反應主導 (低溫保形)' : '質傳擴散受限 (高溫懸垂)'}</text>
+            <text x="310" y="60" fill="${regimeColor}" font-size="12" font-weight="700">${regime === 'surface' ? '表面反應受限：ks < hg' : '質傳擴散受限：ks ≥ hg'}</text>
             <text x="310" y="85" fill="${regimeColor}" font-size="11.5" font-weight="700">階梯覆蓋率 Step Coverage: ${stepCoverage}%</text>
             <text x="310" y="108" fill="#94a3b8" font-size="11">R_dep = ${rDep.toFixed(1)} nm/min · Ea = 1.35 eV</text>
 
@@ -1831,7 +1833,7 @@ export function renderDepositionMechanismObject(container, lang = 'zh') {
       footerNote = t.ch05_ald_desc;
     }
 
-    container.innerHTML = `
+    renderEngineeringCard(container, `
       <section class="eng-obj-card" aria-labelledby="engObjCh05Title">
         <header class="eng-obj-header">
           <div class="eng-obj-badge-row">
@@ -1866,11 +1868,11 @@ export function renderDepositionMechanismObject(container, lang = 'zh') {
           <div>${footerNote}</div>
         </footer>
       </section>
-    `;
+    `, t);
 
     // 綁定事件
     container.querySelectorAll('[data-tab]').forEach(btn => {
-      btn.addEventListener('click', () => {
+      bindEngineeringEvent(btn, 'click', () => {
         if (timerId) clearInterval(timerId);
         isAutoPlaying = false;
         activeTab = btn.getAttribute('data-tab');
@@ -1880,7 +1882,7 @@ export function renderDepositionMechanismObject(container, lang = 'zh') {
 
     const tempSlider = container.querySelector('#ch05TempSlider');
     if (tempSlider) {
-      tempSlider.addEventListener('input', (e) => {
+      bindEngineeringEvent(tempSlider, 'input', (e) => {
         cvdTemp = parseInt(e.target.value, 10);
         update();
       });
@@ -1888,7 +1890,7 @@ export function renderDepositionMechanismObject(container, lang = 'zh') {
 
     const pressSlider = container.querySelector('#ch05PressSlider');
     if (pressSlider) {
-      pressSlider.addEventListener('input', (e) => {
+      bindEngineeringEvent(pressSlider, 'input', (e) => {
         cvdPress = parseFloat(e.target.value);
         update();
       });
@@ -1896,7 +1898,7 @@ export function renderDepositionMechanismObject(container, lang = 'zh') {
 
     const nextBtn = container.querySelector('#aldNextBtn');
     if (nextBtn) {
-      nextBtn.addEventListener('click', () => {
+      bindEngineeringEvent(nextBtn, 'click', () => {
         aldStep++;
         if (aldStep > 4) {
           aldStep = 1;
@@ -1908,7 +1910,7 @@ export function renderDepositionMechanismObject(container, lang = 'zh') {
 
     const playBtn = container.querySelector('#aldPlayBtn');
     if (playBtn) {
-      playBtn.addEventListener('click', () => {
+      bindEngineeringEvent(playBtn, 'click', () => {
         isAutoPlaying = !isAutoPlaying;
         if (isAutoPlaying) {
           timerId = setInterval(() => {
@@ -1929,7 +1931,7 @@ export function renderDepositionMechanismObject(container, lang = 'zh') {
 
     const resetBtn = container.querySelector('#aldResetBtn');
     if (resetBtn) {
-      resetBtn.addEventListener('click', () => {
+      bindEngineeringEvent(resetBtn, 'click', () => {
         if (timerId) clearInterval(timerId);
         isAutoPlaying = false;
         aldStep = 1;
@@ -1939,6 +1941,11 @@ export function renderDepositionMechanismObject(container, lang = 'zh') {
     }
   }
 
+  registerEngineeringCleanup(container, () => {
+    if (timerId) clearInterval(timerId);
+    timerId = null;
+    isAutoPlaying = false;
+  });
   update();
 }
 
@@ -2085,7 +2092,7 @@ export function renderPlasmaEtchObject(container, lang = 'zh') {
               <span class="eng-obj-slider-label">${t.ch06_pressure_label}</span>
               <span class="eng-obj-slider-val" id="pressureVal">${chamberPressure} mTorr</span>
             </div>
-            <input type="range" class="eng-obj-slider" id="pressureSlider" min="2" max="80" step="2" value="${chamberPressure}" aria-label="Chamber Pressure">
+            <input type="range" class="eng-obj-slider" id="pressureSlider" min="2" max="80" step="1" value="${chamberPressure}" aria-label="Chamber Pressure">
           </div>
         </div>
       `;
@@ -2222,7 +2229,7 @@ export function renderPlasmaEtchObject(container, lang = 'zh') {
       footerNote = '在同片晶圓上，大面積開口蝕刻速度快、深寬比大的微小穿孔蝕刻速度慢，稱為 RIE 延遲 (RIE Lag)；需仰賴過蝕刻 (Over-Etch) 與終點偵測 (EPD) 確保所有孔洞完全貫穿。';
     }
 
-    container.innerHTML = `
+    renderEngineeringCard(container, `
       <section class="eng-obj-card" aria-labelledby="engObjCh06Title">
         <header class="eng-obj-header">
           <div class="eng-obj-badge-row">
@@ -2255,11 +2262,11 @@ export function renderPlasmaEtchObject(container, lang = 'zh') {
           <div>${footerNote}</div>
         </footer>
       </section>
-    `;
+    `, t);
 
     // 綁定頁籤切換事件
     container.querySelectorAll('[data-tab]').forEach(btn => {
-      btn.addEventListener('click', () => {
+      bindEngineeringEvent(btn, 'click', () => {
         activeTab = btn.getAttribute('data-tab');
         update();
       });
@@ -2270,13 +2277,13 @@ export function renderPlasmaEtchObject(container, lang = 'zh') {
       const srcSlider = container.querySelector('#rfSourceSlider');
       const biasSlider = container.querySelector('#rfBiasSlider');
       if (srcSlider) {
-        srcSlider.addEventListener('input', e => {
+        bindEngineeringEvent(srcSlider, 'input', e => {
           rfSourcePower = Number(e.target.value);
           update();
         });
       }
       if (biasSlider) {
-        biasSlider.addEventListener('input', e => {
+        bindEngineeringEvent(biasSlider, 'input', e => {
           rfBiasPower = Number(e.target.value);
           update();
         });
@@ -2285,13 +2292,13 @@ export function renderPlasmaEtchObject(container, lang = 'zh') {
       const biasSlider = container.querySelector('#biasPowerSlider');
       const pressSlider = container.querySelector('#pressureSlider');
       if (biasSlider) {
-        biasSlider.addEventListener('input', e => {
+        bindEngineeringEvent(biasSlider, 'input', e => {
           rfBiasPower = Number(e.target.value);
           update();
         });
       }
       if (pressSlider) {
-        pressSlider.addEventListener('input', e => {
+        bindEngineeringEvent(pressSlider, 'input', e => {
           chamberPressure = Number(e.target.value);
           update();
         });
@@ -2589,7 +2596,7 @@ export function renderTransistor3DObject(container, lang = 'zh') {
       footerNote = t.ch12_gaa_desc;
     }
 
-    container.innerHTML = `
+    renderEngineeringCard(container, `
       <section class="eng-obj-card" aria-labelledby="engObjCh12Title">
         <header class="eng-obj-header">
           <div class="eng-obj-badge-row">
@@ -2622,11 +2629,11 @@ export function renderTransistor3DObject(container, lang = 'zh') {
           <div>${footerNote}</div>
         </footer>
       </section>
-    `;
+    `, t);
 
     // 綁定事件
     container.querySelectorAll('[data-gen]').forEach(btn => {
-      btn.addEventListener('click', () => {
+      bindEngineeringEvent(btn, 'click', () => {
         activeGen = btn.getAttribute('data-gen');
         update();
       });
@@ -2634,7 +2641,7 @@ export function renderTransistor3DObject(container, lang = 'zh') {
 
     const finHSlider = container.querySelector('#ch12FinHeightSlider');
     if (finHSlider) {
-      finHSlider.addEventListener('input', e => {
+      bindEngineeringEvent(finHSlider, 'input', e => {
         finHeight = parseInt(e.target.value, 10);
         update();
       });
@@ -2642,7 +2649,7 @@ export function renderTransistor3DObject(container, lang = 'zh') {
 
     const finWSlider = container.querySelector('#ch12FinWidthSlider');
     if (finWSlider) {
-      finWSlider.addEventListener('input', e => {
+      bindEngineeringEvent(finWSlider, 'input', e => {
         finWidth = parseInt(e.target.value, 10);
         update();
       });
@@ -2650,7 +2657,7 @@ export function renderTransistor3DObject(container, lang = 'zh') {
 
     const nsWSlider = container.querySelector('#ch12NsWidthSlider');
     if (nsWSlider) {
-      nsWSlider.addEventListener('input', e => {
+      bindEngineeringEvent(nsWSlider, 'input', e => {
         nsWidth = parseInt(e.target.value, 10);
         update();
       });
@@ -2658,7 +2665,7 @@ export function renderTransistor3DObject(container, lang = 'zh') {
 
     const nsLSlider = container.querySelector('#ch12NsLayersSlider');
     if (nsLSlider) {
-      nsLSlider.addEventListener('input', e => {
+      bindEngineeringEvent(nsLSlider, 'input', e => {
         nsLayers = parseInt(e.target.value, 10);
         update();
       });
@@ -2965,7 +2972,7 @@ export function renderIonImplantObject(container, lang = 'zh') {
       footerNote = t.ch07_channeling_desc;
     }
 
-    container.innerHTML = `
+    renderEngineeringCard(container, `
       <section class="eng-obj-card" aria-labelledby="engObjCh07Title">
         <header class="eng-obj-header">
           <div class="eng-obj-badge-row">
@@ -2998,11 +3005,11 @@ export function renderIonImplantObject(container, lang = 'zh') {
           <div>${footerNote}</div>
         </footer>
       </section>
-    `;
+    `, t);
 
     // 綁定頁籤切換事件
     container.querySelectorAll('[data-tab]').forEach(btn => {
-      btn.addEventListener('click', () => {
+      bindEngineeringEvent(btn, 'click', () => {
         activeTab = btn.getAttribute('data-tab');
         update();
       });
@@ -3010,7 +3017,7 @@ export function renderIonImplantObject(container, lang = 'zh') {
 
     // 綁定離子種類切換事件
     container.querySelectorAll('[data-species]').forEach(btn => {
-      btn.addEventListener('click', () => {
+      bindEngineeringEvent(btn, 'click', () => {
         activeSpecies = btn.getAttribute('data-species');
         update();
       });
@@ -3021,13 +3028,13 @@ export function renderIonImplantObject(container, lang = 'zh') {
       const eSlider = container.querySelector('#energySlider');
       const dSlider = container.querySelector('#doseSlider');
       if (eSlider) {
-        eSlider.addEventListener('input', e => {
+        bindEngineeringEvent(eSlider, 'input', e => {
           energyKeV = Number(e.target.value);
           update();
         });
       }
       if (dSlider) {
-        dSlider.addEventListener('input', e => {
+        bindEngineeringEvent(dSlider, 'input', e => {
           doseExponent = Number(e.target.value);
           update();
         });
@@ -3252,7 +3259,7 @@ export function renderCMPObject(container, lang = 'zh') {
       footerNote = t.ch08_defects_desc;
     }
 
-    container.innerHTML = `
+    renderEngineeringCard(container, `
       <section class="eng-obj-card" aria-labelledby="engObjCh08Title">
         <header class="eng-obj-header">
           <div class="eng-obj-badge-row">
@@ -3285,11 +3292,11 @@ export function renderCMPObject(container, lang = 'zh') {
           <div>${footerNote}</div>
         </footer>
       </section>
-    `;
+    `, t);
 
     // 綁定事件
     container.querySelectorAll('[data-tab]').forEach(btn => {
-      btn.addEventListener('click', () => {
+      bindEngineeringEvent(btn, 'click', () => {
         activeTab = btn.getAttribute('data-tab');
         update();
       });
@@ -3297,14 +3304,14 @@ export function renderCMPObject(container, lang = 'zh') {
 
     const pSlider = container.querySelector('#ch08Pressure');
     if (pSlider) {
-      pSlider.addEventListener('input', (e) => {
+      bindEngineeringEvent(pSlider, 'input', (e) => {
         pressure = parseFloat(e.target.value);
         update();
       });
     }
     const sSlider = container.querySelector('#ch08Speed');
     if (sSlider) {
-      sSlider.addEventListener('input', (e) => {
+      bindEngineeringEvent(sSlider, 'input', (e) => {
         speed = parseInt(e.target.value, 10);
         update();
       });
@@ -3595,7 +3602,7 @@ export function renderInterconnectObject(container, lang = 'zh') {
       footerNote = t.ch10_em_desc;
     }
 
-    container.innerHTML = `
+    renderEngineeringCard(container, `
       <section class="eng-obj-card" aria-labelledby="engObjCh10Title">
         <header class="eng-obj-header">
           <div class="eng-obj-badge-row">
@@ -3630,11 +3637,11 @@ export function renderInterconnectObject(container, lang = 'zh') {
           <div>${footerNote}</div>
         </footer>
       </section>
-    `;
+    `, t);
 
     // 綁定頁籤切換事件
     container.querySelectorAll('[data-tab]').forEach(btn => {
-      btn.addEventListener('click', () => {
+      bindEngineeringEvent(btn, 'click', () => {
         activeTab = btn.getAttribute('data-tab');
         update();
       });
@@ -3643,7 +3650,7 @@ export function renderInterconnectObject(container, lang = 'zh') {
     // 綁定雙鑲嵌步進按鈕
     const nextBtn = container.querySelector('#damaNextBtn');
     if (nextBtn) {
-      nextBtn.addEventListener('click', () => {
+      bindEngineeringEvent(nextBtn, 'click', () => {
         damaStep = (damaStep % 6) + 1;
         update();
       });
@@ -3651,7 +3658,7 @@ export function renderInterconnectObject(container, lang = 'zh') {
 
     const resetBtn = container.querySelector('#damaResetBtn');
     if (resetBtn) {
-      resetBtn.addEventListener('click', () => {
+      bindEngineeringEvent(resetBtn, 'click', () => {
         damaStep = 1;
         update();
       });
@@ -3660,7 +3667,7 @@ export function renderInterconnectObject(container, lang = 'zh') {
     // 綁定 EM 模式帽層切換與滑桿事件
     if (activeTab === 'em') {
       container.querySelectorAll('[data-cap]').forEach(btn => {
-        btn.addEventListener('click', () => {
+        bindEngineeringEvent(btn, 'click', () => {
           capTech = btn.getAttribute('data-cap');
           update();
         });
@@ -3669,13 +3676,13 @@ export function renderInterconnectObject(container, lang = 'zh') {
       const jSlider = container.querySelector('#jSlider');
       const tempSlider = container.querySelector('#tempSlider');
       if (jSlider) {
-        jSlider.addEventListener('input', e => {
+        bindEngineeringEvent(jSlider, 'input', e => {
           currentDensityMA = Number(e.target.value);
           update();
         });
       }
       if (tempSlider) {
-        tempSlider.addEventListener('input', e => {
+        bindEngineeringEvent(tempSlider, 'input', e => {
           tempC = Number(e.target.value);
           update();
         });
@@ -3884,7 +3891,7 @@ export function renderAdvancedPackagingObject(container, lang = 'zh') {
               <span class="eng-obj-slider-label">${t.ch21_pitch_slider}</span>
               <span class="eng-obj-slider-val" id="pitchVal">${bumpPitch.toFixed(1)} µm</span>
             </div>
-            <input type="range" class="eng-obj-slider" id="pitchSlider" min="0.8" max="150" step="0.5" value="${bumpPitch}" aria-label="Bump Pitch">
+            <input type="range" class="eng-obj-slider" id="pitchSlider" min="0.8" max="150" step="0.1" value="${bumpPitch}" aria-label="Bump Pitch">
           </div>
           <div class="eng-obj-slider-unit">
             <div class="eng-obj-slider-header">
@@ -3973,10 +3980,52 @@ export function renderAdvancedPackagingObject(container, lang = 'zh') {
         </div>
       `;
 
+      // 恢復四世代概略參考比較；現有可調模型與滑桿範圍保持不變。
+      viewportHtml += `
+        <svg viewBox="0 0 800 380" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Packaging Interconnect Density Comparison">
+          <text x="400" y="25" text-anchor="middle" fill="#cbd5e1" font-size="12">四世代互連參考比較（概略密度；柱長為示意，非線性比例）</text>
+          <!-- 橫向柱狀對照圖 -->
+          <g transform="translate(180, 50)">
+            <!-- 1. BGA -->
+            <rect x="0" y="0" width="8" height="28" fill="#64748b"/>
+            <text x="-15" y="19" text-anchor="end" fill="#94a3b8" font-size="12">打線 / BGA</text>
+            <text x="20" y="19" fill="#e2e8f0" font-size="11.5">間距 1000 µm · 密度 1 / mm²</text>
+
+            <!-- 2. Flip-Chip C4 -->
+            <rect x="0" y="55" width="30" height="28" fill="#0284c7"/>
+            <text x="-15" y="74" text-anchor="end" fill="#94a3b8" font-size="12">覆晶 (Flip-Chip C4)</text>
+            <text x="42" y="74" fill="#e2e8f0" font-size="11.5">間距 150 µm · 密度約 40 / mm²</text>
+
+            <!-- 3. 2.5D CoWoS 微凸塊 -->
+            <rect x="0" y="110" width="110" height="28" fill="#f59e0b"/>
+            <text x="-15" y="129" text-anchor="end" fill="#f59e0b" font-size="12">2.5D CoWoS 微凸塊</text>
+            <text x="122" y="129" fill="#e2e8f0" font-size="11.5">間距 35 µm · 密度約 800 / mm²</text>
+
+            <!-- 4. 3D SoIC 混合鍵合 -->
+            <rect x="0" y="165" width="460" height="34" fill="#10b981"/>
+            <text x="-15" y="187" text-anchor="end" fill="#10b981" font-size="13" font-weight="700">3D SoIC 混合鍵合</text>
+            <text x="20" y="222" fill="#10b981" font-size="13" font-weight="750">約 0.9 µm · 約 1,200,000 / mm²（約提升 1500 倍）</text>
+          </g>
+        </svg>
+      `;
+
+      dashboardHtml += `
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">互連密度躍升幅度</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-teal);">1,500 倍</div>
+          <div class="eng-obj-metric-note">從 2.5D 微凸塊邁向 3D Cu-Cu 混合鍵合</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">小晶片 (Chiplet) 戰略意義</div>
+          <div class="eng-obj-metric-value" style="font-size: 15px;">打破摩爾定律物理極限</div>
+          <div class="eng-obj-metric-note">算力、快取與高頻寬記憶體異質整合</div>
+        </div>
+      `;
+
       footerNote = t.ch21_density_desc;
     }
 
-    container.innerHTML = `
+    renderEngineeringCard(container, `
       <section class="eng-obj-card" aria-labelledby="engObjCh21Title">
         <header class="eng-obj-header">
           <div class="eng-obj-badge-row">
@@ -4009,11 +4058,11 @@ export function renderAdvancedPackagingObject(container, lang = 'zh') {
           <div>${footerNote}</div>
         </footer>
       </section>
-    `;
+    `, t);
 
     // 綁定頁籤切換事件
     container.querySelectorAll('[data-tab]').forEach(btn => {
-      btn.addEventListener('click', () => {
+      bindEngineeringEvent(btn, 'click', () => {
         activeTab = btn.getAttribute('data-tab');
         update();
       });
@@ -4024,13 +4073,13 @@ export function renderAdvancedPackagingObject(container, lang = 'zh') {
       const pSlider = container.querySelector('#pitchSlider');
       const dSlider = container.querySelector('#dataRateSlider');
       if (pSlider) {
-        pSlider.addEventListener('input', e => {
+        bindEngineeringEvent(pSlider, 'input', e => {
           bumpPitch = Number(e.target.value);
           update();
         });
       }
       if (dSlider) {
-        dSlider.addEventListener('input', e => {
+        bindEngineeringEvent(dSlider, 'input', e => {
           dataRateGbps = Number(e.target.value);
           update();
         });
@@ -4384,7 +4433,7 @@ export function renderIngotWaferObject(container, lang = 'zh') {
       footerNote = t.ch03_polish_desc;
     }
 
-    container.innerHTML = `
+    renderEngineeringCard(container, `
       <section class="eng-obj-card" aria-labelledby="engObjCh03Title">
         <header class="eng-obj-header">
           <div class="eng-obj-badge-row">
@@ -4417,10 +4466,10 @@ export function renderIngotWaferObject(container, lang = 'zh') {
           <div>${footerNote}</div>
         </footer>
       </section>
-    `;
+    `, t);
 
     container.querySelectorAll('[data-tab]').forEach(btn => {
-      btn.addEventListener('click', () => {
+      bindEngineeringEvent(btn, 'click', () => {
         activeTab = btn.getAttribute('data-tab');
         update();
       });
@@ -4428,7 +4477,7 @@ export function renderIngotWaferObject(container, lang = 'zh') {
 
     const pullSlider = container.querySelector('#ch03PullSlider');
     if (pullSlider) {
-      pullSlider.addEventListener('input', (e) => {
+      bindEngineeringEvent(pullSlider, 'input', (e) => {
         pullSpeed = parseFloat(e.target.value);
         update();
       });
@@ -4436,7 +4485,7 @@ export function renderIngotWaferObject(container, lang = 'zh') {
 
     const gradSlider = container.querySelector('#ch03GradSlider');
     if (gradSlider) {
-      gradSlider.addEventListener('input', (e) => {
+      bindEngineeringEvent(gradSlider, 'input', (e) => {
         tempGrad = parseFloat(e.target.value);
         update();
       });
@@ -4797,7 +4846,7 @@ export function renderWetCleanObject(container, lang = 'zh') {
       footerNote = t.ch09_marangoni_desc;
     }
 
-    container.innerHTML = `
+    renderEngineeringCard(container, `
       <section class="eng-obj-card" aria-labelledby="engObjCh09Title">
         <header class="eng-obj-header">
           <div class="eng-obj-badge-row">
@@ -4830,10 +4879,10 @@ export function renderWetCleanObject(container, lang = 'zh') {
           <div>${footerNote}</div>
         </footer>
       </section>
-    `;
+    `, t);
 
     container.querySelectorAll('[data-tab]').forEach(btn => {
-      btn.addEventListener('click', () => {
+      bindEngineeringEvent(btn, 'click', () => {
         activeTab = btn.getAttribute('data-tab');
         update();
       });
@@ -4841,7 +4890,7 @@ export function renderWetCleanObject(container, lang = 'zh') {
 
     const freqSlider = container.querySelector('#ch09FreqSlider');
     if (freqSlider) {
-      freqSlider.addEventListener('input', (e) => {
+      bindEngineeringEvent(freqSlider, 'input', (e) => {
         acousticFreq = parseFloat(e.target.value);
         update();
       });
@@ -4849,7 +4898,7 @@ export function renderWetCleanObject(container, lang = 'zh') {
 
     const sizeSlider = container.querySelector('#ch09SizeSlider');
     if (sizeSlider) {
-      sizeSlider.addEventListener('input', (e) => {
+      bindEngineeringEvent(sizeSlider, 'input', (e) => {
         particleSize = parseInt(e.target.value, 10);
         update();
       });
@@ -5012,7 +5061,7 @@ export function renderCMOSFlowObject(container, lang = 'zh') {
       </div>
     `;
 
-    container.innerHTML = `
+    renderEngineeringCard(container, `
       <section class="eng-obj-card" aria-labelledby="engObjCh11Title">
         <header class="eng-obj-header">
           <div class="eng-obj-badge-row">
@@ -5049,10 +5098,10 @@ export function renderCMOSFlowObject(container, lang = 'zh') {
           <div>${stepDesc}</div>
         </footer>
       </section>
-    `;
+    `, t);
 
     container.querySelectorAll('[data-step]').forEach(btn => {
-      btn.addEventListener('click', () => {
+      bindEngineeringEvent(btn, 'click', () => {
         activeStep = parseInt(btn.getAttribute('data-step'), 10);
         update();
       });
@@ -5060,7 +5109,7 @@ export function renderCMOSFlowObject(container, lang = 'zh') {
 
     const nextBtn = container.querySelector('[data-action="next"]');
     if (nextBtn) {
-      nextBtn.addEventListener('click', () => {
+      bindEngineeringEvent(nextBtn, 'click', () => {
         activeStep = activeStep < 6 ? activeStep + 1 : 1;
         update();
       });
@@ -5094,13 +5143,13 @@ export function renderMemoryTechObject(container, lang = 'zh') {
     const cCell = 10.5 + 0.29 * dramAR; // fF
     // 接面與介電質漏電隨溫度指數暴增: 每 10.5°C 漏電倍增 (SRH generation & Poole-Frenkel conduction)
     const iLeak = 0.6 * Math.pow(2, (dramTemp - 25) / 10.5); // fA
-    // 電荷保持時間: Sense Amp 最低感測臨界電壓差 Delta V = 0.40 V
-    // t_ret = (C_cell * Delta V / I_leak) * 1000 (ms)
-    const tRet = Math.round((cCell * 0.40 / iLeak) * 1000); // ms
-    // JEDEC 標準刷新週期規定: <= 85°C 為 64ms; > 85°C 為 32ms (雙倍頻率 2x Refresh)
-    const jedecRefi = dramTemp > 85 ? 32 : 64; // ms
+    // 固定漏電近似：初始 1.1 V，允許下降 0.40 V 至感測下限 0.7 V。
+    // 電荷保持時間 t_ret = C_cell × ΔV / I_leak；秒換算為毫秒。
+    const tRet = (cCell * 0.40 / iLeak) * 1000; // ms
+    // 教學例採 64/32 ms 刷新視窗；不是單次刷新命令的平均間隔。實際條件依料號規格。
+    const refreshWindowMs = dramTemp > 85 ? 32 : 64; // ms
     // 保持裕度 (Retention Safety Margin)
-    const retMargin = (tRet / jedecRefi).toFixed(1);
+    const retMargin = (tRet / refreshWindowMs).toFixed(1);
 
     // 3D NAND 高深寬比 HAR 穿孔與多層階梯物理
     // 氧化層-鎢閘極雙層厚度 t_tier = 38nm
@@ -5124,8 +5173,8 @@ export function renderMemoryTechObject(container, lang = 'zh') {
           </div>
           <div style="margin-left: auto; display: flex; align-items: center; gap: 8px;">
             <span style="font-size: 11px; color: #94a3b8; font-family: monospace;">${t.ch13_cap_val}: <strong style="color: #38bdf8; font-size: 13px;">${cCell.toFixed(1)} fF</strong></span>
-            <span style="font-size: 11px; padding: 2px 7px; border-radius: 4px; background: rgba(15,23,42,0.6); border: 1px solid var(--border-subtle); color: ${tRet < jedecRefi ? '#ef4444' : '#10b981'}; font-weight: 700;">
-              ${t.ch13_tret_val}: ${tRet} ms (${retMargin}× 裕度)
+            <span style="font-size: 11px; padding: 2px 7px; border-radius: 4px; background: rgba(15,23,42,0.6); border: 1px solid var(--border-subtle); color: ${tRet < refreshWindowMs ? '#ef4444' : '#10b981'}; font-weight: 700;">
+              ${t.ch13_tret_val}: ${tRet.toFixed(0)} ms (${retMargin}× 裕度)
             </span>
           </div>
         </div>
@@ -5133,17 +5182,17 @@ export function renderMemoryTechObject(container, lang = 'zh') {
 
       // 圓柱電容視覺高度動態縮放
       const capVisH = Math.round(110 + (dramAR - 35) * 1.9);
-      // 放電衰減波形路徑計算 (繪製於右側示波器 0 ~ 128ms)
-      const tau = Math.max(10, tRet);
+      // 固定漏電線性放電：V(t) = 1.1 − I_leak × t / C_cell。
+      // 圖線顯示 0 ~ 128ms；到達零電位後停止外推。
       let decayPath = 'M 0,' + Math.round(100 - (1.1 / 1.2) * 80);
       for (let x = 0; x <= 160; x += 5) {
         const simTime = (x / 160) * 128; // 0 ~ 128 ms
-        const v = 1.1 * Math.exp(-simTime / tau);
+        const v = Math.max(0, 1.1 - (iLeak * simTime) / (cCell * 1000));
         const y = Math.round(100 - (v / 1.2) * 80);
         decayPath += ` L ${x},${y}`;
       }
-      // tREFI 在示波器上的 X 座標 (128ms 為 160px)
-      const refiX = Math.round((jedecRefi / 128) * 160);
+      // tREFW 在示波器上的 X 座標 (128ms 為 160px)
+      const refiX = Math.round((refreshWindowMs / 128) * 160);
 
       viewportHtml = `
         <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="DRAM 1T1C High-Aspect Capacitor Structure and Discharge Kinetics">
@@ -5172,25 +5221,25 @@ export function renderMemoryTechObject(container, lang = 'zh') {
           <!-- 右側：電容電荷漏電動力學示波器 (Charge Retention Decay) -->
           <g transform="translate(540, 25)">
             <rect x="0" y="0" width="210" height="235" fill="#0b1329" stroke="#334155" stroke-width="1.5" rx="6"/>
-            <text x="105" y="22" text-anchor="middle" fill="#fbbf24" font-size="11" font-weight="750">電荷衰減曲線 V(t)</text>
-            <text x="105" y="36" text-anchor="middle" fill="#94a3b8" font-size="9">τ = ${tRet} ms · tREFI = ${jedecRefi} ms</text>
+            <text x="105" y="22" text-anchor="middle" fill="#fbbf24" font-size="11" font-weight="750">固定漏電放電曲線 V(t)</text>
+            <text x="105" y="36" text-anchor="middle" fill="#94a3b8" font-size="9">t_ret = ${tRet.toFixed(0)} ms · tREFW = ${refreshWindowMs} ms</text>
 
             <!-- 示波器座標系 (X: 0~128ms, Y: 0~1.2V) -->
             <g transform="translate(25, 55)">
               <rect x="0" y="0" width="160" height="110" fill="#020617" stroke="#1e293b" stroke-width="1"/>
               <!-- 感測臨界電壓下限線 (0.7V) -->
               <line x1="0" y1="53" x2="160" y2="53" stroke="#ef4444" stroke-width="1" stroke-dasharray="3 2"/>
-              <text x="162" y="56" fill="#ef4444" font-size="8">V_min</text>
+              <text x="155" y="50" text-anchor="end" fill="#ef4444" font-size="8">V_min=0.7V</text>
               <!-- 刷新時間垂直標記線 -->
               <line x1="${refiX}" y1="0" x2="${refiX}" y2="110" stroke="#fbbf24" stroke-width="1.5" stroke-dasharray="2 2"/>
-              <text x="${refiX}" y="122" text-anchor="middle" fill="#fbbf24" font-size="8.5">tREFI</text>
+              <text x="${refiX}" y="122" text-anchor="middle" fill="#fbbf24" font-size="8.5">tREFW</text>
               <!-- 動態電壓衰減軌跡 -->
               <path d="${decayPath}" fill="none" stroke="#38bdf8" stroke-width="2.5"/>
               <text x="5" y="15" fill="#38bdf8" font-size="8.5" font-family="monospace">1.1V (VDD)</text>
             </g>
 
             <text x="105" y="210" text-anchor="middle" fill="${retMargin >= 2.0 ? '#34d399' : '#ef4444'}" font-size="10" font-weight="700">
-              ${retMargin >= 2.0 ? '✓ 保持壽命超越刷新週期' : '⚠️ 漏電過速，需雙頻刷新！'}
+              ${retMargin >= 2.0 ? '模型保持時間大於參考刷新視窗' : '模型裕度較低，須查核實際記憶體規格'}
             </text>
           </g>
 
@@ -5216,8 +5265,8 @@ export function renderMemoryTechObject(container, lang = 'zh') {
         </div>
         <div class="eng-obj-metric-card">
           <div class="eng-obj-metric-label">${t.ch13_metric_retention}</div>
-          <div class="eng-obj-metric-value" style="color: ${dramTemp > 85 ? '#f59e0b' : '#38bdf8'};">${jedecRefi} ms ${dramTemp > 85 ? '(2× 雙頻)' : ''}</div>
-          <div class="eng-obj-metric-note">漏電流 ${iLeak.toFixed(1)} fA · 保持時間 ${tRet} ms</div>
+          <div class="eng-obj-metric-value" style="color: ${dramTemp > 85 ? '#f59e0b' : '#38bdf8'};">${refreshWindowMs} ms ${dramTemp > 85 ? '(2× 雙頻)' : ''}</div>
+          <div class="eng-obj-metric-note">固定漏電 ${iLeak.toFixed(1)} fA · 保持時間 ${tRet.toFixed(0)} ms</div>
         </div>
         <div class="eng-obj-metric-card">
           <div class="eng-obj-metric-label">保持安全裕度</div>
@@ -5227,12 +5276,13 @@ export function renderMemoryTechObject(container, lang = 'zh') {
       `;
 
       footerNote = t.ch13_dram_desc;
+      footerNote += ' 本例以 64/32 ms 刷新視窗比較保持時間；tREFI 則是刷新命令的平均間隔，兩者不同。實際刷新條件依記憶體料號與溫度規格。<a href="https://my.micron.com/content/dam/micron/global/public/products/white-paper/ddr5-new-features-white-paper.pdf" target="_blank" rel="noopener noreferrer">刷新命令與 tREFI 定義（Micron，第 2 頁）</a>。';
     } else if (activeTab === 'nand') {
       controlsHtml = `
         <div class="eng-obj-slider-panel">
           <div class="eng-obj-slider-item">
             <label for="ch13NandSlider">${t.ch13_layers_slider}</label>
-            <input type="range" class="eng-obj-range-input" id="ch13NandSlider" min="128" max="320" step="16" value="${nandLayers}">
+            <input type="range" class="eng-obj-range-input" id="ch13NandSlider" min="128" max="320" step="8" value="${nandLayers}">
             <span class="eng-obj-slider-val">${nandLayers} 層</span>
           </div>
           <div style="margin-left: auto; display: flex; align-items: center; gap: 8px;">
@@ -5368,7 +5418,7 @@ export function renderMemoryTechObject(container, lang = 'zh') {
       footerNote = t.ch13_hbm_desc;
     }
 
-    container.innerHTML = `
+    renderEngineeringCard(container, `
       <section class="eng-obj-card" aria-labelledby="engObjCh13Title">
         <header class="eng-obj-header">
           <div class="eng-obj-badge-row">
@@ -5401,10 +5451,10 @@ export function renderMemoryTechObject(container, lang = 'zh') {
           <div>${footerNote}</div>
         </footer>
       </section>
-    `;
+    `, t);
 
     container.querySelectorAll('[data-tab]').forEach(btn => {
-      btn.addEventListener('click', () => {
+      bindEngineeringEvent(btn, 'click', () => {
         activeTab = btn.getAttribute('data-tab');
         update();
       });
@@ -5412,7 +5462,7 @@ export function renderMemoryTechObject(container, lang = 'zh') {
 
     const arSlider = container.querySelector('#ch13ArSlider');
     if (arSlider) {
-      arSlider.addEventListener('input', (e) => {
+      bindEngineeringEvent(arSlider, 'input', (e) => {
         dramAR = parseInt(e.target.value, 10);
         update();
       });
@@ -5420,7 +5470,7 @@ export function renderMemoryTechObject(container, lang = 'zh') {
 
     const tempSlider = container.querySelector('#ch13TempSlider');
     if (tempSlider) {
-      tempSlider.addEventListener('input', (e) => {
+      bindEngineeringEvent(tempSlider, 'input', (e) => {
         dramTemp = parseInt(e.target.value, 10);
         update();
       });
@@ -5428,7 +5478,7 @@ export function renderMemoryTechObject(container, lang = 'zh') {
 
     const nandSlider = container.querySelector('#ch13NandSlider');
     if (nandSlider) {
-      nandSlider.addEventListener('input', (e) => {
+      bindEngineeringEvent(nandSlider, 'input', (e) => {
         nandLayers = parseInt(e.target.value, 10);
         update();
       });
@@ -5730,7 +5780,7 @@ export function renderMetrologyInspectionObject(container, lang = 'zh') {
       footerNote = t.ch15_ellipsometry_desc;
     }
 
-    container.innerHTML = `
+    renderEngineeringCard(container, `
       <section class="eng-obj-card" aria-labelledby="engObjCh15Title">
         <header class="eng-obj-header">
           <div class="eng-obj-badge-row">
@@ -5763,10 +5813,10 @@ export function renderMetrologyInspectionObject(container, lang = 'zh') {
           <div>${footerNote}</div>
         </footer>
       </section>
-    `;
+    `, t);
 
     container.querySelectorAll('[data-tab]').forEach(btn => {
-      btn.addEventListener('click', () => {
+      bindEngineeringEvent(btn, 'click', () => {
         activeTab = btn.getAttribute('data-tab');
         update();
       });
@@ -5774,7 +5824,7 @@ export function renderMetrologyInspectionObject(container, lang = 'zh') {
 
     const energySlider = container.querySelector('#ch15EnergySlider');
     if (energySlider) {
-      energySlider.addEventListener('input', (e) => {
+      bindEngineeringEvent(energySlider, 'input', (e) => {
         landingEnergy = parseInt(e.target.value, 10);
         update();
       });
@@ -5782,7 +5832,7 @@ export function renderMetrologyInspectionObject(container, lang = 'zh') {
 
     const angleSlider = container.querySelector('#ch15AngleSlider');
     if (angleSlider) {
-      angleSlider.addEventListener('input', (e) => {
+      bindEngineeringEvent(angleSlider, 'input', (e) => {
         sidewallAngle = parseFloat(e.target.value);
         update();
       });
@@ -6120,7 +6170,7 @@ export function renderYieldFailureAnalysisObject(container, lang = 'zh') {
       footerNote = t.ch16_tem_desc;
     }
 
-    container.innerHTML = `
+    renderEngineeringCard(container, `
       <section class="eng-obj-card" aria-labelledby="engObjCh16Title">
         <header class="eng-obj-header">
           <div class="eng-obj-badge-row">
@@ -6153,17 +6203,17 @@ export function renderYieldFailureAnalysisObject(container, lang = 'zh') {
           <div>${footerNote}</div>
         </footer>
       </section>
-    `;
+    `, t);
 
     container.querySelectorAll('[data-tab]').forEach(btn => {
-      btn.addEventListener('click', () => {
+      bindEngineeringEvent(btn, 'click', () => {
         activeTab = btn.getAttribute('data-tab');
         update();
       });
     });
 
     container.querySelectorAll('[data-pattern]').forEach(btn => {
-      btn.addEventListener('click', () => {
+      bindEngineeringEvent(btn, 'click', () => {
         activePattern = btn.getAttribute('data-pattern');
         update();
       });
@@ -6171,7 +6221,7 @@ export function renderYieldFailureAnalysisObject(container, lang = 'zh') {
 
     const areaSlider = container.querySelector('#ch16AreaSlider');
     if (areaSlider) {
-      areaSlider.addEventListener('input', (e) => {
+      bindEngineeringEvent(areaSlider, 'input', (e) => {
         dieArea = parseInt(e.target.value, 10);
         update();
       });
@@ -6179,7 +6229,7 @@ export function renderYieldFailureAnalysisObject(container, lang = 'zh') {
 
     const defectSlider = container.querySelector('#ch16DefectSlider');
     if (defectSlider) {
-      defectSlider.addEventListener('input', (e) => {
+      bindEngineeringEvent(defectSlider, 'input', (e) => {
         defectDensity = parseFloat(e.target.value);
         update();
       });
@@ -6452,7 +6502,7 @@ export function renderProcessControlObject(container, lang = 'zh') {
       footerNote = t.ch17_r2r_desc;
     }
 
-    container.innerHTML = `
+    renderEngineeringCard(container, `
       <section class="eng-obj-card" aria-labelledby="engObjCh17Title">
         <header class="eng-obj-header">
           <div class="eng-obj-badge-row">
@@ -6484,17 +6534,17 @@ export function renderProcessControlObject(container, lang = 'zh') {
           <div>${footerNote}</div>
         </footer>
       </section>
-    `;
+    `, t);
 
     container.querySelectorAll('[data-tab]').forEach(btn => {
-      btn.addEventListener('click', () => {
+      bindEngineeringEvent(btn, 'click', () => {
         activeTab = btn.getAttribute('data-tab');
         update();
       });
     });
 
     container.querySelectorAll('[data-spc-mode]').forEach(btn => {
-      btn.addEventListener('click', () => {
+      bindEngineeringEvent(btn, 'click', () => {
         spcMode = btn.getAttribute('data-spc-mode');
         update();
       });
@@ -6502,14 +6552,14 @@ export function renderProcessControlObject(container, lang = 'zh') {
 
     const shiftSlider = container.querySelector('#ch17Shift');
     if (shiftSlider) {
-      shiftSlider.addEventListener('input', (e) => {
+      bindEngineeringEvent(shiftSlider, 'input', (e) => {
         cpkShift = parseFloat(e.target.value);
         update();
       });
     }
     const spreadSlider = container.querySelector('#ch17Spread');
     if (spreadSlider) {
-      spreadSlider.addEventListener('input', (e) => {
+      bindEngineeringEvent(spreadSlider, 'input', (e) => {
         cpkSpread = parseFloat(e.target.value);
         update();
       });
@@ -6892,7 +6942,7 @@ export function renderWaferTestObject(container, lang = 'zh') {
       footerNote = t.ch19_binmap_desc;
     }
 
-    container.innerHTML = `
+    renderEngineeringCard(container, `
       <section class="eng-obj-card" aria-labelledby="engObjCh19Title">
         <header class="eng-obj-header">
           <div class="eng-obj-badge-row">
@@ -6925,10 +6975,10 @@ export function renderWaferTestObject(container, lang = 'zh') {
           <div>${footerNote}</div>
         </footer>
       </section>
-    `;
+    `, t);
 
     container.querySelectorAll('[data-tab]').forEach(btn => {
-      btn.addEventListener('click', () => {
+      bindEngineeringEvent(btn, 'click', () => {
         activeTab = btn.getAttribute('data-tab');
         update();
       });
@@ -6936,7 +6986,7 @@ export function renderWaferTestObject(container, lang = 'zh') {
 
     const forceSlider = container.querySelector('#ch19ForceSlider');
     if (forceSlider) {
-      forceSlider.addEventListener('input', (e) => {
+      bindEngineeringEvent(forceSlider, 'input', (e) => {
         forceCurrent = parseFloat(e.target.value);
         update();
       });
@@ -6944,7 +6994,7 @@ export function renderWaferTestObject(container, lang = 'zh') {
 
     const leadSlider = container.querySelector('#ch19LeadSlider');
     if (leadSlider) {
-      leadSlider.addEventListener('input', (e) => {
+      bindEngineeringEvent(leadSlider, 'input', (e) => {
         leadResistance = parseFloat(e.target.value);
         update();
       });
@@ -6952,7 +7002,7 @@ export function renderWaferTestObject(container, lang = 'zh') {
 
     const odSlider = container.querySelector('#ch19OdSlider');
     if (odSlider) {
-      odSlider.addEventListener('input', (e) => {
+      bindEngineeringEvent(odSlider, 'input', (e) => {
         probeOD = parseInt(e.target.value, 10);
         update();
       });
@@ -7301,7 +7351,7 @@ export function renderFabEnvironmentObject(container, lang = 'zh') {
       footerNote = t.ch01_facility_desc;
     }
 
-    container.innerHTML = `
+    renderEngineeringCard(container, `
       <section class="eng-obj-card" aria-labelledby="engObjCh01Title">
         <header class="eng-obj-header">
           <div class="eng-obj-badge-row">
@@ -7334,10 +7384,10 @@ export function renderFabEnvironmentObject(container, lang = 'zh') {
           <div>${footerNote}</div>
         </footer>
       </section>
-    `;
+    `, t);
 
     container.querySelectorAll('[data-tab]').forEach(btn => {
-      btn.addEventListener('click', () => {
+      bindEngineeringEvent(btn, 'click', () => {
         activeTab = btn.getAttribute('data-tab');
         update();
       });
@@ -7345,7 +7395,7 @@ export function renderFabEnvironmentObject(container, lang = 'zh') {
 
     const isoSlider = container.querySelector('#ch01IsoSlider');
     if (isoSlider) {
-      isoSlider.addEventListener('input', (e) => {
+      bindEngineeringEvent(isoSlider, 'input', (e) => {
         isoClass = parseInt(e.target.value, 10);
         update();
       });
@@ -7353,7 +7403,7 @@ export function renderFabEnvironmentObject(container, lang = 'zh') {
 
     const velocitySlider = container.querySelector('#ch01VelocitySlider');
     if (velocitySlider) {
-      velocitySlider.addEventListener('input', (e) => {
+      bindEngineeringEvent(velocitySlider, 'input', (e) => {
         laminarVelocity = parseFloat(e.target.value);
         update();
       });
@@ -7666,7 +7716,7 @@ export function renderSemiconductorPhysicsObject(container, lang = 'zh') {
       footerNote = t.ch02_inversion_desc;
     }
 
-    container.innerHTML = `
+    renderEngineeringCard(container, `
       <section class="eng-obj-card" aria-labelledby="engObjCh02Title">
         <header class="eng-obj-header">
           <div class="eng-obj-badge-row">
@@ -7699,10 +7749,10 @@ export function renderSemiconductorPhysicsObject(container, lang = 'zh') {
           <div>${footerNote}</div>
         </footer>
       </section>
-    `;
+    `, t);
 
     container.querySelectorAll('[data-tab]').forEach(btn => {
-      btn.addEventListener('click', () => {
+      bindEngineeringEvent(btn, 'click', () => {
         activeTab = btn.getAttribute('data-tab');
         update();
       });
@@ -7710,7 +7760,7 @@ export function renderSemiconductorPhysicsObject(container, lang = 'zh') {
 
     const vgsInput = container.querySelector('#ch02Vgs');
     if (vgsInput) {
-      vgsInput.addEventListener('input', e => {
+      bindEngineeringEvent(vgsInput, 'input', e => {
         vgs = parseFloat(e.target.value);
         update();
       });
@@ -7718,7 +7768,7 @@ export function renderSemiconductorPhysicsObject(container, lang = 'zh') {
 
     const vdsInput = container.querySelector('#ch02Vds');
     if (vdsInput) {
-      vdsInput.addEventListener('input', e => {
+      bindEngineeringEvent(vdsInput, 'input', e => {
         vds = parseFloat(e.target.value);
         update();
       });
@@ -8042,7 +8092,7 @@ export function renderPackagingFlowObject(container, lang = 'zh') {
       footerNote = t.ch20_underfill_desc;
     }
 
-    container.innerHTML = `
+    renderEngineeringCard(container, `
       <section class="eng-obj-card" aria-labelledby="engObjCh20Title">
         <header class="eng-obj-header">
           <div class="eng-obj-badge-row">
@@ -8075,10 +8125,10 @@ export function renderPackagingFlowObject(container, lang = 'zh') {
           <div>${footerNote}</div>
         </footer>
       </section>
-    `;
+    `, t);
 
     container.querySelectorAll('[data-tab]').forEach(btn => {
-      btn.addEventListener('click', () => {
+      bindEngineeringEvent(btn, 'click', () => {
         activeTab = btn.getAttribute('data-tab');
         update();
       });
@@ -8086,7 +8136,7 @@ export function renderPackagingFlowObject(container, lang = 'zh') {
 
     const dnpSlider = container.querySelector('#ch20DnpSlider');
     if (dnpSlider) {
-      dnpSlider.addEventListener('input', e => {
+      bindEngineeringEvent(dnpSlider, 'input', e => {
         dnpRadiusMm = parseFloat(e.target.value);
         update();
       });
@@ -8094,7 +8144,7 @@ export function renderPackagingFlowObject(container, lang = 'zh') {
 
     const bumpSlider = container.querySelector('#ch20BumpSlider');
     if (bumpSlider) {
-      bumpSlider.addEventListener('input', e => {
+      bindEngineeringEvent(bumpSlider, 'input', e => {
         bumpHeightUm = parseInt(e.target.value, 10);
         update();
       });
@@ -8334,7 +8384,7 @@ export function renderReliabilityTestingObject(container, lang = 'zh') {
       footerNote = t.ch22_esd_desc;
     }
 
-    container.innerHTML = `
+    renderEngineeringCard(container, `
       <section class="eng-obj-card" aria-labelledby="engObjCh22Title">
         <header class="eng-obj-header">
           <div class="eng-obj-badge-row">
@@ -8366,10 +8416,10 @@ export function renderReliabilityTestingObject(container, lang = 'zh') {
           <div>${footerNote}</div>
         </footer>
       </section>
-    `;
+    `, t);
 
     container.querySelectorAll('[data-tab]').forEach(btn => {
-      btn.addEventListener('click', () => {
+      bindEngineeringEvent(btn, 'click', () => {
         activeTab = btn.getAttribute('data-tab');
         update();
       });
@@ -8377,14 +8427,14 @@ export function renderReliabilityTestingObject(container, lang = 'zh') {
 
     const tempSlider = container.querySelector('#ch22Temp');
     if (tempSlider) {
-      tempSlider.addEventListener('input', (e) => {
+      bindEngineeringEvent(tempSlider, 'input', (e) => {
         stressTemp = parseInt(e.target.value, 10);
         update();
       });
     }
     const eaSlider = container.querySelector('#ch22Ea');
     if (eaSlider) {
-      eaSlider.addEventListener('input', (e) => {
+      bindEngineeringEvent(eaSlider, 'input', (e) => {
         activationEa = parseFloat(e.target.value);
         update();
       });
@@ -8774,7 +8824,7 @@ export function renderChipJourneyObject(container, lang = 'zh') {
       footerNote = t.ch00_hierarchy_desc;
     }
 
-    container.innerHTML = `
+    renderEngineeringCard(container, `
       <section class="eng-obj-card" aria-labelledby="engObjCh00Title">
         <header class="eng-obj-header">
           <div class="eng-obj-badge-row">
@@ -8806,17 +8856,17 @@ export function renderChipJourneyObject(container, lang = 'zh') {
           <div>${footerNote}</div>
         </footer>
       </section>
-    `;
+    `, t);
 
     container.querySelectorAll('[data-tab]').forEach(btn => {
-      btn.addEventListener('click', () => {
+      bindEngineeringEvent(btn, 'click', () => {
         activeTab = btn.getAttribute('data-tab');
         update();
       });
     });
 
     container.querySelectorAll('.journey-node').forEach(node => {
-      node.addEventListener('click', () => {
+      bindEngineeringEvent(node, 'click', () => {
         activeStage = parseInt(node.getAttribute('data-stage'), 10);
         update();
       });
@@ -9154,7 +9204,7 @@ export function renderProcessScalingObject(container, lang = 'zh') {
       footerNote = t.ch14_density_desc;
     }
 
-    container.innerHTML = `
+    renderEngineeringCard(container, `
       <section class="eng-obj-card" aria-labelledby="engObjCh14Title">
         <header class="eng-obj-header">
           <div class="eng-obj-badge-row">
@@ -9187,11 +9237,11 @@ export function renderProcessScalingObject(container, lang = 'zh') {
           <div>${footerNote}</div>
         </footer>
       </section>
-    `;
+    `, t);
 
     // 綁定頁籤切換事件
     container.querySelectorAll('[data-tab]').forEach(btn => {
-      btn.addEventListener('click', () => {
+      bindEngineeringEvent(btn, 'click', () => {
         activeTab = btn.getAttribute('data-tab');
         update();
       });
@@ -9199,7 +9249,7 @@ export function renderProcessScalingObject(container, lang = 'zh') {
 
     // 綁定節點切換事件 (pitch 模式)
     container.querySelectorAll('.node-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
+      bindEngineeringEvent(btn, 'click', () => {
         activeNode = btn.getAttribute('data-node');
         update();
       });
@@ -9210,13 +9260,13 @@ export function renderProcessScalingObject(container, lang = 'zh') {
       const vSlider = container.querySelector('#vddSlider');
       const lSlider = container.querySelector('#lgSlider');
       if (vSlider) {
-        vSlider.addEventListener('input', e => {
+        bindEngineeringEvent(vSlider, 'input', e => {
           vdd = Number(e.target.value);
           update();
         });
       }
       if (lSlider) {
-        lSlider.addEventListener('input', e => {
+        bindEngineeringEvent(lSlider, 'input', e => {
           nodeLg = Number(e.target.value);
           update();
         });
@@ -9477,7 +9527,7 @@ export function renderExcursionControlObject(container, lang = 'zh') {
       footerNote = t.ch18_containment_desc;
     }
 
-    container.innerHTML = `
+    renderEngineeringCard(container, `
       <section class="eng-obj-card" aria-labelledby="engObjCh18Title">
         <header class="eng-obj-header">
           <div class="eng-obj-badge-row">
@@ -9509,17 +9559,17 @@ export function renderExcursionControlObject(container, lang = 'zh') {
           <div>${footerNote}</div>
         </footer>
       </section>
-    `;
+    `, t);
 
     container.querySelectorAll('[data-tab]').forEach(btn => {
-      btn.addEventListener('click', () => {
+      bindEngineeringEvent(btn, 'click', () => {
         activeTab = btn.getAttribute('data-tab');
         update();
       });
     });
 
     container.querySelectorAll('.ocap-sim-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
+      bindEngineeringEvent(btn, 'click', () => {
         simState = btn.getAttribute('data-sim');
         update();
       });
@@ -9780,7 +9830,7 @@ export function renderSmartFabAutomationObject(container, lang = 'zh') {
       footerNote = t.ch23_oee_desc;
     }
 
-    container.innerHTML = `
+    renderEngineeringCard(container, `
       <section class="eng-obj-card" aria-labelledby="engObjCh23Title">
         <header class="eng-obj-header">
           <div class="eng-obj-badge-row">
@@ -9812,17 +9862,17 @@ export function renderSmartFabAutomationObject(container, lang = 'zh') {
           <div>${footerNote}</div>
         </footer>
       </section>
-    `;
+    `, t);
 
     container.querySelectorAll('[data-tab]').forEach(btn => {
-      btn.addEventListener('click', () => {
+      bindEngineeringEvent(btn, 'click', () => {
         activeTab = btn.getAttribute('data-tab');
         update();
       });
     });
 
     container.querySelectorAll('.qtime-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
+      bindEngineeringEvent(btn, 'click', () => {
         qtimeState = btn.getAttribute('data-q');
         update();
       });
@@ -10136,7 +10186,7 @@ export function renderSoftwareHardwareTruthObject(container, lang = 'zh') {
       footerNote = t.ch24_irdrop_desc;
     }
 
-    container.innerHTML = `
+    renderEngineeringCard(container, `
       <section class="eng-obj-card" aria-labelledby="engObjCh24Title">
         <header class="eng-obj-header">
           <div class="eng-obj-badge-row">
@@ -10168,10 +10218,10 @@ export function renderSoftwareHardwareTruthObject(container, lang = 'zh') {
           <div>${footerNote}</div>
         </footer>
       </section>
-    `;
+    `, t);
 
     container.querySelectorAll('[data-tab]').forEach(btn => {
-      btn.addEventListener('click', () => {
+      bindEngineeringEvent(btn, 'click', () => {
         activeTab = btn.getAttribute('data-tab');
         update();
       });
@@ -10179,7 +10229,7 @@ export function renderSoftwareHardwareTruthObject(container, lang = 'zh') {
 
     const attackBtn = container.querySelector('#rowHammerAttackBtn');
     if (attackBtn) {
-      attackBtn.addEventListener('click', () => {
+      bindEngineeringEvent(attackBtn, 'click', () => {
         hammerActivations += 25000;
         update();
       });
@@ -10187,7 +10237,7 @@ export function renderSoftwareHardwareTruthObject(container, lang = 'zh') {
 
     const trrBtn = container.querySelector('#rowHammerTrrBtn');
     if (trrBtn) {
-      trrBtn.addEventListener('click', () => {
+      bindEngineeringEvent(trrBtn, 'click', () => {
         hammerActivations = 0;
         update();
       });
@@ -10195,21 +10245,21 @@ export function renderSoftwareHardwareTruthObject(container, lang = 'zh') {
 
     const resetBtn = container.querySelector('#rowHammerResetBtn');
     if (resetBtn) {
-      resetBtn.addEventListener('click', () => {
+      bindEngineeringEvent(resetBtn, 'click', () => {
         hammerActivations = 0;
         update();
       });
     }
 
     container.querySelectorAll('.pvt-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
+      bindEngineeringEvent(btn, 'click', () => {
         pvtCorner = btn.getAttribute('data-corner');
         update();
       });
     });
 
     container.querySelectorAll('.burst-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
+      bindEngineeringEvent(btn, 'click', () => {
         isBurst = btn.getAttribute('data-burst') === 'true';
         update();
       });
@@ -10434,7 +10484,7 @@ export function renderGlossaryGalaxyObject(container, lang = 'zh') {
       footerNote = t.app_glossary_radar_desc;
     }
 
-    container.innerHTML = `
+    renderEngineeringCard(container, `
       <section class="eng-obj-card" aria-labelledby="engObjGlossaryTitle">
         <header class="eng-obj-header">
           <div class="eng-obj-badge-row">
@@ -10466,10 +10516,10 @@ export function renderGlossaryGalaxyObject(container, lang = 'zh') {
           <div>${footerNote}</div>
         </footer>
       </section>
-    `;
+    `, t);
 
     container.querySelectorAll('[data-tab]').forEach(btn => {
-      btn.addEventListener('click', () => {
+      bindEngineeringEvent(btn, 'click', () => {
         activeTab = btn.getAttribute('data-tab');
         update();
       });
@@ -10675,7 +10725,7 @@ export function renderFabJargonDecoderObject(container, lang = 'zh') {
       footerNote = t.app_jargon_scenarios_desc;
     }
 
-    container.innerHTML = `
+    renderEngineeringCard(container, `
       <section class="eng-obj-card" aria-labelledby="engObjJargonTitle">
         <header class="eng-obj-header">
           <div class="eng-obj-badge-row">
@@ -10707,17 +10757,17 @@ export function renderFabJargonDecoderObject(container, lang = 'zh') {
           <div>${footerNote}</div>
         </footer>
       </section>
-    `;
+    `, t);
 
     container.querySelectorAll('[data-tab]').forEach(btn => {
-      btn.addEventListener('click', () => {
+      bindEngineeringEvent(btn, 'click', () => {
         activeTab = btn.getAttribute('data-tab');
         update();
       });
     });
 
     container.querySelectorAll('.jargon-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
+      bindEngineeringEvent(btn, 'click', () => {
         selectedJargon = btn.getAttribute('data-jargon');
         update();
       });
@@ -10916,7 +10966,7 @@ export function renderMasteryRoadmapObject(container, lang = 'zh') {
       footerNote = t.app_reading_tree_desc;
     }
 
-    container.innerHTML = `
+    renderEngineeringCard(container, `
       <section class="eng-obj-card" aria-labelledby="engObjReadingTitle">
         <header class="eng-obj-header">
           <div class="eng-obj-badge-row">
@@ -10948,17 +10998,17 @@ export function renderMasteryRoadmapObject(container, lang = 'zh') {
           <div>${footerNote}</div>
         </footer>
       </section>
-    `;
+    `, t);
 
     container.querySelectorAll('[data-tab]').forEach(btn => {
-      btn.addEventListener('click', () => {
+      bindEngineeringEvent(btn, 'click', () => {
         activeTab = btn.getAttribute('data-tab');
         update();
       });
     });
 
     container.querySelectorAll('.level-bar').forEach(btn => {
-      btn.addEventListener('click', () => {
+      bindEngineeringEvent(btn, 'click', () => {
         selectedLevel = parseInt(btn.getAttribute('data-level'), 10);
         update();
       });
@@ -11033,86 +11083,5 @@ export function mountEngineeringObject(chId, container, lang = 'zh') {
     renderMasteryRoadmapObject(container, lang);
   }
 
-  // 統一掛載 Fullscreen HUD 與 SVG 向量複製動作群
-  const card = container.querySelector ? container.querySelector('.eng-obj-card') : null;
-  if (card) {
-    attachCardHudActions(card, lang);
-  }
-}
-
-/**
- * 專業工程 HUD 控制項 (一鍵全螢幕檢視 + 一鍵複製向量 SVG 代碼)
- */
-function attachCardHudActions(cardEl, lang) {
-  if (!cardEl || !cardEl.querySelector) return;
-  const t = TEXTS[lang] || TEXTS.zh;
-  
-  let hudActions = cardEl.querySelector('.eng-obj-hud-actions');
-  if (!hudActions) {
-    const badgeRow = cardEl.querySelector('.eng-obj-badge-row');
-    if (badgeRow && badgeRow.appendChild) {
-      hudActions = document.createElement('div');
-      hudActions.className = 'eng-obj-hud-actions';
-      hudActions.innerHTML = `
-        <button type="button" class="eng-obj-hud-btn" data-action="fullscreen" title="${t.btn_fullscreen}">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
-          <span class="hud-btn-text">${t.btn_fullscreen}</span>
-        </button>
-        <button type="button" class="eng-obj-hud-btn" data-action="copy-svg" title="${t.btn_copy_svg}">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-          <span class="hud-btn-text">${t.btn_copy_svg}</span>
-        </button>
-      `;
-      badgeRow.appendChild(hudActions);
-    }
-  }
-
-  if (hudActions && hudActions.querySelector) {
-    const fsBtn = hudActions.querySelector('[data-action="fullscreen"]');
-    if (fsBtn) {
-      fsBtn.onclick = (e) => {
-        if (e && e.stopPropagation) e.stopPropagation();
-        const isFs = cardEl.classList.toggle('is-fullscreen');
-        const textSpan = fsBtn.querySelector('.hud-btn-text');
-        if (textSpan) {
-          textSpan.textContent = isFs ? t.btn_fullscreen_exit : t.btn_fullscreen;
-        }
-        if (typeof document !== 'undefined' && document.body) {
-          if (isFs) {
-            document.body.style.overflow = 'hidden';
-            const onKey = (ev) => {
-              if (ev.key === 'Escape') {
-                cardEl.classList.remove('is-fullscreen');
-                if (textSpan) textSpan.textContent = t.btn_fullscreen;
-                document.body.style.overflow = '';
-                window.removeEventListener('keydown', onKey);
-              }
-            };
-            window.addEventListener('keydown', onKey);
-          } else {
-            document.body.style.overflow = '';
-          }
-        }
-      };
-    }
-
-    const copyBtn = hudActions.querySelector('[data-action="copy-svg"]');
-    if (copyBtn) {
-      copyBtn.onclick = (e) => {
-        if (e && e.stopPropagation) e.stopPropagation();
-        const svgEl = cardEl.querySelector('.eng-obj-viewport svg');
-        if (svgEl && typeof navigator !== 'undefined' && navigator.clipboard) {
-          const svgCode = svgEl.outerHTML;
-          navigator.clipboard.writeText(svgCode).then(() => {
-            const textSpan = copyBtn.querySelector('.hud-btn-text');
-            if (textSpan) {
-              const orig = textSpan.textContent;
-              textSpan.textContent = t.btn_copied_svg;
-              setTimeout(() => { textSpan.textContent = orig; }, 2000);
-            }
-          });
-        }
-      };
-    }
-  }
+  return () => disposeEngineeringObject(container);
 }
