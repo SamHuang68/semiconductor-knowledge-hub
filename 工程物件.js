@@ -38,6 +38,14 @@ const TEXTS = {
     physics_slider_spread: '離散度 σ：',
     physics_slider_temp: '應力溫度 T：',
     physics_slider_ea: '活化能 Ea：',
+    physics_slider_vgs: '閘極偏壓 V_GS：',
+    physics_slider_vds: '汲極偏壓 V_DS：',
+    physics_slider_rf: 'RF 偏壓功率：',
+    physics_slider_press: '腔體氣壓：',
+    physics_slider_energy: '加速能量：',
+    physics_slider_dose: '佈植劑量指數：',
+    physics_slider_pitch: '互連凸塊節距：',
+    physics_slider_datarate: '傳輸速率：',
     legend_title: '材料與光路標記：',
 
     // Ch 04 微影
@@ -94,6 +102,11 @@ const TEXTS = {
     ch06_tab_anomalies: '微負載效應與異常 (Etch Anomalies & RIE Lag)',
     ch06_rf_source_label: 'RF Source Power (控制電漿離子密度 / Flux):',
     ch06_rf_bias_label: 'RF Bias Power (控制自偏壓與離子轟擊能量 / Energy):',
+    ch06_pressure_label: '腔體氣壓 Chamber Pressure (碰撞散射與自由程):',
+    ch06_anisotropy_label: '異向性因子 Anisotropy Factor (A = 1 - R_L / R_V):',
+    ch06_sidewall_angle: '側壁垂直傾角 Profile Angle:',
+    ch06_undercut_depth: '側向掏空深度 Lateral Undercut:',
+    ch06_ion_energy: '離子轟擊動能 Ion Bombardment Kinetic Energy:',
     ch06_showerhead: '氣體噴淋頭 (Showerhead Gas Inlet: CF₄, Cl₂, HBr, Ar)',
     ch06_source_coil: 'ICP 高頻感應線圈 (13.56 MHz: 激發高密度電漿)',
     ch06_plasma_glow: '高密度發光電漿區 (離子 + 自由基)',
@@ -138,6 +151,11 @@ const TEXTS = {
     ch07_dose_label: '離子劑量 (Dose Φ)',
     ch07_range_label: '投影平均射程 (Projected Range Rp)',
     ch07_energy_label: '加速能量 (Beam Energy)',
+    ch07_dose_slider: '佈植劑量 (Dose Φ, 常用對數):',
+    ch07_energy_slider: '加速能量 (Beam Energy E_acc):',
+    ch07_peak_conc: '峰值濃度 Peak Concentration (C_max):',
+    ch07_straggle: '射程離散 Longitudinal Straggle (ΔRp):',
+    ch07_lss_desc: 'LSS 理論 (Lindhard-Scharff-Schiøtt)：離子在矽靶中受核阻止能與電子阻止能減速，形成投影射程 Rp 與離散 ΔRp 之高斯濃度分佈 C(x)。',
     ch07_beamline_desc: '利用磁場勞侖茲力 F = q(v × B)，不同質量電荷比 (m/z) 的離子在均勻磁場中偏轉半徑 r = mv / (qB) 不同。透過精確狹縫濾除雜質，僅讓目標摻質（如純 ¹¹B⁺）進入加速管射入晶圓。',
     ch07_anneal_desc: '高速離子注入將原本整齊的單晶矽晶格撞擊成混亂非晶層 (Amorphized Layer)，此時摻質未進入格位且無電性。透過快速熱退火 (RTA ~1050°C 數秒) 提供熱能，觸發固相磊晶再結晶，摻質取代矽原子格位達成 95% 以上電性活化！',
     ch07_channeling_desc: '當離子束沿著晶軸（如 <110>）直射時，將穿過原子間隙長驅直入（通道效應），產生無法控制的過深尾端。工廠標準做法是將晶圓傾斜 7° (Tilt) 並偏轉 27° (Twist)，打亂對齊確保淺接面輪廓受控。',
@@ -181,6 +199,11 @@ const TEXTS = {
     ch21_tab_density: '各世代互連密度對比 (Density & Pitch)',
     ch21_cowos_desc: '2.5D CoWoS (Chip-on-Wafer-on-Substrate) 透過大面積矽中介層 (Silicon Interposer) 內部超密高頻微導線與垂直矽穿孔 (TSV)，將 SoC 算力晶片與 4~8 顆 HBM 高頻寬記憶體緊密並排互連，頻寬突破數個 TB/s！',
     ch21_soic_desc: '3D SoIC 徹底拋棄傳統焊錫微凸塊，透過奈米級平坦化表面，在常溫下以介電層分子鍵合 (SiO₂-SiO₂)，再經熱退火使銅金屬原子跨介面互相擴散 (Cu-Cu)，接點間距 < 1µm，互連密度較傳統提升 1500 倍！',
+    ch21_pitch_slider: '凸塊節距 Bump Pitch (幾何間距):',
+    ch21_datarate_slider: '單線速率 Data Rate (Gbps/pin):',
+    ch21_density_label: '面積互連密度 Interconnect Density:',
+    ch21_bw_label: '面積頻寬密度 Bandwidth Density:',
+    ch21_energy_label: '傳輸能耗 Interconnect Energy:',
     ch21_density_desc: '封裝互連演進：傳統打線/BGA (間距 1000µm) → 覆晶 C4 (間距 150µm) → 2.5D 微凸塊 (間距 35µm) → 3D SoIC 混合鍵合 (間距 0.9µm)，晶片間通訊能耗降低 90%，延遲逼近單一晶粒。',
 
     // Ch 03 沙子到晶圓
@@ -481,6 +504,14 @@ const TEXTS = {
     physics_slider_spread: 'Dispersion σ:',
     physics_slider_temp: 'Stress Temp T:',
     physics_slider_ea: 'Activation Ea:',
+    physics_slider_vgs: 'Gate Bias V_GS:',
+    physics_slider_vds: 'Drain Bias V_DS:',
+    physics_slider_rf: 'RF Bias Power:',
+    physics_slider_press: 'Chamber Pressure:',
+    physics_slider_energy: 'Acceleration Energy:',
+    physics_slider_dose: 'Implant Dose Log:',
+    physics_slider_pitch: 'Bump Pitch:',
+    physics_slider_datarate: 'Data Rate:',
     legend_title: 'Materials & Optical Key:',
 
     // Ch 04 Lithography
@@ -537,6 +568,11 @@ const TEXTS = {
     ch06_tab_anomalies: 'Etch Anomalies & RIE Lag',
     ch06_rf_source_label: 'RF Source Power (Controls Plasma Density / Radical Flux):',
     ch06_rf_bias_label: 'RF Bias Power (Controls Self-Bias & Ion Bombardment Energy):',
+    ch06_pressure_label: 'Chamber Pressure (Mean Free Path & Scattering):',
+    ch06_anisotropy_label: 'Anisotropy Factor (A = 1 - R_L / R_V):',
+    ch06_sidewall_angle: 'Sidewall Profile Angle:',
+    ch06_undercut_depth: 'Lateral Undercut:',
+    ch06_ion_energy: 'Ion Bombardment Kinetic Energy:',
     ch06_showerhead: 'Showerhead Gas Inlet (CF₄, Cl₂, HBr, Ar)',
     ch06_source_coil: 'ICP RF Source Coil (13.56 MHz: Generates High-Density Plasma)',
     ch06_plasma_glow: 'High-Density Plasma Glow (Ions & Radicals)',
@@ -581,6 +617,11 @@ const TEXTS = {
     ch07_dose_label: 'Implant Dose (Φ)',
     ch07_range_label: 'Projected Range (Rp)',
     ch07_energy_label: 'Beam Energy',
+    ch07_dose_slider: 'Implant Dose (Dose Φ, Log Scale):',
+    ch07_energy_slider: 'Beam Acceleration Energy (E_acc):',
+    ch07_peak_conc: 'Peak Concentration (C_max):',
+    ch07_straggle: 'Longitudinal Straggle (ΔRp):',
+    ch07_lss_desc: 'LSS Theory (Lindhard-Scharff-Schiøtt): Ions decelerate via nuclear and electronic stopping, creating a Gaussian depth distribution C(x) characterized by Rp and ΔRp.',
     ch07_beamline_desc: 'Based on Lorentz force F = q(v × B), ions with different mass-to-charge ratios (m/z) bend with distinct radii r = mv / (qB) in a magnetic field. Resolving slits filter out unwanted contaminants, selecting only target dopants.',
     ch07_anneal_desc: 'Energetic ion collisions shatter the crystalline silicon into an amorphous damaged layer with zero electrical activity. Rapid Thermal Annealing (RTA ~1050°C) triggers Solid Phase Epitaxial Regrowth, placing dopants into substitution lattice sites (>95% activation).',
     ch07_channeling_desc: 'Ions incident along major crystal axes (<110>) steer down open atomic corridors without nuclear collisions (channeling effect). Tilting wafers by 7° with a 27° twist de-aligns the axes, ensuring tight, controlled Gaussian profiles.',
@@ -624,6 +665,11 @@ const TEXTS = {
     ch21_tab_density: 'Interconnect Density & Pitch Comparison',
     ch21_cowos_desc: '2.5D CoWoS bridges high-power SoC/GPU compute dies with 4-8 HBM stacks across a large silicon interposer packed with sub-micron RDL wires and Through-Silicon Vias (TSVs), delivering multi-terabyte/s bandwidth.',
     ch21_soic_desc: '3D SoIC eliminates solder micro-bumps entirely: atomic-flat dielectric surfaces bond at room temperature (SiO₂-SiO₂), followed by thermal annealing where copper contacts diffuse together (Cu-Cu) with <1µm pitch and 1500x density!',
+    ch21_pitch_slider: 'Bump Pitch (Interconnect Spacing):',
+    ch21_datarate_slider: 'Pin Data Rate (Gbps/pin):',
+    ch21_density_label: 'Interconnect Density (bumps/mm²):',
+    ch21_bw_label: 'Bandwidth Density (TB/s/mm²):',
+    ch21_energy_label: 'Interconnect Energy (pJ/bit):',
     ch21_density_desc: 'Interconnect evolution: Wire-Bonding/BGA (1000µm pitch) → Flip-Chip C4 (150µm) → 2.5D Micro-Bump (35µm) → 3D SoIC Hybrid Bonding (0.9µm), slashing communication energy by 90% with near-monolithic latency.',
 
     // Ch 03 Silicon Ingot & Wafer Fabrication
@@ -1651,21 +1697,44 @@ export function renderDepositionMechanismObject(container, lang = 'zh') {
 export function renderPlasmaEtchObject(container, lang = 'zh') {
   const t = TEXTS[lang] || TEXTS.zh;
   let activeTab = 'chamber'; // 'chamber' | 'profile' | 'anomalies'
-  let rfSourcePower = 80; // 0 ~ 100
-  let rfBiasPower = 60;   // 0 ~ 100
+  let rfSourcePower = 800; // 200 ~ 1500 W (ICP Coil: Controls Plasma Density)
+  let rfBiasPower = 250;   // 0 ~ 600 W (Chuck Bias: Controls Ion Kinetic Energy)
+  let chamberPressure = 15; // 2 ~ 80 mTorr (Pressure: Mean free path & collisions)
 
   function update() {
+    let controlsHtml = '';
     let viewportHtml = '';
     let dashboardHtml = '';
     let footerNote = '';
 
     if (activeTab === 'chamber') {
-      const plasmaBrightness = 0.4 + (rfSourcePower / 100) * 0.55;
-      const biasVoltage = Math.round(150 + (rfBiasPower / 100) * 550);
-      const ionSpeedY = Math.round(18 + (rfBiasPower / 100) * 14);
+      const plasmaBrightness = 0.35 + (rfSourcePower / 1500) * 0.6;
+      const biasVoltage = rfBiasPower === 0 ? 0 : Math.round(50 + 26 * Math.sqrt(rfBiasPower));
+      const ionFlux = ((rfSourcePower / 1000) * 1.5).toFixed(2);
+      const sheathThickness = Math.round(16 + Math.sqrt(biasVoltage) * 0.55);
+      const ionArrowLength = Math.round(14 + (biasVoltage / 700) * 22);
+
+      controlsHtml = `
+        <div class="eng-obj-slider-cluster">
+          <div class="eng-obj-slider-unit">
+            <div class="eng-obj-slider-header">
+              <span class="eng-obj-slider-label">${t.ch06_rf_source_label}</span>
+              <span class="eng-obj-slider-val" id="rfSourceVal">${rfSourcePower} W</span>
+            </div>
+            <input type="range" class="eng-obj-slider" id="rfSourceSlider" min="200" max="1500" step="50" value="${rfSourcePower}" aria-label="RF Source Power">
+          </div>
+          <div class="eng-obj-slider-unit">
+            <div class="eng-obj-slider-header">
+              <span class="eng-obj-slider-label">${t.ch06_rf_bias_label}</span>
+              <span class="eng-obj-slider-val" id="rfBiasVal">${rfBiasPower} W</span>
+            </div>
+            <input type="range" class="eng-obj-slider" id="rfBiasSlider" min="0" max="600" step="10" value="${rfBiasPower}" aria-label="RF Bias Power">
+          </div>
+        </div>
+      `;
 
       viewportHtml = `
-        <svg viewBox="0 0 800 460" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="ICP Plasma Chamber">
+        <svg viewBox="0 0 800 460" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="ICP Plasma Chamber Live Engine">
           <!-- 腔體外壁 (Chamber Wall) -->
           <rect x="180" y="20" width="440" height="420" rx="8" fill="#09131b" stroke="#334155" stroke-width="2"/>
 
@@ -1680,26 +1749,30 @@ export function renderPlasmaEtchObject(container, lang = 'zh') {
 
           <!-- ICP 高頻感應線圈 (13.56 MHz Coil) -->
           <g stroke="#f59e0b" stroke-width="3" fill="none">
-            <circle cx="220" cy="110" r="14"/><circle cx="220" cy="150" r="14"/>
-            <circle cx="580" cy="110" r="14"/><circle cx="580" cy="150" r="14"/>
+            <circle cx="220" cy="110" r="14" opacity="${0.4 + (rfSourcePower / 1500) * 0.6}"/>
+            <circle cx="220" cy="150" r="14" opacity="${0.4 + (rfSourcePower / 1500) * 0.6}"/>
+            <circle cx="580" cy="110" r="14" opacity="${0.4 + (rfSourcePower / 1500) * 0.6}"/>
+            <circle cx="580" cy="150" r="14" opacity="${0.4 + (rfSourcePower / 1500) * 0.6}"/>
           </g>
           <text x="160" y="135" text-anchor="end" fill="#f59e0b" font-size="11.5" font-weight="700">ICP RF Source Coil</text>
-          <text x="160" y="150" text-anchor="end" fill="#94a3b8" font-size="10.5">13.56 MHz (密度控制)</text>
+          <text x="160" y="150" text-anchor="end" fill="#94a3b8" font-size="10.5">13.56 MHz (${rfSourcePower} W)</text>
 
           <!-- 高密度電漿輝光區 (Plasma Glow Discharge) -->
-          <ellipse cx="400" cy="170" rx="170" ry="85" fill="rgba(113, 236, 227, ${plasmaBrightness})" filter="drop-shadow(0 0 16px rgba(56, 189, 248, 0.7))" class="anim-plasma"/>
+          <ellipse cx="400" cy="170" rx="${140 + (rfSourcePower / 1500) * 45}" ry="${70 + (rfSourcePower / 1500) * 25}" fill="rgba(113, 236, 227, ${plasmaBrightness})" filter="drop-shadow(0 0 18px rgba(56, 189, 248, 0.75))" class="anim-plasma"/>
           <text x="400" y="165" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="700">${t.ch06_plasma_glow}</text>
-          <text x="400" y="185" text-anchor="middle" fill="#e0f2fe" font-size="11.5">離子: Ar⁺, CF₃⁺ | 自由基: F*, Cl* (密度: 10¹¹ cm⁻³)</text>
+          <text x="400" y="185" text-anchor="middle" fill="#e0f2fe" font-size="11.5">離子通量: ${ionFlux} × 10¹¹ cm⁻³ | 自由基: F*, Cl*</text>
 
           <!-- 電漿鞘層 (Plasma Sheath - 暗區電壓降) -->
-          <rect x="240" y="270" width="320" height="24" fill="rgba(15, 23, 42, 0.6)" stroke="#0284c7" stroke-dasharray="4 3"/>
-          <text x="575" y="286" fill="#38bdf8" font-size="11">${t.ch06_sheath} (-Vdc: ${biasVoltage} V)</text>
+          <rect x="240" y="${295 - sheathThickness}" width="320" height="${sheathThickness}" fill="rgba(15, 23, 42, 0.75)" stroke="#0284c7" stroke-dasharray="4 3"/>
+          <text x="575" y="${295 - sheathThickness / 2 + 4}" fill="#38bdf8" font-size="11">${t.ch06_sheath} (-Vdc: ${biasVoltage} V)</text>
 
           <!-- 離子加速垂直箭頭 -->
-          <g stroke="#71ece3" stroke-width="${1.5 + (rfBiasPower / 100) * 1.5}" opacity="0.85">
-            <line x1="320" y1="260" x2="320" y2="${260 + ionSpeedY}"/>
-            <line x1="400" y1="260" x2="400" y2="${260 + ionSpeedY}"/>
-            <line x1="480" y1="260" x2="480" y2="${260 + ionSpeedY}"/>
+          <g stroke="#71ece3" stroke-width="${1.5 + (rfBiasPower / 600) * 2.0}" opacity="0.9">
+            <line x1="320" y1="${295 - sheathThickness}" x2="320" y2="${295 - sheathThickness + ionArrowLength}"/>
+            <line x1="360" y1="${295 - sheathThickness}" x2="360" y2="${295 - sheathThickness + ionArrowLength}"/>
+            <line x1="400" y1="${295 - sheathThickness}" x2="400" y2="${295 - sheathThickness + ionArrowLength}"/>
+            <line x1="440" y1="${295 - sheathThickness}" x2="440" y2="${295 - sheathThickness + ionArrowLength}"/>
+            <line x1="480" y1="${295 - sheathThickness}" x2="480" y2="${295 - sheathThickness + ionArrowLength}"/>
           </g>
 
           <!-- 300mm 晶圓載台與靜電吸盤 (ESC) -->
@@ -1712,89 +1785,136 @@ export function renderPlasmaEtchObject(container, lang = 'zh') {
 
           <!-- 下方 RF 偏壓產生器 (RF Bias Generator) -->
           <rect x="330" y="365" width="140" height="30" rx="3" fill="#0f172a" stroke="#0284c7"/>
-          <text x="400" y="384" text-anchor="middle" fill="#38bdf8" font-size="11.5" font-weight="700">RF Bias (2 MHz)</text>
+          <text x="400" y="384" text-anchor="middle" fill="#38bdf8" font-size="11.5" font-weight="700">RF Bias (${rfBiasPower} W)</text>
           <path d="M 400,350 L 400,365" stroke="#0284c7" stroke-width="2"/>
         </svg>
       `;
 
       dashboardHtml = `
         <div class="eng-obj-metric-card">
-          <div class="eng-obj-metric-label">RF Source Power (${rfSourcePower}%)</div>
-          <div class="eng-obj-metric-value">${(rfSourcePower * 15).toFixed(0)} W</div>
+          <div class="eng-obj-metric-label">RF Source Power (${rfSourcePower} W)</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-blue-dark);">${ionFlux} × 10¹¹ cm⁻³</div>
           <div class="eng-obj-metric-note">直接調控電漿離子通量 (Ion Density)</div>
         </div>
         <div class="eng-obj-metric-card">
           <div class="eng-obj-metric-label">自偏壓 Self-Bias (-Vdc)</div>
           <div class="eng-obj-metric-value" style="color: #f59e0b;">-${biasVoltage} V</div>
-          <div class="eng-obj-metric-note">垂直加速正離子之轟擊動能</div>
+          <div class="eng-obj-metric-note">垂直加速正離子之轟擊動能 (${biasVoltage} eV)</div>
         </div>
         <div class="eng-obj-metric-card">
           <div class="eng-obj-metric-label">RF 雙頻解耦架構</div>
           <div class="eng-obj-metric-value" style="color: var(--semi-teal);">獨立解耦</div>
-          <div class="eng-obj-metric-note">同時滿足高速蝕刻與高選擇比垂直側壁</div>
+          <div class="eng-obj-metric-note">高頻產離子 · 低頻拉動能 · 兼顧速率與選擇比</div>
         </div>
       `;
 
       footerNote = t.ch06_etch_footer;
     } else if (activeTab === 'profile') {
-      // 非等向性蝕刻微觀機制
+      const biasVoltage = rfBiasPower === 0 ? 0 : Math.round(50 + 26 * Math.sqrt(rfBiasPower));
+      const mfp = Math.round(500 / chamberPressure); // µm
+      // 異向性因子 A = 1 - R_L / R_V
+      const rawAnisotropy = 1 - (chamberPressure / 80) * 0.7 + (biasVoltage / 700) * 0.45;
+      const anisotropy = Math.max(0.15, Math.min(0.99, rawAnisotropy));
+      const profileAngle = (72.0 + anisotropy * 17.8).toFixed(1); // 72.0° ~ 89.8°
+      const undercutNm = Math.max(0, Math.round((1 - anisotropy) * 55)); // 0 ~ 45 nm
+
+      controlsHtml = `
+        <div class="eng-obj-slider-cluster">
+          <div class="eng-obj-slider-unit">
+            <div class="eng-obj-slider-header">
+              <span class="eng-obj-slider-label">${t.ch06_rf_bias_label}</span>
+              <span class="eng-obj-slider-val" id="biasPowerVal">${rfBiasPower} W</span>
+            </div>
+            <input type="range" class="eng-obj-slider" id="biasPowerSlider" min="0" max="600" step="10" value="${rfBiasPower}" aria-label="RF Bias Power">
+          </div>
+          <div class="eng-obj-slider-unit">
+            <div class="eng-obj-slider-header">
+              <span class="eng-obj-slider-label">${t.ch06_pressure_label}</span>
+              <span class="eng-obj-slider-val" id="pressureVal">${chamberPressure} mTorr</span>
+            </div>
+            <input type="range" class="eng-obj-slider" id="pressureSlider" min="2" max="80" step="2" value="${chamberPressure}" aria-label="Chamber Pressure">
+          </div>
+        </div>
+      `;
+
+      // 溝槽截面動態座標
+      const leftMaskEdge = 170;
+      const rightMaskEdge = 310;
+      const trenchBottomY = 270;
+      const trenchTopY = 40;
+      const undercutOffset = undercutNm * 0.6;
+      const botOffset = Math.round((90 - parseFloat(profileAngle)) * 1.5);
+
+      const pathData = `
+        M 30,${trenchTopY}
+        L ${leftMaskEdge},${trenchTopY}
+        C ${leftMaskEdge - undercutOffset},${trenchTopY + 30} ${leftMaskEdge + botOffset},${trenchBottomY - 40} ${leftMaskEdge + botOffset},${trenchBottomY}
+        L ${rightMaskEdge - botOffset},${trenchBottomY}
+        C ${rightMaskEdge - botOffset},${trenchBottomY - 40} ${rightMaskEdge + undercutOffset},${trenchTopY + 30} ${rightMaskEdge},${trenchTopY}
+        L 450,${trenchTopY}
+        L 450,330
+        L 30,330
+        Z
+      `;
+
       viewportHtml = `
-        <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Anisotropic Etch Profile">
-          <g transform="translate(180, 40)">
-            <!-- 矽基底與垂直溝槽 -->
-            <path d="M 20,40 L 130,40 L 130,280 L 310,280 L 310,40 L 420,40 L 420,320 L 20,320 Z" fill="#1e293b" stroke="#334155" stroke-width="2"/>
+        <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Anisotropic Etch Profile Live Engine">
+          <g transform="translate(160, 35)">
+            <!-- 矽基底與動態輪廓溝槽 -->
+            <path d="${pathData}" fill="#1e293b" stroke="#334155" stroke-width="2"/>
 
             <!-- 光阻遮罩 (Photoresist Mask) -->
-            <rect x="20" y="0" width="110" height="40" fill="#f59e0b" opacity="0.9"/>
-            <rect x="310" y="0" width="110" height="40" fill="#f59e0b" opacity="0.9"/>
-            <text x="75" y="25" text-anchor="middle" fill="#09131b" font-size="12" font-weight="700">光阻遮罩 (PR)</text>
-            <text x="365" y="25" text-anchor="middle" fill="#09131b" font-size="12" font-weight="700">光阻遮罩 (PR)</text>
+            <rect x="30" y="0" width="${leftMaskEdge - 30}" height="40" fill="#f59e0b" opacity="0.9"/>
+            <rect x="${rightMaskEdge}" y="0" width="${450 - rightMaskEdge}" height="40" fill="#f59e0b" opacity="0.9"/>
+            <text x="100" y="25" text-anchor="middle" fill="#09131b" font-size="12" font-weight="700">光阻遮罩 (PR)</text>
+            <text x="380" y="25" text-anchor="middle" fill="#09131b" font-size="12" font-weight="700">光阻遮罩 (PR)</text>
 
-            <!-- 側壁鈍化聚合物膜 (Passivation Polymer Film, 如 CFx) -->
-            <rect x="127" y="40" width="7" height="240" fill="#10b981"/>
-            <rect x="306" y="40" width="7" height="240" fill="#10b981"/>
-            <text x="145" y="160" fill="#10b981" font-size="11.5" font-weight="700">側壁鈍化層 (CFx)</text>
-            <text x="145" y="176" fill="#94a3b8" font-size="10">阻止自由基側向掏空</text>
+            <!-- 側壁鈍化聚合物膜 (Passivation Film, 如 CFx) -->
+            ${anisotropy > 0.65 ? `
+              <path d="M ${leftMaskEdge},${trenchTopY} C ${leftMaskEdge - undercutOffset},${trenchTopY + 30} ${leftMaskEdge + botOffset},${trenchBottomY - 40} ${leftMaskEdge + botOffset},${trenchBottomY}" fill="none" stroke="#10b981" stroke-width="5" stroke-linecap="round"/>
+              <path d="M ${rightMaskEdge},${trenchTopY} C ${rightMaskEdge + undercutOffset},${trenchTopY + 30} ${rightMaskEdge - botOffset},${trenchBottomY - 40} ${rightMaskEdge - botOffset},${trenchBottomY}" fill="none" stroke="#10b981" stroke-width="5" stroke-linecap="round"/>
+              <text x="135" y="160" fill="#10b981" font-size="11" font-weight="700">側壁 CFx 鈍化膜</text>
+            ` : `
+              <text x="135" y="160" fill="#ef4444" font-size="11" font-weight="700">鈍化不足 (底切)</text>
+            `}
 
-            <!-- 垂直高能離子轟擊 (打擊底部，打散鍵結) -->
-            <g stroke="#38bdf8" stroke-width="2.5" marker-end="url(#arrow)">
-              <line x1="200" y1="20" x2="200" y2="265" class="anim-ion"/>
-              <line x1="240" y1="20" x2="240" y2="265" class="anim-ion"/>
+            <!-- 垂直高能離子轟擊 (打擊底部) -->
+            <g stroke="#38bdf8" stroke-width="${1.5 + (biasVoltage / 700) * 2}" opacity="0.9">
+              <line x1="210" y1="10" x2="210" y2="255" stroke-dasharray="5 3"/>
+              <line x1="240" y1="10" x2="240" y2="255" stroke-dasharray="5 3"/>
+              <line x1="270" y1="10" x2="270" y2="255" stroke-dasharray="5 3"/>
             </g>
-            <text x="220" y="110" text-anchor="middle" fill="#38bdf8" font-size="12" font-weight="700">正離子垂直轟擊 (Ar⁺, CF₃⁺)</text>
+            <text x="240" y="100" text-anchor="middle" fill="#38bdf8" font-size="11.5" font-weight="700">垂直離子轟擊 (Ar⁺, CF₃⁺)</text>
 
-            <!-- 自由基中性擴散反應 (F*, Cl*) -->
-            <g fill="#e0f2fe" opacity="0.8">
-              <circle cx="180" cy="230" r="3"/><circle cx="260" cy="230" r="3"/>
-              <circle cx="210" cy="270" r="3"/><circle cx="230" cy="270" r="3"/>
-            </g>
-
-            <!-- 底部化學揮發反應揮發出氣體 (SiF4) -->
-            <text x="220" y="274" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="700">化學反應脫附 (SiF₄ ↑)</text>
+            <!-- 底部化學揮發反應 (SiF4) -->
+            <text x="240" y="265" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="700">反應脫附 (SiF₄ ↑)</text>
             
-            <!-- 90° 垂直陡直標註 -->
-            <path d="M 310,260 L 295,260 L 295,280" stroke="#f59e0b" stroke-width="1.5" fill="none"/>
-            <text x="275" y="255" fill="#f59e0b" font-size="12" font-weight="700">89.8° 垂直</text>
+            <!-- 垂直度與角度標註 -->
+            <text x="${rightMaskEdge - botOffset - 15}" y="${trenchBottomY - 15}" fill="${anisotropy > 0.85 ? '#10b981' : '#f59e0b'}" font-size="13" font-weight="750">
+              ${profileAngle}°
+            </text>
           </g>
         </svg>
       `;
+
       dashboardHtml = `
         <div class="eng-obj-metric-card">
-          <div class="eng-obj-metric-label">側壁垂直度 (Profile Angle)</div>
-          <div class="eng-obj-metric-value" style="color: var(--semi-teal);">89.5° ~ 90.0°</div>
-          <div class="eng-obj-metric-note">極致非等向性 (Anisotropic) 輪廓</div>
+          <div class="eng-obj-metric-label">${t.ch06_sidewall_angle}</div>
+          <div class="eng-obj-metric-value" style="color: ${parseFloat(profileAngle) >= 88 ? 'var(--semi-teal)' : '#f59e0b'};">${profileAngle}°</div>
+          <div class="eng-obj-metric-note">${parseFloat(profileAngle) >= 88 ? '高度非等向性 (Vertical)' : '等向性擴散側蝕增加'}</div>
         </div>
         <div class="eng-obj-metric-card">
-          <div class="eng-obj-metric-label">矽對光阻選擇比 (Selectivity)</div>
-          <div class="eng-obj-metric-value">&gt; 25 : 1</div>
-          <div class="eng-obj-metric-note">保護遮罩在長蝕刻時間下不被穿透</div>
+          <div class="eng-obj-metric-label">${t.ch06_anisotropy_label}</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-blue-dark);">${anisotropy.toFixed(2)}</div>
+          <div class="eng-obj-metric-note">平均自由程 λ_mfp: ~${mfp} µm</div>
         </div>
         <div class="eng-obj-metric-card">
-          <div class="eng-obj-metric-label">側壁保護機制</div>
-          <div class="eng-obj-metric-value" style="font-size: 15px;">碳氟聚合物 (CFx)</div>
-          <div class="eng-obj-metric-note">離子只打底部，側壁免於側蝕</div>
+          <div class="eng-obj-metric-label">${t.ch06_undercut_depth}</div>
+          <div class="eng-obj-metric-value" style="color: ${undercutNm > 15 ? '#ef4444' : '#10b981'};">${undercutNm} nm</div>
+          <div class="eng-obj-metric-note">${undercutNm === 0 ? '完美側壁零掏空保護' : '氣壓過高導致橫向侵蝕'}</div>
         </div>
       `;
+
       footerNote = '非等向性蝕刻的核心在於「物理離子轟擊打碎底部晶格 + 化學自由基結合揮發 + 側壁鈍化膜保護免於橫向掏空」，三位一體實現深寬比超過 20:1 的筆直奈米溝槽。';
     } else {
       // 異常與微負載效應 (Anomalies & RIE Lag)
@@ -1866,6 +1986,7 @@ export function renderPlasmaEtchObject(container, lang = 'zh') {
             <button type="button" class="eng-obj-tab ${activeTab === 'profile' ? 'is-active' : ''}" data-tab="profile">${t.ch06_tab_profile}</button>
             <button type="button" class="eng-obj-tab ${activeTab === 'anomalies' ? 'is-active' : ''}" data-tab="anomalies">${t.ch06_tab_anomalies}</button>
           </div>
+          ${controlsHtml}
         </div>
 
         <div class="eng-obj-viewport">
@@ -1883,13 +2004,46 @@ export function renderPlasmaEtchObject(container, lang = 'zh') {
       </section>
     `;
 
-    // 綁定事件
+    // 綁定頁籤切換事件
     container.querySelectorAll('[data-tab]').forEach(btn => {
       btn.addEventListener('click', () => {
         activeTab = btn.getAttribute('data-tab');
         update();
       });
     });
+
+    // 綁定連續物理滑桿事件
+    if (activeTab === 'chamber') {
+      const srcSlider = container.querySelector('#rfSourceSlider');
+      const biasSlider = container.querySelector('#rfBiasSlider');
+      if (srcSlider) {
+        srcSlider.addEventListener('input', e => {
+          rfSourcePower = Number(e.target.value);
+          update();
+        });
+      }
+      if (biasSlider) {
+        biasSlider.addEventListener('input', e => {
+          rfBiasPower = Number(e.target.value);
+          update();
+        });
+      }
+    } else if (activeTab === 'profile') {
+      const biasSlider = container.querySelector('#biasPowerSlider');
+      const pressSlider = container.querySelector('#pressureSlider');
+      if (biasSlider) {
+        biasSlider.addEventListener('input', e => {
+          rfBiasPower = Number(e.target.value);
+          update();
+        });
+      }
+      if (pressSlider) {
+        pressSlider.addEventListener('input', e => {
+          chamberPressure = Number(e.target.value);
+          update();
+        });
+      }
+    }
   }
 
   update();
@@ -2128,11 +2282,13 @@ export function renderIonImplantObject(container, lang = 'zh') {
   const t = TEXTS[lang] || TEXTS.zh;
   let activeTab = 'beamline'; // 'beamline' | 'anneal' | 'channeling'
   let activeSpecies = 'b'; // 'b' | 'p' | 'as'
+  let energyKeV = 40; // 10 ~ 150 keV
+  let doseExponent = 15.0; // 13.0 ~ 16.0 (Φ = 10^doseExponent cm^-2)
 
   const SPECIES_CONFIG = {
-    b: { name: '¹¹B⁺ (硼)', mass: 11, radius: 100, range: '85 nm', dose: '2.0 × 10¹⁵ cm⁻²', energy: '30 keV', color: '#38bdf8' },
-    p: { name: '³¹P⁺ (磷)', mass: 31, radius: 135, range: '45 nm', dose: '1.0 × 10¹⁵ cm⁻²', energy: '30 keV', color: '#f59e0b' },
-    as: { name: '⁷⁵As⁺ (砷)', mass: 75, radius: 170, range: '25 nm', dose: '3.5 × 10¹⁵ cm⁻²', energy: '30 keV', color: '#10b981' }
+    b: { name: '¹¹B⁺ (硼)', mass: 11, color: '#38bdf8', rpCoeff: 3.2, dRpCoeff: 0.38, dRpBase: 12 },
+    p: { name: '³¹P⁺ (磷)', mass: 31, color: '#f59e0b', rpCoeff: 1.35, dRpCoeff: 0.35, dRpBase: 6 },
+    as: { name: '⁷⁵As⁺ (砷)', mass: 75, color: '#10b981', rpCoeff: 0.75, dRpCoeff: 0.32, dRpBase: 4 }
   };
 
   function update() {
@@ -2142,88 +2298,148 @@ export function renderIonImplantObject(container, lang = 'zh') {
     let footerNote = '';
     const cur = SPECIES_CONFIG[activeSpecies];
 
+    // LSS 理論動態計算
+    const rp = Math.round(cur.rpCoeff * Math.pow(energyKeV, 0.95)); // nm
+    const deltaRp = Math.round(cur.dRpCoeff * rp + cur.dRpBase);   // nm
+    const doseVal = Math.pow(10, doseExponent); // cm^-2
+    // C_max = Φ / (sqrt(2*pi) * ΔRp * 1e-7)
+    const cMax = doseVal / (Math.sqrt(2 * Math.PI) * (deltaRp * 1e-7));
+    const cMaxExp = Math.floor(Math.log10(cMax));
+    const cMaxMantissa = (cMax / Math.pow(10, cMaxExp)).toFixed(2);
+    const doseStr = doseExponent % 1 === 0 ? `1.0 × 10¹⁵` : `${Math.pow(10, doseExponent - Math.floor(doseExponent)).toFixed(1)} × 10${Math.floor(doseExponent)}`;
+    const doseFormatted = `${Math.pow(10, doseExponent - Math.floor(doseExponent)).toFixed(1)} × 10${Math.floor(doseExponent)} cm⁻²`;
+
     if (activeTab === 'beamline') {
       controlsHtml = `
-        <div class="eng-obj-tab-group" role="tablist">
-          <button type="button" class="eng-obj-tab ${activeSpecies === 'b' ? 'is-active' : ''}" data-species="b">${t.ch07_species_b}</button>
-          <button type="button" class="eng-obj-tab ${activeSpecies === 'p' ? 'is-active' : ''}" data-species="p">${t.ch07_species_p}</button>
-          <button type="button" class="eng-obj-tab ${activeSpecies === 'as' ? 'is-active' : ''}" data-species="as">${t.ch07_species_as}</button>
+        <div style="display:flex; flex-direction:column; gap:12px; width:100%;">
+          <div class="eng-obj-tab-group" role="tablist">
+            <button type="button" class="eng-obj-tab ${activeSpecies === 'b' ? 'is-active' : ''}" data-species="b">${t.ch07_species_b}</button>
+            <button type="button" class="eng-obj-tab ${activeSpecies === 'p' ? 'is-active' : ''}" data-species="p">${t.ch07_species_p}</button>
+            <button type="button" class="eng-obj-tab ${activeSpecies === 'as' ? 'is-active' : ''}" data-species="as">${t.ch07_species_as}</button>
+          </div>
+          <div class="eng-obj-slider-cluster">
+            <div class="eng-obj-slider-unit">
+              <div class="eng-obj-slider-header">
+                <span class="eng-obj-slider-label">${t.ch07_energy_slider}</span>
+                <span class="eng-obj-slider-val" id="energyVal">${energyKeV} keV</span>
+              </div>
+              <input type="range" class="eng-obj-slider" id="energySlider" min="10" max="150" step="5" value="${energyKeV}" aria-label="Beam Energy">
+            </div>
+            <div class="eng-obj-slider-unit">
+              <div class="eng-obj-slider-header">
+                <span class="eng-obj-slider-label">${t.ch07_dose_slider}</span>
+                <span class="eng-obj-slider-val" id="doseVal">10^${doseExponent.toFixed(1)} cm⁻²</span>
+              </div>
+              <input type="range" class="eng-obj-slider" id="doseSlider" min="13.0" max="16.0" step="0.2" value="${doseExponent}" aria-label="Implant Dose">
+            </div>
+          </div>
         </div>
       `;
 
+      // 產生 LSS 高斯曲線 Path 數據 (深度 0 ~ 300 nm 對應 x 軸 0 ~ 130 px)
+      const graphWidth = 120;
+      const graphHeight = 85;
+      const maxDepth = 320; // nm
+      const samplePoints = [];
+      for (let depth = 0; depth <= maxDepth; depth += 8) {
+        const xPos = (depth / maxDepth) * graphWidth;
+        const normDist = (depth - rp) / deltaRp;
+        const concRelative = Math.exp(-0.5 * normDist * normDist);
+        const yPos = graphHeight - concRelative * (graphHeight - 10);
+        samplePoints.push(`${xPos.toFixed(1)},${yPos.toFixed(1)}`);
+      }
+      const gaussianPath = `M 0,${graphHeight} L ` + samplePoints.join(' L ') + ` L ${graphWidth},${graphHeight} Z`;
+
       viewportHtml = `
-        <svg viewBox="0 0 800 440" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ion Implanter Beamline">
+        <svg viewBox="0 0 800 440" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ion Implanter Beamline Live Engine">
           <!-- 1. 離子源 (Ion Source) -->
-          <rect x="40" y="50" width="110" height="70" rx="4" fill="#0f172a" stroke="#38bdf8" stroke-width="1.5"/>
-          <circle cx="95" cy="85" r="16" fill="rgba(56, 189, 248, 0.4)" filter="drop-shadow(0 0 8px #38bdf8)" class="anim-plasma"/>
-          <text x="95" y="68" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="700">離子源室</text>
-          <text x="95" y="112" text-anchor="middle" fill="#94a3b8" font-size="9.5">電弧放電電漿</text>
+          <rect x="35" y="45" width="115" height="70" rx="4" fill="#0f172a" stroke="#38bdf8" stroke-width="1.5"/>
+          <circle cx="92" cy="80" r="16" fill="rgba(56, 189, 248, 0.4)" filter="drop-shadow(0 0 8px #38bdf8)" class="anim-plasma"/>
+          <text x="92" y="65" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="700">離子源室</text>
+          <text x="92" y="105" text-anchor="middle" fill="#94a3b8" font-size="9.5">電弧放電電漿</text>
 
           <!-- 取出電極與初始離子束 -->
-          <line x1="150" y1="85" x2="220" y2="85" stroke="${cur.color}" stroke-width="3" stroke-dasharray="6 3" class="anim-beam"/>
+          <line x1="150" y1="80" x2="215" y2="80" stroke="${cur.color}" stroke-width="3" stroke-dasharray="6 3" class="anim-beam"/>
 
           <!-- 2. 90° 質量分析磁鐵 (Mass Analyzer Magnet) -->
-          <path d="M 220,40 L 340,40 A 150 150 0 0 1 340,240 L 220,240 Z" fill="#1e293b" stroke="#f59e0b" stroke-width="1.5" opacity="0.85"/>
-          <text x="270" y="135" text-anchor="middle" fill="#f59e0b" font-size="12" font-weight="700">90° 分析磁鐵</text>
-          <text x="270" y="152" text-anchor="middle" fill="#94a3b8" font-size="10">r = mv / qB</text>
+          <path d="M 215,35 L 340,35 A 150 150 0 0 1 340,245 L 215,245 Z" fill="#1e293b" stroke="#f59e0b" stroke-width="1.5" opacity="0.85"/>
+          <text x="270" y="130" text-anchor="middle" fill="#f59e0b" font-size="12" font-weight="700">90° 分析磁鐵</text>
+          <text x="270" y="148" text-anchor="middle" fill="#94a3b8" font-size="10">r = mv / qB</text>
 
           <!-- 磁場內偏轉離子軌跡 (B vs P vs As) -->
-          <!-- 輕離子 (Boron) 偏轉半徑小 -->
-          <path d="M 220,85 Q 280,85 280,210" fill="none" stroke="#38bdf8" stroke-width="${activeSpecies === 'b' ? 3.5 : 1.2}" stroke-dasharray="${activeSpecies === 'b' ? 'none' : '3 3'}" opacity="${activeSpecies === 'b' ? 1 : 0.4}"/>
-          <!-- 中離子 (Phosphorus) -->
-          <path d="M 220,85 Q 310,85 310,210" fill="none" stroke="#f59e0b" stroke-width="${activeSpecies === 'p' ? 3.5 : 1.2}" stroke-dasharray="${activeSpecies === 'p' ? 'none' : '3 3'}" opacity="${activeSpecies === 'p' ? 1 : 0.4}"/>
-          <!-- 重離子 (Arsenic) 偏轉半徑大 -->
-          <path d="M 220,85 Q 340,85 340,210" fill="none" stroke="#10b981" stroke-width="${activeSpecies === 'as' ? 3.5 : 1.2}" stroke-dasharray="${activeSpecies === 'as' ? 'none' : '3 3'}" opacity="${activeSpecies === 'as' ? 1 : 0.4}"/>
+          <path d="M 215,80 Q 275,80 275,215" fill="none" stroke="#38bdf8" stroke-width="${activeSpecies === 'b' ? 3.5 : 1.2}" stroke-dasharray="${activeSpecies === 'b' ? 'none' : '3 3'}" opacity="${activeSpecies === 'b' ? 1 : 0.35}"/>
+          <path d="M 215,80 Q 305,80 305,215" fill="none" stroke="#f59e0b" stroke-width="${activeSpecies === 'p' ? 3.5 : 1.2}" stroke-dasharray="${activeSpecies === 'p' ? 'none' : '3 3'}" opacity="${activeSpecies === 'p' ? 1 : 0.35}"/>
+          <path d="M 215,80 Q 335,80 335,215" fill="none" stroke="#10b981" stroke-width="${activeSpecies === 'as' ? 3.5 : 1.2}" stroke-dasharray="${activeSpecies === 'as' ? 'none' : '3 3'}" opacity="${activeSpecies === 'as' ? 1 : 0.35}"/>
 
           <!-- 3. 質量分析狹縫 (Resolving Slit) -->
-          <rect x="250" y="210" width="${activeSpecies === 'b' ? 20 : (activeSpecies === 'p' ? 50 : 80)}" height="10" fill="#64748b"/>
-          <rect x="${activeSpecies === 'b' ? 290 : (activeSpecies === 'p' ? 320 : 350)}" y="210" width="80" height="10" fill="#64748b"/>
-          <text x="400" y="218" fill="#e2e8f0" font-size="11">質量分析狹縫 (濾除雜質)</text>
+          <rect x="250" y="215" width="${activeSpecies === 'b' ? 16 : (activeSpecies === 'p' ? 46 : 76)}" height="10" fill="#64748b"/>
+          <rect x="${activeSpecies === 'b' ? 284 : (activeSpecies === 'p' ? 314 : 344)}" y="215" width="80" height="10" fill="#64748b"/>
+          <text x="390" y="223" fill="#e2e8f0" font-size="10.5">狹縫質量分離 (${cur.name})</text>
 
           <!-- 選中目標離子束向下進入加速管 -->
-          <line x1="${activeSpecies === 'b' ? 280 : (activeSpecies === 'p' ? 310 : 340)}" y1="220" x2="480" y2="340" stroke="${cur.color}" stroke-width="3" stroke-dasharray="4 2" class="anim-beam"/>
+          <line x1="${activeSpecies === 'b' ? 275 : (activeSpecies === 'p' ? 305 : 335)}" y1="225" x2="440" y2="330" stroke="${cur.color}" stroke-width="3" stroke-dasharray="4 2" class="anim-beam"/>
 
           <!-- 4. 線性加速管 (Post-Acceleration Column) -->
-          <g transform="translate(430, 290)">
-            <rect x="0" y="0" width="130" height="70" rx="3" fill="#131e2b" stroke="#0284c7" stroke-width="1.2"/>
-            <text x="65" y="24" text-anchor="middle" fill="#38bdf8" font-size="11" font-weight="700">高壓加速管</text>
-            <text x="65" y="42" text-anchor="middle" fill="#94a3b8" font-size="9.5">+300 kV 加速極板</text>
-            <!-- 加速電極環 -->
-            <line x1="20" y1="52" x2="110" y2="52" stroke="#64748b" stroke-width="3"/>
+          <g transform="translate(410, 280)">
+            <rect x="0" y="0" width="120" height="75" rx="3" fill="#131e2b" stroke="#0284c7" stroke-width="1.2"/>
+            <text x="60" y="24" text-anchor="middle" fill="#38bdf8" font-size="11" font-weight="700">高壓加速管</text>
+            <text x="60" y="42" text-anchor="middle" fill="#94a3b8" font-size="9.5">+${energyKeV} kV 加速極板</text>
+            <line x1="15" y1="52" x2="105" y2="52" stroke="#64748b" stroke-width="3"/>
           </g>
 
-          <!-- 5. 掃描板與終端晶圓盤 (Wafer Endstation) -->
-          <g transform="translate(630, 280)">
-            <rect x="0" y="0" width="130" height="90" rx="4" fill="#0f172a" stroke="#10b981" stroke-width="1.5"/>
-            <!-- 傾斜 7° 晶圓盤 -->
-            <g transform="rotate(-7, 65, 45)">
-              <ellipse cx="65" cy="45" rx="35" ry="12" fill="#334155" stroke="#38bdf8" stroke-width="1.5"/>
-              <text x="65" y="49" text-anchor="middle" fill="#ffffff" font-size="10" font-weight="700">300mm 晶圓</text>
+          <!-- 離子束注入晶圓 -->
+          <line x1="530" y1="315" x2="590" y2="315" stroke="${cur.color}" stroke-width="${2.5 + (energyKeV / 150) * 2}" stroke-dasharray="4 2"/>
+
+          <!-- 5. 終端晶圓盤與 LSS 高斯深度分佈圖 -->
+          <g transform="translate(580, 240)">
+            <!-- 晶圓基座 -->
+            <rect x="0" y="0" width="195" height="175" rx="4" fill="#0f172a" stroke="${cur.color}" stroke-width="1.5"/>
+            <text x="97" y="22" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="700">晶圓橫截面 LSS 分佈</text>
+            
+            <!-- 內嵌 LSS 高斯分佈微圖形 -->
+            <g transform="translate(35, 45)">
+              <!-- 背景與座標軸 -->
+              <rect x="0" y="0" width="${graphWidth}" height="${graphHeight}" fill="#1e293b" rx="2"/>
+              <line x1="0" y1="${graphHeight}" x2="${graphWidth}" y2="${graphHeight}" stroke="#64748b" stroke-width="1"/>
+              
+              <!-- 高斯曲線填充與路徑 -->
+              <path d="${gaussianPath}" fill="${cur.color}" opacity="0.35"/>
+              <path d="${gaussianPath}" fill="none" stroke="${cur.color}" stroke-width="2"/>
+              
+              <!-- Rp 深度標示線 -->
+              <line x1="${(rp / maxDepth) * graphWidth}" y1="0" x2="${(rp / maxDepth) * graphWidth}" y2="${graphHeight}" stroke="#ffffff" stroke-width="1.5" stroke-dasharray="2 2"/>
+              <circle cx="${(rp / maxDepth) * graphWidth}" cy="${graphHeight - 75}" r="3" fill="#ffffff"/>
+              
+              <!-- 刻度文字 -->
+              <text x="0" y="${graphHeight + 12}" fill="#94a3b8" font-size="9">表面 0</text>
+              <text x="${graphWidth}" y="${graphHeight + 12}" text-anchor="end" fill="#94a3b8" font-size="9">${maxDepth}nm</text>
+              <text x="${(rp / maxDepth) * graphWidth}" y="${graphHeight - 60}" text-anchor="middle" fill="#ffffff" font-size="9.5" font-weight="700">Rp:${rp}nm</text>
             </g>
-            <text x="65" y="76" text-anchor="middle" fill="#f59e0b" font-size="10.5" font-weight="700">7° 傾角防通道效應</text>
+
+            <text x="97" y="160" text-anchor="middle" fill="#f59e0b" font-size="10" font-weight="700">7° 傾角防通道效應</text>
           </g>
         </svg>
       `;
 
       dashboardHtml = `
         <div class="eng-obj-metric-card">
-          <div class="eng-obj-metric-label">${t.ch07_dose_label}</div>
-          <div class="eng-obj-metric-value" style="color: ${cur.color};">${cur.dose}</div>
-          <div class="eng-obj-metric-note">法拉第杯精確計數離子累積電荷</div>
-        </div>
-        <div class="eng-obj-metric-card">
           <div class="eng-obj-metric-label">${t.ch07_range_label}</div>
-          <div class="eng-obj-metric-value">${cur.range}</div>
-          <div class="eng-obj-metric-note">高斯摻雜濃度峰值深度 (Rp)</div>
+          <div class="eng-obj-metric-value" style="color: ${cur.color};">${rp} nm</div>
+          <div class="eng-obj-metric-note">LSS 投影平均射程 (E = ${energyKeV} keV)</div>
         </div>
         <div class="eng-obj-metric-card">
-          <div class="eng-obj-metric-label">${t.ch07_energy_label}</div>
-          <div class="eng-obj-metric-value">${cur.energy}</div>
-          <div class="eng-obj-metric-note">${cur.name} 質量電荷比分離</div>
+          <div class="eng-obj-metric-label">${t.ch07_straggle}</div>
+          <div class="eng-obj-metric-value">±${deltaRp} nm</div>
+          <div class="eng-obj-metric-note">縱向高斯標準差 (Straggle ΔRp)</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">${t.ch07_peak_conc}</div>
+          <div class="eng-obj-metric-value" style="color: ${cMaxExp >= 20 ? '#ef4444' : 'var(--semi-teal)'}; font-size:16px;">${cMaxMantissa} × 10${cMaxExp} cm⁻³</div>
+          <div class="eng-obj-metric-note">${cMaxExp >= 20 ? '超過固溶極限 · 需超高溫尖峰退火' : '理想摻雜濃度 · 晶格可完全活化'}</div>
         </div>
       `;
 
-      footerNote = t.ch07_beamline_desc;
+      footerNote = t.ch07_lss_desc;
     } else if (activeTab === 'anneal') {
       viewportHtml = `
         <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Lattice Anneal & Activation">
@@ -2389,19 +2605,39 @@ export function renderIonImplantObject(container, lang = 'zh') {
       </section>
     `;
 
-    // 綁定事件
+    // 綁定頁籤切換事件
     container.querySelectorAll('[data-tab]').forEach(btn => {
       btn.addEventListener('click', () => {
         activeTab = btn.getAttribute('data-tab');
         update();
       });
     });
+
+    // 綁定離子種類切換事件
     container.querySelectorAll('[data-species]').forEach(btn => {
       btn.addEventListener('click', () => {
         activeSpecies = btn.getAttribute('data-species');
         update();
       });
     });
+
+    // 綁定滑桿事件
+    if (activeTab === 'beamline') {
+      const eSlider = container.querySelector('#energySlider');
+      const dSlider = container.querySelector('#doseSlider');
+      if (eSlider) {
+        eSlider.addEventListener('input', e => {
+          energyKeV = Number(e.target.value);
+          update();
+        });
+      }
+      if (dSlider) {
+        dSlider.addEventListener('input', e => {
+          doseExponent = Number(e.target.value);
+          update();
+        });
+      }
+    }
   }
 
   update();
@@ -2967,8 +3203,11 @@ export function renderInterconnectObject(container, lang = 'zh') {
 export function renderAdvancedPackagingObject(container, lang = 'zh') {
   const t = TEXTS[lang] || TEXTS.zh;
   let activeTab = 'cowos'; // 'cowos' | 'soic' | 'density'
+  let bumpPitch = 25.0; // 0.8 ~ 150 µm
+  let dataRateGbps = 4.0; // 1.0 ~ 10.0 Gbps/pin
 
   function update() {
+    let controlsHtml = '';
     let viewportHtml = '';
     let dashboardHtml = '';
     let footerNote = '';
@@ -3123,44 +3362,123 @@ export function renderAdvancedPackagingObject(container, lang = 'zh') {
 
       footerNote = t.ch21_soic_desc;
     } else {
-      // Density comparison
+      // Density comparison & Live Interconnect Physics
+      const density = Math.round(1000000 / (bumpPitch * bumpPitch));
+      const bwDensity = ((density * dataRateGbps) / 8000).toFixed(2);
+      const energyPj = (0.025 + 0.012 * Math.pow(bumpPitch, 0.9)).toFixed(2);
+
+      let techName = '';
+      let techBadgeColor = '';
+      if (bumpPitch <= 1.5) {
+        techName = '3D SoIC (Cu-Cu 混合鍵合 Hybrid Bonding)';
+        techBadgeColor = 'var(--semi-teal)';
+      } else if (bumpPitch <= 15) {
+        techName = '次世代超細節距 3D 堆疊 (Ultra-Fine Pitch)';
+        techBadgeColor = '#38bdf8';
+      } else if (bumpPitch <= 55) {
+        techName = '2.5D CoWoS 微凸塊 (Micro-Bumps)';
+        techBadgeColor = '#f59e0b';
+      } else if (bumpPitch <= 160) {
+        techName = '標準覆晶封裝 (Flip-Chip C4)';
+        techBadgeColor = '#94a3b8';
+      } else {
+        techName = '傳統封裝 (BGA / Wire Bonding)';
+        techBadgeColor = '#ef4444';
+      }
+
+      controlsHtml = `
+        <div class="eng-obj-slider-cluster">
+          <div class="eng-obj-slider-unit">
+            <div class="eng-obj-slider-header">
+              <span class="eng-obj-slider-label">${t.ch21_pitch_slider}</span>
+              <span class="eng-obj-slider-val" id="pitchVal">${bumpPitch.toFixed(1)} µm</span>
+            </div>
+            <input type="range" class="eng-obj-slider" id="pitchSlider" min="0.8" max="150" step="0.5" value="${bumpPitch}" aria-label="Bump Pitch">
+          </div>
+          <div class="eng-obj-slider-unit">
+            <div class="eng-obj-slider-header">
+              <span class="eng-obj-slider-label">${t.ch21_datarate_slider}</span>
+              <span class="eng-obj-slider-val" id="dataRateVal">${dataRateGbps.toFixed(1)} Gbps</span>
+            </div>
+            <input type="range" class="eng-obj-slider" id="dataRateSlider" min="1.0" max="10.0" step="0.5" value="${dataRateGbps}" aria-label="Pin Data Rate">
+          </div>
+        </div>
+      `;
+
+      // 產生動態介面 SVG
+      const numBumps = Math.max(2, Math.min(22, Math.round(360 / Math.max(12, bumpPitch * 2.2))));
+      const bumpRadius = Math.max(1.5, Math.min(10, bumpPitch * 0.28));
+      const spacingPx = 420 / (numBumps + 1);
+
       viewportHtml = `
-        <svg viewBox="0 0 800 380" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Packaging Interconnect Density Comparison">
-          <!-- 橫向柱狀對照圖 -->
-          <g transform="translate(180, 50)">
-            <!-- 1. BGA -->
-            <rect x="0" y="0" width="8" height="28" fill="#64748b"/>
-            <text x="-15" y="19" text-anchor="end" fill="#94a3b8" font-size="12">打線 / BGA</text>
-            <text x="20" y="19" fill="#e2e8f0" font-size="11.5">間距 1000 µm · 密度 1 / mm²</text>
+        <svg viewBox="0 0 800 380" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Packaging Interconnect Live Physics Engine">
+          <g transform="translate(140, 25)">
+            <!-- 當前技術標註看板 -->
+            <rect x="0" y="0" width="520" height="34" rx="4" fill="#0f172a" stroke="${techBadgeColor}" stroke-width="1.5"/>
+            <text x="260" y="22" text-anchor="middle" fill="${techBadgeColor}" font-size="13" font-weight="750">
+              匹配架構: ${techName}
+            </text>
 
-            <!-- 2. Flip-Chip C4 -->
-            <rect x="0" y="55" width="30" height="28" fill="#0284c7"/>
-            <text x="-15" y="74" text-anchor="end" fill="#94a3b8" font-size="12">覆晶 (Flip-Chip C4)</text>
-            <text x="42" y="74" fill="#e2e8f0" font-size="11.5">間距 150 µm · 密度 40 / mm²</text>
+            <!-- 上層晶片 (Die A) -->
+            <rect x="40" y="55" width="440" height="50" rx="3" fill="#1e293b" stroke="#38bdf8" stroke-width="1.2"/>
+            <text x="260" y="85" text-anchor="middle" fill="#ffffff" font-size="12.5" font-weight="700">Top Die (SoC / Corelet)</text>
 
-            <!-- 3. 2.5D CoWoS 微凸塊 -->
-            <rect x="0" y="110" width="110" height="28" fill="#f59e0b"/>
-            <text x="-15" y="129" text-anchor="end" fill="#f59e0b" font-size="12">2.5D CoWoS 微凸塊</text>
-            <text x="122" y="129" fill="#e2e8f0" font-size="11.5">間距 35 µm · 密度 800 / mm²</text>
+            <!-- 介面凸塊 / 混合鍵合層 -->
+            <g transform="translate(40, 105)">
+              ${bumpPitch <= 1.5 ? `
+                <!-- 無凸塊 Cu-Cu 擴散層 -->
+                <rect x="0" y="0" width="440" height="12" fill="rgba(16, 185, 129, 0.4)" stroke="#10b981"/>
+                <text x="220" y="10" text-anchor="middle" fill="#ffffff" font-size="10" font-weight="700">原子級 Cu-Cu 擴散鍵合 (Zero Bump)</text>
+              ` : `
+                <!-- 離散凸塊陣列 -->
+                ${Array.from({ length: numBumps }, (_, i) => `
+                  <circle cx="${(i + 1) * spacingPx}" cy="10" r="${bumpRadius}" fill="${bumpPitch <= 35 ? '#38bdf8' : '#f59e0b'}"/>
+                `).join('')}
+                <line x1="${spacingPx}" y1="24" x2="${spacingPx * 2}" y2="24" stroke="#94a3b8" stroke-width="1"/>
+                <text x="${spacingPx * 1.5}" y="36" text-anchor="middle" fill="#94a3b8" font-size="10">Pitch: ${bumpPitch}µm</text>
+              `}
+            </g>
 
-            <!-- 4. 3D SoIC 混合鍵合 -->
-            <rect x="0" y="165" width="460" height="34" fill="#10b981"/>
-            <text x="-15" y="187" text-anchor="end" fill="#10b981" font-size="13" font-weight="700">3D SoIC 混合鍵合</text>
-            <text x="475" y="187" fill="#10b981" font-size="13" font-weight="750">&lt; 0.9 µm · 1,200,000 / mm² (↑1500倍)</text>
+            <!-- 下層基板 / 中介層 (Die B / Interposer) -->
+            <rect x="40" y="145" width="440" height="50" rx="3" fill="#0f172a" stroke="#64748b" stroke-width="1.2"/>
+            <text x="260" y="175" text-anchor="middle" fill="#cbd5e1" font-size="12.5" font-weight="700">Bottom Tier (Interposer / Base Die)</text>
+
+            <!-- 橫向演進對照標尺 -->
+            <g transform="translate(40, 215)">
+              <line x1="0" y1="25" x2="440" y2="25" stroke="#334155" stroke-width="3"/>
+              <!-- 錨點標記 -->
+              <circle cx="10" cy="25" r="4" fill="#10b981"/>
+              <text x="10" y="15" text-anchor="middle" fill="#10b981" font-size="10">0.9µm SoIC</text>
+              
+              <circle cx="110" cy="25" r="4" fill="#38bdf8"/>
+              <text x="110" y="15" text-anchor="middle" fill="#38bdf8" font-size="10">35µm CoWoS</text>
+              
+              <circle cx="280" cy="25" r="4" fill="#f59e0b"/>
+              <text x="280" y="15" text-anchor="middle" fill="#f59e0b" font-size="10">150µm C4</text>
+
+              <!-- 當前 Pitch 指針 -->
+              <polygon points="${Math.max(5, Math.min(435, (bumpPitch / 150) * 440))},38 ${Math.max(5, Math.min(435, (bumpPitch / 150) * 440)) - 6},48 ${Math.max(5, Math.min(435, (bumpPitch / 150) * 440)) + 6},48" fill="${techBadgeColor}"/>
+              <text x="${Math.max(25, Math.min(415, (bumpPitch / 150) * 440))}" y="62" text-anchor="middle" fill="${techBadgeColor}" font-size="11" font-weight="700">當前: ${bumpPitch.toFixed(1)}µm</text>
+            </g>
           </g>
         </svg>
       `;
 
       dashboardHtml = `
         <div class="eng-obj-metric-card">
-          <div class="eng-obj-metric-label">互連密度躍升幅度</div>
-          <div class="eng-obj-metric-value" style="color: var(--semi-teal);">1,500 倍</div>
-          <div class="eng-obj-metric-note">從 2.5D 微凸塊邁向 3D Cu-Cu 混合鍵合</div>
+          <div class="eng-obj-metric-label">${t.ch21_density_label}</div>
+          <div class="eng-obj-metric-value" style="color: ${techBadgeColor};">${density.toLocaleString()} / mm²</div>
+          <div class="eng-obj-metric-note">幾何面積互連密度 (1 / Pitch²)</div>
         </div>
         <div class="eng-obj-metric-card">
-          <div class="eng-obj-metric-label">小晶片 (Chiplet) 戰略意義</div>
-          <div class="eng-obj-metric-value" style="font-size: 15px;">打破摩爾定律物理極限</div>
-          <div class="eng-obj-metric-note">算力、快取與高頻寬記憶體異質整合</div>
+          <div class="eng-obj-metric-label">${t.ch21_bw_label}</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-blue-dark);">${bwDensity} TB/s/mm²</div>
+          <div class="eng-obj-metric-note">單線 ${dataRateGbps} Gbps 平行傳輸總頻寬</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">${t.ch21_energy_label}</div>
+          <div class="eng-obj-metric-value" style="color: ${parseFloat(energyPj) < 0.1 ? 'var(--semi-teal)' : '#f59e0b'};">${energyPj} pJ / bit</div>
+          <div class="eng-obj-metric-note">${parseFloat(energyPj) < 0.1 ? '微米級 Cu 擴散 · 極致超低傳輸能耗' : '微凸塊寄生電容損耗'}</div>
         </div>
       `;
 
@@ -3184,6 +3502,7 @@ export function renderAdvancedPackagingObject(container, lang = 'zh') {
             <button type="button" class="eng-obj-tab ${activeTab === 'soic' ? 'is-active' : ''}" data-tab="soic">${t.ch21_tab_soic}</button>
             <button type="button" class="eng-obj-tab ${activeTab === 'density' ? 'is-active' : ''}" data-tab="density">${t.ch21_tab_density}</button>
           </div>
+          ${controlsHtml}
         </div>
 
         <div class="eng-obj-viewport">
@@ -3201,13 +3520,31 @@ export function renderAdvancedPackagingObject(container, lang = 'zh') {
       </section>
     `;
 
-    // 綁定事件
+    // 綁定頁籤切換事件
     container.querySelectorAll('[data-tab]').forEach(btn => {
       btn.addEventListener('click', () => {
         activeTab = btn.getAttribute('data-tab');
         update();
       });
     });
+
+    // 綁定滑桿事件
+    if (activeTab === 'density') {
+      const pSlider = container.querySelector('#pitchSlider');
+      const dSlider = container.querySelector('#dataRateSlider');
+      if (pSlider) {
+        pSlider.addEventListener('input', e => {
+          bumpPitch = Number(e.target.value);
+          update();
+        });
+      }
+      if (dSlider) {
+        dSlider.addEventListener('input', e => {
+          dataRateGbps = Number(e.target.value);
+          update();
+        });
+      }
+    }
   }
 
   update();
@@ -5733,8 +6070,11 @@ export function renderFabEnvironmentObject(container, lang = 'zh') {
 export function renderSemiconductorPhysicsObject(container, lang = 'zh') {
   const t = TEXTS[lang] || TEXTS.zh;
   let activeTab = 'band'; // 'band' | 'pn' | 'inversion'
+  let vgs = 0.70;
+  let vds = 0.40;
 
   function update() {
+    let controlsHtml = '';
     let viewportHtml = '';
     let dashboardHtml = '';
     let footerNote = '';
@@ -5911,60 +6251,114 @@ export function renderSemiconductorPhysicsObject(container, lang = 'zh') {
 
       footerNote = t.ch02_pn_desc;
     } else if (activeTab === 'inversion') {
+      const vth = 0.35;
+      const isCutoff = vgs < vth;
+      const vov = Math.max(0, vgs - vth);
+      const isSat = !isCutoff && (vds >= vov);
+      const modeName = isCutoff 
+        ? (lang === 'en' ? 'Cutoff (Subthreshold)' : '截止區 (次臨界漏電)')
+        : (isSat 
+            ? (lang === 'en' ? 'Saturation (Pinch-off)' : '飽和區 (通道端夾斷)')
+            : (lang === 'en' ? 'Linear (Triode Conduction)' : '線性區 (歐姆連續導通)'));
+      const modeColor = isCutoff ? '#ef4444' : (isSat ? '#f59e0b' : '#10b981');
+
+      let idVal = 0;
+      if (isCutoff) {
+        idVal = 0.0002 * Math.exp((vgs - vth) / 0.07) * (1 - Math.exp(-vds / 0.026));
+      } else if (isSat) {
+        idVal = 0.85 * Math.pow(vov, 2) * (1 + 0.08 * vds);
+      } else {
+        idVal = 1.7 * (vov * vds - 0.5 * Math.pow(vds, 2));
+      }
+      const idStr = idVal < 0.001 ? '< 0.001' : idVal.toFixed(3);
+      const gmStr = isCutoff ? '0.00' : (isSat ? (1.7 * vov).toFixed(2) : (1.7 * vds).toFixed(2));
+      const channelThick = isCutoff ? 0 : Math.min(18, Math.max(3, Math.round(4 + vov * 14)));
+      const pinchLen = Math.min(65, Math.max(16, Math.round(18 + (vds - vov) * 55)));
+
+      controlsHtml = `
+        <div class="eng-obj-slider-panel">
+          <div class="eng-obj-slider-item">
+            <label for="ch02Vgs">${t.physics_slider_vgs}</label>
+            <input type="range" class="eng-obj-range-input" id="ch02Vgs" min="0.00" max="1.20" step="0.05" value="${vgs}">
+            <span class="eng-obj-slider-val">${vgs.toFixed(2)} V</span>
+          </div>
+          <div class="eng-obj-slider-item">
+            <label for="ch02Vds">${t.physics_slider_vds}</label>
+            <input type="range" class="eng-obj-range-input" id="ch02Vds" min="0.00" max="1.00" step="0.05" value="${vds}">
+            <span class="eng-obj-slider-val">${vds.toFixed(2)} V</span>
+          </div>
+        </div>
+      `;
+
       viewportHtml = `
         <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="MOSFET Strong Inversion Channel Physics Model">
           <!-- MOSFET 橫截面主體 (MOS Structure with Inversion Layer) -->
-          <g transform="translate(120, 40)">
-            <!-- 頂部金屬閘極 (Gate Electrode @ VG > Vth) -->
-            <rect x="180" y="20" width="200" height="40" fill="#334155" stroke="#f59e0b" stroke-width="2" rx="3"/>
-            <text x="280" y="45" text-anchor="middle" fill="#fbbf24" font-size="13" font-weight="750">金屬閘極 (Gate: VG &gt; Vth)</text>
+          <g transform="translate(120, 35)">
+            <!-- 頂部金屬閘極 (Gate Electrode @ VG) -->
+            <rect x="180" y="20" width="200" height="40" fill="#334155" stroke="${isCutoff ? '#94a3b8' : '#f59e0b'}" stroke-width="2" rx="3"/>
+            <text x="280" y="45" text-anchor="middle" fill="${isCutoff ? '#94a3b8' : '#fbbf24'}" font-size="13" font-weight="750">金屬閘極 (Gate: V_GS = ${vgs.toFixed(2)}V)</text>
 
             <!-- 閘極介電層 (High-k Dielectric: 1.5nm HfO2) -->
             <rect x="180" y="60" width="200" height="15" fill="#0284c7" stroke="#38bdf8" stroke-width="1.5"/>
             <text x="280" y="72" text-anchor="middle" fill="#ffffff" font-size="9.5" font-weight="700">氧化鉿介電薄膜 (1.5nm High-k)</text>
 
-            <!-- 強反轉導電通道 (Strong Inversion Layer: 聚集大量電子形成 N-Channel) -->
-            <rect x="180" y="75" width="200" height="12" fill="#10b981" stroke="#34d399" stroke-width="1.5"/>
-            <text x="280" y="85" text-anchor="middle" fill="#ffffff" font-size="9.5" font-weight="800">反轉層導電通道 (N-Inversion Channel: 1.5nm)</text>
+            <!-- 強反轉導電通道 (動態繪製厚度與夾斷形狀) -->
+            ${isCutoff ? `
+              <line x1="180" y1="80" x2="380" y2="80" stroke="#ef4444" stroke-width="2" stroke-dasharray="3 3"/>
+              <text x="280" y="96" text-anchor="middle" fill="#ef4444" font-size="10" font-weight="700">無反轉導電層 (V_GS &lt; Vth=0.35V 截止無通道)</text>
+            ` : (isSat ? `
+              <path d="M 180,75 L 380,75 L ${380 - pinchLen},77 L 180,${75 + channelThick} Z" fill="#f59e0b" stroke="#fbbf24" stroke-width="1.5" opacity="0.95"/>
+              <text x="270" y="86" text-anchor="middle" fill="#ffffff" font-size="9" font-weight="800">夾斷反轉層 (Pinch-off Channel)</text>
+              <line x1="${380 - pinchLen}" y1="65" x2="${380 - pinchLen}" y2="92" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="2 2"/>
+              <text x="${380 - pinchLen + 4}" y="68" fill="#ef4444" font-size="8.5" font-weight="700">夾斷點</text>
+            ` : `
+              <rect x="180" y="75" width="200" height="${channelThick}" fill="#10b981" stroke="#34d399" stroke-width="1.5"/>
+              <text x="280" y="${80 + Math.round(channelThick/2)}" text-anchor="middle" fill="#ffffff" font-size="9.5" font-weight="800">強反轉導電通道 (${channelThick}nm)</text>
+            `)}
 
             <!-- 下方 P 型矽基板 (P-Substrate) 與空乏層 -->
-            <rect x="0" y="87" width="560" height="180" fill="#0f172a" stroke="#475569" stroke-width="1.5"/>
+            <rect x="0" y="93" width="560" height="174" fill="#0f172a" stroke="#475569" stroke-width="1.5"/>
 
             <!-- 兩側 N+ 源極與汲極 (Source & Drain) -->
-            <rect x="20" y="87" width="160" height="70" fill="#0284c7" stroke="#38bdf8" stroke-width="1.5" rx="2"/>
-            <text x="100" y="130" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="750">源極 N⁺ (Source)</text>
+            <rect x="20" y="93" width="160" height="70" fill="#0284c7" stroke="#38bdf8" stroke-width="1.5" rx="2"/>
+            <text x="100" y="136" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="750">源極 N⁺ (Source: 0V)</text>
 
-            <rect x="380" y="87" width="160" height="70" fill="#0284c7" stroke="#38bdf8" stroke-width="1.5" rx="2"/>
-            <text x="460" y="130" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="750">汲極 N⁺ (Drain)</text>
+            <rect x="380" y="93" width="160" height="70" fill="#0284c7" stroke="#38bdf8" stroke-width="1.5" rx="2"/>
+            <text x="460" y="136" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="750">汲極 N⁺ (Drain: ${vds.toFixed(2)}V)</text>
 
             <text x="280" y="210" text-anchor="middle" fill="#94a3b8" font-size="13">P 型矽基板 (P-Type Silicon Substrate)</text>
-            <text x="280" y="235" text-anchor="middle" fill="#34d399" font-size="11" font-weight="700">⇦ 電子在反轉通道中高速漂移連通源極與汲極 ⇨</text>
+            <text x="280" y="235" text-anchor="middle" fill="${modeColor}" font-size="11.5" font-weight="700">${isCutoff ? '⇦ 截止無載子電流 ⇨' : (isSat ? '⇦ 飽和區載子高速漂移飽和電流 I_D,sat ⇨' : '⇦ 電子在反轉通道中線性導通 ⇨')}</text>
           </g>
 
-          <!-- 說明標註 -->
+          <!-- 即時狀態指示橫條 -->
           <g transform="translate(160, 335)">
-            <rect x="0" y="0" width="480" height="45" rx="4" fill="#0f172a" stroke="#10b981" stroke-width="1"/>
-            <text x="240" y="22" text-anchor="middle" fill="#34d399" font-size="11" font-weight="750">表面電位滿足 ψs ≥ 2ψB 時觸發「強反轉 (Strong Inversion)」</text>
-            <text x="240" y="38" text-anchor="middle" fill="#cbd5e1" font-size="10">閘極電場把 P 區表面的電子濃度提升到超過基板電洞，開關完全導通！</text>
+            <rect x="0" y="0" width="480" height="45" rx="4" fill="#0f172a" stroke="${modeColor}" stroke-width="1.5"/>
+            <text x="240" y="20" text-anchor="middle" fill="${modeColor}" font-size="12" font-weight="750">狀態：${modeName} · I_D = ${idStr} mA/μm</text>
+            <text x="240" y="36" text-anchor="middle" fill="#cbd5e1" font-size="10">${isCutoff ? '閘極電壓不足，表面未反轉' : (isSat ? '汲極電壓超過夾斷界限 V_DS ≥ V_ov，電流受橫向飽和速度限制' : '閘極產生均勻反轉層，電晶體呈歐姆線性導通')}</text>
           </g>
         </svg>
       `;
 
       dashboardHtml = `
         <div class="eng-obj-metric-card">
-          <div class="eng-obj-metric-label">${t.ch02_metric_inversion}</div>
-          <div class="eng-obj-metric-value" style="color: var(--semi-teal);">ψs &ge; 2ψB</div>
-          <div class="eng-obj-metric-note">表面少數載子電子濃度反超多數載子</div>
+          <div class="eng-obj-metric-label">工作區間 (Mode)</div>
+          <div class="eng-obj-metric-value" style="color: ${modeColor}; font-size: 15px;">${modeName}</div>
+          <div class="eng-obj-metric-note">${isCutoff ? 'V_GS < Vth 截止' : (isSat ? 'V_DS ≥ V_ov 夾斷' : 'V_DS < V_ov 線性')}</div>
         </div>
         <div class="eng-obj-metric-card">
-          <div class="eng-obj-metric-label">反轉通道物理厚度</div>
-          <div class="eng-obj-metric-value">1 ~ 2 nm</div>
-          <div class="eng-obj-metric-note">極薄二維電子氣 (2DEG) 高速導通通道</div>
+          <div class="eng-obj-metric-label">汲極電流 (I_D)</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-blue-dark);">${idStr} mA/μm</div>
+          <div class="eng-obj-metric-note">導通通道載子流</div>
         </div>
         <div class="eng-obj-metric-card">
-          <div class="eng-obj-metric-label">開關臨界電壓 (Vth)</div>
-          <div class="eng-obj-metric-value">~ 0.35 V</div>
-          <div class="eng-obj-metric-note">由功函數金屬與介電層厚度精準調控</div>
+          <div class="eng-obj-metric-label">過驅電壓 (V_ov)</div>
+          <div class="eng-obj-metric-value">${vov.toFixed(2)} V</div>
+          <div class="eng-obj-metric-note">V_GS - Vth (Vth = 0.35V)</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">跨導 (g_m)</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-teal);">${gmStr} mS/μm</div>
+          <div class="eng-obj-metric-note">閘極對電流調控靈敏度</div>
         </div>
       `;
 
@@ -5988,6 +6382,7 @@ export function renderSemiconductorPhysicsObject(container, lang = 'zh') {
             <button type="button" class="eng-obj-tab ${activeTab === 'pn' ? 'is-active' : ''}" data-tab="pn">${t.ch02_tab_pn}</button>
             <button type="button" class="eng-obj-tab ${activeTab === 'inversion' ? 'is-active' : ''}" data-tab="inversion">${t.ch02_tab_inversion}</button>
           </div>
+          ${controlsHtml}
         </div>
 
         <div class="eng-obj-viewport">
@@ -6011,6 +6406,22 @@ export function renderSemiconductorPhysicsObject(container, lang = 'zh') {
         update();
       });
     });
+
+    const vgsInput = container.querySelector('#ch02Vgs');
+    if (vgsInput) {
+      vgsInput.addEventListener('input', e => {
+        vgs = parseFloat(e.target.value);
+        update();
+      });
+    }
+
+    const vdsInput = container.querySelector('#ch02Vds');
+    if (vdsInput) {
+      vdsInput.addEventListener('input', e => {
+        vds = parseFloat(e.target.value);
+        update();
+      });
+    }
   }
 
   update();
