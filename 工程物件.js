@@ -90,8 +90,17 @@ const TEXTS = {
     ch05_metric_coverage: '階梯覆蓋率',
     ch05_metric_temp: '典型加工溫度',
     ch05_metric_uniformity: '原子層級厚度控制',
+    ch05_temp_slider: '反應溫度 Deposition Temp (T):',
+    ch05_press_slider: '腔體氣壓 Reactor Pressure (P):',
+    ch05_rate_label: '阿瑞尼斯沉積速率 (R_dep):',
+    ch05_step_coverage: '深孔階梯覆蓋率 (Step Coverage):',
+    ch05_regime_label: '動力學主導機制 (Regime):',
+    ch05_regime_surface: '表面化學反應受限區 (Surface Reaction Limited)',
+    ch05_regime_mass: '氣相質傳擴散受限區 (Mass Transport Limited)',
+    ch05_coverage_good: '孔內外膜厚均勻保形 · 無懸掛空洞',
+    ch05_coverage_poor: '孔口堆積懸掛 (Overhang) · 產生內部閉合空洞 (Seam/Void)',
     ch05_pvd_desc: 'PVD 濺鍍為視線傳播 (Line-of-Sight)，金屬原子被撞擊後筆直飛行，容易在深孔入口形成「懸垂 (Overhang)」阻擋後續填入，孔底嚴重不足，容易形成空洞 (Void)。',
-    ch05_cvd_desc: 'CVD 利用前驅氣體擴散與表面熱化學反應，階梯覆蓋率達 65%-85%，沉積速率高，但在超高深寬比 (>15:1) 結構中頂部仍比底部厚。',
+    ch05_cvd_desc: 'CVD 利用前驅氣體擴散與表面熱化學反應。依據 Arrhenius 動力學，低溫由表面反應受限（階梯覆蓋率 >85%）；高溫由氣相質傳受限（易在孔口堆積懸垂 Overhang 產生 Seam 閉合空洞）。',
     ch05_ald_desc: 'ALD 透過自限性表面化學反應 (Self-Limiting Surface Reaction)，每次循環僅精確沉積 1 個原子單分子層 (~0.1nm/cycle)，實現 100% 完美階梯覆蓋與零空洞！',
 
     // Ch 06 蝕刻
@@ -303,6 +312,11 @@ const TEXTS = {
     ch15_metric_cd_res: 'CD-SEM 測量重複精度',
     ch15_metric_darkfield: '暗場雷射缺陷檢出極限',
     ch15_metric_film_thick: '橢偏儀薄膜厚度解析度',
+    ch15_energy_slider: '著陸能量 Landing Energy (E_beam):',
+    ch15_angle_slider: '圖案側壁傾角 Sidewall Angle (θ):',
+    ch15_se_yield: '二次電子邊緣倍增產額 (δ/δ₀):',
+    ch15_bottom_cd: '量測底部臨界尺寸 (Bottom CD):',
+    ch15_lwr_label: '線寬粗糙度 (LWR / LER):',
     ch15_cdsem_desc: 'CD-SEM 採用 300-800 eV 超低著陸能量電子束以防止光阻收縮。當電子束掃描越過垂直奈米圖案側壁時，因表面逃逸深度效應引發二次電子 (SE) 劇烈發射（邊緣效應 Edge Blooming），在偵測器形成特徵雙峰輪廓，精確提取底部臨界尺寸 (Bottom CD) 與線寬粗糙度 (LWR)。',
     ch15_optical_desc: '明場檢測 (Bright-Field) 收集垂直反射光，高數值孔徑對比度擅長抓取圖案變形與微小橋接；暗場檢測 (Dark-Field) 則以斜角雷射掠射，光滑矽表面鏡面反射避開透鏡，唯獨微粒與凹凸產生瑞利散射 (Rayleigh Scattering) 進入收集器，在漆黑背景中瞬間點亮 15nm 孤立微粒！',
     ch15_ellipsometry_desc: '橢偏儀利用線偏振光以布魯斯特角 (~70°) 入射多層介電薄膜，反射光因層間干涉轉化為橢圓偏振光。透過精準測量振幅比 Ψ 與相位差 Δ，配合麥克斯韋方程擬合模型，可同時且非破壞性解出多層奈米薄膜的物理厚度與光學折射率 (n, k)。',
@@ -589,8 +603,17 @@ const TEXTS = {
     ch05_metric_coverage: 'Step Coverage',
     ch05_metric_temp: 'Typical Process Temp',
     ch05_metric_uniformity: 'Atomic Thickness Control',
+    ch05_temp_slider: 'Deposition Temp (T):',
+    ch05_press_slider: 'Reactor Pressure (P):',
+    ch05_rate_label: 'Arrhenius Deposition Rate (R_dep):',
+    ch05_step_coverage: 'Trench Step Coverage:',
+    ch05_regime_label: 'Deposition Regime:',
+    ch05_regime_surface: 'Surface Reaction Limited Regime',
+    ch05_regime_mass: 'Mass Transport Limited Regime',
+    ch05_coverage_good: 'Uniform conformal step coverage · Zero overhang voids',
+    ch05_coverage_poor: 'Aperture overhang pinch-off · Severe seam/keyhole void risk',
     ch05_pvd_desc: 'PVD sputtering is line-of-sight: knocked metal atoms travel straight, causing rapid overhang at trench mouth, starving lower sidewalls and bottom, leading to keyholes/voids.',
-    ch05_cvd_desc: 'CVD utilizes precursor gas diffusion and thermal surface reactions, providing 65%-85% step coverage. However, in very high aspect ratios (>15:1), openings remain thicker than bottoms.',
+    ch05_cvd_desc: 'CVD relies on precursor gas diffusion and thermal surface chemistry. Per Arrhenius kinetics, low temps operate in surface reaction limited mode (>85% coverage), while high temps suffer from mass transport starvation with heavy overhang pinch-off.',
     ch05_ald_desc: 'ALD uses self-limiting surface chemical reactions: each cycle strictly deposits a single atomic monolayer (~0.1nm/cycle), achieving 100% perfect conformality and zero voids.',
 
     // Ch 06 Etch
@@ -802,6 +825,11 @@ const TEXTS = {
     ch15_metric_cd_res: 'CD-SEM Measurement Repeatability',
     ch15_metric_darkfield: 'Dark-Field Laser Defect Detection Limit',
     ch15_metric_film_thick: 'Ellipsometry Film Thickness Resolution',
+    ch15_energy_slider: 'Landing Energy (E_beam):',
+    ch15_angle_slider: 'Sidewall Angle (θ):',
+    ch15_se_yield: 'Secondary Electron Peak Yield (δ/δ₀):',
+    ch15_bottom_cd: 'Extracted Bottom CD:',
+    ch15_lwr_label: 'Line Width Roughness (LWR):',
     ch15_cdsem_desc: 'CD-SEM uses an ultra-low landing energy (300-800 eV) electron beam to prevent photoresist shrinkage. When scanning across steep pattern sidewalls, the escape depth blooming of secondary electrons creates a characteristic double-peak profile, precisely extracting bottom CD and line width roughness (LWR).',
     ch15_optical_desc: 'Bright-field inspection captures normal specular reflections, with high numerical aperture contrast excelling at pattern deformities and bridging. Dark-field inspection uses grazing-angle laser illumination: pristine planar surfaces reflect light away, while 15nm particles scatter light into detectors, glowing brightly against a pitch-black background.',
     ch15_ellipsometry_desc: 'Spectroscopic ellipsometry illuminates dielectric thin films with linearly polarized light near Brewster angle (~70°). Interfacial reflections transform it into elliptically polarized light. Measuring amplitude ratio Ψ and phase shift Δ enables simultaneous, non-destructive extraction of multi-layer thickness and complex refractive indices (n, k).',
@@ -1431,12 +1459,47 @@ export function renderDepositionMechanismObject(container, lang = 'zh') {
   let aldCycleCount = 1;
   let isAutoPlaying = false;
   let timerId = null;
+  let cvdTemp = 650;  // 520 ~ 820 °C
+  let cvdPress = 1.5; // 0.2 ~ 5.0 Torr
 
   function update() {
+    let controlsHtml = '';
     let viewportHtml = '';
     let dashboardHtml = '';
     let footerNote = '';
     let stepperBarHtml = '';
+
+    // CVD Arrhenius 熱化學反應動力學計算
+    const T_K = cvdTemp + 273.15;
+    const kB = 8.617e-5; // eV/K
+    const Ea = 1.35;     // 活化能 1.35 eV
+    // 表面化學反應速率 ks (nm/min)
+    const ks = 2.4e7 * Math.exp(-Ea / (kB * T_K));
+    // 氣相質傳擴散通量 hg (nm/min)
+    const hg = 36 * Math.pow(cvdPress, 0.65);
+    // 總沉積速率 (阻抗串聯模型 R_dep = (ks * hg) / (ks + hg))
+    const rDep = (ks * hg) / (ks + hg);
+    
+    // 動力學主導機制判定
+    let regime = 'surface';
+    let regimeLabel = t.ch05_regime_surface;
+    let regimeColor = '#10b981';
+    let stepCoverage = 88;
+    let overhangPx = 8;
+    let bottomThickPx = 13;
+
+    if (cvdTemp >= 680) {
+      regime = 'mass';
+      regimeLabel = t.ch05_regime_mass;
+      regimeColor = '#ef4444';
+      stepCoverage = Math.max(38, Math.round(86 - (cvdTemp - 680) * 0.32 - (cvdPress * 3.5)));
+      overhangPx = Math.min(26, Math.round(8 + (cvdTemp - 680) * 0.12 + cvdPress * 1.5));
+      bottomThickPx = Math.max(4, Math.round(14 * (stepCoverage / 100)));
+    } else {
+      stepCoverage = Math.min(97, Math.round(92 - (cvdTemp - 520) * 0.04));
+      overhangPx = 8;
+      bottomThickPx = Math.round(14 * (stepCoverage / 100));
+    }
 
     if (activeTab === 'pvd') {
       viewportHtml = `
@@ -1502,8 +1565,29 @@ export function renderDepositionMechanismObject(container, lang = 'zh') {
       `;
       footerNote = t.ch05_pvd_desc;
     } else if (activeTab === 'cvd') {
+      controlsHtml = `
+        <div class="eng-obj-slider-panel">
+          <div class="eng-obj-slider-item">
+            <label for="ch05TempSlider">${t.ch05_temp_slider}</label>
+            <input type="range" class="eng-obj-range-input" id="ch05TempSlider" min="520" max="820" step="10" value="${cvdTemp}">
+            <span class="eng-obj-slider-val">${cvdTemp} °C</span>
+          </div>
+          <div class="eng-obj-slider-item">
+            <label for="ch05PressSlider">${t.ch05_press_slider}</label>
+            <input type="range" class="eng-obj-range-input" id="ch05PressSlider" min="0.2" max="5.0" step="0.1" value="${cvdPress.toFixed(1)}">
+            <span class="eng-obj-slider-val">${cvdPress.toFixed(1)} Torr</span>
+          </div>
+          <div style="margin-left: auto; display: flex; align-items: center; gap: 8px;">
+            <span style="font-size: 11px; color: #94a3b8; font-family: monospace;">R_dep: <strong style="color: #38bdf8; font-size: 13px;">${rDep.toFixed(1)} nm/min</strong></span>
+            <span style="font-size: 11px; padding: 2px 7px; border-radius: 4px; background: rgba(15,23,42,0.6); border: 1px solid ${regimeColor}; color: ${regimeColor}; font-weight: 700;">
+              ${regime === 'surface' ? '✓ SURFACE LIMITED' : '⚠ MASS TRANSPORT LIMITED'}
+            </span>
+          </div>
+        </div>
+      `;
+
       viewportHtml = `
-        <svg viewBox="0 0 800 440" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="CVD Mechanism">
+        <svg viewBox="0 0 800 440" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="CVD Mechanism with Arrhenius Reaction Kinetics">
           <!-- 上方氣體前驅物分子雲 -->
           <g transform="translate(250, 30)">
             <rect x="0" y="0" width="300" height="35" rx="3" fill="#0284c7" stroke="#38bdf8"/>
@@ -1517,40 +1601,52 @@ export function renderDepositionMechanismObject(container, lang = 'zh') {
             <circle cx="380" cy="220" r="3"/><circle cx="420" cy="260" r="3"/>
           </g>
 
-          <!-- 下方高深寬比深溝槽 (CVD 階梯覆蓋約 75%) -->
+          <!-- 下方高深寬比深溝槽 (CVD 階梯覆蓋動態輪廓) -->
           <g transform="translate(250, 170)">
             <path d="M 20,20 L 100,20 L 100,210 L 200,210 L 200,20 L 280,20 L 280,230 L 20,230 Z" fill="#1e293b" stroke="#475569" stroke-width="2"/>
             
-            <!-- CVD 薄膜 (較均勻，但頂部仍略厚於底部) -->
-            <!-- 表面：厚 16px -->
-            <rect x="20" y="4" width="80" height="16" fill="#0284c7"/>
-            <rect x="200" y="4" width="80" height="16" fill="#0284c7"/>
-            <!-- 側壁：厚 12px (上段) 漸變至 9px (下段) -->
-            <path d="M 100,20 L 112,20 L 109,210 L 100,210 Z" fill="#0284c7"/>
-            <path d="M 200,20 L 188,20 L 191,210 L 200,210 Z" fill="#0284c7"/>
-            <!-- 底部：厚 10px -->
-            <rect x="100" y="200" width="100" height="10" fill="#0284c7"/>
+            <!-- CVD 薄膜動態輪廓 -->
+            <!-- 表面平坦區 -->
+            <rect x="20" y="${20 - overhangPx}" width="80" height="${overhangPx}" fill="#0284c7"/>
+            <rect x="200" y="${20 - overhangPx}" width="80" height="${overhangPx}" fill="#0284c7"/>
+            
+            <!-- 開口處懸垂 (Overhang) -->
+            <path d="M ${100 - overhangPx},20 Q ${100 + overhangPx * 1.3},${20 + overhangPx * 1.5} 100,${40 + overhangPx * 2} L 100,20 Z" fill="#0369a1"/>
+            <path d="M ${200 + overhangPx},20 Q ${200 - overhangPx * 1.3},${20 + overhangPx * 1.5} 200,${40 + overhangPx * 2} L 200,20 Z" fill="#0369a1"/>
+            
+            <!-- 側壁薄膜 -->
+            <path d="M 100,20 L ${100 + Math.max(3, bottomThickPx * 0.9)},20 L ${100 + Math.max(2, bottomThickPx * 0.6)},210 L 100,210 Z" fill="#0284c7"/>
+            <path d="M 200,20 L ${200 - Math.max(3, bottomThickPx * 0.9)},20 L ${200 - Math.max(2, bottomThickPx * 0.6)},210 L 200,210 Z" fill="#0284c7"/>
+            
+            <!-- 底部沉積 -->
+            <rect x="100" y="${210 - bottomThickPx}" width="100" height="${bottomThickPx}" fill="#0284c7"/>
 
-            <text x="310" y="80" fill="#38bdf8" font-size="12" font-weight="700">表面反應擴散成膜</text>
-            <text x="310" y="110" fill="#94a3b8" font-size="11.5">階梯覆蓋率約 70% - 85%</text>
+            <!-- 狀態標註 -->
+            <text x="310" y="60" fill="#38bdf8" font-size="12" font-weight="700">${regime === 'surface' ? '表面反應主導 (低溫保形)' : '質傳擴散受限 (高溫懸垂)'}</text>
+            <text x="310" y="85" fill="${regimeColor}" font-size="11.5" font-weight="700">階梯覆蓋率 Step Coverage: ${stepCoverage}%</text>
+            <text x="310" y="108" fill="#94a3b8" font-size="11">R_dep = ${rDep.toFixed(1)} nm/min · Ea = 1.35 eV</text>
+
+            ${regime === 'mass' ? `
+              <text x="150" y="130" text-anchor="middle" fill="#ef4444" font-size="10.5" font-weight="700">⚠️ 孔口早閉空洞 (Void Risk)</text>
+            ` : ''}
           </g>
         </svg>
       `;
       dashboardHtml = `
         <div class="eng-obj-metric-card">
-          <div class="eng-obj-metric-label">${t.ch05_metric_coverage}</div>
-          <div class="eng-obj-metric-value" style="color: #0284c7;">70% - 85%</div>
-          <div class="eng-obj-metric-note">分子擴散提供良好階梯覆蓋</div>
+          <div class="eng-obj-metric-label">${t.ch05_step_coverage}</div>
+          <div class="eng-obj-metric-value" style="color: ${regimeColor};">${stepCoverage}%</div>
+          <div class="eng-obj-metric-note">${regime === 'surface' ? t.ch05_coverage_good : t.ch05_coverage_poor}</div>
         </div>
         <div class="eng-obj-metric-card">
-          <div class="eng-obj-metric-label">${t.ch05_metric_rate}</div>
-          <div class="eng-obj-metric-value">10 - 100 nm/min</div>
-          <div class="eng-obj-metric-note">介電層與多晶矽主流成膜技術</div>
+          <div class="eng-obj-metric-label">${t.ch05_rate_label}</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-blue-dark);">${rDep.toFixed(1)} nm/min</div>
+          <div class="eng-obj-metric-note">Arrhenius ks: ${ks.toFixed(1)} · 氣相 hg: ${hg.toFixed(1)}</div>
         </div>
         <div class="eng-obj-metric-card">
-          <div class="eng-obj-metric-label">${t.ch05_metric_temp}</div>
-          <div class="eng-obj-metric-value">350°C ~ 750°C</div>
-          <div class="eng-obj-metric-note">需考量元件熱預算 (Thermal Budget)</div>
+          <div class="eng-obj-metric-label">${t.ch05_regime_label}</div>
+          <div class="eng-obj-metric-value" style="font-size: 13.5px; color: ${regimeColor};">${regimeLabel}</div>
+          <div class="eng-obj-metric-note">${regime === 'surface' ? '活化能主導 · 分子有充沛時間擴散至孔底' : '反應極快受限於氣體擴散 · 易封孔形成空洞'}</div>
         </div>
       `;
       footerNote = t.ch05_cvd_desc;
@@ -1678,6 +1774,7 @@ export function renderDepositionMechanismObject(container, lang = 'zh') {
             <button type="button" class="eng-obj-tab ${activeTab === 'cvd' ? 'is-active' : ''}" data-tab="cvd">${t.ch05_tab_cvd}</button>
             <button type="button" class="eng-obj-tab ${activeTab === 'ald' ? 'is-active' : ''}" data-tab="ald">${t.ch05_tab_ald}</button>
           </div>
+          ${controlsHtml}
         </div>
 
         <div class="eng-obj-viewport">
@@ -1706,6 +1803,22 @@ export function renderDepositionMechanismObject(container, lang = 'zh') {
         update();
       });
     });
+
+    const tempSlider = container.querySelector('#ch05TempSlider');
+    if (tempSlider) {
+      tempSlider.addEventListener('input', (e) => {
+        cvdTemp = parseInt(e.target.value, 10);
+        update();
+      });
+    }
+
+    const pressSlider = container.querySelector('#ch05PressSlider');
+    if (pressSlider) {
+      pressSlider.addEventListener('input', (e) => {
+        cvdPress = parseFloat(e.target.value);
+        update();
+      });
+    }
 
     const nextBtn = container.querySelector('#aldNextBtn');
     if (nextBtn) {
@@ -4852,83 +4965,129 @@ export function renderMemoryTechObject(container, lang = 'zh') {
 export function renderMetrologyInspectionObject(container, lang = 'zh') {
   const t = TEXTS[lang] || TEXTS.zh;
   let activeTab = 'cdsem'; // 'cdsem' | 'optical' | 'ellipsometry'
+  let landingEnergy = 500;  // 300 ~ 1200 eV
+  let sidewallAngle = 86.0; // 80.0 ~ 89.8 °
 
   function update() {
+    let controlsHtml = '';
     let viewportHtml = '';
     let dashboardHtml = '';
     let footerNote = '';
 
+    // CD-SEM 二次電子 (SE) 逃逸動力學與邊緣效應計算
+    const rad = (sidewallAngle * Math.PI) / 180;
+    const cosTheta = Math.max(0.005, Math.cos(rad));
+    // 二次電子邊緣倍增產額 delta / delta_0 ∝ (1 / cos(theta))^n, n ≈ 0.82
+    const seMultiplier = Math.pow(1 / cosTheta, 0.82);
+    
+    // 奈米線條幾何：高度 H = 45nm, 頂部 Top CD = 12.0nm
+    // 底部 Bottom CD = Top CD + 2 * (H / tan(theta))
+    const lineH = 45; // nm
+    const bottomCD = 12.0 + 2 * (lineH / Math.tan(rad));
+    
+    // 線寬邊緣粗糙度 LWR (nm) 隨能量 (光阻收縮損傷) 與側壁角度 (邊界模糊度) 變化
+    const lwr = (1.1 + 0.045 * (90 - sidewallAngle) + 65 / Math.sqrt(landingEnergy)).toFixed(2);
+    const snr = Math.round(18 + Math.sqrt(landingEnergy) * 1.2);
+
     if (activeTab === 'cdsem') {
+      controlsHtml = `
+        <div class="eng-obj-slider-panel">
+          <div class="eng-obj-slider-item">
+            <label for="ch15EnergySlider">${t.ch15_energy_slider}</label>
+            <input type="range" class="eng-obj-range-input" id="ch15EnergySlider" min="300" max="1200" step="50" value="${landingEnergy}">
+            <span class="eng-obj-slider-val">${landingEnergy} eV</span>
+          </div>
+          <div class="eng-obj-slider-item">
+            <label for="ch15AngleSlider">${t.ch15_angle_slider}</label>
+            <input type="range" class="eng-obj-range-input" id="ch15AngleSlider" min="80.0" max="89.8" step="0.2" value="${sidewallAngle.toFixed(1)}">
+            <span class="eng-obj-slider-val">${sidewallAngle.toFixed(1)}°</span>
+          </div>
+          <div style="margin-left: auto; display: flex; align-items: center; gap: 8px;">
+            <span style="font-size: 11px; color: #94a3b8; font-family: monospace;">Bottom CD: <strong style="color: #38bdf8; font-size: 13px;">${bottomCD.toFixed(2)} nm</strong></span>
+            <span style="font-size: 11px; padding: 2px 7px; border-radius: 4px; background: rgba(15,23,42,0.6); border: 1px solid var(--border-subtle); color: #10b981; font-weight: 700;">
+              LWR: ${lwr} nm
+            </span>
+          </div>
+        </div>
+      `;
+
+      // 奈米圖案幾何頂底寬度隨傾角動態計算
+      const topOffset = Math.round((90 - sidewallAngle) * 2.5);
+      // 雙峰波峰高度隨二次電子倍增產額動態計算
+      const peakY = Math.max(18, Math.min(60, Math.round(68 - seMultiplier * 9.5)));
+      const peakSpread = Math.max(4, Math.min(18, Math.round((90 - sidewallAngle) * 1.3)));
+
       viewportHtml = `
-        <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="CD-SEM Electron Beam Metrology and Line Profile">
-          <!-- 上方低能電子槍與磁透鏡組 (FEG @ 500 eV) -->
-          <g transform="translate(300, 20)">
-            <rect x="50" y="0" width="100" height="35" rx="4" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5"/>
-            <text x="100" y="22" text-anchor="middle" fill="#38bdf8" font-size="11" font-weight="750">場發射電子槍 (FEG)</text>
-            <text x="100" y="48" text-anchor="middle" fill="#94a3b8" font-size="9.5">低著陸能量 500 eV (防光阻收縮)</text>
+        <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="CD-SEM Electron Beam Metrology and Line Profile with 1/cos(theta) Physics">
+          <!-- 上方低能電子槍與磁透鏡組 (FEG) -->
+          <g transform="translate(300, 15)">
+            <rect x="50" y="0" width="100" height="32" rx="4" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5"/>
+            <text x="100" y="21" text-anchor="middle" fill="#38bdf8" font-size="11" font-weight="750">場發射電子槍 (FEG)</text>
+            <text x="100" y="45" text-anchor="middle" fill="#94a3b8" font-size="9.5">著陸能量 ${landingEnergy} eV · SNR ${snr} dB</text>
 
             <!-- 電磁聚焦透鏡與偏轉掃描極板 (Deflection Plates) -->
-            <polygon points="70,55 130,55 110,80 90,80" fill="#334155" stroke="#cbd5e1" stroke-width="1"/>
-            <rect x="65" y="85" width="15" height="20" fill="#f59e0b"/>
-            <rect x="120" y="85" width="15" height="20" fill="#f59e0b"/>
-            <text x="100" y="100" text-anchor="middle" fill="#ffffff" font-size="9">X-Y 掃描極板</text>
+            <polygon points="70,50 130,50 110,75 90,75" fill="#334155" stroke="#cbd5e1" stroke-width="1"/>
+            <rect x="65" y="80" width="15" height="18" fill="#f59e0b"/>
+            <rect x="120" y="80" width="15" height="18" fill="#f59e0b"/>
+            <text x="100" y="93" text-anchor="middle" fill="#ffffff" font-size="9">X-Y 偏轉掃描</text>
 
             <!-- 聚焦電子束微探針 (Focused E-Beam Probe: 直徑 < 1nm) -->
-            <line x1="100" y1="105" x2="100" y2="180" stroke="#38bdf8" stroke-width="2" stroke-dasharray="3 2"/>
-            <circle cx="100" cy="180" r="3" fill="#38bdf8"/>
+            <line x1="100" y1="100" x2="100" y2="175" stroke="#38bdf8" stroke-width="2" stroke-dasharray="3 2" class="anim-beam"/>
+            <circle cx="100" cy="175" r="3" fill="#38bdf8"/>
           </g>
 
           <!-- 中段：晶圓奈米溝槽微觀剖面與二次電子 (SE) 逃逸 -->
-          <g transform="translate(150, 180)">
+          <g transform="translate(150, 175)">
             <!-- 矽基底 -->
             <rect x="0" y="60" width="500" height="40" fill="#1e293b" stroke="#475569" stroke-width="1.5"/>
-            <text x="250" y="85" text-anchor="middle" fill="#94a3b8" font-size="11">矽晶圓基板 (Silicon Wafer Substrate)</text>
+            <text x="250" y="85" text-anchor="middle" fill="#94a3b8" font-size="11">矽晶圓基板 (Silicon Substrate) · θ = ${sidewallAngle.toFixed(1)}°</text>
 
-            <!-- 奈米線條光阻/金屬圖案 (Line/Space Pattern) -->
+            <!-- 奈米線條光阻/金屬圖案 (Line/Space Pattern with dynamic sidewall angle) -->
             <g transform="translate(180, 0)">
-              <rect x="0" y="0" width="140" height="60" fill="#334155" stroke="#38bdf8" stroke-width="1.5"/>
-              <text x="70" y="35" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="750">奈米圖案 (Line)</text>
-              <text x="70" y="50" text-anchor="middle" fill="#38bdf8" font-size="9.5">CD = 14.2 nm</text>
+              <!-- 幾何梯形 (動態側壁傾角) -->
+              <polygon points="${topOffset},0 ${140 - topOffset},0 140,60 0,60" fill="#334155" stroke="#38bdf8" stroke-width="1.5"/>
+              <text x="70" y="30" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="750">奈米圖案 (Line)</text>
+              <text x="70" y="45" text-anchor="middle" fill="#38bdf8" font-size="9.5">Bottom CD = ${bottomCD.toFixed(2)} nm</text>
 
-              <!-- 側壁二次電子逃逸 (Edge Blooming) -->
-              <circle cx="2" cy="30" r="4" fill="#fbbf24"/>
-              <line x1="2" y1="30" x2="-25" y2="10" stroke="#fbbf24" stroke-width="1.5" marker-end="url(#arrow)"/>
-              <circle cx="138" cy="30" r="4" fill="#fbbf24"/>
-              <line x1="138" y1="30" x2="165" y2="10" stroke="#fbbf24" stroke-width="1.5" marker-end="url(#arrow)"/>
-              <text x="-35" y="5" fill="#fbbf24" font-size="9.5">SE 二次電子逃逸</text>
+              <!-- 側壁二次電子逃逸 (Edge Blooming δ ∝ 1/cosθ) -->
+              <circle cx="${topOffset / 2}" cy="30" r="${Math.min(7, 3 + seMultiplier * 0.8)}" fill="#fbbf24"/>
+              <line x1="${topOffset / 2}" y1="30" x2="-25" y2="10" stroke="#fbbf24" stroke-width="1.5"/>
+              <circle cx="${140 - topOffset / 2}" cy="30" r="${Math.min(7, 3 + seMultiplier * 0.8)}" fill="#fbbf24"/>
+              <line x1="${140 - topOffset / 2}" y1="30" x2="165" y2="10" stroke="#fbbf24" stroke-width="1.5"/>
+              <text x="-40" y="8" fill="#fbbf24" font-size="9.5">SE 二次電子逃逸 (δ/δ₀ = ${seMultiplier.toFixed(2)}×)</text>
             </g>
           </g>
 
           <!-- 下方：二次電子信號強度波形圖 (SE Intensity Profile: 經典雙峰曲線) -->
-          <g transform="translate(150, 290)">
-            <rect x="0" y="0" width="500" height="100" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
-            <text x="250" y="20" text-anchor="middle" fill="#38bdf8" font-size="11" font-weight="700">二次電子信號強度波形 (SE Signal Profile)</text>
-            <!-- 雙峰波形曲線 (Peaks at edges due to blooming) -->
-            <path d="M 20,70 L 150,70 Q 170,70 178,30 Q 182,75 190,65 L 310,65 Q 318,75 322,30 Q 330,70 350,70 L 480,70" fill="none" stroke="#10b981" stroke-width="2.5"/>
+          <g transform="translate(150, 285)">
+            <rect x="0" y="0" width="500" height="105" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
+            <text x="250" y="18" text-anchor="middle" fill="#38bdf8" font-size="11" font-weight="700">二次電子信號強度波形 (SE Signal Profile) · 邊緣白邊效應</text>
+            <!-- 動態雙峰波形曲線 (Peaks at edges due to blooming) -->
+            <path d="M 20,72 L ${180 - peakSpread * 3},72 Q ${180 - peakSpread},72 180,${peakY} Q ${180 + peakSpread},75 ${180 + peakSpread * 2},68 L ${320 - peakSpread * 2},68 Q ${320 - peakSpread},75 320,${peakY} Q ${320 + peakSpread},72 ${320 + peakSpread * 3},72 L 480,72" fill="none" stroke="#10b981" stroke-width="2.5"/>
             <!-- 標註兩峰值與量測 CD -->
-            <line x1="178" y1="25" x2="178" y2="85" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="2 2"/>
-            <line x1="322" y1="25" x2="322" y2="85" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="2 2"/>
-            <line x1="178" y1="85" x2="322" y2="85" stroke="#f59e0b" stroke-width="2"/>
-            <text x="250" y="80" text-anchor="middle" fill="#fbbf24" font-size="10.5" font-weight="750">← 演算法提取 Bottom CD (14.2 nm) →</text>
+            <line x1="180" y1="20" x2="180" y2="88" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="2 2"/>
+            <line x1="320" y1="20" x2="320" y2="88" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="2 2"/>
+            <line x1="180" y1="88" x2="320" y2="88" stroke="#f59e0b" stroke-width="2"/>
+            <text x="250" y="84" text-anchor="middle" fill="#fbbf24" font-size="10.5" font-weight="750">← 演算法提取 Bottom CD (${bottomCD.toFixed(2)} nm) →</text>
           </g>
         </svg>
       `;
 
       dashboardHtml = `
         <div class="eng-obj-metric-card">
-          <div class="eng-obj-metric-label">${t.ch15_metric_cd_res}</div>
-          <div class="eng-obj-metric-value" style="color: var(--semi-blue-dark);">± 0.1 nm (3σ)</div>
-          <div class="eng-obj-metric-note">亞埃級電子束聚焦探針量測重複性</div>
+          <div class="eng-obj-metric-label">${t.ch15_bottom_cd}</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-blue-dark);">${bottomCD.toFixed(2)} nm</div>
+          <div class="eng-obj-metric-note">Top CD: 12.0 nm · 側壁角度 θ: ${sidewallAngle.toFixed(1)}°</div>
         </div>
         <div class="eng-obj-metric-card">
-          <div class="eng-obj-metric-label">電子著陸能量 (Landing Energy)</div>
-          <div class="eng-obj-metric-value">300 ~ 800 eV</div>
-          <div class="eng-obj-metric-note">低能量電子避免 EUV 有機光阻微觀灼傷收縮</div>
+          <div class="eng-obj-metric-label">${t.ch15_se_yield}</div>
+          <div class="eng-obj-metric-value" style="color: #f59e0b;">${seMultiplier.toFixed(2)} ×</div>
+          <div class="eng-obj-metric-note">δ(θ) ∝ (1/cosθ)^0.82 表面逃逸深度幾何放大</div>
         </div>
         <div class="eng-obj-metric-card">
-          <div class="eng-obj-metric-label">線寬邊緣粗糙度 (LWR / LER)</div>
-          <div class="eng-obj-metric-value">1.8 nm</div>
-          <div class="eng-obj-metric-note">直接影響電晶體通道漏電與飽和電流分佈</div>
+          <div class="eng-obj-metric-label">${t.ch15_lwr_label}</div>
+          <div class="eng-obj-metric-value" style="color: ${parseFloat(lwr) > 2.0 ? '#ef4444' : 'var(--semi-teal)'};">${lwr} nm</div>
+          <div class="eng-obj-metric-note">著陸能量 ${landingEnergy} eV (SNR: ${snr} dB) · 防光阻收縮</div>
         </div>
       `;
 
@@ -5107,6 +5266,7 @@ export function renderMetrologyInspectionObject(container, lang = 'zh') {
             <button type="button" class="eng-obj-tab ${activeTab === 'optical' ? 'is-active' : ''}" data-tab="optical">${t.ch15_tab_optical}</button>
             <button type="button" class="eng-obj-tab ${activeTab === 'ellipsometry' ? 'is-active' : ''}" data-tab="ellipsometry">${t.ch15_tab_ellipsometry}</button>
           </div>
+          ${controlsHtml}
         </div>
 
         <div class="eng-obj-viewport">
@@ -5130,6 +5290,22 @@ export function renderMetrologyInspectionObject(container, lang = 'zh') {
         update();
       });
     });
+
+    const energySlider = container.querySelector('#ch15EnergySlider');
+    if (energySlider) {
+      energySlider.addEventListener('input', (e) => {
+        landingEnergy = parseInt(e.target.value, 10);
+        update();
+      });
+    }
+
+    const angleSlider = container.querySelector('#ch15AngleSlider');
+    if (angleSlider) {
+      angleSlider.addEventListener('input', (e) => {
+        sidewallAngle = parseFloat(e.target.value);
+        update();
+      });
+    }
   }
 
   update();

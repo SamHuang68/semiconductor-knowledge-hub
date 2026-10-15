@@ -73,7 +73,7 @@ if (euvBtn) {
 }
 console.log('[PASS] Ch 04 微影模型互動切換正常');
 
-console.log('--- 測試 2: Ch 05 薄膜 ALD 循環單步前進 ---');
+console.log('--- 測試 2: Ch 05 薄膜 ALD 循環單步前進與 CVD 動力學 ---');
 const c5 = new MockElement();
 mountEngineeringObject('ch05', c5, 'zh');
 assert.ok(c5.innerHTML.includes('ALD 四步自限循環'), '預設應展示 ALD 模式');
@@ -83,7 +83,12 @@ nextBtn.dispatchEvent({ type: 'click' });
 assert.ok(c5.innerHTML.includes('步驟 2'), '單步前進後應推進至步驟 2');
 nextBtn.dispatchEvent({ type: 'click' });
 assert.ok(c5.innerHTML.includes('步驟 3'), '單步前進後應推進至步驟 3');
-console.log('[PASS] Ch 05 薄膜 ALD 單步循環正常');
+const cvdBtn = c5.children.find(c => c.getAttribute('data-tab') === 'cvd');
+if (cvdBtn) {
+  cvdBtn.dispatchEvent({ type: 'click' });
+  assert.ok(c5.innerHTML.includes('階梯覆蓋率') || c5.innerHTML.includes('Step Coverage') || c5.innerHTML.includes('Overhang'), '點擊 CVD 後應展示階梯覆蓋率與阿瑞尼斯動力學');
+}
+console.log('[PASS] Ch 05 薄膜 ALD 與 CVD 動力學模型正常');
 
 console.log('--- 測試 3: Ch 06 蝕刻模型切換 ---');
 const c6 = new MockElement();
@@ -195,6 +200,7 @@ console.log('--- 測試 13: Ch 15 CD-SEM 與光學檢測切換 ---');
 const c15 = new MockElement();
 mountEngineeringObject('ch15', c15, 'zh');
 assert.ok(c15.innerHTML.includes('二次電子'), '預設應展示 CD-SEM 二次電子');
+assert.ok(c15.innerHTML.includes('Bottom CD') || c15.innerHTML.includes('LWR') || c15.innerHTML.includes('1/cos'), '應展示 1/cosθ 二次電子逃逸與 CD 物理');
 const opticalBtn = c15.children.find(c => c.getAttribute('data-tab') === 'optical');
 if (opticalBtn) {
   opticalBtn.dispatchEvent({ type: 'click' });
