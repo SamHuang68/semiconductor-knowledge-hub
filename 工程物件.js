@@ -187,6 +187,14 @@ const TEXTS = {
     ch10_step_dama_4: '4. PVD 沉積薄銅晶種層 (Cu Seed)',
     ch10_step_dama_5: '5. 電鍍銅自底向上超填 (ECD Superfilling)',
     ch10_step_dama_6: '6. 銅 CMP 磨平並覆蓋介電帽層 (SiCN Cap)',
+    ch10_j_slider: '電流密度 Current Density (J):',
+    ch10_temp_slider: '晶片溫度 Junction Temp (T):',
+    ch10_cap_label: '頂部帽層技術 (Capping Tech):',
+    ch10_cap_sicn: '標準 SiCN 介電帽層 (Ea~0.85eV)',
+    ch10_cap_coru: '先進 Co/Ru 金屬帽層 (Ea~1.25eV)',
+    ch10_mttf_label: '預估中位壽命 (MTTF):',
+    ch10_ea_label: '擴散活化能 (Activation Energy Ea):',
+    ch10_risk_label: '可靠度風險評估 (Reliability Risk):',
     ch10_damascene_desc: '銅無法像鋁一樣進行乾式電漿蝕刻（無室溫揮發性副產物），因此採用「先挖凹槽、再填銅、最後磨平」的大馬士革製程 (Damascene)；雙載子鑲嵌更將導通孔與上方溝槽一次填銅，大幅降低接觸阻抗。',
     ch10_superfill_desc: '電鍍液中添加「抑制劑 (Suppressor)」在大孔口抑制沉積，而「加速劑 (Accelerator)」在孔底微小曲率處大量累積，使銅由孔底噴泉式向上生長，杜絕深孔中途閉合形成縫隙 (Seam) 或空洞 (Void)！',
     ch10_em_desc: '在電流密度 > 10⁶ A/cm² 下，高速電子流對銅原子產生衝撞力（電子風 Electron Wind）。銅原子沿晶界遷移，上游形成孔洞 (Void) 引發斷路，下游堆積成凸起 (Hillock) 刺穿相鄰線路引發短路。',
@@ -406,6 +414,12 @@ const TEXTS = {
     ch14_metric_cpp: '接觸多晶矽間距 (CPP / Gate Pitch)',
     ch14_metric_mp: '底層最小金屬間距 (M1P / Metal Pitch)',
     ch14_metric_density: '電晶體密度 (Transistor Density)',
+    ch14_vdd_slider: '供電電壓 Supply Voltage (Vdd):',
+    ch14_lg_slider: '物理特徵節點 Feature Node (Lg):',
+    ch14_dyn_power: '動態切換功耗 Dynamic Power (P_dyn):',
+    ch14_leak_power: '靜態漏電功耗 Leakage Power (P_leak):',
+    ch14_power_density: '晶片功率密度 Power Density:',
+    ch14_scaling_status: 'Dennard 定律狀態 Scaling Regime:',
     ch14_pitch_desc: '現代製程如「3nm / 2nm」已非任何單一物理元件尺寸（閘極長度約 12nm、氧化層約 1.5nm）。衡量節點先進程度的權威物理標準是 CPP (Contacted Poly Pitch, 如 N3 為 ~45nm) 與最小金屬間距 (Metal Pitch, 如 N3 為 ~22nm)。',
     ch14_dennard_desc: '1974 年 Dennard 縮放定律指出：尺寸縮小 30% 時，電壓同比例下降，功耗密度保持不變。但當閘極氧化層薄至 1.5nm 時，量子穿隧漏電流爆炸性激增，電壓無法再依比例下降（約止步於 0.7V），引發「熱耗牆 (Power Wall)」，終結了頻率狂飆時代。',
     ch14_density_desc: '邏輯標準單元高度等於「單元軌道數 (Tracks) × 金屬間距 (M1P)」。從 9-Track (成熟節點) 演進至 6-Track / 5-Track (先進節點)，搭配 DTCO (設計與製程協同優化)，在相同的微影極限下擠出高達 290+ MTr/mm² 的超高邏輯密度。',
@@ -653,6 +667,14 @@ const TEXTS = {
     ch10_step_dama_4: '4. PVD Deposit Thin Copper Seed Layer',
     ch10_step_dama_5: '5. ECD Bottom-Up Copper Superfilling',
     ch10_step_dama_6: '6. Copper CMP & Dielectric Capping (SiCN)',
+    ch10_j_slider: 'Current Density (J):',
+    ch10_temp_slider: 'Junction Temperature (T):',
+    ch10_cap_label: 'Top Capping Layer Tech:',
+    ch10_cap_sicn: 'Standard SiCN Dielectric Cap (Ea~0.85eV)',
+    ch10_cap_coru: 'Advanced Co/Ru Metal Cap (Ea~1.25eV)',
+    ch10_mttf_label: 'Estimated Median Lifetime (MTTF):',
+    ch10_ea_label: 'Diffusion Activation Energy (Ea):',
+    ch10_risk_label: 'Reliability Risk Assessment:',
     ch10_damascene_desc: 'Copper lacks volatile byproducts for dry plasma etching, necessitating the Damascene process: etch trenches first, electroplate copper, then polish flat. Dual Damascene fills vias and trenches simultaneously.',
     ch10_superfill_desc: 'Plating additives orchestrate seamless filling: Suppressors retard deposition at upper openings, while Accelerators concentrate at concave trench bottoms, driving fountain-like bottom-up growth with zero seams or voids.',
     ch10_em_desc: 'At extreme current densities (> 10⁶ A/cm²), momentum transfer from drifting electrons (Electron Wind) nudges copper atoms along grain boundaries. Atoms migrate away forming voids (opens), or pile up forming hillocks (shorts).',
@@ -872,6 +894,12 @@ const TEXTS = {
     ch14_metric_cpp: 'Contacted Poly Pitch (CPP / Gate Pitch)',
     ch14_metric_mp: 'Minimum Metal Pitch (M1P / Metal Pitch)',
     ch14_metric_density: 'Transistor Density',
+    ch14_vdd_slider: 'Supply Voltage (Vdd):',
+    ch14_lg_slider: 'Physical Feature Node (Lg):',
+    ch14_dyn_power: 'Dynamic Switching Power (P_dyn):',
+    ch14_leak_power: 'Static Leakage Power (P_leak):',
+    ch14_power_density: 'Chip Power Density:',
+    ch14_scaling_status: 'Dennard Scaling Regime:',
     ch14_pitch_desc: 'Modern commercial nodes like "3nm / 2nm" no longer represent any single physical dimension (gate length is ~12nm, oxide is ~1.5nm). True node progress is governed by Contacted Poly Pitch (CPP, ~45nm on N3) and Minimum Metal Pitch (M1P, ~22nm on N3).',
     ch14_dennard_desc: 'Dennard Scaling (1974) held that shrinking dimensions by 30% allowed simultaneous voltage reduction, keeping power density constant. Below 65nm, quantum mechanical gate tunneling exploded, freezing supply voltages near ~0.7V and erecting the "Power Wall" that ended CPU clock speed scaling.',
     ch14_density_desc: 'Logic standard cell height equals "Cell Track Count × Metal Pitch (M1P)". Evolving from 9-Track down to 6-Track / 5-Track cells coupled with Design-Technology Co-Optimization (DTCO) yields transistor densities exceeding 290+ MTr/mm² even as lithography scaling slows.',
@@ -2928,8 +2956,12 @@ export function renderInterconnectObject(container, lang = 'zh') {
   const t = TEXTS[lang] || TEXTS.zh;
   let activeTab = 'damascene'; // 'damascene' | 'superfill' | 'em'
   let damaStep = 1; // 1 ~ 6
+  let currentDensityMA = 1.8; // 0.5 ~ 5.0 MA/cm²
+  let tempC = 105; // 50 ~ 150 °C
+  let capTech = 'sicn'; // 'sicn' | 'coru'
 
   function update() {
+    let controlsHtml = '';
     let viewportHtml = '';
     let dashboardHtml = '';
     let footerNote = '';
@@ -3080,51 +3112,116 @@ export function renderInterconnectObject(container, lang = 'zh') {
 
       footerNote = t.ch10_superfill_desc;
     } else {
-      // Electromigration (EM)
-      viewportHtml = `
-        <svg viewBox="0 0 800 380" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Electromigration">
-          <g transform="translate(150, 60)">
-            <rect x="0" y="0" width="500" height="160" rx="4" fill="#131e2b" stroke="#334155" stroke-width="2"/>
-            
-            <!-- 銅導線 -->
-            <rect x="40" y="45" width="420" height="70" fill="#b45309" stroke="#f59e0b" stroke-width="1.5"/>
+      // Electromigration (EM) 連續物理計算器
+      const ea = capTech === 'coru' ? 1.25 : 0.85; // eV
+      const tk = tempC + 273.15; // K
+      const kb = 8.61733e-5; // eV/K
+      // Black's Equation: MTTF = A * J^-2 * exp(Ea / kT)
+      const baseHours = capTech === 'coru' ? 5200000 : 75000;
+      const jRatio = 1.0 / currentDensityMA;
+      const thermalFactor = Math.exp((ea / kb) * (1 / tk - 1 / 378.15));
+      const mttfHours = baseHours * (jRatio * jRatio) * thermalFactor;
+      const mttfYears = mttfHours / 8760;
 
-            <!-- 電子風方向 (向右大量電子流) -->
-            <g stroke="#38bdf8" stroke-width="2" class="anim-electron">
-              <line x1="80" y1="80" x2="160" y2="80"/>
-              <line x1="220" y1="80" x2="300" y2="80"/>
-              <line x1="360" y1="80" x2="440" y2="80"/>
+      let riskText = '';
+      let riskColor = '';
+      if (mttfYears >= 10.0) {
+        riskText = `${mttfYears.toFixed(1)} 年 (車規/伺服器極致可靠)`;
+        riskColor = 'var(--semi-teal)';
+      } else if (mttfYears >= 1.0) {
+        riskText = `${mttfYears.toFixed(1)} 年 (合格消費電子標竿)`;
+        riskColor = '#38bdf8';
+      } else {
+        riskText = `${Math.round(mttfHours)} 小時 (⚠️ 早期斷路風險)`;
+        riskColor = '#ef4444';
+      }
+
+      controlsHtml = `
+        <div style="display:flex; flex-direction:column; gap:12px; width:100%;">
+          <div class="eng-obj-tab-group" role="tablist">
+            <button type="button" class="eng-obj-tab ${capTech === 'sicn' ? 'is-active' : ''}" data-cap="sicn">${t.ch10_cap_sicn}</button>
+            <button type="button" class="eng-obj-tab ${capTech === 'coru' ? 'is-active' : ''}" data-cap="coru">${t.ch10_cap_coru}</button>
+          </div>
+          <div class="eng-obj-slider-cluster">
+            <div class="eng-obj-slider-unit">
+              <div class="eng-obj-slider-header">
+                <span class="eng-obj-slider-label">${t.ch10_j_slider}</span>
+                <span class="eng-obj-slider-val" id="jVal">${currentDensityMA.toFixed(1)} MA/cm²</span>
+              </div>
+              <input type="range" class="eng-obj-slider" id="jSlider" min="0.5" max="5.0" step="0.1" value="${currentDensityMA}" aria-label="Current Density">
+            </div>
+            <div class="eng-obj-slider-unit">
+              <div class="eng-obj-slider-header">
+                <span class="eng-obj-slider-label">${t.ch10_temp_slider}</span>
+                <span class="eng-obj-slider-val" id="tempVal">${tempC} °C</span>
+              </div>
+              <input type="range" class="eng-obj-slider" id="tempSlider" min="50" max="150" step="5" value="${tempC}" aria-label="Junction Temperature">
+            </div>
+          </div>
+        </div>
+      `;
+
+      // 空洞與丘陵大小動態演變
+      const emIntensity = Math.min(1.0, (currentDensityMA / 4.0) * (tempC / 130) * (capTech === 'coru' ? 0.25 : 1.0));
+      const voidWidth = Math.round(15 + emIntensity * 45);
+      const hillockHeight = Math.round(10 + emIntensity * 38);
+
+      viewportHtml = `
+        <svg viewBox="0 0 800 380" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Electromigration Live Engine">
+          <g transform="translate(130, 45)">
+            <rect x="0" y="0" width="540" height="200" rx="4" fill="#131e2b" stroke="#334155" stroke-width="2"/>
+            
+            <!-- 銅導線實體 (Copper Line) -->
+            <rect x="40" y="55" width="460" height="70" fill="#b45309" stroke="#f59e0b" stroke-width="1.5"/>
+
+            <!-- 頂部帽層 (SiCN vs Co/Ru) -->
+            <rect x="40" y="47" width="460" height="8" fill="${capTech === 'coru' ? '#10b981' : '#0f766e'}" filter="${capTech === 'coru' ? 'drop-shadow(0 0 6px #10b981)' : 'none'}"/>
+            <text x="270" y="42" text-anchor="middle" fill="${capTech === 'coru' ? '#10b981' : '#94a3b8'}" font-size="11" font-weight="700">
+              ${capTech === 'coru' ? 'Co/Ru 金屬沉積覆蓋帽層 (強鍵合鎖緊原子 · Ea = 1.25 eV)' : 'SiCN 介電帽層 (介面易滑移 · Ea = 0.85 eV)'}
+            </text>
+
+            <!-- 電子風方向 (向右大量電子流動畫線) -->
+            <g stroke="#38bdf8" stroke-width="${1.5 + (currentDensityMA / 5.0) * 2.0}" class="anim-electron" opacity="0.9">
+              <line x1="80" y1="90" x2="160" y2="90"/>
+              <line x1="200" y1="90" x2="280" y2="90"/>
+              <line x1="320" y1="90" x2="400" y2="90"/>
             </g>
-            <text x="250" y="30" text-anchor="middle" fill="#38bdf8" font-size="13" font-weight="700">電子風 (Electron Wind Force → 高電流密度 J &gt; 10⁶ A/cm²)</text>
+            <text x="270" y="105" text-anchor="middle" fill="#38bdf8" font-size="12" font-weight="750">
+              電子風 (Electron Wind Force → J = ${currentDensityMA.toFixed(1)} MA/cm²)
+            </text>
 
             <!-- 上游形成空洞 (Void - 斷路風險) -->
-            <path d="M 80,45 Q 110,80 80,115 Z" fill="#09131b"/>
-            <text x="75" y="135" fill="#ef4444" font-size="11.5" font-weight="700">空洞 (Void: 斷路)</text>
+            <path d="M 80,55 Q ${80 + voidWidth},90 80,125 Z" fill="#09131b" stroke="#ef4444" stroke-width="1.5"/>
+            <text x="80" y="145" text-anchor="middle" fill="#ef4444" font-size="11" font-weight="700">空洞 (Void)</text>
 
             <!-- 下游擠出金屬丘陵 (Hillock - 短路風險) -->
-            <path d="M 420,45 Q 445,15 455,45 Z" fill="#f59e0b"/>
-            <text x="430" y="20" fill="#f59e0b" font-size="11.5" font-weight="700">丘陵 (Hillock: 短路)</text>
+            <path d="M 430,55 Q ${445},${55 - hillockHeight} 460,55 Z" fill="#f59e0b" stroke="#f59e0b" stroke-width="1.5"/>
+            <text x="445" y="${Math.min(35, 50 - hillockHeight)}" text-anchor="middle" fill="#f59e0b" font-size="11" font-weight="700">丘陵 (Hillock)</text>
 
-            <text x="250" y="105" text-anchor="middle" fill="#ffffff" font-size="11">銅原子受碰撞沿晶界遷移 (Grain Boundary Drift)</text>
+            <text x="270" y="175" text-anchor="middle" fill="#cbd5e1" font-size="11">
+              Black 方程：MTTF ∝ J⁻² · exp(Ea / kT) | 當前溫度: ${tempC}°C (${(tempC + 273.15).toFixed(1)} K)
+            </text>
           </g>
         </svg>
       `;
 
       dashboardHtml = `
         <div class="eng-obj-metric-card">
-          <div class="eng-obj-metric-label">極限電流密度 (Current Density)</div>
-          <div class="eng-obj-metric-value">&gt; 1.0 × 10⁶ A/cm²</div>
-          <div class="eng-obj-metric-note">電子衝量足以克服銅金屬擴散活化能</div>
+          <div class="eng-obj-metric-label">${t.ch10_mttf_label}</div>
+          <div class="eng-obj-metric-value" style="color: ${riskColor}; font-size: 16px;">${riskText}</div>
+          <div class="eng-obj-metric-note">Black 方程預估之中位壽命</div>
         </div>
         <div class="eng-obj-metric-card">
-          <div class="eng-obj-metric-label">Black 方程預測壽命 (MTTF)</div>
-          <div class="eng-obj-metric-value">MTTF ∝ J⁻ⁿ · exp(Ea/kT)</div>
-          <div class="eng-obj-metric-note">高溫與高電流大幅加速失效</div>
+          <div class="eng-obj-metric-label">${t.ch10_ea_label}</div>
+          <div class="eng-obj-metric-value" style="color: ${capTech === 'coru' ? 'var(--semi-teal)' : '#f59e0b'};">${ea} eV</div>
+          <div class="eng-obj-metric-note">${capTech === 'coru' ? '鈷釕帽層消除頂部界面擴散通道' : '銅介電層介面為主要遷移路徑'}</div>
         </div>
         <div class="eng-obj-metric-card">
-          <div class="eng-obj-metric-label">抗電遷移鍍層對策</div>
-          <div class="eng-obj-metric-value" style="font-size: 15px;">鈷/釕金屬帽層 (Co/Ru)</div>
-          <div class="eng-obj-metric-note">封閉頂部介面，EM 壽命提升 100 倍</div>
+          <div class="eng-obj-metric-label">${t.ch10_risk_label}</div>
+          <div class="eng-obj-metric-value" style="color: ${riskColor}; font-size: 15px;">
+            ${mttfYears >= 10.0 ? 'Tier-1 汽車/超算' : (mttfYears >= 1.0 ? '消費電子標準' : '超限警示 (Fail)')}
+          </div>
+          <div class="eng-obj-metric-note">J = ${currentDensityMA} MA/cm² · T = ${tempC}°C</div>
         </div>
       `;
 
@@ -3148,6 +3245,7 @@ export function renderInterconnectObject(container, lang = 'zh') {
             <button type="button" class="eng-obj-tab ${activeTab === 'superfill' ? 'is-active' : ''}" data-tab="superfill">${t.ch10_tab_superfill}</button>
             <button type="button" class="eng-obj-tab ${activeTab === 'em' ? 'is-active' : ''}" data-tab="em">${t.ch10_tab_em}</button>
           </div>
+          ${controlsHtml}
         </div>
 
         <div class="eng-obj-viewport">
@@ -3167,7 +3265,7 @@ export function renderInterconnectObject(container, lang = 'zh') {
       </section>
     `;
 
-    // 綁定事件
+    // 綁定頁籤切換事件
     container.querySelectorAll('[data-tab]').forEach(btn => {
       btn.addEventListener('click', () => {
         activeTab = btn.getAttribute('data-tab');
@@ -3175,6 +3273,7 @@ export function renderInterconnectObject(container, lang = 'zh') {
       });
     });
 
+    // 綁定雙鑲嵌步進按鈕
     const nextBtn = container.querySelector('#damaNextBtn');
     if (nextBtn) {
       nextBtn.addEventListener('click', () => {
@@ -3189,6 +3288,31 @@ export function renderInterconnectObject(container, lang = 'zh') {
         damaStep = 1;
         update();
       });
+    }
+
+    // 綁定 EM 模式帽層切換與滑桿事件
+    if (activeTab === 'em') {
+      container.querySelectorAll('[data-cap]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          capTech = btn.getAttribute('data-cap');
+          update();
+        });
+      });
+
+      const jSlider = container.querySelector('#jSlider');
+      const tempSlider = container.querySelector('#tempSlider');
+      if (jSlider) {
+        jSlider.addEventListener('input', e => {
+          currentDensityMA = Number(e.target.value);
+          update();
+        });
+      }
+      if (tempSlider) {
+        tempSlider.addEventListener('input', e => {
+          tempC = Number(e.target.value);
+          update();
+        });
+      }
     }
   }
 
@@ -7402,8 +7526,11 @@ export function renderProcessScalingObject(container, lang = 'zh') {
   const t = TEXTS[lang] || TEXTS.zh;
   let activeTab = 'pitch'; // 'pitch' | 'dennard' | 'density'
   let activeNode = 'n3'; // 'n28' | 'n7' | 'n3' | 'a16'
+  let vdd = 0.75; // 0.55 ~ 1.80 V
+  let nodeLg = 14; // 2 ~ 180 nm
 
   function update() {
+    let controlsHtml = '';
     let viewportHtml = '';
     let dashboardHtml = '';
     let footerNote = '';
@@ -7442,7 +7569,6 @@ export function renderProcessScalingObject(container, lang = 'zh') {
               <!-- 閘極線 (垂直排列) -->
               <text x="0" y="15" fill="#cbd5e1" font-size="11" font-weight="700">垂直閘極線 (Gate Lines / Poly)：</text>
               <g transform="translate(0, 30)">
-                <!-- 根據比例放大繪製 3 根閘極 -->
                 ${(() => {
                   const scale = activeNode === 'n28' ? 1.4 : activeNode === 'n7' ? 2.5 : activeNode === 'n3' ? 3.4 : 4.0;
                   const cppPx = cur.cpp * scale;
@@ -7520,22 +7646,54 @@ export function renderProcessScalingObject(container, lang = 'zh') {
 
       footerNote = t.ch14_pitch_desc;
     } else if (activeTab === 'dennard') {
+      // 物理計算：動態功耗 vs 靜態量子穿隧漏電
+      const tox = 0.03 * nodeLg + 0.6; // nm
+      const fGhz = Math.min(5.2, 0.6 + 2.6 * (vdd / 1.0) * (35 / (nodeLg + 10)));
+      const pDyn = Math.round(90 * Math.pow(vdd, 2) * (fGhz / 3.0) * Math.pow(28 / nodeLg, 0.55));
+      const iTunnel = 420 * Math.exp(-1.55 * tox);
+      const iSubth = 15 * Math.pow(10, -(0.32 / 0.08) * (vdd / 1.0));
+      const pLeak = Math.round((iTunnel + iSubth) * vdd * (28 / nodeLg));
+      const pTotal = pDyn + pLeak;
+      const powerDensity = Math.round(15 + (pTotal / 110) * 65); // W/cm²
+      const dynPercent = Math.round((pDyn / (pDyn + pLeak)) * 100);
+      const leakPercent = 100 - dynPercent;
+      const isPowerWall = nodeLg < 65 && powerDensity > 40;
+
+      controlsHtml = `
+        <div class="eng-obj-slider-cluster">
+          <div class="eng-obj-slider-unit">
+            <div class="eng-obj-slider-header">
+              <span class="eng-obj-slider-label">${t.ch14_vdd_slider}</span>
+              <span class="eng-obj-slider-val" id="vddVal">${vdd.toFixed(2)} V</span>
+            </div>
+            <input type="range" class="eng-obj-slider" id="vddSlider" min="0.55" max="1.80" step="0.05" value="${vdd}" aria-label="Supply Voltage">
+          </div>
+          <div class="eng-obj-slider-unit">
+            <div class="eng-obj-slider-header">
+              <span class="eng-obj-slider-label">${t.ch14_lg_slider}</span>
+              <span class="eng-obj-slider-val" id="lgVal">${nodeLg} nm</span>
+            </div>
+            <input type="range" class="eng-obj-slider" id="lgSlider" min="2" max="180" step="2" value="${nodeLg}" aria-label="Feature Node Lg">
+          </div>
+        </div>
+      `;
+
       viewportHtml = `
-        <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Dennard Scaling Breakdown Curve">
+        <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Dennard Scaling Breakdown Curve Live Engine">
           <!-- 坐標系 -->
-          <g transform="translate(80, 50)">
-            <line x1="0" y1="280" x2="620" y2="280" stroke="#475569" stroke-width="2"/>
+          <g transform="translate(70, 45)">
+            <line x1="0" y1="280" x2="490" y2="280" stroke="#475569" stroke-width="2"/>
             <line x1="0" y1="0" x2="0" y2="280" stroke="#475569" stroke-width="2"/>
-            <text x="620" y="275" fill="#94a3b8" font-size="11">年份 / 節點</text>
+            <text x="490" y="275" fill="#94a3b8" font-size="11">年份 / 節點</text>
             <text x="10" y="20" fill="#94a3b8" font-size="11">標準化指標 (Log Scale)</text>
 
             <!-- 橫坐標節點標記 -->
             ${[
-              { year: '1985\n1.5µm', x: 50 },
-              { year: '1995\n350nm', x: 150 },
-              { year: '2005\n65nm', x: 280, wall: true },
-              { year: '2015\n14nm', x: 420 },
-              { year: '2025\n2nm', x: 550 }
+              { year: '1985\n1.5µm', x: 40 },
+              { year: '1995\n350nm', x: 120 },
+              { year: '2005\n65nm', x: 220, wall: true },
+              { year: '2015\n14nm', x: 330 },
+              { year: '2025\n2nm', x: 440 }
             ].map(pt => `
               <line x1="${pt.x}" y1="280" x2="${pt.x}" y2="285" stroke="#94a3b8" stroke-width="1.5"/>
               <text x="${pt.x}" y="305" text-anchor="middle" fill="${pt.wall ? '#ef4444' : '#94a3b8'}" font-size="10">${pt.year.split('\n')[0]}</text>
@@ -7543,44 +7701,80 @@ export function renderProcessScalingObject(container, lang = 'zh') {
             `).join('')}
 
             <!-- 2005 年熱耗牆紅色虛線 -->
-            <line x1="280" y1="20" x2="280" y2="280" stroke="#ef4444" stroke-width="2" stroke-dasharray="6,4"/>
-            <rect x="230" y="30" width="100" height="24" rx="3" fill="#ef4444" opacity="0.8"/>
-            <text x="280" y="46" text-anchor="middle" fill="#ffffff" font-size="10.5" font-weight="800">Dennard 縮放終結</text>
+            <line x1="220" y1="20" x2="220" y2="280" stroke="#ef4444" stroke-width="2" stroke-dasharray="6,4"/>
+            <rect x="175" y="28" width="90" height="22" rx="3" fill="#ef4444" opacity="0.85"/>
+            <text x="220" y="43" text-anchor="middle" fill="#ffffff" font-size="9.5" font-weight="800">Dennard 縮放終結</text>
 
             <!-- 曲線 1: 電晶體數量 (持續指數上升) -->
-            <path d="M 50,260 Q 200,230 280,180 T 550,40" fill="none" stroke="#10b981" stroke-width="3"/>
-            <text x="560" y="45" fill="#10b981" font-size="11" font-weight="750">電晶體數量 (摩爾定律繼續)</text>
+            <path d="M 40,260 Q 150,230 220,180 T 440,40" fill="none" stroke="#10b981" stroke-width="2.5"/>
+            <text x="445" y="45" fill="#10b981" font-size="10" font-weight="700">電晶體數 (摩爾定律)</text>
 
             <!-- 曲線 2: 時脈頻率 Clock Frequency (2005年撞牆停滯) -->
-            <path d="M 50,270 Q 180,240 280,140 L 550,135" fill="none" stroke="#38bdf8" stroke-width="3"/>
-            <text x="560" y="140" fill="#38bdf8" font-size="11" font-weight="750">主頻極限 (~3-5 GHz 停滯)</text>
+            <path d="M 40,270 Q 130,240 220,140 L 440,135" fill="none" stroke="#38bdf8" stroke-width="2.5"/>
+            <text x="445" y="140" fill="#38bdf8" font-size="10" font-weight="700">主頻極限 (~4 GHz)</text>
 
-            <!-- 曲線 3: 工作電壓 Vdd (停滯在 0.7V 無法再降) -->
-            <path d="M 50,70 L 150,110 L 280,190 L 550,210" fill="none" stroke="#f59e0b" stroke-width="3"/>
-            <text x="560" y="215" fill="#f59e0b" font-size="11" font-weight="750">工作電壓 Vdd (卡在 ~0.7V)</text>
+            <!-- 曲線 3: 工作電壓 Vdd (停滯在 0.7V) -->
+            <path d="M 40,70 L 120,110 L 220,190 L 440,210" fill="none" stroke="#f59e0b" stroke-width="2.5"/>
+            <text x="445" y="215" fill="#f59e0b" font-size="10" font-weight="700">工作電壓 (止步 ~0.7V)</text>
 
             <!-- 曲線 4: 漏電流密度 (急遽上升) -->
-            <path d="M 50,275 L 200,270 L 280,250 Q 400,200 550,90" fill="none" stroke="#ec4899" stroke-width="3" stroke-dasharray="4,4"/>
-            <text x="560" y="95" fill="#ec4899" font-size="11" font-weight="750">靜態漏電功率 (量子穿隧暴增)</text>
+            <path d="M 40,275 L 150,270 L 220,250 Q 320,200 440,90" fill="none" stroke="#ec4899" stroke-width="2.5" stroke-dasharray="4,4"/>
+            <text x="445" y="95" fill="#ec4899" font-size="10" font-weight="700">靜態漏電 (穿隧暴增)</text>
+          </g>
+
+          <!-- 右側動態功率儀表板看板 -->
+          <g transform="translate(560, 45)">
+            <rect x="0" y="0" width="180" height="280" rx="6" fill="#0f172a" stroke="${isPowerWall ? '#ef4444' : '#10b981'}" stroke-width="1.5"/>
+            <text x="90" y="24" text-anchor="middle" fill="#ffffff" font-size="11.5" font-weight="750">即時功耗組成分析</text>
+            <line x1="15" y1="34" x2="165" y2="34" stroke="#334155" stroke-width="1"/>
+
+            <!-- 功耗堆疊長條圖 -->
+            <g transform="translate(30, 50)">
+              <!-- 背景總高 120px -->
+              <rect x="0" y="0" width="40" height="120" rx="3" fill="#1e293b"/>
+              <!-- 動態功耗條 (綠色) -->
+              <rect x="0" y="${120 * (leakPercent / 100)}" width="40" height="${120 * (dynPercent / 100)}" rx="3" fill="#10b981"/>
+              <!-- 漏電功耗條 (粉紅色) -->
+              <rect x="0" y="0" width="40" height="${120 * (leakPercent / 100)}" rx="3" fill="#ec4899"/>
+              
+              <text x="50" y="${Math.max(15, 120 * (leakPercent / 100) / 2 + 4)}" fill="#ec4899" font-size="10" font-weight="700">漏電: ${leakPercent}%</text>
+              <text x="50" y="${Math.min(115, 120 * (leakPercent / 100) + 120 * (dynPercent / 100) / 2 + 4)}" fill="#10b981" font-size="10" font-weight="700">動態: ${dynPercent}%</text>
+            </g>
+
+            <!-- 熱流密度量表 -->
+            <g transform="translate(15, 190)">
+              <text x="0" y="12" fill="#94a3b8" font-size="10">晶片功率密度：</text>
+              <text x="150" y="12" text-anchor="end" fill="${isPowerWall ? '#ef4444' : 'var(--semi-teal)'}" font-size="13" font-weight="800">${powerDensity} W/cm²</text>
+              
+              <rect x="0" y="22" width="150" height="8" rx="2" fill="#1e293b"/>
+              <rect x="0" y="22" width="${Math.min(150, (powerDensity / 120) * 150)}" height="8" rx="2" fill="${isPowerWall ? '#ef4444' : '#10b981'}"/>
+              
+              <text x="75" y="48" text-anchor="middle" fill="${isPowerWall ? '#ef4444' : '#10b981'}" font-size="10" font-weight="750">
+                ${isPowerWall ? '⚠️ 撞擊熱耗牆 (Power Wall)' : '✅ 功耗密度受控'}
+              </text>
+              <text x="75" y="64" text-anchor="middle" fill="#94a3b8" font-size="9">等效頻率: ~${fGhz.toFixed(1)} GHz</text>
+            </g>
           </g>
         </svg>
       `;
 
       dashboardHtml = `
         <div class="eng-obj-metric-card">
-          <div class="eng-obj-metric-label">電壓縮放下限 (Vdd)</div>
-          <div class="eng-obj-metric-value">~ 0.65 - 0.7 V</div>
-          <div class="eng-obj-metric-note">低於此電壓電晶體無法可靠翻轉</div>
+          <div class="eng-obj-metric-label">${t.ch14_scaling_status}</div>
+          <div class="eng-obj-metric-value" style="color: ${isPowerWall ? '#ef4444' : 'var(--semi-teal)'}; font-size: 15px;">
+            ${isPowerWall ? '熱耗牆崩潰 (Breakdown)' : '健康縮放區 (Healthy)'}
+          </div>
+          <div class="eng-obj-metric-note">${isPowerWall ? '量子穿隧漏電超越動態翻轉功耗' : '電壓與尺寸協同等比微縮'}</div>
         </div>
         <div class="eng-obj-metric-card">
-          <div class="eng-obj-metric-label">CPU 單核時脈牆</div>
-          <div class="eng-obj-metric-value" style="color: var(--semi-blue-dark);">~ 5.0 GHz</div>
-          <div class="eng-obj-metric-note">散熱熱流密度達核反應爐水準</div>
+          <div class="eng-obj-metric-label">${t.ch14_power_density}</div>
+          <div class="eng-obj-metric-value" style="color: ${isPowerWall ? '#f59e0b' : 'var(--semi-blue-dark)'};">${powerDensity} W / cm²</div>
+          <div class="eng-obj-metric-note">${powerDensity > 80 ? '超越核子反應爐爐心熱通量極限' : '傳統風冷可維持安全散熱'}</div>
         </div>
         <div class="eng-obj-metric-card">
-          <div class="eng-obj-metric-label">運算力解法</div>
-          <div class="eng-obj-metric-value" style="color: var(--semi-teal);">多核心 + 專用加速器 (NPU)</div>
-          <div class="eng-obj-metric-note">轉向平行架構與先進 3D 封裝</div>
+          <div class="eng-obj-metric-label">運算力架構轉向</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-teal);">多核異質 + 3D 堆疊</div>
+          <div class="eng-obj-metric-note">由單核頻率狂飆走向平行小晶片 (Chiplet)</div>
         </div>
       `;
 
@@ -7668,6 +7862,7 @@ export function renderProcessScalingObject(container, lang = 'zh') {
             <button type="button" class="eng-obj-tab ${activeTab === 'dennard' ? 'is-active' : ''}" data-tab="dennard">${t.ch14_tab_dennard}</button>
             <button type="button" class="eng-obj-tab ${activeTab === 'density' ? 'is-active' : ''}" data-tab="density">${t.ch14_tab_density}</button>
           </div>
+          ${controlsHtml}
         </div>
 
         <div class="eng-obj-viewport">
@@ -7685,6 +7880,7 @@ export function renderProcessScalingObject(container, lang = 'zh') {
       </section>
     `;
 
+    // 綁定頁籤切換事件
     container.querySelectorAll('[data-tab]').forEach(btn => {
       btn.addEventListener('click', () => {
         activeTab = btn.getAttribute('data-tab');
@@ -7692,12 +7888,31 @@ export function renderProcessScalingObject(container, lang = 'zh') {
       });
     });
 
+    // 綁定節點切換事件 (pitch 模式)
     container.querySelectorAll('.node-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         activeNode = btn.getAttribute('data-node');
         update();
       });
     });
+
+    // 綁定 Dennard 物理滑桿事件
+    if (activeTab === 'dennard') {
+      const vSlider = container.querySelector('#vddSlider');
+      const lSlider = container.querySelector('#lgSlider');
+      if (vSlider) {
+        vSlider.addEventListener('input', e => {
+          vdd = Number(e.target.value);
+          update();
+        });
+      }
+      if (lSlider) {
+        lSlider.addEventListener('input', e => {
+          nodeLg = Number(e.target.value);
+          update();
+        });
+      }
+    }
   }
 
   update();
