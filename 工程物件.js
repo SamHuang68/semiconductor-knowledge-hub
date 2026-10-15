@@ -265,6 +265,12 @@ const TEXTS = {
     ch09_metric_metal: '表面金屬離子殘留',
     ch09_metric_boundary: '聲學邊界層厚度 δ',
     ch09_metric_watermark: '乾燥晶圓水痕殘留',
+    ch09_freq_slider: '聲波振盪頻率 Acoustic Frequency (f):',
+    ch09_size_slider: '附著微粒直徑 Particle Size (d_p):',
+    ch09_delta_label: '聲學邊界層厚度 δ_ac',
+    ch09_drag_label: '流體剪切剝離力 F_drag',
+    ch09_vdw_label: '凡德瓦爾吸附力 F_vdw',
+    ch09_ratio_label: '剝離比 F_drag / F_vdw',
     ch09_rca_desc: 'SC-1 (NH₄OH/H₂O₂/H₂O @ 70°C) 微蝕刻矽表面氧化層，使顆粒與晶圓表面同時帶強烈負 Zeta 電位，產生強大靜電排斥力防止微粒回附；DHF 咬除化學氧化層；SC-2 (HCl/H₂O₂/H₂O @ 70°C) 則將 Fe、Cu 等重金屬離子轉化為可溶性氯錯離子，徹底溶解重金屬污染。',
     ch09_megasonic_desc: '傳統流體邊界層 (Boundary Layer) 會保護微米與奈米級微粒免於沖刷。兆聲波 (Megasonic ~1MHz) 在液體中引發聲波微流 (Acoustic Microstreaming) 與受控空化，將水動力邊界層厚度劇烈壓縮至 0.5µm 以下，產生極高表面剪切應力將 10nm 顆粒硬生生扯離表面！',
     ch09_marangoni_desc: '晶圓由超純水 (UPW) 慢速拉出時注入異丙醇 (IPA) 蒸氣。IPA 溶於頂部彎月面降低液膜表面張力，形成由低表面張力區指向高表面張力區 (Marangoni 效應) 的強大向下毛細拉力，將水膜順暢拉回主液體槽中，達成瞬間乾燥且完全杜絕蒸發水痕 (Water Marks)！',
@@ -390,6 +396,11 @@ const TEXTS = {
     ch01_metric_iso: '無塵室潔淨等級',
     ch01_metric_flow: '垂直層流均勻風速',
     ch01_metric_oht_speed: 'OHT 天車巡航速度',
+    ch01_iso_slider: '無塵室潔淨等級 ISO Class (N):',
+    ch01_velocity_slider: '垂直層流風速 Laminar Velocity (v):',
+    ch01_cn_label: '0.1µm 微粒容許上限 C_n',
+    ch01_ach_label: '全室換氣率 ACH',
+    ch01_dp_label: '室內微正壓梯度 ΔP',
     ch01_cleanroom_desc: 'Class 1 (ISO 1) 無塵室是人類科技最潔淨環境：天花板密佈 FFU (風機過濾單元) 搭配 ULPA 濾網 (0.12µm 過濾效率 99.99995%)，以 0.45 m/s 垂直均勻層流將人體與機台散落的微粒瞬間壓制向下，經高架穿孔地板抽走回風，徹底消除水平氣流對流造成的微粒交叉污染！',
     ch01_amhs_desc: 'AMHS (自動化物料搬運系統) 是晶圓廠的高速空中神經：數百台 OHT 天車在天花板單軌以 300 m/min 奔馳，透過高精度 Hoist 纜繩將 25 片裝 300mm FOUP 精準下放至機台 Load Port。在微正壓高純氮氣 (N₂) 保護下，機械門吸附開啟，晶圓始終處於 mini-environment 零污染氣幕中。',
     ch01_facility_desc: '現代晶圓廠廠務是巨型生命維持系統：每日消耗數萬噸 18.2 MΩ·cm 電阻率極限超純水 (TOC < 1 ppb) 沖洗晶圓；高純特氣 (SiH₄, WF₆, Cl₂) 經雙層同軸套管傳輸；燃燒水洗局部處理器 (Point-of-Use Scrubber) 在設備排氣口第一時間裂解劇毒溫室氣體，落實綠色製造。',
@@ -792,6 +803,12 @@ const TEXTS = {
     ch09_metric_metal: 'Surface Metal Residue',
     ch09_metric_boundary: 'Acoustic Boundary Layer δ',
     ch09_metric_watermark: 'Drying Watermark Residue',
+    ch09_freq_slider: 'Acoustic Frequency (f):',
+    ch09_size_slider: 'Particle Diameter (d_p):',
+    ch09_delta_label: 'Boundary Layer δ_ac',
+    ch09_drag_label: 'Microstreaming Drag F_drag',
+    ch09_vdw_label: 'Van der Waals F_vdw',
+    ch09_ratio_label: 'Removal Ratio F_drag/F_vdw',
     ch09_rca_desc: 'SC-1 (NH₄OH/H₂O₂/H₂O @ 70°C) oxidizes and micro-etches silicon, establishing a strong negative zeta potential on both particles and substrate to prevent re-adhesion. DHF strips oxide, and SC-2 (HCl/H₂O₂/H₂O @ 70°C) chelates alkali and heavy metals into soluble chloride complexes.',
     ch09_megasonic_desc: 'Traditional hydrodynamic boundary layers shield sub-micron particles from bulk fluid drag. High-frequency megasonics (~1 MHz) induce acoustic microstreaming and controlled acoustic cavitation, compressing the boundary layer to <0.5 µm and shearing off 10nm particles.',
     ch09_marangoni_desc: 'As wafers are slowly withdrawn from ultrapure water (UPW), IPA vapor is introduced. IPA dissolution creates a surface tension gradient, generating downward Marangoni capillary force that pulls the water film smoothly back into the bath with zero watermark defects.',
@@ -917,6 +934,11 @@ const TEXTS = {
     ch01_metric_iso: 'Cleanroom Cleanliness Class',
     ch01_metric_flow: 'Laminar Airflow Velocity',
     ch01_metric_oht_speed: 'OHT Skyrail Cruise Speed',
+    ch01_iso_slider: 'Cleanroom Grade ISO Class (N):',
+    ch01_velocity_slider: 'Laminar Downflow Velocity (v):',
+    ch01_cn_label: '0.1µm Particle Limit C_n',
+    ch01_ach_label: 'Air Changes per Hour ACH',
+    ch01_dp_label: 'Positive Differential ΔP',
     ch01_cleanroom_desc: 'Class 1 (ISO 1) cleanrooms maintain the cleanest manufacturing environment engineered: ceiling Fan Filter Units (FFUs) fitted with ULPA filters (99.99995% efficiency @ 0.12µm) drive a 0.45 m/s unidirectional laminar downflow, sweeping human- and tool-generated particulates down through raised perforated floor tiles to eliminate cross-contamination.',
     ch01_amhs_desc: 'Automated Material Handling Systems (AMHS) serve as the fab’s high-speed overhead circulatory network: hundreds of OHT vehicles cruise along ceiling monorails at 300 m/min, lowering 25-wafer 300mm FOUPs onto machine load ports. High-purity N₂ purge and automated door seals maintain an unbroken mini-environment.',
     ch01_facility_desc: 'Modern fab facilities operate as vast life-support grids: circulating millions of gallons of 18.2 MΩ·cm Ultrapure Water (TOC < 1 ppb) for wafer rinses; feeding ultra-toxic pyrophoric specialty gases (SiH₄, WF₆, Cl₂) through double-walled coaxial stainless lines; and scrubbing effluent gases at point-of-use.',
@@ -4266,11 +4288,84 @@ export function renderIngotWaferObject(container, lang = 'zh') {
 export function renderWetCleanObject(container, lang = 'zh') {
   const t = TEXTS[lang] || TEXTS.zh;
   let activeTab = 'rca'; // 'rca' | 'megasonic' | 'marangoni'
+  let acousticFreq = 1.0; // MHz (0.05 ~ 2.00 MHz)
+  let particleSize = 30; // nm (15 ~ 150 nm)
 
   function update() {
     let viewportHtml = '';
     let dashboardHtml = '';
     let footerNote = '';
+    let controlsHtml = '';
+
+    // 兆聲波連續物理動力學計算
+    const nu = 0.893e-6; // 超純水運動黏滯度 (m²/s @ 25°C)
+    const freqHz = acousticFreq * 1e6;
+    const deltaAcMeters = Math.sqrt(nu / (Math.PI * freqHz));
+    const deltaAcUm = deltaAcMeters * 1e6; // 聲學邊界層厚度 (µm)
+
+    // 凡得瓦爾吸附力 F_vdw = (A_H * d_p) / (12 * z_0²)
+    const dpMeters = particleSize * 1e-9;
+    const z0 = 0.4e-9; // 0.4 nm 吸附平衡間距
+    const AH = 1.0e-19; // Hamaker 常數 (J)
+    const fVdwNewtons = (AH * dpMeters) / (12 * z0 * z0);
+    const fVdwNn = fVdwNewtons * 1e9; // 轉換為 nN
+
+    // 聲微流剪切曳力 F_drag ∝ d_p * (0.533 / δ_ac)^1.85
+    // 基準常數：在 f = 1.0 MHz (δ_ac ≈ 0.533 µm), dp = 30nm 時 F_drag ≈ 2.85 nN
+    const fDragNn = 2.85 * (particleSize / 30) * Math.pow(0.533 / deltaAcUm, 1.85);
+
+    // 剝離比 Ratio = F_drag / F_vdw
+    const removalRatio = fDragNn / fVdwNn;
+
+    // 清除率 PRE (%)
+    const prePercent = Math.min(99.9, Math.max(8.0, 100 / (1 + Math.exp(-4.5 * (removalRatio - 0.95)))));
+
+    // 空化破壞模式判定
+    const isUltrasound = acousticFreq < 0.40;
+    const isSafeMegasonic = acousticFreq >= 0.80;
+    let cavStatus = '';
+    let cavColor = '';
+    if (isUltrasound) {
+      cavStatus = lang === 'en' ? '⚠️ Destructive Transient Cavitation (>500 MPa Shock)' : '⚠️ 瞬態劇烈空化 (>500 MPa 崩塌衝擊，毀損 GAA 結構)';
+      cavColor = '#ef4444';
+    } else if (isSafeMegasonic) {
+      cavStatus = lang === 'en' ? '🛡️ Controlled Microstreaming (Zero Damage PRE >99%)' : '🛡️ 受控穩定聲微流 (零結構損傷，微粒順利剝離)';
+      cavColor = '#10b981';
+    } else {
+      cavStatus = lang === 'en' ? '⚡ Acoustic Transition Mode (Mild Oscillatory Stress)' : '⚡ 聲學過渡震盪模式 (微空化剪切震盪)';
+      cavColor = '#f59e0b';
+    }
+
+    if (activeTab === 'megasonic') {
+      controlsHtml = `
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px; margin-top: 10px; padding: 12px; background: rgba(15, 23, 42, 0.6); border-radius: 8px; border: 1px solid rgba(56, 189, 248, 0.2);">
+          <div>
+            <div style="display: flex; justify-content: space-between; font-size: 11px; margin-bottom: 4px;">
+              <span style="color: #94a3b8; font-weight: 600;">${t.ch09_freq_slider}</span>
+              <span style="color: #38bdf8; font-weight: 750; font-family: monospace;">${acousticFreq.toFixed(2)} MHz</span>
+            </div>
+            <input type="range" id="ch09FreqSlider" min="0.05" max="2.00" step="0.05" value="${acousticFreq}" style="width: 100%; accent-color: #0ea5e9; cursor: pointer;">
+            <div style="display: flex; justify-content: space-between; font-size: 9px; color: #64748b; margin-top: 2px;">
+              <span>50 kHz (超音波)</span>
+              <span>1.0 MHz (兆聲波標準)</span>
+              <span>2.0 MHz (超高頻)</span>
+            </div>
+          </div>
+          <div>
+            <div style="display: flex; justify-content: space-between; font-size: 11px; margin-bottom: 4px;">
+              <span style="color: #94a3b8; font-weight: 600;">${t.ch09_size_slider}</span>
+              <span style="color: #f59e0b; font-weight: 750; font-family: monospace;">${particleSize} nm</span>
+            </div>
+            <input type="range" id="ch09SizeSlider" min="15" max="150" step="5" value="${particleSize}" style="width: 100%; accent-color: #f59e0b; cursor: pointer;">
+            <div style="display: flex; justify-content: space-between; font-size: 9px; color: #64748b; margin-top: 2px;">
+              <span>15 nm (先進節點微粒)</span>
+              <span>60 nm</span>
+              <span>150 nm (次微米雜質)</span>
+            </div>
+          </div>
+        </div>
+      `;
+    }
 
     if (activeTab === 'rca') {
       viewportHtml = `
@@ -4367,72 +4462,110 @@ export function renderWetCleanObject(container, lang = 'zh') {
 
       footerNote = t.ch09_rca_desc;
     } else if (activeTab === 'megasonic') {
+      const blHeight = Math.min(85, Math.max(12, deltaAcUm * 30));
+      const pRadius = Math.max(5, Math.min(16, particleSize / 7));
+      const isDetached = removalRatio >= 1.0;
+
       viewportHtml = `
-        <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Megasonic Acoustic Streaming and Boundary Layer">
-          <!-- 上方兆聲波石英發振器 (Megasonic Transducer Array @ 1MHz) -->
-          <g transform="translate(100, 30)">
-            <rect x="0" y="0" width="600" height="35" rx="4" fill="#1e293b" stroke="#0ea5e9" stroke-width="2"/>
-            <text x="300" y="22" text-anchor="middle" fill="#38bdf8" font-size="12" font-weight="750">兆聲波壓電換能器陣列 (Megasonic Transducer: 0.8 ~ 2.0 MHz)</text>
+        <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Megasonic Acoustic Boundary Layer and Particle Stripping Physics">
+          <!-- 上方兆聲波石英發振器 (Megasonic Transducer Array) -->
+          <g transform="translate(80, 25)">
+            <rect x="0" y="0" width="640" height="38" rx="5" fill="#1e293b" stroke="#0ea5e9" stroke-width="2"/>
+            <text x="320" y="24" text-anchor="middle" fill="#38bdf8" font-size="12.5" font-weight="750">
+              兆聲波壓電換能器陣列 (Megasonic Transducer: f = ${acousticFreq.toFixed(2)} MHz)
+            </text>
           </g>
 
-          <!-- 高頻縱波聲壓震盪場 (Acoustic Wavefronts) -->
-          <g transform="translate(120, 80)" class="anim-acoustic">
-            ${Array.from({ length: 6 }, (_, i) => `
-              <line x1="0" y1="${i * 24 + 10}" x2="560" y2="${i * 24 + 10}" stroke="#0ea5e9" stroke-width="1.8" stroke-dasharray="6 4" opacity="${0.9 - i * 0.1}"/>
-            `).join('')}
-            <text x="280" y="80" text-anchor="middle" fill="#38bdf8" font-size="11" font-weight="600">高頻聲波壓力場與聲微流 (Acoustic Microstreaming)</text>
+          <!-- 高頻縱波聲壓震盪場 (Acoustic Wavefronts) 隨頻率密集化 -->
+          <g transform="translate(90, 75)" class="anim-acoustic">
+            ${Array.from({ length: 5 }, (_, i) => {
+              const yPos = i * 22 + 10;
+              return `<line x1="10" y1="${yPos}" x2="610" y2="${yPos}" stroke="#0ea5e9" stroke-width="1.8" stroke-dasharray="8 4" opacity="${0.9 - i * 0.12}"/>`;
+            }).join('')}
+            <text x="310" y="75" text-anchor="middle" fill="#38bdf8" font-size="11" font-weight="600">
+              高頻縱波聲壓場 · 聲微流剪切 (Acoustic Microstreaming Drag: F_drag = ${fDragNn.toFixed(2)} nN)
+            </text>
           </g>
 
-          <!-- 下方晶圓表面邊界層微觀剖面 -->
-          <g transform="translate(100, 240)">
-            <!-- 水動力邊界層對照區 -->
-            <rect x="0" y="0" width="280" height="130" fill="#0f172a" stroke="#ef4444" stroke-width="1.5" rx="4"/>
-            <text x="140" y="24" text-anchor="middle" fill="#f87171" font-size="11" font-weight="700">普通清洗水流：厚邊界層 (δ ~ 10µm)</text>
-            <!-- 邊界層死區 -->
-            <rect x="10" y="40" width="260" height="40" fill="#ef4444" opacity="0.2"/>
-            <text x="140" y="65" text-anchor="middle" fill="#f87171" font-size="10">水流停滯死區 (微粒受保護無法沖刷)</text>
-            <!-- 躲在死區內的微粒 -->
-            <circle cx="80" cy="70" r="8" fill="#f87171"/>
-            <circle cx="160" cy="72" r="6" fill="#f87171"/>
-            <circle cx="210" cy="68" r="9" fill="#f87171"/>
-            <rect x="10" y="90" width="260" height="30" fill="#334155"/>
-            <text x="140" y="110" text-anchor="middle" fill="#cbd5e1" font-size="10.5">晶圓表面 (Wafer Surface)</text>
+          <!-- 下方晶圓表面邊界層微觀物理剖面 -->
+          <g transform="translate(80, 190)">
+            <!-- 背景水動力層容器 -->
+            <rect x="0" y="0" width="640" height="190" fill="#0b1329" stroke="#334155" stroke-width="1.5" rx="5"/>
 
-            <!-- 兆聲波清洗區：壓縮邊界層 -->
-            <rect x="320" y="0" width="280" height="130" fill="#0f172a" stroke="#10b981" stroke-width="1.5" rx="4"/>
-            <text x="460" y="24" text-anchor="middle" fill="#34d399" font-size="11" font-weight="700">兆聲波清洗：壓縮邊界層 (δ &lt; 0.5µm)</text>
-            <!-- 薄邊界層 -->
-            <rect x="330" y="75" width="260" height="10" fill="#10b981" opacity="0.3"/>
-            <text x="460" y="70" text-anchor="middle" fill="#34d399" font-size="10">超薄邊界層 (產生極高剪切應力)</text>
-            <!-- 被聲流硬生生扯離的微粒 -->
-            <g transform="translate(460, 45)">
-              <circle cx="-30" cy="-5" r="7" fill="#34d399"/>
-              <path d="M -30,-5 L -10,-25" stroke="#38bdf8" stroke-width="2" marker-end="url(#arrow)"/>
-              <circle cx="30" cy="5" r="6" fill="#34d399"/>
-              <path d="M 30,5 L 50,-15" stroke="#38bdf8" stroke-width="2" marker-end="url(#arrow)"/>
-              <text x="0" y="-12" text-anchor="middle" fill="#38bdf8" font-size="10">微粒被音流剝離捲走 ↗</text>
-            </g>
-            <rect x="330" y="90" width="260" height="30" fill="#334155"/>
-            <text x="460" y="110" text-anchor="middle" fill="#cbd5e1" font-size="10.5">晶圓表面 (Wafer Surface)</text>
+            <!-- 聲學邊界層 δ_ac 動態高度矩形 -->
+            <rect x="20" y="${160 - blHeight}" width="600" height="${blHeight}" fill="#0284c7" opacity="0.32" stroke="#38bdf8" stroke-width="1.2" stroke-dasharray="4 2"/>
+            <text x="40" y="${160 - blHeight - 8}" fill="#38bdf8" font-size="11" font-weight="700">
+              聲學邊界層厚度: δ_ac = √(ν / πf) = ${deltaAcUm.toFixed(3)} µm ${acousticFreq >= 0.8 ? '(壓縮 >75%)' : '(邊界層過厚)'}
+            </text>
+
+            <!-- 晶圓矽基板 (Wafer Substrate) -->
+            <rect x="20" y="160" width="600" height="25" fill="#334155" stroke="#64748b" stroke-width="1.5" rx="3"/>
+            <text x="320" y="177" text-anchor="middle" fill="#cbd5e1" font-size="11" font-weight="700">晶圓矽表面 (Wafer Surface · Si Substrate)</text>
+
+            <!-- 微粒物理動力學行為動態渲染 -->
+            ${isDetached ? `
+              <!-- 成功脫附：微粒向上剝離飛出 -->
+              <g transform="translate(320, ${160 - blHeight - 25})" class="anim-particle-lift">
+                <circle cx="0" cy="0" r="${pRadius}" fill="#34d399" stroke="#ffffff" stroke-width="2"/>
+                <text x="0" y="4" text-anchor="middle" fill="#0f172a" font-size="9" font-weight="800">${particleSize}nm</text>
+
+                <!-- 向上剪切曳力向量 F_drag -->
+                <path d="M 0,-${pRadius} L 30,-${pRadius + 35}" stroke="#34d399" stroke-width="2.5" marker-end="url(#arrow)"/>
+                <text x="45" y="-${pRadius + 20}" fill="#34d399" font-size="11" font-weight="750">F_drag = ${fDragNn.toFixed(2)} nN ↗</text>
+
+                <!-- 凡得瓦爾吸附力向下衰退向量 -->
+                <path d="M 0,${pRadius} L 0,${pRadius + 16}" stroke="#f87171" stroke-width="1.5" stroke-dasharray="2 2"/>
+                <text x="25" y="${pRadius + 12}" fill="#f87171" font-size="9.5">F_vdw = ${fVdwNn.toFixed(2)} nN</text>
+
+                <text x="0" y="-${pRadius - 25}" text-anchor="middle" fill="#38bdf8" font-size="11.5" font-weight="750">
+                  微粒克服吸附脫附捲走 (剝離比: ${removalRatio.toFixed(2)}x · PRE: ${prePercent.toFixed(1)}%)
+                </text>
+              </g>
+            ` : `
+              <!-- 未達剝離條件：微粒困於滯留死區 -->
+              <g transform="translate(320, ${160 - pRadius})">
+                <circle cx="0" cy="0" r="${pRadius}" fill="#ef4444" stroke="#ffffff" stroke-width="2"/>
+                <text x="0" y="4" text-anchor="middle" fill="#ffffff" font-size="9" font-weight="800">${particleSize}nm</text>
+
+                <!-- 向下凡得瓦爾力主導 -->
+                <path d="M 0,${pRadius} L 0,${pRadius + 18}" stroke="#ef4444" stroke-width="2.5" marker-end="url(#arrow)"/>
+                <text x="25" y="${pRadius + 14}" fill="#ef4444" font-size="10.5" font-weight="700">F_vdw = ${fVdwNn.toFixed(2)} nN (強吸附)</text>
+
+                <!-- 微弱剪切力 -->
+                <path d="M 0,-${pRadius} L 15,-${pRadius + 10}" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="2 2"/>
+                <text x="25" y="-${pRadius}" fill="#94a3b8" font-size="9.5">F_drag = ${fDragNn.toFixed(2)} nN (受困)</text>
+
+                <text x="0" y="-${pRadius + 16}" text-anchor="middle" fill="#ef4444" font-size="11" font-weight="750">
+                  微粒深陷死區停滯層無法沖刷 (剝離比: ${removalRatio.toFixed(2)}x &lt; 1.0 · PRE: ${prePercent.toFixed(1)}%)
+                </text>
+              </g>
+            `}
+
+            <!-- 物理定律標籤浮水印 -->
+            <rect x="420" y="15" width="200" height="42" rx="4" fill="#0f172a" opacity="0.85" stroke="#38bdf8" stroke-width="1"/>
+            <text x="520" y="32" text-anchor="middle" fill="#38bdf8" font-size="10" font-weight="700">δ_ac = √(ν / πf)</text>
+            <text x="520" y="47" text-anchor="middle" fill="#cbd5e1" font-size="9.5">F_vdw = (A_H · d_p) / (12 z_0²)</text>
           </g>
         </svg>
       `;
 
       dashboardHtml = `
         <div class="eng-obj-metric-card">
-          <div class="eng-obj-metric-label">兆聲波頻率 (Frequency)</div>
-          <div class="eng-obj-metric-value" style="color: var(--semi-blue-dark);">0.8 ~ 2.0 MHz</div>
-          <div class="eng-obj-metric-note">避免超音波 (20-40kHz) 崩塌破壞奈米線結構</div>
+          <div class="eng-obj-metric-label">${t.ch09_delta_label}</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-blue-dark); font-family: monospace;">${deltaAcUm.toFixed(3)} µm</div>
+          <div class="eng-obj-metric-note">δ_ac = √(ν / πf) · 壓縮率 ${(Math.max(0, (1 - deltaAcUm / 2.39) * 100)).toFixed(0)}%</div>
         </div>
         <div class="eng-obj-metric-card">
-          <div class="eng-obj-metric-label">${t.ch09_metric_boundary}</div>
-          <div class="eng-obj-metric-value">&lt; 0.5 µm (壓縮 95%)</div>
-          <div class="eng-obj-metric-note">音流突破微觀水流滯留死區</div>
+          <div class="eng-obj-metric-label">${t.ch09_ratio_label} & PRE</div>
+          <div class="eng-obj-metric-value" style="color: ${removalRatio >= 1.0 ? 'var(--semi-teal)' : '#ef4444'}; font-family: monospace;">
+            ${removalRatio.toFixed(2)}x (${prePercent.toFixed(1)}%)
+          </div>
+          <div class="eng-obj-metric-note">F_drag: ${fDragNn.toFixed(2)} nN / F_vdw: ${fVdwNn.toFixed(2)} nN</div>
         </div>
         <div class="eng-obj-metric-card">
-          <div class="eng-obj-metric-label">微粒脫附剪切應力</div>
-          <div class="eng-obj-metric-value">&gt; 10⁴ N/m²</div>
-          <div class="eng-obj-metric-note">直接粉碎凡得瓦爾 (van der Waals) 吸附力</div>
+          <div class="eng-obj-metric-label">奈米結構空化狀態</div>
+          <div class="eng-obj-metric-value" style="color: ${cavColor}; font-size: 13.5px; font-weight: 750;">${cavStatus}</div>
+          <div class="eng-obj-metric-note">${isSafeMegasonic ? '高頻無空化損傷 · 適用 2nm GAA' : '低頻空化崩塌壓強破壞鰭片'}</div>
         </div>
       `;
 
@@ -4515,6 +4648,7 @@ export function renderWetCleanObject(container, lang = 'zh') {
             <button type="button" class="eng-obj-tab ${activeTab === 'megasonic' ? 'is-active' : ''}" data-tab="megasonic">${t.ch09_tab_megasonic}</button>
             <button type="button" class="eng-obj-tab ${activeTab === 'marangoni' ? 'is-active' : ''}" data-tab="marangoni">${t.ch09_tab_marangoni}</button>
           </div>
+          ${controlsHtml}
         </div>
 
         <div class="eng-obj-viewport">
@@ -4538,6 +4672,22 @@ export function renderWetCleanObject(container, lang = 'zh') {
         update();
       });
     });
+
+    const freqSlider = container.querySelector('#ch09FreqSlider');
+    if (freqSlider) {
+      freqSlider.addEventListener('input', (e) => {
+        acousticFreq = parseFloat(e.target.value);
+        update();
+      });
+    }
+
+    const sizeSlider = container.querySelector('#ch09SizeSlider');
+    if (sizeSlider) {
+      sizeSlider.addEventListener('input', (e) => {
+        particleSize = parseInt(e.target.value, 10);
+        update();
+      });
+    }
   }
 
   update();
@@ -6654,34 +6804,96 @@ export function renderWaferTestObject(container, lang = 'zh') {
 export function renderFabEnvironmentObject(container, lang = 'zh') {
   const t = TEXTS[lang] || TEXTS.zh;
   let activeTab = 'cleanroom'; // 'cleanroom' | 'amhs' | 'facility'
+  let isoClass = 1; // 1 to 6
+  let laminarVelocity = 0.45; // 0.20 to 0.65 m/s
 
   function update() {
     let viewportHtml = '';
     let dashboardHtml = '';
     let footerNote = '';
+    let controlsHtml = '';
+
+    // ISO 14644-1 微粒濃度極限與流體換氣率計算
+    // C_n = 10^N * (0.1 / D)^2.08
+    const c01Limit = Math.pow(10, isoClass); // 0.1 µm 微粒基準
+    const c05Limit = Math.max(1, Math.round(Math.pow(10, isoClass) * Math.pow(0.1 / 0.5, 2.08))); // 0.5 µm 微粒
+
+    // 全室換氣率 ACH = (v * 3600) / H (晶圓廠淨高 H = 3.0m)
+    const ceilingHeight = 3.0;
+    const ach = Math.round((laminarVelocity * 3600) / ceilingHeight);
+    const residenceTime = (ceilingHeight / laminarVelocity).toFixed(1);
+
+    // 微正壓梯度 ΔP (Pa) ≈ 8.0 + v * 32.0
+    const deltaP = (8.0 + laminarVelocity * 32.0).toFixed(1);
+
+    // 氣流均勻度評級
+    const isTurbulentRisk = laminarVelocity < 0.30;
+    const isOptimalFlow = laminarVelocity >= 0.40 && laminarVelocity <= 0.50;
+    let flowQuality = '';
+    let flowColor = '';
+    if (isTurbulentRisk) {
+      flowQuality = lang === 'en' ? '⚠️ Eddy Current & Cross-Contamination Risk' : '⚠️ 橫向渦流與微粒交叉污染擴散風險';
+      flowColor = '#ef4444';
+    } else if (isOptimalFlow) {
+      flowQuality = lang === 'en' ? '🛡️ Ideal Unidirectional Laminar Piston Flow' : '🛡️ 完美單向垂直活塞層流 (0.45 m/s 黃金標準)';
+      flowColor = '#10b981';
+    } else {
+      flowQuality = lang === 'en' ? '⚡ High Velocity Energy Penalty & Vibration Risk' : '⚡ 超速風切耗能與晶圓微震顫風險';
+      flowColor = '#f59e0b';
+    }
 
     if (activeTab === 'cleanroom') {
+      controlsHtml = `
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px; margin-top: 10px; padding: 12px; background: rgba(15, 23, 42, 0.6); border-radius: 8px; border: 1px solid rgba(56, 189, 248, 0.2);">
+          <div>
+            <div style="display: flex; justify-content: space-between; font-size: 11px; margin-bottom: 4px;">
+              <span style="color: #94a3b8; font-weight: 600;">${t.ch01_iso_slider}</span>
+              <span style="color: #38bdf8; font-weight: 750; font-family: monospace;">ISO Class ${isoClass}</span>
+            </div>
+            <input type="range" id="ch01IsoSlider" min="1" max="6" step="1" value="${isoClass}" style="width: 100%; accent-color: #0ea5e9; cursor: pointer;">
+            <div style="display: flex; justify-content: space-between; font-size: 9px; color: #64748b; margin-top: 2px;">
+              <span>ISO 1 (黃金級)</span>
+              <span>ISO 3 (Fed Class 1)</span>
+              <span>ISO 6 (次級廠務)</span>
+            </div>
+          </div>
+          <div>
+            <div style="display: flex; justify-content: space-between; font-size: 11px; margin-bottom: 4px;">
+              <span style="color: #94a3b8; font-weight: 600;">${t.ch01_velocity_slider}</span>
+              <span style="color: #10b981; font-weight: 750; font-family: monospace;">${laminarVelocity.toFixed(2)} m/s</span>
+            </div>
+            <input type="range" id="ch01VelocitySlider" min="0.20" max="0.65" step="0.05" value="${laminarVelocity}" style="width: 100%; accent-color: #10b981; cursor: pointer;">
+            <div style="display: flex; justify-content: space-between; font-size: 9px; color: #64748b; margin-top: 2px;">
+              <span>0.20 m/s (易產生亂流)</span>
+              <span>0.45 m/s (晶圓廠規範)</span>
+              <span>0.65 m/s (超高風速)</span>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    if (activeTab === 'cleanroom') {
+      const lineOpacity = Math.min(0.95, Math.max(0.4, laminarVelocity * 1.5));
+      const lineStrokeWidth = (laminarVelocity * 3.2).toFixed(1);
+
       viewportHtml = `
-        <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Class 1 Cleanroom Vertical Laminar Airflow">
+        <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Class 1 Cleanroom Vertical Laminar Airflow and Particle Physics">
           <!-- 上方天花板 Plenum 靜壓箱與 FFU (Fan Filter Units) -->
           <g transform="translate(60, 20)">
             <rect x="0" y="0" width="680" height="50" rx="4" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5"/>
-            <text x="340" y="25" text-anchor="middle" fill="#38bdf8" font-size="12" font-weight="750">靜壓箱與風機過濾單元 (Plenum & FFU Array)</text>
+            <text x="340" y="24" text-anchor="middle" fill="#38bdf8" font-size="12" font-weight="750">
+              靜壓箱與風機過濾單元陣列 (Plenum & FFU Array · 全面覆蓋率 95-100%)
+            </text>
             <!-- ULPA 濾網層 (0.12µm 過濾效率 99.99995%) -->
             <rect x="0" y="38" width="680" height="12" fill="#0284c7" stroke="#38bdf8" stroke-width="1"/>
-            <text x="340" y="47" text-anchor="middle" fill="#ffffff" font-size="9.5" font-weight="700">ULPA 濾網層 (Ultra-Low Penetration Air Filter: 99.99995%)</text>
+            <text x="340" y="47" text-anchor="middle" fill="#ffffff" font-size="9.5" font-weight="700">
+              ULPA 濾網層 (Ultra-Low Penetration Air Filter: 99.99995% @ 0.12µm)
+            </text>
           </g>
 
-          <!-- 潔淨室加工區 (Clean Zone)：垂直單向層流 (Laminar Downflow 0.45 m/s) -->
+          <!-- 潔淨室加工區 (Clean Zone)：垂直單向層流 (Laminar Downflow) -->
           <g transform="translate(60, 75)">
-            <!-- 垂直氣流箭頭 (Laminar Flow Streamlines) -->
-            ${Array.from({ length: 14 }, (_, i) => `
-              <g transform="translate(${i * 48 + 25}, 0)" class="anim-liquid-flow">
-                <line x1="0" y1="10" x2="0" y2="180" stroke="#38bdf8" stroke-width="1.8" stroke-dasharray="6 4" opacity="0.75"/>
-                <polygon points="-3,180 3,180 0,186" fill="#38bdf8"/>
-              </g>
-            `).join('')}
-
             <!-- 兩側回風夾道 (Return Air Chases) -->
             <rect x="0" y="0" width="30" height="200" fill="#09131b" stroke="#475569" stroke-width="1.5"/>
             <text x="15" y="100" text-anchor="middle" fill="#94a3b8" font-size="10" transform="rotate(-90 15 100)">回風夾道 ↑</text>
@@ -6689,19 +6901,53 @@ export function renderFabEnvironmentObject(container, lang = 'zh') {
             <rect x="650" y="0" width="30" height="200" fill="#09131b" stroke="#475569" stroke-width="1.5"/>
             <text x="665" y="100" text-anchor="middle" fill="#94a3b8" font-size="10" transform="rotate(90 665 100)">回風夾道 ↑</text>
 
+            <!-- 垂直氣流動態流線 (Laminar Streamlines) -->
+            ${Array.from({ length: 14 }, (_, i) => {
+              const xPos = i * 44 + 48;
+              return `
+                <g transform="translate(${xPos}, 0)" class="anim-liquid-flow">
+                  <line x1="0" y1="10" x2="0" y2="180" stroke="${isTurbulentRisk ? '#f87171' : '#38bdf8'}" stroke-width="${lineStrokeWidth}" stroke-dasharray="6 4" opacity="${lineOpacity}"/>
+                  <polygon points="-3,180 3,180 0,186" fill="${isTurbulentRisk ? '#f87171' : '#38bdf8'}"/>
+                </g>
+              `;
+            }).join('')}
+
+            ${isTurbulentRisk ? `
+              <!-- 弱風速下之橫向渦流擾動警示 -->
+              <g transform="translate(240, 40)">
+                <path d="M 0,20 Q 30,-10 60,20 T 120,20" fill="none" stroke="#ef4444" stroke-width="2.5" stroke-dasharray="4 3"/>
+                <text x="60" y="45" text-anchor="middle" fill="#ef4444" font-size="10" font-weight="750">⚠️ 低風速亂流渦旋 (微粒可能橫向回飄)</text>
+              </g>
+            ` : `
+              <!-- 均勻層流壓制無擾動 -->
+              <g transform="translate(260, 20)">
+                <rect x="0" y="0" width="220" height="24" rx="4" fill="#0f172a" opacity="0.8" stroke="#10b981" stroke-width="1"/>
+                <text x="110" y="16" text-anchor="middle" fill="#34d399" font-size="10" font-weight="700">
+                  活塞層流順暢下壓 (換氣: ${ach} 次/hr · 滯留: ${residenceTime}s)
+                </text>
+              </g>
+            `}
+
             <!-- 機台設備與無塵衣操作員 (Equipment in clean zone) -->
             <g transform="translate(180, 70)">
               <rect x="0" y="0" width="160" height="130" rx="4" fill="#0f172a" stroke="#cbd5e1" stroke-width="2"/>
-              <text x="80" y="40" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="700">微影 / 蝕刻機台</text>
-              <rect x="25" y="60" width="110" height="50" rx="3" fill="#1e293b" stroke="#38bdf8" stroke-width="1"/>
-              <text x="80" y="90" text-anchor="middle" fill="#38bdf8" font-size="11">Load Port 裝載口</text>
+              <text x="80" y="35" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="700">微影 / 蝕刻機台</text>
+              <rect x="25" y="55" width="110" height="55" rx="3" fill="#1e293b" stroke="#38bdf8" stroke-width="1"/>
+              <text x="80" y="80" text-anchor="middle" fill="#38bdf8" font-size="11" font-weight="700">Load Port 裝載口</text>
+              <text x="80" y="98" text-anchor="middle" fill="#94a3b8" font-size="9.5">微正壓 N₂ 氣幕保護</text>
             </g>
 
+            <!-- 無塵衣工程師與微粒下壓軌跡 -->
             <g transform="translate(420, 90)">
               <circle cx="20" cy="20" r="14" fill="#cbd5e1"/>
               <rect x="5" y="34" width="30" height="76" rx="4" fill="#cbd5e1"/>
               <text x="20" y="70" text-anchor="middle" fill="#0f172a" font-size="10" font-weight="800">無塵衣</text>
-              <text x="20" y="130" text-anchor="middle" fill="#cbd5e1" font-size="10">工程師</text>
+              <text x="20" y="130" text-anchor="middle" fill="#cbd5e1" font-size="10">操作人員</text>
+
+              <!-- 人體發塵微粒瞬間被垂直層流壓制向下 -->
+              <circle cx="38" cy="45" r="4" fill="#f59e0b"/>
+              <path d="M 38,45 L 38,95" stroke="#f59e0b" stroke-width="1.8" stroke-dasharray="3 2" marker-end="url(#arrow)"/>
+              <text x="50" y="75" fill="#fbbf24" font-size="9">微粒被流線下壓 ↓</text>
             </g>
           </g>
 
@@ -6711,26 +6957,41 @@ export function renderFabEnvironmentObject(container, lang = 'zh') {
             ${Array.from({ length: 34 }, (_, i) => `
               <circle cx="${i * 20 + 10}" cy="12" r="4.5" fill="#09131b"/>
             `).join('')}
-            <text x="340" y="45" text-anchor="middle" fill="#cbd5e1" font-size="11">高架穿孔地板 (Perforated Floor: 下吸微粒消除對流)</text>
+            <text x="340" y="44" text-anchor="middle" fill="#cbd5e1" font-size="11">
+              高架穿孔地板 (Perforated Floor: 抽吸微粒直入回風夾道 · 杜絕渦流反衝)
+            </text>
+          </g>
+
+          <!-- 物理定律浮水印標籤 -->
+          <g transform="translate(480, 335)">
+            <rect x="0" y="0" width="260" height="42" rx="4" fill="#0f172a" opacity="0.85" stroke="#38bdf8" stroke-width="1"/>
+            <text x="130" y="18" text-anchor="middle" fill="#38bdf8" font-size="10" font-weight="750">C_n = 10^N · (0.1 / D)^2.08</text>
+            <text x="130" y="33" text-anchor="middle" fill="#cbd5e1" font-size="9.5">ACH = (v × 3600) / H · ΔP = +${deltaP} Pa</text>
           </g>
         </svg>
       `;
 
       dashboardHtml = `
         <div class="eng-obj-metric-card">
-          <div class="eng-obj-metric-label">${t.ch01_metric_iso}</div>
-          <div class="eng-obj-metric-value" style="color: var(--semi-blue-dark);">ISO Class 1</div>
-          <div class="eng-obj-metric-note">每立方米大於 0.1µm 微粒 &lt; 10 顆</div>
+          <div class="eng-obj-metric-label">${t.ch01_cn_label}</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-blue-dark); font-family: monospace;">
+            ≤ ${c01Limit.toLocaleString()} 顆/m³
+          </div>
+          <div class="eng-obj-metric-note">ISO Class ${isoClass} (0.1µm) · 0.5µm 上限: ≤${c05Limit.toLocaleString()} 顆/m³</div>
         </div>
         <div class="eng-obj-metric-card">
-          <div class="eng-obj-metric-label">${t.ch01_metric_flow}</div>
-          <div class="eng-obj-metric-value">0.45 ± 0.05 m/s</div>
-          <div class="eng-obj-metric-note">垂直向下無亂流均勻層流壓制顆粒</div>
+          <div class="eng-obj-metric-label">${t.ch01_ach_label} & 滯留時間</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-teal); font-family: monospace;">
+            ${ach} 次/hr (${residenceTime}s)
+          </div>
+          <div class="eng-obj-metric-note">ACH = (v × 3600) / H · 全室空氣每 ${residenceTime} 秒徹底置換</div>
         </div>
         <div class="eng-obj-metric-card">
-          <div class="eng-obj-metric-label">室內微正壓 (Positive Pressure)</div>
-          <div class="eng-obj-metric-value">+15 ~ +25 Pa</div>
-          <div class="eng-obj-metric-note">開門時氣流向外噴湧，外界污染無法侵入</div>
+          <div class="eng-obj-metric-label">${t.ch01_dp_label} & 氣流狀態</div>
+          <div class="eng-obj-metric-value" style="color: ${flowColor}; font-size: 13px; font-weight: 750;">
+            +${deltaP} Pa (${flowQuality})
+          </div>
+          <div class="eng-obj-metric-note">外溢正壓屏障 · 杜絕開門空氣粉塵逆流滲透</div>
         </div>
       `;
 
@@ -6891,6 +7152,7 @@ export function renderFabEnvironmentObject(container, lang = 'zh') {
             <button type="button" class="eng-obj-tab ${activeTab === 'amhs' ? 'is-active' : ''}" data-tab="amhs">${t.ch01_tab_amhs}</button>
             <button type="button" class="eng-obj-tab ${activeTab === 'facility' ? 'is-active' : ''}" data-tab="facility">${t.ch01_tab_facility}</button>
           </div>
+          ${controlsHtml}
         </div>
 
         <div class="eng-obj-viewport">
@@ -6914,6 +7176,22 @@ export function renderFabEnvironmentObject(container, lang = 'zh') {
         update();
       });
     });
+
+    const isoSlider = container.querySelector('#ch01IsoSlider');
+    if (isoSlider) {
+      isoSlider.addEventListener('input', (e) => {
+        isoClass = parseInt(e.target.value, 10);
+        update();
+      });
+    }
+
+    const velocitySlider = container.querySelector('#ch01VelocitySlider');
+    if (velocitySlider) {
+      velocitySlider.addEventListener('input', (e) => {
+        laminarVelocity = parseFloat(e.target.value);
+        update();
+      });
+    }
   }
 
   update();

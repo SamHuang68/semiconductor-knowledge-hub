@@ -171,6 +171,7 @@ const megaBtn = c9.children.find(c => c.getAttribute('data-tab') === 'megasonic'
 if (megaBtn) {
   megaBtn.dispatchEvent({ type: 'click' });
   assert.ok(c9.innerHTML.includes('兆聲波'), '點擊兆聲波後應展示音流與邊界層');
+  assert.ok(c9.innerHTML.includes('δ_ac') || c9.innerHTML.includes('邊界層') || c9.innerHTML.includes('F_drag'), '點擊兆聲波後應展示聲學邊界層與剪切剝離力物理模型');
 }
 console.log('[PASS] Ch 09 RCA 清洗與兆聲波模型正常');
 
@@ -245,14 +246,15 @@ if (cpBtn) {
 }
 console.log('[PASS] Ch 19 WAT 與 CP 晶圓測試模型正常');
 
-console.log('--- 測試 17: Ch 01 晶圓廠無塵室與天車 OHT 切換 ---');
+console.log('--- 測試 17: Ch 01 晶圓廠無塵室與天車 AMHS 切換 ---');
 const c1 = new MockElement();
 mountEngineeringObject('ch01', c1, 'zh');
 assert.ok(c1.innerHTML.includes('垂直層流'), '預設應展示 Class 1 無塵室層流');
-const ohtBtn = c1.children.find(c => c.getAttribute('data-tab') === 'oht');
-if (ohtBtn) {
-  ohtBtn.dispatchEvent({ type: 'click' });
-  assert.ok(c1.innerHTML.includes('OHT') || c1.innerHTML.includes('空中行走軌道'), '點擊 OHT 後應展示天車搬運');
+assert.ok(c1.innerHTML.includes('ISO Class') || c1.innerHTML.includes('ACH') || c1.innerHTML.includes('換氣率'), '應展示 ISO 14644-1 微粒極限與全室換氣率物理模型');
+const amhsBtn = c1.children.find(c => c.getAttribute('data-tab') === 'amhs');
+if (amhsBtn) {
+  amhsBtn.dispatchEvent({ type: 'click' });
+  assert.ok(c1.innerHTML.includes('OHT') || c1.innerHTML.includes('空中高速單軌') || c1.innerHTML.includes('FOUP'), '點擊 AMHS 後應展示天車搬運與 FOUP');
 }
 console.log('[PASS] Ch 01 晶圓廠運作與自動化搬運模型正常');
 
