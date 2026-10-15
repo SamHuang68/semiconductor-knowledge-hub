@@ -1,7 +1,7 @@
 // 共用工程物件的 DOM 更新、事件綁定與全螢幕生命週期。
 const states = new WeakMap();
 const listeners = new WeakMap();
-
+import { prepareDiagramReading, bindDiagramReading, disposeDiagramReading, portableDiagram } from './工程圖例閱讀.js';
 export function bindEngineeringEvent(element, type, handler) {
   let entries = listeners.get(element);
   if (!entries) { entries = new Map(); listeners.set(element, entries); }
@@ -137,14 +137,14 @@ async function copySvg(container) {
     feedback.hidden = false;
     return;
   }
-  let code = svg.outerHTML;
+  let code = portableDiagram(svg).outerHTML;
   if (diagrams.length > 1) {
     const exported = container.ownerDocument.createElementNS('http://www.w3.org/2000/svg', 'svg');
     exported.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
     const width = Math.max(...diagrams.map(diagram => diagram.viewBox.baseVal.width));
     let height = 0;
     for (const diagram of diagrams) {
-      const copy = diagram.cloneNode(true);
+      const copy = portableDiagram(diagram);
       const partHeight = diagram.viewBox.baseVal.height * width / diagram.viewBox.baseVal.width;
       copy.setAttribute('x', '0');
       copy.setAttribute('y', String(height));
@@ -229,18 +229,21 @@ export function renderEngineeringCard(container, markup, labels) {
   next.querySelector('.eng-obj-header').append(feedback);
   if (state.dialog?.open) next.classList.add('is-fullscreen');
   const previous = container.querySelector('.eng-obj-card');
+  prepareDiagramReading(next, previous, state);
   if (previous) syncNode(previous,next);
   else container.replaceChildren(next);
   // 原始碼欄位是 DOM property，不依賴 HTML value 屬性。
   container.querySelector('.eng-obj-copy-feedback textarea').value = state.fallback;
   bindEngineeringEvent(container.querySelector('[data-action="fullscreen"]'),'click',() => openFullscreen(container));
   bindEngineeringEvent(container.querySelector('[data-action="copy-svg"]'),'click',() => copySvg(container));
+  bindDiagramReading(container, state, bindEngineeringEvent);
 }
 
 export function disposeEngineeringObject(container) {
   const state = states.get(container);
   if (!state) return;
   state.cleanup?.();
+  disposeDiagramReading(state);
   closeFullscreen(container,false);
   states.delete(container);
 }

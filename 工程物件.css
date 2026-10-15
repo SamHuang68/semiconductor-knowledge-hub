@@ -141,23 +141,66 @@
   position: relative;
   background: #09131b;
   width: 100%;
-  min-height: 380px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
+  min-height: 0;
+  display: block;
+  overflow: auto;
   user-select: none;
 }
 
-.eng-obj-viewport svg {
+.eng-obj-viewport > svg {
   width: 100%;
   height: auto;
-  max-height: 480px;
+  max-height: none;
+  max-width: none;
   display: block;
-  flex-shrink: 0;
+  margin-inline: auto;
 }
 
-.eng-obj-viewport:has(> svg:nth-of-type(2)) { flex-direction: column; }
+.eng-obj-viewport:not([data-view="fit"]) {
+  height: clamp(280px, 55vh, 640px);
+  overscroll-behavior: contain;
+}
+.eng-obj-viewport:not([data-view="fit"]) > svg { margin: 0; }
+
+.eng-diagram-toolbar {
+  scroll-margin-top: calc(var(--header-height, 64px) + 12px);
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 14px 24px 6px;
+  background: var(--bg-surface);
+}
+.eng-diagram-toolbar button {
+  min-height: 44px;
+  min-width: 44px;
+  padding: 8px 12px;
+  border: 1px solid var(--border-strong);
+  border-radius: 6px;
+  color: var(--text-main);
+  background: var(--bg-surface);
+  font: inherit;
+  font-size: .875rem;
+  cursor: pointer;
+}
+.eng-diagram-toolbar button[aria-pressed="true"] {
+  color: #075985;
+  border-color: #0284c7;
+  background: #e0f2fe;
+}
+.eng-diagram-toolbar button:disabled { opacity: .45; cursor: default; }
+.eng-diagram-scale { font: 600 .875rem var(--font-mono); color: var(--text-secondary); }
+.eng-diagram-help { margin: 0; padding: 8px 24px 14px; color: var(--text-secondary); font-size: .875rem; line-height: 1.65; }
+.eng-diagram-reader { padding: 18px 24px; border-top: 1px solid var(--border-strong); background: var(--bg-surface); scroll-margin-top: calc(var(--header-height, 64px) + 12px); }
+.eng-diagram-reader summary { font-size: 1rem; font-weight: 700; cursor: pointer; line-height: 1.6; scroll-margin-top: 128px; }
+.eng-diagram-reader > p { font-size: .875rem; line-height: 1.65; margin: 8px 0 18px; color: var(--text-secondary); }
+.eng-diagram-reader h4 { font-size: .875rem; line-height: 1.6; color: var(--text-secondary); margin: 18px 0 8px; overflow-wrap: anywhere; }
+.eng-diagram-text-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 24px; margin: 0; padding: 0; list-style: none; counter-reset: diagram-label; }
+.eng-diagram-text-list li { border-top: 1px solid var(--border-subtle); min-width: 0; counter-increment: diagram-label; }
+.eng-diagram-text-list button { display: flex; gap: 10px; width: 100%; min-height: 44px; padding: 10px 0; border: 0; background: transparent; color: var(--text-main); font: inherit; font-size: 1rem; line-height: 1.65; text-align: start; overflow-wrap: anywhere; cursor: pointer; }
+.eng-diagram-text-list button::before { content: counter(diagram-label, decimal-leading-zero); flex: 0 0 2ch; white-space: nowrap; font: 600 .75rem/2.2 var(--font-mono); color: var(--semi-blue-dark); }
+.eng-diagram-text-list button:hover { color: var(--semi-blue-dark); text-decoration: underline; }
+.eng-obj-viewport:focus-visible, .eng-diagram-reader summary:focus-visible { outline: 3px solid #0284c7; outline-offset: -3px; }
 
 /* 互動懸浮資訊窗與圖例 */
 .eng-obj-legend {
@@ -555,8 +598,7 @@
 }
 
 .eng-obj-card.is-fullscreen .eng-obj-viewport {
-  flex: 1;
-  min-height: 380px;
+  flex: none;
 }
 
 .eng-obj-dialog {
@@ -589,9 +631,10 @@
   .eng-obj-controls {
     padding: 10px 16px;
   }
-  .eng-obj-viewport {
-    min-height: 300px;
-  }
+  .eng-diagram-toolbar { padding-inline: 16px; }
+  .eng-diagram-help { padding-inline: 16px; }
+  .eng-diagram-reader { padding: 16px; }
+  .eng-diagram-text-list { grid-template-columns: 1fr; }
   .eng-obj-dashboard {
     padding: 12px 16px;
     grid-template-columns: 1fr;
@@ -601,9 +644,4 @@
     flex-direction: column;
     align-items: flex-start;
   }
-}
-
-@media (max-width: 560px) {
-  .eng-obj-card.is-fullscreen .eng-obj-viewport { display: block; overflow: auto; }
-  .eng-obj-card.is-fullscreen .eng-obj-viewport > svg { min-width: 640px; max-height: none; }
 }

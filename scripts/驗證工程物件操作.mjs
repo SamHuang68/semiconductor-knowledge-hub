@@ -166,7 +166,13 @@ try {
     assert.equal(await detached.evaluate(el => el.innerHTML), stopped, '離開後超過播放週期不得更新舊物件');
     await detached.dispose();
     await card.locator('[data-mode="high_na"]').click();
-    const svg = await card.locator('.eng-obj-viewport > svg').evaluate(el => el.outerHTML);
+    const svg = await card.locator('.eng-obj-viewport > svg').evaluate(el => {
+      const copy = el.cloneNode(true);
+      // 複製契約保留原圖內容；檢視器的畫面縮放不應寫進匯出尺寸。
+      copy.style.removeProperty('width'); copy.style.removeProperty('height');
+      if (!copy.getAttribute('style')) copy.removeAttribute('style');
+      return copy.outerHTML;
+    });
     await page.evaluate(() => Object.defineProperty(navigator, 'clipboard', { configurable: true, value: { writeText: async text => { window.__已複製SVG = text; } } }));
     await card.locator('[data-action="copy-svg"]').click();
     assert.equal(await page.evaluate(() => window.__已複製SVG), svg, '成功複製必須使用目前模式的 SVG');
@@ -265,15 +271,17 @@ try {
         const hit = await exit.evaluate(el => { const r = el.getBoundingClientRect(); const x = r.left + r.width / 2, y = r.top + r.height / 2; return x >= 0 && x <= innerWidth && y >= 0 && y <= innerHeight && el.contains(document.elementFromPoint(x, y)); });
         assert.equal(hit, true, '全螢幕退出按鈕必須能捲動到且不被遮住');
         if (size.width <= 560) {
+          await card.locator('[data-diagram-action="read"]').click();
           const viewport = card.locator('.eng-obj-viewport');
           const readable = await viewport.evaluate(el => {
             const width = el.querySelector('svg').getBoundingClientRect().width;
+            const minimum = Math.min(...[...el.querySelectorAll('text')].map(text => { const m = text.getScreenCTM(); return parseFloat(getComputedStyle(text).fontSize) * Math.hypot(m.a, m.b); }));
             el.scrollLeft = el.scrollWidth;
             const reachable = el.scrollLeft > 0;
             el.scrollLeft = 0;
-            return width >= 640 && reachable;
+            return width >= 640 && reachable && minimum >= 15.9;
           });
-          assert.ok(readable, '手機全螢幕圖形至少640像素且可橫向捲動閱讀');
+          assert.ok(readable, '手機全螢幕閱讀比例至少640像素、文字至少16px且可橫向捲動');
         }
         await page.screenshot({ path: path.join(evidence, `全螢幕_${id}_${size.width}x${size.height}.png`) });
         await exit.click();

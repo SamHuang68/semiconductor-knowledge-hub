@@ -1239,7 +1239,8 @@ export function renderLithoOpticalObject(container, lang = 'zh') {
             <rect x="380" y="152" width="20" height="12"/>
             <rect x="420" y="152" width="20" height="12"/>
           </g>
-          <text x="570" y="162" fill="#f59e0b" font-size="12" font-weight="700" font-family="sans-serif">${t.ch04_reticle} [4x: 112nm Pitch]</text>
+          <path d="M 550,158 L 562,158" fill="none" stroke="#f59e0b" stroke-width="1"/>
+          <text x="570" y="157" fill="#f59e0b" font-size="12" font-weight="700" font-family="sans-serif"><tspan x="570">${t.ch04_reticle} </tspan><tspan x="570" dy="18">[4x: 112nm Pitch]</tspan></text>
 
           <!-- 4. 4:1 縮小投影物鏡系統 (Projection Lens Column) -->
           <!-- 投影光錐 4:1 收束折射 -->
@@ -1258,7 +1259,7 @@ export function renderLithoOpticalObject(container, lang = 'zh') {
           <polygon points="${400 - apertureGap},290 ${400 + apertureGap},290 405,372 395,372" fill="url(#beamGrad)" opacity="0.9" filter="url(#glow)"/>
           
           <!-- 投影透鏡組說明 -->
-          <text x="180" y="245" text-anchor="end" fill="#94a3b8" font-size="11.5" font-family="sans-serif">${t.ch04_proj_lens}</text>
+          <text x="180" y="235" text-anchor="end" fill="#94a3b8" font-size="11.5" font-family="sans-serif"><tspan x="180">${t.ch04_proj_lens.replace(' (', ' </tspan><tspan x="180" dy="17">(')}</tspan></text>
           <path d="M 190,242 L 315,242" stroke="#64748b" stroke-width="1" stroke-dasharray="2 2"/>
 
           <!-- 5. 浸潤式水層 (Immersion Layer) 若為 ArFi -->
@@ -1276,7 +1277,7 @@ export function renderLithoOpticalObject(container, lang = 'zh') {
             <rect x="${405}" y="376" width="${Math.max(3, calcR / 10)}" height="6"/>
           </g>
           <text x="400" y="399" text-anchor="middle" fill="#f8fafc" font-size="12" font-weight="700" font-family="sans-serif">${t.ch04_wafer_stage} [R = ${calcR} nm]</text>
-          <text x="560" y="392" fill="#38bdf8" font-size="11.5" font-weight="700" font-family="sans-serif">Focus DOF: ±${calcDOF} nm</text>
+          <text x="560" y="430" fill="#38bdf8" font-size="11.5" font-weight="700" font-family="sans-serif">Focus DOF: ±${calcDOF} nm</text>
         </svg>
       `;
 
@@ -4243,7 +4244,8 @@ export function renderIngotWaferObject(container, lang = 'zh') {
           </g>
 
           <!-- 頂部提拉纜繩、夾頭與單晶晶棒 (Ingot with Dash Necking & Pull Motion) -->
-          <g transform="translate(400, 30)" class="anim-crystal-pull">
+          <g transform="translate(400, 30)">
+          <g class="anim-crystal-pull">
             <!-- 提拉鉬軸纜繩 (Pull Cable) -->
             <line x1="0" y1="0" x2="0" y2="40" stroke="#e2e8f0" stroke-width="3"/>
             <!-- 籽晶夾頭 (Seed Holder) -->
@@ -4266,6 +4268,7 @@ export function renderIngotWaferObject(container, lang = 'zh') {
             <text x="0" y="195" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="750">300mm 單晶矽棒 (CZ Ingot)</text>
             <text x="0" y="212" text-anchor="middle" fill="#f8fafc" font-size="10.5">&lt;100&gt; 晶向 · 逆時針旋轉 ↺</text>
             <text x="0" y="228" text-anchor="middle" fill="${regimeColor}" font-size="10" font-weight="700">提拉 V = ${pullSpeed.toFixed(2)} mm/min · G = ${tempGrad.toFixed(1)} °C/mm</text>
+          </g>
           </g>
         </svg>
       `;
@@ -7307,7 +7310,7 @@ export function renderFabEnvironmentObject(container, lang = 'zh') {
           <g transform="translate(420, 40)">
             <rect x="0" y="0" width="320" height="340" fill="#0f172a" stroke="#f59e0b" stroke-width="1.5" rx="6"/>
             <text x="160" y="32" text-anchor="middle" fill="#fbbf24" font-size="13" font-weight="750">特氣與廢氣處理 (Gas & Scrubber)</text>
-            <text x="160" y="52" text-anchor="middle" fill="#94a3b8" font-size="10.5">雙層不銹鋼同軸管 · 燃燒洗滌零排放</text>
+            <text x="160" y="52" text-anchor="middle" fill="#94a3b8" font-size="10.5"><tspan x="160">雙層不銹鋼同軸管 · </tspan><tspan x="160" dy="14">燃燒洗滌零排放</tspan></text>
 
             <g transform="translate(30, 75)">
               <!-- 雙層同軸套管剖面 (Coaxial Tubing) -->
