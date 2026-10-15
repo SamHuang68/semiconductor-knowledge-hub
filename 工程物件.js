@@ -138,6 +138,13 @@ const TEXTS = {
     ch12_ss_metric: '次臨界擺幅 (Subthreshold Swing SS)',
     ch12_drive_curr: '通道驅動電流能力 (Ion)',
     ch12_node_span: '主流應用製程節點',
+    ch12_fin_height_slider: '矽鰭片高度 Fin Height (H_fin):',
+    ch12_fin_width_slider: '矽鰭片寬度 Fin Width (W_fin):',
+    ch12_ns_width_slider: '奈米片寬度 Nanosheet Width (W_ns):',
+    ch12_ns_layers_slider: '奈米片堆疊層數 Nanosheets (N):',
+    ch12_weff_label: '等效通道導通寬度 W_eff',
+    ch12_ss_calc_label: '次臨界擺幅 SS',
+    ch12_dibl_label: '汲極引致能障降低 DIBL',
     ch12_planar_desc: 'Planar MOSFET 閘極僅覆蓋二維通道頂部 (單面控制)。通道微縮至 20nm 時，汲極電場穿透引發嚴重 DIBL (汲極引致能障降低) 與次臨界漏電，物理微縮面臨極限。',
     ch12_finfet_desc: 'FinFET 將矽通道立體「豎起」成鰭片，金屬閘極三面包覆 (Tri-Gate)，等效通道寬度 Weff = 2·Hfin + Wfin 大幅增加，通道靜電控制力倍增，漏電降低 10 倍以上。',
     ch12_gaa_desc: 'GAA Nanosheet 將垂直鰭片改為 3-4 層水平超薄矽奈米片，閘極 360° 全方位環繞穿插四周，次臨界擺幅逼近理論極限 (63 mV/dec)，搭配背面供電網路 (BSPDN) 釋放正面互連瓶頸！',
@@ -427,6 +434,11 @@ const TEXTS = {
     ch20_metric_bond_speed: '高速打線速度',
     ch20_metric_c4_pitch: '覆晶 C4 凸塊間距',
     ch20_metric_inductance: '覆晶互連寄生電感降低',
+    ch20_dnp_slider: '中性點最遠距離 DNP Radius (L):',
+    ch20_bump_height_slider: '焊錫凸塊坍塌高度 Bump Height (h):',
+    ch20_strain_label: '角落焊球熱剪切應變 Δγ',
+    ch20_fatigue_label: '熱疲勞壽命 N_f (次循環)',
+    ch20_underfill_status: '底部填膠加固狀態 (Underfill):',
     ch20_wirebond_desc: '傳統打線鍵合 (Wire Bonding) 利用陶瓷劈刀 (Capillary) 與電子打火 (EFO) 在金/銅線尾端融出圓球，在 200°C 與超音波震盪下完成第一焊點 (Ball Bond)；接著劈刀依設定軌跡走弧 (Looping)，在導線架引腳壓出第二焊點 (Wedge Bond)，速度高達每秒 18 條線，是成本最低的經典封裝工藝。',
     ch20_flipchip_desc: '覆晶技術 (Flip-Chip) 徹底消除長引線：晶片表面生長數千顆 SnAg 鉛錫/無鉛 C4 凸塊，將晶片正面翻轉 180° 直接壓在基板焊墊上，在迴焊爐 (250°C) 融化時利用熔融焊料的表面張力達成「自我對準 (Self-Alignment)」，寄生電感暴跌 85%，滿足高速高頻處理器需求。',
     ch20_underfill_desc: '覆晶晶片 (Si, CTE ~2.6 ppm/K) 與有機基板 (BT/ABF, CTE ~15 ppm/K) 熱膨脹係數差異極大，冷熱循環中焊球極易被剪切應力撕裂。在晶片邊緣點入液態環氧樹脂 (Underfill)，利用毛細作用自發鑽入 50µm 微間隙填滿，固化後硬化鎖死結構，將熱應力壽命提升 10 倍以上！',
@@ -676,6 +688,13 @@ const TEXTS = {
     ch12_ss_metric: 'Subthreshold Swing (SS)',
     ch12_drive_curr: 'Channel Drive Current (Ion)',
     ch12_node_span: 'Leading Production Nodes',
+    ch12_fin_height_slider: 'Silicon Fin Height (H_fin):',
+    ch12_fin_width_slider: 'Silicon Fin Width (W_fin):',
+    ch12_ns_width_slider: 'Nanosheet Width (W_ns):',
+    ch12_ns_layers_slider: 'Nanosheet Layers (N):',
+    ch12_weff_label: 'Effective Channel Width W_eff',
+    ch12_ss_calc_label: 'Subthreshold Swing SS',
+    ch12_dibl_label: 'Drain-Induced Barrier Lowering DIBL',
     ch12_planar_desc: 'Planar MOSFET gates only control the top 2D surface of the channel. Scaling below 20nm leads to catastrophic DIBL and punch-through leakage, halting planar scaling.',
     ch12_finfet_desc: 'FinFET stands the silicon channel up as a 3D fin, with the metal gate wrapping over 3 sides (Tri-Gate). Weff = 2·Hfin + Wfin triples drive current while slashing leakage by >10x.',
     ch12_gaa_desc: 'GAA Nanosheet divides the fin into 3-4 vertically stacked horizontal nanosheets, wrapped 360° on all 4 sides by the gate. SS approaches 63 mV/dec, paired with Backside Power Delivery (BSPDN).',
@@ -965,6 +984,11 @@ const TEXTS = {
     ch20_metric_bond_speed: 'High-Speed Bonding Rate',
     ch20_metric_c4_pitch: 'Flip-Chip C4 Bump Pitch',
     ch20_metric_inductance: 'Interconnect Parasitic Inductance Drop',
+    ch20_dnp_slider: 'Distance to Neutral Point DNP (L):',
+    ch20_bump_height_slider: 'Solder Bump Standoff (h):',
+    ch20_strain_label: 'Corner Bump Shear Strain Δγ',
+    ch20_fatigue_label: 'Fatigue Life N_f (Cycles)',
+    ch20_underfill_status: 'Underfill Reinforcement State:',
     ch20_wirebond_desc: 'Traditional wire bonding uses a ceramic capillary and Electronic Flame-Off (EFO) spark to melt a Free Air Ball (FAB) at the wire tip, welding a ball bond to the die pad under 200°C heat and ultrasonic energy. The capillary loops over to form a wedge bond on the leadframe lead, firing at up to 18 wires per second.',
     ch20_flipchip_desc: 'Flip-Chip technology eliminates peripheral wire loops: thousands of SnAg lead-free solder C4 bumps populate the die active area. The die is flipped 180° face down onto the substrate; surface tension in reflow ovens (250°C) self-aligns the die, slashing parasitic interconnect inductance by >85%.',
     ch20_underfill_desc: 'Thermal expansion mismatch between the silicon die (CTE ~2.6 ppm/K) and organic substrate (CTE ~15 ppm/K) creates extreme thermal fatigue shear on solder joints. Capillary underfill (CUF) liquid epoxy dispenses along the die edge, wick-filling the 50µm standoff gap to lock the assembly and multiply thermal cycle life by >10x.',
@@ -2286,22 +2310,102 @@ export function renderPlasmaEtchObject(container, lang = 'zh') {
 export function renderTransistor3DObject(container, lang = 'zh') {
   const t = TEXTS[lang] || TEXTS.zh;
   let activeGen = 'finfet'; // 'planar' | 'finfet' | 'gaa'
+  let finHeight = 45; // nm (30 ~ 65 nm)
+  let finWidth = 6; // nm (4 ~ 12 nm)
+  let nsWidth = 35; // nm (20 ~ 55 nm)
+  let nsLayers = 3; // 2 ~ 4 layers
 
   function update() {
     let viewportHtml = '';
     let dashboardHtml = '';
     let footerNote = '';
+    let controlsHtml = '';
+
+    // 物理量計算
+    let weffNm = 100;
+    let ssMvDec = 92.0;
+    let ionRatio = 1.0;
+    const tNs = 5; // 奈米片厚度 5nm
+
+    if (activeGen === 'planar') {
+      weffNm = 100;
+      ssMvDec = 92.5;
+      ionRatio = 1.0;
+    } else if (activeGen === 'finfet') {
+      weffNm = 2 * finHeight + finWidth;
+      // 隨鰭片變薄，靜電控制更強，SS 更低
+      ssMvDec = 62.0 + 1.1 * (finWidth - 4) + 0.08 * (65 - finHeight);
+      ionRatio = (weffNm / 100) * Math.pow(85 / ssMvDec, 1.1);
+      controlsHtml = `
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px; margin-top: 10px; padding: 12px; background: rgba(15, 23, 42, 0.6); border-radius: 8px; border: 1px solid rgba(56, 189, 248, 0.2);">
+          <div>
+            <div style="display: flex; justify-content: space-between; font-size: 11px; margin-bottom: 4px;">
+              <span style="color: #94a3b8; font-weight: 600;">${t.ch12_fin_height_slider}</span>
+              <span style="color: #38bdf8; font-weight: 750; font-family: monospace;">${finHeight} nm</span>
+            </div>
+            <input type="range" id="ch12FinHeightSlider" min="30" max="65" step="1" value="${finHeight}" style="width: 100%; accent-color: #0ea5e9; cursor: pointer;">
+            <div style="display: flex; justify-content: space-between; font-size: 9px; color: #64748b; margin-top: 2px;">
+              <span>30 nm (初期節點)</span>
+              <span>45 nm (成熟 FinFET)</span>
+              <span>65 nm (極致高深寬比)</span>
+            </div>
+          </div>
+          <div>
+            <div style="display: flex; justify-content: space-between; font-size: 11px; margin-bottom: 4px;">
+              <span style="color: #94a3b8; font-weight: 600;">${t.ch12_fin_width_slider}</span>
+              <span style="color: #10b981; font-weight: 750; font-family: monospace;">${finWidth} nm</span>
+            </div>
+            <input type="range" id="ch12FinWidthSlider" min="4" max="12" step="1" value="${finWidth}" style="width: 100%; accent-color: #10b981; cursor: pointer;">
+            <div style="display: flex; justify-content: space-between; font-size: 9px; color: #64748b; margin-top: 2px;">
+              <span>4 nm (超薄完全空乏)</span>
+              <span>6 nm (3nm FinFET)</span>
+              <span>12 nm (16nm FinFET)</span>
+            </div>
+          </div>
+        </div>
+      `;
+    } else {
+      // GAA
+      weffNm = nsLayers * (2 * nsWidth + 2 * tNs);
+      ssMvDec = 60.5 + 35.0 / nsWidth;
+      ionRatio = (weffNm / 100) * Math.pow(85 / ssMvDec, 1.25);
+      controlsHtml = `
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px; margin-top: 10px; padding: 12px; background: rgba(15, 23, 42, 0.6); border-radius: 8px; border: 1px solid rgba(56, 189, 248, 0.2);">
+          <div>
+            <div style="display: flex; justify-content: space-between; font-size: 11px; margin-bottom: 4px;">
+              <span style="color: #94a3b8; font-weight: 600;">${t.ch12_ns_width_slider}</span>
+              <span style="color: #38bdf8; font-weight: 750; font-family: monospace;">${nsWidth} nm</span>
+            </div>
+            <input type="range" id="ch12NsWidthSlider" min="20" max="55" step="1" value="${nsWidth}" style="width: 100%; accent-color: #0ea5e9; cursor: pointer;">
+            <div style="display: flex; justify-content: space-between; font-size: 9px; color: #64748b; margin-top: 2px;">
+              <span>20 nm (低功耗窄片)</span>
+              <span>35 nm (標稱 GAA)</span>
+              <span>55 nm (高驅動寬片)</span>
+            </div>
+          </div>
+          <div>
+            <div style="display: flex; justify-content: space-between; font-size: 11px; margin-bottom: 4px;">
+              <span style="color: #94a3b8; font-weight: 600;">${t.ch12_ns_layers_slider}</span>
+              <span style="color: #f59e0b; font-weight: 750; font-family: monospace;">${nsLayers} 層 (Tiers)</span>
+            </div>
+            <input type="range" id="ch12NsLayersSlider" min="2" max="4" step="1" value="${nsLayers}" style="width: 100%; accent-color: #f59e0b; cursor: pointer;">
+            <div style="display: flex; justify-content: space-between; font-size: 9px; color: #64748b; margin-top: 2px;">
+              <span>2 層 (超薄)</span>
+              <span>3 層 (主流 A16/N2)</span>
+              <span>4 層 (極限密度)</span>
+            </div>
+          </div>
+        </div>
+      `;
+    }
 
     if (activeGen === 'planar') {
       viewportHtml = `
         <svg viewBox="0 0 800 440" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="2D Planar MOSFET 3D Cutaway">
           <g transform="translate(180, 80)">
             <!-- 3D 等角投影基底 (Silicon Substrate Base) -->
-            <!-- 頂面 -->
             <polygon points="220,40 380,120 180,220 20,140" fill="#334155" stroke="#475569" stroke-width="1.2"/>
-            <!-- 正側面 -->
             <polygon points="20,140 180,220 180,260 20,180" fill="#1e293b" stroke="#334155"/>
-            <!-- 右側面 -->
             <polygon points="180,220 380,120 380,160 180,260" fill="#0f172a" stroke="#334155"/>
 
             <!-- 源極 (Source N+) 與汲極 (Drain N+) -->
@@ -2316,7 +2420,6 @@ export function renderTransistor3DObject(container, lang = 'zh') {
             <text x="175" y="145" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="700">2D 表面通道 (單面控制)</text>
 
             <!-- 閘極氧化層與金屬閘極 (Gate Electrode) -->
-            <!-- 閘極立體方塊跨在頂部表面 -->
             <polygon points="175,70 235,100 175,130 115,100" fill="#64748b" stroke="#94a3b8"/>
             <polygon points="115,100 175,130 175,145 115,115" fill="#475569" stroke="#64748b"/>
             <polygon points="175,130 235,100 235,115 175,145" fill="#334155" stroke="#64748b"/>
@@ -2325,28 +2428,37 @@ export function renderTransistor3DObject(container, lang = 'zh') {
             <!-- 漏電路徑標註 -->
             <path d="M 100,165 Q 180,210 260,135" fill="none" stroke="#ef4444" stroke-width="2" stroke-dasharray="3 3"/>
             <text x="180" y="205" text-anchor="middle" fill="#ef4444" font-size="11" font-weight="700">基底短通道穿透漏電 (DIBL Leakage)</text>
+
+            <!-- 物理標籤浮水印 -->
+            <rect x="230" y="20" width="180" height="42" rx="4" fill="#0f172a" opacity="0.85" stroke="#ef4444" stroke-width="1"/>
+            <text x="320" y="38" text-anchor="middle" fill="#f87171" font-size="10.5" font-weight="750">SS = ln(10)·(kT/q)·(1+Cd/Cox)</text>
+            <text x="320" y="52" text-anchor="middle" fill="#cbd5e1" font-size="9.5">SS ≈ ${ssMvDec.toFixed(1)} mV/dec (開關關不緊)</text>
           </g>
         </svg>
       `;
       dashboardHtml = `
         <div class="eng-obj-metric-card">
           <div class="eng-obj-metric-label">${t.ch12_gate_wrap}</div>
-          <div class="eng-obj-metric-value">1 面控制 (Top Single Gate)</div>
+          <div class="eng-obj-metric-value">1 面控制 (Top Gate)</div>
           <div class="eng-obj-metric-note">僅覆蓋二維通道頂部表面</div>
         </div>
         <div class="eng-obj-metric-card">
-          <div class="eng-obj-metric-label">${t.ch12_ss_metric}</div>
-          <div class="eng-obj-metric-value" style="color: #ef4444;">85 - 100 mV/dec</div>
-          <div class="eng-obj-metric-note">次臨界漏電高，開關關不緊</div>
+          <div class="eng-obj-metric-label">${t.ch12_ss_calc_label}</div>
+          <div class="eng-obj-metric-value" style="color: #ef4444; font-family: monospace;">${ssMvDec.toFixed(1)} mV/dec</div>
+          <div class="eng-obj-metric-note">次臨界漏電高，關態待機功耗龐大</div>
         </div>
         <div class="eng-obj-metric-card">
-          <div class="eng-obj-metric-label">${t.ch12_node_span}</div>
-          <div class="eng-obj-metric-value">28nm ~ 20nm 以前</div>
-          <div class="eng-obj-metric-note">微縮至 20nm 遭遇物理極限</div>
+          <div class="eng-obj-metric-label">${t.ch12_weff_label}</div>
+          <div class="eng-obj-metric-value">${weffNm} nm (基準 1.0x)</div>
+          <div class="eng-obj-metric-note">受限於水平二維佈局面積</div>
         </div>
       `;
       footerNote = t.ch12_planar_desc;
     } else if (activeGen === 'finfet') {
+      const finScaleH = (finHeight / 45);
+      const finVisualH = Math.round(50 * finScaleH);
+      const finVisualW = Math.max(4, Math.round(finWidth * 1.2));
+
       viewportHtml = `
         <svg viewBox="0 0 800 440" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="3D FinFET Isometric Cutaway">
           <g transform="translate(180, 80)">
@@ -2355,44 +2467,50 @@ export function renderTransistor3DObject(container, lang = 'zh') {
             <polygon points="20,150 180,230 180,270 20,190" fill="#1e293b" stroke="#334155"/>
             <polygon points="180,230 380,130 380,170 180,270" fill="#0f172a" stroke="#334155"/>
 
-            <!-- 垂直立起的立體矽鰭片 (Vertical Silicon Fin: 高度 45nm, 寬度 6nm) -->
-            <polygon points="80,100 320,70 320,150 80,180" fill="#0284c7" opacity="0.6"/>
-            <!-- 鰭片頂部與前端 -->
-            <polygon points="80,100 120,80 320,70 280,90" fill="#38bdf8"/>
-            <polygon points="80,100 80,180 120,160 120,80" fill="#0369a1"/>
+            <!-- 垂直立起的立體矽鰭片 (Vertical Silicon Fin) 依 H_fin 與 W_fin 連續變化 -->
+            <polygon points="80,${150 - finVisualH} 320,${120 - finVisualH} 320,150 80,180" fill="#0284c7" opacity="0.6"/>
+            <polygon points="80,${150 - finVisualH} ${80 + finVisualW * 4},${135 - finVisualH} 320,${120 - finVisualH} ${320 - finVisualW * 4},${135 - finVisualH}" fill="#38bdf8"/>
+            <polygon points="80,${150 - finVisualH} 80,180 ${80 + finVisualW * 4},165 ${80 + finVisualW * 4},${135 - finVisualH}" fill="#0369a1"/>
 
             <!-- 閘極立體三面包覆 (Tri-Gate: 跨坐包覆頂面、左側面、右側面) -->
-            <!-- 閘極橫跨在鰭片中間 -->
-            <polygon points="180,40 240,70 240,170 180,140" fill="#64748b" opacity="0.9" stroke="#94a3b8"/>
-            <polygon points="180,40 200,30 260,60 240,70" fill="#94a3b8"/>
-            <polygon points="240,70 260,60 260,160 240,170" fill="#475569"/>
+            <polygon points="180,${70 - finVisualH} 240,${100 - finVisualH} 240,170 180,140" fill="#64748b" opacity="0.9" stroke="#94a3b8"/>
+            <polygon points="180,${70 - finVisualH} 200,${60 - finVisualH} 260,${90 - finVisualH} 240,${100 - finVisualH}" fill="#94a3b8"/>
+            <polygon points="240,${100 - finVisualH} 260,${90 - finVisualH} 260,160 240,170" fill="#475569"/>
 
             <!-- 標註立體三面包覆 -->
-            <text x="210" y="25" text-anchor="middle" fill="#38bdf8" font-size="12" font-weight="700">Tri-Gate (三面包覆閘極)</text>
-            <path d="M 210,32 L 210,65" stroke="#38bdf8" stroke-width="1.2" stroke-dasharray="2 2"/>
+            <text x="210" y="${55 - finVisualH}" text-anchor="middle" fill="#38bdf8" font-size="12" font-weight="750">
+              Tri-Gate 三面立體包覆 (H_fin = ${finHeight}nm, W_fin = ${finWidth}nm)
+            </text>
+            <path d="M 210,${62 - finVisualH} L 210,${90 - finVisualH}" stroke="#38bdf8" stroke-width="1.2" stroke-dasharray="2 2"/>
 
             <!-- 源極與汲極磊晶塊 (Raised Epitaxial S/D) -->
             <polygon points="90,110 130,90 140,140 100,160" fill="#f59e0b"/>
-            <text x="75" y="165" fill="#f59e0b" font-size="11" font-weight="700">Source Fin</text>
+            <text x="75" y="165" fill="#f59e0b" font-size="11" font-weight="700">Source</text>
 
             <polygon points="270,75 310,55 320,105 280,125" fill="#f59e0b"/>
-            <text x="325" y="70" fill="#f59e0b" font-size="11" font-weight="700">Drain Fin</text>
+            <text x="325" y="70" fill="#f59e0b" font-size="11" font-weight="700">Drain</text>
 
-            <!-- 標註等效通道寬度 Weff = 2*Hfin + Wfin -->
-            <text x="200" y="210" text-anchor="middle" fill="#71ece3" font-size="12" font-weight="700">Weff = 2·H_fin + W_fin (大驅動電流 / 漏電驟降)</text>
+            <!-- 物理公式標籤 -->
+            <text x="200" y="215" text-anchor="middle" fill="#71ece3" font-size="11.5" font-weight="750">
+              W_eff = 2·H_fin + W_fin = 2×${finHeight} + ${finWidth} = ${weffNm} nm (${ionRatio.toFixed(2)}x 電流)
+            </text>
           </g>
         </svg>
       `;
       dashboardHtml = `
         <div class="eng-obj-metric-card">
-          <div class="eng-obj-metric-label">${t.ch12_gate_wrap}</div>
-          <div class="eng-obj-metric-value" style="color: var(--semi-blue-dark);">3 面立體包覆 (Tri-Gate)</div>
-          <div class="eng-obj-metric-note">頂部 + 兩側鰭片垂直立體控制</div>
+          <div class="eng-obj-metric-label">${t.ch12_weff_label}</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-blue-dark); font-family: monospace;">
+            ${weffNm} nm (${ionRatio.toFixed(2)}x Ion)
+          </div>
+          <div class="eng-obj-metric-note">Weff = 2·H_fin + W_fin · 驅動能力大增</div>
         </div>
         <div class="eng-obj-metric-card">
-          <div class="eng-obj-metric-label">${t.ch12_ss_metric}</div>
-          <div class="eng-obj-metric-value" style="color: var(--semi-teal);">68 - 72 mV/dec</div>
-          <div class="eng-obj-metric-note">靜電抑制力極佳，漏電流大幅下降 10 倍</div>
+          <div class="eng-obj-metric-label">${t.ch12_ss_calc_label}</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-teal); font-family: monospace;">
+            ${ssMvDec.toFixed(1)} mV/dec
+          </div>
+          <div class="eng-obj-metric-note">三面靜電抑制 · 漏電流較平面驟降 10 倍</div>
         </div>
         <div class="eng-obj-metric-card">
           <div class="eng-obj-metric-label">${t.ch12_node_span}</div>
@@ -2403,6 +2521,9 @@ export function renderTransistor3DObject(container, lang = 'zh') {
       footerNote = t.ch12_finfet_desc;
     } else {
       // 3D GAA Nanosheet
+      const nsScaleW = (nsWidth / 35);
+      const nsVisualW = Math.round(30 * nsScaleW);
+
       viewportHtml = `
         <svg viewBox="0 0 800 440" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="3D GAA Nanosheet Isometric Cutaway">
           <g transform="translate(180, 80)">
@@ -2411,25 +2532,33 @@ export function renderTransistor3DObject(container, lang = 'zh') {
             <polygon points="20,150 180,230 180,270 20,190" fill="#1e293b" stroke="#334155"/>
             <polygon points="180,230 380,130 380,170 180,270" fill="#0f172a" stroke="#334155"/>
 
-            <!-- 垂直堆疊的 3 層超薄水平奈米片通道 (Stacked Nanosheets: 厚 5nm, 寬 30nm) -->
-            <!-- 奈米片 3 (頂層) -->
-            <polygon points="90,70 310,40 330,50 110,80" fill="#38bdf8"/>
-            <!-- 奈米片 2 (中層) -->
-            <polygon points="90,95 310,65 330,75 110,105" fill="#38bdf8"/>
-            <!-- 奈米片 1 (底層) -->
-            <polygon points="90,120 310,90 330,100 110,130" fill="#38bdf8"/>
+            <!-- 垂直堆疊的 N 層水平奈米片通道 (Stacked Nanosheets: 厚 5nm, 寬 W_ns) -->
+            ${Array.from({ length: nsLayers }, (_, idx) => {
+              const yOffset = 70 + idx * 24;
+              return `
+                <g>
+                  <polygon points="90,${yOffset} ${310 + nsVisualW},${yOffset - 30} ${330 + nsVisualW},${yOffset - 20} 110,${yOffset + 10}" fill="#38bdf8"/>
+                  <text x="75" y="${yOffset + 8}" fill="#38bdf8" font-size="9" font-weight="700">Tier ${nsLayers - idx}</text>
+                </g>
+              `;
+            }).join('')}
 
             <!-- 閘極金屬 360° 全方位穿插環繞包覆 (Gate-All-Around) -->
-            <!-- 環繞每片奈米片四周 -->
-            <path d="M 180,30 L 240,60 L 240,160 L 180,130 Z" fill="#64748b" opacity="0.8" stroke="#38bdf8" stroke-width="1.2"/>
+            <path d="M 180,30 L 240,60 L 240,165 L 180,135 Z" fill="#64748b" opacity="0.8" stroke="#38bdf8" stroke-width="1.2"/>
             <!-- 穿插在奈米片間隙中的閘極金屬 -->
-            <rect x="195" y="75" width="30" height="8" fill="#10b981" opacity="0.9"/>
-            <rect x="195" y="100" width="30" height="8" fill="#10b981" opacity="0.9"/>
+            ${Array.from({ length: nsLayers }, (_, idx) => {
+              const yRect = 75 + idx * 24;
+              return `<rect x="195" y="${yRect}" width="30" height="7" fill="#10b981" opacity="0.9"/>`;
+            }).join('')}
 
-            <text x="210" y="20" text-anchor="middle" fill="#10b981" font-size="12" font-weight="700">GAA 360° 全環繞閘極 (Gate-All-Around)</text>
-            <text x="345" y="45" fill="#38bdf8" font-size="11" font-weight="700">3層堆疊奈米片</text>
+            <text x="210" y="20" text-anchor="middle" fill="#10b981" font-size="12" font-weight="750">
+              GAA 360° 全環繞閘極 (${nsLayers}層奈米片 · 寬度 ${nsWidth}nm)
+            </text>
+            <text x="355" y="45" fill="#38bdf8" font-size="11" font-weight="700">
+              W_eff = ${nsLayers}×(2×${nsWidth}+10) = ${weffNm} nm
+            </text>
 
-            <!-- 次世代背面供電網路 (Backside Power Delivery Network - BSPDN) -->
+            <!-- 次世代背面供電網路 (BSPDN) -->
             <path d="M 100,240 L 100,275 M 260,190 L 260,275" stroke="#f59e0b" stroke-width="3"/>
             <text x="180" y="260" text-anchor="middle" fill="#f59e0b" font-size="11.5" font-weight="700">背面供電網路 (BSPDN / SuperPower Rail)</text>
             <text x="180" y="278" text-anchor="middle" fill="#94a3b8" font-size="10.5">電源線移至晶圓背部 · 正面純繞訊號</text>
@@ -2438,19 +2567,23 @@ export function renderTransistor3DObject(container, lang = 'zh') {
       `;
       dashboardHtml = `
         <div class="eng-obj-metric-card">
-          <div class="eng-obj-metric-label">${t.ch12_gate_wrap}</div>
-          <div class="eng-obj-metric-value" style="color: var(--semi-teal);">4 面 360° 全環繞 (GAA)</div>
-          <div class="eng-obj-metric-note">穿插環繞多層奈米片四周，消除漏電盲區</div>
+          <div class="eng-obj-metric-label">${t.ch12_weff_label}</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-blue-dark); font-family: monospace;">
+            ${weffNm} nm (${ionRatio.toFixed(2)}x Ion)
+          </div>
+          <div class="eng-obj-metric-note">Weff = N·(2W_ns + 2T_ns) · 超高飽和電流</div>
         </div>
         <div class="eng-obj-metric-card">
-          <div class="eng-obj-metric-label">${t.ch12_ss_metric}</div>
-          <div class="eng-obj-metric-value" style="color: var(--semi-teal);">63 - 65 mV/dec</div>
-          <div class="eng-obj-metric-note">逼近熱力學極限 (60 mV/dec)，開關極度敏捷</div>
+          <div class="eng-obj-metric-label">${t.ch12_ss_calc_label}</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-teal); font-family: monospace;">
+            ${ssMvDec.toFixed(1)} mV/dec
+          </div>
+          <div class="eng-obj-metric-note">逼近理論極限 (60 mV/dec) · 零漏電死區</div>
         </div>
         <div class="eng-obj-metric-card">
           <div class="eng-obj-metric-label">${t.ch12_node_span}</div>
           <div class="eng-obj-metric-value">2nm (N2 / A16 / 18A)</div>
-          <div class="eng-obj-metric-note">結合背面供電 (BSPDN) 邁入埃米 (Angstrom) 時代</div>
+          <div class="eng-obj-metric-note">結合背面供電 (BSPDN) 邁入埃米時代</div>
         </div>
       `;
       footerNote = t.ch12_gaa_desc;
@@ -2473,6 +2606,7 @@ export function renderTransistor3DObject(container, lang = 'zh') {
             <button type="button" class="eng-obj-tab ${activeGen === 'finfet' ? 'is-active' : ''}" data-gen="finfet">${t.ch12_tab_finfet}</button>
             <button type="button" class="eng-obj-tab ${activeGen === 'gaa' ? 'is-active' : ''}" data-gen="gaa">${t.ch12_tab_gaa}</button>
           </div>
+          ${controlsHtml}
         </div>
 
         <div class="eng-obj-viewport">
@@ -2497,6 +2631,38 @@ export function renderTransistor3DObject(container, lang = 'zh') {
         update();
       });
     });
+
+    const finHSlider = container.querySelector('#ch12FinHeightSlider');
+    if (finHSlider) {
+      finHSlider.addEventListener('input', e => {
+        finHeight = parseInt(e.target.value, 10);
+        update();
+      });
+    }
+
+    const finWSlider = container.querySelector('#ch12FinWidthSlider');
+    if (finWSlider) {
+      finWSlider.addEventListener('input', e => {
+        finWidth = parseInt(e.target.value, 10);
+        update();
+      });
+    }
+
+    const nsWSlider = container.querySelector('#ch12NsWidthSlider');
+    if (nsWSlider) {
+      nsWSlider.addEventListener('input', e => {
+        nsWidth = parseInt(e.target.value, 10);
+        update();
+      });
+    }
+
+    const nsLSlider = container.querySelector('#ch12NsLayersSlider');
+    if (nsLSlider) {
+      nsLSlider.addEventListener('input', e => {
+        nsLayers = parseInt(e.target.value, 10);
+        update();
+      });
+    }
   }
 
   update();
@@ -7570,11 +7736,69 @@ export function renderSemiconductorPhysicsObject(container, lang = 'zh') {
 export function renderPackagingFlowObject(container, lang = 'zh') {
   const t = TEXTS[lang] || TEXTS.zh;
   let activeTab = 'wirebond'; // 'wirebond' | 'flipchip' | 'underfill'
+  let dnpRadiusMm = 10.0; // mm (4.0 ~ 20.0 mm)
+  let bumpHeightUm = 75; // µm (40 ~ 110 µm)
 
   function update() {
     let viewportHtml = '';
     let dashboardHtml = '';
     let footerNote = '';
+    let controlsHtml = '';
+
+    // 熱力學與 Coffin-Manson 疲勞力學計算
+    // Δα = 15.0 (BT基板) - 2.6 (矽晶片) = 12.4 ppm/K
+    const deltaAlpha = 12.4e-6;
+    const deltaTempK = 165; // -40°C ~ 125°C 溫差
+    const dnpMeters = dnpRadiusMm * 1e-3;
+    const bumpHeightMeters = bumpHeightUm * 1e-6;
+
+    // 熱膨脹失配熱位移 Δu = L · Δα · ΔT (µm)
+    const deltaUMicrons = (dnpMeters * deltaAlpha * deltaTempK) * 1e6;
+
+    // 角落焊球剪切應變 Δγ = Δu / h_bump
+    const shearStrain = (deltaUMicrons / bumpHeightUm);
+    const shearStrainPct = (shearStrain * 100).toFixed(1);
+
+    // Coffin-Manson 焊錫熱疲勞壽命 N_f = C · (Δγ)^(-m) (m ≈ 1.95)
+    // 裸焊球基準
+    const nfBare = Math.max(120, Math.round(115 * Math.pow(Math.max(0.08, shearStrain), -1.95)));
+    // Underfill 底部填膠應變衰減至 12%，壽命倍增
+    const nfUnderfill = Math.round(nfBare * 16.5);
+
+    // 車規可靠度評級 (AEC-Q100 規範通常要求 1000~3000 次熱循環)
+    const isAutoGradeBare = nfBare >= 1000;
+    const isAutoGradeUf = nfUnderfill >= 3000;
+
+    if (activeTab === 'flipchip' || activeTab === 'underfill') {
+      controlsHtml = `
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px; margin-top: 10px; padding: 12px; background: rgba(15, 23, 42, 0.6); border-radius: 8px; border: 1px solid rgba(56, 189, 248, 0.2);">
+          <div>
+            <div style="display: flex; justify-content: space-between; font-size: 11px; margin-bottom: 4px;">
+              <span style="color: #94a3b8; font-weight: 600;">${t.ch20_dnp_slider}</span>
+              <span style="color: #38bdf8; font-weight: 750; font-family: monospace;">${dnpRadiusMm.toFixed(1)} mm</span>
+            </div>
+            <input type="range" id="ch20DnpSlider" min="4.0" max="20.0" step="1.0" value="${dnpRadiusMm}" style="width: 100%; accent-color: #0ea5e9; cursor: pointer;">
+            <div style="display: flex; justify-content: space-between; font-size: 9px; color: #64748b; margin-top: 2px;">
+              <span>4 mm (小晶粒)</span>
+              <span>10 mm (中型 SoC)</span>
+              <span>20 mm (巨大 AI 運算晶粒)</span>
+            </div>
+          </div>
+          <div>
+            <div style="display: flex; justify-content: space-between; font-size: 11px; margin-bottom: 4px;">
+              <span style="color: #94a3b8; font-weight: 600;">${t.ch20_bump_height_slider}</span>
+              <span style="color: #10b981; font-weight: 750; font-family: monospace;">${bumpHeightUm} µm</span>
+            </div>
+            <input type="range" id="ch20BumpSlider" min="40" max="110" step="5" value="${bumpHeightUm}" style="width: 100%; accent-color: #10b981; cursor: pointer;">
+            <div style="display: flex; justify-content: space-between; font-size: 9px; color: #64748b; margin-top: 2px;">
+              <span>40 µm (微型高密凸塊)</span>
+              <span>75 µm (標準 C4 凸塊)</span>
+              <span>110 µm (高坍塌厚凸塊)</span>
+            </div>
+          </div>
+        </div>
+      `;
+    }
 
     if (activeTab === 'wirebond') {
       viewportHtml = `
@@ -7602,11 +7826,8 @@ export function renderPackagingFlowObject(container, lang = 'zh') {
           </g>
 
           <!-- 陶瓷劈刀 (Capillary) 正在打第一焊點與金線走弧 (Wire Looping) -->
-          <!-- 左側已打好的金線 (Completed Wire Loop) -->
           <path d="M 292,200 Q 230,110 160,270" fill="none" stroke="#fbbf24" stroke-width="3"/>
-          <!-- 第一焊點球焊 (Ball Bond) -->
           <ellipse cx="292" cy="202" rx="7" ry="4" fill="#f59e0b"/>
-          <!-- 第二焊點楔焊 (Wedge Bond) -->
           <rect x="150" y="268" width="12" height="4" fill="#f59e0b"/>
           <text x="190" y="140" fill="#fbbf24" font-size="11" font-weight="700">金線走弧 (Looping)</text>
 
@@ -7615,9 +7836,7 @@ export function renderPackagingFlowObject(container, lang = 'zh') {
             <polygon points="0,0 30,0 20,120 10,120" fill="#e2e8f0" stroke="#64748b" stroke-width="1.5"/>
             <text x="50" y="50" fill="#ffffff" font-size="11" font-weight="700">陶瓷劈刀 (Capillary)</text>
             <text x="50" y="68" fill="#94a3b8" font-size="9.5">超音波震盪 (120 kHz) + 200°C 熱壓</text>
-            <!-- 穿出劈刀的金線 -->
             <line x1="15" y1="0" x2="15" y2="155" stroke="#fbbf24" stroke-width="2.5"/>
-            <!-- 劈刀下方的金屬球 (FAB: Free Air Ball) -->
             <circle cx="15" cy="155" r="7" fill="#f59e0b"/>
             <text x="35" y="155" fill="#f59e0b" font-size="10" font-weight="700">打火球 (FAB)</text>
           </g>
@@ -7644,117 +7863,179 @@ export function renderPackagingFlowObject(container, lang = 'zh') {
 
       footerNote = t.ch20_wirebond_desc;
     } else if (activeTab === 'flipchip') {
+      const shearOffsetPx = Math.min(22, Math.round(shearStrain * 28));
+
       viewportHtml = `
-        <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Flip-Chip C4 Bumps Self-Alignment and Reflow">
-          <!-- 上方晶片主體 (Flip-Chip Die: 正面翻轉朝下 Face Down) -->
-          <g transform="translate(150, 60)">
-            <rect x="0" y="0" width="500" height="90" rx="4" fill="#0f172a" stroke="#38bdf8" stroke-width="2"/>
-            <text x="250" y="45" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="750">覆晶晶片 (Flip-Chip Die: 180° 翻轉朝下)</text>
-            <text x="250" y="68" text-anchor="middle" fill="#38bdf8" font-size="11">無周邊引線 · 全晶片表面二維矩陣佈凸塊 (Area Array)</text>
+        <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Flip-Chip C4 Bumps and Thermo-Mechanical Shear Stress">
+          <!-- 上方晶片主體 (Flip-Chip Die) -->
+          <g transform="translate(120, 50)">
+            <rect x="0" y="0" width="560" height="75" rx="4" fill="#0f172a" stroke="#38bdf8" stroke-width="2"/>
+            <text x="280" y="36" text-anchor="middle" fill="#ffffff" font-size="13.5" font-weight="750">
+              覆晶晶片 (Silicon Die: CTE α_si = 2.6 ppm/K · DNP 半徑 L = ${dnpRadiusMm.toFixed(1)} mm)
+            </text>
+            <text x="280" y="58" text-anchor="middle" fill="#38bdf8" font-size="11">
+              中性點在中心 · 熱失配最大剪切位移發生於最遠角落 (Δu = ${deltaUMicrons.toFixed(2)} µm)
+            </text>
           </g>
 
-          <!-- 中段：C4 焊錫凸塊陣列 (Controlled Collapse Chip Connection SnAg Bumps) -->
-          <g transform="translate(180, 150)">
-            ${Array.from({ length: 11 }, (_, i) => `
-              <g transform="translate(${i * 44 + 5}, 0)">
-                <!-- 凸塊球形 (Solder Bump) -->
-                <ellipse cx="0" cy="25" rx="14" ry="12" fill="#cbd5e1" stroke="#f59e0b" stroke-width="2"/>
-                <text x="0" y="29" text-anchor="middle" fill="#0f172a" font-size="8" font-weight="800">C4</text>
-              </g>
-            `).join('')}
-            <text x="220" y="55" text-anchor="middle" fill="#fbbf24" font-size="11" font-weight="750">C4 焊錫凸塊 (間距 150µm · 250°C 迴焊表面張力自我對準)</text>
+          <!-- 中段：C4 焊錫凸塊陣列與角落焊球剪切變形剖面 -->
+          <g transform="translate(120, 125)">
+            <!-- 內側常態焊球 (中心應變小) -->
+            ${Array.from({ length: 7 }, (_, i) => {
+              const xPos = i * 48 + 140;
+              return `
+                <g transform="translate(${xPos}, 0)">
+                  <ellipse cx="0" cy="35" rx="13" ry="12" fill="#cbd5e1" stroke="#64748b" stroke-width="1.5"/>
+                  <text x="0" y="38" text-anchor="middle" fill="#0f172a" font-size="7.5" font-weight="800">C4</text>
+                </g>
+              `;
+            }).join('')}
+
+            <!-- 最外側角落焊球 (承受最大剪切變形 Δγ) -->
+            <g transform="translate(40, 0)">
+              <!-- 變形前虛線輪廓 -->
+              <ellipse cx="0" cy="35" rx="14" ry="13" fill="none" stroke="#64748b" stroke-width="1" stroke-dasharray="2 2"/>
+              <!-- 熱剪切偏斜實體 (Sheared Solder Joint) -->
+              <path d="M -12,10 L ${12 - shearOffsetPx},10 Q ${16 - shearOffsetPx},35 ${8},60 L -12,60 Z" fill="#ef4444" opacity="0.85" stroke="#f87171" stroke-width="1.8"/>
+              <text x="-4" y="38" text-anchor="middle" fill="#ffffff" font-size="8.5" font-weight="800">Δγ</text>
+              <text x="0" y="80" text-anchor="middle" fill="#f87171" font-size="10" font-weight="750">
+                角落最大剪切: ${shearStrainPct}%
+              </text>
+            </g>
+
+            <g transform="translate(520, 0)">
+              <ellipse cx="0" cy="35" rx="14" ry="13" fill="none" stroke="#64748b" stroke-width="1" stroke-dasharray="2 2"/>
+              <path d="M -12,10 L ${12 + shearOffsetPx},10 Q ${16 + shearOffsetPx},35 ${8},60 L -12,60 Z" fill="#ef4444" opacity="0.85" stroke="#f87171" stroke-width="1.8"/>
+              <text x="4" y="38" text-anchor="middle" fill="#ffffff" font-size="8.5" font-weight="800">Δγ</text>
+              <text x="0" y="80" text-anchor="middle" fill="#f87171" font-size="10" font-weight="750">
+                角落最大剪切: ${shearStrainPct}%
+              </text>
+            </g>
           </g>
 
-          <!-- 下方封裝基板 (Package Substrate with Copper Pads) -->
-          <g transform="translate(120, 220)">
-            <!-- 表面接腳焊墊 (Substrate Pads) -->
-            ${Array.from({ length: 11 }, (_, i) => `
-              <rect x="${i * 44 + 65}" y="0" width="28" height="12" rx="2" fill="#f59e0b"/>
-            `).join('')}
+          <!-- 下方有機封裝基板 (Organic Substrate) -->
+          <g transform="translate(100, 220)">
+            <rect x="0" y="10" width="600" height="70" rx="4" fill="#1e293b" stroke="#cbd5e1" stroke-width="1.5"/>
+            <text x="300" y="45" text-anchor="middle" fill="#cbd5e1" font-size="13" font-weight="750">
+              高密度有機封裝基板 (Organic BT/ABF: CTE α_sub = 15.0 ppm/K)
+            </text>
+            <text x="300" y="65" text-anchor="middle" fill="#f59e0b" font-size="10.5">
+              熱膨脹差 Δα = 12.4 ppm/K · 高溫膨脹量遠大於矽晶片
+            </text>
+          </g>
 
-            <!-- 有機 BT/ABF 基板主體 (Package Substrate) -->
-            <rect x="0" y="12" width="560" height="70" rx="4" fill="#1e293b" stroke="#cbd5e1" stroke-width="1.5"/>
-            <text x="280" y="52" text-anchor="middle" fill="#cbd5e1" font-size="13" font-weight="750">高密度有機封裝基板 (Package Substrate)</text>
+          <!-- 物理定律標籤浮水印 -->
+          <g transform="translate(180, 315)">
+            <rect x="0" y="0" width="440" height="45" rx="4" fill="#0f172a" opacity="0.85" stroke="#ef4444" stroke-width="1"/>
+            <text x="220" y="20" text-anchor="middle" fill="#f87171" font-size="11" font-weight="750">
+              Coffin-Manson 熱疲勞定律: N_f = C · (Δγ)^(-1.95)
+            </text>
+            <text x="220" y="36" text-anchor="middle" fill="#cbd5e1" font-size="9.5">
+              無底部填膠壽命僅: ~${nfBare} 次循環 ${isAutoGradeBare ? '(合格)' : '(⚠️ 未達車規 1000 次門檻，極易脆斷)'}
+            </text>
           </g>
         </svg>
       `;
 
       dashboardHtml = `
         <div class="eng-obj-metric-card">
-          <div class="eng-obj-metric-label">${t.ch20_metric_c4_pitch}</div>
-          <div class="eng-obj-metric-value" style="color: var(--semi-blue-dark);">130 ~ 150 µm</div>
-          <div class="eng-obj-metric-note">面積陣列 (Area Array) 提供數千個 I/O</div>
+          <div class="eng-obj-metric-label">${t.ch20_strain_label}</div>
+          <div class="eng-obj-metric-value" style="color: #ef4444; font-family: monospace;">
+            ${shearStrainPct}% (Δu: ${deltaUMicrons.toFixed(2)} µm)
+          </div>
+          <div class="eng-obj-metric-note">Δγ = (L · Δα · ΔT) / h · 角落應力集中</div>
         </div>
         <div class="eng-obj-metric-card">
-          <div class="eng-obj-metric-label">${t.ch20_metric_inductance}</div>
-          <div class="eng-obj-metric-value">&gt; 85% 降幅</div>
-          <div class="eng-obj-metric-note">極短焊球互連大幅壓制信號雜訊與壓降</div>
+          <div class="eng-obj-metric-label">${t.ch20_fatigue_label}</div>
+          <div class="eng-obj-metric-value" style="color: ${isAutoGradeBare ? 'var(--semi-teal)' : '#ef4444'}; font-family: monospace;">
+            ~${nfBare} 次循環
+          </div>
+          <div class="eng-obj-metric-note">無 Underfill 保護 · 焊球頸部疲勞微裂紋</div>
         </div>
         <div class="eng-obj-metric-card">
-          <div class="eng-obj-metric-label">迴焊自我對準 (Self-Alignment)</div>
-          <div class="eng-obj-metric-value">自動修正 &plusmn;15µm</div>
-          <div class="eng-obj-metric-note">液態錫球表面張力拉動晶片精確歸位</div>
+          <div class="eng-obj-metric-label">車規可靠度評級 (AEC-Q100)</div>
+          <div class="eng-obj-metric-value" style="color: ${isAutoGradeBare ? 'var(--semi-teal)' : '#ef4444'}; font-size: 13.5px; font-weight: 750;">
+            ${isAutoGradeBare ? 'Grade 1 合格 (小型晶粒)' : '⚠️ 不合格 (高溫疲勞斷裂風險)'}
+          </div>
+          <div class="eng-obj-metric-note">強烈建議施加 Capillary Underfill 固化</div>
         </div>
       `;
 
       footerNote = t.ch20_flipchip_desc;
     } else if (activeTab === 'underfill') {
       viewportHtml = `
-        <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Capillary Underfill Epoxy Flow Kinetics">
+        <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Capillary Underfill Epoxy Flow Kinetics and Stress Redistribution">
           <!-- 晶片與基板間隙 (Die to Substrate Gap) -->
-          <g transform="translate(120, 60)">
+          <g transform="translate(100, 50)">
             <!-- 覆晶晶片 (Top Die) -->
-            <rect x="80" y="0" width="440" height="70" rx="3" fill="#0f172a" stroke="#38bdf8" stroke-width="1.5"/>
-            <text x="300" y="40" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="750">矽晶片 (Si: CTE = 2.6 ppm/K)</text>
+            <rect x="60" y="0" width="480" height="70" rx="3" fill="#0f172a" stroke="#38bdf8" stroke-width="1.5"/>
+            <text x="300" y="35" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="750">
+              矽晶片 (Silicon Die: DNP 半徑 L = ${dnpRadiusMm.toFixed(1)} mm)
+            </text>
+            <text x="300" y="54" text-anchor="middle" fill="#34d399" font-size="10.5">
+              底部填膠硬化鎖死結構 · 焊球剪切應變由 ${shearStrainPct}% 驟降至 ${(shearStrain * 12).toFixed(1)}%
+            </text>
 
             <!-- C4 焊錫球陣列 -->
             ${Array.from({ length: 9 }, (_, i) => `
-              <circle cx="${i * 44 + 120}" cy="100" r="12" fill="#cbd5e1" stroke="#475569" stroke-width="1.5"/>
+              <circle cx="${i * 48 + 110}" cy="100" r="12" fill="#cbd5e1" stroke="#475569" stroke-width="1.5"/>
             `).join('')}
 
-            <!-- 毛細作用鑽入的底部填充膠 (Capillary Underfill Epoxy Flow) -->
-            <rect x="80" y="70" width="320" height="60" fill="#10b981" opacity="0.35"/>
-            <!-- 推進中的膠水彎月面 (Flow Front) -->
-            <path d="M 400,70 Q 420,100 400,130" fill="#10b981" opacity="0.6"/>
-            <text x="240" y="105" text-anchor="middle" fill="#34d399" font-size="11" font-weight="800">毛細流動充填中 (Capillary Wicking ⇨)</text>
+            <!-- 毛細作用充填完畢之綠色環氧樹脂膠體 (Fully Wetted Underfill Matrix) -->
+            <rect x="60" y="70" width="480" height="60" fill="#10b981" opacity="0.45"/>
+            <text x="300" y="105" text-anchor="middle" fill="#34d399" font-size="11.5" font-weight="800">
+              環氧樹脂 100% 固化充填 · 應力分散至整體結構 (Stress Redistribution)
+            </text>
 
             <!-- 點膠針嘴 (Dispense Needle at edge) -->
-            <g transform="translate(60, 20)">
+            <g transform="translate(40, 20)">
               <rect x="0" y="0" width="12" height="60" fill="#94a3b8"/>
               <path d="M 0,60 L 12,60 L 6,75 Z" fill="#94a3b8"/>
               <circle cx="6" cy="82" r="5" fill="#10b981"/>
-              <text x="-10" y="40" text-anchor="end" fill="#34d399" font-size="10.5" font-weight="750">點膠針頭 ⇦</text>
+              <text x="-10" y="40" text-anchor="end" fill="#34d399" font-size="10.5" font-weight="750">點膠噴嘴 ⇦</text>
             </g>
 
             <!-- 下方有機封裝基板 (Organic Substrate) -->
             <rect x="0" y="130" width="600" height="70" rx="3" fill="#1e293b" stroke="#cbd5e1" stroke-width="1.5"/>
-            <text x="300" y="170" text-anchor="middle" fill="#cbd5e1" font-size="13" font-weight="750">有機基板 (BT/ABF: CTE = 15.0 ppm/K)</text>
+            <text x="300" y="170" text-anchor="middle" fill="#cbd5e1" font-size="13" font-weight="750">
+              有機基板 (BT/ABF: CTE = 15.0 ppm/K)
+            </text>
           </g>
 
-          <!-- 應力分析說明 -->
-          <g transform="translate(160, 310)">
-            <rect x="0" y="0" width="480" height="55" rx="4" fill="#0f172a" stroke="#10b981" stroke-width="1"/>
-            <text x="240" y="24" text-anchor="middle" fill="#34d399" font-size="11.5" font-weight="750">消除熱膨脹係數不匹配 (ΔCTE ~ 12.4 ppm/K) 引發的熱疲勞</text>
-            <text x="240" y="42" text-anchor="middle" fill="#cbd5e1" font-size="10.5">環氧樹脂硬化後固鎖焊球，熱應力壽命倍增 10 倍以上！</text>
+          <!-- 應力分析說明與 Coffin-Manson 壽命對比 -->
+          <g transform="translate(140, 290)">
+            <rect x="0" y="0" width="520" height="65" rx="4" fill="#0f172a" stroke="#10b981" stroke-width="1.5"/>
+            <text x="260" y="24" text-anchor="middle" fill="#34d399" font-size="12" font-weight="750">
+              消除熱失配剪切集中 · 熱疲勞壽命從 ${nfBare} 狂增至 ${nfUnderfill.toLocaleString()} 次循環！
+            </text>
+            <text x="260" y="46" text-anchor="middle" fill="#cbd5e1" font-size="10.5">
+              高分子交聯硬化 (150°C 固化) · 焊錫凸塊抗疲勞能力提升 16.5 倍，全數通過車規 AEC-Q100！
+            </text>
           </g>
         </svg>
       `;
 
       dashboardHtml = `
         <div class="eng-obj-metric-card">
-          <div class="eng-obj-metric-label">毛細填充間隙 (Standoff Gap)</div>
-          <div class="eng-obj-metric-value" style="color: var(--semi-teal);">40 ~ 60 µm</div>
-          <div class="eng-obj-metric-note">表面張力自然拉曳高流動性環氧樹脂</div>
+          <div class="eng-obj-metric-label">充填前 vs 充填後應變</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-teal); font-family: monospace;">
+            ${shearStrainPct}% ⇨ ${(shearStrain * 12).toFixed(1)}%
+          </div>
+          <div class="eng-obj-metric-note">局部剪切應力下降 88%</div>
         </div>
         <div class="eng-obj-metric-card">
-          <div class="eng-obj-metric-label">熱循環壽命增幅</div>
-          <div class="eng-obj-metric-value">&gt; 10 倍 (-55°C ~ 125°C)</div>
-          <div class="eng-obj-metric-note">杜絕焊錫凸塊在冷熱交替中剪切斷裂</div>
+          <div class="eng-obj-metric-label">${t.ch20_fatigue_label} (Underfill)</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-teal); font-family: monospace;">
+            &gt; ${nfUnderfill.toLocaleString()} 次循環
+          </div>
+          <div class="eng-obj-metric-note">相較無填膠激增 16.5 倍壽命</div>
         </div>
         <div class="eng-obj-metric-card">
-          <div class="eng-obj-metric-label">固化烘烤溫度</div>
-          <div class="eng-obj-metric-value">150°C · 90 min</div>
-          <div class="eng-obj-metric-note">高分子完全交聯形成堅固保護鈍化層</div>
+          <div class="eng-obj-metric-label">車規可靠度評級 (AEC-Q100)</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-teal); font-size: 13.5px; font-weight: 750;">
+            🛡️ Grade 0 頂級認證 (-40°C~150°C)
+          </div>
+          <div class="eng-obj-metric-note">具備車載與極限工控長期耐久性</div>
         </div>
       `;
 
@@ -7778,6 +8059,7 @@ export function renderPackagingFlowObject(container, lang = 'zh') {
             <button type="button" class="eng-obj-tab ${activeTab === 'flipchip' ? 'is-active' : ''}" data-tab="flipchip">${t.ch20_tab_flipchip}</button>
             <button type="button" class="eng-obj-tab ${activeTab === 'underfill' ? 'is-active' : ''}" data-tab="underfill">${t.ch20_tab_underfill}</button>
           </div>
+          ${controlsHtml}
         </div>
 
         <div class="eng-obj-viewport">
@@ -7801,6 +8083,22 @@ export function renderPackagingFlowObject(container, lang = 'zh') {
         update();
       });
     });
+
+    const dnpSlider = container.querySelector('#ch20DnpSlider');
+    if (dnpSlider) {
+      dnpSlider.addEventListener('input', e => {
+        dnpRadiusMm = parseFloat(e.target.value);
+        update();
+      });
+    }
+
+    const bumpSlider = container.querySelector('#ch20BumpSlider');
+    if (bumpSlider) {
+      bumpSlider.addEventListener('input', e => {
+        bumpHeightUm = parseInt(e.target.value, 10);
+        update();
+      });
+    }
   }
 
   update();

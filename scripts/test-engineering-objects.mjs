@@ -100,10 +100,12 @@ console.log('--- 測試 4: Ch 12 電晶體演進切換 ---');
 const c12 = new MockElement();
 mountEngineeringObject('ch12', c12, 'zh');
 assert.ok(c12.innerHTML.includes('FinFET'), '預設應展示 FinFET');
+assert.ok(c12.innerHTML.includes('Weff') || c12.innerHTML.includes('等效通道') || c12.innerHTML.includes('H_fin'), '應展示 FinFET 等效通道寬度物理方程式');
 const gaaBtn = c12.children.find(c => c.getAttribute('data-gen') === 'gaa');
 if (gaaBtn) {
   gaaBtn.dispatchEvent({ type: 'click' });
   assert.ok(c12.innerHTML.includes('GAA 360°'), '點擊 GAA 後應展示 GAA 全環繞');
+  assert.ok(c12.innerHTML.includes('奈米片') || c12.innerHTML.includes('Weff'), '點擊 GAA 後應展示多層奈米片與次臨界擺幅物理');
 }
 console.log('[PASS] Ch 12 電晶體 3D 等角演進模型正常');
 
@@ -277,6 +279,7 @@ const flipBtn = c20.children.find(c => c.getAttribute('data-tab') === 'flipchip'
 if (flipBtn) {
   flipBtn.dispatchEvent({ type: 'click' });
   assert.ok(c20.innerHTML.includes('C4 錫球') || c20.innerHTML.includes('覆晶'), '點擊覆晶後應展示覆晶封裝');
+  assert.ok(c20.innerHTML.includes('Coffin-Manson') || c20.innerHTML.includes('剪切') || c20.innerHTML.includes('Δγ'), '點擊覆晶後應展示 Coffin-Manson 焊錫熱疲勞連續物理方程式');
 }
 console.log('[PASS] Ch 20 傳統封裝到覆晶模型正常');
 
