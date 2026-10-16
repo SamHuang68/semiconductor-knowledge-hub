@@ -54,7 +54,7 @@ import { mountEngineeringObject } from './工程物件.js';
       explore_open: '開啟互動情境 ↗',
       no_matching_chapters: '查無相符章節',
       footer_attribution: `本專案基於開源教材 <a href="https://github.com/chenwei810/Semiconductor_Manufacturing_Introduction" target="_blank" rel="noopener">chenwei810/Semiconductor_Manufacturing_Introduction</a> （採 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hant" target="_blank" rel="noopener">CC BY-NC-SA 4.0 創用 CC 姓名標示-非商業性-相同方式分享</a> 授權）重製與架構升級。`,
-      footer_desc: '涵蓋 25 章從沙子到晶片的完整晶圓製造旅程 · 245 筆核心術語與現場實務行話 · 中英雙語無縫支援 · 純前端極速架構 · 零中系依賴 · 版本 1.8.3',
+      footer_desc: '涵蓋 25 章從沙子到晶片的完整晶圓製造旅程 · 245 筆核心術語與現場實務行話 · 中英雙語無縫支援 · 純前端極速架構 · 零中系依賴 · 版本 1.8.4',
       atlas_title: '晶圓廠 12 大核心製程全景圖譜 (Fab Flow Atlas)',
       btn_close: '關閉 (Esc)',
       jargon_title: '晶圓廠現場行話與術語字典',
@@ -137,7 +137,7 @@ import { mountEngineeringObject } from './工程物件.js';
       explore_open: 'Open Scenario ↗',
       no_matching_chapters: 'No matching chapters found',
       footer_attribution: `Adapted from the open-source book <a href="https://github.com/chenwei810/Semiconductor_Manufacturing_Introduction" target="_blank" rel="noopener">chenwei810/Semiconductor_Manufacturing_Introduction</a> licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a>.`,
-      footer_desc: 'Comprehensive 25-chapter wafer fabrication guide from sand to chip · 245 core terms & 43 fab jargon · Native bilingual support · Zero Chinese-origin dependencies · v1.8.3',
+      footer_desc: 'Comprehensive 25-chapter wafer fabrication guide from sand to chip · 245 core terms & 43 fab jargon · Native bilingual support · Zero Chinese-origin dependencies · v1.8.4',
       atlas_title: '12 Core Fab Flow Atlas',
       btn_close: 'Close (Esc)',
       jargon_title: 'Fab Jargon & Terminology Dictionary',
@@ -661,73 +661,177 @@ import { mountEngineeringObject } from './工程物件.js';
     const badgeEl = document.getElementById('atlasStreamStepBadge');
     const titleEl = document.getElementById('atlasStreamTitleText');
 
+    if (titleEl) {
+      titleEl.textContent = isEn
+        ? 'Wafer Multi-Layer Cross-Section Evolution Stream'
+        : '晶圓多層微觀橫截面動態演變流 (Wafer Cross-Section Evolution)';
+    }
+    if (badgeEl) {
+      badgeEl.textContent = isEn
+        ? 'Hover or focus cards to preview cross-section evolution'
+        : '滑鼠懸停卡片即時預覽剖面演變';
+    }
+
     function renderAtlasWaferCrossSection(stepNum = 1) {
       if (!waferSvgEl) return;
       const progress = Math.max(1, Math.min(12, stepNum));
-      
-      let layersHtml = '';
-      // 基底矽晶圓
-      layersHtml += `<rect x="60" y="70" width="880" height="35" rx="3" fill="#1e293b" stroke="#475569" stroke-width="1.5"/>`;
-      layersHtml += `<text x="500" y="92" text-anchor="middle" fill="#94a3b8" font-size="11" font-family="sans-serif">單晶矽基底 (Si Substrate)</text>`;
+
+      let layersHtml = `
+        <defs>
+          <linearGradient id="atlasSiGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#334155"/>
+            <stop offset="100%" stop-color="#0f172a"/>
+          </linearGradient>
+          <linearGradient id="atlasOxideGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#0284c7" stop-opacity="0.85"/>
+            <stop offset="50%" stop-color="#38bdf8" stop-opacity="0.95"/>
+            <stop offset="100%" stop-color="#0284c7" stop-opacity="0.85"/>
+          </linearGradient>
+          <linearGradient id="atlasPrGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#fbbf24"/>
+            <stop offset="100%" stop-color="#d97706"/>
+          </linearGradient>
+          <linearGradient id="atlasDopantGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#34d399" stop-opacity="0.9"/>
+            <stop offset="100%" stop-color="#059669" stop-opacity="0.35"/>
+          </linearGradient>
+          <linearGradient id="atlasCuGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#fcd34d"/>
+            <stop offset="50%" stop-color="#f59e0b"/>
+            <stop offset="100%" stop-color="#b45309"/>
+          </linearGradient>
+          <radialGradient id="atlasBumpGrad" cx="35%" cy="35%" r="65%">
+            <stop offset="0%" stop-color="#ffffff"/>
+            <stop offset="55%" stop-color="#cbd5e1"/>
+            <stop offset="100%" stop-color="#64748b"/>
+          </radialGradient>
+          <filter id="atlasGlow" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="2" result="blur"/>
+            <feMerge>
+              <feMergeNode in="blur"/>
+              <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+          </filter>
+        </defs>
+      `;
+
+      // Step 1: 單晶矽基底與晶格紋理
+      layersHtml += `
+        <rect x="60" y="70" width="880" height="38" rx="4" fill="url(#atlasSiGrad)" stroke="#475569" stroke-width="1.5"/>
+        <line x1="80" y1="90" x2="920" y2="90" stroke="#334155" stroke-width="0.75" stroke-dasharray="6 6" opacity="0.5"/>
+        <text x="500" y="101" text-anchor="middle" fill="#cbd5e1" font-size="10.5" font-weight="600" font-family="sans-serif">${isEn ? 'Single-Crystal Si Substrate (300mm <100>)' : '單晶矽基底 (Si Substrate)'}</text>
+      `;
 
       if (progress >= 2) {
-        // 氧化層
-        layersHtml += `<rect x="60" y="62" width="880" height="8" fill="#0284c7" opacity="0.8"/>`;
+        // Step 2: 熱氧化層 (SiO2)
+        layersHtml += `<rect x="60" y="62" width="880" height="8" rx="1" fill="url(#atlasOxideGrad)"/>`;
       }
       if (progress >= 3) {
-        // 微影光阻層與開口
+        // Step 3: 微影光阻層與曝光開窗
         layersHtml += `
-          <rect x="60" y="46" width="380" height="16" fill="#f59e0b" opacity="0.85"/>
-          <rect x="560" y="46" width="380" height="16" fill="#f59e0b" opacity="0.85"/>
-          <text x="500" y="58" text-anchor="middle" fill="#38bdf8" font-size="10" font-weight="700">微影開窗 (Litho Opening)</text>
+          <rect x="60" y="46" width="380" height="16" rx="2" fill="url(#atlasPrGrad)" opacity="0.9"/>
+          <rect x="560" y="46" width="380" height="16" rx="2" fill="url(#atlasPrGrad)" opacity="0.9"/>
         `;
+        if (progress < 9) {
+          layersHtml += `<text x="500" y="57" text-anchor="middle" fill="#38bdf8" font-size="10" font-weight="700" filter="url(#atlasGlow)">${isEn ? 'Litho Opening (CD)' : '微影開窗 (Litho Opening)'}</text>`;
+        }
+        if (progress === 3) {
+          layersHtml += `
+            <rect x="442" y="4" width="116" height="58" fill="#38bdf8" opacity="0.14"/>
+            <line x1="465" y1="4" x2="465" y2="62" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="4 3" class="anim-beam"/>
+            <line x1="500" y1="4" x2="500" y2="62" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="4 3" class="anim-beam"/>
+            <line x1="535" y1="4" x2="535" y2="62" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="4 3" class="anim-beam"/>
+          `;
+        }
       }
       if (progress >= 4) {
-        // 蝕刻深槽
-        layersHtml += `<rect x="440" y="62" width="120" height="25" fill="#090e17" stroke="#38bdf8" stroke-dasharray="2 2"/>`;
+        // Step 4: 非等向性蝕刻深槽
+        layersHtml += `<rect x="440" y="62" width="120" height="24" rx="1" fill="#090e17" stroke="#38bdf8" stroke-width="1.2" stroke-dasharray="3 2"/>`;
+        if (progress === 4) {
+          layersHtml += `
+            <line x1="475" y1="12" x2="475" y2="84" stroke="#a855f7" stroke-width="1.8" stroke-dasharray="3 4" class="anim-ion"/>
+            <line x1="525" y1="12" x2="525" y2="84" stroke="#a855f7" stroke-width="1.8" stroke-dasharray="3 4" class="anim-ion"/>
+          `;
+        }
       }
       if (progress >= 5) {
-        // 離子摻雜區 (源極/汲極)
+        // Step 5: 離子摻雜區 (Source / Drain)
         layersHtml += `
-          <rect x="360" y="70" width="70" height="15" fill="#10b981" opacity="0.75"/>
-          <rect x="570" y="70" width="70" height="15" fill="#10b981" opacity="0.75"/>
+          <rect x="355" y="70" width="80" height="16" rx="3" fill="url(#atlasDopantGrad)" stroke="#10b981" stroke-width="0.8"/>
+          <rect x="565" y="70" width="80" height="16" rx="3" fill="url(#atlasDopantGrad)" stroke="#10b981" stroke-width="0.8"/>
+          <text x="395" y="81" text-anchor="middle" fill="#ecfdf5" font-size="8.5" font-weight="700">S (N+)</text>
+          <text x="605" y="81" text-anchor="middle" fill="#ecfdf5" font-size="8.5" font-weight="700">D (N+)</text>
         `;
+        if (progress === 5) {
+          layersHtml += `
+            <line x1="395" y1="8" x2="395" y2="70" stroke="#10b981" stroke-width="1.5" stroke-dasharray="3 3" class="anim-ion"/>
+            <line x1="605" y1="8" x2="605" y2="70" stroke="#10b981" stroke-width="1.5" stroke-dasharray="3 3" class="anim-ion"/>
+          `;
+        }
       }
       if (progress >= 6) {
-        // ALD 閘極介電與金屬閘
-        layersHtml += `<rect x="440" y="70" width="120" height="17" fill="#f59e0b" opacity="0.9"/>`;
-      }
-      if (progress >= 7) {
-        // CMP 平坦化平整標記
-        layersHtml += `<line x1="60" y1="46" x2="940" y2="46" stroke="#10b981" stroke-width="2"/>`;
-      }
-      if (progress >= 8) {
-        // 銅金屬化雙鑲嵌導線 (M1, M2)
+        // Step 6: ALD 高介電常數層與金屬閘極 (HKMG)
         layersHtml += `
-          <rect x="200" y="22" width="60" height="24" fill="#f59e0b"/>
-          <rect x="470" y="22" width="60" height="24" fill="#f59e0b"/>
-          <rect x="740" y="22" width="60" height="24" fill="#f59e0b"/>
-          <line x1="500" y1="46" x2="500" y2="70" stroke="#f59e0b" stroke-width="6"/>
+          <rect x="442" y="68" width="116" height="18" rx="1.5" fill="url(#atlasCuGrad)" stroke="#fde68a" stroke-width="1"/>
+          <text x="500" y="80" text-anchor="middle" fill="#090e17" font-size="8.5" font-weight="800">HKMG</text>
         `;
       }
+      if (progress >= 7) {
+        // Step 7: CMP 化學機械平坦化全局基準面
+        layersHtml += `<line x1="60" y1="46" x2="940" y2="46" stroke="#10b981" stroke-width="2.2" filter="url(#atlasGlow)"/>`;
+        if (progress === 7) {
+          layersHtml += `<rect x="320" y="36" width="360" height="8" rx="4" fill="#10b981" opacity="0.45" class="anim-wave"/>`;
+        }
+      }
+      if (progress >= 8) {
+        // Step 8: 濕式清洗與表面超純水兆聲波淨化 (RCA Clean & Contamination Control)
+        layersHtml += `<line x1="60" y1="44" x2="940" y2="44" stroke="#38bdf8" stroke-width="1.2" stroke-dasharray="8 4" opacity="0.8"/>`;
+        if (progress === 8) {
+          layersHtml += `
+            <path d="M 180,32 Q 340,24 500,32 T 820,32" fill="none" stroke="#38bdf8" stroke-width="2" stroke-dasharray="6 4" class="anim-data-flow"/>
+            <circle cx="310" cy="26" r="3" fill="#38bdf8" class="anim-pulse"/>
+            <circle cx="690" cy="26" r="3" fill="#38bdf8" class="anim-pulse"/>
+          `;
+        }
+      }
       if (progress >= 9) {
-        // 檢測光束指示
-        layersHtml += `<line x1="500" y1="0" x2="500" y2="22" stroke="#38bdf8" stroke-width="2" stroke-dasharray="3 2"/>`;
+        // Step 9: 多層銅金屬化雙鑲嵌導線 (M1, Via) 與電流路徑
+        layersHtml += `
+          <rect x="200" y="22" width="60" height="24" rx="2" fill="url(#atlasCuGrad)" stroke="#fde68a" stroke-width="0.8"/>
+          <rect x="470" y="22" width="60" height="24" rx="2" fill="url(#atlasCuGrad)" stroke="#fde68a" stroke-width="0.8"/>
+          <rect x="740" y="22" width="60" height="24" rx="2" fill="url(#atlasCuGrad)" stroke="#fde68a" stroke-width="0.8"/>
+          <rect x="495" y="46" width="10" height="22" fill="url(#atlasCuGrad)"/>
+          <text x="510" y="59" text-anchor="start" fill="#fcd34d" font-size="9" font-weight="700">Via</text>
+          <line x1="230" y1="34" x2="770" y2="34" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="6 4" class="anim-data-flow" opacity="0.75"/>
+        `;
       }
       if (progress >= 10) {
-        // CP 測試觸地標記
-        layersHtml += `<circle cx="230" cy="22" r="4" fill="#10b981"/><circle cx="500" cy="22" r="4" fill="#10b981"/>`;
+        // Step 10: 先進製程整合 (FinFET / GAA 奈米片堆疊通道)
+        layersHtml += `
+          <line x1="448" y1="71" x2="478" y2="71" stroke="#38bdf8" stroke-width="2"/>
+          <line x1="522" y1="71" x2="552" y2="71" stroke="#38bdf8" stroke-width="2"/>
+          <line x1="448" y1="83" x2="478" y2="83" stroke="#38bdf8" stroke-width="2"/>
+          <line x1="522" y1="83" x2="552" y2="83" stroke="#38bdf8" stroke-width="2"/>
+        `;
       }
       if (progress >= 11) {
-        // 切割道
-        layersHtml += `<line x1="330" y1="10" x2="330" y2="105" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="4 2"/>`;
+        // Step 11: 量測檢測與良率控制 (CD-SEM / AOI 掃描光錐)
+        layersHtml += `
+          <polygon points="500,2 482,22 518,22" fill="#38bdf8" opacity="0.22"/>
+          <line x1="500" y1="0" x2="500" y2="22" stroke="#38bdf8" stroke-width="2.2" stroke-dasharray="3 2" class="anim-beam"/>
+        `;
       }
       if (progress >= 12) {
-        // 微凸塊 Micro-bump (先進封裝)
+        // Step 12: 晶圓針測 CP 探針、切割道與先進封裝微凸塊 (CoWoS/SoIC)
         layersHtml += `
-          <circle cx="230" cy="14" r="8" fill="#e2e8f0" stroke="#0284c7" stroke-width="2"/>
-          <circle cx="500" cy="14" r="8" fill="#e2e8f0" stroke="#0284c7" stroke-width="2"/>
-          <circle cx="770" cy="14" r="8" fill="#e2e8f0" stroke="#0284c7" stroke-width="2"/>
+          <path d="M 218,4 L 230,22 L 236,4" fill="none" stroke="#10b981" stroke-width="1.8"/>
+          <path d="M 488,4 L 500,22 L 506,4" fill="none" stroke="#10b981" stroke-width="1.8"/>
+          <line x1="330" y1="8" x2="330" y2="108" stroke="#ef4444" stroke-width="1.8" stroke-dasharray="4 2" class="anim-beam"/>
+          <line x1="670" y1="8" x2="670" y2="108" stroke="#ef4444" stroke-width="1.8" stroke-dasharray="4 2" class="anim-beam"/>
+          <circle cx="230" cy="14" r="8" fill="url(#atlasBumpGrad)" stroke="#38bdf8" stroke-width="1.8" filter="url(#atlasGlow)"/>
+          <circle cx="500" cy="14" r="8" fill="url(#atlasBumpGrad)" stroke="#38bdf8" stroke-width="1.8" filter="url(#atlasGlow)"/>
+          <circle cx="770" cy="14" r="8" fill="url(#atlasBumpGrad)" stroke="#38bdf8" stroke-width="1.8" filter="url(#atlasGlow)"/>
+          <line x1="230" y1="14" x2="770" y2="14" stroke="#38bdf8" stroke-width="2" stroke-dasharray="5 3" class="anim-data-flow"/>
         `;
       }
 
@@ -742,9 +846,10 @@ import { mountEngineeringObject } from './工程物件.js';
       const chTitle = isEn ? (node.chapterTitleEn || node.chapterTitleZh || node.chapterTitle) : (node.chapterTitleZh || node.chapterTitle);
       const summary = isEn ? (node.summaryEn || node.summaryZh || node.summary) : (node.summaryZh || node.summary);
       const keyTool = isEn ? (node.keyToolEn || node.keyToolZh || node.keyTool) : (node.keyToolZh || node.keyTool);
+      const activeClass = parseInt(node.num, 10) === 1 ? ' is-active-step' : '';
 
       html += `
-        <button type="button" class="atlas-card" data-jump-ch="${node.chapterId}" data-step-num="${node.num}">
+        <button type="button" class="atlas-card${activeClass}" data-jump-ch="${node.chapterId}" data-step-num="${node.num}">
           <div>
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
               <span class="atlas-step-num">STEP ${node.num}</span>
@@ -768,18 +873,24 @@ import { mountEngineeringObject } from './工程物件.js';
     });
     atlasGridEl.innerHTML = html;
 
-    // 綁定 Hover 晶圓剖面演變與點擊直達
-    atlasGridEl.querySelectorAll('.atlas-card').forEach(card => {
+    // 綁定 Hover / Focus 晶圓剖面演變與點擊直達
+    const allCards = atlasGridEl.querySelectorAll('.atlas-card');
+    allCards.forEach(card => {
       const stepNum = parseInt(card.getAttribute('data-step-num'), 10);
       const chId = card.getAttribute('data-jump-ch');
-      const node = FAB_FLOW_NODES.find(n => n.num === stepNum);
+      const node = FAB_FLOW_NODES.find(n => parseInt(n.num, 10) === stepNum);
 
-      card.addEventListener('mouseenter', () => {
+      const activateStepPreview = () => {
+        allCards.forEach(c => c.classList.remove('is-active-step'));
+        card.classList.add('is-active-step');
         renderAtlasWaferCrossSection(stepNum);
         if (badgeEl && node) {
           badgeEl.textContent = `STEP ${node.num} · ${isEn ? (node.nameEn || node.nameZh) : node.nameZh}`;
         }
-      });
+      };
+
+      card.addEventListener('mouseenter', activateStepPreview);
+      card.addEventListener('focus', activateStepPreview);
 
       card.addEventListener('click', () => {
         if (atlasModalEl) atlasModalEl.classList.remove('is-open');

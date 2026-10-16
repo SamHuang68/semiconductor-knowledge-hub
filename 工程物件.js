@@ -1592,7 +1592,7 @@ export function renderDepositionMechanismObject(container, lang = 'zh') {
           <!-- 氬離子轟擊與濺射原子粒子 (Line of sight) -->
           <g opacity="0.85">
             <!-- Ar+ 離子向上轟擊 -->
-            <path d="M 320,110 L 340,65 M 480,110 L 460,65" stroke="#38bdf8" stroke-width="2" stroke-dasharray="3 3"/>
+            <path d="M 320,110 L 340,65 M 480,110 L 460,65" stroke="#38bdf8" stroke-width="2" stroke-dasharray="3 3" class="anim-beam"/>
             <text x="310" y="125" fill="#38bdf8" font-size="11">Ar⁺ 離子轟擊</text>
             <!-- 濺射原子向下噴發 (視線直進) -->
             <path d="M 350,60 L 370,220 M 400,60 L 400,220 M 450,60 L 430,220" stroke="#f59e0b" stroke-width="2" stroke-dasharray="4 3" class="anim-ion"/>
@@ -1676,7 +1676,7 @@ export function renderDepositionMechanismObject(container, lang = 'zh') {
           </g>
 
           <!-- 擴散氣體分子 (擴散進孔內) -->
-          <g fill="#38bdf8" opacity="0.75">
+          <g fill="#38bdf8" opacity="0.75" class="anim-electron">
             <circle cx="360" cy="100" r="4"/><circle cx="430" cy="110" r="4"/>
             <circle cx="390" cy="140" r="4"/><circle cx="410" cy="170" r="4"/>
             <circle cx="380" cy="220" r="3"/><circle cx="420" cy="260" r="3"/>

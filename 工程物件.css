@@ -63,6 +63,17 @@
   gap: 5px;
 }
 
+@keyframes statusPulseRing {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(15, 118, 110, 0.55), 0 0 6px rgba(15, 118, 110, 0.6);
+  }
+  50% {
+    transform: scale(1.12);
+    box-shadow: 0 0 0 4px rgba(15, 118, 110, 0), 0 0 10px rgba(20, 184, 166, 0.85);
+  }
+}
+
 .eng-obj-status::before {
   content: '';
   display: inline-block;
@@ -71,6 +82,7 @@
   border-radius: 50%;
   background: var(--semi-teal);
   box-shadow: 0 0 6px rgba(15, 118, 110, 0.6);
+  animation: statusPulseRing 2.4s ease-in-out infinite;
 }
 
 .eng-obj-title {
@@ -136,10 +148,16 @@
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-/* 幾何繪圖畫布視窗 */
+/* 幾何繪圖畫布視窗：精密光學暗房與雙尺度工程網格 */
 .eng-obj-viewport {
   position: relative;
-  background: #09131b;
+  background-color: #081119;
+  background-image:
+    radial-gradient(circle at 50% 38%, rgba(14, 165, 233, 0.09) 0%, rgba(15, 23, 42, 0.03) 52%, transparent 80%),
+    linear-gradient(to right, rgba(56, 189, 248, 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(56, 189, 248, 0.045) 1px, transparent 1px);
+  background-size: 100% 100%, 24px 24px, 24px 24px;
+  box-shadow: inset 0 2px 14px rgba(0, 0, 0, 0.45);
   width: 100%;
   min-height: 0;
   display: block;
@@ -154,6 +172,7 @@
   max-width: none;
   display: block;
   margin-inline: auto;
+  shape-rendering: geometricPrecision;
 }
 
 .eng-obj-viewport:not([data-view="fit"]) {
@@ -247,6 +266,13 @@
   display: flex;
   flex-direction: column;
   gap: 4px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.eng-obj-metric-card:hover {
+  border-color: rgba(2, 132, 199, 0.4);
+  box-shadow: 0 4px 12px -2px rgba(2, 132, 199, 0.1);
+  transform: translateY(-1px);
 }
 
 .eng-obj-metric-label {
@@ -350,9 +376,9 @@
 
 /* 動態光束與粒子動畫 */
 @keyframes beamGlow {
-  0% { opacity: 0.65; stroke-dashoffset: 0; }
-  50% { opacity: 0.95; stroke-dashoffset: -20; }
-  100% { opacity: 0.65; stroke-dashoffset: -40; }
+  0% { opacity: 0.68; stroke-dashoffset: 0; filter: drop-shadow(0 0 3px rgba(56, 189, 248, 0.35)); }
+  50% { opacity: 0.98; stroke-dashoffset: -20; filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.75)); }
+  100% { opacity: 0.68; stroke-dashoffset: -40; filter: drop-shadow(0 0 3px rgba(56, 189, 248, 0.35)); }
 }
 
 .anim-beam {
@@ -361,9 +387,9 @@
 }
 
 @keyframes plasmaPulse {
-  0% { filter: drop-shadow(0 0 4px rgba(113, 236, 227, 0.4)); }
-  50% { filter: drop-shadow(0 0 14px rgba(113, 236, 227, 0.8)); }
-  100% { filter: drop-shadow(0 0 4px rgba(113, 236, 227, 0.4)); }
+  0% { filter: drop-shadow(0 0 5px rgba(113, 236, 227, 0.4)); }
+  50% { filter: drop-shadow(0 0 16px rgba(168, 85, 247, 0.75)); }
+  100% { filter: drop-shadow(0 0 5px rgba(113, 236, 227, 0.4)); }
 }
 
 .anim-plasma {
@@ -397,9 +423,9 @@
 }
 
 @keyframes heatPulse {
-  0% { opacity: 0.3; transform: scaleY(0.9); }
-  50% { opacity: 0.9; transform: scaleY(1.1); filter: drop-shadow(0 0 12px rgba(245, 158, 11, 0.8)); }
-  100% { opacity: 0.3; transform: scaleY(0.9); }
+  0% { opacity: 0.35; transform: scaleY(0.92); }
+  50% { opacity: 0.95; transform: scaleY(1.08); filter: drop-shadow(0 0 12px rgba(245, 158, 11, 0.85)); }
+  100% { opacity: 0.35; transform: scaleY(0.92); }
 }
 
 .anim-heat {
@@ -408,8 +434,8 @@
 
 @keyframes electronDrift {
   0% { transform: translateX(0); opacity: 0; }
-  30% { opacity: 1; }
-  70% { opacity: 1; }
+  30% { opacity: 1; filter: drop-shadow(0 0 5px rgba(56, 189, 248, 0.7)); }
+  70% { opacity: 1; filter: drop-shadow(0 0 5px rgba(56, 189, 248, 0.7)); }
   100% { transform: translateX(40px); opacity: 0; }
 }
 
@@ -438,9 +464,9 @@
 }
 
 @keyframes acousticWave {
-  0% { transform: translateY(6px); opacity: 0.2; }
-  50% { transform: translateY(0); opacity: 0.9; }
-  100% { transform: translateY(-6px); opacity: 0.2; }
+  0% { transform: translateY(6px); opacity: 0.25; }
+  50% { transform: translateY(0); opacity: 0.92; filter: drop-shadow(0 0 6px rgba(14, 165, 233, 0.6)); }
+  100% { transform: translateY(-6px); opacity: 0.25; }
 }
 
 .anim-acoustic {
@@ -449,13 +475,48 @@
 
 @keyframes liquidFlowDown {
   0% { transform: translateY(-10px); opacity: 0; }
-  30% { opacity: 0.8; }
-  80% { opacity: 0.8; }
+  30% { opacity: 0.85; }
+  80% { opacity: 0.85; }
   100% { transform: translateY(20px); opacity: 0; }
 }
 
 .anim-liquid-flow {
   animation: liquidFlowDown 1.4s ease-out infinite;
+}
+
+/* Ch 09 兆聲波微粒脫附光暈與剪切向量流動動畫 (不改變 <g> 座標與文字位置) */
+@keyframes particleDetachPulse {
+  0%, 100% {
+    filter: drop-shadow(0 0 4px rgba(52, 211, 153, 0.45));
+  }
+  50% {
+    filter: drop-shadow(0 0 12px rgba(52, 211, 153, 0.95));
+  }
+}
+
+@keyframes dragVectorStream {
+  0% { stroke-dashoffset: 18; opacity: 0.75; }
+  50% { opacity: 1; filter: drop-shadow(0 0 6px rgba(52, 211, 153, 0.85)); }
+  100% { stroke-dashoffset: 0; opacity: 0.75; }
+}
+
+.anim-particle-lift > circle {
+  animation: particleDetachPulse 1.8s ease-in-out infinite;
+}
+
+.anim-particle-lift > path:first-of-type {
+  stroke-dasharray: 6 3;
+  animation: dragVectorStream 1.2s linear infinite;
+}
+
+@keyframes dataFlowDash {
+  from { stroke-dashoffset: 24; }
+  to { stroke-dashoffset: 0; }
+}
+
+.anim-data-flow {
+  stroke-dasharray: 6 6;
+  animation: dataFlowDash 1.1s linear infinite;
 }
 
 /* 互動按鈕與微觀節點微互動回饋 */
@@ -464,16 +525,39 @@
 .ocap-sim-btn:hover,
 .qtime-btn:hover,
 .pvt-btn:hover rect,
-.burst-btn:hover {
-  filter: brightness(1.18);
+.burst-btn:hover,
+.defect-die:hover,
+.jargon-scenario-node:hover rect,
+.level-bar:hover rect {
+  filter: brightness(1.18) drop-shadow(0 0 6px rgba(56, 189, 248, 0.35));
   transition: filter 0.15s ease;
 }
 
 #rowHammerAttackBtn:hover,
 #rowHammerTrrBtn:hover,
 #rowHammerResetBtn:hover {
-  filter: brightness(1.2);
+  filter: brightness(1.2) drop-shadow(0 0 6px rgba(56, 189, 248, 0.4));
   transition: filter 0.15s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .eng-obj-status::before,
+  .anim-beam,
+  .anim-plasma,
+  .anim-ion,
+  .anim-rotate-pad,
+  .anim-rotate-head,
+  .anim-heat,
+  .anim-electron,
+  .anim-crystal-pull,
+  .anim-saw-wire,
+  .anim-acoustic,
+  .anim-liquid-flow,
+  .anim-particle-lift > circle,
+  .anim-particle-lift > path:first-of-type,
+  .anim-data-flow {
+    animation: none !important;
+  }
 }
 
 /* ══════════════════════════════════════════════════════════════════════════

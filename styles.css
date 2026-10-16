@@ -801,6 +801,13 @@ body {
   border-radius: var(--radius-md);
   border: 1px solid var(--border-subtle);
   box-shadow: var(--shadow-md);
+  transition: transform 0.28s var(--ease-smooth), box-shadow 0.28s var(--ease-smooth), border-color 0.28s var(--ease-smooth);
+}
+
+.semi-img:hover {
+  transform: translateY(-2px);
+  border-color: rgba(2, 132, 199, 0.45);
+  box-shadow: 0 12px 28px -6px rgba(15, 23, 42, 0.14), 0 0 0 1px rgba(56, 189, 248, 0.2);
 }
 
 figcaption {
@@ -1057,10 +1064,16 @@ figcaption {
 
 .atlas-stream-canvas-wrap {
   width: 100%;
-  height: 100px;
-  background: #090e17;
-  border: 1px solid #1e293b;
+  height: 108px;
+  background-color: #090e17;
+  background-image:
+    radial-gradient(ellipse at 50% 0%, rgba(56, 189, 248, 0.14) 0%, transparent 70%),
+    linear-gradient(rgba(30, 41, 59, 0.45) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(30, 41, 59, 0.45) 1px, transparent 1px);
+  background-size: 100% 100%, 20px 20px, 20px 20px;
+  border: 1px solid rgba(56, 189, 248, 0.28);
   border-radius: 6px;
+  box-shadow: inset 0 2px 12px rgba(2, 6, 23, 0.85);
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -1086,7 +1099,8 @@ figcaption {
   transition: all 0.18s;
 }
 
-.atlas-card:hover .atlas-jump-badge {
+.atlas-card:hover .atlas-jump-badge,
+.atlas-card.is-active-step .atlas-jump-badge {
   background: var(--semi-blue);
   color: #ffffff;
 }
@@ -1111,11 +1125,12 @@ figcaption {
   transition: all 0.2s var(--ease-smooth);
 }
 
-.atlas-card:hover {
+.atlas-card:hover,
+.atlas-card.is-active-step {
   transform: translateY(-3px);
   border-color: var(--semi-blue);
   background: #f0f9ff;
-  box-shadow: var(--shadow-md);
+  box-shadow: var(--shadow-md), 0 0 0 1px rgba(2, 132, 199, 0.2);
 }
 
 .atlas-step-num {

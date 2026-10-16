@@ -1,4 +1,40 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 724 488" width="724" height="488" role="img" aria-label="Six common wafer map patterns">
+  <defs>
+    <radialGradient id="waferSubGrad" cx="38%" cy="35%" r="68%">
+      <stop offset="0%" stop-color="#3b4c6e"/>
+      <stop offset="65%" stop-color="#27344d"/>
+      <stop offset="100%" stop-color="#172033"/>
+    </radialGradient>
+    <style>
+      @keyframes defectDiePulse {
+        0%, 100% { fill: #f28c28; filter: drop-shadow(0 0 1.5px rgba(242, 140, 40, 0.45)); }
+        50% { fill: #fbbf24; filter: drop-shadow(0 0 4px rgba(251, 191, 36, 0.85)); }
+      }
+      path[fill="#2f3b55"] {
+        fill: url(#waferSubGrad);
+        stroke: #93c5fd;
+        stroke-opacity: 0.75;
+        filter: drop-shadow(0 4px 10px rgba(15, 23, 42, 0.32));
+      }
+      rect[fill="#8fb3d9"] {
+        stroke: rgba(255, 255, 255, 0.22);
+        stroke-width: 0.5px;
+      }
+      rect[fill="#f28c28"] {
+        stroke: #fde68a;
+        stroke-width: 0.75px;
+        animation: defectDiePulse 2.6s ease-in-out infinite;
+      }
+      circle[fill="#7d8db0"] {
+        fill: #0284c7;
+        stroke: #bae6fd;
+        stroke-width: 1.5px;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        rect[fill="#f28c28"] { animation: none !important; }
+      }
+    </style>
+  </defs>
   <path d="M131.44,229.86 A104.0,104.0 0 1 0 120.56,229.86 L126.00,223.76 Z" fill="#2f3b55" stroke="#7d8db0" stroke-width="2"/>
   <rect x="104.5" y="29.5" width="13.0" height="13.0" rx="1.5" fill="#8fb3d9"/>
   <rect x="119.5" y="29.5" width="13.0" height="13.0" rx="1.5" fill="#8fb3d9"/>

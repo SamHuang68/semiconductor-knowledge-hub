@@ -23,6 +23,28 @@ function afterDiagramLayout(container, reading, action) {
   reading.frame = requestAnimationFrame(position);
 }
 
+function ensureSharedSvgDefs(svgs, doc) {
+  for (const svg of svgs) {
+    if (svg.querySelector('defs[data-shared-optical-defs]')) continue;
+    const hasArrow = Boolean(svg.querySelector('#arrow'));
+    const hasGlow = Boolean(svg.querySelector('#glow'));
+    const wrapper = doc.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    wrapper.innerHTML = `<defs data-shared-optical-defs="1">` +
+      (hasArrow ? '' : `<marker id="arrow" viewBox="0 0 10 10" refX="7.5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 1.5 L 8.5 5 L 0 8.5 L 2.2 5 z" fill="context-stroke" stroke="none"/></marker>`) +
+      `<marker id="arrow-cyan" viewBox="0 0 10 10" refX="7.5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 1.5 L 8.5 5 L 0 8.5 L 2.2 5 z" fill="#38bdf8"/></marker>` +
+      `<marker id="arrow-emerald" viewBox="0 0 10 10" refX="7.5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 1.5 L 8.5 5 L 0 8.5 L 2.2 5 z" fill="#10b981"/></marker>` +
+      `<marker id="arrow-amber" viewBox="0 0 10 10" refX="7.5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 1.5 L 8.5 5 L 0 8.5 L 2.2 5 z" fill="#f59e0b"/></marker>` +
+      `<marker id="arrow-rose" viewBox="0 0 10 10" refX="7.5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 1.5 L 8.5 5 L 0 8.5 L 2.2 5 z" fill="#ef4444"/></marker>` +
+      (hasGlow ? '' : `<filter id="glow" x="-25%" y="-25%" width="150%" height="150%"><feGaussianBlur stdDeviation="3" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>`) +
+      `<linearGradient id="siSheenGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#334155"/><stop offset="50%" stop-color="#1e293b"/><stop offset="100%" stop-color="#0f172a"/></linearGradient>` +
+      `<linearGradient id="cuDamasceneGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#fbbf24"/><stop offset="50%" stop-color="#f59e0b"/><stop offset="100%" stop-color="#b45309"/></linearGradient>` +
+      `<radialGradient id="plasmaAuraGrad" cx="50%" cy="50%" r="55%"><stop offset="0%" stop-color="#c084fc" stop-opacity="0.55"/><stop offset="55%" stop-color="#38bdf8" stop-opacity="0.25"/><stop offset="100%" stop-color="#090d16" stop-opacity="0"/></radialGradient>` +
+      `</defs>`;
+    const defs = wrapper.firstElementChild;
+    if (defs) svg.prepend(defs);
+  }
+}
+
 export function prepareDiagramReading(next, previous, state) {
   const reading = readingState(state);
   const oldReader = previous?.querySelector('.eng-diagram-reader');
@@ -31,6 +53,7 @@ export function prepareDiagramReading(next, previous, state) {
   const svgs = diagrams(next);
   if (!viewport || !svgs.length) return;
   const doc = next.ownerDocument;
+  ensureSharedSvgDefs(svgs, doc);
   viewport.tabIndex = 0;
   viewport.setAttribute('role', 'region');
   viewport.setAttribute('aria-label', '互動圖面；放大後可捲動或用方向鍵平移');
