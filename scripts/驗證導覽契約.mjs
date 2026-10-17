@@ -53,7 +53,7 @@ assert.match(packaging.boundary, /並列選項.*並非先後步驟/, '比較應�
 // 正常化換行後核對已讀取的基準來源，防止導覽改版刪減教材。
 // 基準：中英雙語原生擴充版（包含 28 章中英完整教材與雙語字典）。
 const sourceHashes = {
-  'chapters-data.js': '796655c9f3b80e0ea05d56880441c79183d75bb99eaa932fc659651ee6f96613',
+  'chapters-data.js': 'd52be241499d2f710abca3b3fa379c690b7109281b47226c654fc0095ca4a41c',
   'fab-flow.js': 'ddc7dca13b7a01e7fa7ad624dcf4de40bc5453eceb75529d1d6a421d93ec863c',
   'glossary-data.js': 'd7fe721b699ff0d5145029c92284aaabc2446246e550564c49d3e8f953c11db0',
   'search-index.js': '6965881d25b05366d69267415425d4992ccbd2a8fc71cd6c2d86e80ba852a271'
