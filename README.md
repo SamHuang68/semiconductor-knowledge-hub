@@ -8,6 +8,8 @@
 
 ## 專案特色
 
+- **全站 28/28 互動工程物件（Ch00–Ch24 + 附錄 A/B/C）100% 五卡儀表板（含第 5 張「定量統御定律卡」）與多波段 SVG 物理場動畫大滿貫（2.0.5）**：完成 `Ch00`、`Ch13`–`Ch24` 與 `附錄 A/B/C` 共 16 座工程物件的第 5 張雙語「定量統御定律（Quantitative Governing Law）」指標卡與 SVG 諧波能量環升級，達成全站 28 座工程物件 **100% 具備 5 張雙語指標卡（共 140 張中英指標卡）與雙層動態 SVG 物理視覺化**。
+
 - **第 01–12 章（前中後段與元件物理 12 座工程物件）第 5 張「定量統御定律卡」與多波段物理場諧波動畫升級（2.0.4）**：於 `工程物件.css` 新增 `.anim-pulse-ring` 與 `.anim-field-glow` 物理場光暈動畫（完整支援 `prefers-reduced-motion` 無障礙降級），並為 `Ch01`–`Ch12` 共 12 座互動工程物件補齊第 5 張雙語「定量統御定律（Quantitative Governing Law）」指標卡與 SVG 多波段能量場動畫。
 
 - **第 20–24 章（Coffin-Manson 焊球疲勞與 Washburn 毛細流、3D 節距 1/P² 密度律與 Stoney 翹曲方程、Weibull 浴缸與 Peck/FIT 卡方公式、Little's Law 與 Kingman 排隊公式、PDN L·di/dt 壓降與 Hamming/UBER 纠錯定律）定量方程完形（2.0.3）**：完成 `ch20`–`ch24` 雙語定量物理方程與 3D 互鎖表，達成全書 25 個正式章節（`Ch00`–`Ch24`）**100% 具備專屬定量統御方程（Governing Equations）與製程視窗對照表**。

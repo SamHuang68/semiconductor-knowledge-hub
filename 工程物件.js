@@ -3868,6 +3868,7 @@ export function renderAdvancedPackagingObject(container, lang = 'zh') {
             `).join('')}
             <text x="340" y="22" text-anchor="middle" fill="#ffffff" font-size="11.5" font-weight="700">BGA 錫球 (Pitch 1.0 mm → PCB 主機板)</text>
           </g>
+          <g class="eng-kinetic-wave" pointer-events="none"><circle cx="400" cy="205" r="72" fill="none" stroke="#38bdf8" stroke-width="1.4" class="anim-pulse-ring" opacity="0.45"/><path d="M 130,65 Q 400,35 670,65" fill="none" stroke="#34d399" stroke-width="1.5" class="anim-field-glow" opacity="0.5"/></g>
         </svg>
       `;
 
@@ -4148,6 +4149,11 @@ export function renderAdvancedPackagingObject(container, lang = 'zh') {
 
         <div class="eng-obj-dashboard">
           ${dashboardHtml}
+          <div class="eng-obj-metric-card">
+            <div class="eng-obj-metric-label">${lang === 'en' ? '1/P² I/O Density & Stoney Warpage Law' : '3D 節距平方反比與 Stoney 翹曲律 (3D Law)'}</div>
+            <div class="eng-obj-metric-value" style="font-size: 13.5px; color: #0284c7;">${lang === 'en' ? 'D_IO = 1/P² (>10⁵/mm²) · E_bit = ½CV² (<0.05 pJ)' : 'D_IO = 1/P² (>10⁵/mm²) · E_bit = ½CV² (<0.05 pJ)'}</div>
+            <div class="eng-obj-metric-note">${lang === 'en' ? '100× hybrid-bond density leap, 3D thermal matrix & TGV stiffness' : '無凸塊混合鍵合密度暴增百倍、3D 熱耦合矩陣與 TGV 玻璃抗翹曲'}</div>
+          </div>
         </div>
 
         <footer class="eng-obj-footer-note">
@@ -5392,7 +5398,7 @@ export function renderMemoryTechObject(container, lang = 'zh') {
             <text x="515" y="61" text-anchor="middle" fill="#34d399" font-size="11" font-weight="700">垂直位元線 (Bit-Line BL)</text>
             <text x="350" y="98" text-anchor="middle" fill="#94a3b8" font-size="10.5">1T1C 電晶體閘極開啟導通字元線，感測放大器 (Sense Amp) 差分讀取位元線電荷</text>
           </g>
-          <g class="eng-kinetic-overlay" pointer-events="none"><path d="M 150,200 L 650,200" fill="none" stroke="#38bdf8" stroke-width="2" stroke-dasharray="8 6" class="anim-data-flow" opacity="0.6"/><path d="M 400,70 L 400,340" fill="none" stroke="#fbbf24" stroke-width="2" stroke-dasharray="6 6" class="anim-beam" opacity="0.65"/></g>
+          <g class="eng-kinetic-wave" pointer-events="none"><circle cx="400" cy="205" r="72" fill="none" stroke="#38bdf8" stroke-width="1.4" class="anim-pulse-ring" opacity="0.45"/><path d="M 130,65 Q 400,35 670,65" fill="none" stroke="#34d399" stroke-width="1.5" class="anim-field-glow" opacity="0.5"/></g><g class="eng-kinetic-overlay" pointer-events="none"><path d="M 150,200 L 650,200" fill="none" stroke="#38bdf8" stroke-width="2" stroke-dasharray="8 6" class="anim-data-flow" opacity="0.6"/><path d="M 400,70 L 400,340" fill="none" stroke="#fbbf24" stroke-width="2" stroke-dasharray="6 6" class="anim-beam" opacity="0.65"/></g>
         </svg>
       `;
 
@@ -5590,6 +5596,11 @@ export function renderMemoryTechObject(container, lang = 'zh') {
             <div class="eng-obj-metric-value" style="font-size: 13.5px; color: var(--semi-teal);">${lang === 'en' ? 'DRAM 4F² · CBA · HBM · MRAM/FeRAM' : 'DRAM 4F² · CBA · HBM · MRAM/FeRAM'}</div>
             <div class="eng-obj-metric-note">${lang === 'en' ? 'DRAM 4F² VCT/3D, 3D NAND CBA, HBM MR-MUF/TC-NCF & MRAM/RRAM/FeRAM' : 'DRAM 4F² VCT/3D、3D NAND CBA、HBM MR-MUF/TC-NCF 與 MRAM/RRAM/FeRAM'}</div>
           </div>
+          <div class="eng-obj-metric-card">
+            <div class="eng-obj-metric-label">${lang === 'en' ? 'Charge-Sharing & F-N Tunneling Law' : 'DRAM 電荷分配與 F-N 穿隧律 (Memory Law)'}</div>
+            <div class="eng-obj-metric-value" style="font-size: 13.5px; color: #0284c7;">${lang === 'en' ? 'ΔV_BL = Vdd/[2(1+C_BL/C_s)] · BW = N·R/8' : 'ΔV_BL = Vdd/[2(1+C_BL/C_s)] · BW = N·R/8'}</div>
+            <div class="eng-obj-metric-note">${lang === 'en' ? 'DRAM 50:1 capacitor, 3D NAND F-N tunneling & HBM4 2048-bit BW' : 'DRAM 50:1 高深寬比電容、3D NAND F-N 穿隧與 HBM4 2048-bit 頻寬'}</div>
+          </div>
         </div>
 
         <footer class="eng-obj-footer-note">
@@ -5747,6 +5758,7 @@ export function renderMetrologyInspectionObject(container, lang = 'zh') {
             <line x1="180" y1="88" x2="320" y2="88" stroke="#f59e0b" stroke-width="2"/>
             <text x="250" y="84" text-anchor="middle" fill="#fbbf24" font-size="10.5" font-weight="750">← 演算法提取 Bottom CD (${bottomCD.toFixed(2)} nm) →</text>
           </g>
+          <g class="eng-kinetic-wave" pointer-events="none"><circle cx="400" cy="205" r="72" fill="none" stroke="#38bdf8" stroke-width="1.4" class="anim-pulse-ring" opacity="0.45"/><path d="M 130,65 Q 400,35 670,65" fill="none" stroke="#34d399" stroke-width="1.5" class="anim-field-glow" opacity="0.5"/></g>
         </svg>
       `;
 
@@ -5957,6 +5969,11 @@ export function renderMetrologyInspectionObject(container, lang = 'zh') {
             <div class="eng-obj-metric-label">${lang === 'en' ? 'In-Line & 3D Inspection Clauses' : '在線與 3D 無損量測條例 (Metrology)'}</div>
             <div class="eng-obj-metric-value" style="font-size: 13.5px; color: var(--semi-teal);">${lang === 'en' ? 'CD-SEM/OCD · E-Beam VC · C-SAM/CT' : 'CD-SEM/OCD · E-Beam VC · C-SAM/CT'}</div>
             <div class="eng-obj-metric-note">${lang === 'en' ? 'CD-SEM/OCD/CD-SAXS, BBP/E-Beam VC, 3D C-SAM acoustic & 3D X-Ray CT' : 'CD-SEM/OCD/CD-SAXS、明暗場與電壓對比、3D 封裝 C-SAM 超音波與 X-Ray CT'}</div>
+          </div>
+          <div class="eng-obj-metric-card">
+            <div class="eng-obj-metric-label">${lang === 'en' ? 'Ellipsometry, Rayleigh d⁶/λ⁴ & C-SAM Law' : '橢偏偏振與 C-SAM 聲阻抗律 (Metrology Law)'}</div>
+            <div class="eng-obj-metric-value" style="font-size: 13.5px; color: #0284c7;">${lang === 'en' ? 'ρ = tanΨ·e^(iΔ) · R_ac = (Z2-Z1)/(Z2+Z1)' : 'ρ = tanΨ·e^(iΔ) · R_ac = (Z2-Z1)/(Z2+Z1)'}</div>
+            <div class="eng-obj-metric-note">${lang === 'en' ? 'Sub-Å film resolution, 99.99% C-SAM void reflection & P/T ≤ 10%' : '次埃級膜厚解析、3D C-SAM 氣泡 99.99% 反射與 P/T Ratio ≤ 10%'}</div>
           </div>
         </div>
 
@@ -6182,7 +6199,7 @@ export function renderYieldFailureAnalysisObject(container, lang = 'zh') {
               <text x="12" y="48" fill="#cbd5e1" font-size="9.5">預估良率損耗金額: <strong style="color: #ef4444;">$${costLoss.toLocaleString()} USD</strong></text>
             </g>
           </g>
-          <g class="eng-kinetic-overlay" pointer-events="none"><line x1="160" y1="60" x2="400" y2="210" stroke="#38bdf8" stroke-width="2" stroke-dasharray="7 5" class="anim-beam" opacity="0.7"/><circle cx="400" cy="210" r="48" fill="none" stroke="#f43f5e" stroke-width="1.8" stroke-dasharray="6 6" class="anim-data-flow" opacity="0.65"/></g>
+          <g class="eng-kinetic-wave" pointer-events="none"><circle cx="400" cy="205" r="72" fill="none" stroke="#38bdf8" stroke-width="1.4" class="anim-pulse-ring" opacity="0.45"/><path d="M 130,65 Q 400,35 670,65" fill="none" stroke="#34d399" stroke-width="1.5" class="anim-field-glow" opacity="0.5"/></g><g class="eng-kinetic-overlay" pointer-events="none"><line x1="160" y1="60" x2="400" y2="210" stroke="#38bdf8" stroke-width="2" stroke-dasharray="7 5" class="anim-beam" opacity="0.7"/><circle cx="400" cy="210" r="48" fill="none" stroke="#f43f5e" stroke-width="1.8" stroke-dasharray="6 6" class="anim-data-flow" opacity="0.65"/></g>
         </svg>
       `;
 
@@ -6356,6 +6373,11 @@ export function renderYieldFailureAnalysisObject(container, lang = 'zh') {
             <div class="eng-obj-metric-value" style="font-size: 13.5px; color: var(--semi-teal);">${lang === 'en' ? 'Neg-Binomial · LIT/OBIRCH · STEM' : 'Neg-Binomial · LIT/OBIRCH · STEM'}</div>
             <div class="eng-obj-metric-note">${lang === 'en' ? 'Negative Binomial yield, 3D Lock-in Thermography/OBIRCH & PFIB + STEM/EELS' : '負二項式群聚良率模型、3D 鎖相熱成像/OBIRCH 定位與 Xe⁺ PFIB + STEM/EELS'}</div>
           </div>
+          <div class="eng-obj-metric-card">
+            <div class="eng-obj-metric-label">${lang === 'en' ? 'Negative Binomial & 3D LIT Phase Law' : '負二項良率與 3D 鎖相熱成像律 (FA Law)'}</div>
+            <div class="eng-obj-metric-value" style="font-size: 13.5px; color: #0284c7;">${lang === 'en' ? 'Y_NB = (1+A·D0/α)^(-α) · Δφ = z√(πf/α_th)' : 'Y_NB = (1+A·D0/α)^(-α) · Δφ = z√(πf/α_th)'}</div>
+            <div class="eng-obj-metric-note">${lang === 'en' ? 'Clustered yield model, 1/x³ critical area & 3D LIT z-depth law' : '叢集缺陷良率模型、1/x³ 關鍵面積致死率與 3D LIT 非破壞性深度定位'}</div>
+          </div>
         </div>
 
         <footer class="eng-obj-footer-note">
@@ -6492,7 +6514,7 @@ export function renderProcessControlObject(container, lang = 'zh') {
                     font-size="11" font-weight="700" style="pointer-events: none;">${lang === 'zh' ? m.zh : m.en}</text>
             `).join('')}
           </g>
-          <g class="eng-kinetic-overlay" pointer-events="none"><path d="M 100,210 L 700,210" fill="none" stroke="#10b981" stroke-width="2" stroke-dasharray="10 6" class="anim-data-flow" opacity="0.65"/><path d="M 100,130 L 700,130 M 100,290 L 700,290" fill="none" stroke="#f59e0b" stroke-width="1.4" stroke-dasharray="5 5" class="anim-beam" opacity="0.5"/></g>
+          <g class="eng-kinetic-wave" pointer-events="none"><circle cx="400" cy="205" r="72" fill="none" stroke="#38bdf8" stroke-width="1.4" class="anim-pulse-ring" opacity="0.45"/><path d="M 130,65 Q 400,35 670,65" fill="none" stroke="#34d399" stroke-width="1.5" class="anim-field-glow" opacity="0.5"/></g><g class="eng-kinetic-overlay" pointer-events="none"><path d="M 100,210 L 700,210" fill="none" stroke="#10b981" stroke-width="2" stroke-dasharray="10 6" class="anim-data-flow" opacity="0.65"/><path d="M 100,130 L 700,130 M 100,290 L 700,290" fill="none" stroke="#f59e0b" stroke-width="1.4" stroke-dasharray="5 5" class="anim-beam" opacity="0.5"/></g>
         </svg>
       `;
 
@@ -6694,6 +6716,11 @@ export function renderProcessControlObject(container, lang = 'zh') {
             <div class="eng-obj-metric-label">${lang === 'en' ? 'SPC, Cpk & APC 4-Pillar Clauses' : 'SPC 判異、Cpk 與 APC 四大條例'}</div>
             <div class="eng-obj-metric-value" style="font-size: 13.5px; color: var(--semi-teal);">${lang === 'en' ? 'WECO Rules · Cpk ≥ 1.67 · R2R/FDC/VM' : 'WECO Rules · Cpk ≥ 1.67 · R2R/FDC/VM'}</div>
             <div class="eng-obj-metric-note">${lang === 'en' ? 'WECO/Nelson rules, 6σ Cpk ≥ 1.67 & APC (R2R / FDC / VM / PdM)' : 'WECO/Nelson 判異、6σ Cpk ≥ 1.67 與 APC (R2R 回饋前饋 / FDC / VM / PdM)'}</div>
+          </div>
+          <div class="eng-obj-metric-card">
+            <div class="eng-obj-metric-label">${lang === 'en' ? 'Shewhart Cpk, EWMA R2R & FDC T² Law' : '六標準差 Cpk 與 EWMA 控制律 (APC Law)'}</div>
+            <div class="eng-obj-metric-value" style="font-size: 13.5px; color: #0284c7;">${lang === 'en' ? 'Cpk = min[(USL-μ)/3σ] · z_t = λy_t+(1-λ)z_{t-1}' : 'Cpk = min[(USL-μ)/3σ] · z_t = λy_t+(1-λ)z_{t-1}'}</div>
+            <div class="eng-obj-metric-note">${lang === 'en' ? 'Cpk ≥ 1.67 (<0.6 DPPM), EWMA R2R trim & FDC Mahalanobis T²' : '車規/3D KGD Cpk ≥ 1.67、EWMA 批次間自動補償與馬氏距離 T²'}</div>
           </div>
         </div>
 
@@ -6904,7 +6931,7 @@ export function renderWaferTestObject(container, lang = 'zh') {
               <text x="15" y="48" fill="#10b981" font-size="11" font-weight="800">Kelvin 4-Wire: ${r4Wire.toFixed(2)} Ω (Sense 無電流，精準零誤差!)</text>
             </g>
           </g>
-          <g class="eng-kinetic-overlay" pointer-events="none"><path d="M 220,90 L 380,220 L 580,90" fill="none" stroke="#fbbf24" stroke-width="2.2" stroke-dasharray="7 5" class="anim-data-flow" opacity="0.75"/><circle cx="380" cy="220" r="24" fill="none" stroke="#38bdf8" stroke-width="1.8" stroke-dasharray="4 4" class="anim-beam" opacity="0.7"/></g>
+          <g class="eng-kinetic-wave" pointer-events="none"><circle cx="400" cy="205" r="72" fill="none" stroke="#38bdf8" stroke-width="1.4" class="anim-pulse-ring" opacity="0.45"/><path d="M 130,65 Q 400,35 670,65" fill="none" stroke="#34d399" stroke-width="1.5" class="anim-field-glow" opacity="0.5"/></g><g class="eng-kinetic-overlay" pointer-events="none"><path d="M 220,90 L 380,220 L 580,90" fill="none" stroke="#fbbf24" stroke-width="2.2" stroke-dasharray="7 5" class="anim-data-flow" opacity="0.75"/><circle cx="380" cy="220" r="24" fill="none" stroke="#38bdf8" stroke-width="1.8" stroke-dasharray="4 4" class="anim-beam" opacity="0.7"/></g>
         </svg>
       `;
 
@@ -7143,6 +7170,11 @@ export function renderWaferTestObject(container, lang = 'zh') {
             <div class="eng-obj-metric-label">${lang === 'en' ? 'Wafer Probe & KGD Clauses' : '晶圓針測與 KGD 條例 (Probe Clauses)'}</div>
             <div class="eng-obj-metric-value" style="font-size: 13.5px; color: var(--semi-teal);">${lang === 'en' ? 'WAT · Cobra · MEMS · 3D KGD' : 'WAT · Cobra · MEMS · 3D KGD'}</div>
             <div class="eng-obj-metric-note">${lang === 'en' ? '4-wire Kelvin WAT, C4 Cobra, 20µm MEMS micro-bump probe & bumpless 3D BIST' : 'Kelvin 四線 WAT、C4 垂直探針、20µm 微凸塊 MEMS 探針與無凸塊 3D BIST'}</div>
+          </div>
+          <div class="eng-obj-metric-card">
+            <div class="eng-obj-metric-label">${lang === 'en' ? 'Kelvin 4-Wire, Holm & Williams-Brown Law' : 'Kelvin 四線與 3D 測試逃逸率律 (Test Law)'}</div>
+            <div class="eng-obj-metric-value" style="font-size: 13.5px; color: #0284c7;">${lang === 'en' ? 'R_DUT = V_sense/I_force · DL = 1 - Y^(1-FC)' : 'R_DUT = V_sense/I_force · DL = 1 - Y^(1-FC)'}</div>
+            <div class="eng-obj-metric-note">${lang === 'en' ? 'Nullifies lead resistance, controls 5–15 µm OD & bounds 3D DL' : '消除探針引線電阻、微凸塊 5–15 µm 受控超程與 KGD 逃逸率壓縮'}</div>
           </div>
         </div>
 
@@ -8093,6 +8125,7 @@ export function renderPackagingFlowObject(container, lang = 'zh') {
             <circle cx="15" cy="155" r="7" fill="#f59e0b"/>
             <text x="35" y="155" fill="#f59e0b" font-size="10" font-weight="700">打火球 (FAB)</text>
           </g>
+          <g class="eng-kinetic-wave" pointer-events="none"><circle cx="400" cy="205" r="72" fill="none" stroke="#38bdf8" stroke-width="1.4" class="anim-pulse-ring" opacity="0.45"/><path d="M 130,65 Q 400,35 670,65" fill="none" stroke="#34d399" stroke-width="1.5" class="anim-field-glow" opacity="0.5"/></g>
         </svg>
       `;
 
@@ -8337,6 +8370,11 @@ export function renderPackagingFlowObject(container, lang = 'zh') {
 
         <div class="eng-obj-dashboard">
           ${dashboardHtml}
+          <div class="eng-obj-metric-card">
+            <div class="eng-obj-metric-label">${lang === 'en' ? 'Coffin-Manson DNP & Washburn Flow Law' : 'Coffin-Manson 疲勞與毛細底填律 (PKG Law)'}</div>
+            <div class="eng-obj-metric-value" style="font-size: 13.5px; color: #0284c7;">${lang === 'en' ? 'Δγ ∝ L_DNP·Δα·ΔT/h · t_fill ∝ η·L²/h_gap' : 'Δγ ∝ L_DNP·Δα·ΔT/h · t_fill ∝ η·L²/h_gap'}</div>
+            <div class="eng-obj-metric-note">${lang === 'en' ? 'Corner bump strain, underfill stress relief & MR-MUF transition' : '角落焊球應變集中、Underfill 應力分散與微米間隙改採 MR-MUF'}</div>
+          </div>
         </div>
 
         <footer class="eng-obj-footer-note">
@@ -8428,6 +8466,7 @@ export function renderReliabilityTestingObject(container, lang = 'zh') {
           </g>
 
           <text x="400" y="375" text-anchor="middle" fill="#fbbf24" font-size="11.5" font-weight="750">預燒 (Burn-In) 的真諦：在工廠用高溫高壓強迫早期早夭品全數陣亡，確保出廠晶片 100% 落在綠色極低失效率區！</text>
+          <g class="eng-kinetic-wave" pointer-events="none"><circle cx="400" cy="205" r="72" fill="none" stroke="#38bdf8" stroke-width="1.4" class="anim-pulse-ring" opacity="0.45"/><path d="M 130,65 Q 400,35 670,65" fill="none" stroke="#34d399" stroke-width="1.5" class="anim-field-glow" opacity="0.5"/></g>
         </svg>
       `;
 
@@ -8632,6 +8671,11 @@ export function renderReliabilityTestingObject(container, lang = 'zh') {
             <div class="eng-obj-metric-label">${lang === 'en' ? 'JEDEC / AEC Qualification Clauses' : '國際可靠度標準條例 (JEDEC / AEC)'}</div>
             <div class="eng-obj-metric-value" style="font-size: 13.5px; color: var(--semi-teal);">${lang === 'en' ? 'HTOL · TC · HAST · MSL · WLR' : 'HTOL · TC · HAST · MSL · WLR'}</div>
             <div class="eng-obj-metric-note">${lang === 'en' ? 'JESD22 HTOL, -65~150°C TC, HAST, J-STD-020 MSL reflow & TDDB/BTI/HCI/EM' : 'JESD22 高溫壽命、-65~150°C 溫循、HAST 溫濕偏壓、J-STD-020 與 TDDB/BTI/EM'}</div>
+          </div>
+          <div class="eng-obj-metric-card">
+            <div class="eng-obj-metric-label">${lang === 'en' ? 'Weibull Bathtub & Arrhenius-Peck FIT Law' : 'Weibull 浴缸與 Peck/FIT 卡方律 (Rel Law)'}</div>
+            <div class="eng-obj-metric-value" style="font-size: 13.5px; color: #0284c7;">${lang === 'en' ? 'F(t)=1-e^-(t/η)^β · FIT = χ²/(2·N·t·AF)×10⁹' : 'F(t)=1-e^-(t/η)^β · FIT = χ²/(2·N·t·AF)×10⁹'}</div>
+            <div class="eng-obj-metric-note">${lang === 'en' ? 'Burn-In screens β<1 infant mortality; HAST/HTOL bounds 10-yr FIT' : 'Burn-In 篩除 β<1 早夭缺陷、HAST 溫濕加速與 10 年 <10 FIT 保證'}</div>
           </div>
         </div>
 
@@ -8859,7 +8903,7 @@ export function renderChipJourneyObject(container, lang = 'zh') {
               </g>
             `}
           </g>
-          <g class="eng-kinetic-overlay" pointer-events="none"><path d="M 90,210 L 710,210" fill="none" stroke="#38bdf8" stroke-width="2.2" stroke-dasharray="10 6" class="anim-data-flow" opacity="0.7"/><path d="M 140,140 L 660,140" fill="none" stroke="#34d399" stroke-width="1.6" stroke-dasharray="6 6" class="anim-beam" opacity="0.55"/></g>
+          <g class="eng-kinetic-wave" pointer-events="none"><circle cx="400" cy="205" r="72" fill="none" stroke="#38bdf8" stroke-width="1.4" class="anim-pulse-ring" opacity="0.45"/><path d="M 130,65 Q 400,35 670,65" fill="none" stroke="#34d399" stroke-width="1.5" class="anim-field-glow" opacity="0.5"/></g><g class="eng-kinetic-overlay" pointer-events="none"><path d="M 90,210 L 710,210" fill="none" stroke="#38bdf8" stroke-width="2.2" stroke-dasharray="10 6" class="anim-data-flow" opacity="0.7"/><path d="M 140,140 L 660,140" fill="none" stroke="#34d399" stroke-width="1.6" stroke-dasharray="6 6" class="anim-beam" opacity="0.55"/></g>
         </svg>
       `;
 
@@ -9081,6 +9125,11 @@ export function renderChipJourneyObject(container, lang = 'zh') {
             <div class="eng-obj-metric-value" style="font-size: 13.5px; color: var(--semi-teal);">${lang === 'en' ? 'EDA/IP · Fabless · Foundry 2.0 · OSAT' : 'EDA/IP · Fabless · Foundry 2.0 · OSAT'}</div>
             <div class="eng-obj-metric-note">${lang === 'en' ? 'EDA/IP, Fabless, Foundry 2.0 (FEOL/BEOL + 2.5D/3D + KGD), IDM 2.0 & OSAT' : 'EDA/IP、無廠設計、Foundry 2.0 (前段+2.5D/3D封裝+KGD)、IDM 2.0 與 OSAT'}</div>
           </div>
+          <div class="eng-obj-metric-card">
+            <div class="eng-obj-metric-label">${lang === 'en' ? 'GDPW & 3D Compound Yield Law' : '晶圓毛晶粒數與 3D 複合良率律 (Yield Law)'}</div>
+            <div class="eng-obj-metric-value" style="font-size: 13.5px; color: #0284c7;">${lang === 'en' ? 'GDPW ≈ πR²/A · Y_3D = (∏Y_KGD)·Y_bond^(N-1)' : 'GDPW ≈ πR²/A · Y_3D = (∏Y_KGD)·Y_bond^(N-1)'}</div>
+            <div class="eng-obj-metric-note">${lang === 'en' ? '858 mm² reticle limit, chiplet disaggregation ROI & KGD law' : '858 mm² 光罩極限、大晶片拆分 Chiplet 效益與 Pre-Bond KGD 鐵律'}</div>
+          </div>
         </div>
 
         <footer class="eng-obj-footer-note">
@@ -9215,7 +9264,7 @@ export function renderProcessScalingObject(container, lang = 'zh') {
               <text x="115" y="192" text-anchor="middle" fill="#ec4899" font-size="10" font-weight="700">「3奈米裡沒有任何尺寸是3nm」</text>
             </g>
           </g>
-          <g class="eng-kinetic-overlay" pointer-events="none"><path d="M 120,310 Q 400,200 680,100" fill="none" stroke="#38bdf8" stroke-width="2.2" stroke-dasharray="9 6" class="anim-data-flow" opacity="0.7"/><circle cx="560" cy="150" r="32" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-dasharray="5 5" class="anim-beam" opacity="0.65"/></g>
+          <g class="eng-kinetic-wave" pointer-events="none"><circle cx="400" cy="205" r="72" fill="none" stroke="#38bdf8" stroke-width="1.4" class="anim-pulse-ring" opacity="0.45"/><path d="M 130,65 Q 400,35 670,65" fill="none" stroke="#34d399" stroke-width="1.5" class="anim-field-glow" opacity="0.5"/></g><g class="eng-kinetic-overlay" pointer-events="none"><path d="M 120,310 Q 400,200 680,100" fill="none" stroke="#38bdf8" stroke-width="2.2" stroke-dasharray="9 6" class="anim-data-flow" opacity="0.7"/><circle cx="560" cy="150" r="32" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-dasharray="5 5" class="anim-beam" opacity="0.65"/></g>
         </svg>
       `;
 
@@ -9471,6 +9520,11 @@ export function renderProcessScalingObject(container, lang = 'zh') {
             <div class="eng-obj-metric-value" style="font-size: 13.5px; color: var(--semi-teal);">${lang === 'en' ? 'CPP · M1P · 6T/5T · DTCO · STCO' : 'CPP · M1P · 6T/5T · DTCO · STCO'}</div>
             <div class="eng-obj-metric-note">${lang === 'en' ? 'CPP gate pitch, M1P metal pitch, 5T cells, DTCO (BPR/BSPDN) & STCO 3D chiplets' : 'CPP 閘極節距、M1P 金屬節距、5T 單元、DTCO (BPR/BSPDN) 與 STCO 3D 小晶片'}</div>
           </div>
+          <div class="eng-obj-metric-card">
+            <div class="eng-obj-metric-label">${lang === 'en' ? 'Standard-Cell Area & Dark-Silicon Law' : '標準單元面積與後丹納德定律 (Scaling Law)'}</div>
+            <div class="eng-obj-metric-value" style="font-size: 13.5px; color: #0284c7;">${lang === 'en' ? 'A_cell = N_CPP·CPP·N_T·M1P · P = αCV²f + V·I_leak' : 'A_cell = N_CPP·CPP·N_T·M1P · P = αCV²f + V·I_leak'}</div>
+            <div class="eng-obj-metric-note">${lang === 'en' ? 'CPP×M1P sets true density; dark silicon drives BSPDN & 3D STCO' : 'CPP×M1P 決定真實密度，暗矽效應催生 BSPDN 與 STCO 3D 小晶片'}</div>
+          </div>
         </div>
 
         <footer class="eng-obj-footer-note">
@@ -9608,7 +9662,7 @@ export function renderExcursionControlObject(container, lang = 'zh') {
               <text x="300" y="45" text-anchor="middle" fill="#94a3b8" font-size="10">確認 Root Cause 根因，修改作業標準書 (SOP)，更新防呆規則後方可釋放機台生產</text>
             </g>
           </g>
-          <g class="eng-kinetic-overlay" pointer-events="none"><path d="M 120,210 L 680,210" fill="none" stroke="#f43f5e" stroke-width="2.2" stroke-dasharray="8 6" class="anim-data-flow" opacity="0.7"/><circle cx="400" cy="210" r="42" fill="none" stroke="#fbbf24" stroke-width="2" stroke-dasharray="6 5" class="anim-beam" opacity="0.65"/></g>
+          <g class="eng-kinetic-wave" pointer-events="none"><circle cx="400" cy="205" r="72" fill="none" stroke="#38bdf8" stroke-width="1.4" class="anim-pulse-ring" opacity="0.45"/><path d="M 130,65 Q 400,35 670,65" fill="none" stroke="#34d399" stroke-width="1.5" class="anim-field-glow" opacity="0.5"/></g><g class="eng-kinetic-overlay" pointer-events="none"><path d="M 120,210 L 680,210" fill="none" stroke="#f43f5e" stroke-width="2.2" stroke-dasharray="8 6" class="anim-data-flow" opacity="0.7"/><circle cx="400" cy="210" r="42" fill="none" stroke="#fbbf24" stroke-width="2" stroke-dasharray="6 5" class="anim-beam" opacity="0.65"/></g>
         </svg>
       `;
 
@@ -9801,6 +9855,11 @@ export function renderExcursionControlObject(container, lang = 'zh') {
             <div class="eng-obj-metric-value" style="font-size: 13.5px; color: var(--semi-teal);">${lang === 'en' ? 'OCAP/Octopus · MRB/PAT · 8D · PCN' : 'OCAP/章魚防堵 · MRB/PAT · 8D · PCN'}</div>
             <div class="eng-obj-metric-note">${lang === 'en' ? 'Octopus containment, MRB + PAT outlier screen, 8D (D1–D8) & J-STD-046 PCN' : 'OCAP 章魚防堵、MRB 與車用 PAT 篩選、8D (D1–D8) 防呆互鎖與 J-STD-046 PCN'}</div>
           </div>
+          <div class="eng-obj-metric-card">
+            <div class="eng-obj-metric-label">${lang === 'en' ? 'Hypergeometric P-Value & IQR DPAT Law' : '超幾何共性檢定與動態 PAT 律 (PAT Law)'}</div>
+            <div class="eng-obj-metric-value" style="font-size: 13.5px; color: #0284c7;">${lang === 'en' ? 'P(X≥k) < 10^-3 · DPAT = Q50 ± 6·IQR/1.35' : 'P(X≥k) < 10^-3 · DPAT = Q50 ± 6·IQR/1.35'}</div>
+            <div class="eng-obj-metric-note">${lang === 'en' ? 'Pinpoints excursion chambers & screens maverick dies via IQR DPAT' : '秒級鎖定異常腔體與章魚防堵姊妹批，以穩健四分位距剔除離群晶粒'}</div>
+          </div>
         </div>
 
         <footer class="eng-obj-footer-note">
@@ -9904,7 +9963,7 @@ export function renderSmartFabAutomationObject(container, lang = 'zh') {
               </g>
             </g>
           </g>
-          <g class="eng-kinetic-overlay" pointer-events="none"><path d="M 110,120 L 690,120 M 110,280 L 690,280" fill="none" stroke="#38bdf8" stroke-width="2" stroke-dasharray="8 6" class="anim-data-flow" opacity="0.7"/><line x1="400" y1="100" x2="400" y2="310" stroke="#34d399" stroke-width="2" stroke-dasharray="6 5" class="anim-beam" opacity="0.65"/></g>
+          <g class="eng-kinetic-wave" pointer-events="none"><circle cx="400" cy="205" r="72" fill="none" stroke="#38bdf8" stroke-width="1.4" class="anim-pulse-ring" opacity="0.45"/><path d="M 130,65 Q 400,35 670,65" fill="none" stroke="#34d399" stroke-width="1.5" class="anim-field-glow" opacity="0.5"/></g><g class="eng-kinetic-overlay" pointer-events="none"><path d="M 110,120 L 690,120 M 110,280 L 690,280" fill="none" stroke="#38bdf8" stroke-width="2" stroke-dasharray="8 6" class="anim-data-flow" opacity="0.7"/><line x1="400" y1="100" x2="400" y2="310" stroke="#34d399" stroke-width="2" stroke-dasharray="6 5" class="anim-beam" opacity="0.65"/></g>
         </svg>
       `;
 
@@ -10112,6 +10171,11 @@ export function renderSmartFabAutomationObject(container, lang = 'zh') {
             <div class="eng-obj-metric-value" style="font-size: 13.5px; color: var(--semi-teal);">${lang === 'en' ? 'MES · EAP/RMS · SECS/GEM300 · RTD' : 'MES · EAP/RMS · SECS/GEM300 · RTD'}</div>
             <div class="eng-obj-metric-note">${lang === 'en' ? 'MES genealogy/Q-time, EAP/RMS zero-touch, SECS/GEM300/Interface A & RTD/YMS' : 'MES 履歷與 Q-time、EAP/RMS 零接觸防呆、SECS/GEM300/Interface A 與 RTD/YMS'}</div>
           </div>
+          <div class="eng-obj-metric-card">
+            <div class="eng-obj-metric-label">${lang === 'en' ? 'Little’s Law, Kingman Queue & OEE Law' : '利特爾法則與金曼排隊爆炸律 (CIM Law)'}</div>
+            <div class="eng-obj-metric-value" style="font-size: 13.5px; color: #0284c7;">${lang === 'en' ? 'WIP = TH × CT · CT_q ∝ u/(1-u) · OEE = A×P×Q' : 'WIP = TH × CT · CT_q ∝ u/(1-u) · OEE = A×P×Q'}</div>
+            <div class="eng-obj-metric-note">${lang === 'en' ? 'Controls X-Factor ≈ 2.0, prevents u>85% Q-time spikes & boosts OEE' : '管控 X-Factor ≈ 2.0、多機台群組化防止 >85% 塞車與預測性天車派工'}</div>
+          </div>
         </div>
 
         <footer class="eng-obj-footer-note">
@@ -10227,7 +10291,7 @@ export function renderSoftwareHardwareTruthObject(container, lang = 'zh') {
               <text x="127" y="222" text-anchor="middle" fill="${isFlipped ? '#fca5a5' : '#a7f3d0'}" font-size="9.5">${isFlipped ? '點擊「執行 TRR 刷新」即可修復' : 'TRR 硬體演算法持續監控激發頻率'}</text>
             </g>
           </g>
-          <g class="eng-kinetic-overlay" pointer-events="none"><path d="M 140,185 L 660,185 M 140,245 L 660,245" fill="none" stroke="#f43f5e" stroke-width="2" stroke-dasharray="7 5" class="anim-data-flow" opacity="0.72"/><line x1="400" y1="85" x2="400" y2="335" stroke="#fbbf24" stroke-width="2.2" stroke-dasharray="6 5" class="anim-beam" opacity="0.7"/></g>
+          <g class="eng-kinetic-wave" pointer-events="none"><circle cx="400" cy="205" r="72" fill="none" stroke="#38bdf8" stroke-width="1.4" class="anim-pulse-ring" opacity="0.45"/><path d="M 130,65 Q 400,35 670,65" fill="none" stroke="#34d399" stroke-width="1.5" class="anim-field-glow" opacity="0.5"/></g><g class="eng-kinetic-overlay" pointer-events="none"><path d="M 140,185 L 660,185 M 140,245 L 660,245" fill="none" stroke="#f43f5e" stroke-width="2" stroke-dasharray="7 5" class="anim-data-flow" opacity="0.72"/><line x1="400" y1="85" x2="400" y2="335" stroke="#fbbf24" stroke-width="2.2" stroke-dasharray="6 5" class="anim-beam" opacity="0.7"/></g>
         </svg>
       `;
 
@@ -10476,6 +10540,11 @@ export function renderSoftwareHardwareTruthObject(container, lang = 'zh') {
             <div class="eng-obj-metric-value" style="font-size: 13.5px; color: var(--semi-teal);">${lang === 'en' ? 'TRR/PRAC · ECC · FTL · AVS · 3D NUMA' : 'TRR/PRAC · ECC · FTL · AVS · 3D NUMA'}</div>
             <div class="eng-obj-metric-note">${lang === 'en' ? 'Temp refresh & PRAC, On-Die ECC/Chipkill, NAND FTL/LDPC, AVS/droop & 3D NUMA' : 'DRAM 溫控刷新與 PRAC、On-Die ECC/Chipkill、NAND FTL/LDPC、AVS/壓降與 3D 排程'}</div>
           </div>
+          <div class="eng-obj-metric-card">
+            <div class="eng-obj-metric-label">${lang === 'en' ? 'L·di/dt Droop, DVFS f³ & Hamming ECC Law' : '瞬態壓降、立方功耗與 ECC 纠錯律 (HW/FW Law)'}</div>
+            <div class="eng-obj-metric-value" style="font-size: 13.5px; color: #0284c7;">${lang === 'en' ? 'ΔV = I·R + L·di/dt · P_dyn ∝ V²f · 2^r ≥ k+r+1' : 'ΔV = I·R + L·di/dt · P_dyn ∝ V²f · 2^r ≥ k+r+1'}</div>
+            <div class="eng-obj-metric-note">${lang === 'en' ? 'BSPDN+DTC tames di/dt, µs DVFS halts runaway & ECC blocks SDC' : 'BSPDN+DTC 抑制壓降、微秒級 DVFS 防熱失控與 SECDED/LDPC 防靜默損毀'}</div>
+          </div>
         </div>
 
         <footer class="eng-obj-footer-note">
@@ -10613,7 +10682,7 @@ export function renderGlossaryGalaxyObject(container, lang = 'zh') {
             <text x="240" y="130" text-anchor="end" fill="#ec4899" font-size="12" font-weight="800">先進封裝 (Advanced Packaging)</text>
             <text x="240" y="145" text-anchor="end" fill="#94a3b8" font-size="10">2.5D CoWoS / SoIC / TSV (35 詞)</text>
           </g>
-          <g class="eng-kinetic-overlay" pointer-events="none"><circle cx="400" cy="210" r="145" fill="none" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="8 8" class="anim-data-flow" opacity="0.55"/><path d="M 190,110 L 400,210 L 610,110 M 190,310 L 400,210 L 610,310" fill="none" stroke="#34d399" stroke-width="1.8" stroke-dasharray="6 6" class="anim-beam" opacity="0.65"/></g>
+          <g class="eng-kinetic-wave" pointer-events="none"><circle cx="400" cy="205" r="72" fill="none" stroke="#38bdf8" stroke-width="1.4" class="anim-pulse-ring" opacity="0.45"/><path d="M 130,65 Q 400,35 670,65" fill="none" stroke="#34d399" stroke-width="1.5" class="anim-field-glow" opacity="0.5"/></g><g class="eng-kinetic-overlay" pointer-events="none"><circle cx="400" cy="210" r="145" fill="none" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="8 8" class="anim-data-flow" opacity="0.55"/><path d="M 190,110 L 400,210 L 610,110 M 190,310 L 400,210 L 610,310" fill="none" stroke="#34d399" stroke-width="1.8" stroke-dasharray="6 6" class="anim-beam" opacity="0.65"/></g>
         </svg>
       `;
 
@@ -10782,6 +10851,11 @@ export function renderGlossaryGalaxyObject(container, lang = 'zh') {
             <div class="eng-obj-metric-value" style="font-size: 13.5px; color: var(--semi-teal);">${lang === 'en' ? 'Substrate · FE/BEOL · 3D · CIM' : '基板 · 前中後段 · 3D封裝 · CIM'}</div>
             <div class="eng-obj-metric-note">${lang === 'en' ? 'Unites 245 bilingual terms, physical dimensions & 25-chapter 3D clauses' : '串聯 245 筆中英術語、物理量綱標尺與全書 25 章 3D 整合架構'}</div>
           </div>
+          <div class="eng-obj-metric-card">
+            <div class="eng-obj-metric-label">${lang === 'en' ? '8-Domain Quantitative Scaling Benchmarks' : '八大領域定量物理量綱總覽 (SI & Scaling)'}</div>
+            <div class="eng-obj-metric-value" style="font-size: 13.5px; color: #0284c7;">${lang === 'en' ? 'Å (10⁻¹⁰m) · fF (10⁻¹⁵F) · pJ/bit · DPPM/FIT' : 'Å (10⁻¹⁰m) · fF (10⁻¹⁵F) · pJ/bit · DPPM/FIT'}</div>
+            <div class="eng-obj-metric-note">${lang === 'en' ? 'Spans angstrom EOT, femtofarad DRAM cells, sub-pJ 3D I/O & FIT' : '橫跨埃米閘極氧化層、飛法拉 DRAM 電容、皮焦耳 3D 互連與十億小時 FIT'}</div>
+          </div>
         </div>
 
         <footer class="eng-obj-footer-note">
@@ -10865,7 +10939,7 @@ export function renderFabJargonDecoderObject(container, lang = 'zh') {
               <text x="15" y="118" fill="#10b981" font-size="10" font-weight="700">✓ 逾時後果：一旦超過 1 秒強制退回重新洗淨</text>
             </g>
           </g>
-          <g class="eng-kinetic-overlay" pointer-events="none"><path d="M 110,210 L 690,210" fill="none" stroke="#38bdf8" stroke-width="2" stroke-dasharray="8 6" class="anim-data-flow" opacity="0.65"/><circle cx="400" cy="210" r="36" fill="none" stroke="#f59e0b" stroke-width="2" stroke-dasharray="5 5" class="anim-beam" opacity="0.7"/></g>
+          <g class="eng-kinetic-wave" pointer-events="none"><circle cx="400" cy="205" r="72" fill="none" stroke="#38bdf8" stroke-width="1.4" class="anim-pulse-ring" opacity="0.45"/><path d="M 130,65 Q 400,35 670,65" fill="none" stroke="#34d399" stroke-width="1.5" class="anim-field-glow" opacity="0.5"/></g><g class="eng-kinetic-overlay" pointer-events="none"><path d="M 110,210 L 690,210" fill="none" stroke="#38bdf8" stroke-width="2" stroke-dasharray="8 6" class="anim-data-flow" opacity="0.65"/><circle cx="400" cy="210" r="36" fill="none" stroke="#f59e0b" stroke-width="2" stroke-dasharray="5 5" class="anim-beam" opacity="0.7"/></g>
         </svg>
       `;
 
@@ -11031,6 +11105,11 @@ export function renderFabJargonDecoderObject(container, lang = 'zh') {
             <div class="eng-obj-metric-value" style="font-size: 13.5px; color: var(--semi-teal);">${lang === 'en' ? 'Run/Hold · Season · War-Room · KGD' : 'Run/Hold · Season · War-Room · KGD'}</div>
             <div class="eng-obj-metric-note">${lang === 'en' ? 'Covers Lot state machine, chamber qual, excursion war-room & 3D KGD jargon' : '涵蓋 Lot 生命週期、開腔養腔復機、章魚防堵會診與 3D 封裝現場行話'}</div>
           </div>
+          <div class="eng-obj-metric-card">
+            <div class="eng-obj-metric-label">${lang === 'en' ? 'Fab Queueing & Q-Time Interlock Law' : '批次排隊與 Q-Time 鎖批數學律 (Floor Law)'}</div>
+            <div class="eng-obj-metric-value" style="font-size: 13.5px; color: #0284c7;">${lang === 'en' ? 't_wait < t_Q-Time · P(commonality) < 10^-3' : 't_wait < t_Q-Time · P(commonality) < 10^-3'}</div>
+            <div class="eng-obj-metric-note">${lang === 'en' ? 'Strict Q-Time auto-hold, RTD priority weights & commonality P-value' : 'Q-Time 倒數硬性鎖批、RTD 權重排程與超幾何共性秒級定位異常腔體'}</div>
+          </div>
         </div>
 
         <footer class="eng-obj-footer-note">
@@ -11106,7 +11185,7 @@ export function renderMasteryRoadmapObject(container, lang = 'zh') {
               }).join('')}
             </g>
           </g>
-          <g class="eng-kinetic-overlay" pointer-events="none"><path d="M 120,340 L 680,340" fill="none" stroke="#34d399" stroke-width="2.2" stroke-dasharray="8 6" class="anim-data-flow" opacity="0.7"/><path d="M 160,180 L 640,180" fill="none" stroke="#38bdf8" stroke-width="1.8" stroke-dasharray="6 6" class="anim-beam" opacity="0.6"/></g>
+          <g class="eng-kinetic-wave" pointer-events="none"><circle cx="400" cy="205" r="72" fill="none" stroke="#38bdf8" stroke-width="1.4" class="anim-pulse-ring" opacity="0.45"/><path d="M 130,65 Q 400,35 670,65" fill="none" stroke="#34d399" stroke-width="1.5" class="anim-field-glow" opacity="0.5"/></g><g class="eng-kinetic-overlay" pointer-events="none"><path d="M 120,340 L 680,340" fill="none" stroke="#34d399" stroke-width="2.2" stroke-dasharray="8 6" class="anim-data-flow" opacity="0.7"/><path d="M 160,180 L 640,180" fill="none" stroke="#38bdf8" stroke-width="1.8" stroke-dasharray="6 6" class="anim-beam" opacity="0.6"/></g>
         </svg>
       `;
 
@@ -11279,6 +11358,11 @@ export function renderMasteryRoadmapObject(container, lang = 'zh') {
             <div class="eng-obj-metric-label">${lang === 'en' ? 'Standards & Conferences Clauses' : '國際標準與頂尖會議條例 (Standards)'}</div>
             <div class="eng-obj-metric-value" style="font-size: 13.5px; color: var(--semi-teal);">${lang === 'en' ? 'SEMI/JEDEC/UCIe · IEDM/VLSI/ECTC' : 'SEMI/JEDEC/UCIe · IEDM/VLSI/ECTC'}</div>
             <div class="eng-obj-metric-note">${lang === 'en' ? 'Spans SEMI/JEDEC/AEC/UCIe/IEEE 1838 standards & IEDM/VLSI/ISSCC/ECTC' : '涵蓋 SEMI/JEDEC/AEC/UCIe/IEEE 1838 標準與 IEDM/VLSI/ISSCC/ECTC 會議'}</div>
+          </div>
+          <div class="eng-obj-metric-card">
+            <div class="eng-obj-metric-label">${lang === 'en' ? '25-Chapter 75+ Governing Equations Atlas' : '全書 25 章 75+ 核心統御方程庫 (Equations)'}</div>
+            <div class="eng-obj-metric-value" style="font-size: 13.5px; color: #0284c7;">${lang === 'en' ? 'Rayleigh · Deal-Grove · Preston · Weibull · OEE' : 'Rayleigh · Deal-Grove · Preston · Weibull · OEE'}</div>
+            <div class="eng-obj-metric-note">${lang === 'en' ? 'Unites device physics, process kinetics, 3D thermomechanics & CIM' : '串聯半導體固態物理、製程動力學、3D 熱機械、良率統計與排隊論方程'}</div>
           </div>
         </div>
 
