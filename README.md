@@ -8,6 +8,8 @@
 
 ## 專案特色
 
+- **第 00–04 章（價值鏈良率經濟、無塵室冪次律、量子穿隧能帶、長晶偏析與 EUV 散粒雜訊／EPE）定量物理方程與 3D 互鎖深化（1.9.9）**：於 `ch00`–`ch04` 新增雙語「定量物理方程、製程視窗與 3D 異質整合跨站互鎖表」，涵蓋 `GDPW 毛晶粒數與 3D 堆疊複合良率定律`、`ISO 14644-1 微粒濃度冪次律與 18.24 MΩ·cm 超純水極限`、`波茲曼 59.6 mV/dec 次臨界極限與 EOT 量子穿隧方程`、`Voronkov 臨界比、Scheil 偏析方程與 SFQR/TTV 平坦度定律` 及 `瑞利焦深、EUV 91.8 eV 光子散粒雜訊與 EPE 邊緣放置誤差預算公式`。
+
 - **晶圓廠現場行話（JARGON_DATA 43 筆雙語詞條與附錄 B）300mm 自動化與 3D 封裝實戰語境深化（1.9.8）**：針對 `data/glossary-data.js` 與附錄 B（`app-jargon`）中的 `Lot`、`Hot Lot (Super Hot / Hand-Carry)`、`Split (DOE / Future Hold)`、`控片 (Monitor)`、`擋片 (Dummy)`、`Recipe (RMS Checksum)`、`PM`、`Seasoning（養腔）`、`Q-Time (Auto-Hold)`、`Hold`、`Rework（黃光去膠重曝）`、`Excursion（戰情室與章魚防堵）`、`MRB` 與 `PE/EE/PIE/YE/TE/PKG` 共 14 項核心行話補齊 300mm 智慧晶圓廠與先進封裝現場運作機制。
 
 - **5 大情境探索路徑（Scenario Explorer 全站 24 個互動節點）雙語製程與防呆條例全面深化（1.9.7）**：將 `data/情境路徑.js` 中「看懂圖形轉移（Pattern Transfer 6 站）」、「處理良率異常（Yield Excursion 6 站判斷樹）」與「走進晶圓廠（Inside the Fab 5 站自動化派工）」共 17 個核心節點的中英雙語技術內容全面升級，串聯 `BARC/CAR/MOR 光阻`、`193i+SAQP / High-NA EUV`、`Cryo-HAR / Bosch DRIE / ALE`、`SCCO₂ 超臨界乾燥`、`APC R2R`、`P/T Ratio < 10%`、`WECO/Nelson + FDC`、`OCAP 章魚防堵法`、`3D LIT + Xe⁺ PFIB/STEM`、`MRB + PAT/SBL` 及 `SEMI E84 / GEM300 / Interface A Zero-Touch Track-In`。
