@@ -97,9 +97,9 @@ export const GLOSSARY_DATA = [
     "en": "Atomic Layer Deposition",
     "abbr": "ALD",
     "zh": "原子層沉積",
-    "desc": "一次只長一層原子、極均勻的沉積方法",
-    "descZh": "一次只長一層原子、極均勻的沉積方法",
-    "descEn": "A deposition method that grows one atomic layer at a time, extremely uniform",
+    "desc": "一次只長一層原子、極均勻的沉積方法（提供 ~100% 保形階梯覆蓋，用於 HKMG 氧化鉿、GAA 360° 環繞閘極、DRAM 高深寬比 ZAZ 電容與 SADP/SAQP 間隔壁）",
+    "descZh": "一次只長一層原子、極均勻的沉積方法（提供 ~100% 保形階梯覆蓋，用於 HKMG 氧化鉿、GAA 360° 環繞閘極、DRAM 高深寬比 ZAZ 電容與 SADP/SAQP 間隔壁）",
+    "descEn": "A deposition method that grows one atomic layer at a time, extremely uniform (delivering ~100% atomic step coverage for HKMG HfO₂, GAA 360° gates, DRAM high-aspect ZAZ capacitors, and SADP/SAQP spacers)",
     "chapter": "5"
   },
   {
@@ -592,9 +592,9 @@ export const GLOSSARY_DATA = [
     "en": "Electroplating",
     "abbr": "",
     "zh": "電鍍",
-    "desc": "在電鍍液中讓金屬沉積到晶圓上",
-    "descZh": "在電鍍液中讓金屬沉積到晶圓上",
-    "descEn": "Depositing metal onto the wafer in a plating bath",
+    "desc": "在電鍍液中讓金屬沉積到晶圓上（藉由抑制劑、加速劑與整平劑實現由底向上無空洞超填 Superfilling，為雙鑲嵌銅導線、3D TSV 穿矽孔與微凸塊核心製程）",
+    "descZh": "在電鍍液中讓金屬沉積到晶圓上（藉由抑制劑、加速劑與整平劑實現由底向上無空洞超填 Superfilling，為雙鑲嵌銅導線、3D TSV 穿矽孔與微凸塊核心製程）",
+    "descEn": "Depositing metal onto the wafer in a plating bath (achieving bottom-up void-free superfilling via suppressor, accelerator, and leveler additives for dual-damascene Cu, 3D TSVs, and micro-bumps)",
     "chapter": "10"
   },
   {
@@ -691,9 +691,9 @@ export const GLOSSARY_DATA = [
     "en": "Extreme Ultraviolet",
     "abbr": "EUV",
     "zh": "極紫外光",
-    "desc": "波長 13.5 nm 的微影光源",
-    "descZh": "波長 13.5 nm 的微影光源",
-    "descEn": "A 13.5 nm lithography light source",
+    "desc": "波長 13.5 nm 的微影光源（包含 0.33 NA 標準 EUV 與 0.55 NA High-NA EUV 非對稱 4×/8× 變形光學系統，推動 7nm 至 1.4nm 世代微縮）",
+    "descZh": "波長 13.5 nm 的微影光源（包含 0.33 NA 標準 EUV 與 0.55 NA High-NA EUV 非對稱 4×/8× 變形光學系統，推動 7nm 至 1.4nm 世代微縮）",
+    "descEn": "A 13.5 nm lithography light source (spanning 0.33 NA Low-NA EUV and 0.55 NA High-NA EUV with anamorphic 4×/8× optics driving scaling from 7nm down to 1.4nm)",
     "chapter": "4"
   },
   {
@@ -1798,9 +1798,9 @@ export const GLOSSARY_DATA = [
     "en": "Silicon on Insulator",
     "abbr": "SOI",
     "zh": "絕緣層上覆矽",
-    "desc": "薄矽層下方埋有絕緣層的晶圓",
-    "descZh": "薄矽層下方埋有絕緣層的晶圓",
-    "descEn": "A wafer with an insulating layer buried under a thin silicon layer",
+    "desc": "薄矽層下方埋有絕緣層的晶圓（透過 Smart Cut™ 製備，涵蓋 22nm/12nm FD-SOI、5G/6G RF-SOI，以及 3D 光電共封裝 TSMC COUPE 矽光子波導晶片 PIC）",
+    "descZh": "薄矽層下方埋有絕緣層的晶圓（透過 Smart Cut™ 製備，涵蓋 22nm/12nm FD-SOI、5G/6G RF-SOI，以及 3D 光電共封裝 TSMC COUPE 矽光子波導晶片 PIC）",
+    "descEn": "A wafer with an insulating layer buried under a thin silicon layer (fabricated via Smart Cut™, spanning 22nm/12nm FD-SOI, 5G/6G RF-SOI, and 3D CPO TSMC COUPE Silicon Photonics PIC waveguides)",
     "chapter": "3"
   },
   {

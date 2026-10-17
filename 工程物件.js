@@ -1475,6 +1475,11 @@ export function renderLithoOpticalObject(container, lang = 'zh') {
 
         <div class="eng-obj-dashboard">
           ${dashboardHtml}
+          <div class="eng-obj-metric-card">
+            <div class="eng-obj-metric-label">${lang === 'en' ? 'Lithography Generation Clauses' : '微影波長與曝光條例 (Litho Clauses)'}</div>
+            <div class="eng-obj-metric-value" style="font-size: 13.5px; color: var(--semi-teal);">${lang === 'en' ? 'i-line · 193i · EUV · High-NA' : 'i-line · 193i · EUV · High-NA'}</div>
+            <div class="eng-obj-metric-note">${lang === 'en' ? '365nm RDL, 193i+SAQP, 0.33 NA EUV & 0.55 NA High-NA anamorphic (4×/8×)' : '365nm 封裝 RDL、193i+SAQP、0.33 NA EUV 與 0.55 NA High-NA (4×/8×)'}</div>
+          </div>
         </div>
 
         <footer class="eng-obj-footer-note">
@@ -1866,6 +1871,11 @@ export function renderDepositionMechanismObject(container, lang = 'zh') {
 
         <div class="eng-obj-dashboard">
           ${dashboardHtml}
+          <div class="eng-obj-metric-card">
+            <div class="eng-obj-metric-label">${lang === 'en' ? 'Thin-Film & ECD Clauses' : '六大薄膜與電鍍條例 (Film Clauses)'}</div>
+            <div class="eng-obj-metric-value" style="font-size: 13.5px; color: var(--semi-teal);">${lang === 'en' ? 'Ox · CVD · ALD · iPVD · EPI · ECD' : 'Ox · CVD · ALD · iPVD · EPI · ECD'}</div>
+            <div class="eng-obj-metric-note">${lang === 'en' ? 'ISSG ox, FCVD gap-fill, 100% ALD, iPVD seed, SiGe SEG & ECD Cu superfill' : 'ISSG 氧化、FCVD 填孔、ALD 100% 保形、iPVD 晶種、SiGe 磊晶與 ECD 銅超填'}</div>
+          </div>
         </div>
 
         <footer class="eng-obj-footer-note">
@@ -4493,6 +4503,11 @@ export function renderIngotWaferObject(container, lang = 'zh') {
 
         <div class="eng-obj-dashboard">
           ${dashboardHtml}
+          <div class="eng-obj-metric-card">
+            <div class="eng-obj-metric-label">${lang === 'en' ? 'Wafer Substrate Clauses' : '晶圓基板全譜系條例 (Substrate Clauses)'}</div>
+            <div class="eng-obj-metric-value" style="font-size: 13.5px; color: var(--semi-teal);">${lang === 'en' ? 'CZ/Epi · SOI · SiC/GaN · Carrier' : 'CZ/Epi · SOI · SiC/GaN · 3D載片'}</div>
+            <div class="eng-obj-metric-note">${lang === 'en' ? '11N CZ/FZ Si, FD/RF/SiPh SOI, 4H-SiC/GaN WBG & 3D LTHC carrier wafers' : '11N CZ/FZ 單晶矽、FD/RF/SiPh SOI、4H-SiC/GaN 寬能隙與 3D 暫時鍵合載片'}</div>
+          </div>
         </div>
 
         <footer class="eng-obj-footer-note">
