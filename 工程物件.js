@@ -7628,6 +7628,7 @@ export function renderSemiconductorPhysicsObject(container, lang = 'zh') {
 
             <text x="100" y="300" text-anchor="middle" fill="#fbbf24" font-size="10.5">容易吸納電子產生電洞導電</text>
           </g>
+          <g class="eng-kinetic-overlay" pointer-events="none"><path d="M 180,210 L 620,210" fill="none" stroke="#38bdf8" stroke-width="2.2" stroke-dasharray="8 5" class="anim-data-flow" opacity="0.7"/><line x1="400" y1="290" x2="400" y2="120" stroke="#fbbf24" stroke-width="2" stroke-dasharray="6 4" class="anim-beam" opacity="0.7"/></g>
         </svg>
       `;
 
@@ -7703,6 +7704,7 @@ export function renderSemiconductorPhysicsObject(container, lang = 'zh') {
             <text x="240" y="24" text-anchor="middle" fill="#34d399" font-size="11.5" font-weight="750">擴散電流 (Diffusion) ⇄ 漂移電流 (Drift) 精確相抵 (Inet = 0)</text>
             <text x="240" y="42" text-anchor="middle" fill="#cbd5e1" font-size="10.5">順偏電壓克服 0.7V 內建能障導通；逆偏擴大空乏區杜絕漏電</text>
           </g>
+          <g class="eng-kinetic-overlay" pointer-events="none"><path d="M 180,210 L 620,210" fill="none" stroke="#38bdf8" stroke-width="2.2" stroke-dasharray="8 5" class="anim-data-flow" opacity="0.7"/><line x1="400" y1="290" x2="400" y2="120" stroke="#fbbf24" stroke-width="2" stroke-dasharray="6 4" class="anim-beam" opacity="0.7"/></g>
         </svg>
       `;
 
@@ -7811,6 +7813,7 @@ export function renderSemiconductorPhysicsObject(container, lang = 'zh') {
             <text x="240" y="20" text-anchor="middle" fill="${modeColor}" font-size="12" font-weight="750">狀態：${modeName} · I_D = ${idStr} mA/μm</text>
             <text x="240" y="36" text-anchor="middle" fill="#cbd5e1" font-size="10">${isCutoff ? '閘極電壓不足，表面未反轉' : (isSat ? '汲極電壓超過夾斷界限 V_DS ≥ V_ov，電流受橫向飽和速度限制' : '閘極產生均勻反轉層，電晶體呈歐姆線性導通')}</text>
           </g>
+          <g class="eng-kinetic-overlay" pointer-events="none"><path d="M 180,210 L 620,210" fill="none" stroke="#38bdf8" stroke-width="2.2" stroke-dasharray="8 5" class="anim-data-flow" opacity="0.7"/><line x1="400" y1="290" x2="400" y2="120" stroke="#fbbf24" stroke-width="2" stroke-dasharray="6 4" class="anim-beam" opacity="0.7"/></g>
         </svg>
       `;
 
@@ -8786,6 +8789,7 @@ export function renderChipJourneyObject(container, lang = 'zh') {
               </g>
             `}
           </g>
+          <g class="eng-kinetic-overlay" pointer-events="none"><path d="M 90,210 L 710,210" fill="none" stroke="#38bdf8" stroke-width="2.2" stroke-dasharray="10 6" class="anim-data-flow" opacity="0.7"/><path d="M 140,140 L 660,140" fill="none" stroke="#34d399" stroke-width="1.6" stroke-dasharray="6 6" class="anim-beam" opacity="0.55"/></g>
         </svg>
       `;
 
@@ -8873,6 +8877,7 @@ export function renderChipJourneyObject(container, lang = 'zh') {
               <text x="82" y="265" text-anchor="middle" fill="#c084fc" font-size="10">實體防護與互連</text>
             </g>
           </g>
+          <g class="eng-kinetic-overlay" pointer-events="none"><path d="M 90,210 L 710,210" fill="none" stroke="#38bdf8" stroke-width="2.2" stroke-dasharray="10 6" class="anim-data-flow" opacity="0.7"/><path d="M 140,140 L 660,140" fill="none" stroke="#34d399" stroke-width="1.6" stroke-dasharray="6 6" class="anim-beam" opacity="0.55"/></g>
         </svg>
       `;
 
@@ -8951,6 +8956,7 @@ export function renderChipJourneyObject(container, lang = 'zh') {
               <text x="345" y="115" text-anchor="middle" fill="#10b981" font-size="10.5" font-weight="700">故半導體工程的本質，即是在天文數字等級的幾何規模下實現近乎零缺陷的統計管制</text>
             </g>
           </g>
+          <g class="eng-kinetic-overlay" pointer-events="none"><path d="M 90,210 L 710,210" fill="none" stroke="#38bdf8" stroke-width="2.2" stroke-dasharray="10 6" class="anim-data-flow" opacity="0.7"/><path d="M 140,140 L 660,140" fill="none" stroke="#34d399" stroke-width="1.6" stroke-dasharray="6 6" class="anim-beam" opacity="0.55"/></g>
         </svg>
       `;
 
@@ -9139,6 +9145,7 @@ export function renderProcessScalingObject(container, lang = 'zh') {
               <text x="115" y="192" text-anchor="middle" fill="#ec4899" font-size="10" font-weight="700">「3奈米裡沒有任何尺寸是3nm」</text>
             </g>
           </g>
+          <g class="eng-kinetic-overlay" pointer-events="none"><path d="M 120,310 Q 400,200 680,100" fill="none" stroke="#38bdf8" stroke-width="2.2" stroke-dasharray="9 6" class="anim-data-flow" opacity="0.7"/><circle cx="560" cy="150" r="32" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-dasharray="5 5" class="anim-beam" opacity="0.65"/></g>
         </svg>
       `;
 
@@ -9271,6 +9278,7 @@ export function renderProcessScalingObject(container, lang = 'zh') {
               <text x="75" y="64" text-anchor="middle" fill="#94a3b8" font-size="9">等效頻率: ~${fGhz.toFixed(1)} GHz</text>
             </g>
           </g>
+          <g class="eng-kinetic-overlay" pointer-events="none"><path d="M 120,310 Q 400,200 680,100" fill="none" stroke="#38bdf8" stroke-width="2.2" stroke-dasharray="9 6" class="anim-data-flow" opacity="0.7"/><circle cx="560" cy="150" r="32" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-dasharray="5 5" class="anim-beam" opacity="0.65"/></g>
         </svg>
       `;
 
@@ -9337,6 +9345,7 @@ export function renderProcessScalingObject(container, lang = 'zh') {
               <text x="90" y="228" text-anchor="middle" fill="#10b981" font-size="10.5" font-weight="700">Cell Height = 5 × 22 = 110 nm</text>
             </g>
           </g>
+          <g class="eng-kinetic-overlay" pointer-events="none"><path d="M 120,310 Q 400,200 680,100" fill="none" stroke="#38bdf8" stroke-width="2.2" stroke-dasharray="9 6" class="anim-data-flow" opacity="0.7"/><circle cx="560" cy="150" r="32" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-dasharray="5 5" class="anim-beam" opacity="0.65"/></g>
         </svg>
       `;
 
@@ -9529,6 +9538,7 @@ export function renderExcursionControlObject(container, lang = 'zh') {
               <text x="300" y="45" text-anchor="middle" fill="#94a3b8" font-size="10">確認 Root Cause 根因，修改作業標準書 (SOP)，更新防呆規則後方可釋放機台生產</text>
             </g>
           </g>
+          <g class="eng-kinetic-overlay" pointer-events="none"><path d="M 120,210 L 680,210" fill="none" stroke="#f43f5e" stroke-width="2.2" stroke-dasharray="8 6" class="anim-data-flow" opacity="0.7"/><circle cx="400" cy="210" r="42" fill="none" stroke="#fbbf24" stroke-width="2" stroke-dasharray="6 5" class="anim-beam" opacity="0.65"/></g>
         </svg>
       `;
 
@@ -9597,6 +9607,7 @@ export function renderExcursionControlObject(container, lang = 'zh') {
               </g>
             </g>
           </g>
+          <g class="eng-kinetic-overlay" pointer-events="none"><path d="M 120,210 L 680,210" fill="none" stroke="#f43f5e" stroke-width="2.2" stroke-dasharray="8 6" class="anim-data-flow" opacity="0.7"/><circle cx="400" cy="210" r="42" fill="none" stroke="#fbbf24" stroke-width="2" stroke-dasharray="6 5" class="anim-beam" opacity="0.65"/></g>
         </svg>
       `;
 
@@ -9665,6 +9676,7 @@ export function renderExcursionControlObject(container, lang = 'zh') {
               <text x="80" y="45" text-anchor="middle" fill="#cbd5e1" font-size="9.5">清查同一鋼瓶特氣/研磨液</text>
             </g>
           </g>
+          <g class="eng-kinetic-overlay" pointer-events="none"><path d="M 120,210 L 680,210" fill="none" stroke="#f43f5e" stroke-width="2.2" stroke-dasharray="8 6" class="anim-data-flow" opacity="0.7"/><circle cx="400" cy="210" r="42" fill="none" stroke="#fbbf24" stroke-width="2" stroke-dasharray="6 5" class="anim-beam" opacity="0.65"/></g>
         </svg>
       `;
 
@@ -9822,6 +9834,7 @@ export function renderSmartFabAutomationObject(container, lang = 'zh') {
               </g>
             </g>
           </g>
+          <g class="eng-kinetic-overlay" pointer-events="none"><path d="M 110,120 L 690,120 M 110,280 L 690,280" fill="none" stroke="#38bdf8" stroke-width="2" stroke-dasharray="8 6" class="anim-data-flow" opacity="0.7"/><line x1="400" y1="100" x2="400" y2="310" stroke="#34d399" stroke-width="2" stroke-dasharray="6 5" class="anim-beam" opacity="0.65"/></g>
         </svg>
       `;
 
@@ -9900,6 +9913,7 @@ export function renderSmartFabAutomationObject(container, lang = 'zh') {
               <text x="75" y="175" text-anchor="middle" fill="#cbd5e1" font-size="10">機器手臂吸取晶圓</text>
             </g>
           </g>
+          <g class="eng-kinetic-overlay" pointer-events="none"><path d="M 110,120 L 690,120 M 110,280 L 690,280" fill="none" stroke="#38bdf8" stroke-width="2" stroke-dasharray="8 6" class="anim-data-flow" opacity="0.7"/><line x1="400" y1="100" x2="400" y2="310" stroke="#34d399" stroke-width="2" stroke-dasharray="6 5" class="anim-beam" opacity="0.65"/></g>
         </svg>
       `;
 
@@ -9973,6 +9987,7 @@ export function renderSmartFabAutomationObject(container, lang = 'zh') {
               <text x="220" y="32" text-anchor="middle" fill="#34d399" font-size="16" font-weight="800">綜合 OEE = 90.3% (世界級旗艦晶圓廠標準)</text>
             </g>
           </g>
+          <g class="eng-kinetic-overlay" pointer-events="none"><path d="M 110,120 L 690,120 M 110,280 L 690,280" fill="none" stroke="#38bdf8" stroke-width="2" stroke-dasharray="8 6" class="anim-data-flow" opacity="0.7"/><line x1="400" y1="100" x2="400" y2="310" stroke="#34d399" stroke-width="2" stroke-dasharray="6 5" class="anim-beam" opacity="0.65"/></g>
         </svg>
       `;
 
@@ -10142,6 +10157,7 @@ export function renderSoftwareHardwareTruthObject(container, lang = 'zh') {
               <text x="127" y="222" text-anchor="middle" fill="${isFlipped ? '#fca5a5' : '#a7f3d0'}" font-size="9.5">${isFlipped ? '點擊「執行 TRR 刷新」即可修復' : 'TRR 硬體演算法持續監控激發頻率'}</text>
             </g>
           </g>
+          <g class="eng-kinetic-overlay" pointer-events="none"><path d="M 140,185 L 660,185 M 140,245 L 660,245" fill="none" stroke="#f43f5e" stroke-width="2" stroke-dasharray="7 5" class="anim-data-flow" opacity="0.72"/><line x1="400" y1="85" x2="400" y2="335" stroke="#fbbf24" stroke-width="2.2" stroke-dasharray="6 5" class="anim-beam" opacity="0.7"/></g>
         </svg>
       `;
 
@@ -10246,6 +10262,7 @@ export function renderSoftwareHardwareTruthObject(container, lang = 'zh') {
               <text x="115" y="195" text-anchor="middle" fill="#cbd5e1" font-size="9.5">${pvtCorner === 'SS' ? '補償電壓 +10% 或降主頻' : pvtCorner === 'TT' ? '採用標稱基準 P-State 曲線' : '降低電壓壓制漏電與過熱'}</text>
             </g>
           </g>
+          <g class="eng-kinetic-overlay" pointer-events="none"><path d="M 140,185 L 660,185 M 140,245 L 660,245" fill="none" stroke="#f43f5e" stroke-width="2" stroke-dasharray="7 5" class="anim-data-flow" opacity="0.72"/><line x1="400" y1="85" x2="400" y2="335" stroke="#fbbf24" stroke-width="2.2" stroke-dasharray="6 5" class="anim-beam" opacity="0.7"/></g>
         </svg>
       `;
 
@@ -10334,6 +10351,7 @@ export function renderSoftwareHardwareTruthObject(container, lang = 'zh') {
               <text x="105" y="195" text-anchor="middle" fill="${isBurst ? '#fca5a5' : '#a7f3d0'}" font-size="9">${isBurst ? '對策：增加片上去耦電容 (Decap)' : '晶片背面供電技術可降 40% 壓降'}</text>
             </g>
           </g>
+          <g class="eng-kinetic-overlay" pointer-events="none"><path d="M 140,185 L 660,185 M 140,245 L 660,245" fill="none" stroke="#f43f5e" stroke-width="2" stroke-dasharray="7 5" class="anim-data-flow" opacity="0.72"/><line x1="400" y1="85" x2="400" y2="335" stroke="#fbbf24" stroke-width="2.2" stroke-dasharray="6 5" class="anim-beam" opacity="0.7"/></g>
         </svg>
       `;
 

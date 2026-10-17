@@ -8,6 +8,8 @@
 
 ## 專案特色
 
+- **全站 28/28 互動工程物件 100% 動態 SVG 物理與信號流滿貫覆蓋（1.9.5）**：完成第 0 章（晶片價值鏈與 EDA 合成流）、第 2 章（能帶載子躍遷與 MOSFET 通道反轉漂移）、第 14 章（微縮軌跡與 DTCO/STCO 小晶片互連）、第 18 章（OCAP 異常防堵與章魚追溯流）、第 23 章（CIM SECS/GEM300 雙向交握與 Q-Time 監控流）及第 24 章（Row Hammer 鄰列耦合波、L·di/dt 壓降電流與 3D 堆疊熱傳導流）SVG 動態升級，實現全站 28 座工程物件 100% 具備即時動態物理視覺化。
+
 - **核心整合、3D 記憶體、故障分析、SPC 與晶圓針測工程物件 SVG 動態物理光束升級（1.9.4）**：為第 11 章（CMOS 跨層整合）、第 13 章（DRAM / 3D NAND / HBM 垂直 TSV 高速資料流）、第 16 章（良率晶圓圖掃描、雙束 FIB 離子束微割與 HR-TEM 繞射束）、第 17 章（SPC 管制軌跡與 Cpk 動態掃描）與第 19 章（WAT Kelvin 四線電流與 CP 微凸塊探針接觸脈衝）五大互動工程物件全面導入非侵入式 SVG 動態光束與信號脈衝動畫（`.anim-data-flow` / `.anim-beam`）。
 
 - **12 大製程全景圖（Fab Flow Atlas）與 5 大互動情境探索路徑（Scenario Explorer）全譜系條例同步（1.9.3）**：將 `data/fab-flow.js` 第 01 至 11 站（涵蓋 `11N CZ/MCZ 與 SOI/LTHC 載片`、`ISSG 自由基氧化`、`High-NA EUV 與 SAQP/MOR`、`Cryo-HAR 與 Bosch TSV 蝕刻`、`FLA/LSA 零擴散退火`、`100% 保形 ALD 與選擇性磊晶`、`3D 混合鍵合 1–3 nm 銅內凹 CMP`、`Siconi 乾洗與 SCCO₂ 超臨界零張力乾燥`、`無阻障 Co/Ru/Mo 與 Air-Gap/BSPDN`、`GAA/CFET`、`CD-SAXS / C-SAM / 3D X-Ray CT / LIT`）及 `data/情境路徑.js` 中英雙語導覽節點全面升級對齊全書最新條例。
