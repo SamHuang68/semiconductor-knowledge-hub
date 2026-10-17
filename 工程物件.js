@@ -1488,6 +1488,11 @@ export function renderLithoOpticalObject(container, lang = 'zh') {
             <div class="eng-obj-metric-value" style="font-size: 13.5px; color: #0284c7;">${lang === 'en' ? 'HP = k1·λ/NA · DOF = k2·λ/NA² · EPE' : 'HP = k1·λ/NA · DOF = k2·λ/NA² · EPE'}</div>
             <div class="eng-obj-metric-note">${lang === 'en' ? '0.55 High-NA 8nm limit, 91.8 eV shot noise & EPE < Pitch/4' : '0.55 High-NA 解析度 8nm、91.8 eV 光子散粒雜訊與 EPE < P/4'}</div>
           </div>
+                  <div class="eng-obj-metric-card">
+            <div class="eng-obj-metric-label">${lang === 'en' ? 'Failure Diagnostics & OCAP' : '現場異常診斷與防呆 (Failure & OCAP)'}</div>
+            <div class="eng-obj-metric-value" style="font-size: 13.5px; color: #d97706;">${lang === 'en' ? 'Stochastic Bridge · Chuck Spot · CPE' : 'Stochastic Bridge · Chuck Spot · CPE'}</div>
+            <div class="eng-obj-metric-note">${lang === 'en' ? 'Mitigates EUV stochastic bridges, chuck focus hotspots & CPE overlay drift' : '防範 EUV 光子散粒隨機微橋接、吸盤顆粒失焦熱點與高階疊對畸變重工'}</div>
+          </div>
         </div>
 
         <footer class="eng-obj-footer-note">
@@ -1891,6 +1896,11 @@ export function renderDepositionMechanismObject(container, lang = 'zh') {
             <div class="eng-obj-metric-label">${lang === 'en' ? 'Deal-Grove, ALD & CEAC Superfill Law' : 'Deal-Grove 與超填定律 (Film Law)'}</div>
             <div class="eng-obj-metric-value" style="font-size: 13.5px; color: #0284c7;">${lang === 'en' ? 'xo²+Axo=Bt · t_sat ∝ (L/d)² · CEAC' : 'xo²+Axo=Bt · t_sat ∝ (L/d)² · CEAC'}</div>
             <div class="eng-obj-metric-note">${lang === 'en' ? 'Linear-parabolic oxidation, ALD (L/d)² dose & CEAC superfill' : '熱氧化線性拋物線律、ALD 深孔擴散平方律與曲率加速電鍍超填'}</div>
+          </div>
+                  <div class="eng-obj-metric-card">
+            <div class="eng-obj-metric-label">${lang === 'en' ? 'Failure Diagnostics & OCAP' : '現場異常診斷與防呆 (Failure & OCAP)'}</div>
+            <div class="eng-obj-metric-value" style="font-size: 13.5px; color: #d97706;">${lang === 'en' ? 'Keyhole Seam · ALD Starve · Cu Void' : 'Keyhole Seam · ALD Starve · Cu Void'}</div>
+            <div class="eng-obj-metric-note">${lang === 'en' ? 'Eliminates CVD keyhole seams, high-AR ALD starvation & ECD bottom voids' : '消除 CVD 懸垂夾斷中縫空洞、高深寬比 ALD 底部耗盡與電鍍超填充失效'}</div>
           </div>
         </div>
 
@@ -2299,6 +2309,11 @@ export function renderPlasmaEtchObject(container, lang = 'zh') {
             <div class="eng-obj-metric-value" style="font-size: 13.5px; color: #0284c7;">${lang === 'en' ? 'd_sh ∝ Vdc^(3/4) · Synergy S > 95%' : 'd_sh ∝ Vdc^(3/4) · Synergy S > 95%'}</div>
             <div class="eng-obj-metric-note">${lang === 'en' ? 'Child-Langmuir sheath, Knudsen ARDE lag & ALE synergy > 95%' : 'Child-Langmuir 電漿鞘層準直、ARDE 克努森衰減與 ALE 自限協同'}</div>
           </div>
+                  <div class="eng-obj-metric-card">
+            <div class="eng-obj-metric-label">${lang === 'en' ? 'Failure Diagnostics & OCAP' : '現場異常診斷與防呆 (Failure & OCAP)'}</div>
+            <div class="eng-obj-metric-value" style="font-size: 13.5px; color: #d97706;">${lang === 'en' ? 'Foot Notch · 3D Bowing · RIE Lag' : 'Foot Notch · 3D Bowing · RIE Lag'}</div>
+            <div class="eng-obj-metric-note">${lang === 'en' ? 'Suppresses charging foot-notching, high-AR bowing & RIE Lag via pulsed/ALE' : '以脈衝電漿消除底部充電切角、超低溫冷凍抑制深孔鼓出與 ALE 克服延遲'}</div>
+          </div>
         </div>
 
         <footer class="eng-obj-footer-note">
@@ -2679,6 +2694,11 @@ export function renderTransistor3DObject(container, lang = 'zh') {
             <div class="eng-obj-metric-label">${lang === 'en' ? 'Natural Length λ_N & GAA Weff Law' : '自然靜電長度與有效通道寬度律 (GAA Law)'}</div>
             <div class="eng-obj-metric-value" style="font-size: 13.5px; color: #0284c7;">${lang === 'en' ? 'λ_GAA < λ_Fin < λ_Planar · Weff = 2N(W+T)' : 'λ_GAA < λ_Fin < λ_Planar · Weff = 2N(W+T)'}</div>
             <div class="eng-obj-metric-note">${lang === 'en' ? 'Lg ≥ 5λN suppresses DIBL while N-stack nanosheets multiply Weff' : '閘極長度 Lg ≥ 5λN 壓制 DIBL 與 GAA 垂直堆疊有效寬度倍增'}</div>
+          </div>
+                  <div class="eng-obj-metric-card">
+            <div class="eng-obj-metric-label">${lang === 'en' ? 'Failure Diagnostics & OCAP' : '現場異常診斷與防呆 (Failure & OCAP)'}</div>
+            <div class="eng-obj-metric-value" style="font-size: 13.5px; color: #d97706;">${lang === 'en' ? 'Dry SiGe Release · BDI · nTSV Overlay' : 'Dry SiGe Release · BDI · nTSV Overlay'}</div>
+            <div class="eng-obj-metric-note">${lang === 'en' ? 'Prevents GAA sheet stiction, sub-sheet leakage (BDI) & BSPDN overlay drift' : '以氣相無水蝕刻防奈米片沾黏、BDI 底部絕緣防漏電與紅外線對準鎖定背面供電'}</div>
           </div>
         </div>
 
@@ -3069,6 +3089,11 @@ export function renderIonImplantObject(container, lang = 'zh') {
             <div class="eng-obj-metric-value" style="font-size: 13.5px; color: #0284c7;">${lang === 'en' ? 'L_diff = 2√(Dt) · L_th = 2√(α·t_p)' : 'L_diff = 2√(Dt) · L_th = 2√(α·t_p)'}</div>
             <div class="eng-obj-metric-note">${lang === 'en' ? 'LSS Gaussian range, zero-diffusion FLA/LSA & 4 µm thermal depth' : 'LSS 離子射程、Fick 零擴散活化與奈秒雷射 4 µm 局部熱穿透'}</div>
           </div>
+                  <div class="eng-obj-metric-card">
+            <div class="eng-obj-metric-label">${lang === 'en' ? 'Failure Diagnostics & OCAP' : '現場異常診斷與防呆 (Failure & OCAP)'}</div>
+            <div class="eng-obj-metric-value" style="font-size: 13.5px; color: #d97706;">${lang === 'en' ? 'Channeling Tail · TED · Crust Pop' : 'Channeling Tail · TED · Crust Pop'}</div>
+            <div class="eng-obj-metric-note">${lang === 'en' ? 'Blocks channeling tails via 7° tilt/PAI, TED broadening & resist crust pop' : '以 7° 傾角與 PAI 阻絕晶格通道長尾、碳共佈植 + 雷射退火抑制硼擴散 TED'}</div>
+          </div>
         </div>
 
         <footer class="eng-obj-footer-note">
@@ -3368,6 +3393,11 @@ export function renderCMPObject(container, lang = 'zh') {
             <div class="eng-obj-metric-label">${lang === 'en' ? 'Preston & Hybrid Bond Thermal Law' : 'Preston 與混合鍵合熱膨脹律 (CMP Law)'}</div>
             <div class="eng-obj-metric-value" style="font-size: 13.5px; color: #0284c7;">${lang === 'en' ? 'MRR = Kp·P·V · Δh_Cu = Δα·H·ΔT' : 'MRR = Kp·P·V · Δh_Cu = Δα·H·ΔT'}</div>
             <div class="eng-obj-metric-note">${lang === 'en' ? 'Preston pattern-density pressure & 1–3 nm Cu thermal bridging' : 'Preston 局部有效壓力與 3D 混合鍵合 1–3 nm 銅凹陷熱膨脹橋接'}</div>
+          </div>
+                  <div class="eng-obj-metric-card">
+            <div class="eng-obj-metric-label">${lang === 'en' ? 'Failure Diagnostics & OCAP' : '現場異常診斷與防呆 (Failure & OCAP)'}</div>
+            <div class="eng-obj-metric-value" style="font-size: 13.5px; color: #d97706;">${lang === 'en' ? 'Cu Dishing · POU Scratch · 1.5nm Recess' : 'Cu Dishing · POU Scratch · 1.5nm Recess'}</div>
+            <div class="eng-obj-metric-note">${lang === 'en' ? 'Controls Cu dishing, slurry chatter scratches & 1–2.5nm hybrid-bond recess' : '以虛設金屬填補與多區氣囊頭消除碟形凹陷、凝膠刮痕並鎖定 3D 混合鍵合凹盤'}</div>
           </div>
         </div>
 
@@ -3726,6 +3756,11 @@ export function renderInterconnectObject(container, lang = 'zh') {
             <div class="eng-obj-metric-label">${lang === 'en' ? 'Fuchs-Sondheimer & Black EM Law' : '奈米尺寸效應與電遷移律 (BEOL Law)'}</div>
             <div class="eng-obj-metric-value" style="font-size: 13.5px; color: #0284c7;">${lang === 'en' ? 'ρ_eff ∝ ρ0·λ0/W · MTTF = A·J^-n·e^(Ea/kT)' : 'ρ_eff ∝ ρ0·λ0/W · MTTF = A·J^-n·e^(Ea/kT)'}</div>
             <div class="eng-obj-metric-note">${lang === 'en' ? 'Proves barrierless Ru/Mo beats Cu <15nm, plus Elmore L² & EM' : '證明 <15nm 下無阻障 Ru/Mo 勝過銅，以及 Elmore L² 與 Blech 長度'}</div>
+          </div>
+                  <div class="eng-obj-metric-card">
+            <div class="eng-obj-metric-label">${lang === 'en' ? 'Failure Diagnostics & OCAP' : '現場異常診斷與防呆 (Failure & OCAP)'}</div>
+            <div class="eng-obj-metric-value" style="font-size: 13.5px; color: #d97706;">${lang === 'en' ? 'Via Open/SIV · ULK TDDB · EM Hillock' : 'Via Open/SIV · ULK TDDB · EM Hillock'}</div>
+            <div class="eng-obj-metric-note">${lang === 'en' ? 'Prevents via SIV opens, ULK plasma-damage TDDB & EM cathode voids' : '以無阻障 Co/Ru 通孔、孔隙修復與選擇性鈷蓋層防範通孔開路、TDDB 與電遷移'}</div>
           </div>
         </div>
 
@@ -4171,6 +4206,11 @@ export function renderAdvancedPackagingObject(container, lang = 'zh') {
             <div class="eng-obj-metric-value" style="font-size: 13.5px; color: #0284c7;">${lang === 'en' ? 'D_IO = 1/P² (>10⁵/mm²) · E_bit = ½CV² (<0.05 pJ)' : 'D_IO = 1/P² (>10⁵/mm²) · E_bit = ½CV² (<0.05 pJ)'}</div>
             <div class="eng-obj-metric-note">${lang === 'en' ? '100× hybrid-bond density leap, 3D thermal matrix & TGV stiffness' : '無凸塊混合鍵合密度暴增百倍、3D 熱耦合矩陣與 TGV 玻璃抗翹曲'}</div>
           </div>
+                  <div class="eng-obj-metric-card">
+            <div class="eng-obj-metric-label">${lang === 'en' ? 'Failure Diagnostics & OCAP' : '現場異常診斷與防呆 (Failure & OCAP)'}</div>
+            <div class="eng-obj-metric-value" style="font-size: 13.5px; color: #d97706;">${lang === 'en' ? 'Smile-Cry NWO · 50nm Blister · In TIM' : 'Smile-Cry NWO · 50nm Blister · In TIM'}</div>
+            <div class="eng-obj-metric-note">${lang === 'en' ? 'Controls CoWoS warpage NWO, 50nm hybrid-bond blisters & 3D thermal crosstalk' : '補強環與玻璃載板抑制哭笑臉翹曲、Class 1 臭氧洗防混合鍵合氣泡與銦片散熱'}</div>
+          </div>
         </div>
 
         <footer class="eng-obj-footer-note">
@@ -4595,6 +4635,11 @@ export function renderIngotWaferObject(container, lang = 'zh') {
             <div class="eng-obj-metric-label">${lang === 'en' ? 'Voronkov & Flatness Quantitative Law' : 'Voronkov 與偏析平坦定律 (Crystal Law)'}</div>
             <div class="eng-obj-metric-value" style="font-size: 13.5px; color: #0284c7;">${lang === 'en' ? 'V/G ≈ 0.134 · Cs = k0·C0(1-fs)^(k0-1)' : 'V/G ≈ 0.134 · Cs = k0·C0(1-fs)^(k0-1)'}</div>
             <div class="eng-obj-metric-note">${lang === 'en' ? 'Defect-free V/G ratio, Scheil segregation & 3D TTV < 1 µm' : '零原生點缺陷臨界比、Scheil 偏析與 3D 薄化 TTV < 1 µm'}</div>
+          </div>
+                  <div class="eng-obj-metric-card">
+            <div class="eng-obj-metric-label">${lang === 'en' ? 'Failure Diagnostics & OCAP' : '現場異常診斷與防呆 (Failure & OCAP)'}</div>
+            <div class="eng-obj-metric-value" style="font-size: 13.5px; color: #d97706;">${lang === 'en' ? 'COP GOI · Slip Line · Backgrind SSD' : 'COP GOI · Slip Line · Backgrind SSD'}</div>
+            <div class="eng-obj-metric-note">${lang === 'en' ? 'Intercepts COP oxide breakdown, thermal slip lines & 3D backgrind cracks' : '攔截原生 COP 空洞擊穿、高溫滑移差排線與 3D 超薄背磨次表面微裂'}</div>
           </div>
         </div>
 
@@ -5026,6 +5071,11 @@ export function renderWetCleanObject(container, lang = 'zh') {
             <div class="eng-obj-metric-value" style="font-size: 13.5px; color: #0284c7;">${lang === 'en' ? 'δ_ac = √(2ν/ω) · F_cap ∝ γ·(H/S)² = 0' : 'δ_ac = √(2ν/ω) · F_cap ∝ γ·(H/S)² = 0'}</div>
             <div class="eng-obj-metric-note">${lang === 'en' ? 'SC-1 Zeta repulsion, sub-µm acoustic layer & γ=0 SCCO₂ drying' : 'SC-1 Zeta 電位排斥、兆聲波次微米邊界層與 SCCO₂ 零毛細力乾燥'}</div>
           </div>
+                  <div class="eng-obj-metric-card">
+            <div class="eng-obj-metric-label">${lang === 'en' ? 'Failure Diagnostics & OCAP' : '現場異常診斷與防呆 (Failure & OCAP)'}</div>
+            <div class="eng-obj-metric-value" style="font-size: 13.5px; color: #d97706;">${lang === 'en' ? 'Fin Stiction · Watermark · Galvanic Pit' : 'Fin Stiction · Watermark · Galvanic Pit'}</div>
+            <div class="eng-obj-metric-note">${lang === 'en' ? 'Prevents capillary fin collapse via scCO₂, silica watermarks & galvanic pitting' : '以超臨界 scCO₂ 消除毛細倒塌、除氧氮封防矽酸水痕與緩蝕劑防電偶掏空'}</div>
+          </div>
         </div>
 
         <footer class="eng-obj-footer-note">
@@ -5255,6 +5305,11 @@ export function renderCMOSFlowObject(container, lang = 'zh') {
             <div class="eng-obj-metric-label">${lang === 'en' ? 'Monotonic Thermal & TLM Contact Law' : '跨層單調熱預算與接觸電阻律 (PIE Law)'}</div>
             <div class="eng-obj-metric-value" style="font-size: 13.5px; color: #0284c7;">${lang === 'en' ? 'T_FEOL(1050°C) > T_MOL(500°C) > T_BEOL(400°C)' : 'T_FEOL(1050°C) > T_MOL(500°C) > T_BEOL(400°C)'}</div>
             <div class="eng-obj-metric-note">${lang === 'en' ? 'Strict thermal hierarchy & TLM contact resistivity <10⁻⁹ Ω·cm²' : '跨層熱預算單調遞減鐵律與 TLM 傳輸線超低接觸電阻率 <10⁻⁹ Ω·cm²'}</div>
+          </div>
+                  <div class="eng-obj-metric-card">
+            <div class="eng-obj-metric-label">${lang === 'en' ? 'Failure Diagnostics & OCAP' : '現場異常診斷與防呆 (Failure & OCAP)'}</div>
+            <div class="eng-obj-metric-value" style="font-size: 13.5px; color: #d97706;">${lang === 'en' ? '400°C Ceiling · SAC Short · STI Hump' : '400°C Ceiling · SAC Short · STI Hump'}</div>
+            <div class="eng-obj-metric-note">${lang === 'en' ? 'Enforces thermal budget hierarchy, SAC cap margins & STI corner rounding' : '嚴守全流程熱預算金字塔、自對準接觸護牆防短路與 STI 轉角圓滑化防漏電'}</div>
           </div>
         </div>
 
@@ -5623,6 +5678,11 @@ export function renderMemoryTechObject(container, lang = 'zh') {
             <div class="eng-obj-metric-label">${lang === 'en' ? 'Charge-Sharing & F-N Tunneling Law' : 'DRAM 電荷分配與 F-N 穿隧律 (Memory Law)'}</div>
             <div class="eng-obj-metric-value" style="font-size: 13.5px; color: #0284c7;">${lang === 'en' ? 'ΔV_BL = Vdd/[2(1+C_BL/C_s)] · BW = N·R/8' : 'ΔV_BL = Vdd/[2(1+C_BL/C_s)] · BW = N·R/8'}</div>
             <div class="eng-obj-metric-note">${lang === 'en' ? 'DRAM 50:1 capacitor, 3D NAND F-N tunneling & HBM4 2048-bit BW' : 'DRAM 50:1 高深寬比電容、3D NAND F-N 穿隧與 HBM4 2048-bit 頻寬'}</div>
+          </div>
+                  <div class="eng-obj-metric-card">
+            <div class="eng-obj-metric-label">${lang === 'en' ? 'Failure Diagnostics & OCAP' : '現場異常診斷與防呆 (Failure & OCAP)'}</div>
+            <div class="eng-obj-metric-value" style="font-size: 13.5px; color: #d97706;">${lang === 'en' ? 'DRAM VRT · WL Mo Void · HBM MR-MUF' : 'DRAM VRT · WL Mo Void · HBM MR-MUF'}</div>
+            <div class="eng-obj-metric-note">${lang === 'en' ? 'Mitigates DRAM VRT tail bits, 3D NAND wordline voids & HBM bump bridges' : '以 On-Die ECC 克服 DRAM VRT、無氟鉬填滿 3D NAND 字元線與 MR-MUF 防橋接'}</div>
           </div>
         </div>
 
@@ -5999,6 +6059,11 @@ export function renderMetrologyInspectionObject(container, lang = 'zh') {
             <div class="eng-obj-metric-label">${lang === 'en' ? 'Ellipsometry, Rayleigh d⁶/λ⁴ & C-SAM Law' : '橢偏偏振與 C-SAM 聲阻抗律 (Metrology Law)'}</div>
             <div class="eng-obj-metric-value" style="font-size: 13.5px; color: #0284c7;">${lang === 'en' ? 'ρ = tanΨ·e^(iΔ) · R_ac = (Z2-Z1)/(Z2+Z1)' : 'ρ = tanΨ·e^(iΔ) · R_ac = (Z2-Z1)/(Z2+Z1)'}</div>
             <div class="eng-obj-metric-note">${lang === 'en' ? 'Sub-Å film resolution, 99.99% C-SAM void reflection & P/T ≤ 10%' : '次埃級膜厚解析、3D C-SAM 氣泡 99.99% 反射與 P/T Ratio ≤ 10%'}</div>
+          </div>
+                  <div class="eng-obj-metric-card">
+            <div class="eng-obj-metric-label">${lang === 'en' ? 'Failure Diagnostics & OCAP' : '現場異常診斷與防呆 (Failure & OCAP)'}</div>
+            <div class="eng-obj-metric-value" style="font-size: 13.5px; color: #d97706;">${lang === 'en' ? 'SEM Shrinkage · OCD GOF · C-SAM Edge' : 'SEM Shrinkage · OCD GOF · C-SAM Edge'}</div>
+            <div class="eng-obj-metric-note">${lang === 'en' ? 'Compensates e-beam resist shrinkage, OCD cross-correlation & C-SAM edge shadow' : '補償電子束光阻萎縮、以混合量測前饋打破 OCD 耦合失真並結合紅外線補盲區'}</div>
           </div>
         </div>
 
@@ -6405,6 +6470,11 @@ export function renderYieldFailureAnalysisObject(container, lang = 'zh') {
             <div class="eng-obj-metric-value" style="font-size: 13.5px; color: #0284c7;">${lang === 'en' ? 'Y_NB = (1+A·D0/α)^(-α) · Δφ = z√(πf/α_th)' : 'Y_NB = (1+A·D0/α)^(-α) · Δφ = z√(πf/α_th)'}</div>
             <div class="eng-obj-metric-note">${lang === 'en' ? 'Clustered yield model, 1/x³ critical area & 3D LIT z-depth law' : '叢集缺陷良率模型、1/x³ 關鍵面積致死率與 3D LIT 非破壞性深度定位'}</div>
           </div>
+                  <div class="eng-obj-metric-card">
+            <div class="eng-obj-metric-label">${lang === 'en' ? 'Failure Diagnostics & OCAP' : '現場異常診斷與防呆 (Failure & OCAP)'}</div>
+            <div class="eng-obj-metric-value" style="font-size: 13.5px; color: #d97706;">${lang === 'en' ? 'Ring/Bullseye · Slot ANOVA · LIT/OBIRCH' : 'Ring/Bullseye · Slot ANOVA · LIT/OBIRCH'}</div>
+            <div class="eng-obj-metric-note">${lang === 'en' ? 'Decodes wafer-map signatures, single-chamber ANOVA & non-destructive LIT/EMMI' : 'AI 解碼晶圓圖空間指紋、單腔體 ANOVA 抓出隱藏異常並堅持非破壞性熱定位優先'}</div>
+          </div>
         </div>
 
         <footer class="eng-obj-footer-note">
@@ -6750,6 +6820,11 @@ export function renderProcessControlObject(container, lang = 'zh') {
             <div class="eng-obj-metric-label">${lang === 'en' ? 'Shewhart Cpk, EWMA R2R & FDC T² Law' : '六標準差 Cpk 與 EWMA 控制律 (APC Law)'}</div>
             <div class="eng-obj-metric-value" style="font-size: 13.5px; color: #0284c7;">${lang === 'en' ? 'Cpk = min[(USL-μ)/3σ] · z_t = λy_t+(1-λ)z_{t-1}' : 'Cpk = min[(USL-μ)/3σ] · z_t = λy_t+(1-λ)z_{t-1}'}</div>
             <div class="eng-obj-metric-note">${lang === 'en' ? 'Cpk ≥ 1.67 (<0.6 DPPM), EWMA R2R trim & FDC Mahalanobis T²' : '車規/3D KGD Cpk ≥ 1.67、EWMA 批次間自動補償與馬氏距離 T²'}</div>
+          </div>
+                  <div class="eng-obj-metric-card">
+            <div class="eng-obj-metric-label">${lang === 'en' ? 'Failure Diagnostics & OCAP' : '現場異常診斷與防呆 (Failure & OCAP)'}</div>
+            <div class="eng-obj-metric-value" style="font-size: 13.5px; color: #d97706;">${lang === 'en' ? 'Anti-Tampering · R2R Gate · FDC T²/Q' : 'Anti-Tampering · R2R Gate · FDC T²/Q'}</div>
+            <div class="eng-obj-metric-note">${lang === 'en' ? 'Prevents manual tampering, R2R outlier poisoning & post-PM FDC alarm storms' : '杜絕手動過度調機放大變異、部署 R2R 離群值防呆閘門與 PM 後 FDC 基準自適應'}</div>
           </div>
         </div>
 
@@ -7207,6 +7282,11 @@ export function renderWaferTestObject(container, lang = 'zh') {
             <div class="eng-obj-metric-value" style="font-size: 13.5px; color: #0284c7;">${lang === 'en' ? 'R_DUT = V_sense/I_force · DL = 1 - Y^(1-FC)' : 'R_DUT = V_sense/I_force · DL = 1 - Y^(1-FC)'}</div>
             <div class="eng-obj-metric-note">${lang === 'en' ? 'Nullifies lead resistance, controls 5–15 µm OD & bounds 3D DL' : '消除探針引線電阻、微凸塊 5–15 µm 受控超程與 KGD 逃逸率壓縮'}</div>
           </div>
+                  <div class="eng-obj-metric-card">
+            <div class="eng-obj-metric-label">${lang === 'en' ? 'Failure Diagnostics & OCAP' : '現場異常診斷與防呆 (Failure & OCAP)'}</div>
+            <div class="eng-obj-metric-value" style="font-size: 13.5px; color: #d97706;">${lang === 'en' ? 'Auto-Polish Rc · PMI Cratering · Decap' : 'Auto-Polish Rc · PMI Cratering · Decap'}</div>
+            <div class="eng-obj-metric-note">${lang === 'en' ? 'Eliminates high-Rc false fails, sub-pad ULK cratering & multi-site bounce' : '自動清針與重測消除假死粒誤殺、低針壓 MEMS 防焊墊裂紋與針尖電容抑制壓降'}</div>
+          </div>
         </div>
 
         <footer class="eng-obj-footer-note">
@@ -7631,6 +7711,11 @@ export function renderFabEnvironmentObject(container, lang = 'zh') {
             <div class="eng-obj-metric-value" style="font-size: 13.5px; color: #0284c7;">${lang === 'en' ? 'Cn = 10^N(0.1/D)^2.08 · 18.24 MΩ·cm' : 'Cn = 10^N(0.1/D)^2.08 · 18.24 MΩ·cm'}</div>
             <div class="eng-obj-metric-note">${lang === 'en' ? 'ISO Class 1 particle power law & FOUP N₂ purge RH < 1%' : 'ISO Class 1 微粒冪次極限與 FOUP 充氮 RH < 1% 抑制氧化'}</div>
           </div>
+                  <div class="eng-obj-metric-card">
+            <div class="eng-obj-metric-label">${lang === 'en' ? 'Failure Diagnostics & OCAP' : '現場異常診斷與防呆 (Failure & OCAP)'}</div>
+            <div class="eng-obj-metric-value" style="font-size: 13.5px; color: #d97706;">${lang === 'en' ? 'AMC Haze · UPW Silica · VC-E Vib' : 'AMC Haze · UPW Silica · VC-E Vib'}</div>
+            <div class="eng-obj-metric-note">${lang === 'en' ? 'Prevents <1 ppb AMC lens haze, UPW colloidal silica & Sub-Fab vibration' : '防範 <1 ppb AMC 鏡頭霧化、UPW 膠體矽擊穿與 Sub-Fab 泵浦微振失焦'}</div>
+          </div>
         </div>
 
         <footer class="eng-obj-footer-note">
@@ -8010,6 +8095,11 @@ export function renderSemiconductorPhysicsObject(container, lang = 'zh') {
             <div class="eng-obj-metric-label">${lang === 'en' ? 'Subthreshold & Tunneling Law' : '次臨界擺幅與穿隧定律 (Device Law)'}</div>
             <div class="eng-obj-metric-value" style="font-size: 13.5px; color: #0284c7;">${lang === 'en' ? 'SS ≥ 59.6 mV/dec · EOT = t·(3.9/k)' : 'SS ≥ 59.6 mV/dec · EOT = t·(3.9/k)'}</div>
             <div class="eng-obj-metric-note">${lang === 'en' ? '300K Boltzmann limit & High-k HfO₂ 10⁴× tunneling reduction' : '300K 波茲曼熱力學極限與 High-k HfO₂ 抑制量子穿隧 10⁴ 倍'}</div>
+          </div>
+                  <div class="eng-obj-metric-card">
+            <div class="eng-obj-metric-label">${lang === 'en' ? 'Failure Diagnostics & OCAP' : '現場異常診斷與防呆 (Failure & OCAP)'}</div>
+            <div class="eng-obj-metric-value" style="font-size: 13.5px; color: #d97706;">${lang === 'en' ? 'DIBL · Pelgrom RDF · GIDL/Latch-up' : 'DIBL · Pelgrom RDF · GIDL/Latch-up'}</div>
+            <div class="eng-obj-metric-note">${lang === 'en' ? 'Diagnoses DIBL punch-through, RDF Vt mismatch & PNPN CMOS latch-up' : '診斷短通道穿通漏電、無摻雜通道抑制 RDF 失配與保護環防閂鎖燒毀'}</div>
           </div>
         </div>
 
@@ -8412,6 +8502,11 @@ export function renderPackagingFlowObject(container, lang = 'zh') {
             <div class="eng-obj-metric-value" style="font-size: 13.5px; color: #0284c7;">${lang === 'en' ? 'Δγ ∝ L_DNP·Δα·ΔT/h · t_fill ∝ η·L²/h_gap' : 'Δγ ∝ L_DNP·Δα·ΔT/h · t_fill ∝ η·L²/h_gap'}</div>
             <div class="eng-obj-metric-note">${lang === 'en' ? 'Corner bump strain, underfill stress relief & MR-MUF transition' : '角落焊球應變集中、Underfill 應力分散與微米間隙改採 MR-MUF'}</div>
           </div>
+                  <div class="eng-obj-metric-card">
+            <div class="eng-obj-metric-label">${lang === 'en' ? 'Failure Diagnostics & OCAP' : '現場異常診斷與防呆 (Failure & OCAP)'}</div>
+            <div class="eng-obj-metric-value" style="font-size: 13.5px; color: #d97706;">${lang === 'en' ? 'CPI White-Bump · MSL Bake · Pd-Cu IMC' : 'CPI White-Bump · MSL Bake · Pd-Cu IMC'}</div>
+            <div class="eng-obj-metric-note">${lang === 'en' ? 'Prevents corner CPI white-bumps, MSL reflow popcorning & Kirkendall voids' : '四角緩衝與底膠防低介電層撕裂、防潮袋烘烤杜絕爆米花脫層與鍍鈀銅線防空洞'}</div>
+          </div>
         </div>
 
         <footer class="eng-obj-footer-note">
@@ -8715,6 +8810,11 @@ export function renderReliabilityTestingObject(container, lang = 'zh') {
             <div class="eng-obj-metric-label">${lang === 'en' ? 'Weibull Bathtub & Arrhenius-Peck FIT Law' : 'Weibull 浴缸與 Peck/FIT 卡方律 (Rel Law)'}</div>
             <div class="eng-obj-metric-value" style="font-size: 13.5px; color: #0284c7;">${lang === 'en' ? 'F(t)=1-e^-(t/η)^β · FIT = χ²/(2·N·t·AF)×10⁹' : 'F(t)=1-e^-(t/η)^β · FIT = χ²/(2·N·t·AF)×10⁹'}</div>
             <div class="eng-obj-metric-note">${lang === 'en' ? 'Burn-In screens β<1 infant mortality; HAST/HTOL bounds 10-yr FIT' : 'Burn-In 篩除 β<1 早夭缺陷、HAST 溫濕加速與 10 年 <10 FIT 保證'}</div>
+          </div>
+                  <div class="eng-obj-metric-card">
+            <div class="eng-obj-metric-label">${lang === 'en' ? 'Failure Diagnostics & OCAP' : '現場異常診斷與防呆 (Failure & OCAP)'}</div>
+            <div class="eng-obj-metric-value" style="font-size: 13.5px; color: #d97706;">${lang === 'en' ? 'WLBI/SLT · D₂ NBTI · CDM Rail-Clamp' : 'WLBI/SLT · D₂ NBTI · CDM Rail-Clamp'}</div>
+            <div class="eng-obj-metric-note">${lang === 'en' ? 'Screens infant mortality via Burn-in/SLT, D₂ anneal for NBTI & CDM ESD clamps' : '高壓老化與 SLT 攔截早夭期缺陷、重氫退火抗 NBTI 老化與 CDM 高速靜電防護'}</div>
           </div>
         </div>
 
@@ -9171,6 +9271,11 @@ export function renderChipJourneyObject(container, lang = 'zh') {
             <div class="eng-obj-metric-value" style="font-size: 13.5px; color: #0284c7;">${lang === 'en' ? 'GDPW ≈ πR²/A · Y_3D = (∏Y_KGD)·Y_bond^(N-1)' : 'GDPW ≈ πR²/A · Y_3D = (∏Y_KGD)·Y_bond^(N-1)'}</div>
             <div class="eng-obj-metric-note">${lang === 'en' ? '858 mm² reticle limit, chiplet disaggregation ROI & KGD law' : '858 mm² 光罩極限、大晶片拆分 Chiplet 效益與 Pre-Bond KGD 鐵律'}</div>
           </div>
+                  <div class="eng-obj-metric-card">
+            <div class="eng-obj-metric-label">${lang === 'en' ? 'Failure Diagnostics & OCAP' : '現場異常診斷與防呆 (Failure & OCAP)'}</div>
+            <div class="eng-obj-metric-value" style="font-size: 13.5px; color: #d97706;">${lang === 'en' ? 'Stitch Open · KGD Escape · Pad Oxide' : 'Stitch Open · KGD Escape · Pad Oxide'}</div>
+            <div class="eng-obj-metric-note">${lang === 'en' ? 'Guards against reticle stitch opens, 3D KGD escapes & FOUP pad oxidation' : '防範光罩拼接斷路、3D KGD 漏網指數崩跌與跨廠 FOUP 焊墊氧化'}</div>
+          </div>
         </div>
 
         <footer class="eng-obj-footer-note">
@@ -9568,6 +9673,11 @@ export function renderProcessScalingObject(container, lang = 'zh') {
             <div class="eng-obj-metric-value" style="font-size: 13.5px; color: #0284c7;">${lang === 'en' ? 'A_cell = N_CPP·CPP·N_T·M1P · P = αCV²f + V·I_leak' : 'A_cell = N_CPP·CPP·N_T·M1P · P = αCV²f + V·I_leak'}</div>
             <div class="eng-obj-metric-note">${lang === 'en' ? 'CPP×M1P sets true density; dark silicon drives BSPDN & 3D STCO' : 'CPP×M1P 決定真實密度，暗矽效應催生 BSPDN 與 STCO 3D 小晶片'}</div>
           </div>
+                  <div class="eng-obj-metric-card">
+            <div class="eng-obj-metric-label">${lang === 'en' ? 'Failure Diagnostics & OCAP' : '現場異常診斷與防呆 (Failure & OCAP)'}</div>
+            <div class="eng-obj-metric-value" style="font-size: 13.5px; color: #d97706;">${lang === 'en' ? 'Pin Deadlock · Ru/Mo RC · MEEF/EPE' : 'Pin Deadlock · Ru/Mo RC · MEEF/EPE'}</div>
+            <div class="eng-obj-metric-note">${lang === 'en' ? 'Solves low-track routing deadlock via BSPDN, Ru/Mo RC wall & High-NA MEEF' : '以背面供電解放矮單元繞線死結、短自由程金屬突破 RC 牆與 High-NA 壓低 MEEF'}</div>
+          </div>
         </div>
 
         <footer class="eng-obj-footer-note">
@@ -9905,6 +10015,11 @@ export function renderExcursionControlObject(container, lang = 'zh') {
             <div class="eng-obj-metric-value" style="font-size: 13.5px; color: #0284c7;">${lang === 'en' ? 'P(X≥k) < 10^-3 · DPAT = Q50 ± 6·IQR/1.35' : 'P(X≥k) < 10^-3 · DPAT = Q50 ± 6·IQR/1.35'}</div>
             <div class="eng-obj-metric-note">${lang === 'en' ? 'Pinpoints excursion chambers & screens maverick dies via IQR DPAT' : '秒級鎖定異常腔體與章魚防堵姊妹批，以穩健四分位距剔除離群晶粒'}</div>
           </div>
+                  <div class="eng-obj-metric-card">
+            <div class="eng-obj-metric-label">${lang === 'en' ? 'Failure Diagnostics & OCAP' : '現場異常診斷與防呆 (Failure & OCAP)'}</div>
+            <div class="eng-obj-metric-value" style="font-size: 13.5px; color: #d97706;">${lang === 'en' ? 'Octopus Hold · AEC DPAT · ECN Matrix' : 'Octopus Hold · AEC DPAT · ECN Matrix'}</div>
+            <div class="eng-obj-metric-note">${lang === 'en' ? 'Enforces Octopus sister-lot containment, DPAT outlier ink-out & ECN review' : '15 分鐘章魚法全數攔截姊妹批、動態 PAT 淘汰邊際壞晶與 ECN 跨站交互審查'}</div>
+          </div>
         </div>
 
         <footer class="eng-obj-footer-note">
@@ -10222,6 +10337,11 @@ export function renderSmartFabAutomationObject(container, lang = 'zh') {
             <div class="eng-obj-metric-label">${lang === 'en' ? 'Little’s Law, Kingman Queue & OEE Law' : '利特爾法則與金曼排隊爆炸律 (CIM Law)'}</div>
             <div class="eng-obj-metric-value" style="font-size: 13.5px; color: #0284c7;">${lang === 'en' ? 'WIP = TH × CT · CT_q ∝ u/(1-u) · OEE = A×P×Q' : 'WIP = TH × CT · CT_q ∝ u/(1-u) · OEE = A×P×Q'}</div>
             <div class="eng-obj-metric-note">${lang === 'en' ? 'Controls X-Factor ≈ 2.0, prevents u>85% Q-time spikes & boosts OEE' : '管控 X-Factor ≈ 2.0、多機台群組化防止 >85% 塞車與預測性天車派工'}</div>
+          </div>
+                  <div class="eng-obj-metric-card">
+            <div class="eng-obj-metric-label">${lang === 'en' ? 'Failure Diagnostics & OCAP' : '現場異常診斷與防呆 (Failure & OCAP)'}</div>
+            <div class="eng-obj-metric-value" style="font-size: 13.5px; color: #d97706;">${lang === 'en' ? 'Q-Time Kanban · E84 OHB · E90 SlotMap' : 'Q-Time Kanban · E84 OHB · E90 SlotMap'}</div>
+            <div class="eng-obj-metric-note">${lang === 'en' ? 'Prevents cascade Q-Time expirations, E84 OHT gridlock & slot-map collisions' : '拉動式容量閥門防連鎖 Q-Time 鎖批、天車逾時自動繞行 OHB 與雷射掃描防破片'}</div>
           </div>
         </div>
 
@@ -10594,6 +10714,11 @@ export function renderSoftwareHardwareTruthObject(container, lang = 'zh') {
             <div class="eng-obj-metric-value" style="font-size: 13.5px; color: #0284c7;">${lang === 'en' ? 'ΔV = I·R + L·di/dt · P_dyn ∝ V²f · 2^r ≥ k+r+1' : 'ΔV = I·R + L·di/dt · P_dyn ∝ V²f · 2^r ≥ k+r+1'}</div>
             <div class="eng-obj-metric-note">${lang === 'en' ? 'BSPDN+DTC tames di/dt, µs DVFS halts runaway & ECC blocks SDC' : 'BSPDN+DTC 抑制壓降、微秒級 DVFS 防熱失控與 SECDED/LDPC 防靜默損毀'}</div>
           </div>
+                  <div class="eng-obj-metric-card">
+            <div class="eng-obj-metric-label">${lang === 'en' ? 'Failure Diagnostics & OCAP' : '現場異常診斷與防呆 (Failure & OCAP)'}</div>
+            <div class="eng-obj-metric-value" style="font-size: 13.5px; color: #d97706;">${lang === 'en' ? 'Droop Stretch · SDC/PRAC · Read-Scrub' : 'Droop Stretch · SDC/PRAC · Read-Scrub'}</div>
+            <div class="eng-obj-metric-note">${lang === 'en' ? 'Mitigates L di/dt droop hangs, fleet Silent Data Corruption & NAND read disturb' : '奈秒時脈展頻防瞬態壓降當機、PRAC 與背景巡檢防靜默損毀與 3D NAND 讀取刷新'}</div>
+          </div>
         </div>
 
         <footer class="eng-obj-footer-note">
@@ -10907,6 +11032,11 @@ export function renderGlossaryGalaxyObject(container, lang = 'zh') {
             <div class="eng-obj-metric-value" style="font-size: 13.5px; color: #0284c7;">${lang === 'en' ? 'Å (10⁻¹⁰m) · fF (10⁻¹⁵F) · pJ/bit · DPPM/FIT' : 'Å (10⁻¹⁰m) · fF (10⁻¹⁵F) · pJ/bit · DPPM/FIT'}</div>
             <div class="eng-obj-metric-note">${lang === 'en' ? 'Spans angstrom EOT, femtofarad DRAM cells, sub-pJ 3D I/O & FIT' : '橫跨埃米閘極氧化層、飛法拉 DRAM 電容、皮焦耳 3D 互連與十億小時 FIT'}</div>
           </div>
+                  <div class="eng-obj-metric-card">
+            <div class="eng-obj-metric-label">${lang === 'en' ? 'Failure Diagnostics & OCAP' : '現場異常診斷與防呆 (Failure & OCAP)'}</div>
+            <div class="eng-obj-metric-value" style="font-size: 13.5px; color: #d97706;">${lang === 'en' ? '245 Terms · 75+ Laws · 75 Failure Modes' : '245 Terms · 75+ Laws · 75 Failure Modes'}</div>
+            <div class="eng-obj-metric-note">${lang === 'en' ? 'Cross-links 245 glossary terms to 75+ equations & 75 fab failure modes' : '將 245 條標準名詞雙向對映至全書 25 章物理定律與 75 項現場失效排查條例'}</div>
+          </div>
         </div>
 
         <footer class="eng-obj-footer-note">
@@ -11163,6 +11293,11 @@ export function renderFabJargonDecoderObject(container, lang = 'zh') {
             <div class="eng-obj-metric-value" style="font-size: 13.5px; color: #0284c7;">${lang === 'en' ? 't_wait < t_Q-Time · P(commonality) < 10^-3' : 't_wait < t_Q-Time · P(commonality) < 10^-3'}</div>
             <div class="eng-obj-metric-note">${lang === 'en' ? 'Strict Q-Time auto-hold, RTD priority weights & commonality P-value' : 'Q-Time 倒數硬性鎖批、RTD 權重排程與超幾何共性秒級定位異常腔體'}</div>
           </div>
+                  <div class="eng-obj-metric-card">
+            <div class="eng-obj-metric-label">${lang === 'en' ? 'Failure Diagnostics & OCAP' : '現場異常診斷與防呆 (Failure & OCAP)'}</div>
+            <div class="eng-obj-metric-value" style="font-size: 13.5px; color: #d97706;">${lang === 'en' ? 'Hold/OCAP · Octopus · Rework vs Scrap' : 'Hold/OCAP · Octopus · Rework vs Scrap'}</div>
+            <div class="eng-obj-metric-note">${lang === 'en' ? 'Unites floor alarm jargon, Octopus containment, photo rework & MRB triage' : '串聯現場告警行話、戰情室章魚圍堵、黃光重工與 MRB 跨部門處置標準動作'}</div>
+          </div>
         </div>
 
         <footer class="eng-obj-footer-note">
@@ -11418,6 +11553,11 @@ export function renderMasteryRoadmapObject(container, lang = 'zh') {
             <div class="eng-obj-metric-label">${lang === 'en' ? '25-Chapter 75+ Governing Equations Atlas' : '全書 25 章 75+ 核心統御方程庫 (Equations)'}</div>
             <div class="eng-obj-metric-value" style="font-size: 13.5px; color: #0284c7;">${lang === 'en' ? 'Rayleigh · Deal-Grove · Preston · Weibull · OEE' : 'Rayleigh · Deal-Grove · Preston · Weibull · OEE'}</div>
             <div class="eng-obj-metric-note">${lang === 'en' ? 'Unites device physics, process kinetics, 3D thermomechanics & CIM' : '串聯半導體固態物理、製程動力學、3D 熱機械、良率統計與排隊論方程'}</div>
+          </div>
+                  <div class="eng-obj-metric-card">
+            <div class="eng-obj-metric-label">${lang === 'en' ? 'Failure Diagnostics & OCAP' : '現場異常診斷與防呆 (Failure & OCAP)'}</div>
+            <div class="eng-obj-metric-value" style="font-size: 13.5px; color: #d97706;">${lang === 'en' ? 'SEMI S2/E10 · JEDEC JESD47 · ISTFA FA' : 'SEMI S2/E10 · JEDEC JESD47 · ISTFA FA'}</div>
+            <div class="eng-obj-metric-note">${lang === 'en' ? 'Integrates SEMI safety, JEDEC/AEC qualification & ISTFA/IRPS FA standards' : '整合 SEMI 機台安規、JEDEC/AEC 可靠度標準與 ISTFA/IRPS 國際失效分析知識庫'}</div>
           </div>
         </div>
 
