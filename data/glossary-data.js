@@ -124,9 +124,9 @@ export const GLOSSARY_DATA = [
     "en": "Backside Power Delivery",
     "abbr": "",
     "zh": "背面供電",
-    "desc": "把電源導線做在晶圓背面",
-    "descZh": "把電源導線做在晶圓背面",
-    "descEn": "Building the power wiring on the back of the wafer",
+    "desc": "把電源導線做在晶圓背面（涵蓋 Intel PowerVia [nTSV]、TSMC Super PowerRail [SPR 背面直接接觸] 與 Samsung BSPDN [埋入式電源軌 BPR]）",
+    "descZh": "把電源導線做在晶圓背面（涵蓋 Intel PowerVia [nTSV]、TSMC Super PowerRail [SPR 背面直接接觸] 與 Samsung BSPDN [埋入式電源軌 BPR]）",
+    "descEn": "Building the power wiring on the back of the wafer (spanning Intel PowerVia [nTSV], TSMC Super PowerRail [SPR direct backside contact], and Samsung BSPDN [buried power rail])",
     "chapter": "12"
   },
   {
@@ -142,9 +142,9 @@ export const GLOSSARY_DATA = [
     "en": "Ball Grid Array",
     "abbr": "BGA",
     "zh": "球柵陣列",
-    "desc": "底部布滿錫球的封裝形式",
-    "descZh": "底部布滿錫球的封裝形式",
-    "descEn": "A package with solder balls covering its bottom",
+    "desc": "底部布滿錫球的封裝形式（涵蓋 PBGA、採用 ABF 載板的 FCBGA 覆晶球柵陣列、採用 BT 載板的 FCCSP 與無錫球的 LGA / PGA 陣列封裝）",
+    "descZh": "底部布滿錫球的封裝形式（涵蓋 PBGA、採用 ABF 載板的 FCBGA 覆晶球柵陣列、採用 BT 載板的 FCCSP 與無錫球的 LGA / PGA 陣列封裝）",
+    "descEn": "A package with solder balls covering its bottom (spanning PBGA, ABF-based FCBGA, BT-based FCCSP, and land/pin grid arrays LGA / PGA)",
     "chapter": "20"
   },
   {
@@ -781,9 +781,9 @@ export const GLOSSARY_DATA = [
     "en": "Flip Chip",
     "abbr": "",
     "zh": "覆晶",
-    "desc": "晶粒正面朝下，以凸塊直接連接基板",
-    "descZh": "晶粒正面朝下，以凸塊直接連接基板",
-    "descEn": "A die facing down, connected directly to the substrate through bumps",
+    "desc": "晶粒正面朝下，以凸塊直接連接基板（凸塊條例涵蓋 C4 錫球、Cu Pillar 銅柱凸塊與 µBump 微凸塊，搭配 CUF / NCF / MUF 底部填充）",
+    "descZh": "晶粒正面朝下，以凸塊直接連接基板（凸塊條例涵蓋 C4 錫球、Cu Pillar 銅柱凸塊與 µBump 微凸塊，搭配 CUF / NCF / MUF 底部填充）",
+    "descEn": "A die facing down, connected directly to the substrate through bumps (spanning C4 solder bumps, Cu pillar bumps, and micro-bumps with CUF / NCF / MUF underfill)",
     "chapter": "20"
   },
   {
@@ -880,9 +880,9 @@ export const GLOSSARY_DATA = [
     "en": "Gate-All-Around",
     "abbr": "GAA",
     "zh": "環繞式閘極",
-    "desc": "閘極從四面包覆通道的電晶體結構",
-    "descZh": "閘極從四面包覆通道的電晶體結構",
-    "descEn": "A transistor structure in which the gate wraps the channel on all four sides",
+    "desc": "閘極從四面包覆通道的電晶體結構（主流為水平奈米片 Nanosheet，並進一步往 nMOS/pMOS 垂直 3D 堆疊之 CFET 互補式場效電晶體演進）",
+    "descZh": "閘極從四面包覆通道的電晶體結構（主流為水平奈米片 Nanosheet，並進一步往 nMOS/pMOS 垂直 3D 堆疊之 CFET 互補式場效電晶體演進）",
+    "descEn": "A transistor structure in which the gate wraps the channel on all four sides (implemented via horizontal nanosheets and evolving toward 3D vertically stacked nMOS-on-pMOS CFETs)",
     "chapter": "12"
   },
   {
@@ -979,9 +979,9 @@ export const GLOSSARY_DATA = [
     "en": "Hybrid Bonding",
     "abbr": "",
     "zh": "混合鍵合",
-    "desc": "銅接點與絕緣層同時直接接合的晶片堆疊技術（無凸塊 Cu-Cu 鍵合，涵蓋 TSMC SoIC-X [CoW/WoW]、Intel Foveros Direct、Samsung X-Cube [Hybrid] / SAINT-S/D/L、3D NAND CBA 與堆疊式 CIS）",
-    "descZh": "銅接點與絕緣層同時直接接合的晶片堆疊技術（無凸塊 Cu-Cu 鍵合，涵蓋 TSMC SoIC-X [CoW/WoW]、Intel Foveros Direct、Samsung X-Cube [Hybrid] / SAINT-S/D/L、3D NAND CBA 與堆疊式 CIS）",
-    "descEn": "A chip-stacking technique that bonds copper contacts and insulator surfaces directly at the same time (bumpless Cu-Cu bonding, including TSMC SoIC-X [CoW/WoW], Intel Foveros Direct, Samsung X-Cube [Hybrid] / SAINT-S/D/L, 3D NAND CBA, and stacked CIS)",
+    "desc": "銅接點與絕緣層同時直接接合的晶片堆疊技術（無凸塊 Cu-Cu 鍵合，涵蓋 TSMC SoIC-X [CoW/WoW]、COUPE 3D 光電共封裝、Intel Foveros Direct、Samsung X-Cube [Hybrid] / SAINT-S/D/L、3D NAND CBA 與堆疊式 CIS）",
+    "descZh": "銅接點與絕緣層同時直接接合的晶片堆疊技術（無凸塊 Cu-Cu 鍵合，涵蓋 TSMC SoIC-X [CoW/WoW]、COUPE 3D 光電共封裝、Intel Foveros Direct、Samsung X-Cube [Hybrid] / SAINT-S/D/L、3D NAND CBA 與堆疊式 CIS）",
+    "descEn": "A chip-stacking technique that bonds copper contacts and insulator surfaces directly at the same time (bumpless Cu-Cu bonding, including TSMC SoIC-X [CoW/WoW], COUPE 3D CPO, Intel Foveros Direct, Samsung X-Cube [Hybrid] / SAINT-S/D/L, 3D NAND CBA, and stacked CIS)",
     "chapter": "21"
   },
   {
@@ -1042,9 +1042,9 @@ export const GLOSSARY_DATA = [
     "en": "Interposer",
     "abbr": "",
     "zh": "中介層",
-    "desc": "連接多顆晶片與封裝基板的轉接板（2.5D 實作涵蓋矽中介層 CoWoS-S / I-CubeS、有機重佈線中介層 CoWoS-R / FOCoS，以及局部矽橋 CoWoS-L / EMIB / EMIB-T / I-CubeE / H-Cube / FOEB）",
-    "descZh": "連接多顆晶片與封裝基板的轉接板（2.5D 實作涵蓋矽中介層 CoWoS-S / I-CubeS、有機重佈線中介層 CoWoS-R / FOCoS，以及局部矽橋 CoWoS-L / EMIB / EMIB-T / I-CubeE / H-Cube / FOEB）",
-    "descEn": "An adapter layer that connects several chips to the package substrate (2.5D variants include silicon interposer CoWoS-S / I-CubeS, organic RDL CoWoS-R / FOCoS, and silicon bridge CoWoS-L / EMIB / EMIB-T / I-CubeE / H-Cube / FOEB)",
+    "desc": "連接多顆晶片與封裝基板的轉接板（2.5D 實作涵蓋矽中介層 CoWoS-S / I-CubeS / S-Connect、有機重佈線中介層 CoWoS-R / FOCoS / S-SWIFT、局部矽橋 CoWoS-L / EMIB / EMIB-T / I-CubeE / H-Cube / FOEB 與 TGV 玻璃基板）",
+    "descZh": "連接多顆晶片與封裝基板的轉接板（2.5D 實作涵蓋矽中介層 CoWoS-S / I-CubeS / S-Connect、有機重佈線中介層 CoWoS-R / FOCoS / S-SWIFT、局部矽橋 CoWoS-L / EMIB / EMIB-T / I-CubeE / H-Cube / FOEB 與 TGV 玻璃基板）",
+    "descEn": "An adapter layer that connects several chips to the package substrate (2.5D variants include silicon interposer CoWoS-S / I-CubeS / S-Connect, organic RDL CoWoS-R / FOCoS / S-SWIFT, silicon bridge CoWoS-L / EMIB / EMIB-T / I-CubeE / H-Cube / FOEB, and TGV glass substrates)",
     "chapter": "21"
   },
   {
@@ -1087,9 +1087,9 @@ export const GLOSSARY_DATA = [
     "en": "Leadframe",
     "abbr": "",
     "zh": "導線架",
-    "desc": "承載晶粒並提供外部接腳的金屬框架",
-    "descZh": "承載晶粒並提供外部接腳的金屬框架",
-    "descEn": "A metal frame that holds the die and provides the external leads",
+    "desc": "承載晶粒並提供外部接腳的金屬框架（涵蓋有引腳 DIP / SOP / SOIC / QFP / TO-220 與無引腳 QFN / DFN / SON / Clip-Bond Power QFN 封裝）",
+    "descZh": "承載晶粒並提供外部接腳的金屬框架（涵蓋有引腳 DIP / SOP / SOIC / QFP / TO-220 與無引腳 QFN / DFN / SON / Clip-Bond Power QFN 封裝）",
+    "descEn": "A metal frame that holds the die and provides the external leads (spanning leaded DIP / SOP / SOIC / QFP / TO-220 and leadless QFN / DFN / SON / Clip-Bond packages)",
     "chapter": "20"
   },
   {
@@ -1591,9 +1591,9 @@ export const GLOSSARY_DATA = [
     "en": "Redistribution Layer",
     "abbr": "RDL",
     "zh": "重佈線層",
-    "desc": "把接點重新分佈到其他位置的導線層",
-    "descZh": "把接點重新分佈到其他位置的導線層",
-    "descEn": "A wiring layer that moves contacts to other positions",
+    "desc": "把接點重新分佈到其他位置的導線層（用於扇入型 WLCSP、扇出型 InFO-RDL / InFO-PoP / InFO-oS / FO-PLP 與 2.5D CoWoS-R / FOCoS 中介層）",
+    "descZh": "把接點重新分佈到其他位置的導線層（用於扇入型 WLCSP、扇出型 InFO-RDL / InFO-PoP / InFO-oS / FO-PLP 與 2.5D CoWoS-R / FOCoS 中介層）",
+    "descEn": "A wiring layer that moves contacts to other positions (foundational to Fan-In WLCSP, Fan-Out InFO-RDL / InFO-PoP / InFO-oS / FO-PLP, and 2.5D CoWoS-R / FOCoS interposers)",
     "chapter": "21"
   },
   {
@@ -2131,9 +2131,9 @@ export const GLOSSARY_DATA = [
     "en": "Wafer-Level Packaging",
     "abbr": "WLP",
     "zh": "晶圓級封裝",
-    "desc": "直接在晶圓上完成封裝，尺寸接近晶粒本身",
-    "descZh": "直接在晶圓上完成封裝，尺寸接近晶粒本身",
-    "descEn": "Packaging done directly on the wafer, about the size of the die",
+    "desc": "直接在晶圓上完成封裝，尺寸接近晶粒本身（分為 1:1 裸晶尺寸的扇入型 Fan-In WLCSP，以及向外擴展並支援 3D PoP / SoW 的扇出型 FOWLP / InFO）",
+    "descZh": "直接在晶圓上完成封裝，尺寸接近晶粒本身（分為 1:1 裸晶尺寸的扇入型 Fan-In WLCSP，以及向外擴展並支援 3D PoP / SoW 的扇出型 FOWLP / InFO）",
+    "descEn": "Packaging done directly on the wafer, about the size of the die (divided into die-sized Fan-In WLCSP and expanded Fan-Out WLP / InFO / 3D InFO-PoP / InFO-SoW)",
     "chapter": "20"
   },
   {
@@ -2167,9 +2167,9 @@ export const GLOSSARY_DATA = [
     "en": "Wire Bonding",
     "abbr": "",
     "zh": "打線接合",
-    "desc": "用細金屬線連接晶粒與封裝",
-    "descZh": "用細金屬線連接晶粒與封裝",
-    "descEn": "Connecting the die to the package with fine metal wires",
+    "desc": "用細金屬線連接晶粒與封裝（除單晶粒導線架封裝外，亦廣泛用於 MCP / DDP / QDP / ODP 多晶粒階梯式 3D 垂直堆疊封裝）",
+    "descZh": "用細金屬線連接晶粒與封裝（除單晶粒導線架封裝外，亦廣泛用於 MCP / DDP / QDP / ODP 多晶粒階梯式 3D 垂直堆疊封裝）",
+    "descEn": "Connecting the die to the package with fine metal wires (used in single-die leadframes as well as 2-to-16-tier MCP / DDP / QDP 3D staircase die stacks)",
     "chapter": "20"
   },
   {

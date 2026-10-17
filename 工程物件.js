@@ -2572,6 +2572,7 @@ export function renderTransistor3DObject(container, lang = 'zh') {
 
             <!-- 次世代背面供電網路 (BSPDN) -->
             <path d="M 100,240 L 100,275 M 260,190 L 260,275" stroke="#f59e0b" stroke-width="3"/>
+            <path d="M 100,275 L 100,238 M 260,275 L 260,188" stroke="#fde047" stroke-width="2" stroke-dasharray="5 5" class="anim-data-flow"/>
             <text x="180" y="260" text-anchor="middle" fill="#f59e0b" font-size="11.5" font-weight="700">背面供電網路 (BSPDN / SuperPower Rail)</text>
             <text x="180" y="278" text-anchor="middle" fill="#94a3b8" font-size="10.5">電源線移至晶圓背部 · 正面純繞訊號</text>
           </g>
@@ -2596,6 +2597,11 @@ export function renderTransistor3DObject(container, lang = 'zh') {
           <div class="eng-obj-metric-label">${t.ch12_node_span}</div>
           <div class="eng-obj-metric-value">2nm (N2 / A16 / 18A)</div>
           <div class="eng-obj-metric-note">結合背面供電 (BSPDN) 邁入埃米時代</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">${lang === 'en' ? 'BSPDN & 3D Device Clauses' : '背面供電與單石 3D 電晶體條例'}</div>
+          <div class="eng-obj-metric-value" style="font-size: 13.5px;">PowerVia · SPR · BSPDN · CFET</div>
+          <div class="eng-obj-metric-note">${lang === 'en' ? 'Intel PowerVia (nTSV), TSMC SPR (A16), Samsung BSPDN, 3D CFET' : '含 Intel PowerVia (nTSV)、TSMC SPR、Samsung BSPDN、CFET 垂直堆疊'}</div>
         </div>
       `;
       footerNote = t.ch12_gaa_desc;
@@ -3758,9 +3764,10 @@ export function renderAdvancedPackagingObject(container, lang = 'zh') {
           <!-- 中層：大面積矽中介層 (Silicon Interposer, 內含超密 RDL 導線與 TSV) -->
           <g transform="translate(60, 160)">
             <rect x="0" y="0" width="680" height="60" rx="3" fill="#1e293b" stroke="#38bdf8" stroke-width="2"/>
-            <!-- 表面高密 RDL 金屬線 -->
+            <!-- 表面高密 RDL 金屬線與高速平行訊號脈衝 -->
             <path d="M 40,8 L 640,8" stroke="#10b981" stroke-width="2"/>
             <path d="M 40,14 L 640,14" stroke="#10b981" stroke-width="2"/>
+            <path d="M 80,8 L 320,8 M 580,14 L 360,14" stroke="#6ee7b7" stroke-width="2.2" stroke-dasharray="6 6" class="anim-data-flow"/>
             <!-- 垂直 TSV 穿孔貫穿中介層 -->
             ${Array.from({ length: 12 }, (_, i) => `
               <line x1="${i * 55 + 40}" y1="15" x2="${i * 55 + 40}" y2="55" stroke="#f59e0b" stroke-width="3"/>
@@ -3811,7 +3818,7 @@ export function renderAdvancedPackagingObject(container, lang = 'zh') {
         <div class="eng-obj-metric-card">
           <div class="eng-obj-metric-label">${lang === 'en' ? '2.5D & Fan-Out Family' : '2.5D 與扇出型條例總覽'}</div>
           <div class="eng-obj-metric-value" style="font-size: 13.5px;">CoWoS-S/R/L · EMIB · I-Cube · InFO</div>
-          <div class="eng-obj-metric-note">${lang === 'en' ? 'Includes H-Cube, FOCoS/FOEB, InFO-PoP/3D/SoW, FO-PLP' : '含 EMIB-T、H-Cube、FOCoS/FOEB、InFO-PoP/3D/SoW、FO-PLP'}</div>
+          <div class="eng-obj-metric-note">${lang === 'en' ? 'Includes H-Cube, FOCoS/FOEB, S-Connect/SWIFT, InFO-PoP/3D/SoW, FO-PLP' : '含 EMIB-T、H-Cube、FOCoS/FOEB、S-Connect/SWIFT、InFO-PoP/3D/SoW、FO-PLP'}</div>
         </div>
       `;
 
@@ -3832,6 +3839,9 @@ export function renderAdvancedPackagingObject(container, lang = 'zh') {
           <!-- 混合鍵合介面 (Hybrid Bonding Interface: <1µm Pitch, 無凸塊 Bumpless) -->
           <g transform="translate(200, 140)">
             <rect x="0" y="0" width="400" height="16" fill="rgba(16, 185, 129, 0.3)" stroke="#10b981" stroke-dasharray="3 3"/>
+            ${Array.from({ length: 9 }, (_, i) => `
+              <line x1="${i * 42 + 35}" y1="-8" x2="${i * 42 + 35}" y2="24" stroke="#fde047" stroke-width="2" stroke-dasharray="3 3" class="anim-data-flow"/>
+            `).join('')}
             <text x="200" y="12" text-anchor="middle" fill="#10b981" font-size="11" font-weight="700">無凸塊混合鍵合介面 (SiO₂-SiO₂ 親水鍵合 + Cu-Cu 熱擴散)</text>
           </g>
 
@@ -3867,9 +3877,9 @@ export function renderAdvancedPackagingObject(container, lang = 'zh') {
           <div class="eng-obj-metric-note">${lang === 'en' ? '90% lower parasitic capacitance vs. bumps' : '寄生電容劇降，能耗僅傳統封裝 10%'}</div>
         </div>
         <div class="eng-obj-metric-card">
-          <div class="eng-obj-metric-label">${lang === 'en' ? 'All Known 3D & 3.5D Clauses' : '已知 3D 堆疊與 3.5D 條例總覽'}</div>
-          <div class="eng-obj-metric-value" style="font-size: 13.5px;">SoIC-X/P · Foveros · X-Cube/SAINT</div>
-          <div class="eng-obj-metric-note">${lang === 'en' ? 'Includes Foveros Direct/Omni, HBM TC-NCF/MR-MUF, CBA, 3.5D' : '含 Foveros Direct/Omni、HBM TC-NCF/MR-MUF、3D NAND CBA、3.5D'}</div>
+          <div class="eng-obj-metric-label">${lang === 'en' ? 'All Known 3D & 3.5D Clauses (3A–3F)' : '已知 3D 堆疊與 3.5D 六大條例 (3A–3F)'}</div>
+          <div class="eng-obj-metric-value" style="font-size: 13.5px;">SoIC-X/P · Foveros · SAINT · COUPE</div>
+          <div class="eng-obj-metric-note">${lang === 'en' ? 'F2F/F2B · W2W/D2W · HBM TC-NCF/MR-MUF · CBA · 3.5D · CPO · TGV Glass' : '含 F2F/F2B、W2W/D2W、HBM TC-NCF/MR-MUF、CBA、3.5D、CPO 與 TGV 玻璃基板'}</div>
         </div>
       `;
 
@@ -7903,6 +7913,7 @@ export function renderPackagingFlowObject(container, lang = 'zh') {
 
           <!-- 陶瓷劈刀 (Capillary) 正在打第一焊點與金線走弧 (Wire Looping) -->
           <path d="M 292,200 Q 230,110 160,270" fill="none" stroke="#fbbf24" stroke-width="3"/>
+          <path d="M 292,200 Q 230,110 160,270" fill="none" stroke="#fef08a" stroke-width="2" stroke-dasharray="6 6" class="anim-data-flow"/>
           <ellipse cx="292" cy="202" rx="7" ry="4" fill="#f59e0b"/>
           <rect x="150" y="268" width="12" height="4" fill="#f59e0b"/>
           <text x="190" y="140" fill="#fbbf24" font-size="11" font-weight="700">金線走弧 (Looping)</text>
@@ -7934,6 +7945,11 @@ export function renderPackagingFlowObject(container, lang = 'zh') {
           <div class="eng-obj-metric-label">焊點剪切破壞力</div>
           <div class="eng-obj-metric-value">&gt; 15 gf (克拉力)</div>
           <div class="eng-obj-metric-note">金屬共晶原子鍵合確保抗震耐久</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">${lang === 'en' ? 'Leadframe & 3D Wire-Bond Clauses' : '導線架與打線 3D 堆疊條例'}</div>
+          <div class="eng-obj-metric-value" style="font-size: 13.5px;">DIP/SOP/QFP · QFN/DFN · MCP/PoP</div>
+          <div class="eng-obj-metric-note">${lang === 'en' ? 'Includes TO-220/247, Clip-Bond QFN, DDP/QDP 3D multi-die wire-bond stack' : '含 TO-220/247、Clip-Bond QFN、MCP/DDP/QDP 多晶粒階梯 3D 堆疊'}</div>
         </div>
       `;
 
@@ -8035,6 +8051,11 @@ export function renderPackagingFlowObject(container, lang = 'zh') {
           </div>
           <div class="eng-obj-metric-note">強烈建議施加 Capillary Underfill 固化</div>
         </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">${lang === 'en' ? 'Bump & Substrate Package Clauses' : '凸塊與陣列基板封裝條例'}</div>
+          <div class="eng-obj-metric-value" style="font-size: 13.5px;">C4 · Cu Pillar · FCBGA · FCCSP</div>
+          <div class="eng-obj-metric-note">${lang === 'en' ? 'Includes PBGA, LGA/PGA, Fan-In WLCSP, SiP with EMI Shielding' : '含 PBGA、LGA/PGA、Fan-In WLCSP 與 SiP 系統級封裝'}</div>
+        </div>
       `;
 
       footerNote = t.ch20_flipchip_desc;
@@ -8059,6 +8080,7 @@ export function renderPackagingFlowObject(container, lang = 'zh') {
 
             <!-- 毛細作用充填完畢之綠色環氧樹脂膠體 (Fully Wetted Underfill Matrix) -->
             <rect x="60" y="70" width="480" height="60" fill="#10b981" opacity="0.45"/>
+            <path d="M 65,82 L 535,82 M 65,118 L 535,118" stroke="#6ee7b7" stroke-width="1.8" stroke-dasharray="8 6" class="anim-data-flow"/>
             <text x="300" y="105" text-anchor="middle" fill="#34d399" font-size="11.5" font-weight="800">
               環氧樹脂 100% 固化充填 · 應力分散至整體結構 (Stress Redistribution)
             </text>
@@ -8112,6 +8134,11 @@ export function renderPackagingFlowObject(container, lang = 'zh') {
             🛡️ Grade 0 頂級認證 (-40°C~150°C)
           </div>
           <div class="eng-obj-metric-note">具備車載與極限工控長期耐久性</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">${lang === 'en' ? 'Underfill Process Clauses' : '底部填充製程三大條例'}</div>
+          <div class="eng-obj-metric-value" style="font-size: 13.5px;">CUF · TC-NCF · MR-MUF</div>
+          <div class="eng-obj-metric-note">${lang === 'en' ? 'Capillary Underfill (CUF), Non-Conductive Film (NCF), Molded Underfill (MUF)' : '毛細點膠 (CUF)、熱壓非導電膜 (NCF) 與巨量回焊模塑填膠 (MR-MUF)'}</div>
         </div>
       `;
 
