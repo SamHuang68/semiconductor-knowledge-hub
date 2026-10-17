@@ -8,6 +8,8 @@
 
 ## 專案特色
 
+- **里程碑版本 v2.0.0 — 第 05–09 章（薄膜／電鍍 CEAC、電漿鞘層／ALE、離子佈植／熱穿透、CMP 3D 混合鍵合銅熱膨脹與 DLVO／拉普拉斯毛細力）定量物理方程深化（2.0.0）**：於五大前段核心製程模組補齊完整定量方程與 3D 互鎖表，涵蓋 `Deal-Grove 氧化定律、Gordon 深孔擴散與 CEAC 曲率加速電鍍銅超填方程`、`Child-Langmuir 電漿鞘層、ARDE 克努森傳導與 ALE 協同因子公式`、`LSS 高斯縱深、Fick 擴散與 1D 熱穿透深度（解釋奈秒雷射背面退火不傷正面銅線）`、`Preston 局部壓力與 3D 混合鍵合 1–3 nm 銅熱膨脹橋接方程` 及 `DLVO Zeta 電位、兆聲波邊界層與 Young-Laplace 超臨界 CO₂ 零毛細壓力公式`。
+
 - **第 00–04 章（價值鏈良率經濟、無塵室冪次律、量子穿隧能帶、長晶偏析與 EUV 散粒雜訊／EPE）定量物理方程與 3D 互鎖深化（1.9.9）**：於 `ch00`–`ch04` 新增雙語「定量物理方程、製程視窗與 3D 異質整合跨站互鎖表」，涵蓋 `GDPW 毛晶粒數與 3D 堆疊複合良率定律`、`ISO 14644-1 微粒濃度冪次律與 18.24 MΩ·cm 超純水極限`、`波茲曼 59.6 mV/dec 次臨界極限與 EOT 量子穿隧方程`、`Voronkov 臨界比、Scheil 偏析方程與 SFQR/TTV 平坦度定律` 及 `瑞利焦深、EUV 91.8 eV 光子散粒雜訊與 EPE 邊緣放置誤差預算公式`。
 
 - **晶圓廠現場行話（JARGON_DATA 43 筆雙語詞條與附錄 B）300mm 自動化與 3D 封裝實戰語境深化（1.9.8）**：針對 `data/glossary-data.js` 與附錄 B（`app-jargon`）中的 `Lot`、`Hot Lot (Super Hot / Hand-Carry)`、`Split (DOE / Future Hold)`、`控片 (Monitor)`、`擋片 (Dummy)`、`Recipe (RMS Checksum)`、`PM`、`Seasoning（養腔）`、`Q-Time (Auto-Hold)`、`Hold`、`Rework（黃光去膠重曝）`、`Excursion（戰情室與章魚防堵）`、`MRB` 與 `PE/EE/PIE/YE/TE/PKG` 共 14 項核心行話補齊 300mm 智慧晶圓廠與先進封裝現場運作機制。
