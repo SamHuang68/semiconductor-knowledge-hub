@@ -223,18 +223,18 @@ const TEXTS = {
 
     // Ch 21 先進封裝
     ch21_title: '2.5D CoWoS 矽中介層與 3D SoIC 混合鍵合立體架構模型',
-    ch21_sub: '探索台積電 2.5D CoWoS 矽中介層 (TSV)、HBM 堆疊微凸塊、與次世代 3D SoIC <1µm 無凸塊銅對銅混合鍵合',
+    ch21_sub: '探索 2.5D 中介層／矽橋（CoWoS-S/R/L、EMIB、I-Cube、FOCoS）、扇出型（InFO-PoP/3D/SoW）、3D 垂直堆疊（SoIC-X/P、Foveros/Direct/Omni、X-Cube/SAINT、HBM TC-NCF/MR-MUF、3D NAND CBA）與 3.5D 異質整合',
     ch21_tab_cowos: '2.5D CoWoS 矽中介層架構 (CoWoS-S)',
     ch21_tab_soic: '3D SoIC 無凸塊混合鍵合 (Cu-Cu Hybrid)',
     ch21_tab_density: '各世代互連密度對比 (Density & Pitch)',
-    ch21_cowos_desc: '2.5D CoWoS (Chip-on-Wafer-on-Substrate) 透過大面積矽中介層 (Silicon Interposer) 內部超密高頻微導線與垂直矽穿孔 (TSV)，將 SoC 算力晶片與 4~8 顆 HBM 高頻寬記憶體緊密並排互連，頻寬突破數個 TB/s！',
-    ch21_soic_desc: '3D SoIC 徹底拋棄傳統焊錫微凸塊，透過奈米級平坦化表面，在常溫下以介電層分子鍵合 (SiO₂-SiO₂)，再經熱退火使銅金屬原子跨介面互相擴散 (Cu-Cu)，接點間距 < 1µm，互連密度較傳統提升 1500 倍！',
+    ch21_cowos_desc: '【2.5D 中介層／矽橋與扇出型條例】透過矽中介層、重佈線層（RDL）或局部矽橋，將邏輯晶片與多顆 HBM 並排高速互連。已知主流技術涵蓋：① TSMC CoWoS 家族（CoWoS-S 整片矽中介層、CoWoS-R 有機 RDL 中介層、CoWoS-L 局部矽互連 LSI + 有機重組中介層）；② Intel EMIB / EMIB-T（基板內嵌局部矽橋）；③ Samsung I-CubeS / I-CubeE / H-Cube；④ ASE VIPack（FOCoS-CF/CL、FOEB）；⑤ 扇出型與 3D 扇出家族（InFO-RDL、InFO-PoP 3D 封裝堆疊、InFO-3D、InFO-oS、InFO-SoW 晶圓級系統、FO-PLP 面板級扇出）。',
+    ch21_soic_desc: '【3D 垂直堆疊與 3.5D 異質整合條例】將晶片直接往上垂直疊合，分為四大類：① 無凸塊混合鍵合（Bumpless Cu-Cu Hybrid Bonding，間距 <10µm 至 <1µm）：TSMC SoIC-X（CoW/WoW，如 3D V-Cache）、Intel Foveros Direct、Samsung X-Cube（Hybrid）/ SAINT-S（SRAM）/ SAINT-D（DRAM）/ SAINT-L（Logic）、3D NAND CBA（晶圓對晶圓外圍電路鍵合至陣列）與三層堆疊 CIS；② 微凸塊 3D 堆疊（間距 10~55µm）：TSMC SoIC-P、Intel Foveros / Foveros Omni、Samsung X-Cube（µBump）；③ 3D 記憶體堆疊：HBM2E/3/3E/4（TC-NCF 熱壓非導電膜 vs. MR-MUF 巨量回焊模塑填膠）與 3DS DRAM；④ 3.5D 複合架構：CoWoS + SoIC 與 Co-EMIB（Foveros + EMIB）。',
     ch21_pitch_slider: '凸塊節距 Bump Pitch (幾何間距):',
     ch21_datarate_slider: '單線速率 Data Rate (Gbps/pin):',
     ch21_density_label: '面積互連密度 Interconnect Density:',
     ch21_bw_label: '面積頻寬密度 Bandwidth Density:',
     ch21_energy_label: '傳輸能耗 Interconnect Energy:',
-    ch21_density_desc: '封裝互連演進：傳統打線/BGA (間距 1000µm) → 覆晶 C4 (間距 150µm) → 2.5D 微凸塊 (間距 35µm) → 3D SoIC 混合鍵合 (間距 0.9µm)，晶片間通訊能耗降低 90%，延遲逼近單一晶粒。',
+    ch21_density_desc: '【封裝互連節距與小晶片（Chiplet）標準條例】傳統打線/BGA (1000µm) → 覆晶 C4 / InFO-RDL / UCIe-Standard (100~150µm) → 2.5D CoWoS / EMIB / 微凸塊 3D (Foveros / SoIC-P / HBM MR-MUF & TC-NCF) / UCIe-Advanced (25~55µm) → 無凸塊 3D 混合鍵合 (SoIC-X / Foveros Direct / X-Cube Hybrid / SAINT / CBA) / UCIe-3D (<10µm 至 0.9µm)，通訊能耗降低 90%，延遲逼近單一晶粒（支援 UCIe、BoW、AIB 等 Die-to-Die 標準）。',
 
     // Ch 03 沙子到晶圓
     ch03_title: '柴氏長晶爐 (CZ) 提拉單晶矽與晶圓切割拋光幾何模型',
@@ -773,18 +773,18 @@ const TEXTS = {
 
     // Ch 21 Advanced Packaging
     ch21_title: '2.5D CoWoS Interposer & 3D SoIC Hybrid Bonding Model',
-    ch21_sub: 'Explore TSV silicon interposers, HBM micro-bumps, and sub-micron bumpless Cu-Cu hybrid bonding',
+    ch21_sub: 'Explore 2.5D interposers/bridges (CoWoS-S/R/L, EMIB, I-Cube, FOCoS), Fan-Out (InFO-PoP/3D/SoW), 3D vertical stacking (SoIC-X/P, Foveros/Direct/Omni, X-Cube/SAINT, HBM TC-NCF/MR-MUF, 3D NAND CBA), and 3.5D integration',
     ch21_tab_cowos: '2.5D CoWoS Silicon Interposer (CoWoS-S)',
     ch21_tab_soic: '3D SoIC Bumpless Cu-Cu Hybrid Bonding',
     ch21_tab_density: 'Interconnect Density & Pitch Comparison',
-    ch21_cowos_desc: '2.5D CoWoS bridges high-power SoC/GPU compute dies with 4-8 HBM stacks across a large silicon interposer packed with sub-micron RDL wires and Through-Silicon Vias (TSVs), delivering multi-terabyte/s bandwidth.',
-    ch21_soic_desc: '3D SoIC eliminates solder micro-bumps entirely: atomic-flat dielectric surfaces bond at room temperature (SiO₂-SiO₂), followed by thermal annealing where copper contacts diffuse together (Cu-Cu) with <1µm pitch and 1500x density!',
+    ch21_cowos_desc: '[2.5D Interposer/Bridge & Fan-Out Clause] Interconnects compute SoC/GPU dies with 4–12 HBM stacks side-by-side via silicon interposers, RDL, or local silicon bridges: (1) TSMC CoWoS family (CoWoS-S monolithic silicon interposer, CoWoS-R organic RDL interposer, CoWoS-L local silicon interconnect [LSI] + reconstituted interposer); (2) Intel EMIB / EMIB-T (embedded silicon bridge); (3) Samsung I-CubeS / I-CubeE / H-Cube; (4) ASE VIPack (FOCoS-CF/CL, FOEB); (5) Fan-Out & 3D Fan-Out (InFO-RDL, InFO-PoP 3D package stacking, InFO-3D, InFO-oS, InFO-SoW wafer-scale system, FO-PLP panel-level fan-out).',
+    ch21_soic_desc: '[3D Vertical Stacking & 3.5D Integration Clause] Stacks dies vertically across four core categories: (1) Bumpless Cu-Cu Hybrid Bonding (<10µm to <1µm pitch, SiO₂-SiO₂ + Cu-Cu diffusion): TSMC SoIC-X (CoW/WoW, e.g., 3D V-Cache), Intel Foveros Direct, Samsung X-Cube (Hybrid) / SAINT-S (SRAM) / SAINT-D (DRAM) / SAINT-L (Logic), 3D NAND CBA (wafer-to-wafer CMOS Bonded to Array), and 3-layer stacked CIS; (2) Micro-bump 3D Stacking (10–55µm pitch): TSMC SoIC-P, Intel Foveros / Foveros Omni, Samsung X-Cube (µBump); (3) 3D Memory Stacking: HBM2E/3/3E/4 (TC-NCF vs. MR-MUF) and 3DS DRAM; (4) 3.5D Hybrid Integration: CoWoS + SoIC and Co-EMIB (Foveros + EMIB).',
     ch21_pitch_slider: 'Bump Pitch (Interconnect Spacing):',
     ch21_datarate_slider: 'Pin Data Rate (Gbps/pin):',
     ch21_density_label: 'Interconnect Density (bumps/mm²):',
     ch21_bw_label: 'Bandwidth Density (TB/s/mm²):',
     ch21_energy_label: 'Interconnect Energy (pJ/bit):',
-    ch21_density_desc: 'Interconnect evolution: Wire-Bonding/BGA (1000µm pitch) → Flip-Chip C4 (150µm) → 2.5D Micro-Bump (35µm) → 3D SoIC Hybrid Bonding (0.9µm), slashing communication energy by 90% with near-monolithic latency.',
+    ch21_density_desc: '[Interconnect Pitch & Chiplet Standards Clause] Wire-Bonding/BGA (1000µm) → Flip-Chip C4 / InFO-RDL / UCIe-Standard (100–150µm) → 2.5D CoWoS / EMIB / Micro-Bump 3D (Foveros / SoIC-P / HBM MR-MUF & TC-NCF) / UCIe-Advanced (25–55µm) → Bumpless 3D Hybrid Bonding (SoIC-X / Foveros Direct / X-Cube Hybrid / SAINT / CBA) / UCIe-3D (<10µm to 0.9µm), slashing communication energy by 90% with near-monolithic latency (supporting UCIe, BoW, and AIB die-to-die standards).',
 
     // Ch 03 Silicon Ingot & Wafer Fabrication
     ch03_title: 'Czochralski (CZ) Silicon Ingot Puller & Wafer Slicing Model',
@@ -3794,19 +3794,24 @@ export function renderAdvancedPackagingObject(container, lang = 'zh') {
 
       dashboardHtml = `
         <div class="eng-obj-metric-card">
-          <div class="eng-obj-metric-label">HBM 互連總頻寬</div>
+          <div class="eng-obj-metric-label">${lang === 'en' ? 'HBM Aggregate Bandwidth' : 'HBM 互連總頻寬'}</div>
           <div class="eng-obj-metric-value" style="color: var(--semi-blue-dark);">&gt; 1.2 TB/s · 堆疊</div>
-          <div class="eng-obj-metric-note">1024-bit 匯流排超寬平行傳輸</div>
+          <div class="eng-obj-metric-note">${lang === 'en' ? '1024-bit wide parallel bus per stack' : '1024-bit 匯流排超寬平行傳輸'}</div>
         </div>
         <div class="eng-obj-metric-card">
-          <div class="eng-obj-metric-label">中介層面積 (Interposer Size)</div>
-          <div class="eng-obj-metric-value">&gt; 3.3× 光罩視場</div>
-          <div class="eng-obj-metric-note">台積電 CoWoS-S 突破單光罩限制</div>
+          <div class="eng-obj-metric-label">${lang === 'en' ? 'Interposer Size' : '中介層面積 (Interposer Size)'}</div>
+          <div class="eng-obj-metric-value">&gt; 3.3× ~ 8× 光罩視場</div>
+          <div class="eng-obj-metric-note">${lang === 'en' ? 'CoWoS-S / CoWoS-L reticle stitching' : '台積電 CoWoS-S / CoWoS-L 突破單光罩限制'}</div>
         </div>
         <div class="eng-obj-metric-card">
-          <div class="eng-obj-metric-label">微凸塊間距 (Micro-Bump Pitch)</div>
+          <div class="eng-obj-metric-label">${lang === 'en' ? 'Micro-Bump Pitch' : '微凸塊間距 (Micro-Bump Pitch)'}</div>
           <div class="eng-obj-metric-value">25 - 40 µm</div>
-          <div class="eng-obj-metric-note">每平方毫米數百個高密度接點</div>
+          <div class="eng-obj-metric-note">${lang === 'en' ? 'Hundreds of high-density contacts per mm²' : '每平方毫米數百個高密度接點'}</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">${lang === 'en' ? '2.5D & Fan-Out Family' : '2.5D 與扇出型條例總覽'}</div>
+          <div class="eng-obj-metric-value" style="font-size: 13.5px;">CoWoS-S/R/L · EMIB · I-Cube · InFO</div>
+          <div class="eng-obj-metric-note">${lang === 'en' ? 'Includes H-Cube, FOCoS/FOEB, InFO-PoP/3D/SoW, FO-PLP' : '含 EMIB-T、H-Cube、FOCoS/FOEB、InFO-PoP/3D/SoW、FO-PLP'}</div>
         </div>
       `;
 
@@ -3847,19 +3852,24 @@ export function renderAdvancedPackagingObject(container, lang = 'zh') {
 
       dashboardHtml = `
         <div class="eng-obj-metric-card">
-          <div class="eng-obj-metric-label">互連間距 (Bonding Pitch)</div>
+          <div class="eng-obj-metric-label">${lang === 'en' ? 'Bonding Pitch' : '互連間距 (Bonding Pitch)'}</div>
           <div class="eng-obj-metric-value" style="color: var(--semi-teal);">&lt; 0.9 µm</div>
-          <div class="eng-obj-metric-note">比傳統微凸塊縮小 40 倍以上</div>
+          <div class="eng-obj-metric-note">${lang === 'en' ? '>40x finer than conventional micro-bumps' : '比傳統微凸塊縮小 40 倍以上'}</div>
         </div>
         <div class="eng-obj-metric-card">
-          <div class="eng-obj-metric-label">互連密度 (Interconnect Density)</div>
+          <div class="eng-obj-metric-label">${lang === 'en' ? 'Interconnect Density' : '互連密度 (Interconnect Density)'}</div>
           <div class="eng-obj-metric-value">&gt; 1,200,000 / mm²</div>
-          <div class="eng-obj-metric-note">實現晶粒級單晶片超低延遲</div>
+          <div class="eng-obj-metric-note">${lang === 'en' ? 'Near-monolithic ultra-low latency' : '實現晶粒級單晶片超低延遲'}</div>
         </div>
         <div class="eng-obj-metric-card">
-          <div class="eng-obj-metric-label">通訊能耗改善</div>
+          <div class="eng-obj-metric-label">${lang === 'en' ? 'Energy Efficiency' : '通訊能耗改善'}</div>
           <div class="eng-obj-metric-value" style="color: var(--semi-blue-dark);">&lt; 0.05 pJ / bit</div>
-          <div class="eng-obj-metric-note">寄生電容劇降，能耗僅傳統封裝 10%</div>
+          <div class="eng-obj-metric-note">${lang === 'en' ? '90% lower parasitic capacitance vs. bumps' : '寄生電容劇降，能耗僅傳統封裝 10%'}</div>
+        </div>
+        <div class="eng-obj-metric-card">
+          <div class="eng-obj-metric-label">${lang === 'en' ? 'All Known 3D & 3.5D Clauses' : '已知 3D 堆疊與 3.5D 條例總覽'}</div>
+          <div class="eng-obj-metric-value" style="font-size: 13.5px;">SoIC-X/P · Foveros · X-Cube/SAINT</div>
+          <div class="eng-obj-metric-note">${lang === 'en' ? 'Includes Foveros Direct/Omni, HBM TC-NCF/MR-MUF, CBA, 3.5D' : '含 Foveros Direct/Omni、HBM TC-NCF/MR-MUF、3D NAND CBA、3.5D'}</div>
         </div>
       `;
 

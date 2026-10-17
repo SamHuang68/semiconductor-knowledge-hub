@@ -322,9 +322,9 @@ export const GLOSSARY_DATA = [
     "en": "Chiplet",
     "abbr": "",
     "zh": "小晶片",
-    "desc": "把大型晶片拆成多顆功能獨立的小晶片",
-    "descZh": "把大型晶片拆成多顆功能獨立的小晶片",
-    "descEn": "One of several smaller, independent chips that together replace one large chip",
+    "desc": "把大型晶片拆成多顆功能獨立的小晶片（涵蓋 UCIe [Standard / Advanced / 3D]、BoW、AIB 等互連標準與 2.5D/3D/3.5D 異質整合）",
+    "descZh": "把大型晶片拆成多顆功能獨立的小晶片（涵蓋 UCIe [Standard / Advanced / 3D]、BoW、AIB 等互連標準與 2.5D/3D/3.5D 異質整合）",
+    "descEn": "One of several smaller, independent chips that together replace one large chip (enabled by UCIe [Standard / Advanced / 3D], BoW, AIB standards and 2.5D/3D/3.5D integration)",
     "chapter": "21"
   },
   {
@@ -736,9 +736,9 @@ export const GLOSSARY_DATA = [
     "en": "Fan-Out Packaging",
     "abbr": "",
     "zh": "扇出型封裝",
-    "desc": "用重佈線層把接點擴展到晶粒範圍外的封裝",
-    "descZh": "用重佈線層把接點擴展到晶粒範圍外的封裝",
-    "descEn": "A package that uses redistribution layers to spread contacts beyond the die area",
+    "desc": "用重佈線層把接點擴展到晶粒範圍外的封裝（涵蓋 InFO-RDL、3D 封裝體堆疊 InFO-PoP / InFO-3D、InFO-oS、晶圓級系統 InFO-SoW 與面板級 FO-PLP）",
+    "descZh": "用重佈線層把接點擴展到晶粒範圍外的封裝（涵蓋 InFO-RDL、3D 封裝體堆疊 InFO-PoP / InFO-3D、InFO-oS、晶圓級系統 InFO-SoW 與面板級 FO-PLP）",
+    "descEn": "A package that uses redistribution layers to spread contacts beyond the die area (spanning InFO-RDL, 3D package stacking InFO-PoP / InFO-3D, InFO-oS, wafer-scale InFO-SoW, and panel-level FO-PLP)",
     "chapter": "21"
   },
   {
@@ -916,9 +916,9 @@ export const GLOSSARY_DATA = [
     "en": "High Bandwidth Memory",
     "abbr": "HBM",
     "zh": "高頻寬記憶體",
-    "desc": "以 TSV 堆疊多顆 DRAM 的記憶體",
-    "descZh": "以 TSV 堆疊多顆 DRAM 的記憶體",
-    "descEn": "Memory made of several DRAM dies stacked with TSVs",
+    "desc": "以 TSV 堆疊多顆 DRAM 的記憶體（涵蓋 HBM2E / HBM3 / HBM3E / HBM4，採用 TC-NCF 熱壓非導電膜、MR-MUF 巨量回焊模塑填膠或次世代無凸塊混合鍵合製程）",
+    "descZh": "以 TSV 堆疊多顆 DRAM 的記憶體（涵蓋 HBM2E / HBM3 / HBM3E / HBM4，採用 TC-NCF 熱壓非導電膜、MR-MUF 巨量回焊模塑填膠或次世代無凸塊混合鍵合製程）",
+    "descEn": "Memory made of several DRAM dies stacked with TSVs (spanning HBM2E / HBM3 / HBM3E / HBM4, built with TC-NCF, MR-MUF, or next-gen bumpless hybrid bonding)",
     "chapter": "13、21"
   },
   {
@@ -979,9 +979,9 @@ export const GLOSSARY_DATA = [
     "en": "Hybrid Bonding",
     "abbr": "",
     "zh": "混合鍵合",
-    "desc": "銅接點與絕緣層同時直接接合的晶片堆疊技術",
-    "descZh": "銅接點與絕緣層同時直接接合的晶片堆疊技術",
-    "descEn": "A chip-stacking technique that bonds copper contacts and insulator surfaces directly at the same time",
+    "desc": "銅接點與絕緣層同時直接接合的晶片堆疊技術（無凸塊 Cu-Cu 鍵合，涵蓋 TSMC SoIC-X [CoW/WoW]、Intel Foveros Direct、Samsung X-Cube [Hybrid] / SAINT-S/D/L、3D NAND CBA 與堆疊式 CIS）",
+    "descZh": "銅接點與絕緣層同時直接接合的晶片堆疊技術（無凸塊 Cu-Cu 鍵合，涵蓋 TSMC SoIC-X [CoW/WoW]、Intel Foveros Direct、Samsung X-Cube [Hybrid] / SAINT-S/D/L、3D NAND CBA 與堆疊式 CIS）",
+    "descEn": "A chip-stacking technique that bonds copper contacts and insulator surfaces directly at the same time (bumpless Cu-Cu bonding, including TSMC SoIC-X [CoW/WoW], Intel Foveros Direct, Samsung X-Cube [Hybrid] / SAINT-S/D/L, 3D NAND CBA, and stacked CIS)",
     "chapter": "21"
   },
   {
@@ -1042,9 +1042,9 @@ export const GLOSSARY_DATA = [
     "en": "Interposer",
     "abbr": "",
     "zh": "中介層",
-    "desc": "連接多顆晶片與封裝基板的轉接板",
-    "descZh": "連接多顆晶片與封裝基板的轉接板",
-    "descEn": "An adapter layer that connects several chips to the package substrate",
+    "desc": "連接多顆晶片與封裝基板的轉接板（2.5D 實作涵蓋矽中介層 CoWoS-S / I-CubeS、有機重佈線中介層 CoWoS-R / FOCoS，以及局部矽橋 CoWoS-L / EMIB / EMIB-T / I-CubeE / H-Cube / FOEB）",
+    "descZh": "連接多顆晶片與封裝基板的轉接板（2.5D 實作涵蓋矽中介層 CoWoS-S / I-CubeS、有機重佈線中介層 CoWoS-R / FOCoS，以及局部矽橋 CoWoS-L / EMIB / EMIB-T / I-CubeE / H-Cube / FOEB）",
+    "descEn": "An adapter layer that connects several chips to the package substrate (2.5D variants include silicon interposer CoWoS-S / I-CubeS, organic RDL CoWoS-R / FOCoS, and silicon bridge CoWoS-L / EMIB / EMIB-T / I-CubeE / H-Cube / FOEB)",
     "chapter": "21"
   },
   {
@@ -1213,9 +1213,9 @@ export const GLOSSARY_DATA = [
     "en": "Micro Bump",
     "abbr": "",
     "zh": "微凸塊",
-    "desc": "間距約數十微米的細小凸塊，用於晶片堆疊",
-    "descZh": "間距約數十微米的細小凸塊，用於晶片堆疊",
-    "descEn": "A small bump with a pitch of tens of micrometers, used for chip stacking",
+    "desc": "間距約數十微米的細小凸塊，用於晶片堆疊（廣泛用於 2.5D CoWoS 與 3D 垂直堆疊如 TSMC SoIC-P、Intel Foveros / Foveros Omni、Samsung X-Cube [µBump] 與 HBM）",
+    "descZh": "間距約數十微米的細小凸塊，用於晶片堆疊（廣泛用於 2.5D CoWoS 與 3D 垂直堆疊如 TSMC SoIC-P、Intel Foveros / Foveros Omni、Samsung X-Cube [µBump] 與 HBM）",
+    "descEn": "A small bump with a pitch of tens of micrometers, used for chip stacking (widely used in 2.5D CoWoS and 3D stacking such as TSMC SoIC-P, Intel Foveros / Foveros Omni, Samsung X-Cube [µBump], and HBM)",
     "chapter": "13、21"
   },
   {
@@ -2023,9 +2023,9 @@ export const GLOSSARY_DATA = [
     "en": "Through-Silicon Via",
     "abbr": "TSV",
     "zh": "矽穿孔",
-    "desc": "垂直貫穿晶片的金屬導線",
-    "descZh": "垂直貫穿晶片的金屬導線",
-    "descEn": "A metal wire that passes vertically through a die",
+    "desc": "垂直貫穿晶片的金屬導線（3D 與 2.5D 封裝核心結構，用於 HBM、3DS DRAM、SoIC、Foveros、X-Cube / SAINT 與矽中介層）",
+    "descZh": "垂直貫穿晶片的金屬導線（3D 與 2.5D 封裝核心結構，用於 HBM、3DS DRAM、SoIC、Foveros、X-Cube / SAINT 與矽中介層）",
+    "descEn": "A metal wire that passes vertically through a die (core vertical interconnect in 3D HBM, 3DS DRAM, SoIC, Foveros, X-Cube / SAINT, and 2.5D silicon interposers)",
     "chapter": "13、21"
   },
   {
@@ -2059,9 +2059,9 @@ export const GLOSSARY_DATA = [
     "en": "Underfill",
     "abbr": "",
     "zh": "底部填充",
-    "desc": "填入覆晶晶粒與基板之間的膠材",
-    "descZh": "填入覆晶晶粒與基板之間的膠材",
-    "descEn": "The resin filled between a flip-chip die and the substrate",
+    "desc": "填入覆晶晶粒與基板之間的膠材（包含傳統毛細底部填膠 CUF、3D HBM 熱壓非導電膜 NCF 與巨量回焊模塑底部填膠 MR-MUF）",
+    "descZh": "填入覆晶晶粒與基板之間的膠材（包含傳統毛細底部填膠 CUF、3D HBM 熱壓非導電膜 NCF 與巨量回焊模塑底部填膠 MR-MUF）",
+    "descEn": "The resin filled between a flip-chip die and the substrate (including capillary underfill CUF, non-conductive film NCF, and mass reflow molded underfill MR-MUF in 3D HBM)",
     "chapter": "20"
   },
   {

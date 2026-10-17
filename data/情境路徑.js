@@ -136,19 +136,19 @@ export const SCENARIOS = [
     boundary: '三種結構是並列選項，並非先後步驟或優劣排名。示意不代表特定 CoWoS／SoIC 產品，也不涵蓋所有封裝變體。',
     boundaryEn: 'These three architectures are parallel options, not sequential steps or rankings. Schematics do not depict specific commercial CoWoS or SoIC products, nor encompass all packaging variants.',
     nodes: [
-      node('single', '單晶粒封裝', '一顆晶粒', 'ch20', '以封裝提供晶粒保護及外部連接，可採打線或覆晶等不同連接方式。', '接點、基板、散熱與可靠度', '先理解晶粒到電路板的連接', [], {
+      node('single', '單晶粒封裝', '一顆晶粒', 'ch20', '以封裝提供晶粒保護及外部連接，可採打線（Wire Bonding）、覆晶（Flip-Chip C4）或晶圓級／面板級扇出型封裝（InFO-RDL、FOWLP、FO-PLP）等不同連接方式。', '接點、基板、散熱與可靠度', '先理解晶粒到電路板的連接', [], {
         titleEn: 'Single-Die Packaging', tagEn: 'Single Die',
-        detailEn: 'Provides die protection and board-level connectivity via wire bonding or flip-chip bumping.',
+        detailEn: 'Provides die protection and board-level connectivity via wire bonding, flip-chip C4 bumping, or wafer/panel-level fan-out packaging (InFO-RDL, FOWLP, FO-PLP).',
         lookEn: 'Contact pads, substrate, thermal dissipation, and reliability', resultEn: 'Foundational understanding of die-to-PCB interconnects'
       }),
-      node('interposer', '2.5D 整合', '並排連接', 'ch21', '多顆晶粒透過中介層等結構互連，常見討論包含邏輯晶粒與記憶體整合。', '互連密度、基板與整合良率', '理解橫向整合的連接路徑', [], {
+      node('interposer', '2.5D 整合', '並排連接', 'ch21', '多顆晶粒透過中介層或局部矽橋等結構並排互連（涵蓋矽中介層 CoWoS-S／I-CubeS、有機重佈線中介層 CoWoS-R／FOCoS，以及局部矽橋 CoWoS-L／EMIB／EMIB-T／I-CubeE／H-Cube／FOEB），常見討論包含邏輯晶粒與 HBM 記憶體整合。', '互連密度、基板與整合良率', '理解橫向整合的連接路徑', [], {
         titleEn: '2.5D Interposer Integration', tagEn: 'Side-by-Side',
-        detailEn: 'Interconnects multiple dies side-by-side on a silicon or organic interposer, standard for logic-HBM integration.',
+        detailEn: 'Interconnects multiple dies side-by-side on a silicon/organic interposer or local silicon bridge (spanning CoWoS-S/I-CubeS, organic RDL CoWoS-R/FOCoS, and silicon-bridge CoWoS-L/EMIB/EMIB-T/I-CubeE/H-Cube/FOEB), standard for logic-HBM integration.',
         lookEn: 'Interconnect density, warpage, and composite yield', resultEn: 'Appreciation of lateral high-density interconnect schemes'
       }),
-      node('stack', '3D 整合', '垂直堆疊', 'ch21', '透過垂直堆疊與鍵合縮短晶粒間連接；不同實作可採不同互連技術。', '鍵合對準、熱管理與測試', '理解堆疊之後的工程取捨', [], {
+      node('stack', '3D 整合', '垂直堆疊', 'ch21', '透過垂直堆疊與鍵合縮短晶粒間連接；不同實作可採不同互連技術：涵蓋無凸塊銅對銅混合鍵合（TSMC SoIC-X [CoW/WoW]、Intel Foveros Direct、Samsung X-Cube [Hybrid]／SAINT-S/D/L、3D NAND CBA、堆疊式 CIS）、微凸塊與 TSV 垂直堆疊（TSMC SoIC-P、Intel Foveros／Foveros Omni、Samsung X-Cube [µBump]、HBM [TC-NCF／MR-MUF]、3DS DRAM、InFO-PoP／InFO-3D），以及結合 3D 堆疊與 2.5D 中介層的 3.5D 複合異質整合（CoWoS + SoIC、Co-EMIB）。', '鍵合對準、熱管理與測試', '理解堆疊之後的工程取捨', [], {
         titleEn: '3D Vertical Integration', tagEn: 'Vertical Stack',
-        detailEn: 'Vertically stacks and bonds dies with direct Cu-Cu bonding or microbumps to minimize interconnect delay.',
+        detailEn: 'Vertically stacks and bonds dies with direct Cu-Cu bonding or microbumps to minimize interconnect delay: spanning bumpless hybrid bonding (TSMC SoIC-X [CoW/WoW], Intel Foveros Direct, Samsung X-Cube [Hybrid]/SAINT-S/D/L, 3D NAND CBA, stacked CIS), microbump/TSV 3D stacking (TSMC SoIC-P, Intel Foveros/Foveros Omni, Samsung X-Cube [µBump], HBM [TC-NCF/MR-MUF], 3DS DRAM, InFO-PoP/InFO-3D), and 3.5D hybrid integration (CoWoS + SoIC, Co-EMIB).',
         lookEn: 'Bond alignment accuracy, thermal throttling, and KGD testability', resultEn: 'Comprehension of volumetric density and 3D design trade-offs'
       })
     ]

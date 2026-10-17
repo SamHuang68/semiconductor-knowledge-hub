@@ -8,6 +8,8 @@
 
 ## 專案特色
 
+- **全譜系 3D／2.5D／3.5D／扇出型與 3D 記憶體封裝條例整合（1.8.5）**：於第 21 章（先進封裝）、第 13 章（記憶體製造）、附錄 A／術語字典（245 筆）、全文檢索索引、工程物件（Ch21）、情境探索 04 與 12 大製程全景圖譜（Step 12）雙語對應條例下，完整納入所有已知主流封裝技術：包含 **2.5D 中介層與局部矽橋**（`TSMC CoWoS-S / CoWoS-R / CoWoS-L [LSI]`、`Intel EMIB / EMIB-T`、`Samsung I-CubeS / I-CubeE / H-Cube`、`ASE FOCoS-CF / FOCoS-CL / FOEB`、`UMC 2.5D`）、**扇出型與晶圓級系統封裝**（`TSMC InFO-RDL / InFO-PoP / InFO-oS / InFO_B / InFO-3D / InFO-SoW / CoW-SoW`、`Samsung FO-PLP / ePoP`、`ASE FOWLP / FO-EBG`、`Amkor SWIFT`）、**3D 垂直堆疊四大條例**（3A 無凸塊銅對銅混合鍵合：`TSMC SoIC-X`、`Intel Foveros Direct`、`Samsung X-Cube [Hybrid Bonding] / SAINT-S / SAINT-D / SAINT-L`、`3D NAND CBA [CMOS Bonded to Array]`、Sony 堆疊式 CIS；3B 微凸塊與 TSV 3D IC：`TSMC SoIC-P`、`Intel Foveros / Foveros Omni`、`Samsung X-Cube [µBump]`、`ASE VIPack 3D IC`；3C 3D 記憶體垂直堆疊：`HBM2E / HBM3 / HBM3E / HBM4` 之 `TC-NCF`、`MR-MUF` 與 `Fluxless / Hybrid Bonding HBM`、`3DS RDIMM`、`Custom 3D Cube DRAM`；3D 3.5D 異質整合：`TSMC 3.5D [CoWoS + SoIC]`、`Intel Co-EMIB`、`Samsung 3.5D`），以及 **小晶片互連標準**（`UCIe-Standard / UCIe-Advanced / UCIe-3D`、`AIB`、`BoW`、`NVLink-C2C`、`Infinity Fabric`）。
+
 - **圖像與物理動畫呈現升級（1.8.4）**：為 28 個工程物件自動注入共用 SVG 光學定義（`#arrow` 自動繼承筆畫向量箭頭、發光濾鏡與材質漸層），連同獨立 SVG 複製一併攜帶；補齊 Ch09 兆聲波微粒脫附發光與流場動畫、Ch05 PVD／CVD 氣相粒子與離子束動畫，並加入 `prefers-reduced-motion` 動畫降級保護。升級 `cover.svg`（切割道微網格、薄膜干涉彩虹光澤與雷射掃描束）、`16-wafer-map-patterns.svg`（晶圓基底放射漸層與缺陷晶粒呼吸高亮），以及 Atlas 2.0 動態晶圓橫截面流（對齊 12 大製程節點契約、中英雙語標示與懸停／鍵盤焦點同步預覽）。
 
 - **其他章節圖例排版（1.8.3）**：分開蝕刻異常標題、清洗粒徑與受力說明、記憶體編號與註解、節點間距標示、橢偏入射角及 OCAP 處置區。修正潔淨室、晶圓切片與清洗圖的固定定位遭動畫覆蓋；原文、動態數值、滑桿、模型選項、閱讀工具與匯出入口保留。指定頁籤已完成中英文、1440／390 像素及參數端點驗證；此結果不代表全站或實體裝置驗證。
