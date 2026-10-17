@@ -3641,6 +3641,11 @@ export function renderInterconnectObject(container, lang = 'zh') {
 
         <div class="eng-obj-dashboard">
           ${dashboardHtml}
+          <div class="eng-obj-metric-card">
+            <div class="eng-obj-metric-label">${lang === 'en' ? 'BEOL Interconnect Clauses' : '後段金屬互連條例 (BEOL Clauses)'}</div>
+            <div class="eng-obj-metric-value" style="font-size: 13.5px; color: var(--semi-teal);">${lang === 'en' ? 'M0 Co/Ru · Cu/ULK · RDL/UBM' : 'M0 Co/Ru · Cu/ULK · RDL/UBM'}</div>
+            <div class="eng-obj-metric-note">${lang === 'en' ? 'Barrierless Co/Ru/Mo, Cu Dual-Damascene + Air-Gap, Ultra-Thick Cu & 3D pads' : '局部無阻障 Co/Ru/Mo、雙鑲嵌銅與 Air-Gap、頂層超厚銅與 3D 鍵合墊'}</div>
+          </div>
         </div>
 
         <footer class="eng-obj-footer-note">
@@ -5124,6 +5129,11 @@ export function renderCMOSFlowObject(container, lang = 'zh') {
 
         <div class="eng-obj-dashboard">
           ${dashboardHtml}
+          <div class="eng-obj-metric-card">
+            <div class="eng-obj-metric-label">${lang === 'en' ? 'Cross-Tier CMOS Clauses' : '跨層製程整合條例 (CMOS Clauses)'}</div>
+            <div class="eng-obj-metric-value" style="font-size: 13.5px; color: var(--semi-teal);">${lang === 'en' ? 'FEOL · MOL · BEOL · BSPDN · 3D' : 'FEOL · MOL · BEOL · BSPDN · 3D'}</div>
+            <div class="eng-obj-metric-note">${lang === 'en' ? 'STI/HKMG/GAA → COAG/SAC/BPR → Multi-tier Cu → Backside nTSV & 3D WLP' : 'STI/HKMG/GAA → COAG/SAC/BPR → 多層銅線 → 背面 nTSV 與 3D WLP'}</div>
+          </div>
         </div>
 
         <footer class="eng-obj-footer-note">
@@ -7002,6 +7012,11 @@ export function renderWaferTestObject(container, lang = 'zh') {
 
         <div class="eng-obj-dashboard">
           ${dashboardHtml}
+          <div class="eng-obj-metric-card">
+            <div class="eng-obj-metric-label">${lang === 'en' ? 'Wafer Probe & KGD Clauses' : '晶圓針測與 KGD 條例 (Probe Clauses)'}</div>
+            <div class="eng-obj-metric-value" style="font-size: 13.5px; color: var(--semi-teal);">${lang === 'en' ? 'WAT · Cobra · MEMS · 3D KGD' : 'WAT · Cobra · MEMS · 3D KGD'}</div>
+            <div class="eng-obj-metric-note">${lang === 'en' ? '4-wire Kelvin WAT, C4 Cobra, 20µm MEMS micro-bump probe & bumpless 3D BIST' : 'Kelvin 四線 WAT、C4 垂直探針、20µm 微凸塊 MEMS 探針與無凸塊 3D BIST'}</div>
+          </div>
         </div>
 
         <footer class="eng-obj-footer-note">
@@ -8462,6 +8477,11 @@ export function renderReliabilityTestingObject(container, lang = 'zh') {
 
         <div class="eng-obj-dashboard">
           ${dashboardHtml}
+          <div class="eng-obj-metric-card">
+            <div class="eng-obj-metric-label">${lang === 'en' ? 'JEDEC / AEC Qualification Clauses' : '國際可靠度標準條例 (JEDEC / AEC)'}</div>
+            <div class="eng-obj-metric-value" style="font-size: 13.5px; color: var(--semi-teal);">${lang === 'en' ? 'HTOL · TC · HAST · MSL · WLR' : 'HTOL · TC · HAST · MSL · WLR'}</div>
+            <div class="eng-obj-metric-note">${lang === 'en' ? 'JESD22 HTOL, -65~150°C TC, HAST, J-STD-020 MSL reflow & TDDB/BTI/HCI/EM' : 'JESD22 高溫壽命、-65~150°C 溫循、HAST 溫濕偏壓、J-STD-020 與 TDDB/BTI/EM'}</div>
+          </div>
         </div>
 
         <footer class="eng-obj-footer-note">

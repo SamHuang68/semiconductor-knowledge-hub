@@ -8,6 +8,8 @@
 
 ## 專案特色
 
+- **後段金屬階層、CMOS 全流程跨層整合、3D 微凸塊 KGD 探針卡與 JEDEC／AEC-Q100 可靠度條例深化（1.8.7）**：於第 10 章補齊 `M0/M1 無阻障 Co/Ru/Mo`、`M4–M9 多孔 ULK + Air-Gap` 至 `M10+ 超厚銅 / RDL / UBM / 背面 nTSV` 階層條例；於第 11 章建立 `FEOL → MOL (COAG / SAC / BPR) → BEOL → BSPDN → 3D 混合鍵合介面` 跨層熱預算與結構對照表；於第 19 章新增 `WAT 四線 Kelvin`、`Cantilever`、`Vertical / Cobra`、`20–55 µm 微凸塊 MEMS 探針卡` 與 `<10 µm 無凸塊 3D 混合鍵合犧牲墊 + IEEE 1838 KGD` 測試條例；於第 22 章新增 `JEDEC JESD22 / AEC-Q100 / J-STD-020`（`HTOL`、`TC`、`HAST/THB`、`MSL 迴焊爆米花`、`WLR TDDB/BTI/HCI/EM`）完整驗證條例，並為 Ch10／Ch11／Ch19／Ch22 工程物件補齊第 4 張雙語條例總覽指標卡。
+
 - **第二輪全譜系 3D／傳統至準先進封裝與單石 3D 電晶體條例深化（1.8.6）**：於第 21 章（先進封裝）、第 20 章（傳統與基板級封裝）、第 12 章（先進電晶體與背面供電）、術語字典（245 筆）與工程物件（Ch12／Ch20／Ch21）補齊第二輪深度條例與動態光學路徑：
   1. **第 21 章擴充至六大 3D 條例（3A～3F）與鍵合拓撲／可測性條例**：新增 **條例 3E — 3D 光電共封裝與玻璃核心基板**（`TSMC COUPE [EIC-on-PIC]`、`Intel CPO`、`Broadcom Bailly SCIP`、`GF Fotonix`、`Glass Core Substrate + TGV [玻璃通孔]`）、**條例 3F — 單石 3D 積體電路與雙面 3D 晶圓整合**（`Sequential / Monolithic 3D IC`、`CFET`、`BSPDN`）、**3D 鍵合方向與粒度拓撲條例表**（`F2F 面對面`、`F2B 面對背 / B2B`、`W2W 晶圓對晶圓`、`D2W / CoW 晶粒對晶圓與 Collective D2W`）、OSAT 2.5D/FO 平台（`Amkor S-Connect / S-SWIFT`、`PTI FOPLP`），以及 **3D 散熱／CPI 翹曲／IEEE 1838（PTAP/STAP/FPP 與 UCIe/HBM 冗餘通道修復）** 工程對策表。
   2. **第 20 章補齊覆晶凸塊與 1D/2D/WLP/3D-PoP/SiP 六大封裝家族條例**：新增 **覆晶凸塊與填膠條例表**（`C4 錫球`、`Cu Pillar 銅柱凸塊`、`µBump + TCB`、`CUF / NCF / MUF`）與 **完整封裝形式條例表**（有引腳 `DIP / SOP / SOIC / QFP / TO-220`、無引腳 `QFN / DFN / SON / Clip-Bond`、陣列載板 `PBGA / FCBGA / FCCSP / LGA / PGA`、扇入型 `Fan-In WLCSP`、多晶粒階梯打線與封裝體 3D 堆疊 `MCP / DDP / QDP / PoP / PiP`，以及 `SiP 系統級封裝 + 共形電磁屏蔽 / SESUB`）。

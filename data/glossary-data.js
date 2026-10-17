@@ -412,9 +412,9 @@ export const GLOSSARY_DATA = [
     "en": "Damascene",
     "abbr": "",
     "zh": "大馬士革製程",
-    "desc": "先挖溝、再填金屬、最後研磨的導線做法",
-    "descZh": "先挖溝、再填金屬、最後研磨的導線做法",
-    "descEn": "Making wires by etching trenches, filling them with metal and polishing",
+    "desc": "先挖溝、再填金屬、最後研磨的導線做法（涵蓋 M0/M1 Co/Ru 局部互連、M4–M9 多孔 ULK 雙鑲嵌銅線至 M10+ 超厚全域銅線、RDL 與 3D 混合鍵合銅墊）",
+    "descZh": "先挖溝、再填金屬、最後研磨的導線做法（涵蓋 M0/M1 Co/Ru 局部互連、M4–M9 多孔 ULK 雙鑲嵌銅線至 M10+ 超厚全域銅線、RDL 與 3D 混合鍵合銅墊）",
+    "descEn": "Making wires by etching trenches, filling them with metal and polishing (spanning M0/M1 Co/Ru local interconnects, M4–M9 porous ULK dual-damascene Cu, up to M10+ ultra-thick global Cu, RDL, and 3D hybrid bond pads)",
     "chapter": "10"
   },
   {
@@ -583,9 +583,9 @@ export const GLOSSARY_DATA = [
     "en": "Electromigration",
     "abbr": "EM",
     "zh": "電遷移",
-    "desc": "電流長期推動金屬原子，造成導線斷裂",
-    "descZh": "電流長期推動金屬原子，造成導線斷裂",
-    "descEn": "Long-term current pushing metal atoms along until the wire breaks",
+    "desc": "電流長期推動金屬原子，造成導線斷裂（遵循 Black 方程 $MTTF \\propto J^{-n}\\exp(E_a/k_BT)$；先進製程透過 Co/Ru 選擇性金屬帽層與 Cu-Cu 3D 混合鍵合大幅提升抗 EM 能力）",
+    "descZh": "電流長期推動金屬原子，造成導線斷裂（遵循 Black 方程 $MTTF \\propto J^{-n}\\exp(E_a/k_BT)$；先進製程透過 Co/Ru 選擇性金屬帽層與 Cu-Cu 3D 混合鍵合大幅提升抗 EM 能力）",
+    "descEn": "Long-term current pushing metal atoms along until the wire breaks (governed by Black's equation $MTTF \\propto J^{-n}\\exp(E_a/k_BT)$; mitigated via selective Co/Ru capping and direct Cu-Cu 3D hybrid bonding)",
     "chapter": "10、22"
   },
   {
@@ -925,9 +925,9 @@ export const GLOSSARY_DATA = [
     "en": "High Temperature Operating Life",
     "abbr": "HTOL",
     "zh": "高溫操作壽命測試",
-    "desc": "在高溫下長時間通電運作的可靠度測試",
-    "descZh": "在高溫下長時間通電運作的可靠度測試",
-    "descEn": "A reliability test that runs chips powered at high temperature for a long time",
+    "desc": "在高溫下長時間通電運作的可靠度測試（JEDEC JESD22-A108 / AEC-Q100 核心壽命驗證，利用高溫 125–150°C 與過壓加速篩除早夭並驗證 2.5D/3D 堆疊長期可靠度）",
+    "descZh": "在高溫下長時間通電運作的可靠度測試（JEDEC JESD22-A108 / AEC-Q100 核心壽命驗證，利用高溫 125–150°C 與過壓加速篩除早夭並驗證 2.5D/3D 堆疊長期可靠度）",
+    "descEn": "A reliability test that runs chips powered at high temperature for a long time (JEDEC JESD22-A108 / AEC-Q100 operating life qualification using 125–150°C thermal and voltage acceleration to screen infant mortality and verify 2.5D/3D stack reliability)",
     "chapter": "22"
   },
   {
@@ -1222,9 +1222,9 @@ export const GLOSSARY_DATA = [
     "en": "Middle of Line",
     "abbr": "MOL",
     "zh": "中段製程",
-    "desc": "把電晶體接到金屬層的階段",
-    "descZh": "把電晶體接到金屬層的階段",
-    "descEn": "The stage that connects the transistors to the metal layers",
+    "desc": "把電晶體接到金屬層的階段（涵蓋 NiPtSi/TiSi₂ 矽化物、COAG 主動區上閘極接觸、SAC 自對準接觸、W/Co/Ru/Mo 無阻障插塞與埋入式電源軌 BPR）",
+    "descZh": "把電晶體接到金屬層的階段（涵蓋 NiPtSi/TiSi₂ 矽化物、COAG 主動區上閘極接觸、SAC 自對準接觸、W/Co/Ru/Mo 無阻障插塞與埋入式電源軌 BPR）",
+    "descEn": "The stage that connects the transistors to the metal layers (encompassing NiPtSi/TiSi₂ salicide, COAG contact over active gate, SAC self-aligned contacts, barrierless W/Co/Ru/Mo plugs, and Buried Power Rails BPR)",
     "chapter": "11"
   },
   {
@@ -1501,9 +1501,9 @@ export const GLOSSARY_DATA = [
     "en": "Probe Card",
     "abbr": "",
     "zh": "探針卡",
-    "desc": "晶圓測試時接觸晶粒焊墊的探針組",
-    "descZh": "晶圓測試時接觸晶粒焊墊的探針組",
-    "descEn": "The set of probes that touches the die pads during wafer test",
+    "desc": "晶圓測試時接觸晶粒焊墊的探針組（依節距分為懸臂式 Cantilever、垂直式 Vertical/Cobra 與 20–55 µm 微凸塊專用 MEMS 探針卡；<10 µm 無凸塊 3D 混合鍵合則採犧牲測試墊與 BIST）",
+    "descZh": "晶圓測試時接觸晶粒焊墊的探針組（依節距分為懸臂式 Cantilever、垂直式 Vertical/Cobra 與 20–55 µm 微凸塊專用 MEMS 探針卡；<10 µm 無凸塊 3D 混合鍵合則採犧牲測試墊與 BIST）",
+    "descEn": "The set of probes that touches the die pads during wafer test (categorized by pitch into Cantilever, Vertical/Cobra, and 20–55 µm fine-pitch MEMS probe cards; <10 µm bumpless 3D hybrid bonding uses sacrificial pads and BIST)",
     "chapter": "19"
   },
   {
@@ -1969,9 +1969,9 @@ export const GLOSSARY_DATA = [
     "en": "Temperature Cycling",
     "abbr": "TC",
     "zh": "溫度循環",
-    "desc": "反覆在高溫與低溫之間切換的可靠度測試",
-    "descZh": "反覆在高溫與低溫之間切換的可靠度測試",
-    "descEn": "A reliability test that switches repeatedly between high and low temperatures",
+    "desc": "反覆在高溫與低溫之間切換的可靠度測試（JEDEC JESD22-A104 -65°C 至 +150°C 循環測試，依 Coffin-Manson 模型驗證 C4/微凸塊、TSV 與底部填膠抗 CTE 熱疲勞能力）",
+    "descZh": "反覆在高溫與低溫之間切換的可靠度測試（JEDEC JESD22-A104 -65°C 至 +150°C 循環測試，依 Coffin-Manson 模型驗證 C4/微凸塊、TSV 與底部填膠抗 CTE 熱疲勞能力）",
+    "descEn": "A reliability test that switches repeatedly between high and low temperatures (JEDEC JESD22-A104 -65°C to +150°C cycling based on Coffin-Manson fatigue to qualify C4/micro-bumps, TSVs, and underfill against CTE mismatch)",
     "chapter": "22"
   },
   {
@@ -2209,6 +2209,7 @@ export const GLOSSARY_DATA = [
     "chapter": "16"
   }
 ];
+
 export const JARGON_DATA = [
   {
     "term": "Lot",
