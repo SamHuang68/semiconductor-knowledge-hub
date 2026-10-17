@@ -54,34 +54,34 @@ export const SCENARIOS = [
     boundary: '剖面是簡化的蝕刻路徑示意，未按比例，也未涵蓋所有膜層與配方；佈植等其他圖形化路徑請見原教材。',
     boundaryEn: 'Cross-sections represent simplified etch pattern transfers, not to scale, nor covering all thin film stacks and chemistries; see curriculum for ion implantation and other patterning routes.',
     nodes: [
-      node('film', '準備薄膜', '鋪材料', 'ch05', '先準備待加工的薄膜。材料及沉積方式取決於該層的功能。', '膜厚與均勻性', '覆蓋基板的材料層', [], {
+      node('film', '準備薄膜', '鋪材料', 'ch05', '先以熱氧化（ISSG）、CVD/FCVD、PVD 或 ~100% 保形原子層沉積（ALD）準備待加工之介電層、硬遮罩（Hardmask）或功函數金屬薄膜。', '膜厚與均勻性', '覆蓋基板的材料層', [], {
         titleEn: 'Deposit Thin Film', tagEn: 'Film Prep',
-        detailEn: 'Deposit target thin films for processing. Material and deposition techniques depend on the layer\'s electrical or optical function.',
+        detailEn: 'Grow or deposit target dielectrics, hardmasks, or work-function metals via ISSG thermal oxidation, CVD/FCVD, PVD, or ~100% conformal Atomic Layer Deposition (ALD).',
         lookEn: 'Film thickness and uniformity', resultEn: 'Substrate coated with target material'
       }),
-      node('resist', '塗佈光阻', '感光層', 'ch04', '光阻覆蓋待加工表面，後續以曝光與顯影形成暫時的遮罩。', '塗佈均勻性與表面狀態', '尚未形成圖形的光阻', [], {
+      node('resist', '塗佈光阻', '感光層', 'ch04', '於塗佈顯影機（Track）先旋塗底部抗反射塗層（BARC / Underlayer），再均勻旋塗化學增幅光阻（CAR）或高吸收率無機金屬氧化物光阻（MOR），並經軟烤（Soft Bake）定型。', '塗佈均勻性與表面狀態', '尚未形成圖形的光阻', [], {
         titleEn: 'Coat Photoresist', tagEn: 'Photosensitive',
-        detailEn: 'Photoresist coats the working surface, forming a temporary mask after subsequent exposure and development.',
+        detailEn: 'Spin-coat Bottom Anti-Reflective Coating (BARC/underlayer) followed by Chemically Amplified Resist (CAR) or Metal Oxide Resist (MOR) on the Track, stabilized by soft baking.',
         lookEn: 'Coating uniformity and surface condition', resultEn: 'Uniform photoresist film prior to patterning'
       }),
-      node('expose', '曝光與顯影', '定義圖形', 'ch04', '曝光使光阻產生化學變化，顯影後留下所需的圖形。此時下方材料尚未被蝕刻。', '線寬與對準偏差', '有開口的光阻遮罩', [], {
+      node('expose', '曝光與顯影', '定義圖形', 'ch04', '透過 193i 浸潤式微影（搭配 LELE/SAQP）或 13.5nm EUV（0.33 NA / 0.55 High-NA）曝光誘發光酸催化反應，經曝後烤（PEB）與 TMAH 顯影後留下奈米光阻遮罩，並執行 ADI 檢測。', '線寬與對準偏差', '有開口的光阻遮罩', [], {
         titleEn: 'Expose & Develop', tagEn: 'Pattern Define',
-        detailEn: 'Photolithography exposes resist to induce chemical changes; development reveals the pattern while underlying material remains intact.',
+        detailEn: 'Expose via 193i immersion (with LELE/SAQP) or 13.5nm EUV (0.33 NA / 0.55 High-NA), perform Post-Exposure Bake (PEB) and TMAH development, and verify via ADI CD-SEM/DBO.',
         lookEn: 'Critical dimension (CD) and overlay error', resultEn: 'Patterned photoresist mask with openings'
       }),
-      node('etch', '蝕刻轉移', '加工材料', 'ch06', '以光阻或硬遮罩保護部分區域，去除開口下的目標材料。', '選擇比、輪廓與終點', '材料層中的圖形', [], {
+      node('etch', '蝕刻轉移', '加工材料', 'ch06', '以 CCP/ICP 反應離子蝕刻（RIE）、Cryo-HAR 極低溫深孔蝕刻、Bosch DRIE（TSV）或原子層蝕刻（ALE）非等向性移除開口下的目標膜層，並以 OES 光譜精準偵測蝕刻終點（EPD）。', '選擇比、輪廓與終點', '材料層中的圖形', [], {
         titleEn: 'Etch Transfer', tagEn: 'Material Etch',
-        detailEn: 'Protected by photoresist or hard mask, exposed areas of target material are selectively removed.',
+        detailEn: 'Anisotropically transfer the pattern using CCP/ICP RIE, Cryo-HAR etch, Bosch TSV DRIE, or Atomic Layer Etching (ALE) with Optical Emission Spectroscopy (OES) endpointing.',
         lookEn: 'Selectivity, sidewall profile, and endpoint', resultEn: 'Transferred circuit features in the material layer'
       }),
-      node('clean', '去光阻與清洗', '去除殘留', 'ch09', '加工後移除暫時的光阻與殘留物，為下一步準備表面。', '殘留、污染與表面損傷', '清潔的圖形化材料', [], {
+      node('clean', '去光阻與清洗', '去除殘留', 'ch09', '以氧電漿灰化（Plasma Ashing）與單片式濕洗（SPM/SC-1/DIO₃ 或 Siconi™ 乾式氣相清潔）徹底清除光阻與氟碳聚合物殘留，高深寬比結構更結合超臨界 CO₂（SCCO₂）零張力乾燥防止倒塌。', '殘留、污染與表面損傷', '清潔的圖形化材料', [], {
         titleEn: 'Strip Resist & Clean', tagEn: 'Residue Clean',
-        detailEn: 'Post-etch photoresist stripping and residue cleaning condition the wafer surface for the next operation.',
+        detailEn: 'Strip resist and fluorocarbon polymers via plasma ashing, single-wafer DIO₃/RCA wet cleans, or Siconi™ dry vapor cleaning, paired with Supercritical CO₂ (SCCO₂) drying to prevent pattern collapse.',
         lookEn: 'Residue, defectivity, and surface damage', resultEn: 'Pristine, patterned material surface'
       }),
-      node('measure', '量測與回饋', '確認結果', 'ch15', '依站點要求量測尺寸或檢查缺陷，合格後才能依流程進入下一層。', '量測結果與製程允收條件', '下一層製程或異常處置的依據', [], {
+      node('measure', '量測與回饋', '確認結果', 'ch15', '於蝕刻後執行 AEI 量測（CD-SEM、OCD 散射儀、CD-SAXS、µDBO 疊對與 BBP/E-Beam VC 缺陷檢測），將誤差透過 APC Run-to-Run 回饋／前饋補償，合格後放行至下一站。', '量測結果與製程允收條件', '下一層製程或異常處置的依據', [], {
         titleEn: 'Metrology & Feedback', tagEn: 'Result Metrology',
-        detailEn: 'Inspect dimensions (CD) or scan for defectivity according to station criteria before advancing down the routing.',
+        detailEn: 'Perform post-etch AEI via CD-SEM, OCD scatterometry, CD-SAXS, µDBO overlay, and BBP/E-Beam VC inspection, feeding deviations into APC Run-to-Run controllers before lot release.',
         lookEn: 'Measurement data and statistical acceptance criteria', resultEn: 'Clearance data for next operation or defect disposition'
       })
     ]
@@ -95,14 +95,14 @@ export const SCENARIOS = [
     boundary: '此圖是教學情境，不是生產放行指令。管制界限不等於規格界限；實際判定、OCAP 與放行權責依各廠規範。',
     boundaryEn: 'This flowchart is an educational scenario, not an operational disposition directive. Control limits do not equal specification limits; fab-specific OCAPs and sign-off authorities govern real production.',
     nodes: [
-      node('signal', '查看量測結果', '量測', 'ch15', '先確認量測對象、條件與資料有效性，再檢視製程訊號。', '量測條件、批次與站點', '可供判讀的資料', [{ label: '判讀訊號', labelEn: 'Interpret Signal', to: 'decision' }], {
+      node('signal', '查看量測結果', '量測', 'ch15', '先確認量測機台匹配度（Tool Matching）、量測配方與 P/T Ratio（<10%）有效性，避免因量測失準（False Alarm）誤鎖正常產品批。', '量測條件、批次與站點', '可供判讀的資料', [{ label: '判讀訊號', labelEn: 'Interpret Signal', to: 'decision' }], {
         titleEn: 'Inspect Metrology Signal', tagEn: 'Metrology',
-        detailEn: 'Verify measurement targets, recipes, and data integrity before analyzing process signals.',
+        detailEn: 'Verify metrology tool matching, recipe alignment, and gauge P/T ratio (<10%) to rule out metrology false alarms before flagging production lots.',
         lookEn: 'Inspection parameters, lot history, and station ID', resultEn: 'Valid data ready for engineering interpretation'
       }),
-      node('decision', '是否觸發異常條件？', '判斷', 'ch17', '檢查管制圖、規格與異常規則；不能只憑單一良率數字判定根因。', 'SPC 訊號與既定判定規則', '選擇符合觀測的路徑', [{ label: '未觸發：持續監控', labelEn: 'In Control: Keep Monitoring', to: 'monitor' }, { label: '已觸發：隔離追查', labelEn: 'Excursion: Hold & Isolate', to: 'hold' }], {
+      node('decision', '是否觸發異常條件？', '判斷', 'ch17', '套用 SPC 管制界限（±3σ UCL/LCL）、WECO / Nelson 八大判異規則、Cpk（≥1.33/1.67）與機台 FDC 感測器波形進行綜合判讀。', 'SPC 訊號與既定判定規則', '選擇符合觀測的路徑', [{ label: '未觸發：持續監控', labelEn: 'In Control: Keep Monitoring', to: 'monitor' }, { label: '已觸發：隔離追查', labelEn: 'Excursion: Hold & Isolate', to: 'hold' }], {
         titleEn: 'Is Out-of-Control Triggered?', tagEn: 'Decision',
-        detailEn: 'Evaluate SPC control charts, spec limits, and Nelson/Western Electric rules; never diagnose root causes solely on a single yield figure.',
+        detailEn: 'Evaluate ±3σ SPC control limits, WECO/Nelson run rules, Cpk indices (≥1.33/1.67), and FDC equipment trace sensors holistically.',
         lookEn: 'SPC signals and established disposition rules', resultEn: 'Branching decision based on observed data'
       }),
       node('monitor', '持續監控', '正常路徑', 'ch17', '依既定流程繼續作業與監控；沒有觸發警訊不代表免除後續檢查。', '趨勢是否改變', '保留製程與量測紀錄', [{ label: '返回量測', labelEn: 'Return to Metrology', to: 'signal' }], {
@@ -110,19 +110,19 @@ export const SCENARIOS = [
         detailEn: 'Proceed with standard production flow and SPC tracking; absence of alarms does not waive subsequent routine inspections.',
         lookEn: 'Trends and shifts in key metrics', resultEn: 'Preserved process logs and metrology records'
       }),
-      node('hold', '暫停與圈定範圍', '異常路徑', 'ch18', '依 OCAP 暫停受影響批次或機台，追溯共同經過的站點與加工歷史。', '受影響批次、時間與機台', '待調查範圍與保留證據', [{ label: '追查根因', labelEn: 'Investigate Root Cause', to: 'cause' }], {
+      node('hold', '暫停與圈定範圍', '異常路徑', 'ch18', '立即依 OCAP 鎖定異常批（Hold Lot）與嫌疑腔體（Down Chamber），啟動「章魚防堵法（Octopus Containment）」向前後展開清查所有同腔體、同載具之姊妹批（Sister Lots）。', '受影響批次、時間與機台', '待調查範圍與保留證據', [{ label: '追查根因', labelEn: 'Investigate Root Cause', to: 'cause' }], {
         titleEn: 'Hold & Containment', tagEn: 'Excursion Path',
-        detailEn: 'Execute OCAP to hold suspect lots or freeze tools, tracing common equipment history and processing timestamps.',
+        detailEn: 'Execute OCAP to hold suspect lots and down the chamber, launching Octopus Containment upstream and downstream to quarantine all sister lots sharing the same tool or carrier window.',
         lookEn: 'Affected lot list, tool IDs, and time windows', resultEn: 'Contained scope and quarantined evidence for root cause analysis'
       }),
-      node('cause', '分析與修正', '追查', 'ch16', '結合缺陷分布、製程履歷與故障分析，驗證可能原因，再採取修正。', '假設是否有證據支持', '有依據的修正與驗證方案', [{ label: '確認修正結果', labelEn: 'Verify Corrective Action', to: 'release' }], {
+      node('cause', '分析與修正', '追查', 'ch16', '結合晶圓圖空間特徵（環狀／刮痕／群聚）、超幾何機台共性統計（Commonality）與 EFA/PFA（PEM / OBIRCH / LIT 3D 鎖相熱成像 / Xe⁺ PFIB / STEM），依 8D 程序定位物理根因。', '假設是否有證據支持', '有依據的修正與驗證方案', [{ label: '確認修正結果', labelEn: 'Verify Corrective Action', to: 'release' }], {
         titleEn: 'Analyze & Correct', tagEn: 'Investigation',
-        detailEn: 'Synthesize spatial wafer maps, tool logs, and failure analysis (FA) to substantiate hypotheses before deploying corrective actions.',
+        detailEn: 'Combine wafer-map spatial signatures, hypergeometric tool commonality, and EFA/PFA (PEM/OBIRCH/3D LIT + Xe⁺ PFIB/STEM) under the 8D methodology to prove physical root cause.',
         lookEn: 'Evidence supporting the root-cause hypothesis', resultEn: 'Validated corrective action and verification plan'
       }),
-      node('release', '驗證與放行評估', '驗證', 'ch18', '確認改善結果，依權責評估放行；未滿足條件就保持管制並繼續調查。', '恢復條件、結果與核准紀錄', '放行評估或回到調查', [{ label: '仍不符合：回到調查', labelEn: 'Unresolved: Return to Analysis', to: 'cause' }, { label: '符合並核准：持續監控', labelEn: 'Resolved & Approved: Monitor', to: 'monitor' }], {
+      node('release', '驗證與放行評估', '驗證', 'ch18', '完成機台維修養腔（Season & Qual）與系統防呆互鎖（Poka-Yoke）後，由 MRB 物料審查委員會與車規 PAT/SBL 篩選機制決定批次重工（Rework）、放行（Release）或報廢（Scrap）。', '恢復條件、結果與核准紀錄', '放行評估或回到調查', [{ label: '仍不符合：回到調查', labelEn: 'Unresolved: Return to Analysis', to: 'cause' }, { label: '符合並核准：持續監控', labelEn: 'Resolved & Approved: Monitor', to: 'monitor' }], {
         titleEn: 'Verify & Disposition', tagEn: 'Disposition',
-        detailEn: 'Validate improvement effectiveness and evaluate lot release per governance; maintain quarantine if conditions remain unsatisfied.',
+        detailEn: 'Following chamber seasoning/qual and Poka-Yoke interlocks, convene the Material Review Board (MRB) with PAT/SBL screening to authorize Rework, Release, or Scrap.',
         lookEn: 'Recovery criteria, test results, and approval sign-offs', resultEn: 'Disposition authorization or loopback to investigation'
       })
     ]
@@ -162,29 +162,29 @@ export const SCENARIOS = [
     boundary: '這是簡化的角色交接。實際派工優先順序、搬運方式、鎖批與重工路徑依晶圓廠配置及規範。',
     boundaryEn: 'This is a streamlined model of fab hand-offs. Real-world dispatch priorities, automated transport schedules, hold dispositions, and rework routes depend on factory automation policies.',
     nodes: [
-      node('route', '確認製程路徑', 'MES', 'ch23', '依批次履歷與 Route 確認下一道作業，並檢查是否有鎖批或其他限制。', '批次身分與流程狀態', '可進行的下一道作業', [], {
+      node('route', '確認製程路徑', 'MES', 'ch23', 'MES 製造執行系統核對晶圓批號、製程流程卡（Route）、Q-Time 倒數計時視窗，以及是否掛有 Hold 或 Future-Hold 攔截旗標。', '批次身分與流程狀態', '可進行的下一道作業', [], {
         titleEn: 'Confirm Process Route', tagEn: 'MES',
-        detailEn: 'Query lot history and MES Route to verify the next valid station while verifying holds or inhibitory flags.',
+        detailEn: 'MES validates lot genealogy, active Process Route, remaining Q-Time countdown timers, and any active Hold or Future-Hold flags.',
         lookEn: 'Lot traveler, current station, and hold status', resultEn: 'Authorized next manufacturing operation'
       }),
-      node('dispatch', '派工與排程', '派工系統', 'ch01', '依機台能力、批次優先順序與時間限制安排加工順序。', '機台可用狀態與等待時間', '加工與搬運安排', [], {
+      node('dispatch', '派工與排程', '派工系統', 'ch01', 'RTD 即時派工系統每數秒綜合評估 WIP 佇列、Super Hot Lot 優先權、Q-Time 剩餘秒數與綁機規則（Dedication），向 MCS 下達最佳搬運指令。', '機台可用狀態與等待時間', '加工與搬運安排', [], {
         titleEn: 'Dispatch & Schedule', tagEn: 'Dispatcher',
-        detailEn: 'Prioritize and queue lots based on tool readiness, lot urgency (hot lots), and queue time (Q-time) constraints.',
+        detailEn: 'The Real-Time Dispatcher (RTD) evaluates WIP queues, Super Hot Lot priority, Q-Time urgency, and chamber dedication rules every few seconds to issue MCS transport commands.',
         lookEn: 'Tool availability and lot wait times', resultEn: 'Scheduled tool assignment and transport request'
       }),
-      node('transport', '搬運晶圓盒', 'AMHS／FOUP', 'ch01', '晶圓放在晶圓盒內，透過搬運系統送至指定機台。', '晶圓盒與機台身分是否一致', '到達機台的批次', [], {
+      node('transport', '搬運晶圓盒', 'AMHS／FOUP', 'ch01', '晶圓密封於充氮微環境 FOUP 中，由高架天車（OHT）沿空中軌道高速運送，並透過 SEMI E84 光學交握安全降落至目標機台 Load Port。', '晶圓盒與機台身分是否一致', '到達機台的批次', [], {
         titleEn: 'Transport FOUP', tagEn: 'AMHS / FOUP',
-        detailEn: 'Wafers are sealed in FOUP pods and delivered to the tool load port via Automated Material Handling Systems (AMHS/OHT).',
+        detailEn: 'Wafers sealed inside N₂-purged FOUPs travel via Overhead Hoist Transport (OHT) and dock onto the target Load Port using SEMI E84 optical handshaking.',
         lookEn: 'FOUP RFID match against load port sensor', resultEn: 'Lot docked and clamped at the target tool'
       }),
-      node('recipe', '核對與加工', '機台／Recipe', 'ch23', '確認產品、站點及配方相符後執行作業；配方定義本次加工參數。', '防呆檢查與機台紀錄', '完成本次加工', [], {
+      node('recipe', '核對與加工', '機台／Recipe', 'ch23', 'EAP 讀取 FOUP RFID 後與 MES 及 RMS（配方管理系統）完成零接觸三方防呆比對（Zero-Touch Track-In），透過 SECS/GEM300 自動下載 Golden Recipe 並同步串流 Interface A 感測資料。', '防呆檢查與機台紀錄', '完成本次加工', [], {
         titleEn: 'Verify & Process', tagEn: 'Tool / Recipe',
-        detailEn: 'Enforce recipe management verification to ensure matching product, layer, and chamber parameters before execution.',
+        detailEn: 'EAP verifies FOUP RFID against MES and RMS for Zero-Touch Track-In via SECS/GEM300, downloading the Golden Recipe while streaming high-speed Interface A trace data.',
         lookEn: 'Poka-yoke validation and in-situ tool trace logs', resultEn: 'Execution of target physical/chemical transformation'
       }),
-      node('record', '記錄與下一站', 'MES／量測', 'ch23', '回寫加工履歷，按流程進行必要量測與後續派工。', '履歷完整性與下一站條件', '可追溯的晶圓旅程', [], {
+      node('record', '記錄與下一站', 'MES／量測', 'ch23', 'Track-Out 出站自動將腔體編號、配方雜湊、FDC 統計特徵與晶圓槽位完整寫入單晶圓族譜（Wafer Genealogy），無縫觸發下一站派工或 3D 封裝晶粒級追溯。', '履歷完整性與下一站條件', '可追溯的晶圓旅程', [], {
         titleEn: 'Log & Next Station', tagEn: 'MES / Metrology',
-        detailEn: 'Commit run-time history to MES database, advancing traveler to required metrology or the next production step.',
+        detailEn: 'Track-Out commits chamber IDs, recipe checksums, and FDC trace summaries into single-wafer genealogy, triggering the next RTD dispatch or 3D die-level traceability.',
         lookEn: 'Traceability integrity and gate clearance', resultEn: 'Updated genealogy in the wafer\'s traceable journey'
       })
     ]

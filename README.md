@@ -8,6 +8,8 @@
 
 ## 專案特色
 
+- **5 大情境探索路徑（Scenario Explorer 全站 24 個互動節點）雙語製程與防呆條例全面深化（1.9.7）**：將 `data/情境路徑.js` 中「看懂圖形轉移（Pattern Transfer 6 站）」、「處理良率異常（Yield Excursion 6 站判斷樹）」與「走進晶圓廠（Inside the Fab 5 站自動化派工）」共 17 個核心節點的中英雙語技術內容全面升級，串聯 `BARC/CAR/MOR 光阻`、`193i+SAQP / High-NA EUV`、`Cryo-HAR / Bosch DRIE / ALE`、`SCCO₂ 超臨界乾燥`、`APC R2R`、`P/T Ratio < 10%`、`WECO/Nelson + FDC`、`OCAP 章魚防堵法`、`3D LIT + Xe⁺ PFIB/STEM`、`MRB + PAT/SBL` 及 `SEMI E84 / GEM300 / Interface A Zero-Touch Track-In`。
+
 - **全站 28 章節（Ch00–Ch24 + 附錄 A/B/C）雙語條例 H2 錨點與右側目錄（TOC ScrollSpy）100% 導覽整合（1.9.6）**：為全書 25 個正式章節與 3 篇附錄的所有工程與 3D 整合條例總表建立專屬雙語 `<h2>` 標題錨點，並完整註冊於 `chapters-data.js` 的 `headings` 與 `headingsEn` 陣列，支援右側段落目錄（TOC）一鍵跳轉與滾動高亮（ScrollSpy）。
 
 - **全站 28/28 互動工程物件 100% 動態 SVG 物理與信號流滿貫覆蓋（1.9.5）**：完成第 0 章（晶片價值鏈與 EDA 合成流）、第 2 章（能帶載子躍遷與 MOSFET 通道反轉漂移）、第 14 章（微縮軌跡與 DTCO/STCO 小晶片互連）、第 18 章（OCAP 異常防堵與章魚追溯流）、第 23 章（CIM SECS/GEM300 雙向交握與 Q-Time 監控流）及第 24 章（Row Hammer 鄰列耦合波、L·di/dt 壓降電流與 3D 堆疊熱傳導流）SVG 動態升級，實現全站 28 座工程物件 100% 具備即時動態物理視覺化。
