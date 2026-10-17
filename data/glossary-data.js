@@ -502,9 +502,9 @@ export const GLOSSARY_DATA = [
     "en": "Dishing",
     "abbr": "",
     "zh": "碟化",
-    "desc": "寬金屬導線中央被磨得凹陷",
-    "descZh": "寬金屬導線中央被磨得凹陷",
-    "descEn": "The center of a wide metal line polished into a dip",
+    "desc": "寬金屬導線中央被磨得凹陷（在 BEOL 需靠假金屬填充壓低至 <15 nm；但在 3D Cu-Cu 混合鍵合 CMP 中，則必須將銅墊凹陷精準控制在 1–3 nm 以確保室溫介電質先鍵合、退火時銅膨脹熔合）",
+    "descZh": "寬金屬導線中央被磨得凹陷（在 BEOL 需靠假金屬填充壓低至 <15 nm；但在 3D Cu-Cu 混合鍵合 CMP 中，則必須將銅墊凹陷精準控制在 1–3 nm 以確保室溫介電質先鍵合、退火時銅膨脹熔合）",
+    "descEn": "The center of a wide metal line polished into a dip (minimized to <15 nm in BEOL via dummy fill, whereas in 3D Cu-Cu hybrid bonding CMP, Cu dishing recess is engineered to exactly 1–3 nm so dielectric bonds at RT before Cu expands during annealing)",
     "chapter": "8"
   },
   {
@@ -538,9 +538,9 @@ export const GLOSSARY_DATA = [
     "en": "Dry Etch",
     "abbr": "",
     "zh": "乾蝕刻",
-    "desc": "用電漿進行的蝕刻",
-    "descZh": "用電漿進行的蝕刻",
-    "descEn": "Etching with a plasma",
+    "desc": "用電漿進行的蝕刻（涵蓋 CCP/ICP RIE、3D NAND 300+ 層極低溫高深寬比蝕刻 Cryo-HAR、2.5D/3D TSV 波希法深矽蝕刻 Bosch DRIE 與 GAA 原子層蝕刻 ALE）",
+    "descZh": "用電漿進行的蝕刻（涵蓋 CCP/ICP RIE、3D NAND 300+ 層極低溫高深寬比蝕刻 Cryo-HAR、2.5D/3D TSV 波希法深矽蝕刻 Bosch DRIE 與 GAA 原子層蝕刻 ALE）",
+    "descEn": "Etching with a plasma (spanning CCP/ICP RIE, 300+ layer 3D NAND Cryo-HAR etch, 2.5D/3D TSV Bosch DRIE, and GAA Atomic Layer Etching ALE)",
     "chapter": "6"
   },
   {
@@ -1564,9 +1564,9 @@ export const GLOSSARY_DATA = [
     "en": "Rapid Thermal Anneal",
     "abbr": "RTA",
     "zh": "快速熱退火",
-    "desc": "在幾秒內完成的高溫退火",
-    "descZh": "在幾秒內完成的高溫退火",
-    "descEn": "A high-temperature anneal completed within seconds",
+    "desc": "在幾秒內完成的高溫退火（已由秒級 Spike RTA 演進至毫秒閃光燈退火 FLA 與奈秒雷射退火 LSA，達成零熱擴散與 3D 背面供電局部活化）",
+    "descZh": "在幾秒內完成的高溫退火（已由秒級 Spike RTA 演進至毫秒閃光燈退火 FLA 與奈秒雷射退火 LSA，達成零熱擴散與 3D 背面供電局部活化）",
+    "descEn": "A high-temperature anneal completed within seconds (evolved from second-scale Spike RTA to millisecond Flash Lamp Anneal FLA and nanosecond Laser Spike Anneal LSA for zero-diffusion and 3D BSPDN activation)",
     "chapter": "7"
   },
   {
@@ -2158,9 +2158,9 @@ export const GLOSSARY_DATA = [
     "en": "Wet Etch",
     "abbr": "",
     "zh": "濕蝕刻",
-    "desc": "用化學溶液進行的蝕刻",
-    "descZh": "用化學溶液進行的蝕刻",
-    "descEn": "Etching with a chemical solution",
+    "desc": "用化學溶液進行的蝕刻（搭配 RCA 清洗、乾式氣相清潔 Siconi 與超臨界 CO₂ 零表面張力乾燥 SCCO₂，防止 DRAM 高深寬比電容與 GAA 懸空奈米片倒塌）",
+    "descZh": "用化學溶液進行的蝕刻（搭配 RCA 清洗、乾式氣相清潔 Siconi 與超臨界 CO₂ 零表面張力乾燥 SCCO₂，防止 DRAM 高深寬比電容與 GAA 懸空奈米片倒塌）",
+    "descEn": "Etching with a chemical solution (paired with RCA cleans, dry vapor Siconi oxide removal, and zero-surface-tension Supercritical CO₂ drying to prevent DRAM capacitor and GAA nanosheet pattern collapse)",
     "chapter": "6"
   },
   {

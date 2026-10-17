@@ -53,10 +53,10 @@ assert.match(packaging.boundary, /並列選項.*並非先後步驟/, '比較應�
 // 正常化換行後核對已讀取的基準來源，防止導覽改版刪減教材。
 // 基準：中英雙語原生擴充版（包含 28 章中英完整教材與雙語字典）。
 const sourceHashes = {
-  'chapters-data.js': '6becb1132bbb19aab855652770ece2009ad534a4140a4452febe1f31045fb05e',
+  'chapters-data.js': 'ad7c297b441a5049bbb0e8ab5feb758cf27df520cb8297f9ba8c50d567f0b222',
   'fab-flow.js': 'da944ae09a8aa4e9a5460cad5c09fe21a0658b502add139102d323d44fbf2f90',
-  'glossary-data.js': 'fe4ba0bd55279dcd1719881269f2178f58c9183599b6b12a7c369a8a31463f89',
-  'search-index.js': '653808e436a9c9636b2b3c154a56c2a2d7ceff5b92140a94e486f3a081d6083f'
+  'glossary-data.js': 'cae58ee8d4e0c24d9130252f40b41459b242272e161115e79078723f81db5f5f',
+  'search-index.js': '1084b32b7d03fed58267ed36390cb190e28384bdd0a365367fe062348da83880'
 };
 for (const [file, expected] of Object.entries(sourceHashes)) {
   const source = readFileSync(new URL(`../data/${file}`, import.meta.url), 'utf8').replace(/\r\n/g, '\n');

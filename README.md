@@ -8,6 +8,8 @@
 
 ## 專案特色
 
+- **電漿／3D 高深寬比蝕刻、離子佈植／毫秒奈秒退火、3D 混合鍵合 CMP 與超臨界乾燥條例深化（1.8.9）**：於第 6 章補齊 `CCP/ICP RIE`、`3D NAND 極低溫高深寬比蝕刻（Cryo-HAR AR >100:1）`、`2.5D/3D TSV 波希法深矽蝕刻（Bosch DRIE）` 與 `GAA 奈米片釋放之原子層蝕刻（ALE）` 條例；於第 7 章整合 `中/大電流與 MeV 佈植`、`Cryo-Implant / PLAD 3D 共形摻雜` 及 `爐管 → Spike RTA → 毫秒閃光（FLA）→ 奈秒雷射（LSA 零擴散與 3D 背面活化）` 條例；於第 8 章新增 `STI 氧化鈰`、`MOL RMG 定高`、`BEOL 三步銅 CMP` 至 `3D TSV Reveal 與無凸塊混合鍵合（Ra < 0.2 nm + 1–3 nm 銅碟化凹陷精控）` 條例；於第 9 章新增 `RCA 四步`、`單片 DIO₃`、`Siconi 乾式氣相除氧化層` 與 `Marangoni / 超臨界 CO₂（SCCO₂ 零表面張力防倒塌）` 條例，並為 Ch06／Ch07／Ch08／Ch09 工程物件補齊第 4 張雙語條例總覽指標卡。
+
 - **特殊晶圓基板、微影世代（至 High-NA EUV）與六大薄膜／電鍍超填條例深化（1.8.8）**：於第 3 章補齊 `CZ/MCZ 單晶與磊晶矽`、`FZ 高阻矽`、`FD-SOI / RF-SOI / 3D CPO 矽光子 SOI`、`4H-SiC 與 GaN 寬能隙基板` 及 `3D TSV / BSPDN 暫時鍵合載片（LTHC）` 條例；於第 4 章建立 `g/i-line（封裝 RDL）`、`KrF/ArF`、`ArFi 193i + LELE/SADP/SAQP`、`Low-NA EUV (0.33 NA)` 至 `High-NA EUV (0.55 NA 非對稱 4×/8× + MOR 光阻)` 全世代微影條例表；於第 5 章整合 `熱氧化/ISSG`、`CVD/FCVD`、`ALD (100% 保形)`、`PVD/iPVD`、`SiGe/Si:P 選擇性磊晶` 與 `ECD 電鍍銅由底向上超填（雙鑲嵌／TSV／微凸塊）` 六大條例，並為 Ch03／Ch04／Ch05 工程物件補齊第 4 張雙語條例總覽指標卡。
 
 - **後段金屬階層、CMOS 全流程跨層整合、3D 微凸塊 KGD 探針卡與 JEDEC／AEC-Q100 可靠度條例深化（1.8.7）**：於第 10 章補齊 `M0/M1 無阻障 Co/Ru/Mo`、`M4–M9 多孔 ULK + Air-Gap` 至 `M10+ 超厚銅 / RDL / UBM / 背面 nTSV` 階層條例；於第 11 章建立 `FEOL → MOL (COAG / SAC / BPR) → BEOL → BSPDN → 3D 混合鍵合介面` 跨層熱預算與結構對照表；於第 19 章新增 `WAT 四線 Kelvin`、`Cantilever`、`Vertical / Cobra`、`20–55 µm 微凸塊 MEMS 探針卡` 與 `<10 µm 無凸塊 3D 混合鍵合犧牲墊 + IEEE 1838 KGD` 測試條例；於第 22 章新增 `JEDEC JESD22 / AEC-Q100 / J-STD-020`（`HTOL`、`TC`、`HAST/THB`、`MSL 迴焊爆米花`、`WLR TDDB/BTI/HCI/EM`）完整驗證條例，並為 Ch10／Ch11／Ch19／Ch22 工程物件補齊第 4 張雙語條例總覽指標卡。

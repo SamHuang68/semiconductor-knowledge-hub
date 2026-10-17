@@ -2270,6 +2270,11 @@ export function renderPlasmaEtchObject(container, lang = 'zh') {
 
         <div class="eng-obj-dashboard">
           ${dashboardHtml}
+          <div class="eng-obj-metric-card">
+            <div class="eng-obj-metric-label">${lang === 'en' ? 'Plasma & 3D Etch Clauses' : '電漿與 3D 蝕刻條例 (Etch Clauses)'}</div>
+            <div class="eng-obj-metric-value" style="font-size: 13.5px; color: var(--semi-teal);">${lang === 'en' ? 'CCP/ICP · Cryo-HAR · Bosch · ALE' : 'CCP/ICP · Cryo-HAR · Bosch · ALE'}</div>
+            <div class="eng-obj-metric-note">${lang === 'en' ? 'CCP/ICP RIE, 3D NAND Cryo-HAR, 3D TSV Bosch DRIE & GAA ALE release' : 'CCP/ICP 雙頻解耦、3D NAND 極低溫深孔、3D TSV 波希蝕刻與 GAA ALE'}</div>
+          </div>
         </div>
 
         <footer class="eng-obj-footer-note">
@@ -3019,6 +3024,11 @@ export function renderIonImplantObject(container, lang = 'zh') {
 
         <div class="eng-obj-dashboard">
           ${dashboardHtml}
+          <div class="eng-obj-metric-card">
+            <div class="eng-obj-metric-label">${lang === 'en' ? 'Implant & Ultra-Fast Anneal Clauses' : '佈植與超高速退火條例 (Implant/Anneal)'}</div>
+            <div class="eng-obj-metric-value" style="font-size: 13.5px; color: var(--semi-teal);">${lang === 'en' ? 'MC/HC/MeV · PLAD · RTA · FLA/LSA' : 'MC/HC/MeV · PLAD · RTA · FLA/LSA'}</div>
+            <div class="eng-obj-metric-note">${lang === 'en' ? '7° anti-channeling, Cryo/PLAD 3D doping, Spike RTA & ms/ns laser anneal' : '7° 抗通道效應、Cryo/PLAD 3D 摻雜、Spike RTA 與毫秒/奈秒雷射零擴散退火'}</div>
+          </div>
         </div>
 
         <footer class="eng-obj-footer-note">
@@ -3306,6 +3316,11 @@ export function renderCMPObject(container, lang = 'zh') {
 
         <div class="eng-obj-dashboard">
           ${dashboardHtml}
+          <div class="eng-obj-metric-card">
+            <div class="eng-obj-metric-label">${lang === 'en' ? 'FEOL/BEOL & 3D Hybrid Bond CMP' : '全域與 3D 混合鍵合 CMP 條例'}</div>
+            <div class="eng-obj-metric-value" style="font-size: 13.5px; color: var(--semi-teal);">${lang === 'en' ? 'STI · RMG · 3-Step Cu · 3D Recess' : 'STI · RMG · 3-Step Cu · 3D Recess'}</div>
+            <div class="eng-obj-metric-note">${lang === 'en' ? 'STI ceria, RMG gate, 3-step Cu CMP & 3D SoIC 1–3nm Cu dishing control' : 'STI 氧化鈰、RMG 定高、雙鑲嵌銅三步研磨與 3D SoIC 1–3nm 銅碟化精控'}</div>
+          </div>
         </div>
 
         <footer class="eng-obj-footer-note">
@@ -4925,6 +4940,11 @@ export function renderWetCleanObject(container, lang = 'zh') {
 
         <div class="eng-obj-dashboard">
           ${dashboardHtml}
+          <div class="eng-obj-metric-card">
+            <div class="eng-obj-metric-label">${lang === 'en' ? 'Wet/Dry Clean & SCCO₂ Clauses' : '濕／乾式清洗與超臨界乾燥條例'}</div>
+            <div class="eng-obj-metric-value" style="font-size: 13.5px; color: var(--semi-teal);">${lang === 'en' ? 'RCA · DIO₃ · Siconi · SCCO₂ Dry' : 'RCA · DIO₃ · Siconi · SCCO₂ Dry'}</div>
+            <div class="eng-obj-metric-note">${lang === 'en' ? 'RCA + 1MHz megasonic, Siconi vapor clean, Marangoni & Supercritical CO₂ dry' : 'RCA 四步 + 1MHz 兆聲波、Siconi 氣相除氧化層、Marangoni 與超臨界 CO₂ 零張力乾燥'}</div>
+          </div>
         </div>
 
         <footer class="eng-obj-footer-note">
