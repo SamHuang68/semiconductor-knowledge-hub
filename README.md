@@ -8,6 +8,8 @@
 
 ## 專案特色
 
+- **新興非揮發性與 3D 記憶體譜系、DTCO／STCO 微縮標尺、3D 無損量測（C-SAM／X-Ray CT）與 EFA／PFA 故障分析條例深化（1.9.0）**：於第 13 章補齊 `DRAM 6F² → 4F² VCT → 3D DRAM` 與 `eFlash / STT-MRAM / SOT-MRAM / RRAM / PCRAM / HfO₂ FeRAM` 完整記憶體條例；於第 14 章建立 `CPP`、`M1P`、`Track Height (9T → 5T)`、`DTCO (SDB / COAG / BPR / BSPDN)` 與 `STCO (3D Chiplet 異質拆解重組)` 五大微縮條例表；於第 15 章整合 `CD-SEM / OCD / CD-SAXS / HR-XRD`、`µDBO 疊對`、`BBP 明場 / 雷射暗場 / E-Beam 電壓對比` 及 `2.5D/3D 封裝 C-SAM 超音波、3D X-Ray CT 與 WLI / Shadow Moiré 翹曲量測` 條例；於第 16 章新增 `Poisson / Murphy / Negative Binomial 良率模型`、`PEM / OBIRCH / 鎖相熱成像（LIT 3D Z 軸熱點定位）` 與 `Xe⁺ Plasma FIB / STEM / EELS` 條例，並為 Ch13／Ch14／Ch15／Ch16 工程物件補齊第 4 張雙語條例總覽指標卡。
+
 - **電漿／3D 高深寬比蝕刻、離子佈植／毫秒奈秒退火、3D 混合鍵合 CMP 與超臨界乾燥條例深化（1.8.9）**：於第 6 章補齊 `CCP/ICP RIE`、`3D NAND 極低溫高深寬比蝕刻（Cryo-HAR AR >100:1）`、`2.5D/3D TSV 波希法深矽蝕刻（Bosch DRIE）` 與 `GAA 奈米片釋放之原子層蝕刻（ALE）` 條例；於第 7 章整合 `中/大電流與 MeV 佈植`、`Cryo-Implant / PLAD 3D 共形摻雜` 及 `爐管 → Spike RTA → 毫秒閃光（FLA）→ 奈秒雷射（LSA 零擴散與 3D 背面活化）` 條例；於第 8 章新增 `STI 氧化鈰`、`MOL RMG 定高`、`BEOL 三步銅 CMP` 至 `3D TSV Reveal 與無凸塊混合鍵合（Ra < 0.2 nm + 1–3 nm 銅碟化凹陷精控）` 條例；於第 9 章新增 `RCA 四步`、`單片 DIO₃`、`Siconi 乾式氣相除氧化層` 與 `Marangoni / 超臨界 CO₂（SCCO₂ 零表面張力防倒塌）` 條例，並為 Ch06／Ch07／Ch08／Ch09 工程物件補齊第 4 張雙語條例總覽指標卡。
 
 - **特殊晶圓基板、微影世代（至 High-NA EUV）與六大薄膜／電鍍超填條例深化（1.8.8）**：於第 3 章補齊 `CZ/MCZ 單晶與磊晶矽`、`FZ 高阻矽`、`FD-SOI / RF-SOI / 3D CPO 矽光子 SOI`、`4H-SiC 與 GaN 寬能隙基板` 及 `3D TSV / BSPDN 暫時鍵合載片（LTHC）` 條例；於第 4 章建立 `g/i-line（封裝 RDL）`、`KrF/ArF`、`ArFi 193i + LELE/SADP/SAQP`、`Low-NA EUV (0.33 NA)` 至 `High-NA EUV (0.55 NA 非對稱 4×/8× + MOR 光阻)` 全世代微影條例表；於第 5 章整合 `熱氧化/ISSG`、`CVD/FCVD`、`ALD (100% 保形)`、`PVD/iPVD`、`SiGe/Si:P 選擇性磊晶` 與 `ECD 電鍍銅由底向上超填（雙鑲嵌／TSV／微凸塊）` 六大條例，並為 Ch03／Ch04／Ch05 工程物件補齊第 4 張雙語條例總覽指標卡。

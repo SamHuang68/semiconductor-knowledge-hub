@@ -466,9 +466,9 @@ export const GLOSSARY_DATA = [
     "en": "Design-Technology Co-Optimization",
     "abbr": "DTCO",
     "zh": "設計與製程共同最佳化",
-    "desc": "同時調整設計與製程，提升密度與效能",
-    "descZh": "同時調整設計與製程，提升密度與效能",
-    "descEn": "Tuning design and process together to improve density and performance",
+    "desc": "同時調整設計與製程，提升密度與效能（涵蓋 SDB、Fin Depopulation、COAG、BPR 與背面供電 BSPDN，並進一步延伸為系統與製程協同最佳化 STCO 3D 小晶片異質整合）",
+    "descZh": "同時調整設計與製程，提升密度與效能（涵蓋 SDB、Fin Depopulation、COAG、BPR 與背面供電 BSPDN，並進一步延伸為系統與製程協同最佳化 STCO 3D 小晶片異質整合）",
+    "descEn": "Tuning design and process together to improve density and performance (encompassing SDB, Fin Depopulation, COAG, BPR, and BSPDN, and extending into System-Technology Co-Optimization STCO via 3D chiplet disaggregation)",
     "chapter": "14"
   },
   {
@@ -565,9 +565,9 @@ export const GLOSSARY_DATA = [
     "en": "Dynamic Random Access Memory",
     "abbr": "DRAM",
     "zh": "動態隨機存取記憶體",
-    "desc": "以電容存放電荷、需要定期刷新的記憶體",
-    "descZh": "以電容存放電荷、需要定期刷新的記憶體",
-    "descEn": "Memory that stores charge in capacitors and must be refreshed regularly",
+    "desc": "以電容存放電荷、需要定期刷新的記憶體（正由傳統 6F² 1T1C 微縮演進至 4F² 垂直通道電晶體 VCT、IGZO 無電容 2T0C 與單石 3D DRAM，同時搭配 STT-MRAM / RRAM / FeRAM 構成完整記憶體譜系）",
+    "descZh": "以電容存放電荷、需要定期刷新的記憶體（正由傳統 6F² 1T1C 微縮演進至 4F² 垂直通道電晶體 VCT、IGZO 無電容 2T0C 與單石 3D DRAM，同時搭配 STT-MRAM / RRAM / FeRAM 構成完整記憶體譜系）",
+    "descEn": "Memory that stores charge in capacitors and must be refreshed regularly (evolving from 6F² 1T1C to 4F² Vertical Channel Transistor VCT, IGZO 2T0C, and monolithic 3D DRAM, alongside emerging STT-MRAM, RRAM, PCRAM, and HfO₂ FeRAM)",
     "chapter": "13、24"
   },
   {
@@ -718,9 +718,9 @@ export const GLOSSARY_DATA = [
     "en": "Failure Analysis",
     "abbr": "FA",
     "zh": "故障分析",
-    "desc": "找出晶片失效位置與原因的分析",
-    "descZh": "找出晶片失效位置與原因的分析",
-    "descEn": "Analysis that finds where and why a chip failed",
+    "desc": "找出晶片失效位置與原因的分析（先以 PEM / OBIRCH / 鎖相熱成像 LIT 進行非破壞性 3D 電性定位 EFA，再以 Ga⁺/Xe⁺ Plasma FIB 切片與 STEM/EELS 進行原子級物理分析 PFA）",
+    "descZh": "找出晶片失效位置與原因的分析（先以 PEM / OBIRCH / 鎖相熱成像 LIT 進行非破壞性 3D 電性定位 EFA，再以 Ga⁺/Xe⁺ Plasma FIB 切片與 STEM/EELS 進行原子級物理分析 PFA）",
+    "descEn": "Analysis that finds where and why a chip failed (combining non-destructive 3D Electrical Fault Isolation EFA via PEM, OBIRCH, and Lock-in Thermography LIT with atomic-scale Physical Failure Analysis PFA via Ga⁺/Xe⁺ Plasma FIB and STEM/EELS)",
     "chapter": "16"
   },
   {
@@ -1204,9 +1204,9 @@ export const GLOSSARY_DATA = [
     "en": "Metrology",
     "abbr": "",
     "zh": "量測",
-    "desc": "測量膜厚、線寬等具體數值",
-    "descZh": "測量膜厚、線寬等具體數值",
-    "descEn": "Measuring specific values such as film thickness and line width",
+    "desc": "測量膜厚、線寬等具體數值（涵蓋 CD-SEM、OCD、CD-SAXS、橢偏儀與 µDBO 疊對，在 2.5D/3D 封裝則延伸至 C-SAM 超音波無損驗空洞、3D X-Ray CT 與 WLI/Moiré 翹曲量測）",
+    "descZh": "測量膜厚、線寬等具體數值（涵蓋 CD-SEM、OCD、CD-SAXS、橢偏儀與 µDBO 疊對，在 2.5D/3D 封裝則延伸至 C-SAM 超音波無損驗空洞、3D X-Ray CT 與 WLI/Moiré 翹曲量測）",
+    "descEn": "Measuring specific values such as film thickness and line width (spanning CD-SEM, OCD, CD-SAXS, ellipsometry, and µDBO overlay, and extending in 2.5D/3D packaging to C-SAM acoustic void inspection, 3D X-Ray CT, and WLI/Moiré warpage metrology)",
     "chapter": "15"
   },
   {

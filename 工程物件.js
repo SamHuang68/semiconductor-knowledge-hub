@@ -5522,6 +5522,11 @@ export function renderMemoryTechObject(container, lang = 'zh') {
 
         <div class="eng-obj-dashboard">
           ${dashboardHtml}
+          <div class="eng-obj-metric-card">
+            <div class="eng-obj-metric-label">${lang === 'en' ? 'Memory & Emerging NVM Clauses' : '記憶體全譜系條例 (Memory Clauses)'}</div>
+            <div class="eng-obj-metric-value" style="font-size: 13.5px; color: var(--semi-teal);">${lang === 'en' ? 'DRAM 4F² · CBA · HBM · MRAM/FeRAM' : 'DRAM 4F² · CBA · HBM · MRAM/FeRAM'}</div>
+            <div class="eng-obj-metric-note">${lang === 'en' ? 'DRAM 4F² VCT/3D, 3D NAND CBA, HBM MR-MUF/TC-NCF & MRAM/RRAM/FeRAM' : 'DRAM 4F² VCT/3D、3D NAND CBA、HBM MR-MUF/TC-NCF 與 MRAM/RRAM/FeRAM'}</div>
+          </div>
         </div>
 
         <footer class="eng-obj-footer-note">
@@ -5885,6 +5890,11 @@ export function renderMetrologyInspectionObject(container, lang = 'zh') {
 
         <div class="eng-obj-dashboard">
           ${dashboardHtml}
+          <div class="eng-obj-metric-card">
+            <div class="eng-obj-metric-label">${lang === 'en' ? 'In-Line & 3D Inspection Clauses' : '在線與 3D 無損量測條例 (Metrology)'}</div>
+            <div class="eng-obj-metric-value" style="font-size: 13.5px; color: var(--semi-teal);">${lang === 'en' ? 'CD-SEM/OCD · E-Beam VC · C-SAM/CT' : 'CD-SEM/OCD · E-Beam VC · C-SAM/CT'}</div>
+            <div class="eng-obj-metric-note">${lang === 'en' ? 'CD-SEM/OCD/CD-SAXS, BBP/E-Beam VC, 3D C-SAM acoustic & 3D X-Ray CT' : 'CD-SEM/OCD/CD-SAXS、明暗場與電壓對比、3D 封裝 C-SAM 超音波與 X-Ray CT'}</div>
+          </div>
         </div>
 
         <footer class="eng-obj-footer-note">
@@ -6275,6 +6285,11 @@ export function renderYieldFailureAnalysisObject(container, lang = 'zh') {
 
         <div class="eng-obj-dashboard">
           ${dashboardHtml}
+          <div class="eng-obj-metric-card">
+            <div class="eng-obj-metric-label">${lang === 'en' ? 'Yield, EFA & PFA Clauses' : '良率模型與 EFA/PFA 分析條例'}</div>
+            <div class="eng-obj-metric-value" style="font-size: 13.5px; color: var(--semi-teal);">${lang === 'en' ? 'Neg-Binomial · LIT/OBIRCH · STEM' : 'Neg-Binomial · LIT/OBIRCH · STEM'}</div>
+            <div class="eng-obj-metric-note">${lang === 'en' ? 'Negative Binomial yield, 3D Lock-in Thermography/OBIRCH & PFIB + STEM/EELS' : '負二項式群聚良率模型、3D 鎖相熱成像/OBIRCH 定位與 Xe⁺ PFIB + STEM/EELS'}</div>
+          </div>
         </div>
 
         <footer class="eng-obj-footer-note">
@@ -9339,6 +9354,11 @@ export function renderProcessScalingObject(container, lang = 'zh') {
 
         <div class="eng-obj-dashboard">
           ${dashboardHtml}
+          <div class="eng-obj-metric-card">
+            <div class="eng-obj-metric-label">${lang === 'en' ? 'True Scaling & DTCO/STCO Clauses' : '微縮標尺與 DTCO/STCO 條例'}</div>
+            <div class="eng-obj-metric-value" style="font-size: 13.5px; color: var(--semi-teal);">${lang === 'en' ? 'CPP · M1P · 6T/5T · DTCO · STCO' : 'CPP · M1P · 6T/5T · DTCO · STCO'}</div>
+            <div class="eng-obj-metric-note">${lang === 'en' ? 'CPP gate pitch, M1P metal pitch, 5T cells, DTCO (BPR/BSPDN) & STCO 3D chiplets' : 'CPP 閘極節距、M1P 金屬節距、5T 單元、DTCO (BPR/BSPDN) 與 STCO 3D 小晶片'}</div>
+          </div>
         </div>
 
         <footer class="eng-obj-footer-note">
