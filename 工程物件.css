@@ -514,10 +514,34 @@
   to { stroke-dashoffset: 0; }
 }
 
-.anim-data-flow {
+.anim-data-flow,
+  .anim-pulse-ring,
+  .anim-field-glow {
   stroke-dasharray: 6 6;
   animation: dataFlowDash 1.1s linear infinite;
 }
+
+@keyframes fieldPulseRing {
+  0%, 100% { opacity: 0.28; stroke-dashoffset: 0; }
+  50% { opacity: 0.82; stroke-dashoffset: -16; filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.7)); }
+}
+
+.anim-pulse-ring {
+  stroke-dasharray: 6 6;
+  animation: fieldPulseRing 2.2s ease-in-out infinite;
+}
+
+@keyframes harmonicWaveGlow {
+  0% { stroke-dashoffset: 32; opacity: 0.35; }
+  50% { opacity: 0.85; filter: drop-shadow(0 0 7px rgba(52, 211, 153, 0.75)); }
+  100% { stroke-dashoffset: 0; opacity: 0.35; }
+}
+
+.anim-field-glow {
+  stroke-dasharray: 8 8;
+  animation: harmonicWaveGlow 2.0s linear infinite;
+}
+
 
 /* 互動按鈕與微觀節點微互動回饋 */
 .journey-node:hover circle,

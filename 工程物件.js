@@ -1282,6 +1282,7 @@ export function renderLithoOpticalObject(container, lang = 'zh') {
           </g>
           <text x="400" y="399" text-anchor="middle" fill="#f8fafc" font-size="12" font-weight="700" font-family="sans-serif">${t.ch04_wafer_stage} [R = ${calcR} nm]</text>
           <text x="560" y="430" fill="#38bdf8" font-size="11.5" font-weight="700" font-family="sans-serif">Focus DOF: ±${calcDOF} nm</text>
+          <g class="eng-kinetic-wave" pointer-events="none"><circle cx="400" cy="200" r="68" fill="none" stroke="#38bdf8" stroke-width="1.4" class="anim-pulse-ring" opacity="0.45"/><path d="M 140,60 Q 400,32 660,60" fill="none" stroke="#34d399" stroke-width="1.5" class="anim-field-glow" opacity="0.5"/></g>
         </svg>
       `;
 
@@ -1480,6 +1481,11 @@ export function renderLithoOpticalObject(container, lang = 'zh') {
             <div class="eng-obj-metric-value" style="font-size: 13.5px; color: var(--semi-teal);">${lang === 'en' ? 'i-line · 193i · EUV · High-NA' : 'i-line · 193i · EUV · High-NA'}</div>
             <div class="eng-obj-metric-note">${lang === 'en' ? '365nm RDL, 193i+SAQP, 0.33 NA EUV & 0.55 NA High-NA anamorphic (4×/8×)' : '365nm 封裝 RDL、193i+SAQP、0.33 NA EUV 與 0.55 NA High-NA (4×/8×)'}</div>
           </div>
+          <div class="eng-obj-metric-card">
+            <div class="eng-obj-metric-label">${lang === 'en' ? 'Rayleigh DOF & Shot-Noise Law' : '瑞利焦深與散粒雜訊律 (Litho Law)'}</div>
+            <div class="eng-obj-metric-value" style="font-size: 13.5px; color: #0284c7;">${lang === 'en' ? 'HP = k1·λ/NA · DOF = k2·λ/NA² · EPE' : 'HP = k1·λ/NA · DOF = k2·λ/NA² · EPE'}</div>
+            <div class="eng-obj-metric-note">${lang === 'en' ? '0.55 High-NA 8nm limit, 91.8 eV shot noise & EPE < Pitch/4' : '0.55 High-NA 解析度 8nm、91.8 eV 光子散粒雜訊與 EPE < P/4'}</div>
+          </div>
         </div>
 
         <footer class="eng-obj-footer-note">
@@ -1630,6 +1636,7 @@ export function renderDepositionMechanismObject(container, lang = 'zh') {
             <text x="150" y="140" text-anchor="middle" fill="#ef4444" font-size="12" font-weight="700">空洞風險 (Void)</text>
             <text x="320" y="200" fill="#94a3b8" font-size="11.5">孔底覆蓋率僅 15-20%</text>
           </g>
+          <g class="eng-kinetic-wave" pointer-events="none"><circle cx="400" cy="200" r="68" fill="none" stroke="#38bdf8" stroke-width="1.4" class="anim-pulse-ring" opacity="0.45"/><path d="M 140,60 Q 400,32 660,60" fill="none" stroke="#34d399" stroke-width="1.5" class="anim-field-glow" opacity="0.5"/></g>
         </svg>
       `;
       dashboardHtml = `
@@ -1876,6 +1883,11 @@ export function renderDepositionMechanismObject(container, lang = 'zh') {
             <div class="eng-obj-metric-value" style="font-size: 13.5px; color: var(--semi-teal);">${lang === 'en' ? 'Ox · CVD · ALD · iPVD · EPI · ECD' : 'Ox · CVD · ALD · iPVD · EPI · ECD'}</div>
             <div class="eng-obj-metric-note">${lang === 'en' ? 'ISSG ox, FCVD gap-fill, 100% ALD, iPVD seed, SiGe SEG & ECD Cu superfill' : 'ISSG 氧化、FCVD 填孔、ALD 100% 保形、iPVD 晶種、SiGe 磊晶與 ECD 銅超填'}</div>
           </div>
+          <div class="eng-obj-metric-card">
+            <div class="eng-obj-metric-label">${lang === 'en' ? 'Deal-Grove, ALD & CEAC Superfill Law' : 'Deal-Grove 與超填定律 (Film Law)'}</div>
+            <div class="eng-obj-metric-value" style="font-size: 13.5px; color: #0284c7;">${lang === 'en' ? 'xo²+Axo=Bt · t_sat ∝ (L/d)² · CEAC' : 'xo²+Axo=Bt · t_sat ∝ (L/d)² · CEAC'}</div>
+            <div class="eng-obj-metric-note">${lang === 'en' ? 'Linear-parabolic oxidation, ALD (L/d)² dose & CEAC superfill' : '熱氧化線性拋物線律、ALD 深孔擴散平方律與曲率加速電鍍超填'}</div>
+          </div>
         </div>
 
         <footer class="eng-obj-footer-note">
@@ -2062,6 +2074,7 @@ export function renderPlasmaEtchObject(container, lang = 'zh') {
           <rect x="330" y="365" width="140" height="30" rx="3" fill="#0f172a" stroke="#0284c7"/>
           <text x="400" y="384" text-anchor="middle" fill="#38bdf8" font-size="11.5" font-weight="700">RF Bias (${rfBiasPower} W)</text>
           <path d="M 400,350 L 400,365" stroke="#0284c7" stroke-width="2"/>
+          <g class="eng-kinetic-wave" pointer-events="none"><circle cx="400" cy="200" r="68" fill="none" stroke="#38bdf8" stroke-width="1.4" class="anim-pulse-ring" opacity="0.45"/><path d="M 140,60 Q 400,32 660,60" fill="none" stroke="#34d399" stroke-width="1.5" class="anim-field-glow" opacity="0.5"/></g>
         </svg>
       `;
 
@@ -2275,6 +2288,11 @@ export function renderPlasmaEtchObject(container, lang = 'zh') {
             <div class="eng-obj-metric-value" style="font-size: 13.5px; color: var(--semi-teal);">${lang === 'en' ? 'CCP/ICP · Cryo-HAR · Bosch · ALE' : 'CCP/ICP · Cryo-HAR · Bosch · ALE'}</div>
             <div class="eng-obj-metric-note">${lang === 'en' ? 'CCP/ICP RIE, 3D NAND Cryo-HAR, 3D TSV Bosch DRIE & GAA ALE release' : 'CCP/ICP 雙頻解耦、3D NAND 極低溫深孔、3D TSV 波希蝕刻與 GAA ALE'}</div>
           </div>
+          <div class="eng-obj-metric-card">
+            <div class="eng-obj-metric-label">${lang === 'en' ? 'Sheath, ARDE & ALE Synergy Law' : '鞘層準直與原子層協同律 (Etch Law)'}</div>
+            <div class="eng-obj-metric-value" style="font-size: 13.5px; color: #0284c7;">${lang === 'en' ? 'd_sh ∝ Vdc^(3/4) · Synergy S > 95%' : 'd_sh ∝ Vdc^(3/4) · Synergy S > 95%'}</div>
+            <div class="eng-obj-metric-note">${lang === 'en' ? 'Child-Langmuir sheath, Knudsen ARDE lag & ALE synergy > 95%' : 'Child-Langmuir 電漿鞘層準直、ARDE 克努森衰減與 ALE 自限協同'}</div>
+          </div>
         </div>
 
         <footer class="eng-obj-footer-note">
@@ -2461,6 +2479,7 @@ export function renderTransistor3DObject(container, lang = 'zh') {
             <text x="320" y="38" text-anchor="middle" fill="#f87171" font-size="10.5" font-weight="750">SS = ln(10)·(kT/q)·(1+Cd/Cox)</text>
             <text x="320" y="52" text-anchor="middle" fill="#cbd5e1" font-size="9.5">SS ≈ ${ssMvDec.toFixed(1)} mV/dec (開關關不緊)</text>
           </g>
+          <g class="eng-kinetic-wave" pointer-events="none"><circle cx="400" cy="200" r="68" fill="none" stroke="#38bdf8" stroke-width="1.4" class="anim-pulse-ring" opacity="0.45"/><path d="M 140,60 Q 400,32 660,60" fill="none" stroke="#34d399" stroke-width="1.5" class="anim-field-glow" opacity="0.5"/></g>
         </svg>
       `;
       dashboardHtml = `
@@ -2648,6 +2667,11 @@ export function renderTransistor3DObject(container, lang = 'zh') {
 
         <div class="eng-obj-dashboard">
           ${dashboardHtml}
+          <div class="eng-obj-metric-card">
+            <div class="eng-obj-metric-label">${lang === 'en' ? 'Natural Length λ_N & GAA Weff Law' : '自然靜電長度與有效通道寬度律 (GAA Law)'}</div>
+            <div class="eng-obj-metric-value" style="font-size: 13.5px; color: #0284c7;">${lang === 'en' ? 'λ_GAA < λ_Fin < λ_Planar · Weff = 2N(W+T)' : 'λ_GAA < λ_Fin < λ_Planar · Weff = 2N(W+T)'}</div>
+            <div class="eng-obj-metric-note">${lang === 'en' ? 'Lg ≥ 5λN suppresses DIBL while N-stack nanosheets multiply Weff' : '閘極長度 Lg ≥ 5λN 壓制 DIBL 與 GAA 垂直堆疊有效寬度倍增'}</div>
+          </div>
         </div>
 
         <footer class="eng-obj-footer-note">
@@ -2846,6 +2870,7 @@ export function renderIonImplantObject(container, lang = 'zh') {
 
             <text x="97" y="160" text-anchor="middle" fill="#f59e0b" font-size="10" font-weight="700">7° 傾角防通道效應</text>
           </g>
+          <g class="eng-kinetic-wave" pointer-events="none"><circle cx="400" cy="200" r="68" fill="none" stroke="#38bdf8" stroke-width="1.4" class="anim-pulse-ring" opacity="0.45"/><path d="M 140,60 Q 400,32 660,60" fill="none" stroke="#34d399" stroke-width="1.5" class="anim-field-glow" opacity="0.5"/></g>
         </svg>
       `;
 
@@ -3029,6 +3054,11 @@ export function renderIonImplantObject(container, lang = 'zh') {
             <div class="eng-obj-metric-value" style="font-size: 13.5px; color: var(--semi-teal);">${lang === 'en' ? 'MC/HC/MeV · PLAD · RTA · FLA/LSA' : 'MC/HC/MeV · PLAD · RTA · FLA/LSA'}</div>
             <div class="eng-obj-metric-note">${lang === 'en' ? '7° anti-channeling, Cryo/PLAD 3D doping, Spike RTA & ms/ns laser anneal' : '7° 抗通道效應、Cryo/PLAD 3D 摻雜、Spike RTA 與毫秒/奈秒雷射零擴散退火'}</div>
           </div>
+          <div class="eng-obj-metric-card">
+            <div class="eng-obj-metric-label">${lang === 'en' ? 'LSS Range & Thermal Depth Law' : '高斯射程與熱穿透深度律 (Implant Law)'}</div>
+            <div class="eng-obj-metric-value" style="font-size: 13.5px; color: #0284c7;">${lang === 'en' ? 'L_diff = 2√(Dt) · L_th = 2√(α·t_p)' : 'L_diff = 2√(Dt) · L_th = 2√(α·t_p)'}</div>
+            <div class="eng-obj-metric-note">${lang === 'en' ? 'LSS Gaussian range, zero-diffusion FLA/LSA & 4 µm thermal depth' : 'LSS 離子射程、Fick 零擴散活化與奈秒雷射 4 µm 局部熱穿透'}</div>
+          </div>
         </div>
 
         <footer class="eng-obj-footer-note">
@@ -3162,6 +3192,7 @@ export function renderCMPObject(container, lang = 'zh') {
           <text x="680" y="80" text-anchor="middle" fill="#f59e0b" font-size="14" font-weight="700">Preston 方程</text>
           <text x="680" y="105" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="600">MRR = Kp · P · V</text>
           <text x="680" y="130" text-anchor="middle" fill="#38bdf8" font-size="16" font-weight="750">≈ ${mrr} nm/min</text>
+          <g class="eng-kinetic-wave" pointer-events="none"><circle cx="400" cy="200" r="68" fill="none" stroke="#38bdf8" stroke-width="1.4" class="anim-pulse-ring" opacity="0.45"/><path d="M 140,60 Q 400,32 660,60" fill="none" stroke="#34d399" stroke-width="1.5" class="anim-field-glow" opacity="0.5"/></g>
         </svg>
       `;
 
@@ -3321,6 +3352,11 @@ export function renderCMPObject(container, lang = 'zh') {
             <div class="eng-obj-metric-value" style="font-size: 13.5px; color: var(--semi-teal);">${lang === 'en' ? 'STI · RMG · 3-Step Cu · 3D Recess' : 'STI · RMG · 3-Step Cu · 3D Recess'}</div>
             <div class="eng-obj-metric-note">${lang === 'en' ? 'STI ceria, RMG gate, 3-step Cu CMP & 3D SoIC 1–3nm Cu dishing control' : 'STI 氧化鈰、RMG 定高、雙鑲嵌銅三步研磨與 3D SoIC 1–3nm 銅碟化精控'}</div>
           </div>
+          <div class="eng-obj-metric-card">
+            <div class="eng-obj-metric-label">${lang === 'en' ? 'Preston & Hybrid Bond Thermal Law' : 'Preston 與混合鍵合熱膨脹律 (CMP Law)'}</div>
+            <div class="eng-obj-metric-value" style="font-size: 13.5px; color: #0284c7;">${lang === 'en' ? 'MRR = Kp·P·V · Δh_Cu = Δα·H·ΔT' : 'MRR = Kp·P·V · Δh_Cu = Δα·H·ΔT'}</div>
+            <div class="eng-obj-metric-note">${lang === 'en' ? 'Preston pattern-density pressure & 1–3 nm Cu thermal bridging' : 'Preston 局部有效壓力與 3D 混合鍵合 1–3 nm 銅凹陷熱膨脹橋接'}</div>
+          </div>
         </div>
 
         <footer class="eng-obj-footer-note">
@@ -3444,6 +3480,7 @@ export function renderInterconnectObject(container, lang = 'zh') {
               <text x="140" y="125" text-anchor="middle" fill="#09131b" font-size="11" font-weight="700">導通孔 Via (Vn)</text>
             ` : ''}
           </g>
+          <g class="eng-kinetic-wave" pointer-events="none"><circle cx="400" cy="200" r="68" fill="none" stroke="#38bdf8" stroke-width="1.4" class="anim-pulse-ring" opacity="0.45"/><path d="M 140,60 Q 400,32 660,60" fill="none" stroke="#34d399" stroke-width="1.5" class="anim-field-glow" opacity="0.5"/></g>
         </svg>
       `;
 
@@ -3670,6 +3707,11 @@ export function renderInterconnectObject(container, lang = 'zh') {
             <div class="eng-obj-metric-label">${lang === 'en' ? 'BEOL Interconnect Clauses' : '後段金屬互連條例 (BEOL Clauses)'}</div>
             <div class="eng-obj-metric-value" style="font-size: 13.5px; color: var(--semi-teal);">${lang === 'en' ? 'M0 Co/Ru · Cu/ULK · RDL/UBM' : 'M0 Co/Ru · Cu/ULK · RDL/UBM'}</div>
             <div class="eng-obj-metric-note">${lang === 'en' ? 'Barrierless Co/Ru/Mo, Cu Dual-Damascene + Air-Gap, Ultra-Thick Cu & 3D pads' : '局部無阻障 Co/Ru/Mo、雙鑲嵌銅與 Air-Gap、頂層超厚銅與 3D 鍵合墊'}</div>
+          </div>
+          <div class="eng-obj-metric-card">
+            <div class="eng-obj-metric-label">${lang === 'en' ? 'Fuchs-Sondheimer & Black EM Law' : '奈米尺寸效應與電遷移律 (BEOL Law)'}</div>
+            <div class="eng-obj-metric-value" style="font-size: 13.5px; color: #0284c7;">${lang === 'en' ? 'ρ_eff ∝ ρ0·λ0/W · MTTF = A·J^-n·e^(Ea/kT)' : 'ρ_eff ∝ ρ0·λ0/W · MTTF = A·J^-n·e^(Ea/kT)'}</div>
+            <div class="eng-obj-metric-note">${lang === 'en' ? 'Proves barrierless Ru/Mo beats Cu <15nm, plus Elmore L² & EM' : '證明 <15nm 下無阻障 Ru/Mo 勝過銅，以及 Elmore L² 與 Blech 長度'}</div>
           </div>
         </div>
 
@@ -4324,6 +4366,7 @@ export function renderIngotWaferObject(container, lang = 'zh') {
             <text x="0" y="228" text-anchor="middle" fill="${regimeColor}" font-size="10" font-weight="700">提拉 V = ${pullSpeed.toFixed(2)} mm/min · G = ${tempGrad.toFixed(1)} °C/mm</text>
           </g>
           </g>
+          <g class="eng-kinetic-wave" pointer-events="none"><circle cx="400" cy="200" r="68" fill="none" stroke="#38bdf8" stroke-width="1.4" class="anim-pulse-ring" opacity="0.45"/><path d="M 140,60 Q 400,32 660,60" fill="none" stroke="#34d399" stroke-width="1.5" class="anim-field-glow" opacity="0.5"/></g>
         </svg>
       `;
 
@@ -4523,6 +4566,11 @@ export function renderIngotWaferObject(container, lang = 'zh') {
             <div class="eng-obj-metric-value" style="font-size: 13.5px; color: var(--semi-teal);">${lang === 'en' ? 'CZ/Epi · SOI · SiC/GaN · Carrier' : 'CZ/Epi · SOI · SiC/GaN · 3D載片'}</div>
             <div class="eng-obj-metric-note">${lang === 'en' ? '11N CZ/FZ Si, FD/RF/SiPh SOI, 4H-SiC/GaN WBG & 3D LTHC carrier wafers' : '11N CZ/FZ 單晶矽、FD/RF/SiPh SOI、4H-SiC/GaN 寬能隙與 3D 暫時鍵合載片'}</div>
           </div>
+          <div class="eng-obj-metric-card">
+            <div class="eng-obj-metric-label">${lang === 'en' ? 'Voronkov & Flatness Quantitative Law' : 'Voronkov 與偏析平坦定律 (Crystal Law)'}</div>
+            <div class="eng-obj-metric-value" style="font-size: 13.5px; color: #0284c7;">${lang === 'en' ? 'V/G ≈ 0.134 · Cs = k0·C0(1-fs)^(k0-1)' : 'V/G ≈ 0.134 · Cs = k0·C0(1-fs)^(k0-1)'}</div>
+            <div class="eng-obj-metric-note">${lang === 'en' ? 'Defect-free V/G ratio, Scheil segregation & 3D TTV < 1 µm' : '零原生點缺陷臨界比、Scheil 偏析與 3D 薄化 TTV < 1 µm'}</div>
+          </div>
         </div>
 
         <footer class="eng-obj-footer-note">
@@ -4718,6 +4766,7 @@ export function renderWetCleanObject(container, lang = 'zh') {
             </g>
             <text x="110" y="320" text-anchor="middle" fill="#f59e0b" font-size="10.5">金屬離子殘留 &lt; 1E10 atoms/cm²</text>
           </g>
+          <g class="eng-kinetic-wave" pointer-events="none"><circle cx="400" cy="200" r="68" fill="none" stroke="#38bdf8" stroke-width="1.4" class="anim-pulse-ring" opacity="0.45"/><path d="M 140,60 Q 400,32 660,60" fill="none" stroke="#34d399" stroke-width="1.5" class="anim-field-glow" opacity="0.5"/></g>
         </svg>
       `;
 
@@ -4945,6 +4994,11 @@ export function renderWetCleanObject(container, lang = 'zh') {
             <div class="eng-obj-metric-value" style="font-size: 13.5px; color: var(--semi-teal);">${lang === 'en' ? 'RCA · DIO₃ · Siconi · SCCO₂ Dry' : 'RCA · DIO₃ · Siconi · SCCO₂ Dry'}</div>
             <div class="eng-obj-metric-note">${lang === 'en' ? 'RCA + 1MHz megasonic, Siconi vapor clean, Marangoni & Supercritical CO₂ dry' : 'RCA 四步 + 1MHz 兆聲波、Siconi 氣相除氧化層、Marangoni 與超臨界 CO₂ 零張力乾燥'}</div>
           </div>
+          <div class="eng-obj-metric-card">
+            <div class="eng-obj-metric-label">${lang === 'en' ? 'DLVO, Megasonic & Laplace Law' : 'DLVO 排斥與零毛細張力律 (Clean Law)'}</div>
+            <div class="eng-obj-metric-value" style="font-size: 13.5px; color: #0284c7;">${lang === 'en' ? 'δ_ac = √(2ν/ω) · F_cap ∝ γ·(H/S)² = 0' : 'δ_ac = √(2ν/ω) · F_cap ∝ γ·(H/S)² = 0'}</div>
+            <div class="eng-obj-metric-note">${lang === 'en' ? 'SC-1 Zeta repulsion, sub-µm acoustic layer & γ=0 SCCO₂ drying' : 'SC-1 Zeta 電位排斥、兆聲波次微米邊界層與 SCCO₂ 零毛細力乾燥'}</div>
+          </div>
         </div>
 
         <footer class="eng-obj-footer-note">
@@ -5113,7 +5167,7 @@ export function renderCMOSFlowObject(container, lang = 'zh') {
             </g>
           ` : ''}
         </g>
-        <g class="eng-kinetic-overlay" pointer-events="none"><path d="M 120,85 L 680,85" fill="none" stroke="#38bdf8" stroke-width="2" stroke-dasharray="10 6" class="anim-data-flow" opacity="0.65"/><path d="M 160,315 L 640,315" fill="none" stroke="#34d399" stroke-width="1.8" stroke-dasharray="6 6" class="anim-beam" opacity="0.55"/></g>
+        <g class="eng-kinetic-wave" pointer-events="none"><circle cx="400" cy="200" r="68" fill="none" stroke="#38bdf8" stroke-width="1.4" class="anim-pulse-ring" opacity="0.45"/><path d="M 140,60 Q 400,32 660,60" fill="none" stroke="#34d399" stroke-width="1.5" class="anim-field-glow" opacity="0.5"/></g><g class="eng-kinetic-overlay" pointer-events="none"><path d="M 120,85 L 680,85" fill="none" stroke="#38bdf8" stroke-width="2" stroke-dasharray="10 6" class="anim-data-flow" opacity="0.65"/><path d="M 160,315 L 640,315" fill="none" stroke="#34d399" stroke-width="1.8" stroke-dasharray="6 6" class="anim-beam" opacity="0.55"/></g>
       </svg>
     `;
 
@@ -5169,6 +5223,11 @@ export function renderCMOSFlowObject(container, lang = 'zh') {
             <div class="eng-obj-metric-label">${lang === 'en' ? 'Cross-Tier CMOS Clauses' : '跨層製程整合條例 (CMOS Clauses)'}</div>
             <div class="eng-obj-metric-value" style="font-size: 13.5px; color: var(--semi-teal);">${lang === 'en' ? 'FEOL · MOL · BEOL · BSPDN · 3D' : 'FEOL · MOL · BEOL · BSPDN · 3D'}</div>
             <div class="eng-obj-metric-note">${lang === 'en' ? 'STI/HKMG/GAA → COAG/SAC/BPR → Multi-tier Cu → Backside nTSV & 3D WLP' : 'STI/HKMG/GAA → COAG/SAC/BPR → 多層銅線 → 背面 nTSV 與 3D WLP'}</div>
+          </div>
+          <div class="eng-obj-metric-card">
+            <div class="eng-obj-metric-label">${lang === 'en' ? 'Monotonic Thermal & TLM Contact Law' : '跨層單調熱預算與接觸電阻律 (PIE Law)'}</div>
+            <div class="eng-obj-metric-value" style="font-size: 13.5px; color: #0284c7;">${lang === 'en' ? 'T_FEOL(1050°C) > T_MOL(500°C) > T_BEOL(400°C)' : 'T_FEOL(1050°C) > T_MOL(500°C) > T_BEOL(400°C)'}</div>
+            <div class="eng-obj-metric-note">${lang === 'en' ? 'Strict thermal hierarchy & TLM contact resistivity <10⁻⁹ Ω·cm²' : '跨層熱預算單調遞減鐵律與 TLM 傳輸線超低接觸電阻率 <10⁻⁹ Ω·cm²'}</div>
           </div>
         </div>
 
@@ -7303,6 +7362,7 @@ export function renderFabEnvironmentObject(container, lang = 'zh') {
             <text x="130" y="18" text-anchor="middle" fill="#38bdf8" font-size="10" font-weight="750">C_n = 10^N · (0.1 / D)^2.08</text>
             <text x="130" y="33" text-anchor="middle" fill="#cbd5e1" font-size="9.5">ACH = (v × 3600) / H · ΔP = +${deltaP} Pa</text>
           </g>
+          <g class="eng-kinetic-wave" pointer-events="none"><circle cx="400" cy="200" r="68" fill="none" stroke="#38bdf8" stroke-width="1.4" class="anim-pulse-ring" opacity="0.45"/><path d="M 140,60 Q 400,32 660,60" fill="none" stroke="#34d399" stroke-width="1.5" class="anim-field-glow" opacity="0.5"/></g>
         </svg>
       `;
 
@@ -7501,6 +7561,11 @@ export function renderFabEnvironmentObject(container, lang = 'zh') {
             <div class="eng-obj-metric-value" style="font-size: 13.5px; color: var(--semi-teal);">${lang === 'en' ? 'ISO 1–3 · OHT/FOUP · 18.2 MΩ UPW' : 'ISO 1–3 · OHT/FOUP · 18.2 MΩ UPW'}</div>
             <div class="eng-obj-metric-note">${lang === 'en' ? 'ULPA laminar flow, OHT/Stocker/EFEM, 18.2 MΩ·cm UPW, gas, UPS & scrubbers' : 'ULPA 垂直層流、OHT/Stocker/EFEM、18.2 MΩ·cm 超純水、特氣、UPS 與尾氣處理'}</div>
           </div>
+          <div class="eng-obj-metric-card">
+            <div class="eng-obj-metric-label">${lang === 'en' ? 'Cleanroom & UPW Quantitative Law' : '無塵室與超純水定量律 (Cleanroom Law)'}</div>
+            <div class="eng-obj-metric-value" style="font-size: 13.5px; color: #0284c7;">${lang === 'en' ? 'Cn = 10^N(0.1/D)^2.08 · 18.24 MΩ·cm' : 'Cn = 10^N(0.1/D)^2.08 · 18.24 MΩ·cm'}</div>
+            <div class="eng-obj-metric-note">${lang === 'en' ? 'ISO Class 1 particle power law & FOUP N₂ purge RH < 1%' : 'ISO Class 1 微粒冪次極限與 FOUP 充氮 RH < 1% 抑制氧化'}</div>
+          </div>
         </div>
 
         <footer class="eng-obj-footer-note">
@@ -7628,7 +7693,7 @@ export function renderSemiconductorPhysicsObject(container, lang = 'zh') {
 
             <text x="100" y="300" text-anchor="middle" fill="#fbbf24" font-size="10.5">容易吸納電子產生電洞導電</text>
           </g>
-          <g class="eng-kinetic-overlay" pointer-events="none"><path d="M 180,210 L 620,210" fill="none" stroke="#38bdf8" stroke-width="2.2" stroke-dasharray="8 5" class="anim-data-flow" opacity="0.7"/><line x1="400" y1="290" x2="400" y2="120" stroke="#fbbf24" stroke-width="2" stroke-dasharray="6 4" class="anim-beam" opacity="0.7"/></g>
+          <g class="eng-kinetic-wave" pointer-events="none"><circle cx="400" cy="200" r="68" fill="none" stroke="#38bdf8" stroke-width="1.4" class="anim-pulse-ring" opacity="0.45"/><path d="M 140,60 Q 400,32 660,60" fill="none" stroke="#34d399" stroke-width="1.5" class="anim-field-glow" opacity="0.5"/></g><g class="eng-kinetic-overlay" pointer-events="none"><path d="M 180,210 L 620,210" fill="none" stroke="#38bdf8" stroke-width="2.2" stroke-dasharray="8 5" class="anim-data-flow" opacity="0.7"/><line x1="400" y1="290" x2="400" y2="120" stroke="#fbbf24" stroke-width="2" stroke-dasharray="6 4" class="anim-beam" opacity="0.7"/></g>
         </svg>
       `;
 
@@ -7873,6 +7938,11 @@ export function renderSemiconductorPhysicsObject(container, lang = 'zh') {
             <div class="eng-obj-metric-label">${lang === 'en' ? 'Bandgap, Multi-Vt & Power Clauses' : '能隙、Multi-Vt 與功耗物理條例'}</div>
             <div class="eng-obj-metric-value" style="font-size: 13.5px; color: var(--semi-teal);">${lang === 'en' ? 'Si/SiC/GaN · Multi-Vt · C·V²·f' : 'Si/SiC/GaN · Multi-Vt · C·V²·f'}</div>
             <div class="eng-obj-metric-note">${lang === 'en' ? 'Si/SiGe/SiC/GaN bandgaps, ULVT–HVT 60mV/dec limit & dynamic/leakage power' : 'Si/SiGe/SiC/GaN 能隙、ULVT~HVT 次臨界擺幅 60mV/dec 與動態/靜態功耗公式'}</div>
+          </div>
+          <div class="eng-obj-metric-card">
+            <div class="eng-obj-metric-label">${lang === 'en' ? 'Subthreshold & Tunneling Law' : '次臨界擺幅與穿隧定律 (Device Law)'}</div>
+            <div class="eng-obj-metric-value" style="font-size: 13.5px; color: #0284c7;">${lang === 'en' ? 'SS ≥ 59.6 mV/dec · EOT = t·(3.9/k)' : 'SS ≥ 59.6 mV/dec · EOT = t·(3.9/k)'}</div>
+            <div class="eng-obj-metric-note">${lang === 'en' ? '300K Boltzmann limit & High-k HfO₂ 10⁴× tunneling reduction' : '300K 波茲曼熱力學極限與 High-k HfO₂ 抑制量子穿隧 10⁴ 倍'}</div>
           </div>
         </div>
 
