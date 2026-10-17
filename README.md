@@ -8,6 +8,8 @@
 
 ## 專案特色
 
+- **第 20–24 章（Coffin-Manson 焊球疲勞與 Washburn 毛細流、3D 節距 1/P² 密度律與 Stoney 翹曲方程、Weibull 浴缸與 Peck/FIT 卡方公式、Little's Law 與 Kingman 排隊公式、PDN L·di/dt 壓降與 Hamming/UBER 纠錯定律）定量方程完形（2.0.3）**：完成 `ch20`–`ch24` 雙語定量物理方程與 3D 互鎖表，達成全書 25 個正式章節（`Ch00`–`Ch24`）**100% 具備專屬定量統御方程（Governing Equations）與製程視窗對照表**。
+
 - **第 15–19 章（橢偏散射與超音波反射、良率負二項模型與 3D 熱成像相位深度、SPC/EWMA/馬氏距離、超幾何共性檢定與動態 PAT、Kelvin 四線與 Williams-Brown 逃逸率）定量方程深化（2.0.2）**：於 `ch15`–`ch19` 新增雙語定量物理與統計控制方程表，涵蓋 `橢偏儀 Ψ/Δ 與 C-SAM 聲阻抗反射率方程`、`Gauge R&R P/T Ratio ≤ 10%`、`Poisson/Murphy/負二項良率與 1/x³ 關鍵面積致死率積分`、`3D LIT 鎖相熱成像相位－深度公式`、`EWMA R2R 控制律與 FDC 馬氏距離 T²`、`超幾何機台共性 P-Value 與 AEC-Q001 IQR 動態 PAT`，以及 `Kelvin 四線電阻消除、Holm 探針接觸電阻與 Williams-Brown 3D KGD 測試逃逸率定律`。
 
 - **第 10–14 章（FS-MS 奈米電阻率／Elmore 延遲、CMOS 熱預算積分／TLM 接觸電阻、GAA 自然靜電長度、DRAM 分壓／HBM4 2048-bit 頻寬與 STCO 密度公式）定量物理方程深化（2.0.1）**：於 `ch10`–`ch14` 新增雙語定量物理方程與 3D 互鎖表，涵蓋 `Fuchs-Sondheimer 與 Mayadas-Shatzkes 尺寸散射方程（證明 Co/Ru/Mo 在 <15nm 勝過銅）、Elmore L² 延遲與 Black/Blech 電遷移定律`、`全流程遞減熱預算積分與 TLM 接觸電阻傳輸線模型`、`自然靜電微縮長度 λ_N 與 GAA 有效通道寬度倍增公式`、`DRAM 位元線電荷分壓、3D NAND F-N 穿隧與 HBM4 2048-bit 頻寬公式` 及 `CPP×M1P 標準單元面積與 STCO 異質小晶片成本方程`。
