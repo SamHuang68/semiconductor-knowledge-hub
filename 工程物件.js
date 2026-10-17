@@ -10512,6 +10512,7 @@ export function renderGlossaryGalaxyObject(container, lang = 'zh') {
             <text x="240" y="130" text-anchor="end" fill="#ec4899" font-size="12" font-weight="800">先進封裝 (Advanced Packaging)</text>
             <text x="240" y="145" text-anchor="end" fill="#94a3b8" font-size="10">2.5D CoWoS / SoIC / TSV (35 詞)</text>
           </g>
+          <g class="eng-kinetic-overlay" pointer-events="none"><circle cx="400" cy="210" r="145" fill="none" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="8 8" class="anim-data-flow" opacity="0.55"/><path d="M 190,110 L 400,210 L 610,110 M 190,310 L 400,210 L 610,310" fill="none" stroke="#34d399" stroke-width="1.8" stroke-dasharray="6 6" class="anim-beam" opacity="0.65"/></g>
         </svg>
       `;
 
@@ -10569,6 +10570,7 @@ export function renderGlossaryGalaxyObject(container, lang = 'zh') {
               `;
             }).join('')}
           </g>
+          <g class="eng-kinetic-overlay" pointer-events="none"><circle cx="400" cy="210" r="145" fill="none" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="8 8" class="anim-data-flow" opacity="0.55"/><path d="M 190,110 L 400,210 L 610,110 M 190,310 L 400,210 L 610,310" fill="none" stroke="#34d399" stroke-width="1.8" stroke-dasharray="6 6" class="anim-beam" opacity="0.65"/></g>
         </svg>
       `;
 
@@ -10624,6 +10626,7 @@ export function renderGlossaryGalaxyObject(container, lang = 'zh') {
               }).join('')}
             </g>
           </g>
+          <g class="eng-kinetic-overlay" pointer-events="none"><circle cx="400" cy="210" r="145" fill="none" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="8 8" class="anim-data-flow" opacity="0.55"/><path d="M 190,110 L 400,210 L 610,110 M 190,310 L 400,210 L 610,310" fill="none" stroke="#34d399" stroke-width="1.8" stroke-dasharray="6 6" class="anim-beam" opacity="0.65"/></g>
         </svg>
       `;
 
@@ -10673,6 +10676,11 @@ export function renderGlossaryGalaxyObject(container, lang = 'zh') {
 
         <div class="eng-obj-dashboard">
           ${dashboardHtml}
+          <div class="eng-obj-metric-card">
+            <div class="eng-obj-metric-label">${lang === 'en' ? '8-Domain Terminology Clauses' : '八大工程領域術語條例 (8-Domain)'}</div>
+            <div class="eng-obj-metric-value" style="font-size: 13.5px; color: var(--semi-teal);">${lang === 'en' ? 'Substrate · FE/BEOL · 3D · CIM' : '基板 · 前中後段 · 3D封裝 · CIM'}</div>
+            <div class="eng-obj-metric-note">${lang === 'en' ? 'Unites 245 bilingual terms, physical dimensions & 25-chapter 3D clauses' : '串聯 245 筆中英術語、物理量綱標尺與全書 25 章 3D 整合架構'}</div>
+          </div>
         </div>
 
         <footer class="eng-obj-footer-note">
@@ -10756,6 +10764,7 @@ export function renderFabJargonDecoderObject(container, lang = 'zh') {
               <text x="15" y="118" fill="#10b981" font-size="10" font-weight="700">✓ 逾時後果：一旦超過 1 秒強制退回重新洗淨</text>
             </g>
           </g>
+          <g class="eng-kinetic-overlay" pointer-events="none"><path d="M 110,210 L 690,210" fill="none" stroke="#38bdf8" stroke-width="2" stroke-dasharray="8 6" class="anim-data-flow" opacity="0.65"/><circle cx="400" cy="210" r="36" fill="none" stroke="#f59e0b" stroke-width="2" stroke-dasharray="5 5" class="anim-beam" opacity="0.7"/></g>
         </svg>
       `;
 
@@ -10805,6 +10814,7 @@ export function renderFabJargonDecoderObject(container, lang = 'zh') {
             <circle cx="0" cy="0" r="15" fill="#38bdf8"/>
             <text x="0" y="4" text-anchor="middle" fill="#09131b" font-size="9" font-weight="800">365天</text>
           </g>
+          <g class="eng-kinetic-overlay" pointer-events="none"><path d="M 110,210 L 690,210" fill="none" stroke="#38bdf8" stroke-width="2" stroke-dasharray="8 6" class="anim-data-flow" opacity="0.65"/><circle cx="400" cy="210" r="36" fill="none" stroke="#f59e0b" stroke-width="2" stroke-dasharray="5 5" class="anim-beam" opacity="0.7"/></g>
         </svg>
       `;
 
@@ -10865,6 +10875,7 @@ export function renderFabJargonDecoderObject(container, lang = 'zh') {
 
             <text x="320" y="270" text-anchor="middle" fill="#64748b" font-size="11">晶圓廠黑話不是無聊的密碼，而是千錘百鍊、防止百萬美元損失的工業安全防線</text>
           </g>
+          <g class="eng-kinetic-overlay" pointer-events="none"><path d="M 110,210 L 690,210" fill="none" stroke="#38bdf8" stroke-width="2" stroke-dasharray="8 6" class="anim-data-flow" opacity="0.65"/><circle cx="400" cy="210" r="36" fill="none" stroke="#f59e0b" stroke-width="2" stroke-dasharray="5 5" class="anim-beam" opacity="0.7"/></g>
         </svg>
       `;
 
@@ -10914,6 +10925,11 @@ export function renderFabJargonDecoderObject(container, lang = 'zh') {
 
         <div class="eng-obj-dashboard">
           ${dashboardHtml}
+          <div class="eng-obj-metric-card">
+            <div class="eng-obj-metric-label">${lang === 'en' ? 'Lot State & Handover Clauses' : '批次狀態機與交接條例 (Jargon)'}</div>
+            <div class="eng-obj-metric-value" style="font-size: 13.5px; color: var(--semi-teal);">${lang === 'en' ? 'Run/Hold · Season · War-Room · KGD' : 'Run/Hold · Season · War-Room · KGD'}</div>
+            <div class="eng-obj-metric-note">${lang === 'en' ? 'Covers Lot state machine, chamber qual, excursion war-room & 3D KGD jargon' : '涵蓋 Lot 生命週期、開腔養腔復機、章魚防堵會診與 3D 封裝現場行話'}</div>
+          </div>
         </div>
 
         <footer class="eng-obj-footer-note">
@@ -10989,6 +11005,7 @@ export function renderMasteryRoadmapObject(container, lang = 'zh') {
               }).join('')}
             </g>
           </g>
+          <g class="eng-kinetic-overlay" pointer-events="none"><path d="M 120,340 L 680,340" fill="none" stroke="#34d399" stroke-width="2.2" stroke-dasharray="8 6" class="anim-data-flow" opacity="0.7"/><path d="M 160,180 L 640,180" fill="none" stroke="#38bdf8" stroke-width="1.8" stroke-dasharray="6 6" class="anim-beam" opacity="0.6"/></g>
         </svg>
       `;
 
@@ -11039,6 +11056,7 @@ export function renderMasteryRoadmapObject(container, lang = 'zh') {
               }).join('')}
             </g>
           </g>
+          <g class="eng-kinetic-overlay" pointer-events="none"><path d="M 120,340 L 680,340" fill="none" stroke="#34d399" stroke-width="2.2" stroke-dasharray="8 6" class="anim-data-flow" opacity="0.7"/><path d="M 160,180 L 640,180" fill="none" stroke="#38bdf8" stroke-width="1.8" stroke-dasharray="6 6" class="anim-beam" opacity="0.6"/></g>
         </svg>
       `;
 
@@ -11106,6 +11124,7 @@ export function renderMasteryRoadmapObject(container, lang = 'zh') {
               </g>
             </g>
           </g>
+          <g class="eng-kinetic-overlay" pointer-events="none"><path d="M 120,340 L 680,340" fill="none" stroke="#34d399" stroke-width="2.2" stroke-dasharray="8 6" class="anim-data-flow" opacity="0.7"/><path d="M 160,180 L 640,180" fill="none" stroke="#38bdf8" stroke-width="1.8" stroke-dasharray="6 6" class="anim-beam" opacity="0.6"/></g>
         </svg>
       `;
 
@@ -11155,6 +11174,11 @@ export function renderMasteryRoadmapObject(container, lang = 'zh') {
 
         <div class="eng-obj-dashboard">
           ${dashboardHtml}
+          <div class="eng-obj-metric-card">
+            <div class="eng-obj-metric-label">${lang === 'en' ? 'Standards & Conferences Clauses' : '國際標準與頂尖會議條例 (Standards)'}</div>
+            <div class="eng-obj-metric-value" style="font-size: 13.5px; color: var(--semi-teal);">${lang === 'en' ? 'SEMI/JEDEC/UCIe · IEDM/VLSI/ECTC' : 'SEMI/JEDEC/UCIe · IEDM/VLSI/ECTC'}</div>
+            <div class="eng-obj-metric-note">${lang === 'en' ? 'Spans SEMI/JEDEC/AEC/UCIe/IEEE 1838 standards & IEDM/VLSI/ISSCC/ECTC' : '涵蓋 SEMI/JEDEC/AEC/UCIe/IEEE 1838 標準與 IEDM/VLSI/ISSCC/ECTC 會議'}</div>
+          </div>
         </div>
 
         <footer class="eng-obj-footer-note">
