@@ -18,29 +18,29 @@ export const SCENARIOS = [
     boundary: '這是製造階段的教學總覽。晶圓製造會反覆經過微影、薄膜、蝕刻、清洗與量測，並非每個模組只做一次。',
     boundaryEn: 'This is a pedagogical overview of manufacturing stages. Wafer fabrication repeatedly cycles through lithography, deposition, etching, cleaning, and metrology; modules are not executed only once.',
     nodes: [
-      node('wafer', '準備晶圓', '材料', 'ch03', '單晶矽經切片與表面處理，成為後續製造的基板。', '晶圓表面與材料品質', '可進入製程的矽晶圓', [], {
+      node('wafer', '準備晶圓', '材料', 'ch03', '11N 純度單晶矽（CZ/MCZ）經鑽石線切、CMP 鏡面拋光與外延磊晶（或製備為 FD/RF/SiPh SOI 與 3D LTHC 承載晶圓），成為後續製造的完美基板。', '晶圓表面與材料品質', '可進入製程的矽晶圓', [], {
         titleEn: 'Prepare Wafer', tagEn: 'Material',
-        detailEn: 'Single-crystal silicon is sliced and surface-conditioned into substrates for subsequent processing.',
+        detailEn: '11N monocrystalline silicon (CZ/MCZ) is diamond-wire sliced, mirror-polished, and epitaxially grown (or engineered into FD/RF/SiPh SOI and 3D LTHC carrier wafers) as pristine substrates.',
         lookEn: 'Wafer surface and crystal quality', resultEn: 'Silicon wafer ready for fabrication'
       }),
-      node('transistor', '形成電晶體', 'FEOL', 'ch11', '隔離、井區、閘極與源汲極等製程共同形成元件。微影、薄膜與蝕刻會多次交錯。', '元件尺寸、摻雜與電性', '可控制電流的元件結構', [], {
+      node('transistor', '形成電晶體', 'FEOL', 'ch11', '透過 STI 隔離、離子佈植與毫秒／奈秒退火、SiGe 應變磊晶、HKMG 替代金屬閘極構築 Planar / FinFET / GAA 奈米片與 CFET 電晶體，並銜接 MOL (COAG/SAC/BPR)。', '元件尺寸、摻雜與電性', '可控制電流的元件結構', [], {
         titleEn: 'Form Transistors', tagEn: 'FEOL',
-        detailEn: 'Isolation, wells, gates, and source/drain modules construct active devices through alternating lithography, thin film, and etch steps.',
+        detailEn: 'STI isolation, ion implant with millisecond/nanosecond anneal, strained SiGe epitaxy, and RMG HKMG construct Planar, FinFET, GAA nanosheet, and CFET transistors tied to MOL (COAG/SAC/BPR).',
         lookEn: 'Device dimensions, doping profiles, and electrical properties', resultEn: 'Device structures capable of controlling electric current'
       }),
-      node('wiring', '連接金屬導線', 'BEOL', 'ch10', '透過接觸與多層金屬互連，把元件接成電路。介電層將不同導線隔開。', '線路連通、絕緣與平坦度', '連接完成的晶片電路', [], {
+      node('wiring', '連接金屬導線', 'BEOL', 'ch10', '以局部無阻障 Co/Ru/Mo 接觸與 12–18+ 層銅雙鑲嵌（Cu Dual-Damascene + 多孔 ULK / Air-Gap）互連電路，並可結合晶圓背面供電（BSPDN：PowerVia / SPR）分離電源與訊號。', '線路連通、絕緣與平坦度', '連接完成的晶片電路', [], {
         titleEn: 'Interconnect Metals', tagEn: 'BEOL',
-        detailEn: 'Contacts and multi-layer metallization interconnect devices into functional circuits, isolated by interlayer dielectric (ILD).',
+        detailEn: 'Barrierless Co/Ru/Mo local contacts and 12–18+ Cu Dual-Damascene tiers (with porous ULK & Air-Gaps) wire the circuit, complemented by Backside Power Delivery (BSPDN: PowerVia / SPR).',
         lookEn: 'Line connectivity, isolation, and planarity', resultEn: 'Completed on-chip interconnect network'
       }),
-      node('probe', '測試與分類', '晶圓測試', 'ch19', 'WAT 觀察製程電性，CP 依產品測試條件篩選晶粒；兩者目的不同。', '製程監控結果與晶粒測試圖', '後續封裝用的晶粒分類資訊', [], {
+      node('probe', '測試與分類', '晶圓測試', 'ch19', 'WAT 以 Kelvin 四線探針量測切割道測試鍵監控製程電性；CP 則以高針數垂直／MEMS 微機電探針卡與無凸塊混合鍵合前測試篩選出 KGD（已知合格裸晶）。', '製程監控結果與晶粒測試圖', '後續封裝用的晶粒分類資訊', [], {
         titleEn: 'Test & Classify', tagEn: 'Wafer Test',
-        detailEn: 'WAT monitors in-line parametric electrical health, while CP sorts dies against product test vectors.',
+        detailEn: 'WAT probes scribe-line PCM keys via Kelvin 4-wire needles, while CP sorts Known Good Dies (KGD) using fine-pitch vertical/MEMS probe cards and pre-bond 3D DFT/BIST.',
         lookEn: 'Process monitoring data and wafer bin maps', resultEn: 'Die classification and binning data for packaging'
       }),
-      node('package', '封裝與終測', '封測', 'ch20', '晶粒經封裝形成外部連接並受到保護；封裝後再進行產品測試。', '連接、散熱與可靠度', '可交付系統整合的晶片', [], {
+      node('package', '封裝與終測', '封測', 'ch20', '合格 KGD 進入傳統封裝（打線 QFN/BGA、覆晶 C4/Cu Pillar）或 2.5D/3D/3.5D 先進封裝（CoWoS、EMIB、InFO、SoIC、Foveros、HBM），再經預燒（Burn-In）、系統級測試（SLT）與終測（FT）出貨。', '連接、散熱與可靠度', '可交付系統整合的晶片', [], {
         titleEn: 'Package & Final Test', tagEn: 'Packaging & Test',
-        detailEn: 'Dies are packaged for environmental protection and external connectivity, followed by final product testing.',
+        detailEn: 'KGD dies undergo legacy packaging (wire-bond, flip-chip C4/Cu pillar) or 2.5D/3D/3.5D advanced packaging (CoWoS, EMIB, InFO, SoIC, Foveros, HBM), followed by Burn-In, SLT, and Final Test (FT).',
         lookEn: 'Interconnects, thermal dissipation, and reliability', resultEn: 'Finished chips ready for system-level integration'
       })
     ]

@@ -8,6 +8,8 @@
 
 ## 專案特色
 
+- **12 大製程全景圖（Fab Flow Atlas）與 5 大互動情境探索路徑（Scenario Explorer）全譜系條例同步（1.9.3）**：將 `data/fab-flow.js` 第 01 至 11 站（涵蓋 `11N CZ/MCZ 與 SOI/LTHC 載片`、`ISSG 自由基氧化`、`High-NA EUV 與 SAQP/MOR`、`Cryo-HAR 與 Bosch TSV 蝕刻`、`FLA/LSA 零擴散退火`、`100% 保形 ALD 與選擇性磊晶`、`3D 混合鍵合 1–3 nm 銅內凹 CMP`、`Siconi 乾洗與 SCCO₂ 超臨界零張力乾燥`、`無阻障 Co/Ru/Mo 與 Air-Gap/BSPDN`、`GAA/CFET`、`CD-SAXS / C-SAM / 3D X-Ray CT / LIT`）及 `data/情境路徑.js` 中英雙語導覽節點全面升級對齊全書最新條例。
+
 - **附錄 A／B／C（八大領域術語量綱、批次狀態機行話、SEMI／JEDEC／UCIe 標準與頂尖會議）條例補完暨全站 28/28 工程物件指標卡滿貫（1.9.2）**：於附錄 A 新增 `八大工程領域核心縮寫與物理量綱條例總表`；於附錄 B 新增 `晶圓廠批次狀態機（Run/Hold/Future-Hold/Split）、開腔養腔復機（Season/Qual）、戰情室會診與 2.5D/3D 封裝現場行話條例表`；於附錄 C 新增 `SEMI / JEDEC / AEC-Q / UCIe / IEEE 1838 國際標準與 IEDM / VLSI / ISSCC / ECTC / IRPS / SPIE 頂尖會議條例表`，並為附錄 A／B／C 工程物件補齊第 4 張雙語條例總覽指標卡與 SVG 動態資料流，達成全站 28 個工程物件 100% 四卡滿貫。
 
 - **Foundry 2.0 產業生態、無塵室／AMHS／廠務、固態物理、SPC／APC、OCAP／8D／PCN、CIM／SECS-GEM 與軟硬體協同條例滿貫整合（1.9.1）**：完成全書 25 章（`ch00`～`ch24`）所有專業條例總表與 25 座工程物件第 4 張雙語條例總覽指標卡的 100% 滿貫覆蓋：於第 0 章新增 `Foundry 2.0（前段 + 2.5D/3D 封裝 + KGD 測試）與六大價值鏈角色` 條例；於第 1 章新增 `ISO Class 1–5 無塵室、AMHS (OHT/Stocker/EFEM) 與四大廠務（18.2 MΩ·cm UPW / 特氣 / UPS / Scrubber）` 條例；於第 2 章新增 `Si / Ge / GaAs / 4H-SiC / GaN 能隙、Multi-Vt (ULVT~HVT) 與 CMOS 三大功耗公式` 條例；於第 17 章新增 `WECO / Nelson 判異規則、Cpk 階梯與 APC 四大支柱（R2R / FDC / VM / PdM）` 條例；於第 18 章新增 `OCAP 章魚防堵、MRB + PAT/SBL 異常值篩選、8D (D1–D8) 根因防呆與 ECN / JEDEC J-STD-046 PCN` 條例；於第 23 章新增 `MES / EAP / RMS / RTD / YMS 與 SEMI SECS-II / HSMS / GEM300 / Interface A` 條例；於第 24 章新增 `DRAM 溫控刷新與 PRAC、On-Die ECC / Chipkill、3D NAND FTL / LDPC、PVT / AVS、L di/dt 壓降展頻與 3D V-Cache / HBM NUMA 排程` 條例。

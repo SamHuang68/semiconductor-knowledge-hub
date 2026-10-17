@@ -54,7 +54,7 @@ assert.match(packaging.boundary, /並列選項.*並非先後步驟/, '比較應�
 // 基準：中英雙語原生擴充版（包含 28 章中英完整教材與雙語字典）。
 const sourceHashes = {
   'chapters-data.js': '93e19136ebb254acb5dbb9558c26d942746fcf40331d921782d44af3037c22bd',
-  'fab-flow.js': 'da944ae09a8aa4e9a5460cad5c09fe21a0658b502add139102d323d44fbf2f90',
+  'fab-flow.js': 'ddc7dca13b7a01e7fa7ad624dcf4de40bc5453eceb75529d1d6a421d93ec863c',
   'glossary-data.js': '300396a858eb19f90883480ab9cb9bb98580fa0d32c7b2d5fbd0e9e7fb3473a2',
   'search-index.js': 'a28e09fd2839c267a0fd0c21cb799b6c3a2d10b2843bd9d0b44880913b3c27bd'
 };
