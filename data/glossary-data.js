@@ -295,9 +295,9 @@ export const GLOSSARY_DATA = [
     "en": "Chemical Mechanical Planarization",
     "abbr": "CMP",
     "zh": "化學機械研磨",
-    "desc": "結合化學與機械作用，把表面磨平或去除多餘材料（移除率遵循 Preston 方程 MRR = Kp·P·V，於 3D 無凸塊混合鍵合須控制介電質 Ra < 0.2 nm 與銅墊碟化 1–3 nm）",
-    "descZh": "結合化學與機械作用，把表面磨平或去除多餘材料（移除率遵循 Preston 方程 MRR = Kp·P·V，於 3D 無凸塊混合鍵合須控制介電質 Ra < 0.2 nm 與銅墊碟化 1–3 nm）",
-    "descEn": "Combining chemical and mechanical action to flatten a surface or remove excess material (governed by Preston’s law MRR = Kp·P·V; 3D Cu-Cu hybrid bonding requires dielectric Ra < 0.2 nm and 1–3 nm Cu recess)",
+    "desc": "結合化學與機械作用，把表面磨平或去除多餘材料（移除率遵循 Preston 方程 MRR = Kp·P·V，於 3D 無凸塊混合鍵合須控制介電質 Ra < 0.2 nm 與銅墊碟化 1–3 nm）（遵循 Preston 摩擦磨耗律 RR = Kp·P·V，須嚴控寬銅溝 Dishing < 15 nm，並於 3D 混合鍵合將銅凹盤控制在 1.0–2.5 nm）",
+    "descZh": "結合化學與機械作用，把表面磨平或去除多餘材料（移除率遵循 Preston 方程 MRR = Kp·P·V，於 3D 無凸塊混合鍵合須控制介電質 Ra < 0.2 nm 與銅墊碟化 1–3 nm）（遵循 Preston 摩擦磨耗律 RR = Kp·P·V，須嚴控寬銅溝 Dishing < 15 nm，並於 3D 混合鍵合將銅凹盤控制在 1.0–2.5 nm）",
+    "descEn": "Combining chemical and mechanical action to flatten a surface or remove excess material (governed by Preston’s law MRR = Kp·P·V; 3D Cu-Cu hybrid bonding requires dielectric Ra < 0.2 nm and 1–3 nm Cu recess) (governed by Preston's law RR = Kp·P·V; requires dummy fill to suppress dishing < 15 nm and 1.0–2.5 nm Cu recess for 3D hybrid bonding)",
     "chapter": "8"
   },
   {
@@ -439,9 +439,9 @@ export const GLOSSARY_DATA = [
     "en": "Defect",
     "abbr": "",
     "zh": "缺陷",
-    "desc": "晶圓上任何不該出現的異常",
-    "descZh": "晶圓上任何不該出現的異常",
-    "descEn": "Any abnormality on a wafer that should not be there",
+    "desc": "晶圓上任何不該出現的異常（依尺寸超過 1/2 特徵線寬即成致命缺陷 Killer Defect，並於晶圓圖呈現同心環、靶心、刮痕或光罩重複點等空間根因指紋）",
+    "descZh": "晶圓上任何不該出現的異常（依尺寸超過 1/2 特徵線寬即成致命缺陷 Killer Defect，並於晶圓圖呈現同心環、靶心、刮痕或光罩重複點等空間根因指紋）",
+    "descEn": "Any abnormality on a wafer that should not be there (becomes a Killer Defect when ≥ 1/2 minimum pitch, leaving spatial wafer-map signatures such as rings, bullseyes, scratches, or reticle repeaters)",
     "chapter": "15"
   },
   {
@@ -718,9 +718,9 @@ export const GLOSSARY_DATA = [
     "en": "Failure Analysis",
     "abbr": "FA",
     "zh": "故障分析",
-    "desc": "找出晶片失效位置與原因的分析（先以 PEM / OBIRCH / 鎖相熱成像 LIT 進行非破壞性 3D 電性定位 EFA，再以 Ga⁺/Xe⁺ Plasma FIB 切片與 STEM/EELS 進行原子級物理分析 PFA）",
-    "descZh": "找出晶片失效位置與原因的分析（先以 PEM / OBIRCH / 鎖相熱成像 LIT 進行非破壞性 3D 電性定位 EFA，再以 Ga⁺/Xe⁺ Plasma FIB 切片與 STEM/EELS 進行原子級物理分析 PFA）",
-    "descEn": "Analysis that finds where and why a chip failed (combining non-destructive 3D Electrical Fault Isolation EFA via PEM, OBIRCH, and Lock-in Thermography LIT with atomic-scale Physical Failure Analysis PFA via Ga⁺/Xe⁺ Plasma FIB and STEM/EELS)",
+    "desc": "找出晶片失效位置與原因的分析（先以 PEM / OBIRCH / 鎖相熱成像 LIT 進行非破壞性 3D 電性定位 EFA，再以 Ga⁺/Xe⁺ Plasma FIB 切片與 STEM/EELS 進行原子級物理分析 PFA）（嚴守「先非破壞性（Scan/LIT/EMMI/OBIRCH/3D X-Ray）、後破壞性（Plasma-FIB/TEM/EELS）」鐵律，於百億顆電晶體中精準鎖定奈米物理根因）",
+    "descZh": "找出晶片失效位置與原因的分析（先以 PEM / OBIRCH / 鎖相熱成像 LIT 進行非破壞性 3D 電性定位 EFA，再以 Ga⁺/Xe⁺ Plasma FIB 切片與 STEM/EELS 進行原子級物理分析 PFA）（嚴守「先非破壞性（Scan/LIT/EMMI/OBIRCH/3D X-Ray）、後破壞性（Plasma-FIB/TEM/EELS）」鐵律，於百億顆電晶體中精準鎖定奈米物理根因）",
+    "descEn": "Analysis that finds where and why a chip failed (combining non-destructive 3D Electrical Fault Isolation EFA via PEM, OBIRCH, and Lock-in Thermography LIT with atomic-scale Physical Failure Analysis PFA via Ga⁺/Xe⁺ Plasma FIB and STEM/EELS) (strictly follows non-destructive localization [Scan/LIT/EMMI/OBIRCH/3D X-Ray] prior to destructive FIB-TEM/EELS cross-sectioning)",
     "chapter": "16"
   },
   {
@@ -745,9 +745,9 @@ export const GLOSSARY_DATA = [
     "en": "Fault Detection and Classification",
     "abbr": "FDC",
     "zh": "錯誤偵測與分類",
-    "desc": "即時監控機台感測器數據、偵測異常的系統",
-    "descZh": "即時監控機台感測器數據、偵測異常的系統",
-    "descEn": "A system that monitors tool sensor data in real time to detect abnormalities",
+    "desc": "即時監控機台感測器數據、偵測異常的系統（即時串流機台每秒數十次感測器軌跡 SVID，透過多變量馬氏距離 Hotelling's T² 與 Q 殘差在晶圓出腔瞬間攔截微漏氣或電弧異常）",
+    "descZh": "即時監控機台感測器數據、偵測異常的系統（即時串流機台每秒數十次感測器軌跡 SVID，透過多變量馬氏距離 Hotelling's T² 與 Q 殘差在晶圓出腔瞬間攔截微漏氣或電弧異常）",
+    "descEn": "A system that monitors tool sensor data in real time to detect abnormalities (streams real-time tool sensor traces via SECS/GEM and Interface A, using multivariate Hotelling's T² and Q residuals to catch chamber drift instantly)",
     "chapter": "17"
   },
   {
@@ -1033,9 +1033,9 @@ export const GLOSSARY_DATA = [
     "en": "Interlock",
     "abbr": "",
     "zh": "防呆",
-    "desc": "讓錯誤操作無法發生的系統檢查規則",
-    "descZh": "讓錯誤操作無法發生的系統檢查規則",
-    "descEn": "A system check that makes a wrong operation impossible",
+    "desc": "讓錯誤操作無法發生的系統檢查規則（由 MES/EAP 強制執行之零失誤防呆閘門：涵蓋製程站點、機台 Qual 效期、Recipe Checksum、Q-Time 上限、銅污染等級與 E90 槽位掃描）",
+    "descZh": "讓錯誤操作無法發生的系統檢查規則（由 MES/EAP 強制執行之零失誤防呆閘門：涵蓋製程站點、機台 Qual 效期、Recipe Checksum、Q-Time 上限、銅污染等級與 E90 槽位掃描）",
+    "descEn": "A system check that makes a wrong operation impossible (hard poka-yoke gates enforced by MES/EAP: verifies step sequence, chamber qual, recipe checksum, Q-Time, Cu class, and E90 laser slot maps)",
     "chapter": "23"
   },
   {
@@ -1384,9 +1384,9 @@ export const GLOSSARY_DATA = [
     "en": "Overlay",
     "abbr": "",
     "zh": "疊對誤差",
-    "desc": "上下兩層圖形之間的對準誤差（先進 2nm 節點要求層間疊對誤差 3σ < 1.2–1.5 nm，以滿足邊緣放置誤差預算 EPE < Pitch/4）",
-    "descZh": "上下兩層圖形之間的對準誤差（先進 2nm 節點要求層間疊對誤差 3σ < 1.2–1.5 nm，以滿足邊緣放置誤差預算 EPE < Pitch/4）",
-    "descEn": "The alignment error between two layers of patterns (sub-2nm nodes require 3σ overlay < 1.2–1.5 nm to satisfy the Edge Placement Error budget EPE < Pitch/4)",
+    "desc": "上下兩層圖形之間的對準誤差（先進 2nm 節點要求層間疊對誤差 3σ < 1.2–1.5 nm，以滿足邊緣放置誤差預算 EPE < Pitch/4）（遵循 RSS 預算 σ_OVL ≤ Pitch/12，2nm 節點要求 3σ < 1.1 nm；一旦 ADI 量測超規且尚未蝕刻，必須立即攔截執行退光阻重工 Rework）",
+    "descZh": "上下兩層圖形之間的對準誤差（先進 2nm 節點要求層間疊對誤差 3σ < 1.2–1.5 nm，以滿足邊緣放置誤差預算 EPE < Pitch/4）（遵循 RSS 預算 σ_OVL ≤ Pitch/12，2nm 節點要求 3σ < 1.1 nm；一旦 ADI 量測超規且尚未蝕刻，必須立即攔截執行退光阻重工 Rework）",
+    "descEn": "The alignment error between two layers of patterns (sub-2nm nodes require 3σ overlay < 1.2–1.5 nm to satisfy the Edge Placement Error budget EPE < Pitch/4) (budgeted via RSS as σ_OVL ≤ Pitch/12, requiring 3σ < 1.1 nm at 2nm nodes; out-of-spec ADI overlay triggers immediate non-destructive photo rework)",
     "chapter": "4"
   },
   {
@@ -1555,9 +1555,9 @@ export const GLOSSARY_DATA = [
     "en": "Queue Time",
     "abbr": "Q-Time",
     "zh": "等待時間限制",
-    "desc": "兩個步驟之間允許等待的最長時間",
-    "descZh": "兩個步驟之間允許等待的最長時間",
-    "descEn": "The maximum time allowed to wait between two steps",
+    "desc": "兩個步驟之間允許等待的最長時間（遵循原生氧化層對數生長與氟氣揮發動力學，兩耦合站點間超時即由 MES 自動鎖批 Auto-Hold；下游當機時由 RTD 啟動拉動式容量閥門防連鎖鎖批）",
+    "descZh": "兩個步驟之間允許等待的最長時間（遵循原生氧化層對數生長與氟氣揮發動力學，兩耦合站點間超時即由 MES 自動鎖批 Auto-Hold；下游當機時由 RTD 啟動拉動式容量閥門防連鎖鎖批）",
+    "descEn": "The maximum time allowed to wait between two steps (governed by native-oxide growth kinetics between coupled steps; expiry triggers MES Auto-Hold while RTD Kanban caps prevent cascade expirations)",
     "chapter": "9"
   },
   {
@@ -1672,9 +1672,9 @@ export const GLOSSARY_DATA = [
     "en": "Run-to-Run Control",
     "abbr": "R2R",
     "zh": "批次間控制",
-    "desc": "根據量測結果自動調整下一批的製程參數",
-    "descZh": "根據量測結果自動調整下一批的製程參數",
-    "descEn": "Automatically adjusting the next lot's process parameters based on measurements",
+    "desc": "根據量測結果自動調整下一批的製程參數（採用 EWMA 指數加權移動平均演算法 z_t = λy_t + (1-λ)z_{t-1} 自動微調曝光劑量／蝕刻時間，前端須配置 GOF 與 4σ 離群值過濾閘門防回饋污染）",
+    "descZh": "根據量測結果自動調整下一批的製程參數（採用 EWMA 指數加權移動平均演算法 z_t = λy_t + (1-λ)z_{t-1} 自動微調曝光劑量／蝕刻時間，前端須配置 GOF 與 4σ 離群值過濾閘門防回饋污染）",
+    "descEn": "Automatically adjusting the next lot's process parameters based on measurements (uses EWMA feedback z_t = λy_t + (1-λ)z_{t-1} to auto-trim dose/etch time, protected by GOF and 4σ outlier gates against metrology poisoning)",
     "chapter": "17"
   },
   {
@@ -1897,9 +1897,9 @@ export const GLOSSARY_DATA = [
     "en": "Statistical Process Control",
     "abbr": "SPC",
     "zh": "統計製程管制",
-    "desc": "以管制圖監控製程的穩定性（結合 WECO / Nelson 判異規則、Cpk ≥ 1.67 六標準差目標，以及 R2R / FDC / VM 先進製程控制閉環）",
-    "descZh": "以管制圖監控製程的穩定性（結合 WECO / Nelson 判異規則、Cpk ≥ 1.67 六標準差目標，以及 R2R / FDC / VM 先進製程控制閉環）",
-    "descEn": "Monitoring process stability with control charts (combining WECO / Nelson out-of-control rules, Cpk ≥ 1.67 six-sigma capability targets, and closed-loop R2R / FDC / VM Advanced Process Control)",
+    "desc": "以管制圖監控製程的穩定性（結合 WECO / Nelson 判異規則、Cpk ≥ 1.67 六標準差目標，以及 R2R / FDC / VM 先進製程控制閉環）（以 ±3σ 管制界限與 Western Electric 規則區分隨機一般原因與特殊原因異常；嚴禁對管制線內白雜訊手動干預調機以免放大變異）",
+    "descZh": "以管制圖監控製程的穩定性（結合 WECO / Nelson 判異規則、Cpk ≥ 1.67 六標準差目標，以及 R2R / FDC / VM 先進製程控制閉環）（以 ±3σ 管制界限與 Western Electric 規則區分隨機一般原因與特殊原因異常；嚴禁對管制線內白雜訊手動干預調機以免放大變異）",
+    "descEn": "Monitoring process stability with control charts (combining WECO / Nelson out-of-control rules, Cpk ≥ 1.67 six-sigma capability targets, and closed-loop R2R / FDC / VM Advanced Process Control) (uses ±3σ control limits and Western Electric rules to separate common-cause noise from special-cause excursions; prohibits manual tampering)",
     "chapter": "17"
   },
   {
@@ -2113,9 +2113,9 @@ export const GLOSSARY_DATA = [
     "en": "Wafer Map",
     "abbr": "",
     "zh": "晶圓圖",
-    "desc": "晶圓上每顆晶粒測試結果的分佈圖",
-    "descZh": "晶圓上每顆晶粒測試結果的分佈圖",
-    "descEn": "A map of the test results of every die on a wafer",
+    "desc": "晶圓上每顆晶粒測試結果的分佈圖（將每顆晶粒之 CP 分級或量測值轉化為二維空間指紋：同心圓對應電漿環／CMP、靶心對應溫控、弧線對應機械刮傷、固定座標則對應光罩缺陷）",
+    "descZh": "晶圓上每顆晶粒測試結果的分佈圖（將每顆晶粒之 CP 分級或量測值轉化為二維空間指紋：同心圓對應電漿環／CMP、靶心對應溫控、弧線對應機械刮傷、固定座標則對應光罩缺陷）",
+    "descEn": "A map of the test results of every die on a wafer (spatial 2D fingerprint of CP bins or inline defects: rings point to plasma/CMP, bullseyes to ESC thermal zones, arcs to scratches, and repeaters to reticles)",
     "chapter": "16、19"
   },
   {
