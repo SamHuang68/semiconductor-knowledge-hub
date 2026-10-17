@@ -6621,6 +6621,11 @@ export function renderProcessControlObject(container, lang = 'zh') {
 
         <div class="eng-obj-dashboard">
           ${dashboardHtml}
+          <div class="eng-obj-metric-card">
+            <div class="eng-obj-metric-label">${lang === 'en' ? 'SPC, Cpk & APC 4-Pillar Clauses' : 'SPC 判異、Cpk 與 APC 四大條例'}</div>
+            <div class="eng-obj-metric-value" style="font-size: 13.5px; color: var(--semi-teal);">${lang === 'en' ? 'WECO Rules · Cpk ≥ 1.67 · R2R/FDC/VM' : 'WECO Rules · Cpk ≥ 1.67 · R2R/FDC/VM'}</div>
+            <div class="eng-obj-metric-note">${lang === 'en' ? 'WECO/Nelson rules, 6σ Cpk ≥ 1.67 & APC (R2R / FDC / VM / PdM)' : 'WECO/Nelson 判異、6σ Cpk ≥ 1.67 與 APC (R2R 回饋前饋 / FDC / VM / PdM)'}</div>
+          </div>
         </div>
 
         <footer class="eng-obj-footer-note">
@@ -7478,6 +7483,11 @@ export function renderFabEnvironmentObject(container, lang = 'zh') {
 
         <div class="eng-obj-dashboard">
           ${dashboardHtml}
+          <div class="eng-obj-metric-card">
+            <div class="eng-obj-metric-label">${lang === 'en' ? 'Cleanroom, AMHS & Facility Clauses' : '無塵室、AMHS 與四大廠務條例'}</div>
+            <div class="eng-obj-metric-value" style="font-size: 13.5px; color: var(--semi-teal);">${lang === 'en' ? 'ISO 1–3 · OHT/FOUP · 18.2 MΩ UPW' : 'ISO 1–3 · OHT/FOUP · 18.2 MΩ UPW'}</div>
+            <div class="eng-obj-metric-note">${lang === 'en' ? 'ULPA laminar flow, OHT/Stocker/EFEM, 18.2 MΩ·cm UPW, gas, UPS & scrubbers' : 'ULPA 垂直層流、OHT/Stocker/EFEM、18.2 MΩ·cm 超純水、特氣、UPS 與尾氣處理'}</div>
+          </div>
         </div>
 
         <footer class="eng-obj-footer-note">
@@ -7843,6 +7853,11 @@ export function renderSemiconductorPhysicsObject(container, lang = 'zh') {
 
         <div class="eng-obj-dashboard">
           ${dashboardHtml}
+          <div class="eng-obj-metric-card">
+            <div class="eng-obj-metric-label">${lang === 'en' ? 'Bandgap, Multi-Vt & Power Clauses' : '能隙、Multi-Vt 與功耗物理條例'}</div>
+            <div class="eng-obj-metric-value" style="font-size: 13.5px; color: var(--semi-teal);">${lang === 'en' ? 'Si/SiC/GaN · Multi-Vt · C·V²·f' : 'Si/SiC/GaN · Multi-Vt · C·V²·f'}</div>
+            <div class="eng-obj-metric-note">${lang === 'en' ? 'Si/SiGe/SiC/GaN bandgaps, ULVT–HVT 60mV/dec limit & dynamic/leakage power' : 'Si/SiGe/SiC/GaN 能隙、ULVT~HVT 次臨界擺幅 60mV/dec 與動態/靜態功耗公式'}</div>
+          </div>
         </div>
 
         <footer class="eng-obj-footer-note">
@@ -8972,6 +8987,11 @@ export function renderChipJourneyObject(container, lang = 'zh') {
 
         <div class="eng-obj-dashboard">
           ${dashboardHtml}
+          <div class="eng-obj-metric-card">
+            <div class="eng-obj-metric-label">${lang === 'en' ? 'Value Chain & Foundry 2.0 Clauses' : '價值鏈與 Foundry 2.0 條例'}</div>
+            <div class="eng-obj-metric-value" style="font-size: 13.5px; color: var(--semi-teal);">${lang === 'en' ? 'EDA/IP · Fabless · Foundry 2.0 · OSAT' : 'EDA/IP · Fabless · Foundry 2.0 · OSAT'}</div>
+            <div class="eng-obj-metric-note">${lang === 'en' ? 'EDA/IP, Fabless, Foundry 2.0 (FEOL/BEOL + 2.5D/3D + KGD), IDM 2.0 & OSAT' : 'EDA/IP、無廠設計、Foundry 2.0 (前段+2.5D/3D封裝+KGD)、IDM 2.0 與 OSAT'}</div>
+          </div>
         </div>
 
         <footer class="eng-obj-footer-note">
@@ -9681,6 +9701,11 @@ export function renderExcursionControlObject(container, lang = 'zh') {
 
         <div class="eng-obj-dashboard">
           ${dashboardHtml}
+          <div class="eng-obj-metric-card">
+            <div class="eng-obj-metric-label">${lang === 'en' ? 'OCAP, MRB, 8D & PCN Clauses' : 'OCAP、MRB、8D 與 PCN 變更條例'}</div>
+            <div class="eng-obj-metric-value" style="font-size: 13.5px; color: var(--semi-teal);">${lang === 'en' ? 'OCAP/Octopus · MRB/PAT · 8D · PCN' : 'OCAP/章魚防堵 · MRB/PAT · 8D · PCN'}</div>
+            <div class="eng-obj-metric-note">${lang === 'en' ? 'Octopus containment, MRB + PAT outlier screen, 8D (D1–D8) & J-STD-046 PCN' : 'OCAP 章魚防堵、MRB 與車用 PAT 篩選、8D (D1–D8) 防呆互鎖與 J-STD-046 PCN'}</div>
+          </div>
         </div>
 
         <footer class="eng-obj-footer-note">
@@ -9984,6 +10009,11 @@ export function renderSmartFabAutomationObject(container, lang = 'zh') {
 
         <div class="eng-obj-dashboard">
           ${dashboardHtml}
+          <div class="eng-obj-metric-card">
+            <div class="eng-obj-metric-label">${lang === 'en' ? 'CIM Stack & SEMI Standards Clauses' : 'CIM 六大系統與 SEMI 標準條例'}</div>
+            <div class="eng-obj-metric-value" style="font-size: 13.5px; color: var(--semi-teal);">${lang === 'en' ? 'MES · EAP/RMS · SECS/GEM300 · RTD' : 'MES · EAP/RMS · SECS/GEM300 · RTD'}</div>
+            <div class="eng-obj-metric-note">${lang === 'en' ? 'MES genealogy/Q-time, EAP/RMS zero-touch, SECS/GEM300/Interface A & RTD/YMS' : 'MES 履歷與 Q-time、EAP/RMS 零接觸防呆、SECS/GEM300/Interface A 與 RTD/YMS'}</div>
+          </div>
         </div>
 
         <footer class="eng-obj-footer-note">
@@ -10340,6 +10370,11 @@ export function renderSoftwareHardwareTruthObject(container, lang = 'zh') {
 
         <div class="eng-obj-dashboard">
           ${dashboardHtml}
+          <div class="eng-obj-metric-card">
+            <div class="eng-obj-metric-label">${lang === 'en' ? 'HW-FW Cross-Layer Clauses' : '硬體－軟韌體跨層協同六大條例'}</div>
+            <div class="eng-obj-metric-value" style="font-size: 13.5px; color: var(--semi-teal);">${lang === 'en' ? 'TRR/PRAC · ECC · FTL · AVS · 3D NUMA' : 'TRR/PRAC · ECC · FTL · AVS · 3D NUMA'}</div>
+            <div class="eng-obj-metric-note">${lang === 'en' ? 'Temp refresh & PRAC, On-Die ECC/Chipkill, NAND FTL/LDPC, AVS/droop & 3D NUMA' : 'DRAM 溫控刷新與 PRAC、On-Die ECC/Chipkill、NAND FTL/LDPC、AVS/壓降與 3D 排程'}</div>
+          </div>
         </div>
 
         <footer class="eng-obj-footer-note">

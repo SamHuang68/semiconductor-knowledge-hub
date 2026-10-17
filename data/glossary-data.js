@@ -331,9 +331,9 @@ export const GLOSSARY_DATA = [
     "en": "Cleanroom",
     "abbr": "",
     "zh": "無塵室（潔淨室）",
-    "desc": "嚴格控制微粒與環境的生產空間",
-    "descZh": "嚴格控制微粒與環境的生產空間",
-    "descEn": "A production space with strict control of particles and environment",
+    "desc": "嚴格控制微粒與環境的生產空間（前段微影與 3D SoIC 無凸塊混合鍵合區須達 ISO Class 1–3 極致潔淨度，搭配 FFU/ULPA 垂直層流、FOUP 迷你環境與 18.2 MΩ·cm 超純水）",
+    "descZh": "嚴格控制微粒與環境的生產空間（前段微影與 3D SoIC 無凸塊混合鍵合區須達 ISO Class 1–3 極致潔淨度，搭配 FFU/ULPA 垂直層流、FOUP 迷你環境與 18.2 MΩ·cm 超純水）",
+    "descEn": "A production space with strict control of particles and environment (critical lithography and 3D SoIC Cu-Cu hybrid bonding bays enforce ISO Class 1–3 cleanliness via FFU/ULPA laminar flow, FOUP mini-environments, and 18.2 MΩ·cm UPW)",
     "chapter": "1"
   },
   {
@@ -799,9 +799,9 @@ export const GLOSSARY_DATA = [
     "en": "Foundry",
     "abbr": "",
     "zh": "晶圓代工",
-    "desc": "替客戶製造晶片的商業模式",
-    "descZh": "替客戶製造晶片的商業模式",
-    "descEn": "A business model of manufacturing chips for customers",
+    "desc": "替客戶製造晶片的商業模式（在先進製程與 3D 小晶片時代已演進為 Foundry 2.0，整合前段晶圓製造、光罩、CoWoS/SoIC/Foveros 晶圓級 2.5D/3D 封裝與 KGD 測試）",
+    "descZh": "替客戶製造晶片的商業模式（在先進製程與 3D 小晶片時代已演進為 Foundry 2.0，整合前段晶圓製造、光罩、CoWoS/SoIC/Foveros 晶圓級 2.5D/3D 封裝與 KGD 測試）",
+    "descEn": "A business model of manufacturing chips for customers (evolved in the angstrom and chiplet era into Foundry 2.0, uniting front-end wafer fabrication, mask making, CoWoS/SoIC/Foveros 2.5D/3D wafer-level packaging, and KGD sort)",
     "chapter": "0"
   },
   {
@@ -1339,9 +1339,9 @@ export const GLOSSARY_DATA = [
     "en": "Out of Control Action Plan",
     "abbr": "OCAP",
     "zh": "異常處理計畫",
-    "desc": "異常發生時事先規定好的處理步驟",
-    "descZh": "異常發生時事先規定好的處理步驟",
-    "descEn": "Predefined steps to follow when an abnormality occurs",
+    "desc": "異常發生時事先規定好的處理步驟（搭配章魚防堵法 Octopus Containment、MRB 物料審查、PAT/SBL 異常值剔除、8D 根因分析與 JEDEC J-STD-046 PCN 變更管理）",
+    "descZh": "異常發生時事先規定好的處理步驟（搭配章魚防堵法 Octopus Containment、MRB 物料審查、PAT/SBL 異常值剔除、8D 根因分析與 JEDEC J-STD-046 PCN 變更管理）",
+    "descEn": "Predefined steps to follow when an abnormality occurs (paired with Octopus sister-lot containment, MRB disposition, PAT/SBL outlier screening, 8D root-cause problem solving, and JEDEC J-STD-046 PCN change control)",
     "chapter": "18"
   },
   {
@@ -1663,9 +1663,9 @@ export const GLOSSARY_DATA = [
     "en": "Row Hammer",
     "abbr": "",
     "zh": "—",
-    "desc": "反覆存取 DRAM 的同一列，造成相鄰列的位元翻轉",
-    "descZh": "反覆存取 DRAM 的同一列，造成相鄰列的位元翻轉",
-    "descEn": "Repeatedly accessing one DRAM row and flipping bits in neighboring rows",
+    "desc": "反覆存取 DRAM 的同一列，造成相鄰列的位元翻轉（透過控制器目標列刷新 TRR、DDR5 PRAC 計數與 >85°C 倍頻刷新防護，為軟韌體與底層矽物理跨層協同的代表案例）",
+    "descZh": "反覆存取 DRAM 的同一列，造成相鄰列的位元翻轉（透過控制器目標列刷新 TRR、DDR5 PRAC 計數與 >85°C 倍頻刷新防護，為軟韌體與底層矽物理跨層協同的代表案例）",
+    "descEn": "Repeatedly accessing one DRAM row and flipping bits in neighboring rows (mitigated via controller Target Row Refresh TRR, DDR5 PRAC activation counters, and >85°C 2x refresh rates as a core hardware-firmware co-design discipline)",
     "chapter": "24"
   },
   {
@@ -1735,9 +1735,9 @@ export const GLOSSARY_DATA = [
     "en": "SECS/GEM",
     "abbr": "",
     "zh": "機台通訊標準",
-    "desc": "機台與工廠系統之間的共同通訊標準",
-    "descZh": "機台與工廠系統之間的共同通訊標準",
-    "descEn": "The common communication standard between tools and factory systems",
+    "desc": "機台與工廠系統之間的共同通訊標準（含 HSMS E37、SECS-II E5、GEM E30、300mm 自動化 E84/E87/E90/E94 與 Interface A 高頻感測串流，串聯 MES、EAP、RMS、RTD 與 YMS）",
+    "descZh": "機台與工廠系統之間的共同通訊標準（含 HSMS E37、SECS-II E5、GEM E30、300mm 自動化 E84/E87/E90/E94 與 Interface A 高頻感測串流，串聯 MES、EAP、RMS、RTD 與 YMS）",
+    "descEn": "The common communication standard between tools and factory systems (comprising HSMS E37, SECS-II E5, GEM E30, GEM300 E84/E87/E90/E94, and Interface A streaming to unite MES, EAP, RMS, RTD, and YMS)",
     "chapter": "23"
   },
   {
@@ -1897,9 +1897,9 @@ export const GLOSSARY_DATA = [
     "en": "Statistical Process Control",
     "abbr": "SPC",
     "zh": "統計製程管制",
-    "desc": "以管制圖監控製程的穩定性",
-    "descZh": "以管制圖監控製程的穩定性",
-    "descEn": "Monitoring process stability with control charts",
+    "desc": "以管制圖監控製程的穩定性（結合 WECO / Nelson 判異規則、Cpk ≥ 1.67 六標準差目標，以及 R2R / FDC / VM 先進製程控制閉環）",
+    "descZh": "以管制圖監控製程的穩定性（結合 WECO / Nelson 判異規則、Cpk ≥ 1.67 六標準差目標，以及 R2R / FDC / VM 先進製程控制閉環）",
+    "descEn": "Monitoring process stability with control charts (combining WECO / Nelson out-of-control rules, Cpk ≥ 1.67 six-sigma capability targets, and closed-loop R2R / FDC / VM Advanced Process Control)",
     "chapter": "17"
   },
   {
@@ -2014,9 +2014,9 @@ export const GLOSSARY_DATA = [
     "en": "Threshold Voltage",
     "abbr": "Vt",
     "zh": "臨界電壓",
-    "desc": "讓電晶體導通所需的最低閘極電壓",
-    "descZh": "讓電晶體導通所需的最低閘極電壓",
-    "descEn": "The minimum gate voltage needed to turn a transistor on",
+    "desc": "讓電晶體導通所需的最低閘極電壓（同一製程透過功函數金屬與偶極工程提供 ULVT / LVT / SVT / HVT 多重臨界電壓，在開關速度與 10 倍次臨界漏電之間精準取捨）",
+    "descZh": "讓電晶體導通所需的最低閘極電壓（同一製程透過功函數金屬與偶極工程提供 ULVT / LVT / SVT / HVT 多重臨界電壓，在開關速度與 10 倍次臨界漏電之間精準取捨）",
+    "descEn": "The minimum gate voltage needed to turn a transistor on (tuned via work-function metals and dipole engineering into ULVT / LVT / SVT / HVT flavors to trade off switching speed against 10x subthreshold leakage per 60–70 mV)",
     "chapter": "2、19"
   },
   {
