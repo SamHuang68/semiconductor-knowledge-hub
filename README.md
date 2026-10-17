@@ -8,6 +8,8 @@
 
 ## 專案特色
 
+- **核心整合、3D 記憶體、故障分析、SPC 與晶圓針測工程物件 SVG 動態物理光束升級（1.9.4）**：為第 11 章（CMOS 跨層整合）、第 13 章（DRAM / 3D NAND / HBM 垂直 TSV 高速資料流）、第 16 章（良率晶圓圖掃描、雙束 FIB 離子束微割與 HR-TEM 繞射束）、第 17 章（SPC 管制軌跡與 Cpk 動態掃描）與第 19 章（WAT Kelvin 四線電流與 CP 微凸塊探針接觸脈衝）五大互動工程物件全面導入非侵入式 SVG 動態光束與信號脈衝動畫（`.anim-data-flow` / `.anim-beam`）。
+
 - **12 大製程全景圖（Fab Flow Atlas）與 5 大互動情境探索路徑（Scenario Explorer）全譜系條例同步（1.9.3）**：將 `data/fab-flow.js` 第 01 至 11 站（涵蓋 `11N CZ/MCZ 與 SOI/LTHC 載片`、`ISSG 自由基氧化`、`High-NA EUV 與 SAQP/MOR`、`Cryo-HAR 與 Bosch TSV 蝕刻`、`FLA/LSA 零擴散退火`、`100% 保形 ALD 與選擇性磊晶`、`3D 混合鍵合 1–3 nm 銅內凹 CMP`、`Siconi 乾洗與 SCCO₂ 超臨界零張力乾燥`、`無阻障 Co/Ru/Mo 與 Air-Gap/BSPDN`、`GAA/CFET`、`CD-SAXS / C-SAM / 3D X-Ray CT / LIT`）及 `data/情境路徑.js` 中英雙語導覽節點全面升級對齊全書最新條例。
 
 - **附錄 A／B／C（八大領域術語量綱、批次狀態機行話、SEMI／JEDEC／UCIe 標準與頂尖會議）條例補完暨全站 28/28 工程物件指標卡滿貫（1.9.2）**：於附錄 A 新增 `八大工程領域核心縮寫與物理量綱條例總表`；於附錄 B 新增 `晶圓廠批次狀態機（Run/Hold/Future-Hold/Split）、開腔養腔復機（Season/Qual）、戰情室會診與 2.5D/3D 封裝現場行話條例表`；於附錄 C 新增 `SEMI / JEDEC / AEC-Q / UCIe / IEEE 1838 國際標準與 IEDM / VLSI / ISSCC / ECTC / IRPS / SPIE 頂尖會議條例表`，並為附錄 A／B／C 工程物件補齊第 4 張雙語條例總覽指標卡與 SVG 動態資料流，達成全站 28 個工程物件 100% 四卡滿貫。

@@ -5113,6 +5113,7 @@ export function renderCMOSFlowObject(container, lang = 'zh') {
             </g>
           ` : ''}
         </g>
+        <g class="eng-kinetic-overlay" pointer-events="none"><path d="M 120,85 L 680,85" fill="none" stroke="#38bdf8" stroke-width="2" stroke-dasharray="10 6" class="anim-data-flow" opacity="0.65"/><path d="M 160,315 L 640,315" fill="none" stroke="#34d399" stroke-width="1.8" stroke-dasharray="6 6" class="anim-beam" opacity="0.55"/></g>
       </svg>
     `;
 
@@ -5332,6 +5333,7 @@ export function renderMemoryTechObject(container, lang = 'zh') {
             <text x="515" y="61" text-anchor="middle" fill="#34d399" font-size="11" font-weight="700">垂直位元線 (Bit-Line BL)</text>
             <text x="350" y="98" text-anchor="middle" fill="#94a3b8" font-size="10.5">1T1C 電晶體閘極開啟導通字元線，感測放大器 (Sense Amp) 差分讀取位元線電荷</text>
           </g>
+          <g class="eng-kinetic-overlay" pointer-events="none"><path d="M 150,200 L 650,200" fill="none" stroke="#38bdf8" stroke-width="2" stroke-dasharray="8 6" class="anim-data-flow" opacity="0.6"/><path d="M 400,70 L 400,340" fill="none" stroke="#fbbf24" stroke-width="2" stroke-dasharray="6 6" class="anim-beam" opacity="0.65"/></g>
         </svg>
       `;
 
@@ -5419,6 +5421,7 @@ export function renderMemoryTechObject(container, lang = 'zh') {
             <text x="165" y="338" text-anchor="middle" fill="#fbbf24" font-size="10.5" font-weight="750">微影「修切 (Trim)」工藝製成微型階梯</text>
             <text x="165" y="352" text-anchor="middle" fill="#94a3b8" font-size="9">單顆晶粒 TLC 裸晶容量: ${(dieCapacity / 1000).toFixed(2)} Tb (${dieCapacity} Gb)</text>
           </g>
+          <g class="eng-kinetic-overlay" pointer-events="none"><path d="M 150,200 L 650,200" fill="none" stroke="#38bdf8" stroke-width="2" stroke-dasharray="8 6" class="anim-data-flow" opacity="0.6"/><path d="M 400,70 L 400,340" fill="none" stroke="#fbbf24" stroke-width="2" stroke-dasharray="6 6" class="anim-beam" opacity="0.65"/></g>
         </svg>
       `;
 
@@ -5472,6 +5475,7 @@ export function renderMemoryTechObject(container, lang = 'zh') {
             <text x="50" y="136" fill="#38bdf8" font-size="10">超寬並行總線</text>
             <text x="50" y="152" fill="#34d399" font-size="11" font-weight="700">&gt; 1.2 TB/s</text>
           </g>
+          <g class="eng-kinetic-overlay" pointer-events="none"><path d="M 150,200 L 650,200" fill="none" stroke="#38bdf8" stroke-width="2" stroke-dasharray="8 6" class="anim-data-flow" opacity="0.6"/><path d="M 400,70 L 400,340" fill="none" stroke="#fbbf24" stroke-width="2" stroke-dasharray="6 6" class="anim-beam" opacity="0.65"/></g>
         </svg>
       `;
 
@@ -6119,6 +6123,7 @@ export function renderYieldFailureAnalysisObject(container, lang = 'zh') {
               <text x="12" y="48" fill="#cbd5e1" font-size="9.5">預估良率損耗金額: <strong style="color: #ef4444;">$${costLoss.toLocaleString()} USD</strong></text>
             </g>
           </g>
+          <g class="eng-kinetic-overlay" pointer-events="none"><line x1="160" y1="60" x2="400" y2="210" stroke="#38bdf8" stroke-width="2" stroke-dasharray="7 5" class="anim-beam" opacity="0.7"/><circle cx="400" cy="210" r="48" fill="none" stroke="#f43f5e" stroke-width="1.8" stroke-dasharray="6 6" class="anim-data-flow" opacity="0.65"/></g>
         </svg>
       `;
 
@@ -6185,6 +6190,7 @@ export function renderYieldFailureAnalysisObject(container, lang = 'zh') {
             <circle cx="210" cy="18" r="4" fill="#34d399"/>
             <text x="360" y="-10" fill="#34d399" font-size="11" font-weight="700">奈米機械手臂 (Omniprobe 提取)</text>
           </g>
+          <g class="eng-kinetic-overlay" pointer-events="none"><line x1="160" y1="60" x2="400" y2="210" stroke="#38bdf8" stroke-width="2" stroke-dasharray="7 5" class="anim-beam" opacity="0.7"/><circle cx="400" cy="210" r="48" fill="none" stroke="#f43f5e" stroke-width="1.8" stroke-dasharray="6 6" class="anim-data-flow" opacity="0.65"/></g>
         </svg>
       `;
 
@@ -6235,6 +6241,7 @@ export function renderYieldFailureAnalysisObject(container, lang = 'zh') {
               <text x="15" y="4" text-anchor="middle" fill="#fbbf24" font-size="9.5">原子穿隧短路通道 (Short Circuit)</text>
             </g>
           </g>
+          <g class="eng-kinetic-overlay" pointer-events="none"><line x1="160" y1="60" x2="400" y2="210" stroke="#38bdf8" stroke-width="2" stroke-dasharray="7 5" class="anim-beam" opacity="0.7"/><circle cx="400" cy="210" r="48" fill="none" stroke="#f43f5e" stroke-width="1.8" stroke-dasharray="6 6" class="anim-data-flow" opacity="0.65"/></g>
         </svg>
       `;
 
@@ -6426,6 +6433,7 @@ export function renderProcessControlObject(container, lang = 'zh') {
                     font-size="11" font-weight="700" style="pointer-events: none;">${lang === 'zh' ? m.zh : m.en}</text>
             `).join('')}
           </g>
+          <g class="eng-kinetic-overlay" pointer-events="none"><path d="M 100,210 L 700,210" fill="none" stroke="#10b981" stroke-width="2" stroke-dasharray="10 6" class="anim-data-flow" opacity="0.65"/><path d="M 100,130 L 700,130 M 100,290 L 700,290" fill="none" stroke="#f59e0b" stroke-width="1.4" stroke-dasharray="5 5" class="anim-beam" opacity="0.5"/></g>
         </svg>
       `;
 
@@ -6516,6 +6524,7 @@ export function renderProcessControlObject(container, lang = 'zh') {
               Cp = ${calcCp} · Cpk = ${calcCpk} ${isAcceptable ? '✓ (受控卓越 6-Sigma)' : '✗ (失控能力不足)'}
             </text>
           </g>
+          <g class="eng-kinetic-overlay" pointer-events="none"><path d="M 100,210 L 700,210" fill="none" stroke="#10b981" stroke-width="2" stroke-dasharray="10 6" class="anim-data-flow" opacity="0.65"/><path d="M 100,130 L 700,130 M 100,290 L 700,290" fill="none" stroke="#f59e0b" stroke-width="1.4" stroke-dasharray="5 5" class="anim-beam" opacity="0.5"/></g>
         </svg>
       `;
 
@@ -6572,6 +6581,7 @@ export function renderProcessControlObject(container, lang = 'zh') {
           <!-- 閉環回饋回路 (Feedback Loop) -->
           <path d="M 660,170 L 660,260 L 180,260 L 180,175" fill="none" stroke="#f59e0b" stroke-width="2.5" stroke-dasharray="6 4" marker-end="url(#arrow)"/>
           <text x="420" y="285" text-anchor="middle" fill="#fbbf24" font-size="11.5" font-weight="750">⇦ 即時配方補償 (動態調整下一批蝕刻時間 -1.2s 或沉積氣體流量) ⇦</text>
+          <g class="eng-kinetic-overlay" pointer-events="none"><path d="M 100,210 L 700,210" fill="none" stroke="#10b981" stroke-width="2" stroke-dasharray="10 6" class="anim-data-flow" opacity="0.65"/><path d="M 100,130 L 700,130 M 100,290 L 700,290" fill="none" stroke="#f59e0b" stroke-width="1.4" stroke-dasharray="5 5" class="anim-beam" opacity="0.5"/></g>
         </svg>
       `;
 
@@ -6835,6 +6845,7 @@ export function renderWaferTestObject(container, lang = 'zh') {
               <text x="15" y="48" fill="#10b981" font-size="11" font-weight="800">Kelvin 4-Wire: ${r4Wire.toFixed(2)} Ω (Sense 無電流，精準零誤差!)</text>
             </g>
           </g>
+          <g class="eng-kinetic-overlay" pointer-events="none"><path d="M 220,90 L 380,220 L 580,90" fill="none" stroke="#fbbf24" stroke-width="2.2" stroke-dasharray="7 5" class="anim-data-flow" opacity="0.75"/><circle cx="380" cy="220" r="24" fill="none" stroke="#38bdf8" stroke-width="1.8" stroke-dasharray="4 4" class="anim-beam" opacity="0.7"/></g>
         </svg>
       `;
 
@@ -6926,6 +6937,7 @@ export function renderWaferTestObject(container, lang = 'zh') {
           <!-- 下方晶圓真空吸盤 (Wafer Chuck) -->
           <rect x="60" y="340" width="680" height="30" fill="#334155" rx="3"/>
           <text x="400" y="360" text-anchor="middle" fill="#cbd5e1" font-size="11">晶圓真空吸盤載台 (Wafer Prober Chuck with Thermal Control -40°C ~ 125°C)</text>
+          <g class="eng-kinetic-overlay" pointer-events="none"><path d="M 220,90 L 380,220 L 580,90" fill="none" stroke="#fbbf24" stroke-width="2.2" stroke-dasharray="7 5" class="anim-data-flow" opacity="0.75"/><circle cx="380" cy="220" r="24" fill="none" stroke="#38bdf8" stroke-width="1.8" stroke-dasharray="4 4" class="anim-beam" opacity="0.7"/></g>
         </svg>
       `;
 
@@ -7017,6 +7029,7 @@ export function renderWaferTestObject(container, lang = 'zh') {
               </foreignObject>
             </g>
           </g>
+          <g class="eng-kinetic-overlay" pointer-events="none"><path d="M 220,90 L 380,220 L 580,90" fill="none" stroke="#fbbf24" stroke-width="2.2" stroke-dasharray="7 5" class="anim-data-flow" opacity="0.75"/><circle cx="380" cy="220" r="24" fill="none" stroke="#38bdf8" stroke-width="1.8" stroke-dasharray="4 4" class="anim-beam" opacity="0.7"/></g>
         </svg>
       `;
 
