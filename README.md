@@ -8,6 +8,8 @@
 
 ## 專案特色
 
+- **晶圓廠現場行話（JARGON_DATA 43 筆雙語詞條與附錄 B）300mm 自動化與 3D 封裝實戰語境深化（1.9.8）**：針對 `data/glossary-data.js` 與附錄 B（`app-jargon`）中的 `Lot`、`Hot Lot (Super Hot / Hand-Carry)`、`Split (DOE / Future Hold)`、`控片 (Monitor)`、`擋片 (Dummy)`、`Recipe (RMS Checksum)`、`PM`、`Seasoning（養腔）`、`Q-Time (Auto-Hold)`、`Hold`、`Rework（黃光去膠重曝）`、`Excursion（戰情室與章魚防堵）`、`MRB` 與 `PE/EE/PIE/YE/TE/PKG` 共 14 項核心行話補齊 300mm 智慧晶圓廠與先進封裝現場運作機制。
+
 - **5 大情境探索路徑（Scenario Explorer 全站 24 個互動節點）雙語製程與防呆條例全面深化（1.9.7）**：將 `data/情境路徑.js` 中「看懂圖形轉移（Pattern Transfer 6 站）」、「處理良率異常（Yield Excursion 6 站判斷樹）」與「走進晶圓廠（Inside the Fab 5 站自動化派工）」共 17 個核心節點的中英雙語技術內容全面升級，串聯 `BARC/CAR/MOR 光阻`、`193i+SAQP / High-NA EUV`、`Cryo-HAR / Bosch DRIE / ALE`、`SCCO₂ 超臨界乾燥`、`APC R2R`、`P/T Ratio < 10%`、`WECO/Nelson + FDC`、`OCAP 章魚防堵法`、`3D LIT + Xe⁺ PFIB/STEM`、`MRB + PAT/SBL` 及 `SEMI E84 / GEM300 / Interface A Zero-Touch Track-In`。
 
 - **全站 28 章節（Ch00–Ch24 + 附錄 A/B/C）雙語條例 H2 錨點與右側目錄（TOC ScrollSpy）100% 導覽整合（1.9.6）**：為全書 25 個正式章節與 3 篇附錄的所有工程與 3D 整合條例總表建立專屬雙語 `<h2>` 標題錨點，並完整註冊於 `chapters-data.js` 的 `headings` 與 `headingsEn` 陣列，支援右側段落目錄（TOC）一鍵跳轉與滾動高亮（ScrollSpy）。
