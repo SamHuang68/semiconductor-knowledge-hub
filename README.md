@@ -8,6 +8,8 @@
 
 ## 專案特色
 
+- **全書 25 章「定量物理定律與 3D 製程視窗」雙語 H2 目錄錨點（TOC ScrollSpy）100% 導覽整合與核心術語公式深化（2.0.6）**：為 `Ch00`–`Ch24` 全書 25 個正式章節的定量統御方程表建立專屬雙語 `<h2>` 標題錨點（`#定量物理定律與3d製程視窗` / `#quantitative-governing-laws-and-3d-process-windows`），完整註冊於右側段落目錄（TOC），並為 `GLOSSARY_DATA` 12 項核心指標術語（`DOF`、`Overlay`、`ALD`、`CMP`、`RC Delay`、`EM`、`Yield`、`Cpk`、`WAT`、`TSV`、`HTOL`、`OEE`）補齊定量數學方程與 3D 標尺。
+
 - **全站 28/28 互動工程物件（Ch00–Ch24 + 附錄 A/B/C）100% 五卡儀表板（含第 5 張「定量統御定律卡」）與多波段 SVG 物理場動畫大滿貫（2.0.5）**：完成 `Ch00`、`Ch13`–`Ch24` 與 `附錄 A/B/C` 共 16 座工程物件的第 5 張雙語「定量統御定律（Quantitative Governing Law）」指標卡與 SVG 諧波能量環升級，達成全站 28 座工程物件 **100% 具備 5 張雙語指標卡（共 140 張中英指標卡）與雙層動態 SVG 物理視覺化**。
 
 - **第 01–12 章（前中後段與元件物理 12 座工程物件）第 5 張「定量統御定律卡」與多波段物理場諧波動畫升級（2.0.4）**：於 `工程物件.css` 新增 `.anim-pulse-ring` 與 `.anim-field-glow` 物理場光暈動畫（完整支援 `prefers-reduced-motion` 無障礙降級），並為 `Ch01`–`Ch12` 共 12 座互動工程物件補齊第 5 張雙語「定量統御定律（Quantitative Governing Law）」指標卡與 SVG 多波段能量場動畫。

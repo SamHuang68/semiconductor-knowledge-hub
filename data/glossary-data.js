@@ -16,9 +16,9 @@ export const GLOSSARY_DATA = [
     "en": "Advanced Process Control",
     "abbr": "APC",
     "zh": "先進製程控制",
-    "desc": "R2R、FDC 等自動化製程控制方法的統稱",
-    "descZh": "R2R、FDC 等自動化製程控制方法的統稱",
-    "descEn": "Umbrella term for automatic process control methods such as R2R and FDC",
+    "desc": "R2R、FDC 等自動化製程控制方法的統稱（結合 EWMA 批次間回饋控制律 z_t = λy_t + (1-λ)z_{t-1} 與 FDC 多變量馬氏距離 T²，實現百萬片晶圓自動穩態補償）",
+    "descZh": "R2R、FDC 等自動化製程控制方法的統稱（結合 EWMA 批次間回饋控制律 z_t = λy_t + (1-λ)z_{t-1} 與 FDC 多變量馬氏距離 T²，實現百萬片晶圓自動穩態補償）",
+    "descEn": "Umbrella term for automatic process control methods such as R2R and FDC (combines EWMA Run-to-Run feedback z_t = λy_t + (1-λ)z_{t-1} and multivariate FDC Mahalanobis T² for automated lot-to-lot trim)",
     "chapter": "17"
   },
   {
@@ -97,9 +97,9 @@ export const GLOSSARY_DATA = [
     "en": "Atomic Layer Deposition",
     "abbr": "ALD",
     "zh": "原子層沉積",
-    "desc": "一次只長一層原子、極均勻的沉積方法（提供 ~100% 保形階梯覆蓋，用於 HKMG 氧化鉿、GAA 360° 環繞閘極、DRAM 高深寬比 ZAZ 電容與 SADP/SAQP 間隔壁）",
-    "descZh": "一次只長一層原子、極均勻的沉積方法（提供 ~100% 保形階梯覆蓋，用於 HKMG 氧化鉿、GAA 360° 環繞閘極、DRAM 高深寬比 ZAZ 電容與 SADP/SAQP 間隔壁）",
-    "descEn": "A deposition method that grows one atomic layer at a time, extremely uniform (delivering ~100% atomic step coverage for HKMG HfO₂, GAA 360° gates, DRAM high-aspect ZAZ capacitors, and SADP/SAQP spacers)",
+    "desc": "一次只長一層原子、極均勻的沉積方法（提供 ~100% 保形階梯覆蓋，用於 HKMG 氧化鉿、GAA 360° 環繞閘極、DRAM 高深寬比 ZAZ 電容與 SADP/SAQP 間隔壁）（遵循 Langmuir 自限飽和律，在深寬比 AR = L/d 的深孔中所需脈衝擴散時間與 (L/d)² 成正比）",
+    "descZh": "一次只長一層原子、極均勻的沉積方法（提供 ~100% 保形階梯覆蓋，用於 HKMG 氧化鉿、GAA 360° 環繞閘極、DRAM 高深寬比 ZAZ 電容與 SADP/SAQP 間隔壁）（遵循 Langmuir 自限飽和律，在深寬比 AR = L/d 的深孔中所需脈衝擴散時間與 (L/d)² 成正比）",
+    "descEn": "A deposition method that grows one atomic layer at a time, extremely uniform (delivering ~100% atomic step coverage for HKMG HfO₂, GAA 360° gates, DRAM high-aspect ZAZ capacitors, and SADP/SAQP spacers) (follows self-limiting Langmuir saturation where precursor diffusion time into high-AR holes scales as (L/d)²)",
     "chapter": "5"
   },
   {
@@ -295,9 +295,9 @@ export const GLOSSARY_DATA = [
     "en": "Chemical Mechanical Planarization",
     "abbr": "CMP",
     "zh": "化學機械研磨",
-    "desc": "結合化學與機械作用，把表面磨平或去除多餘材料",
-    "descZh": "結合化學與機械作用，把表面磨平或去除多餘材料",
-    "descEn": "Combining chemical and mechanical action to flatten a surface or remove excess material",
+    "desc": "結合化學與機械作用，把表面磨平或去除多餘材料（移除率遵循 Preston 方程 MRR = Kp·P·V，於 3D 無凸塊混合鍵合須控制介電質 Ra < 0.2 nm 與銅墊碟化 1–3 nm）",
+    "descZh": "結合化學與機械作用，把表面磨平或去除多餘材料（移除率遵循 Preston 方程 MRR = Kp·P·V，於 3D 無凸塊混合鍵合須控制介電質 Ra < 0.2 nm 與銅墊碟化 1–3 nm）",
+    "descEn": "Combining chemical and mechanical action to flatten a surface or remove excess material (governed by Preston’s law MRR = Kp·P·V; 3D Cu-Cu hybrid bonding requires dielectric Ra < 0.2 nm and 1–3 nm Cu recess)",
     "chapter": "8"
   },
   {
@@ -583,9 +583,9 @@ export const GLOSSARY_DATA = [
     "en": "Electromigration",
     "abbr": "EM",
     "zh": "電遷移",
-    "desc": "電流長期推動金屬原子，造成導線斷裂（遵循 Black 方程 $MTTF \\propto J^{-n}\\exp(E_a/k_BT)$；先進製程透過 Co/Ru 選擇性金屬帽層與 Cu-Cu 3D 混合鍵合大幅提升抗 EM 能力）",
-    "descZh": "電流長期推動金屬原子，造成導線斷裂（遵循 Black 方程 $MTTF \\propto J^{-n}\\exp(E_a/k_BT)$；先進製程透過 Co/Ru 選擇性金屬帽層與 Cu-Cu 3D 混合鍵合大幅提升抗 EM 能力）",
-    "descEn": "Long-term current pushing metal atoms along until the wire breaks (governed by Black's equation $MTTF \\propto J^{-n}\\exp(E_a/k_BT)$; mitigated via selective Co/Ru capping and direct Cu-Cu 3D hybrid bonding)",
+    "desc": "電流長期推動金屬原子，造成導線斷裂（遵循 Black 方程 $MTTF \\propto J^{-n}\\exp(E_a/k_BT)$；先進製程透過 Co/Ru 選擇性金屬帽層與 Cu-Cu 3D 混合鍵合大幅提升抗 EM 能力）（平均失效時間遵循 Black 方程 MTTF = A·J^-n·exp(Ea/kT)，短導線則受 Blech 臨界乘積 (J·L)_crit 背應力保護）",
+    "descZh": "電流長期推動金屬原子，造成導線斷裂（遵循 Black 方程 $MTTF \\propto J^{-n}\\exp(E_a/k_BT)$；先進製程透過 Co/Ru 選擇性金屬帽層與 Cu-Cu 3D 混合鍵合大幅提升抗 EM 能力）（平均失效時間遵循 Black 方程 MTTF = A·J^-n·exp(Ea/kT)，短導線則受 Blech 臨界乘積 (J·L)_crit 背應力保護）",
+    "descEn": "Long-term current pushing metal atoms along until the wire breaks (governed by Black's equation $MTTF \\propto J^{-n}\\exp(E_a/k_BT)$; mitigated via selective Co/Ru capping and direct Cu-Cu 3D hybrid bonding) (mean time to failure follows Black’s law MTTF = A·J^-n·exp(Ea/kT), while short wires below the Blech limit (J·L)_crit are immortal)",
     "chapter": "10、22"
   },
   {
@@ -691,9 +691,9 @@ export const GLOSSARY_DATA = [
     "en": "Extreme Ultraviolet",
     "abbr": "EUV",
     "zh": "極紫外光",
-    "desc": "波長 13.5 nm 的微影光源（包含 0.33 NA 標準 EUV 與 0.55 NA High-NA EUV 非對稱 4×/8× 變形光學系統，推動 7nm 至 1.4nm 世代微縮）",
-    "descZh": "波長 13.5 nm 的微影光源（包含 0.33 NA 標準 EUV 與 0.55 NA High-NA EUV 非對稱 4×/8× 變形光學系統，推動 7nm 至 1.4nm 世代微縮）",
-    "descEn": "A 13.5 nm lithography light source (spanning 0.33 NA Low-NA EUV and 0.55 NA High-NA EUV with anamorphic 4×/8× optics driving scaling from 7nm down to 1.4nm)",
+    "desc": "波長 13.5 nm 的微影光源（包含 0.33 NA 標準 EUV 與 0.55 NA High-NA EUV 非對稱 4×/8× 變形光學系統，推動 7nm 至 1.4nm 世代微縮）（依瑞利公式 HP = k₁·λ/NA 與 DOF = ±k₂·λ/NA²，0.55 NA High-NA EUV 解析度達 8 nm，焦深 ±15–20 nm，且須克服 91.8 eV 光子散粒雜訊）",
+    "descZh": "波長 13.5 nm 的微影光源（包含 0.33 NA 標準 EUV 與 0.55 NA High-NA EUV 非對稱 4×/8× 變形光學系統，推動 7nm 至 1.4nm 世代微縮）（依瑞利公式 HP = k₁·λ/NA 與 DOF = ±k₂·λ/NA²，0.55 NA High-NA EUV 解析度達 8 nm，焦深 ±15–20 nm，且須克服 91.8 eV 光子散粒雜訊）",
+    "descEn": "A 13.5 nm lithography light source (spanning 0.33 NA Low-NA EUV and 0.55 NA High-NA EUV with anamorphic 4×/8× optics driving scaling from 7nm down to 1.4nm) (governed by Rayleigh HP = k₁·λ/NA and DOF = ±k₂·λ/NA², reaching 8 nm resolution at 0.55 NA High-NA EUV while managing 91.8 eV photon shot noise)",
     "chapter": "4"
   },
   {
@@ -925,9 +925,9 @@ export const GLOSSARY_DATA = [
     "en": "High Temperature Operating Life",
     "abbr": "HTOL",
     "zh": "高溫操作壽命測試",
-    "desc": "在高溫下長時間通電運作的可靠度測試（JEDEC JESD22-A108 / AEC-Q100 核心壽命驗證，利用高溫 125–150°C 與過壓加速篩除早夭並驗證 2.5D/3D 堆疊長期可靠度）",
-    "descZh": "在高溫下長時間通電運作的可靠度測試（JEDEC JESD22-A108 / AEC-Q100 核心壽命驗證，利用高溫 125–150°C 與過壓加速篩除早夭並驗證 2.5D/3D 堆疊長期可靠度）",
-    "descEn": "A reliability test that runs chips powered at high temperature for a long time (JEDEC JESD22-A108 / AEC-Q100 operating life qualification using 125–150°C thermal and voltage acceleration to screen infant mortality and verify 2.5D/3D stack reliability)",
+    "desc": "在高溫下長時間通電運作的可靠度測試（JEDEC JESD22-A108 / AEC-Q100 核心壽命驗證，利用高溫 125–150°C 與過壓加速篩除早夭並驗證 2.5D/3D 堆疊長期可靠度）（依據 Arrhenius 熱加速因子 AF = exp[(Ea/k)·(1/T_use - 1/T_stress)]，於 125°C 下以 1000 小時等效驗證 10 年現場壽命）",
+    "descZh": "在高溫下長時間通電運作的可靠度測試（JEDEC JESD22-A108 / AEC-Q100 核心壽命驗證，利用高溫 125–150°C 與過壓加速篩除早夭並驗證 2.5D/3D 堆疊長期可靠度）（依據 Arrhenius 熱加速因子 AF = exp[(Ea/k)·(1/T_use - 1/T_stress)]，於 125°C 下以 1000 小時等效驗證 10 年現場壽命）",
+    "descEn": "A reliability test that runs chips powered at high temperature for a long time (JEDEC JESD22-A108 / AEC-Q100 operating life qualification using 125–150°C thermal and voltage acceleration to screen infant mortality and verify 2.5D/3D stack reliability) (uses Arrhenius thermal acceleration AF = exp[(Ea/k)·(1/T_use - 1/T_stress)] at 125°C for 1000 hrs to qualify 10-year field life)",
     "chapter": "22"
   },
   {
@@ -1384,9 +1384,9 @@ export const GLOSSARY_DATA = [
     "en": "Overlay",
     "abbr": "",
     "zh": "疊對誤差",
-    "desc": "上下兩層圖形之間的對準誤差",
-    "descZh": "上下兩層圖形之間的對準誤差",
-    "descEn": "The alignment error between two layers of patterns",
+    "desc": "上下兩層圖形之間的對準誤差（先進 2nm 節點要求層間疊對誤差 3σ < 1.2–1.5 nm，以滿足邊緣放置誤差預算 EPE < Pitch/4）",
+    "descZh": "上下兩層圖形之間的對準誤差（先進 2nm 節點要求層間疊對誤差 3σ < 1.2–1.5 nm，以滿足邊緣放置誤差預算 EPE < Pitch/4）",
+    "descEn": "The alignment error between two layers of patterns (sub-2nm nodes require 3σ overlay < 1.2–1.5 nm to satisfy the Edge Placement Error budget EPE < Pitch/4)",
     "chapter": "4"
   },
   {
@@ -1519,9 +1519,9 @@ export const GLOSSARY_DATA = [
     "en": "Process Capability Index",
     "abbr": "Cpk",
     "zh": "製程能力指標",
-    "desc": "描述製程落在規格內的從容程度",
-    "descZh": "描述製程落在規格內的從容程度",
-    "descEn": "A measure of how comfortably a process fits within its specifications",
+    "desc": "描述製程落在規格內的從容程度（定義為 min[(USL-μ)/3σ, (μ-LSL)/3σ]，車規 AEC-Q100 與 3D KGD 量產要求 Cpk ≥ 1.67，即不良率 < 0.6 DPPM）",
+    "descZh": "描述製程落在規格內的從容程度（定義為 min[(USL-μ)/3σ, (μ-LSL)/3σ]，車規 AEC-Q100 與 3D KGD 量產要求 Cpk ≥ 1.67，即不良率 < 0.6 DPPM）",
+    "descEn": "A measure of how comfortably a process fits within its specifications (defined as min[(USL-μ)/3σ, (μ-LSL)/3σ]; automotive AEC-Q100 and 3D KGD lines enforce Cpk ≥ 1.67, i.e., < 0.6 DPPM)",
     "chapter": "17"
   },
   {
@@ -2023,9 +2023,9 @@ export const GLOSSARY_DATA = [
     "en": "Through-Silicon Via",
     "abbr": "TSV",
     "zh": "矽穿孔",
-    "desc": "垂直貫穿晶片的金屬導線（3D 與 2.5D 封裝核心結構，用於 HBM、3DS DRAM、SoIC、Foveros、X-Cube / SAINT 與矽中介層）",
-    "descZh": "垂直貫穿晶片的金屬導線（3D 與 2.5D 封裝核心結構，用於 HBM、3DS DRAM、SoIC、Foveros、X-Cube / SAINT 與矽中介層）",
-    "descEn": "A metal wire that passes vertically through a die (core vertical interconnect in 3D HBM, 3DS DRAM, SoIC, Foveros, X-Cube / SAINT, and 2.5D silicon interposers)",
+    "desc": "垂直貫穿晶片的金屬導線（3D 與 2.5D 封裝核心結構，用於 HBM、3DS DRAM、SoIC、Foveros、X-Cube / SAINT 與矽中介層）（以 Bosch DRIE 深矽蝕刻搭配保形絕緣襯層與 CEAC 由底向上無空洞電鍍銅超填，構成 HBM 與 3D IC 垂直幹線）",
+    "descZh": "垂直貫穿晶片的金屬導線（3D 與 2.5D 封裝核心結構，用於 HBM、3DS DRAM、SoIC、Foveros、X-Cube / SAINT 與矽中介層）（以 Bosch DRIE 深矽蝕刻搭配保形絕緣襯層與 CEAC 由底向上無空洞電鍍銅超填，構成 HBM 與 3D IC 垂直幹線）",
+    "descEn": "A metal wire that passes vertically through a die (core vertical interconnect in 3D HBM, 3DS DRAM, SoIC, Foveros, X-Cube / SAINT, and 2.5D silicon interposers) (formed via Bosch DRIE, conformal liner, and CEAC bottom-up Cu superfilling to create vertical signal/power trunks in HBM and 3D ICs)",
     "chapter": "13、21"
   },
   {
@@ -2050,9 +2050,9 @@ export const GLOSSARY_DATA = [
     "en": "Ultrapure Water",
     "abbr": "UPW",
     "zh": "超純水",
-    "desc": "幾乎不含任何雜質的清洗用水",
-    "descZh": "幾乎不含任何雜質的清洗用水",
-    "descEn": "Cleaning water with almost no impurities",
+    "desc": "幾乎不含任何雜質的清洗用水（25°C 下理論極限電阻率達 18.24 MΩ·cm、TOC < 1 ppb，支撐 193nm 浸潤式微影水鏡與數百道無水痕清洗）",
+    "descZh": "幾乎不含任何雜質的清洗用水（25°C 下理論極限電阻率達 18.24 MΩ·cm、TOC < 1 ppb，支撐 193nm 浸潤式微影水鏡與數百道無水痕清洗）",
+    "descEn": "Cleaning water with almost no impurities (reaches theoretical intrinsic resistivity of 18.24 MΩ·cm at 25°C with TOC < 1 ppb for 193i immersion lithography and watermark-free cleans)",
     "chapter": "1、9"
   },
   {
@@ -2095,9 +2095,9 @@ export const GLOSSARY_DATA = [
     "en": "Wafer Acceptance Test",
     "abbr": "WAT",
     "zh": "晶圓允收測試",
-    "desc": "量測切割道上的測試鍵，確認製程結果",
-    "descZh": "量測切割道上的測試鍵，確認製程結果",
-    "descEn": "Measuring test keys in the scribe lines to confirm the process results",
+    "desc": "量測切割道上的測試鍵，確認製程結果（採用 Kelvin 四線式 Force/Sense 探針徹底消除引線寄生電阻，精準量測切割道測試鍵之 Vth、Idsat 與接觸電阻）",
+    "descZh": "量測切割道上的測試鍵，確認製程結果（採用 Kelvin 四線式 Force/Sense 探針徹底消除引線寄生電阻，精準量測切割道測試鍵之 Vth、Idsat 與接觸電阻）",
+    "descEn": "Measuring test keys in the scribe lines to confirm the process results (uses Kelvin 4-wire Force/Sense probing to nullify lead resistance and extract scribe-line Vth, Idsat, and contact resistance)",
     "chapter": "19"
   },
   {
@@ -2194,9 +2194,9 @@ export const GLOSSARY_DATA = [
     "en": "Yield",
     "abbr": "",
     "zh": "良率",
-    "desc": "好產品占全部產品的比例",
-    "descZh": "好產品占全部產品的比例",
-    "descEn": "The fraction of good products among all products made",
+    "desc": "好產品占全部產品的比例（大面積晶片遵循負二項叢集模型 Y_NB = (1+A·D0/α)^-α，而 3D 堆疊總良率為 Y_3D = (∏Y_KGD)·Y_bond^(N-1)）",
+    "descZh": "好產品占全部產品的比例（大面積晶片遵循負二項叢集模型 Y_NB = (1+A·D0/α)^-α，而 3D 堆疊總良率為 Y_3D = (∏Y_KGD)·Y_bond^(N-1)）",
+    "descEn": "The fraction of good products among all products made (large dies follow the Negative Binomial model Y_NB = (1+A·D0/α)^-α, while 3D stacks obey compound yield Y_3D = (∏Y_KGD)·Y_bond^(N-1))",
     "chapter": "16"
   },
   {

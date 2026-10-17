@@ -1383,6 +1383,7 @@ export function renderLithoOpticalObject(container, lang = 'zh') {
             <rect x="15" y="210" width="180" height="40" fill="#334155"/>
             <text x="105" y="235" text-anchor="middle" fill="#94a3b8" font-size="11">矽基板 (Si Substrate)</text>
           </g>
+          <g class="eng-kinetic-wave" pointer-events="none"><circle cx="400" cy="200" r="68" fill="none" stroke="#38bdf8" stroke-width="1.4" class="anim-pulse-ring" opacity="0.45"/><path d="M 140,60 Q 400,32 660,60" fill="none" stroke="#34d399" stroke-width="1.5" class="anim-field-glow" opacity="0.5"/></g>
         </svg>
       `;
 
@@ -1433,6 +1434,7 @@ export function renderLithoOpticalObject(container, lang = 'zh') {
             <rect x="235" y="44" width="30" height="24" fill="#38bdf8" opacity="0.8"/>
             <text x="250" y="59" text-anchor="middle" fill="#09131b" font-size="9" font-weight="700">Die 1x</text>
           </g>
+          <g class="eng-kinetic-wave" pointer-events="none"><circle cx="400" cy="200" r="68" fill="none" stroke="#38bdf8" stroke-width="1.4" class="anim-pulse-ring" opacity="0.45"/><path d="M 140,60 Q 400,32 660,60" fill="none" stroke="#34d399" stroke-width="1.5" class="anim-field-glow" opacity="0.5"/></g>
         </svg>
       `;
       dashboardHtml = `
@@ -1723,6 +1725,7 @@ export function renderDepositionMechanismObject(container, lang = 'zh') {
               <text x="150" y="130" text-anchor="middle" fill="#ef4444" font-size="10.5" font-weight="700">⚠️ 孔口早閉空洞 (Void Risk)</text>
             ` : ''}
           </g>
+          <g class="eng-kinetic-wave" pointer-events="none"><circle cx="400" cy="200" r="68" fill="none" stroke="#38bdf8" stroke-width="1.4" class="anim-pulse-ring" opacity="0.45"/><path d="M 140,60 Q 400,32 660,60" fill="none" stroke="#34d399" stroke-width="1.5" class="anim-field-glow" opacity="0.5"/></g>
         </svg>
       `;
       dashboardHtml = `
@@ -1811,6 +1814,7 @@ export function renderDepositionMechanismObject(container, lang = 'zh') {
 
             <text x="150" y="160" text-anchor="middle" fill="#14b8a6" font-size="12" font-weight="700">100% 完美保形階梯覆蓋</text>
           </g>
+          <g class="eng-kinetic-wave" pointer-events="none"><circle cx="400" cy="200" r="68" fill="none" stroke="#38bdf8" stroke-width="1.4" class="anim-pulse-ring" opacity="0.45"/><path d="M 140,60 Q 400,32 660,60" fill="none" stroke="#34d399" stroke-width="1.5" class="anim-field-glow" opacity="0.5"/></g>
         </svg>
       `;
 
@@ -2182,6 +2186,7 @@ export function renderPlasmaEtchObject(container, lang = 'zh') {
               ${profileAngle}°
             </text>
           </g>
+          <g class="eng-kinetic-wave" pointer-events="none"><circle cx="400" cy="200" r="68" fill="none" stroke="#38bdf8" stroke-width="1.4" class="anim-pulse-ring" opacity="0.45"/><path d="M 140,60 Q 400,32 660,60" fill="none" stroke="#34d399" stroke-width="1.5" class="anim-field-glow" opacity="0.5"/></g>
         </svg>
       `;
 
@@ -2240,6 +2245,7 @@ export function renderPlasmaEtchObject(container, lang = 'zh') {
             <text x="50" y="235" text-anchor="middle" fill="#38bdf8" font-size="10">寬槽深</text>
             <text x="95" y="165" text-anchor="middle" fill="#ef4444" font-size="10">窄孔淺</text>
           </g>
+          <g class="eng-kinetic-wave" pointer-events="none"><circle cx="400" cy="200" r="68" fill="none" stroke="#38bdf8" stroke-width="1.4" class="anim-pulse-ring" opacity="0.45"/><path d="M 140,60 Q 400,32 660,60" fill="none" stroke="#34d399" stroke-width="1.5" class="anim-field-glow" opacity="0.5"/></g>
         </svg>
       `;
       dashboardHtml = `
@@ -2541,6 +2547,7 @@ export function renderTransistor3DObject(container, lang = 'zh') {
               W_eff = 2·H_fin + W_fin = 2×${finHeight} + ${finWidth} = ${weffNm} nm (${ionRatio.toFixed(2)}x 電流)
             </text>
           </g>
+          <g class="eng-kinetic-wave" pointer-events="none"><circle cx="400" cy="200" r="68" fill="none" stroke="#38bdf8" stroke-width="1.4" class="anim-pulse-ring" opacity="0.45"/><path d="M 140,60 Q 400,32 660,60" fill="none" stroke="#34d399" stroke-width="1.5" class="anim-field-glow" opacity="0.5"/></g>
         </svg>
       `;
       dashboardHtml = `
@@ -2610,6 +2617,7 @@ export function renderTransistor3DObject(container, lang = 'zh') {
             <text x="180" y="260" text-anchor="middle" fill="#f59e0b" font-size="11.5" font-weight="700">背面供電網路 (BSPDN / SuperPower Rail)</text>
             <text x="180" y="278" text-anchor="middle" fill="#94a3b8" font-size="10.5">電源線移至晶圓背部 · 正面純繞訊號</text>
           </g>
+          <g class="eng-kinetic-wave" pointer-events="none"><circle cx="400" cy="200" r="68" fill="none" stroke="#38bdf8" stroke-width="1.4" class="anim-pulse-ring" opacity="0.45"/><path d="M 140,60 Q 400,32 660,60" fill="none" stroke="#34d399" stroke-width="1.5" class="anim-field-glow" opacity="0.5"/></g>
         </svg>
       `;
       dashboardHtml = `
@@ -2949,6 +2957,7 @@ export function renderIonImplantObject(container, lang = 'zh') {
             </g>
             <text x="155" y="115" text-anchor="middle" fill="#10b981" font-size="11.5" font-weight="700">摻質進入矽晶格格位提供自由載子</text>
           </g>
+          <g class="eng-kinetic-wave" pointer-events="none"><circle cx="400" cy="200" r="68" fill="none" stroke="#38bdf8" stroke-width="1.4" class="anim-pulse-ring" opacity="0.45"/><path d="M 140,60 Q 400,32 660,60" fill="none" stroke="#34d399" stroke-width="1.5" class="anim-field-glow" opacity="0.5"/></g>
         </svg>
       `;
 
@@ -3004,6 +3013,7 @@ export function renderIonImplantObject(container, lang = 'zh') {
               <circle cx="180" cy="80" r="4"/><circle cx="180" cy="130" r="4"/><circle cx="180" cy="180" r="4"/>
             </g>
           </g>
+          <g class="eng-kinetic-wave" pointer-events="none"><circle cx="400" cy="200" r="68" fill="none" stroke="#38bdf8" stroke-width="1.4" class="anim-pulse-ring" opacity="0.45"/><path d="M 140,60 Q 400,32 660,60" fill="none" stroke="#34d399" stroke-width="1.5" class="anim-field-glow" opacity="0.5"/></g>
         </svg>
       `;
 
@@ -3250,6 +3260,7 @@ export function renderCMPObject(container, lang = 'zh') {
             <text x="75" y="115" text-anchor="middle" fill="#10b981" font-size="11" font-weight="700">低處不承受壓力：鈍化保護</text>
             <text x="375" y="115" text-anchor="middle" fill="#10b981" font-size="11" font-weight="700">低處不承受壓力：鈍化保護</text>
           </g>
+          <g class="eng-kinetic-wave" pointer-events="none"><circle cx="400" cy="200" r="68" fill="none" stroke="#38bdf8" stroke-width="1.4" class="anim-pulse-ring" opacity="0.45"/><path d="M 140,60 Q 400,32 660,60" fill="none" stroke="#34d399" stroke-width="1.5" class="anim-field-glow" opacity="0.5"/></g>
         </svg>
       `;
 
@@ -3302,6 +3313,7 @@ export function renderCMPObject(container, lang = 'zh') {
             </g>
             <text x="155" y="125" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="700">金屬密度平衡在 30%-50% · 完美平坦</text>
           </g>
+          <g class="eng-kinetic-wave" pointer-events="none"><circle cx="400" cy="200" r="68" fill="none" stroke="#38bdf8" stroke-width="1.4" class="anim-pulse-ring" opacity="0.45"/><path d="M 140,60 Q 400,32 660,60" fill="none" stroke="#34d399" stroke-width="1.5" class="anim-field-glow" opacity="0.5"/></g>
         </svg>
       `;
 
@@ -3541,6 +3553,7 @@ export function renderInterconnectObject(container, lang = 'zh') {
             </g>
             <text x="150" y="255" text-anchor="middle" fill="#10b981" font-size="11.5" font-weight="700">加速劑 Accelerator (孔底加速填平)</text>
           </g>
+          <g class="eng-kinetic-wave" pointer-events="none"><circle cx="400" cy="200" r="68" fill="none" stroke="#38bdf8" stroke-width="1.4" class="anim-pulse-ring" opacity="0.45"/><path d="M 140,60 Q 400,32 660,60" fill="none" stroke="#34d399" stroke-width="1.5" class="anim-field-glow" opacity="0.5"/></g>
         </svg>
       `;
 
@@ -3649,6 +3662,7 @@ export function renderInterconnectObject(container, lang = 'zh') {
               Black 方程：MTTF ∝ J⁻² · exp(Ea / kT) | 當前溫度: ${tempC}°C (${(tempC + 273.15).toFixed(1)} K)
             </text>
           </g>
+          <g class="eng-kinetic-wave" pointer-events="none"><circle cx="400" cy="200" r="68" fill="none" stroke="#38bdf8" stroke-width="1.4" class="anim-pulse-ring" opacity="0.45"/><path d="M 140,60 Q 400,32 660,60" fill="none" stroke="#34d399" stroke-width="1.5" class="anim-field-glow" opacity="0.5"/></g>
         </svg>
       `;
 
@@ -3930,6 +3944,7 @@ export function renderAdvancedPackagingObject(container, lang = 'zh') {
 
           <!-- 說明指標 -->
           <text x="400" y="300" text-anchor="middle" fill="#10b981" font-size="13" font-weight="750">無焊錫 · 無底部填充膠 · 接點間距 &lt; 1.0 µm</text>
+          <g class="eng-kinetic-wave" pointer-events="none"><circle cx="400" cy="200" r="68" fill="none" stroke="#38bdf8" stroke-width="1.4" class="anim-pulse-ring" opacity="0.45"/><path d="M 140,60 Q 400,32 660,60" fill="none" stroke="#34d399" stroke-width="1.5" class="anim-field-glow" opacity="0.5"/></g>
         </svg>
       `;
 
@@ -4057,6 +4072,7 @@ export function renderAdvancedPackagingObject(container, lang = 'zh') {
               <text x="${Math.max(25, Math.min(415, (bumpPitch / 150) * 440))}" y="62" text-anchor="middle" fill="${techBadgeColor}" font-size="11" font-weight="700">當前: ${bumpPitch.toFixed(1)}µm</text>
             </g>
           </g>
+          <g class="eng-kinetic-wave" pointer-events="none"><circle cx="400" cy="200" r="68" fill="none" stroke="#38bdf8" stroke-width="1.4" class="anim-pulse-ring" opacity="0.45"/><path d="M 140,60 Q 400,32 660,60" fill="none" stroke="#34d399" stroke-width="1.5" class="anim-field-glow" opacity="0.5"/></g>
         </svg>
       `;
 
@@ -4104,6 +4120,7 @@ export function renderAdvancedPackagingObject(container, lang = 'zh') {
             <text x="-15" y="187" text-anchor="end" fill="#10b981" font-size="13" font-weight="700">3D SoIC 混合鍵合</text>
             <text x="20" y="222" fill="#10b981" font-size="13" font-weight="750">約 0.9 µm · 約 1,200,000 / mm²（約提升 1500 倍）</text>
           </g>
+          <g class="eng-kinetic-wave" pointer-events="none"><circle cx="400" cy="200" r="68" fill="none" stroke="#38bdf8" stroke-width="1.4" class="anim-pulse-ring" opacity="0.45"/><path d="M 140,60 Q 400,32 660,60" fill="none" stroke="#34d399" stroke-width="1.5" class="anim-field-glow" opacity="0.5"/></g>
         </svg>
       `;
 
@@ -4439,6 +4456,7 @@ export function renderIngotWaferObject(container, lang = 'zh') {
             <text x="200" y="48" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="700">一次切出 400+ 片超薄晶圓</text>
             <text x="200" y="66" text-anchor="middle" fill="#38bdf8" font-size="11">單片厚度 ~775 µm · 切縫損耗 Kerf Loss ~110 µm</text>
           </g>
+          <g class="eng-kinetic-wave" pointer-events="none"><circle cx="400" cy="200" r="68" fill="none" stroke="#38bdf8" stroke-width="1.4" class="anim-pulse-ring" opacity="0.45"/><path d="M 140,60 Q 400,32 660,60" fill="none" stroke="#34d399" stroke-width="1.5" class="anim-field-glow" opacity="0.5"/></g>
         </svg>
       `;
 
@@ -4517,6 +4535,7 @@ export function renderIngotWaferObject(container, lang = 'zh') {
               </g>
             </g>
           </g>
+          <g class="eng-kinetic-wave" pointer-events="none"><circle cx="400" cy="200" r="68" fill="none" stroke="#38bdf8" stroke-width="1.4" class="anim-pulse-ring" opacity="0.45"/><path d="M 140,60 Q 400,32 660,60" fill="none" stroke="#34d399" stroke-width="1.5" class="anim-field-glow" opacity="0.5"/></g>
         </svg>
       `;
 
@@ -4879,6 +4898,7 @@ export function renderWetCleanObject(container, lang = 'zh') {
             <text x="120" y="32" text-anchor="middle" fill="#38bdf8" font-size="10" font-weight="700">δ_ac = √(ν / πf)</text>
             <text x="120" y="47" text-anchor="middle" fill="#cbd5e1" font-size="9.5">F_vdw = (A_H · d_p) / (12 z_0²)</text>
           </g>
+          <g class="eng-kinetic-wave" pointer-events="none"><circle cx="400" cy="200" r="68" fill="none" stroke="#38bdf8" stroke-width="1.4" class="anim-pulse-ring" opacity="0.45"/><path d="M 140,60 Q 400,32 660,60" fill="none" stroke="#34d399" stroke-width="1.5" class="anim-field-glow" opacity="0.5"/></g>
         </svg>
       `;
 
@@ -4945,6 +4965,7 @@ export function renderWetCleanObject(container, lang = 'zh') {
             <text x="75" y="48" fill="#34d399" font-size="11.5" font-weight="750">⇓ Marangoni 表面張力梯度拉回力</text>
             <text x="75" y="95" fill="#cbd5e1" font-size="10">水膜自發被向下吸回水槽，無水滴殘留蒸發</text>
           </g>
+          <g class="eng-kinetic-wave" pointer-events="none"><circle cx="400" cy="200" r="68" fill="none" stroke="#38bdf8" stroke-width="1.4" class="anim-pulse-ring" opacity="0.45"/><path d="M 140,60 Q 400,32 660,60" fill="none" stroke="#34d399" stroke-width="1.5" class="anim-field-glow" opacity="0.5"/></g>
         </svg>
       `;
 
@@ -5487,6 +5508,7 @@ export function renderMemoryTechObject(container, lang = 'zh') {
             <text x="165" y="352" text-anchor="middle" fill="#94a3b8" font-size="9">單顆晶粒 TLC 裸晶容量: ${(dieCapacity / 1000).toFixed(2)} Tb (${dieCapacity} Gb)</text>
           </g>
           <g class="eng-kinetic-overlay" pointer-events="none"><path d="M 150,200 L 650,200" fill="none" stroke="#38bdf8" stroke-width="2" stroke-dasharray="8 6" class="anim-data-flow" opacity="0.6"/><path d="M 400,70 L 400,340" fill="none" stroke="#fbbf24" stroke-width="2" stroke-dasharray="6 6" class="anim-beam" opacity="0.65"/></g>
+          <g class="eng-kinetic-wave" pointer-events="none"><circle cx="400" cy="200" r="68" fill="none" stroke="#38bdf8" stroke-width="1.4" class="anim-pulse-ring" opacity="0.45"/><path d="M 140,60 Q 400,32 660,60" fill="none" stroke="#34d399" stroke-width="1.5" class="anim-field-glow" opacity="0.5"/></g>
         </svg>
       `;
 
@@ -5541,6 +5563,7 @@ export function renderMemoryTechObject(container, lang = 'zh') {
             <text x="50" y="152" fill="#34d399" font-size="11" font-weight="700">&gt; 1.2 TB/s</text>
           </g>
           <g class="eng-kinetic-overlay" pointer-events="none"><path d="M 150,200 L 650,200" fill="none" stroke="#38bdf8" stroke-width="2" stroke-dasharray="8 6" class="anim-data-flow" opacity="0.6"/><path d="M 400,70 L 400,340" fill="none" stroke="#fbbf24" stroke-width="2" stroke-dasharray="6 6" class="anim-beam" opacity="0.65"/></g>
+          <g class="eng-kinetic-wave" pointer-events="none"><circle cx="400" cy="200" r="68" fill="none" stroke="#38bdf8" stroke-width="1.4" class="anim-pulse-ring" opacity="0.45"/><path d="M 140,60 Q 400,32 660,60" fill="none" stroke="#34d399" stroke-width="1.5" class="anim-field-glow" opacity="0.5"/></g>
         </svg>
       `;
 
@@ -5846,6 +5869,7 @@ export function renderMetrologyInspectionObject(container, lang = 'zh') {
               <text x="120" y="55" text-anchor="middle" fill="#fbbf24" font-size="10.5" font-weight="750">漆黑背景下瞬間點亮 15nm 孤立微粒！</text>
             </g>
           </g>
+          <g class="eng-kinetic-wave" pointer-events="none"><circle cx="400" cy="200" r="68" fill="none" stroke="#38bdf8" stroke-width="1.4" class="anim-pulse-ring" opacity="0.45"/><path d="M 140,60 Q 400,32 660,60" fill="none" stroke="#34d399" stroke-width="1.5" class="anim-field-glow" opacity="0.5"/></g>
         </svg>
       `;
 
@@ -5915,6 +5939,7 @@ export function renderMetrologyInspectionObject(container, lang = 'zh') {
             <text x="220" y="24" text-anchor="middle" fill="#34d399" font-size="11" font-weight="700">tan(Ψ)·e^(iΔ) = R_p / R_s (麥克斯韋電磁場嚴密擬合)</text>
             <text x="220" y="45" text-anchor="middle" fill="#cbd5e1" font-size="10">同時精準解算多層奈米薄膜物理厚度 (d) 與複數折射率 (n, k)</text>
           </g>
+          <g class="eng-kinetic-wave" pointer-events="none"><circle cx="400" cy="200" r="68" fill="none" stroke="#38bdf8" stroke-width="1.4" class="anim-pulse-ring" opacity="0.45"/><path d="M 140,60 Q 400,32 660,60" fill="none" stroke="#34d399" stroke-width="1.5" class="anim-field-glow" opacity="0.5"/></g>
         </svg>
       `;
 
@@ -6267,6 +6292,7 @@ export function renderYieldFailureAnalysisObject(container, lang = 'zh') {
             <text x="360" y="-10" fill="#34d399" font-size="11" font-weight="700">奈米機械手臂 (Omniprobe 提取)</text>
           </g>
           <g class="eng-kinetic-overlay" pointer-events="none"><line x1="160" y1="60" x2="400" y2="210" stroke="#38bdf8" stroke-width="2" stroke-dasharray="7 5" class="anim-beam" opacity="0.7"/><circle cx="400" cy="210" r="48" fill="none" stroke="#f43f5e" stroke-width="1.8" stroke-dasharray="6 6" class="anim-data-flow" opacity="0.65"/></g>
+          <g class="eng-kinetic-wave" pointer-events="none"><circle cx="400" cy="200" r="68" fill="none" stroke="#38bdf8" stroke-width="1.4" class="anim-pulse-ring" opacity="0.45"/><path d="M 140,60 Q 400,32 660,60" fill="none" stroke="#34d399" stroke-width="1.5" class="anim-field-glow" opacity="0.5"/></g>
         </svg>
       `;
 
@@ -6318,6 +6344,7 @@ export function renderYieldFailureAnalysisObject(container, lang = 'zh') {
             </g>
           </g>
           <g class="eng-kinetic-overlay" pointer-events="none"><line x1="160" y1="60" x2="400" y2="210" stroke="#38bdf8" stroke-width="2" stroke-dasharray="7 5" class="anim-beam" opacity="0.7"/><circle cx="400" cy="210" r="48" fill="none" stroke="#f43f5e" stroke-width="1.8" stroke-dasharray="6 6" class="anim-data-flow" opacity="0.65"/></g>
+          <g class="eng-kinetic-wave" pointer-events="none"><circle cx="400" cy="200" r="68" fill="none" stroke="#38bdf8" stroke-width="1.4" class="anim-pulse-ring" opacity="0.45"/><path d="M 140,60 Q 400,32 660,60" fill="none" stroke="#34d399" stroke-width="1.5" class="anim-field-glow" opacity="0.5"/></g>
         </svg>
       `;
 
@@ -6606,6 +6633,7 @@ export function renderProcessControlObject(container, lang = 'zh') {
             </text>
           </g>
           <g class="eng-kinetic-overlay" pointer-events="none"><path d="M 100,210 L 700,210" fill="none" stroke="#10b981" stroke-width="2" stroke-dasharray="10 6" class="anim-data-flow" opacity="0.65"/><path d="M 100,130 L 700,130 M 100,290 L 700,290" fill="none" stroke="#f59e0b" stroke-width="1.4" stroke-dasharray="5 5" class="anim-beam" opacity="0.5"/></g>
+          <g class="eng-kinetic-wave" pointer-events="none"><circle cx="400" cy="200" r="68" fill="none" stroke="#38bdf8" stroke-width="1.4" class="anim-pulse-ring" opacity="0.45"/><path d="M 140,60 Q 400,32 660,60" fill="none" stroke="#34d399" stroke-width="1.5" class="anim-field-glow" opacity="0.5"/></g>
         </svg>
       `;
 
@@ -6663,6 +6691,7 @@ export function renderProcessControlObject(container, lang = 'zh') {
           <path d="M 660,170 L 660,260 L 180,260 L 180,175" fill="none" stroke="#f59e0b" stroke-width="2.5" stroke-dasharray="6 4" marker-end="url(#arrow)"/>
           <text x="420" y="285" text-anchor="middle" fill="#fbbf24" font-size="11.5" font-weight="750">⇦ 即時配方補償 (動態調整下一批蝕刻時間 -1.2s 或沉積氣體流量) ⇦</text>
           <g class="eng-kinetic-overlay" pointer-events="none"><path d="M 100,210 L 700,210" fill="none" stroke="#10b981" stroke-width="2" stroke-dasharray="10 6" class="anim-data-flow" opacity="0.65"/><path d="M 100,130 L 700,130 M 100,290 L 700,290" fill="none" stroke="#f59e0b" stroke-width="1.4" stroke-dasharray="5 5" class="anim-beam" opacity="0.5"/></g>
+          <g class="eng-kinetic-wave" pointer-events="none"><circle cx="400" cy="200" r="68" fill="none" stroke="#38bdf8" stroke-width="1.4" class="anim-pulse-ring" opacity="0.45"/><path d="M 140,60 Q 400,32 660,60" fill="none" stroke="#34d399" stroke-width="1.5" class="anim-field-glow" opacity="0.5"/></g>
         </svg>
       `;
 
@@ -7024,6 +7053,7 @@ export function renderWaferTestObject(container, lang = 'zh') {
           <rect x="60" y="340" width="680" height="30" fill="#334155" rx="3"/>
           <text x="400" y="360" text-anchor="middle" fill="#cbd5e1" font-size="11">晶圓真空吸盤載台 (Wafer Prober Chuck with Thermal Control -40°C ~ 125°C)</text>
           <g class="eng-kinetic-overlay" pointer-events="none"><path d="M 220,90 L 380,220 L 580,90" fill="none" stroke="#fbbf24" stroke-width="2.2" stroke-dasharray="7 5" class="anim-data-flow" opacity="0.75"/><circle cx="380" cy="220" r="24" fill="none" stroke="#38bdf8" stroke-width="1.8" stroke-dasharray="4 4" class="anim-beam" opacity="0.7"/></g>
+          <g class="eng-kinetic-wave" pointer-events="none"><circle cx="400" cy="200" r="68" fill="none" stroke="#38bdf8" stroke-width="1.4" class="anim-pulse-ring" opacity="0.45"/><path d="M 140,60 Q 400,32 660,60" fill="none" stroke="#34d399" stroke-width="1.5" class="anim-field-glow" opacity="0.5"/></g>
         </svg>
       `;
 
@@ -7116,6 +7146,7 @@ export function renderWaferTestObject(container, lang = 'zh') {
             </g>
           </g>
           <g class="eng-kinetic-overlay" pointer-events="none"><path d="M 220,90 L 380,220 L 580,90" fill="none" stroke="#fbbf24" stroke-width="2.2" stroke-dasharray="7 5" class="anim-data-flow" opacity="0.75"/><circle cx="380" cy="220" r="24" fill="none" stroke="#38bdf8" stroke-width="1.8" stroke-dasharray="4 4" class="anim-beam" opacity="0.7"/></g>
+          <g class="eng-kinetic-wave" pointer-events="none"><circle cx="400" cy="200" r="68" fill="none" stroke="#38bdf8" stroke-width="1.4" class="anim-pulse-ring" opacity="0.45"/><path d="M 140,60 Q 400,32 660,60" fill="none" stroke="#34d399" stroke-width="1.5" class="anim-field-glow" opacity="0.5"/></g>
         </svg>
       `;
 
@@ -7467,6 +7498,7 @@ export function renderFabEnvironmentObject(container, lang = 'zh') {
             <text x="160" y="55" text-anchor="middle" fill="#cbd5e1" font-size="10.5">真空吸盤自動開門 (Door Opener) · 晶圓零暴露傳送</text>
             <text x="160" y="75" text-anchor="middle" fill="#38bdf8" font-size="10">微正壓氣幕 (Mini-Environment ISO 1) 防止顆粒侵入</text>
           </g>
+          <g class="eng-kinetic-wave" pointer-events="none"><circle cx="400" cy="200" r="68" fill="none" stroke="#38bdf8" stroke-width="1.4" class="anim-pulse-ring" opacity="0.45"/><path d="M 140,60 Q 400,32 660,60" fill="none" stroke="#34d399" stroke-width="1.5" class="anim-field-glow" opacity="0.5"/></g>
         </svg>
       `;
 
@@ -7538,6 +7570,7 @@ export function renderFabEnvironmentObject(container, lang = 'zh') {
               <text x="130" y="202" text-anchor="middle" fill="#94a3b8" font-size="9.5">酸鹼排氣鹼液逆向噴淋中和</text>
             </g>
           </g>
+          <g class="eng-kinetic-wave" pointer-events="none"><circle cx="400" cy="200" r="68" fill="none" stroke="#38bdf8" stroke-width="1.4" class="anim-pulse-ring" opacity="0.45"/><path d="M 140,60 Q 400,32 660,60" fill="none" stroke="#34d399" stroke-width="1.5" class="anim-field-glow" opacity="0.5"/></g>
         </svg>
       `;
 
@@ -7802,6 +7835,7 @@ export function renderSemiconductorPhysicsObject(container, lang = 'zh') {
             <text x="240" y="42" text-anchor="middle" fill="#cbd5e1" font-size="10.5">順偏電壓克服 0.7V 內建能障導通；逆偏擴大空乏區杜絕漏電</text>
           </g>
           <g class="eng-kinetic-overlay" pointer-events="none"><path d="M 180,210 L 620,210" fill="none" stroke="#38bdf8" stroke-width="2.2" stroke-dasharray="8 5" class="anim-data-flow" opacity="0.7"/><line x1="400" y1="290" x2="400" y2="120" stroke="#fbbf24" stroke-width="2" stroke-dasharray="6 4" class="anim-beam" opacity="0.7"/></g>
+          <g class="eng-kinetic-wave" pointer-events="none"><circle cx="400" cy="200" r="68" fill="none" stroke="#38bdf8" stroke-width="1.4" class="anim-pulse-ring" opacity="0.45"/><path d="M 140,60 Q 400,32 660,60" fill="none" stroke="#34d399" stroke-width="1.5" class="anim-field-glow" opacity="0.5"/></g>
         </svg>
       `;
 
@@ -7911,6 +7945,7 @@ export function renderSemiconductorPhysicsObject(container, lang = 'zh') {
             <text x="240" y="36" text-anchor="middle" fill="#cbd5e1" font-size="10">${isCutoff ? '閘極電壓不足，表面未反轉' : (isSat ? '汲極電壓超過夾斷界限 V_DS ≥ V_ov，電流受橫向飽和速度限制' : '閘極產生均勻反轉層，電晶體呈歐姆線性導通')}</text>
           </g>
           <g class="eng-kinetic-overlay" pointer-events="none"><path d="M 180,210 L 620,210" fill="none" stroke="#38bdf8" stroke-width="2.2" stroke-dasharray="8 5" class="anim-data-flow" opacity="0.7"/><line x1="400" y1="290" x2="400" y2="120" stroke="#fbbf24" stroke-width="2" stroke-dasharray="6 4" class="anim-beam" opacity="0.7"/></g>
+          <g class="eng-kinetic-wave" pointer-events="none"><circle cx="400" cy="200" r="68" fill="none" stroke="#38bdf8" stroke-width="1.4" class="anim-pulse-ring" opacity="0.45"/><path d="M 140,60 Q 400,32 660,60" fill="none" stroke="#34d399" stroke-width="1.5" class="anim-field-glow" opacity="0.5"/></g>
         </svg>
       `;
 
@@ -8225,6 +8260,7 @@ export function renderPackagingFlowObject(container, lang = 'zh') {
               無底部填膠壽命僅: ~${nfBare} 次循環 ${isAutoGradeBare ? '(合格)' : '(⚠️ 未達車規 1000 次門檻，極易脆斷)'}
             </text>
           </g>
+          <g class="eng-kinetic-wave" pointer-events="none"><circle cx="400" cy="200" r="68" fill="none" stroke="#38bdf8" stroke-width="1.4" class="anim-pulse-ring" opacity="0.45"/><path d="M 140,60 Q 400,32 660,60" fill="none" stroke="#34d399" stroke-width="1.5" class="anim-field-glow" opacity="0.5"/></g>
         </svg>
       `;
 
@@ -8309,6 +8345,7 @@ export function renderPackagingFlowObject(container, lang = 'zh') {
               高分子交聯硬化 (150°C 固化) · 焊錫凸塊抗疲勞能力提升 16.5 倍，全數通過車規 AEC-Q100！
             </text>
           </g>
+          <g class="eng-kinetic-wave" pointer-events="none"><circle cx="400" cy="200" r="68" fill="none" stroke="#38bdf8" stroke-width="1.4" class="anim-pulse-ring" opacity="0.45"/><path d="M 140,60 Q 400,32 660,60" fill="none" stroke="#34d399" stroke-width="1.5" class="anim-field-glow" opacity="0.5"/></g>
         </svg>
       `;
 
@@ -8554,6 +8591,7 @@ export function renderReliabilityTestingObject(container, lang = 'zh') {
               <text x="14" y="118" fill="#38bdf8" font-size="10.5">預燒 48 小時 ≡ 正常運轉 ${equivDays.toLocaleString()} 天 (${equivYears} 年)</text>
             </g>
           </g>
+          <g class="eng-kinetic-wave" pointer-events="none"><circle cx="400" cy="200" r="68" fill="none" stroke="#38bdf8" stroke-width="1.4" class="anim-pulse-ring" opacity="0.45"/><path d="M 140,60 Q 400,32 660,60" fill="none" stroke="#34d399" stroke-width="1.5" class="anim-field-glow" opacity="0.5"/></g>
         </svg>
       `;
 
@@ -8618,6 +8656,7 @@ export function renderReliabilityTestingObject(container, lang = 'zh') {
               <text x="70" y="115" text-anchor="middle" fill="#cbd5e1" font-size="9.5">電壓被箝位在 &lt; 5V</text>
             </g>
           </g>
+          <g class="eng-kinetic-wave" pointer-events="none"><circle cx="400" cy="200" r="68" fill="none" stroke="#38bdf8" stroke-width="1.4" class="anim-pulse-ring" opacity="0.45"/><path d="M 140,60 Q 400,32 660,60" fill="none" stroke="#34d399" stroke-width="1.5" class="anim-field-glow" opacity="0.5"/></g>
         </svg>
       `;
 
@@ -8992,6 +9031,7 @@ export function renderChipJourneyObject(container, lang = 'zh') {
             </g>
           </g>
           <g class="eng-kinetic-overlay" pointer-events="none"><path d="M 90,210 L 710,210" fill="none" stroke="#38bdf8" stroke-width="2.2" stroke-dasharray="10 6" class="anim-data-flow" opacity="0.7"/><path d="M 140,140 L 660,140" fill="none" stroke="#34d399" stroke-width="1.6" stroke-dasharray="6 6" class="anim-beam" opacity="0.55"/></g>
+          <g class="eng-kinetic-wave" pointer-events="none"><circle cx="400" cy="200" r="68" fill="none" stroke="#38bdf8" stroke-width="1.4" class="anim-pulse-ring" opacity="0.45"/><path d="M 140,60 Q 400,32 660,60" fill="none" stroke="#34d399" stroke-width="1.5" class="anim-field-glow" opacity="0.5"/></g>
         </svg>
       `;
 
@@ -9071,6 +9111,7 @@ export function renderChipJourneyObject(container, lang = 'zh') {
             </g>
           </g>
           <g class="eng-kinetic-overlay" pointer-events="none"><path d="M 90,210 L 710,210" fill="none" stroke="#38bdf8" stroke-width="2.2" stroke-dasharray="10 6" class="anim-data-flow" opacity="0.7"/><path d="M 140,140 L 660,140" fill="none" stroke="#34d399" stroke-width="1.6" stroke-dasharray="6 6" class="anim-beam" opacity="0.55"/></g>
+          <g class="eng-kinetic-wave" pointer-events="none"><circle cx="400" cy="200" r="68" fill="none" stroke="#38bdf8" stroke-width="1.4" class="anim-pulse-ring" opacity="0.45"/><path d="M 140,60 Q 400,32 660,60" fill="none" stroke="#34d399" stroke-width="1.5" class="anim-field-glow" opacity="0.5"/></g>
         </svg>
       `;
 
@@ -9398,6 +9439,7 @@ export function renderProcessScalingObject(container, lang = 'zh') {
             </g>
           </g>
           <g class="eng-kinetic-overlay" pointer-events="none"><path d="M 120,310 Q 400,200 680,100" fill="none" stroke="#38bdf8" stroke-width="2.2" stroke-dasharray="9 6" class="anim-data-flow" opacity="0.7"/><circle cx="560" cy="150" r="32" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-dasharray="5 5" class="anim-beam" opacity="0.65"/></g>
+          <g class="eng-kinetic-wave" pointer-events="none"><circle cx="400" cy="200" r="68" fill="none" stroke="#38bdf8" stroke-width="1.4" class="anim-pulse-ring" opacity="0.45"/><path d="M 140,60 Q 400,32 660,60" fill="none" stroke="#34d399" stroke-width="1.5" class="anim-field-glow" opacity="0.5"/></g>
         </svg>
       `;
 
@@ -9465,6 +9507,7 @@ export function renderProcessScalingObject(container, lang = 'zh') {
             </g>
           </g>
           <g class="eng-kinetic-overlay" pointer-events="none"><path d="M 120,310 Q 400,200 680,100" fill="none" stroke="#38bdf8" stroke-width="2.2" stroke-dasharray="9 6" class="anim-data-flow" opacity="0.7"/><circle cx="560" cy="150" r="32" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-dasharray="5 5" class="anim-beam" opacity="0.65"/></g>
+          <g class="eng-kinetic-wave" pointer-events="none"><circle cx="400" cy="200" r="68" fill="none" stroke="#38bdf8" stroke-width="1.4" class="anim-pulse-ring" opacity="0.45"/><path d="M 140,60 Q 400,32 660,60" fill="none" stroke="#34d399" stroke-width="1.5" class="anim-field-glow" opacity="0.5"/></g>
         </svg>
       `;
 
@@ -9732,6 +9775,7 @@ export function renderExcursionControlObject(container, lang = 'zh') {
             </g>
           </g>
           <g class="eng-kinetic-overlay" pointer-events="none"><path d="M 120,210 L 680,210" fill="none" stroke="#f43f5e" stroke-width="2.2" stroke-dasharray="8 6" class="anim-data-flow" opacity="0.7"/><circle cx="400" cy="210" r="42" fill="none" stroke="#fbbf24" stroke-width="2" stroke-dasharray="6 5" class="anim-beam" opacity="0.65"/></g>
+          <g class="eng-kinetic-wave" pointer-events="none"><circle cx="400" cy="200" r="68" fill="none" stroke="#38bdf8" stroke-width="1.4" class="anim-pulse-ring" opacity="0.45"/><path d="M 140,60 Q 400,32 660,60" fill="none" stroke="#34d399" stroke-width="1.5" class="anim-field-glow" opacity="0.5"/></g>
         </svg>
       `;
 
@@ -9801,6 +9845,7 @@ export function renderExcursionControlObject(container, lang = 'zh') {
             </g>
           </g>
           <g class="eng-kinetic-overlay" pointer-events="none"><path d="M 120,210 L 680,210" fill="none" stroke="#f43f5e" stroke-width="2.2" stroke-dasharray="8 6" class="anim-data-flow" opacity="0.7"/><circle cx="400" cy="210" r="42" fill="none" stroke="#fbbf24" stroke-width="2" stroke-dasharray="6 5" class="anim-beam" opacity="0.65"/></g>
+          <g class="eng-kinetic-wave" pointer-events="none"><circle cx="400" cy="200" r="68" fill="none" stroke="#38bdf8" stroke-width="1.4" class="anim-pulse-ring" opacity="0.45"/><path d="M 140,60 Q 400,32 660,60" fill="none" stroke="#34d399" stroke-width="1.5" class="anim-field-glow" opacity="0.5"/></g>
         </svg>
       `;
 
@@ -10043,6 +10088,7 @@ export function renderSmartFabAutomationObject(container, lang = 'zh') {
             </g>
           </g>
           <g class="eng-kinetic-overlay" pointer-events="none"><path d="M 110,120 L 690,120 M 110,280 L 690,280" fill="none" stroke="#38bdf8" stroke-width="2" stroke-dasharray="8 6" class="anim-data-flow" opacity="0.7"/><line x1="400" y1="100" x2="400" y2="310" stroke="#34d399" stroke-width="2" stroke-dasharray="6 5" class="anim-beam" opacity="0.65"/></g>
+          <g class="eng-kinetic-wave" pointer-events="none"><circle cx="400" cy="200" r="68" fill="none" stroke="#38bdf8" stroke-width="1.4" class="anim-pulse-ring" opacity="0.45"/><path d="M 140,60 Q 400,32 660,60" fill="none" stroke="#34d399" stroke-width="1.5" class="anim-field-glow" opacity="0.5"/></g>
         </svg>
       `;
 
@@ -10117,6 +10163,7 @@ export function renderSmartFabAutomationObject(container, lang = 'zh') {
             </g>
           </g>
           <g class="eng-kinetic-overlay" pointer-events="none"><path d="M 110,120 L 690,120 M 110,280 L 690,280" fill="none" stroke="#38bdf8" stroke-width="2" stroke-dasharray="8 6" class="anim-data-flow" opacity="0.7"/><line x1="400" y1="100" x2="400" y2="310" stroke="#34d399" stroke-width="2" stroke-dasharray="6 5" class="anim-beam" opacity="0.65"/></g>
+          <g class="eng-kinetic-wave" pointer-events="none"><circle cx="400" cy="200" r="68" fill="none" stroke="#38bdf8" stroke-width="1.4" class="anim-pulse-ring" opacity="0.45"/><path d="M 140,60 Q 400,32 660,60" fill="none" stroke="#34d399" stroke-width="1.5" class="anim-field-glow" opacity="0.5"/></g>
         </svg>
       `;
 
@@ -10397,6 +10444,7 @@ export function renderSoftwareHardwareTruthObject(container, lang = 'zh') {
             </g>
           </g>
           <g class="eng-kinetic-overlay" pointer-events="none"><path d="M 140,185 L 660,185 M 140,245 L 660,245" fill="none" stroke="#f43f5e" stroke-width="2" stroke-dasharray="7 5" class="anim-data-flow" opacity="0.72"/><line x1="400" y1="85" x2="400" y2="335" stroke="#fbbf24" stroke-width="2.2" stroke-dasharray="6 5" class="anim-beam" opacity="0.7"/></g>
+          <g class="eng-kinetic-wave" pointer-events="none"><circle cx="400" cy="200" r="68" fill="none" stroke="#38bdf8" stroke-width="1.4" class="anim-pulse-ring" opacity="0.45"/><path d="M 140,60 Q 400,32 660,60" fill="none" stroke="#34d399" stroke-width="1.5" class="anim-field-glow" opacity="0.5"/></g>
         </svg>
       `;
 
@@ -10486,6 +10534,7 @@ export function renderSoftwareHardwareTruthObject(container, lang = 'zh') {
             </g>
           </g>
           <g class="eng-kinetic-overlay" pointer-events="none"><path d="M 140,185 L 660,185 M 140,245 L 660,245" fill="none" stroke="#f43f5e" stroke-width="2" stroke-dasharray="7 5" class="anim-data-flow" opacity="0.72"/><line x1="400" y1="85" x2="400" y2="335" stroke="#fbbf24" stroke-width="2.2" stroke-dasharray="6 5" class="anim-beam" opacity="0.7"/></g>
+          <g class="eng-kinetic-wave" pointer-events="none"><circle cx="400" cy="200" r="68" fill="none" stroke="#38bdf8" stroke-width="1.4" class="anim-pulse-ring" opacity="0.45"/><path d="M 140,60 Q 400,32 660,60" fill="none" stroke="#34d399" stroke-width="1.5" class="anim-field-glow" opacity="0.5"/></g>
         </svg>
       `;
 
@@ -10741,6 +10790,7 @@ export function renderGlossaryGalaxyObject(container, lang = 'zh') {
             }).join('')}
           </g>
           <g class="eng-kinetic-overlay" pointer-events="none"><circle cx="400" cy="210" r="145" fill="none" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="8 8" class="anim-data-flow" opacity="0.55"/><path d="M 190,110 L 400,210 L 610,110 M 190,310 L 400,210 L 610,310" fill="none" stroke="#34d399" stroke-width="1.8" stroke-dasharray="6 6" class="anim-beam" opacity="0.65"/></g>
+          <g class="eng-kinetic-wave" pointer-events="none"><circle cx="400" cy="200" r="68" fill="none" stroke="#38bdf8" stroke-width="1.4" class="anim-pulse-ring" opacity="0.45"/><path d="M 140,60 Q 400,32 660,60" fill="none" stroke="#34d399" stroke-width="1.5" class="anim-field-glow" opacity="0.5"/></g>
         </svg>
       `;
 
@@ -10797,6 +10847,7 @@ export function renderGlossaryGalaxyObject(container, lang = 'zh') {
             </g>
           </g>
           <g class="eng-kinetic-overlay" pointer-events="none"><circle cx="400" cy="210" r="145" fill="none" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="8 8" class="anim-data-flow" opacity="0.55"/><path d="M 190,110 L 400,210 L 610,110 M 190,310 L 400,210 L 610,310" fill="none" stroke="#34d399" stroke-width="1.8" stroke-dasharray="6 6" class="anim-beam" opacity="0.65"/></g>
+          <g class="eng-kinetic-wave" pointer-events="none"><circle cx="400" cy="200" r="68" fill="none" stroke="#38bdf8" stroke-width="1.4" class="anim-pulse-ring" opacity="0.45"/><path d="M 140,60 Q 400,32 660,60" fill="none" stroke="#34d399" stroke-width="1.5" class="anim-field-glow" opacity="0.5"/></g>
         </svg>
       `;
 
@@ -10990,6 +11041,7 @@ export function renderFabJargonDecoderObject(container, lang = 'zh') {
             <text x="0" y="4" text-anchor="middle" fill="#09131b" font-size="9" font-weight="800">365天</text>
           </g>
           <g class="eng-kinetic-overlay" pointer-events="none"><path d="M 110,210 L 690,210" fill="none" stroke="#38bdf8" stroke-width="2" stroke-dasharray="8 6" class="anim-data-flow" opacity="0.65"/><circle cx="400" cy="210" r="36" fill="none" stroke="#f59e0b" stroke-width="2" stroke-dasharray="5 5" class="anim-beam" opacity="0.7"/></g>
+          <g class="eng-kinetic-wave" pointer-events="none"><circle cx="400" cy="200" r="68" fill="none" stroke="#38bdf8" stroke-width="1.4" class="anim-pulse-ring" opacity="0.45"/><path d="M 140,60 Q 400,32 660,60" fill="none" stroke="#34d399" stroke-width="1.5" class="anim-field-glow" opacity="0.5"/></g>
         </svg>
       `;
 
@@ -11051,6 +11103,7 @@ export function renderFabJargonDecoderObject(container, lang = 'zh') {
             <text x="320" y="270" text-anchor="middle" fill="#64748b" font-size="11">晶圓廠黑話不是無聊的密碼，而是千錘百鍊、防止百萬美元損失的工業安全防線</text>
           </g>
           <g class="eng-kinetic-overlay" pointer-events="none"><path d="M 110,210 L 690,210" fill="none" stroke="#38bdf8" stroke-width="2" stroke-dasharray="8 6" class="anim-data-flow" opacity="0.65"/><circle cx="400" cy="210" r="36" fill="none" stroke="#f59e0b" stroke-width="2" stroke-dasharray="5 5" class="anim-beam" opacity="0.7"/></g>
+          <g class="eng-kinetic-wave" pointer-events="none"><circle cx="400" cy="200" r="68" fill="none" stroke="#38bdf8" stroke-width="1.4" class="anim-pulse-ring" opacity="0.45"/><path d="M 140,60 Q 400,32 660,60" fill="none" stroke="#34d399" stroke-width="1.5" class="anim-field-glow" opacity="0.5"/></g>
         </svg>
       `;
 
@@ -11237,6 +11290,7 @@ export function renderMasteryRoadmapObject(container, lang = 'zh') {
             </g>
           </g>
           <g class="eng-kinetic-overlay" pointer-events="none"><path d="M 120,340 L 680,340" fill="none" stroke="#34d399" stroke-width="2.2" stroke-dasharray="8 6" class="anim-data-flow" opacity="0.7"/><path d="M 160,180 L 640,180" fill="none" stroke="#38bdf8" stroke-width="1.8" stroke-dasharray="6 6" class="anim-beam" opacity="0.6"/></g>
+          <g class="eng-kinetic-wave" pointer-events="none"><circle cx="400" cy="200" r="68" fill="none" stroke="#38bdf8" stroke-width="1.4" class="anim-pulse-ring" opacity="0.45"/><path d="M 140,60 Q 400,32 660,60" fill="none" stroke="#34d399" stroke-width="1.5" class="anim-field-glow" opacity="0.5"/></g>
         </svg>
       `;
 
@@ -11305,6 +11359,7 @@ export function renderMasteryRoadmapObject(container, lang = 'zh') {
             </g>
           </g>
           <g class="eng-kinetic-overlay" pointer-events="none"><path d="M 120,340 L 680,340" fill="none" stroke="#34d399" stroke-width="2.2" stroke-dasharray="8 6" class="anim-data-flow" opacity="0.7"/><path d="M 160,180 L 640,180" fill="none" stroke="#38bdf8" stroke-width="1.8" stroke-dasharray="6 6" class="anim-beam" opacity="0.6"/></g>
+          <g class="eng-kinetic-wave" pointer-events="none"><circle cx="400" cy="200" r="68" fill="none" stroke="#38bdf8" stroke-width="1.4" class="anim-pulse-ring" opacity="0.45"/><path d="M 140,60 Q 400,32 660,60" fill="none" stroke="#34d399" stroke-width="1.5" class="anim-field-glow" opacity="0.5"/></g>
         </svg>
       `;
 
