@@ -40,7 +40,7 @@ async function verify() {
       errors++;
     }
     FAB_FLOW_NODES.forEach((n, idx) => {
-      if (!n.nameZh || !n.nameEn || !n.summaryEn || !n.keyToolEn) {
+      if (!n.nameZh || !n.nameEn || !n.summaryEn || !n.keyToolEn || !n.governingLawZh || !n.governingLawEn || !n.ocapSignatureZh || !n.ocapSignatureEn) {
         console.error(`[FAIL] 製程節點 #${idx} (${n.id}) 缺少雙語欄位`);
         errors++;
       }
@@ -107,7 +107,8 @@ async function verify() {
       for (const lang of ['zh', 'en']) {
         const dummy = { innerHTML: '', querySelectorAll: () => [], querySelector: () => null };
         engObj.mountEngineeringObject(id, dummy, lang);
-        if (!dummy.innerHTML || dummy.innerHTML.length < 500) {
+        const cardCount = (dummy.innerHTML.match(/class="eng-obj-metric-card"/g) || []).length;
+        if (!dummy.innerHTML || dummy.innerHTML.length < 500 || cardCount < 6) {
           console.error(`[FAIL] 工程物件 ${id} (${lang}) 渲染輸出異常`);
           errors++;
         }

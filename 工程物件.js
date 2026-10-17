@@ -2655,11 +2655,6 @@ export function renderTransistor3DObject(container, lang = 'zh') {
           <div class="eng-obj-metric-value">2nm (N2 / A16 / 18A)</div>
           <div class="eng-obj-metric-note">結合背面供電 (BSPDN) 邁入埃米時代</div>
         </div>
-        <div class="eng-obj-metric-card">
-          <div class="eng-obj-metric-label">${lang === 'en' ? 'BSPDN & 3D Device Clauses' : '背面供電與單石 3D 電晶體條例'}</div>
-          <div class="eng-obj-metric-value" style="font-size: 13.5px;">PowerVia · SPR · BSPDN · CFET</div>
-          <div class="eng-obj-metric-note">${lang === 'en' ? 'Intel PowerVia (nTSV), TSMC SPR (A16), Samsung BSPDN, 3D CFET' : '含 Intel PowerVia (nTSV)、TSMC SPR、Samsung BSPDN、CFET 垂直堆疊'}</div>
-        </div>
       `;
       footerNote = t.ch12_gaa_desc;
     }
@@ -2690,6 +2685,11 @@ export function renderTransistor3DObject(container, lang = 'zh') {
 
         <div class="eng-obj-dashboard">
           ${dashboardHtml}
+          <div class="eng-obj-metric-card">
+            <div class="eng-obj-metric-label">${lang === 'en' ? 'BSPDN & 3D Device Clauses' : '背面供電與單石 3D 電晶體條例'}</div>
+            <div class="eng-obj-metric-value" style="font-size: 13.5px; color: var(--semi-teal);">PowerVia · SPR · BSPDN · CFET</div>
+            <div class="eng-obj-metric-note">${lang === 'en' ? 'Intel PowerVia (nTSV), TSMC SPR (A16), Samsung BSPDN, 3D CFET' : '含 Intel PowerVia (nTSV)、TSMC SPR、Samsung BSPDN、CFET 垂直堆疊'}</div>
+          </div>
           <div class="eng-obj-metric-card">
             <div class="eng-obj-metric-label">${lang === 'en' ? 'Natural Length λ_N & GAA Weff Law' : '自然靜電長度與有效通道寬度律 (GAA Law)'}</div>
             <div class="eng-obj-metric-value" style="font-size: 13.5px; color: #0284c7;">${lang === 'en' ? 'λ_GAA < λ_Fin < λ_Planar · Weff = 2N(W+T)' : 'λ_GAA < λ_Fin < λ_Planar · Weff = 2N(W+T)'}</div>

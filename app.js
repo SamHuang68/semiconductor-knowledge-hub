@@ -54,7 +54,7 @@ import { mountEngineeringObject } from './工程物件.js';
       explore_open: '開啟互動情境 ↗',
       no_matching_chapters: '查無相符章節',
       footer_attribution: `本專案基於開源教材 <a href="https://github.com/chenwei810/Semiconductor_Manufacturing_Introduction" target="_blank" rel="noopener">chenwei810/Semiconductor_Manufacturing_Introduction</a> （採 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hant" target="_blank" rel="noopener">CC BY-NC-SA 4.0 創用 CC 姓名標示-非商業性-相同方式分享</a> 授權）重製與架構升級。`,
-      footer_desc: '涵蓋 25 章從沙子到晶片的完整晶圓製造旅程 · 245 筆核心術語與現場實務行話 · 中英雙語無縫支援 · 純前端極速架構 · 零中系依賴 · 版本 1.8.4',
+      footer_desc: '涵蓋 25 章從沙子到晶片的完整晶圓製造旅程 · 245 筆核心術語與現場實務行話 · 中英雙語無縫支援 · 純前端極速架構 · 零中系依賴 · 版本 2.1.2',
       atlas_title: '晶圓廠 12 大核心製程全景圖譜 (Fab Flow Atlas)',
       btn_close: '關閉 (Esc)',
       jargon_title: '晶圓廠現場行話與術語字典',
@@ -85,6 +85,8 @@ import { mountEngineeringObject } from './工程物件.js';
       btn_copied_code: '已複製！',
       tool_label: '關鍵機台：',
       module_label: '所屬站點：',
+      law_label: '統御方程：',
+      ocap_label: '異常防呆：',
       lang_btn_zh_title: '切換為繁體中文',
       lang_btn_en_title: 'Switch to English',
       btn_menu_aria: '切換章節目錄',
@@ -137,7 +139,7 @@ import { mountEngineeringObject } from './工程物件.js';
       explore_open: 'Open Scenario ↗',
       no_matching_chapters: 'No matching chapters found',
       footer_attribution: `Adapted from the open-source book <a href="https://github.com/chenwei810/Semiconductor_Manufacturing_Introduction" target="_blank" rel="noopener">chenwei810/Semiconductor_Manufacturing_Introduction</a> licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a>.`,
-      footer_desc: 'Comprehensive 25-chapter wafer fabrication guide from sand to chip · 245 core terms & 43 fab jargon · Native bilingual support · Zero Chinese-origin dependencies · v1.8.4',
+      footer_desc: 'Comprehensive 25-chapter wafer fabrication guide from sand to chip · 245 core terms & 43 fab jargon · Native bilingual support · Zero Chinese-origin dependencies · v2.1.2',
       atlas_title: '12 Core Fab Flow Atlas',
       btn_close: 'Close (Esc)',
       jargon_title: 'Fab Jargon & Terminology Dictionary',
@@ -168,6 +170,8 @@ import { mountEngineeringObject } from './工程物件.js';
       btn_copied_code: 'Copied!',
       tool_label: 'Key Tools: ',
       module_label: 'Station: ',
+      law_label: 'Governing Law: ',
+      ocap_label: 'Failure & OCAP: ',
       lang_btn_zh_title: 'Switch to Traditional Chinese',
       lang_btn_en_title: 'Switch to English',
       btn_menu_aria: 'Toggle chapter navigation',
@@ -846,6 +850,8 @@ import { mountEngineeringObject } from './工程物件.js';
       const chTitle = isEn ? (node.chapterTitleEn || node.chapterTitleZh || node.chapterTitle) : (node.chapterTitleZh || node.chapterTitle);
       const summary = isEn ? (node.summaryEn || node.summaryZh || node.summary) : (node.summaryZh || node.summary);
       const keyTool = isEn ? (node.keyToolEn || node.keyToolZh || node.keyTool) : (node.keyToolZh || node.keyTool);
+      const govLaw = isEn ? (node.governingLawEn || node.governingLawZh || '') : (node.governingLawZh || '');
+      const ocapSig = isEn ? (node.ocapSignatureEn || node.ocapSignatureZh || '') : (node.ocapSignatureZh || '');
       const activeClass = parseInt(node.num, 10) === 1 ? ' is-active-step' : '';
 
       html += `
@@ -862,6 +868,8 @@ import { mountEngineeringObject } from './工程物件.js';
             <div class="atlas-card-meta">
               <div><strong>${t.tool_label}</strong>${escapeHtml(keyTool)}</div>
               <div><strong>${t.module_label}</strong>${escapeHtml(chTitle)}</div>
+              ${govLaw ? `<div style="color: #0284c7;"><strong>${t.law_label}</strong>${escapeHtml(govLaw)}</div>` : ''}
+              ${ocapSig ? `<div style="color: #b45309;"><strong>${t.ocap_label}</strong>${escapeHtml(ocapSig)}</div>` : ''}
             </div>
             <div class="atlas-jump-badge">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>

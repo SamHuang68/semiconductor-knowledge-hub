@@ -22,7 +22,13 @@ export const FAB_FLOW_NODES = [
     "fabRole": "基板供應商 / 材料站",
     "fabRoleZh": "基板供應商 / 材料站",
     "fabRoleEn": "Substrate Supplier / Materials",
-    "badge": "SUBSTRATE"
+    "badge": "SUBSTRATE",
+    "governingLaw": "Voronkov 零缺陷準則 V/G ≈ 0.134 mm²/(min·K) · Scheil 偏析定律 Cs = k0·C0(1-fs)^(k0-1)",
+    "governingLawZh": "Voronkov 零缺陷準則 V/G ≈ 0.134 mm²/(min·K) · Scheil 偏析定律 Cs = k0·C0(1-fs)^(k0-1)",
+    "governingLawEn": "Voronkov Criterion V/G ≈ 0.134 mm²/(min·K) · Scheil Segregation Cs = k0·C0(1-fs)^(k0-1)",
+    "ocapSignature": "原生 COP 八面體空洞擊穿 (GOI)、高溫滑移差排線、3D 超薄背磨次表面微裂 (SSD < 1 µm TTV)",
+    "ocapSignatureZh": "原生 COP 八面體空洞擊穿 (GOI)、高溫滑移差排線、3D 超薄背磨次表面微裂 (SSD < 1 µm TTV)",
+    "ocapSignatureEn": "COP octahedral void GOI breakdown, thermal slip lines & 3D backgrind subsurface cracks (TTV < 1 µm)"
   },
   {
     "id": "step-02",
@@ -43,7 +49,13 @@ export const FAB_FLOW_NODES = [
     "fabRole": "擴散/薄膜模組 (DIFF/TF)",
     "fabRoleZh": "擴散/薄膜模組 (DIFF/TF)",
     "fabRoleEn": "Diffusion / Thin Films Module (DIFF/TF)",
-    "badge": "FEOL"
+    "badge": "FEOL",
+    "governingLaw": "Deal-Grove 線性拋物線氧化律 x_o² + A·x_o = B(t + τ) · 高介電常數等效氧化層厚度 EOT = (k_SiO2/k_hi-k)·t_phys",
+    "governingLawZh": "Deal-Grove 線性拋物線氧化律 x_o² + A·x_o = B(t + τ) · 高介電常數等效氧化層厚度 EOT = (k_SiO2/k_hi-k)·t_phys",
+    "governingLawEn": "Deal-Grove Oxidation Law x_o² + A·x_o = B(t + τ) · Equivalent Oxide Thickness EOT = (3.9/k)·t_phys",
+    "ocapSignature": "UPW 膠體矽與溶氧突波導致氧化層針孔、Q-Time 超時原生氧化層增厚 (MES Auto-Hold)",
+    "ocapSignatureZh": "UPW 膠體矽與溶氧突波導致氧化層針孔、Q-Time 超時原生氧化層增厚 (MES Auto-Hold)",
+    "ocapSignatureEn": "UPW colloidal silica/DO pinholes & Q-Time native oxide growth (MES Auto-Hold)"
   },
   {
     "id": "step-03",
@@ -64,7 +76,13 @@ export const FAB_FLOW_NODES = [
     "fabRole": "黃光微影模組 (PHOTO)",
     "fabRoleZh": "黃光微影模組 (PHOTO)",
     "fabRoleEn": "Photolithography Module (PHOTO)",
-    "badge": "CORE"
+    "badge": "CORE",
+    "governingLaw": "瑞利解析度與焦深定律 CD = k₁·λ/NA, DOF = k₂·λ/NA² · 邊緣放置誤差 EPE_3σ = √(9σ_OVL² + (3/2·σ_CD)²)",
+    "governingLawZh": "瑞利解析度與焦深定律 CD = k₁·λ/NA, DOF = k₂·λ/NA² · 邊緣放置誤差 EPE_3σ = √(9σ_OVL² + (3/2·σ_CD)²)",
+    "governingLawEn": "Rayleigh CD = k₁·λ/NA & DOF = k₂·λ/NA² · Edge Placement Error EPE_3σ = √(9σ_OVL² + (3/2·σ_CD)²)",
+    "ocapSignature": "EUV 光子散粒隨機微橋接、吸盤背面微粒失焦熱點 (Chuck Spot)、ADI 疊對超規退光阻重工 (Rework)",
+    "ocapSignatureZh": "EUV 光子散粒隨機微橋接、吸盤背面微粒失焦熱點 (Chuck Spot)、ADI 疊對超規退光阻重工 (Rework)",
+    "ocapSignatureEn": "EUV stochastic micro-bridges, chuck-spot focus hotspots & ADI overlay strip-and-rework"
   },
   {
     "id": "step-04",
@@ -85,7 +103,13 @@ export const FAB_FLOW_NODES = [
     "fabRole": "蝕刻模組 (ETCH)",
     "fabRoleZh": "蝕刻模組 (ETCH)",
     "fabRoleEn": "Etch Module (ETCH)",
-    "badge": "FEOL"
+    "badge": "FEOL",
+    "governingLaw": "異向性蝕刻因子 A = 1 - R_lat/R_vert · Child-Langmuir 電漿鞘層定律 · Knudsen 深孔分子傳導阻抗",
+    "governingLawZh": "異向性蝕刻因子 A = 1 - R_lat/R_vert · Child-Langmuir 電漿鞘層定律 · Knudsen 深孔分子傳導阻抗",
+    "governingLawEn": "Anisotropy A = 1 - R_lat/R_vert · Child-Langmuir Sheath Law · Knudsen High-AR Conductance",
+    "ocapSignature": "絕緣層底部充電橫向切角 (Pulsed Plasma 防護)、3D 超深孔桶狀鼓出 (Cryo-HAR)、RIE Lag 深寬比延遲",
+    "ocapSignatureZh": "絕緣層底部充電橫向切角 (Pulsed Plasma 防護)、3D 超深孔桶狀鼓出 (Cryo-HAR)、RIE Lag 深寬比延遲",
+    "ocapSignatureEn": "Dielectric charging foot-notching (pulsed plasma fix), high-AR bowing & RIE Lag (ARDE)"
   },
   {
     "id": "step-05",
@@ -106,7 +130,13 @@ export const FAB_FLOW_NODES = [
     "fabRole": "離子佈植模組 (IMP)",
     "fabRoleZh": "離子佈植模組 (IMP)",
     "fabRoleEn": "Ion Implantation Module (IMP)",
-    "badge": "FEOL"
+    "badge": "FEOL",
+    "governingLaw": "LSS 高斯射程分佈 C(x) = [Φ/(√(2π)ΔRp)]·exp(-(x-Rp)²/(2ΔRp²)) · 洛倫茲磁偏轉 r = √(2mV/qB²)",
+    "governingLawZh": "LSS 高斯射程分佈 C(x) = [Φ/(√(2π)ΔRp)]·exp(-(x-Rp)²/(2ΔRp²)) · 洛倫茲磁偏轉 r = √(2mV/qB²)",
+    "governingLawEn": "LSS Gaussian Profile C(x) = [Φ/(√(2π)ΔRp)]·exp(-(x-Rp)²/(2ΔRp²)) · Lorentz Analyzer r = √(2mV/qB²)",
+    "ocapSignature": "晶格通道效應長尾 (7° 傾角 + Ge PAI 預非晶化阻絕)、硼瞬態增強擴散 TED (碳共佈植 + 毫秒退火)",
+    "ocapSignatureZh": "晶格通道效應長尾 (7° 傾角 + Ge PAI 預非晶化阻絕)、硼瞬態增強擴散 TED (碳共佈植 + 毫秒退火)",
+    "ocapSignatureEn": "Crystallographic channeling tails (7° tilt + Ge PAI) & boron TED broadening (C co-implant + LSA)"
   },
   {
     "id": "step-06",
@@ -127,7 +157,13 @@ export const FAB_FLOW_NODES = [
     "fabRole": "薄膜模組 (TF)",
     "fabRoleZh": "薄膜模組 (TF)",
     "fabRoleEn": "Thin Films Module (TF)",
-    "badge": "FEOL"
+    "badge": "FEOL",
+    "governingLaw": "Arrhenius 沉積速率 R = A·exp(-Ea/kT) · Langmuir 自限飽和律 dθ/dt = k_ads·P(1-θ) (ALD 100% 階梯覆蓋)",
+    "governingLawZh": "Arrhenius 沉積速率 R = A·exp(-Ea/kT) · Langmuir 自限飽和律 dθ/dt = k_ads·P(1-θ) (ALD 100% 階梯覆蓋)",
+    "governingLawEn": "Arrhenius Kinetics R = A·exp(-Ea/kT) · Self-Limiting Langmuir ALD Coverage dθ/dt = k_ads·P(1-θ)",
+    "ocapSignature": "CVD 孔口懸垂夾斷鑰匙孔中縫空洞 (Keyhole Seam)、高深寬比 ALD 底部前驅物耗盡、ECD 銅電鍍底部空洞",
+    "ocapSignatureZh": "CVD 孔口懸垂夾斷鑰匙孔中縫空洞 (Keyhole Seam)、高深寬比 ALD 底部前驅物耗盡、ECD 銅電鍍底部空洞",
+    "ocapSignatureEn": "CVD overhang keyhole seams, high-AR ALD bottom starvation & ECD Cu superfill voids"
   },
   {
     "id": "step-07",
@@ -148,7 +184,13 @@ export const FAB_FLOW_NODES = [
     "fabRole": "研磨模組 (CMP)",
     "fabRoleZh": "研磨模組 (CMP)",
     "fabRoleEn": "Planarization Module (CMP)",
-    "badge": "PLANAR"
+    "badge": "PLANAR",
+    "governingLaw": "Preston 機械化學磨耗定律 RR = K_p · P · V · 3D 混合鍵合奈米熱膨脹閉合 Δh_Cu = α_Cu·h_Cu·ΔT",
+    "governingLawZh": "Preston 機械化學磨耗定律 RR = K_p · P · V · 3D 混合鍵合奈米熱膨脹閉合 Δh_Cu = α_Cu·h_Cu·ΔT",
+    "governingLawEn": "Preston Removal Rate Law RR = K_p · P · V · 3D Hybrid-Bond Cu Thermal Expansion Δh_Cu = α_Cu·h_Cu·ΔT",
+    "ocapSignature": "寬銅溝碟形凹陷 (Dummy Fill 防護)、研磨液團簇顫振刮痕 (POU 0.1µm 過濾)、混合鍵合銅凹盤越界 (1–2.5 nm)",
+    "ocapSignatureZh": "寬銅溝碟形凹陷 (Dummy Fill 防護)、研磨液團簇顫振刮痕 (POU 0.1µm 過濾)、混合鍵合銅凹盤越界 (1–2.5 nm)",
+    "ocapSignatureEn": "Wide-trench Cu dishing, slurry chatter scratches (POU 0.1µm filter) & hybrid-bond Cu recess drift"
   },
   {
     "id": "step-08",
@@ -169,7 +211,13 @@ export const FAB_FLOW_NODES = [
     "fabRole": "清洗模組 (WET)",
     "fabRoleZh": "清洗模組 (WET)",
     "fabRoleEn": "Wet Cleaning Module (WET)",
-    "badge": "CLEAN"
+    "badge": "CLEAN",
+    "governingLaw": "Young-Laplace 毛細彎矩定律 P_c = (2γ·cosθ / S)·(H/W)² · 兆聲波邊界層厚度 δ = √(2ν/ω)",
+    "governingLawZh": "Young-Laplace 毛細彎矩定律 P_c = (2γ·cosθ / S)·(H/W)² · 兆聲波邊界層厚度 δ = √(2ν/ω)",
+    "governingLawEn": "Young-Laplace Capillary Collapse P_c = (2γ·cosθ / S)·(H/W)² · Megasonic Boundary Layer δ = √(2ν/ω)",
+    "ocapSignature": "高深寬比鰭片／電容柱乾燥沾黏倒塌 (超臨界 scCO₂ 零表面張力乾燥)、疏水矽表面水痕、雙金屬伽凡尼腐蝕",
+    "ocapSignatureZh": "高深寬比鰭片／電容柱乾燥沾黏倒塌 (超臨界 scCO₂ 零表面張力乾燥)、疏水矽表面水痕、雙金屬伽凡尼腐蝕",
+    "ocapSignatureEn": "High-AR fin/pillar capillary stiction (scCO₂ zero-tension dry), silica watermarks & galvanic pitting"
   },
   {
     "id": "step-09",
@@ -190,7 +238,13 @@ export const FAB_FLOW_NODES = [
     "fabRole": "後段金屬化 (BEOL)",
     "fabRoleZh": "後段金屬化 (BEOL)",
     "fabRoleEn": "Back End of Line Module (BEOL)",
-    "badge": "BEOL"
+    "badge": "BEOL",
+    "governingLaw": "Fuchs-Sondheimer 表面散射電阻律 · Elmore 互連延遲 τ ≈ 0.69·R·C · Black 電遷移壽命 MTF = A·J⁻ⁿ·exp(Ea/kT)",
+    "governingLawZh": "Fuchs-Sondheimer 表面散射電阻律 · Elmore 互連延遲 τ ≈ 0.69·R·C · Black 電遷移壽命 MTF = A·J⁻ⁿ·exp(Ea/kT)",
+    "governingLawEn": "Fuchs-Sondheimer Scattering · Elmore Delay τ ≈ 0.69·R·C · Black's EM Law MTF = A·J⁻ⁿ·exp(Ea/kT)",
+    "ocapSignature": "雙鑲嵌通孔底部應力空洞 (SIV)、多孔 ULK 電漿去光阻損傷導致 TDDB 擊穿、高電流密度電遷移陰極開路",
+    "ocapSignatureZh": "雙鑲嵌通孔底部應力空洞 (SIV)、多孔 ULK 電漿去光阻損傷導致 TDDB 擊穿、高電流密度電遷移陰極開路",
+    "ocapSignatureEn": "Dual-damascene via SIV opens, porous ULK plasma-damage TDDB & EM cathode voids (Co cap fix)"
   },
   {
     "id": "step-10",
@@ -211,7 +265,13 @@ export const FAB_FLOW_NODES = [
     "fabRole": "製程整合部門 (PIE)",
     "fabRoleZh": "製程整合部門 (PIE)",
     "fabRoleEn": "Process Integration Engineering (PIE)",
-    "badge": "INTEGRATION"
+    "badge": "INTEGRATION",
+    "governingLaw": "自然靜電長度 λ_GAA < λ_Fin < λ_Planar (Lg ≥ 5λ) · 有效通道寬度 W_eff = 2N(W_ns + T_ns) · 熱預算金字塔",
+    "governingLawZh": "自然靜電長度 λ_GAA < λ_Fin < λ_Planar (Lg ≥ 5λ) · 有效通道寬度 W_eff = 2N(W_ns + T_ns) · 熱預算金字塔",
+    "governingLawEn": "Electrostatic Natural Length λ_GAA < λ_Fin < λ_Planar · GAA Effective Width W_eff = 2N(W_ns + T_ns)",
+    "ocapSignature": "GAA 奈米片釋放沾黏與內間隔層掏空、底部寄生通道漏電 (BDI 隔離)、背面供電 nTSV 對準畸變 (< 2 nm CPE)",
+    "ocapSignatureZh": "GAA 奈米片釋放沾黏與內間隔層掏空、底部寄生通道漏電 (BDI 隔離)、背面供電 nTSV 對準畸變 (< 2 nm CPE)",
+    "ocapSignatureEn": "GAA sheet release stiction, sub-sheet leakage (BDI fix) & backside BSPDN nTSV overlay distortion"
   },
   {
     "id": "step-11",
@@ -232,7 +292,13 @@ export const FAB_FLOW_NODES = [
     "fabRole": "量測品管部門 (MET / YED)",
     "fabRoleZh": "量測品管部門 (MET / YED)",
     "fabRoleEn": "Metrology & Yield Engineering (MET/YED)",
-    "badge": "QUALITY"
+    "badge": "QUALITY",
+    "governingLaw": "負二項分佈良率模型 Y = (1 + A·D₀/α)⁻ᵃ · 製程能力指標 Cpk = min((USL-μ)/3σ, (μ-LSL)/3σ) · EWMA R2R 回饋",
+    "governingLawZh": "負二項分佈良率模型 Y = (1 + A·D₀/α)⁻ᵃ · 製程能力指標 Cpk = min((USL-μ)/3σ, (μ-LSL)/3σ) · EWMA R2R 回饋",
+    "governingLawEn": "Negative-Binomial Yield Y = (1 + A·D₀/α)⁻ᵃ · Process Capability Cpk · EWMA R2R & Hotelling's T²",
+    "ocapSignature": "CD-SEM 電子束光阻萎縮、晶圓圖同心環／光罩重複點空間指紋、15 分鐘章魚法 (Octopus) 姊妹批圍堵",
+    "ocapSignatureZh": "CD-SEM 電子束光阻萎縮、晶圓圖同心環／光罩重複點空間指紋、15 分鐘章魚法 (Octopus) 姊妹批圍堵",
+    "ocapSignatureEn": "CD-SEM resist shrinkage, wafer-map ring/repeater signatures & 15-min Octopus sister-lot containment"
   },
   {
     "id": "step-12",
@@ -253,6 +319,12 @@ export const FAB_FLOW_NODES = [
     "fabRole": "封裝測試 (OSAT / Adv Packaging)",
     "fabRoleZh": "封裝測試 (OSAT / Adv Packaging)",
     "fabRoleEn": "Assembly & Test (OSAT / Advanced Packaging)",
-    "badge": "ADV-PKG"
+    "badge": "ADV-PKG",
+    "governingLaw": "3D 堆疊複合良率定律 Y_3D = Y_bond^(N-1) · ∏ Y_KGD,i · Stoney 熱翹曲方程 κ = 6σ_f·h_f / (E_s·h_s²)",
+    "governingLawZh": "3D 堆疊複合良率定律 Y_3D = Y_bond^(N-1) · ∏ Y_KGD,i · Stoney 熱翹曲方程 κ = 6σ_f·h_f / (E_s·h_s²)",
+    "governingLawEn": "3D Compound Yield Y_3D = Y_bond^(N-1) · ∏ Y_KGD,i · Stoney Warpage κ = 6σ_f·h_f / (E_s·h_s²)",
+    "ocapSignature": "CP 探針高接觸電阻誤殺、CoWoS 哭笑臉翹曲空焊 (NWO)、混合鍵合 50nm 微粒毫米級氣泡 (100% C-SAM 篩檢)",
+    "ocapSignatureZh": "CP 探針高接觸電阻誤殺、CoWoS 哭笑臉翹曲空焊 (NWO)、混合鍵合 50nm 微粒毫米級氣泡 (100% C-SAM 篩檢)",
+    "ocapSignatureEn": "Probe high-Rc false rejects, CoWoS Smile-Cry warpage NWO & 50nm hybrid-bond blisters (100% C-SAM)"
   }
 ];
