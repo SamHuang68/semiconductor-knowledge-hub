@@ -1,3 +1,4 @@
+import { REAL_PHOTOS_DATA } from './data/real-photos.js';
 // 共用工程物件的 DOM 更新、事件綁定與全螢幕生命週期。
 const states = new WeakMap();
 const listeners = new WeakMap();
@@ -10,10 +11,37 @@ export function bindEngineeringEvent(element, type, handler) {
   entries.set(type, handler);
 }
 
+
+function escapeHtml(str) {
+  if (!str) return '';
+  return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+
+function detectChId(container, card) {
+  const fromAttr = container.getAttribute?.('data-ch-id');
+  if (fromAttr) return fromAttr;
+  const badge = card.querySelector('.eng-obj-badge')?.textContent || '';
+  const match = badge.match(/CH\s*(\d{2})/i);
+  if (match) return 'ch' + match[1];
+  if (badge.includes('GLOSSARY')) return 'app-glossary';
+  if (badge.includes('JARGON')) return 'app-jargon';
+  if (badge.includes('READING')) return 'app-reading';
+  const titleId = card.querySelector('h2.eng-obj-title')?.id || '';
+  const titleMatch = titleId.match(/engObj(Ch\d{2}|App[A-Za-z]+)Title/i);
+  if (titleMatch) {
+    const key = titleMatch[1];
+    if (key.toLowerCase().startsWith('ch')) return key.toLowerCase();
+    if (/AppGlossary/i.test(key)) return 'app-glossary';
+    if (/AppJargon/i.test(key)) return 'app-jargon';
+    if (/AppReading/i.test(key)) return 'app-reading';
+  }
+  return null;
+}
+
 function stateFor(container) {
   let state = states.get(container);
   if (!state) {
-    state = { dialog: null, placeholder: null, cleanup: null, labels: null, status: '', fallback: '' };
+    state = { dialog: null, placeholder: null, cleanup: null, labels: null, status: '', fallback: '', viewMode: 'split' };
     states.set(container, state);
   }
   return state;
@@ -188,6 +216,68 @@ export function renderEngineeringCard(container, markup, labels) {
   template.innerHTML = markup;
   const next = template.content.querySelector('.eng-obj-card');
   if (!next) throw new Error('工程物件缺少卡片根節點');
+
+  // 偵測章節識別與中英雙語語系，查詢實體照片資料庫
+  const chId = detectChId(container, next);
+  const lang = container.getAttribute?.('data-lang') || (doc.documentElement?.lang === 'en' ? 'en' : 'zh');
+  const photo = chId ? REAL_PHOTOS_DATA[chId] : null;
+
+  if (photo) {
+    // 1. 建立視圖模式切換器 (並列對照 / 動態示意 / 實體照片)
+    const viewToggle = doc.createElement('div');
+    viewToggle.className = 'eng-obj-view-toggle';
+    viewToggle.setAttribute('role', 'radiogroup');
+    viewToggle.setAttribute('aria-label', lang === 'en' ? 'Display Mode' : '視圖顯示模式');
+
+    const modes = [
+      ['split', '🔀', '並列對照', 'Side-by-Side'],
+      ['schematic', '⚡', '動態示意', 'Schematic'],
+      ['photo', '📷', '實體照片', 'Real Photo']
+    ];
+    for (const [m, icon, zh, en] of modes) {
+      const btn = doc.createElement('button');
+      btn.type = 'button';
+      btn.className = 'view-toggle-btn' + (state.viewMode === m ? ' is-active' : '');
+      btn.dataset.viewMode = m;
+      btn.title = lang === 'en' ? en + ' View' : zh + '模式';
+      btn.innerHTML = '<span aria-hidden="true">' + icon + '</span> <span class="view-toggle-text">' + (lang === 'en' ? en : zh) + '</span>';
+      viewToggle.append(btn);
+    }
+    next.querySelector('.eng-obj-badge-row')?.append(viewToggle);
+
+    // 2. 建立並列顯示舞台 (Stage)，將 viewport 與 photo-panel 並置
+    const viewport = next.querySelector('.eng-obj-viewport');
+    if (viewport && !viewport.parentElement.classList.contains('eng-obj-stage')) {
+      const stage = doc.createElement('div');
+      stage.className = 'eng-obj-stage is-view-' + state.viewMode;
+      viewport.before(stage);
+      stage.append(viewport);
+
+      const photoPanel = doc.createElement('aside');
+      photoPanel.className = 'eng-obj-photo-panel';
+      photoPanel.setAttribute('aria-label', lang === 'en' ? 'Authentic Semiconductor Photo & Micrograph' : '半導體實體照片與微觀電顯');
+
+      const title = lang === 'en' ? photo.titleEn : photo.titleZh;
+      const category = lang === 'en' ? photo.categoryEn : photo.categoryZh;
+      const scale = lang === 'en' ? photo.scaleEn : photo.scaleZh;
+      const caption = lang === 'en' ? photo.captionEn : photo.captionZh;
+      const match = lang === 'en' ? photo.matchEn : photo.matchZh;
+
+      photoPanel.innerHTML = '<div class="photo-panel-header">' +
+        '<span class="photo-category-badge">' + escapeHtml(category) + '</span>' +
+        '<span class="photo-scale-badge">' + escapeHtml(scale) + '</span>' +
+        '</div>' +
+        '<div class="photo-img-wrap" title="' + (lang === 'en' ? 'Click to toggle between Side-by-Side and Full Photo view' : '點擊在「並列對照」與「純實體照片」全覽間切換') + '">' +
+        '<img src="' + escapeHtml(photo.src) + '" alt="' + escapeHtml(title) + '" class="eng-real-photo">' +
+        '</div>' +
+        '<div class="photo-overlay-caption">' +
+        '<div class="photo-title">' + escapeHtml(title) + '</div>' +
+        '<div class="photo-caption">' + escapeHtml(caption) + '</div>' +
+        '<div class="photo-match-note"><strong>' + (lang === 'en' ? 'Theory vs. Physical:' : '理論與實體對照：') + '</strong> ' + escapeHtml(match) + '</div>' +
+        '</div>';
+      stage.append(photoPanel);
+    }
+  }
   const hud = doc.createElement('div');
   hud.className = 'eng-obj-hud-actions';
   for (const [action, text] of [
@@ -237,6 +327,37 @@ export function renderEngineeringCard(container, markup, labels) {
   bindEngineeringEvent(container.querySelector('[data-action="fullscreen"]'),'click',() => openFullscreen(container));
   bindEngineeringEvent(container.querySelector('[data-action="copy-svg"]'),'click',() => copySvg(container));
   bindDiagramReading(container, state, bindEngineeringEvent);
+
+  // 綁定視圖模式切換事件
+  container.querySelectorAll('.view-toggle-btn').forEach(btn => {
+    bindEngineeringEvent(btn, 'click', () => {
+      const mode = btn.dataset.viewMode;
+      if (!mode) return;
+      state.viewMode = mode;
+      container.querySelectorAll('.view-toggle-btn').forEach(b => {
+        b.classList.toggle('is-active', b.dataset.viewMode === mode);
+      });
+      const stage = container.querySelector('.eng-obj-stage');
+      if (stage) {
+        stage.className = 'eng-obj-stage is-view-' + mode;
+      }
+    });
+  });
+
+  // 點擊照片快速在「並列」與「照片全覽」切換
+  container.querySelectorAll('.photo-img-wrap').forEach(wrap => {
+    bindEngineeringEvent(wrap, 'click', () => {
+      const nextMode = state.viewMode === 'photo' ? 'split' : 'photo';
+      state.viewMode = nextMode;
+      container.querySelectorAll('.view-toggle-btn').forEach(b => {
+        b.classList.toggle('is-active', b.dataset.viewMode === nextMode);
+      });
+      const stage = container.querySelector('.eng-obj-stage');
+      if (stage) {
+        stage.className = 'eng-obj-stage is-view-' + nextMode;
+      }
+    });
+  });
 }
 
 export function disposeEngineeringObject(container) {

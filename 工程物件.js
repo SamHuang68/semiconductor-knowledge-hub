@@ -11593,6 +11593,10 @@ export function renderMasteryRoadmapObject(container, lang = 'zh') {
  */
 export function mountEngineeringObject(chId, container, lang = 'zh') {
   if (!container) return;
+  if (container.setAttribute) {
+    container.setAttribute('data-ch-id', chId);
+    container.setAttribute('data-lang', lang);
+  }
   if (chId === 'ch00') {
     renderChipJourneyObject(container, lang);
   } else if (chId === 'ch01') {

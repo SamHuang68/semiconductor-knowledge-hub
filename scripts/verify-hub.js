@@ -76,13 +76,42 @@ async function verify() {
       errors++;
     }
 
+    const { REAL_PHOTOS_DATA } = await import(`file://${ROOT_DIR}/data/real-photos.js`);
+    const photoIds = Object.keys(REAL_PHOTOS_DATA);
+    console.log(`[PASS] REAL_PHOTOS_DATA 成功載入，共有 ${photoIds.length} 筆實體照片定義`);
+    const expectedPhotoIds = ['ch00', 'ch01', 'ch02', 'ch03', 'ch04', 'ch05', 'ch06', 'ch07', 'ch08', 'ch09', 'ch10', 'ch11', 'ch12', 'ch13', 'ch14', 'ch15', 'ch16', 'ch17', 'ch18', 'ch19', 'ch20', 'ch21', 'ch22', 'ch23', 'ch24', 'app-glossary', 'app-jargon', 'app-reading'];
+    for (const pid of expectedPhotoIds) {
+      const pData = REAL_PHOTOS_DATA[pid];
+      if (!pData) {
+        console.error(`[FAIL] REAL_PHOTOS_DATA 缺少 ${pid} 定義`);
+        errors++;
+        continue;
+      }
+      if (!pData.src || !pData.titleZh || !pData.titleEn || !pData.categoryZh || !pData.categoryEn || !pData.captionZh || !pData.captionEn || !pData.scaleZh || !pData.scaleEn || !pData.matchZh || !pData.matchEn) {
+        console.error(`[FAIL] REAL_PHOTOS_DATA [${pid}] 缺少雙語欄位`);
+        errors++;
+      }
+      const pFile = path.join(ROOT_DIR, pData.src);
+      if (!fs.existsSync(pFile)) {
+        console.error(`[FAIL] 實體照片檔案不存在: ${pData.src}`);
+        errors++;
+      } else {
+        const stats = fs.statSync(pFile);
+        if (stats.size < 1000) {
+          console.error(`[FAIL] 實體照片檔案大小異常 (<1KB): ${pData.src}`);
+          errors++;
+        }
+      }
+    }
+    console.log('[PASS] 全站 28 大模組實體半導體機台與電顯照片中英雙語規格與檔案實體全數校驗通過');
+
   } catch (err) {
     console.error('[FAIL] 資料載入發生錯誤:', err);
     errors++;
   }
 
   // 2. 驗證零中系依賴與安全性
-  const filesToScan = ['index.html', 'styles.css', 'app.js', 'package.json', 'README.md', '工程物件.js', '工程物件.css'];
+  const filesToScan = ['index.html', 'styles.css', 'app.js', 'package.json', 'README.md', '工程物件.js', '工程物件.css', '工程物件操作.js', 'data/real-photos.js'];
   const bannedKeywords = ['deepseek', 'qwen', 'kimi', 'moonshot', 'baidu', 'aliyun', 'tencent', 'bytedance', 'volcengine'];
 
   for (const f of filesToScan) {
@@ -121,7 +150,7 @@ async function verify() {
   }
 
   // 4. 驗證靜態資產
-  const assets = ['assets/cover.svg', 'assets/16-wafer-map-patterns.svg', '.nojekyll', '.github/workflows/deploy.yml', '工程物件.js', '工程物件.css'];
+  const assets = ['assets/cover.svg', 'assets/16-wafer-map-patterns.svg', '.nojekyll', '.github/workflows/deploy.yml', '工程物件.js', '工程物件.css', '工程物件操作.js', 'data/real-photos.js'];
   for (const a of assets) {
     const ap = path.join(ROOT_DIR, a);
     if (!fs.existsSync(ap)) {
