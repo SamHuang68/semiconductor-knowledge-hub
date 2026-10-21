@@ -51,6 +51,262 @@
   --article-font-size: 16.5px;
 }
 
+/* ══════════════════════════════════════════════════════════════════════════════
+   PRECISION THEME SYSTEM (DARK & 500nm LITHO AMBER CLEANROOM MODE)
+   ══════════════════════════════════════════════════════════════════════════════ */
+[data-theme="dark"] {
+  --bg-app: #090e17;
+  --bg-surface: #0f172a;
+  --bg-surface-alt: #1e293b;
+  --bg-surface-trans: rgba(15, 23, 42, 0.94);
+  --border-subtle: #334155;
+  --border-strong: #475569;
+  --border-active: #38bdf8;
+
+  --text-main: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+  --text-invert: #0f172a;
+
+  --semi-blue: #38bdf8;
+  --semi-blue-light: #082f49;
+  --semi-blue-dark: #0284c7;
+  --semi-teal: #2dd4bf;
+  --semi-teal-light: #134e4a;
+  --semi-amber: #fbbf24;
+  --semi-amber-light: #451a03;
+  --semi-amber-border: #f59e0b;
+  --semi-emerald: #34d399;
+  --semi-emerald-light: #064e3b;
+
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.35);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.6);
+  --shadow-popup: 0 20px 25px -5px rgba(0, 0, 0, 0.7);
+}
+
+[data-theme="litho-amber"] {
+  --bg-app: #120d02;
+  --bg-surface: #1c1505;
+  --bg-surface-alt: #291e07;
+  --bg-surface-trans: rgba(28, 21, 5, 0.95);
+  --border-subtle: #45320c;
+  --border-strong: #785311;
+  --border-active: #fbbf24;
+
+  --text-main: #fef3c7;
+  --text-secondary: #fde68a;
+  --text-muted: #d97706;
+  --text-invert: #120d02;
+
+  --semi-blue: #f59e0b;
+  --semi-blue-light: #451a03;
+  --semi-blue-dark: #d97706;
+  --semi-teal: #d97706;
+  --semi-teal-light: #291e07;
+  --semi-amber: #fbbf24;
+  --semi-amber-light: #451a03;
+  --semi-amber-border: #f59e0b;
+  --semi-emerald: #fbbf24;
+  --semi-emerald-light: #451a03;
+
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.45);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.55);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.7);
+  --shadow-popup: 0 20px 25px -5px rgba(0, 0, 0, 0.85);
+}
+
+/* 主題切換群組樣式 */
+.theme-switch-cluster {
+  display: inline-flex;
+  align-items: center;
+  background: var(--bg-surface-alt);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-full);
+  padding: 2px;
+  gap: 2px;
+}
+
+.theme-btn {
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-full);
+  font-size: 13px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.theme-btn:hover {
+  color: var(--text-main);
+  background: rgba(148, 163, 184, 0.15);
+}
+
+.theme-btn.is-active {
+  background: var(--semi-blue);
+  color: #ffffff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+}
+
+[data-theme="litho-amber"] .theme-btn.is-active {
+  background: #f59e0b;
+  color: #120d02;
+  font-weight: 700;
+}
+
+/* 製程全景圖譜天車調度模擬條 (Atlas OHT Simulation Bar) */
+.atlas-sim-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 20px;
+  background: rgba(15, 23, 42, 0.95);
+  border-bottom: 1px solid rgba(56, 189, 248, 0.25);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  flex-wrap: wrap;
+}
+
+.atlas-sim-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.atlas-sim-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(56, 189, 248, 0.4);
+  background: rgba(14, 165, 233, 0.15);
+  color: #38bdf8;
+  cursor: pointer;
+  font-size: 11.5px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  font-family: var(--font-sans);
+}
+
+.atlas-sim-btn:hover {
+  background: rgba(14, 165, 233, 0.3);
+  border-color: #38bdf8;
+}
+
+.atlas-sim-btn.is-active {
+  background: #0284c7;
+  color: #ffffff;
+  border-color: #38bdf8;
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.4);
+}
+
+.atlas-telemetry {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #94a3b8;
+  font-size: 11px;
+}
+
+.atlas-telemetry-badge {
+  background: rgba(16, 185, 129, 0.2);
+  color: #34d399;
+  padding: 2px 8px;
+  border-radius: 4px;
+  border: 1px solid rgba(16, 185, 129, 0.4);
+  font-weight: 700;
+}
+
+.atlas-telemetry-badge.is-transit {
+  background: rgba(245, 158, 11, 0.2);
+  color: #fbbf24;
+  border-color: rgba(245, 158, 11, 0.4);
+}
+
+.atlas-card.is-oht-focus {
+  outline: 2px solid #38bdf8 !important;
+  box-shadow: 0 0 24px rgba(56, 189, 248, 0.6) !important;
+  transform: translateY(-4px);
+  border-color: #38bdf8 !important;
+}
+
+.atlas-card-qtime-badge {
+  display: none;
+  margin-top: 8px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 700;
+  background: rgba(245, 158, 11, 0.15);
+  border: 1px solid rgba(245, 158, 11, 0.5);
+  color: #f59e0b;
+  font-family: var(--font-mono);
+}
+
+.show-qtime .atlas-card-qtime-badge {
+  display: block !important;
+}
+
+.atlas-card-photo-thumb {
+  width: 100%;
+  height: 80px;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+  margin-top: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: transform 0.2s ease;
+  cursor: pointer;
+}
+
+.atlas-card-photo-thumb:hover {
+  transform: scale(1.02);
+  border-color: #38bdf8;
+}
+
+/* 現場行話與術語字典語音朗讀 (Web Speech API) 按鈕 */
+.btn-jargon-speech {
+  background: rgba(56, 189, 248, 0.1);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  color: #38bdf8;
+  border-radius: var(--radius-full);
+  width: 24px;
+  height: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 0;
+  vertical-align: middle;
+  margin-left: 8px;
+}
+
+.btn-jargon-speech:hover {
+  background: rgba(56, 189, 248, 0.25);
+  border-color: #38bdf8;
+  transform: scale(1.1);
+}
+
+.btn-jargon-speech.is-speaking {
+  animation: speechPulse 1s infinite alternate;
+  background: #0284c7;
+  color: #ffffff;
+}
+
+@keyframes speechPulse {
+  0% { box-shadow: 0 0 0 0 rgba(56, 189, 248, 0.7); }
+  100% { box-shadow: 0 0 0 8px rgba(56, 189, 248, 0); }
+}
+
+
 /* 全域重設 */
 *, *::before, *::after {
   box-sizing: border-box;
@@ -1421,7 +1677,7 @@ figcaption {
 }
 
 /* ══════════════════════════════════════════════════════════════════════════════
-   7. 列印樣式 (PRINT STYLESHEET)
+   7. 出版級列印樣式 (PUBLICATION GRADE PRINT STYLESHEET)
    ══════════════════════════════════════════════════════════════════════════════ */
 @media print {
   .app-header,
@@ -1432,12 +1688,28 @@ figcaption {
   .atlas-modal,
   .jargon-modal,
   .chapter-pagination,
-  .article-action-cluster {
+  .article-action-cluster,
+  .theme-switch-cluster,
+  .mobile-toggle-btn,
+  .photo-lightbox-modal,
+  .physics-calc-modal,
+  .ocap-modal,
+  .quiz-modal,
+  .curtain-slider-bar,
+  .photo-tool-btn {
     display: none !important;
   }
   body {
     background: #ffffff !important;
-    color: #000000 !important;
+    color: #0f172a !important;
+    font-size: 11pt !important;
+    line-height: 1.5 !important;
+  }
+  .app-container {
+    display: block !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
   }
   .main-canvas {
     padding: 0 !important;
@@ -1445,12 +1717,26 @@ figcaption {
     width: 100% !important;
     max-width: 100% !important;
   }
+  .article-header {
+    margin-bottom: 24px !important;
+    border-bottom: 2pt solid #0284c7 !important;
+    padding-bottom: 12px !important;
+  }
+  .article-title {
+    font-size: 20pt !important;
+    color: #0f172a !important;
+    page-break-after: avoid;
+  }
   .table-container {
     box-shadow: none !important;
-    border: 1px solid #94a3b8 !important;
+    border: 1px solid #cbd5e1 !important;
+    page-break-inside: avoid;
   }
-  .callout-glossary, .callout-knowhow, .callout-wafer-pos {
+  .callout-glossary, .callout-knowhow, .callout-wafer-pos, .eng-obj-stage {
     box-shadow: none !important;
     page-break-inside: avoid;
+  }
+  h2, h3, h4 {
+    page-break-after: avoid;
   }
 }

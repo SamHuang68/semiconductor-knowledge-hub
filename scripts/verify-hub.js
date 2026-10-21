@@ -105,13 +105,37 @@ async function verify() {
     }
     console.log('[PASS] 全站 28 大模組實體半導體機台與電顯照片中英雙語規格與檔案實體全數校驗通過');
 
+    const { PHYSICS_CALCULATORS } = await import(`file://${ROOT_DIR}/data/calculators-data.js`);
+    const calcCount = Object.keys(PHYSICS_CALCULATORS).length;
+    console.log(`[PASS] PHYSICS_CALCULATORS 成功載入，共有 ${calcCount} 套物理定量計算器`);
+    if (calcCount < 8) {
+      console.error('[FAIL] PHYSICS_CALCULATORS 數量不足 8 套');
+      errors++;
+    }
+
+    const { OCAP_TREES } = await import(`file://${ROOT_DIR}/data/ocap-data.js`);
+    const ocapCount = Object.keys(OCAP_TREES).length;
+    console.log(`[PASS] OCAP_TREES 成功載入，共有 ${ocapCount} 棵異常反應處置決策樹`);
+    if (ocapCount < 28) {
+      console.error(`[FAIL] OCAP_TREES 數量不足 28 棵 (實得 ${ocapCount})`);
+      errors++;
+    }
+
+    const { CONCEPT_QUIZZES } = await import(`file://${ROOT_DIR}/data/quiz-data.js`);
+    const quizCount = Object.keys(CONCEPT_QUIZZES).length;
+    console.log(`[PASS] CONCEPT_QUIZZES 成功載入，共有 ${quizCount} 篇章節觀念隨堂快測`);
+    if (quizCount < 8) {
+      console.error('[FAIL] CONCEPT_QUIZZES 篇章不足 8 篇');
+      errors++;
+    }
+
   } catch (err) {
     console.error('[FAIL] 資料載入發生錯誤:', err);
     errors++;
   }
 
   // 2. 驗證零中系依賴與安全性
-  const filesToScan = ['index.html', 'styles.css', 'app.js', 'package.json', 'README.md', '工程物件.js', '工程物件.css', '工程物件操作.js', 'data/real-photos.js'];
+  const filesToScan = ['index.html', 'styles.css', 'app.js', 'package.json', 'README.md', '工程物件.js', '工程物件.css', '工程物件操作.js', 'data/real-photos.js', 'data/calculators-data.js', 'data/ocap-data.js', 'data/quiz-data.js'];
   const bannedKeywords = ['deepseek', 'qwen', 'kimi', 'moonshot', 'baidu', 'aliyun', 'tencent', 'bytedance', 'volcengine'];
 
   for (const f of filesToScan) {
@@ -150,7 +174,7 @@ async function verify() {
   }
 
   // 4. 驗證靜態資產
-  const assets = ['assets/cover.svg', 'assets/16-wafer-map-patterns.svg', '.nojekyll', '.github/workflows/deploy.yml', '工程物件.js', '工程物件.css', '工程物件操作.js', 'data/real-photos.js'];
+  const assets = ['assets/cover.svg', 'assets/16-wafer-map-patterns.svg', '.nojekyll', '.github/workflows/deploy.yml', '工程物件.js', '工程物件.css', '工程物件操作.js', 'data/real-photos.js', 'data/calculators-data.js', 'data/ocap-data.js', 'data/quiz-data.js'];
   for (const a of assets) {
     const ap = path.join(ROOT_DIR, a);
     if (!fs.existsSync(ap)) {

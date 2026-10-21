@@ -1,6 +1,6 @@
 {
   "name": "semiconductor-knowledge-hub",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "type": "module",
   "private": true,
   "description": "半導體製造概論知識庫：從沙子到晶片的完整製造旅程與互動工程圖譜",
@@ -8,6 +8,6 @@
   "scripts": {
     "test": "npm run verify",
     "build:data": "node scripts/build-data.js",
-    "verify": "node scripts/verify-hub.js && node scripts/驗證導覽契約.mjs && node scripts/verify-bilingual-ui.mjs && node scripts/test-engineering-objects.mjs"
+    "verify": "node scripts/verify-hub.js && node scripts/驗證導覽契約.mjs && node scripts/verify-bilingual-ui.mjs && node scripts/test-engineering-objects.mjs && node scripts/verify-extended-features.mjs"
   }
 }

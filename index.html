@@ -41,10 +41,17 @@
     </div>
 
     <div class="header-actions">
-      <!-- 語言切換按鈕群組 -->
+            <!-- 語言切換按鈕群組 -->
       <div class="lang-switch-cluster" role="group" aria-label="Language Switcher">
         <button type="button" class="lang-btn is-active" data-lang="zh" title="切換為繁體中文" aria-pressed="true" data-i18n-title="lang_btn_zh_title">中文</button>
         <button type="button" class="lang-btn" data-lang="en" title="Switch to English" aria-pressed="false" data-i18n-title="lang_btn_en_title">EN</button>
+      </div>
+
+      <!-- 主題切換按鈕群組 (亮色 / 暗色 / 500nm 黃光微影濾光模式) -->
+      <div class="theme-switch-cluster" role="group" aria-label="Theme Switcher">
+        <button type="button" class="theme-btn is-active" data-theme="light" title="亮色微暖工程模式 (Light Mode)" aria-pressed="true" data-i18n-title="theme_light_title">☀️</button>
+        <button type="button" class="theme-btn" data-theme="dark" title="暗色極致對比模式 (Dark Mode)" aria-pressed="false" data-i18n-title="theme_dark_title">🌙</button>
+        <button type="button" class="theme-btn" data-theme="litho-amber" title="無塵室 500nm 黃光微影濾光模式 (Litho Amber Mode)" aria-pressed="false" data-i18n-title="theme_amber_title">🟡</button>
       </div>
 
       <a href="#explore" class="tool-btn explore-entry" data-i18n="nav_explore">情境探索</a>
@@ -149,7 +156,7 @@
         （採 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hant" target="_blank" rel="noopener">CC BY-NC-SA 4.0 創用 CC 姓名標示-非商業性-相同方式分享</a> 授權）重製與架構升級。
       </p>
       <p style="margin-top: 6px;" id="footerDescription" data-i18n="footer_desc">
-        涵蓋 25 章從沙子到晶片的完整晶圓製造旅程 · 245 筆核心術語與現場實務行話 · 中英雙語無縫支援 · 純前端極速架構 · 零中系依賴 · 版本 1.8.4
+        涵蓋 25 章從沙子到晶片的完整晶圓製造旅程 · 245 筆核心術語與現場實務行話 · 中英雙語無縫支援 · 純前端極速架構 · 零中系依賴 · 版本 2.3.0
       </p>
     </div>
   </footer>
@@ -172,6 +179,25 @@
         </div>
         <div class="atlas-stream-canvas-wrap">
           <svg viewBox="0 0 1000 120" xmlns="http://www.w3.org/2000/svg" id="atlasWaferSvg" role="img" aria-label="Wafer Cross-Section Stream"></svg>
+                </div>
+      </div>
+
+      <!-- Atlas 天車調度模擬與 Q-Time 關鍵時效控制條 -->
+      <div class="atlas-sim-bar" id="atlasSimBar">
+        <div class="atlas-sim-left">
+          <button type="button" class="atlas-sim-btn" id="startOhtSimBtn" title="啟動/暫停無塵室天車自動派工調度模擬">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            <span id="ohtSimBtnText" data-i18n="oht_sim_btn">啟動天車調度模擬</span>
+          </button>
+          <button type="button" class="atlas-sim-btn" id="toggleQtimeBtn" title="顯示晶圓各製程間嚴苛 Q-Time 時效管制窗口">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span id="qtimeBtnText" data-i18n="qtime_btn">Q-Time 時效矩陣</span>
+          </button>
+        </div>
+        <div class="atlas-telemetry">
+          <span>AMHS 狀態：</span>
+          <span class="atlas-telemetry-badge" id="ohtTelemetryBadge">天車待命 (Standby)</span>
+          <span id="ohtTelemetryMsg">FOUP #101 在晶圓立體儲存庫 (Stocker) 就緒</span>
         </div>
       </div>
       <div class="atlas-body" id="atlasGrid"></div>

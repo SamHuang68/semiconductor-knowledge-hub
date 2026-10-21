@@ -8,6 +8,12 @@
 
 ## 專案特色
 
+- **里程碑版本 v2.3.0 — 20 輪結構化深度工程優化大滿貫（2.3.0）**：
+  1. **實體電顯與機台照片深層互動（Stage 1 / Rounds 1–5）**：全站 28 大模組實體半導體電顯（SEM/TEM）與機台照片支援 **全螢幕深層縮放燈箱（Lightbox，支援 +/-/1:1 縮放、拖曳平移、左右箭頭跨章切換）**、**84 處微觀物理特徵標記（Hotspots，標記 Gate Oxide, FinFET Fin, AMHS Track, TSV, Wedge Bond 等物理特徵與交互機制卡片）**、**四態視圖切換器（🔀 並列、⚡ 示意、📷 實體、🌓 疊合）**、**Curtain Overlay 擦除疊合對照滑塊（物理電顯與向量示意圖即時重疊擦除）** 與 **Metrology HUD 計量規格抬頭顯示（檢測技術、放大倍率、加速電壓與 FOV）**。
+  2. **物理定量速算器沙盒與全站 OCAP 決策樹（Stage 2 / Rounds 6–10）**：建立獨立資料庫 `calculators-data.js`，收錄 **8 大半導體經典物理速算沙盒（Rayleigh 解析度/焦深、Arrhenius 化學反應動力學、LSS 高斯佈植縱深、Preston CMP 研磨速率、Deal-Grove 氧化厚度、Poisson/Murphy/負二項良率模型、3D 封裝密度、ALT 加速老化）**，支援參數滑桿即時定量重算；建立 `ocap-data.js` 收錄 **28 篇全站異常反應處置決策樹（OCAP，涵蓋觸發警報、緊急防堵隔離、5 階 RCA 決策流、處置放行與長期防呆互鎖）**；並於各章工程物件第 5 卡（Governing Law）與第 6 卡（Failure Diagnostics）無縫直連。
+  3. **晶圓廠全景圖譜天車調度、Q-Time 矩陣與語音朗讀（Stage 3 / Rounds 11–15）**：升級 12 大製程全景圖譜（Fab Flow Atlas），新增 **無塵室天車調度模擬（OHT AMHS Simulation，以 1800ms 節奏自動演繹 12 站派工與動態橫截面演變）**、**Q-Time 關鍵時效嚴苛管制矩陣（展示原生氧化層、光阻中毒、高分子腐蝕與銅自退火之時效限制）**、**各站機台實體縮圖一鍵直連燈箱**，以及於現場行話字典整合 **Web Speech API 雙語術語朗讀發音**。
+  4. **無塵室 500nm 黃光微影濾光主題、隨堂快測與出版級列印（Stage 4 / Rounds 16–20）**：新增頂部主題切換器（**☀️ 亮色微暖工程模式 / 🌙 暗色極致對比模式 / 🟡 無塵室 500nm 黃光微影濾光模式**）；建立 `quiz-data.js` 觀念隨堂快測題庫與互動測驗彈窗；升級 publication-grade 出版級 `@media print` 講義與試卷排版樣式；並將全站版本號推進至 `v2.3.0`。
+
 - **全書 25 章「定量物理定律與 3D 製程視窗」雙語 H2 目錄錨點（TOC ScrollSpy）100% 導覽整合與核心術語公式深化（2.0.6）**：為 `Ch00`–`Ch24` 全書 25 個正式章節的定量統御方程表建立專屬雙語 `<h2>` 標題錨點（`#定量物理定律與3d製程視窗` / `#quantitative-governing-laws-and-3d-process-windows`），完整註冊於右側段落目錄（TOC），並為 `GLOSSARY_DATA` 12 項核心指標術語（`DOF`、`Overlay`、`ALD`、`CMP`、`RC Delay`、`EM`、`Yield`、`Cpk`、`WAT`、`TSV`、`HTOL`、`OEE`）補齊定量數學方程與 3D 標尺。
 
 - **全站 28/28 互動工程物件（Ch00–Ch24 + 附錄 A/B/C）100% 五卡儀表板（含第 5 張「定量統御定律卡」）與多波段 SVG 物理場動畫大滿貫（2.0.5）**：完成 `Ch00`、`Ch13`–`Ch24` 與 `附錄 A/B/C` 共 16 座工程物件的第 5 張雙語「定量統御定律（Quantitative Governing Law）」指標卡與 SVG 諧波能量環升級，達成全站 28 座工程物件 **100% 具備 5 張雙語指標卡（共 140 張中英指標卡）與雙層動態 SVG 物理視覺化**。

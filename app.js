@@ -15,6 +15,7 @@ import { connectionOrigin, originQuery } from './延伸探索.js';
 import { scenarioForChapter, chapterReturnContext } from './data/情境路徑.js';
 import { normalizeChapterHref } from './章節連結.js';
 import { mountEngineeringObject } from './工程物件.js';
+import { REAL_PHOTOS_DATA } from './data/real-photos.js';
 
 (() => {
   'use strict';
@@ -54,7 +55,7 @@ import { mountEngineeringObject } from './工程物件.js';
       explore_open: '開啟互動情境 ↗',
       no_matching_chapters: '查無相符章節',
       footer_attribution: `本專案基於開源教材 <a href="https://github.com/chenwei810/Semiconductor_Manufacturing_Introduction" target="_blank" rel="noopener">chenwei810/Semiconductor_Manufacturing_Introduction</a> （採 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hant" target="_blank" rel="noopener">CC BY-NC-SA 4.0 創用 CC 姓名標示-非商業性-相同方式分享</a> 授權）重製與架構升級。`,
-      footer_desc: '涵蓋 25 章從沙子到晶片的完整晶圓製造旅程 · 28 大模組實體電顯與機台照片並列對照 · 245 筆核心術語與現場實務行話 · 中英雙語無縫支援 · 純前端極速架構 · 零中系依賴 · 版本 2.2.0',
+      footer_desc: '涵蓋 25 章從沙子到晶片的完整晶圓製造旅程 · 28 大模組實體電顯與機台照片並列對照 · 245 筆核心術語與現場實務行話 · 中英雙語無縫支援 · 純前端極速架構 · 零中系依賴 · 版本 2.3.0',
       atlas_title: '晶圓廠 12 大核心製程全景圖譜 (Fab Flow Atlas)',
       btn_close: '關閉 (Esc)',
       jargon_title: '晶圓廠現場行話與術語字典',
@@ -89,6 +90,12 @@ import { mountEngineeringObject } from './工程物件.js';
       ocap_label: '異常防呆：',
       lang_btn_zh_title: '切換為繁體中文',
       lang_btn_en_title: 'Switch to English',
+      theme_light_title: '亮色微暖工程模式 (Light Mode)',
+      theme_dark_title: '暗色極致對比模式 (Dark Mode)',
+      theme_amber_title: '無塵室 500nm 黃光微影濾光模式 (Litho Amber Mode)',
+      oht_sim_btn: '啟動天車調度模擬',
+      oht_sim_pause: '暫停天車調度模擬',
+      qtime_btn: 'Q-Time 時效矩陣',
       btn_menu_aria: '切換章節目錄',
       btn_menu_title: '展開章節目錄',
       btn_atlas_title: '開啟 12 大製程全景流程圖 (快捷鍵: M)',
@@ -139,7 +146,13 @@ import { mountEngineeringObject } from './工程物件.js';
       explore_open: 'Open Scenario ↗',
       no_matching_chapters: 'No matching chapters found',
       footer_attribution: `Adapted from the open-source book <a href="https://github.com/chenwei810/Semiconductor_Manufacturing_Introduction" target="_blank" rel="noopener">chenwei810/Semiconductor_Manufacturing_Introduction</a> licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a>.`,
-      footer_desc: 'Comprehensive 25-chapter wafer fabrication guide from sand to chip · 28-module authentic SEM & tool photo side-by-side view · 245 core terms & 43 fab jargon · Native bilingual support · Zero Chinese-origin dependencies · v2.2.0',
+      footer_desc: 'Comprehensive 25-chapter wafer fabrication guide from sand to chip · 28-module authentic SEM & tool photo side-by-side view · 245 core terms & 43 fab jargon · Native bilingual support · Zero Chinese-origin dependencies · v2.3.0',
+      theme_light_title: 'Light Precision Mode',
+      theme_dark_title: 'Dark High-Contrast Mode',
+      theme_amber_title: 'Cleanroom 500nm Litho Amber Mode',
+      oht_sim_btn: 'Start OHT Simulation',
+      oht_sim_pause: 'Pause OHT Simulation',
+      qtime_btn: 'Q-Time Windows Matrix',
       atlas_title: '12 Core Fab Flow Atlas',
       btn_close: 'Close (Esc)',
       jargon_title: 'Fab Jargon & Terminology Dictionary',
@@ -203,6 +216,30 @@ import { mountEngineeringObject } from './工程物件.js';
   const EXPLORED_STORAGE_KEY = 'semi_explored_models';
   const FONT_STORAGE_KEY = 'semi_font_size';
   const LANG_STORAGE_KEY = 'semi_preferred_lang';
+  const THEME_STORAGE_KEY = 'semi_preferred_theme';
+
+  // 主題管理系統 (Light / Dark / 500nm Litho Amber Mode)
+  let currentTheme = localStorage.getItem(THEME_STORAGE_KEY) || 'light';
+  function applyTheme(theme) {
+    currentTheme = theme;
+    document.documentElement.setAttribute('data-theme', theme);
+    try {
+      localStorage.setItem(THEME_STORAGE_KEY, theme);
+    } catch (_) {}
+    document.querySelectorAll('.theme-btn').forEach(btn => {
+      const isActive = btn.dataset.theme === theme;
+      btn.classList.toggle('is-active', isActive);
+      btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+    });
+  }
+
+  document.querySelectorAll('.theme-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const t = btn.dataset.theme;
+      if (t) applyTheme(t);
+    });
+  });
+  applyTheme(currentTheme);
 
   let currentLang = localStorage.getItem(LANG_STORAGE_KEY) || 'zh';
   const readChapters = new Set(JSON.parse(localStorage.getItem(READ_STORAGE_KEY) || '[]'));
@@ -658,6 +695,18 @@ import { mountEngineeringObject } from './工程物件.js';
    * 5. 渲染製程全景圖譜 (Atlas 2.0 Modal) — 動態晶圓剖面流與深度模型直達
    */
   function renderAtlasModal() {
+
+  const QTIME_MAP = {
+    'step-02': { zh: '⏱️ Q-Time ≤ 4h: 進入微影 (防原生氧化層生長)', en: '⏱️ Q-Time ≤ 4h: Transfer to Litho (Native oxide control)' },
+    'step-03': { zh: '⏱️ Q-Time ≤ 8h: 進入非等向蝕刻 (防光阻 T-Topping 酸氣中毒)', en: '⏱️ Q-Time ≤ 8h: Transfer to Etch (Resist T-topping prevention)' },
+    'step-04': { zh: '⏱️ Q-Time ≤ 2h: 進入濕式清洗 (防含氯高分子殘留腐蝕)', en: '⏱️ Q-Time ≤ 2h: Transfer to Clean (Polymer residue corrosion prevention)' },
+    'step-06': { zh: '⏱️ Q-Time ≤ 4h: 進入薄膜沉積 (防界面金屬有機污染)', en: '⏱️ Q-Time ≤ 4h: Transfer to Deposition (Airborne amine prevention)' },
+    'step-09': { zh: '⏱️ Q-Time ≤ 6h: 進入化學機械研磨 (防止電鍍銅晶粒非均勻自退火)', en: '⏱️ Q-Time ≤ 6h: Transfer to CMP (Copper grain self-annealing limit)' }
+  };
+  let ohtSimTimer = null;
+  let ohtSimCurrentStep = 1;
+  let showQTimeOverlay = false;
+
     if (!atlasGridEl) return;
     const isEn = currentLang === 'en';
     const t = I18N[currentLang] || I18N.zh;
@@ -881,6 +930,64 @@ import { mountEngineeringObject } from './工程物件.js';
     });
     atlasGridEl.innerHTML = html;
 
+    // 綁定天車自動調度模擬 (AMHS Simulation) 與 Q-Time 矩陣
+    const startOhtSimBtn = document.getElementById('startOhtSimBtn');
+    const toggleQtimeBtn = document.getElementById('toggleQtimeBtn');
+    const ohtTelemetryBadge = document.getElementById('ohtTelemetryBadge');
+    const ohtTelemetryMsg = document.getElementById('ohtTelemetryMsg');
+    const ohtSimBtnText = document.getElementById('ohtSimBtnText');
+    const qtimeBtnText = document.getElementById('qtimeBtnText');
+
+    if (toggleQtimeBtn) {
+      toggleQtimeBtn.onclick = (e) => {
+        e.stopPropagation();
+        showQTimeOverlay = !showQTimeOverlay;
+        atlasGridEl.classList.toggle('show-qtime', showQTimeOverlay);
+        toggleQtimeBtn.classList.toggle('is-active', showQTimeOverlay);
+      };
+    }
+
+    function stepOhtSim() {
+      ohtSimCurrentStep = (ohtSimCurrentStep % 12) + 1;
+      const targetNode = FAB_FLOW_NODES.find(n => parseInt(n.num, 10) === ohtSimCurrentStep);
+      renderAtlasWaferCrossSection(ohtSimCurrentStep);
+      const cards = atlasGridEl.querySelectorAll('.atlas-card');
+      cards.forEach(c => {
+        const s = parseInt(c.getAttribute('data-step-num'), 10);
+        c.classList.toggle('is-oht-focus', s === ohtSimCurrentStep);
+        c.classList.toggle('is-active-step', s === ohtSimCurrentStep);
+      });
+      if (ohtTelemetryBadge && ohtTelemetryMsg && targetNode) {
+        ohtTelemetryBadge.className = 'atlas-telemetry-badge is-transit';
+        ohtTelemetryBadge.textContent = isEn ? `AMHS Transit -> STEP ${targetNode.num}` : `天車調度中 -> STEP ${targetNode.num}`;
+        ohtTelemetryMsg.textContent = isEn
+          ? `FOUP #402 [Priority: Hot Lot] delivered to ${targetNode.keyToolEn || targetNode.keyTool}`
+          : `FOUP #402 [急件 Hot Lot] 正在搬送至機台：${targetNode.keyToolZh || targetNode.keyTool}`;
+      }
+    }
+
+    if (startOhtSimBtn) {
+      startOhtSimBtn.onclick = (e) => {
+        e.stopPropagation();
+        if (ohtSimTimer) {
+          clearInterval(ohtSimTimer);
+          ohtSimTimer = null;
+          startOhtSimBtn.classList.remove('is-active');
+          if (ohtSimBtnText) ohtSimBtnText.textContent = isEn ? t.oht_sim_btn : '啟動天車調度模擬';
+          if (ohtTelemetryBadge) {
+            ohtTelemetryBadge.className = 'atlas-telemetry-badge';
+            ohtTelemetryBadge.textContent = isEn ? 'AMHS Standby' : '天車待命 (Standby)';
+          }
+        } else {
+          stepOhtSim();
+          ohtSimTimer = setInterval(stepOhtSim, 1800);
+          startOhtSimBtn.classList.add('is-active');
+          if (ohtSimBtnText) ohtSimBtnText.textContent = isEn ? t.oht_sim_pause : '暫停天車調度模擬';
+        }
+      };
+    }
+
+
     // 綁定 Hover / Focus 晶圓剖面演變與點擊直達
     const allCards = atlasGridEl.querySelectorAll('.atlas-card');
     allCards.forEach(card => {
@@ -918,6 +1025,24 @@ import { mountEngineeringObject } from './工程物件.js';
   /**
    * 6. 渲染現場行話與術語字典 (Jargon Modal)
    */
+  
+  // Web Speech API 術語與行話語音朗讀
+  function speakTerm(text, lang = 'en-US', btn = null) {
+    if (typeof window === 'undefined' || !('speechSynthesis' in window)) return;
+    try {
+      window.speechSynthesis.cancel();
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = lang;
+      utterance.rate = 0.95;
+      if (btn) {
+        btn.classList.add('is-speaking');
+        utterance.onend = () => btn.classList.remove('is-speaking');
+        utterance.onerror = () => btn.classList.remove('is-speaking');
+      }
+      window.speechSynthesis.speak(utterance);
+    } catch (_) {}
+  }
+
   function renderJargonModal(query = '', tab = 'all') {
     if (!jargonListEl) return;
     const isEn = currentLang === 'en';
@@ -1011,6 +1136,16 @@ import { mountEngineeringObject } from './工程物件.js';
       `;
     });
     jargonListEl.innerHTML = html;
+
+    jargonListEl.querySelectorAll('.btn-jargon-speech').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const text = btn.getAttribute('data-speak-text');
+        const lang = btn.getAttribute('data-speak-lang') || 'en-US';
+        speakTerm(text, lang, btn);
+      });
+    });
+
   }
 
   /**
