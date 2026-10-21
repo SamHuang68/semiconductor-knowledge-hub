@@ -52,68 +52,38 @@
 }
 
 /* ══════════════════════════════════════════════════════════════════════════════
-   PRECISION THEME SYSTEM (DARK & 500nm LITHO AMBER CLEANROOM MODE)
+   PRECISION CLEANROOM THEME (500nm LITHO AMBER LIGHT-FILTER MODE)
+   淡琥珀象牙微暖基底 · 100% 遵守規則 0003 淡色系規範 · 高對比工程閱讀
    ══════════════════════════════════════════════════════════════════════════════ */
-[data-theme="dark"] {
-  --bg-app: #090e17;
-  --bg-surface: #0f172a;
-  --bg-surface-alt: #1e293b;
-  --bg-surface-trans: rgba(15, 23, 42, 0.94);
-  --border-subtle: #334155;
-  --border-strong: #475569;
-  --border-active: #38bdf8;
-
-  --text-main: #f8fafc;
-  --text-secondary: #cbd5e1;
-  --text-muted: #94a3b8;
-  --text-invert: #0f172a;
-
-  --semi-blue: #38bdf8;
-  --semi-blue-light: #082f49;
-  --semi-blue-dark: #0284c7;
-  --semi-teal: #2dd4bf;
-  --semi-teal-light: #134e4a;
-  --semi-amber: #fbbf24;
-  --semi-amber-light: #451a03;
-  --semi-amber-border: #f59e0b;
-  --semi-emerald: #34d399;
-  --semi-emerald-light: #064e3b;
-
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.35);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.45);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.6);
-  --shadow-popup: 0 20px 25px -5px rgba(0, 0, 0, 0.7);
-}
-
 [data-theme="litho-amber"] {
-  --bg-app: #120d02;
-  --bg-surface: #1c1505;
-  --bg-surface-alt: #291e07;
-  --bg-surface-trans: rgba(28, 21, 5, 0.95);
-  --border-subtle: #45320c;
-  --border-strong: #785311;
-  --border-active: #fbbf24;
+  --bg-app: #fdfbf7;
+  --bg-surface: #ffffff;
+  --bg-surface-alt: #fef3c7;
+  --bg-surface-trans: rgba(255, 255, 255, 0.95);
+  --border-subtle: #fde68a;
+  --border-strong: #f59e0b;
+  --border-active: #d97706;
 
-  --text-main: #fef3c7;
-  --text-secondary: #fde68a;
-  --text-muted: #d97706;
-  --text-invert: #120d02;
+  --text-main: #451a03;        /* 對比度 > 13:1 */
+  --text-secondary: #78350f;   /* 對比度 > 8:1 */
+  --text-muted: #92400e;       /* 對比度 > 5:1 */
+  --text-invert: #ffffff;
 
-  --semi-blue: #f59e0b;
-  --semi-blue-light: #451a03;
-  --semi-blue-dark: #d97706;
-  --semi-teal: #d97706;
-  --semi-teal-light: #291e07;
-  --semi-amber: #fbbf24;
-  --semi-amber-light: #451a03;
+  --semi-blue: #d97706;
+  --semi-blue-light: #fef3c7;
+  --semi-blue-dark: #b45309;
+  --semi-teal: #b45309;
+  --semi-teal-light: #fef3c7;
+  --semi-amber: #d97706;
+  --semi-amber-light: #fef9c3;
   --semi-amber-border: #f59e0b;
-  --semi-emerald: #fbbf24;
-  --semi-emerald-light: #451a03;
+  --semi-emerald: #b45309;
+  --semi-emerald-light: #fef3c7;
 
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.45);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.55);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.7);
-  --shadow-popup: 0 20px 25px -5px rgba(0, 0, 0, 0.85);
+  --shadow-sm: 0 1px 3px rgba(180, 83, 9, 0.08);
+  --shadow-md: 0 4px 6px -1px rgba(180, 83, 9, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(180, 83, 9, 0.12);
+  --shadow-popup: 0 20px 25px -5px rgba(180, 83, 9, 0.15);
 }
 
 /* 主題切換群組樣式 */
@@ -166,11 +136,12 @@
   justify-content: space-between;
   gap: 12px;
   padding: 10px 20px;
-  background: rgba(15, 23, 42, 0.95);
-  border-bottom: 1px solid rgba(56, 189, 248, 0.25);
+  background: var(--bg-surface-alt);
+  border-bottom: 1px solid var(--border-subtle);
   font-family: var(--font-mono);
   font-size: 12px;
   flex-wrap: wrap;
+  color: var(--text-main);
 }
 
 .atlas-sim-left {
@@ -186,9 +157,9 @@
   gap: 6px;
   padding: 5px 12px;
   border-radius: var(--radius-sm);
-  border: 1px solid rgba(56, 189, 248, 0.4);
-  background: rgba(14, 165, 233, 0.15);
-  color: #38bdf8;
+  border: 1px solid var(--semi-blue);
+  background: var(--bg-surface);
+  color: var(--semi-blue-dark);
   cursor: pointer;
   font-size: 11.5px;
   font-weight: 600;
@@ -871,6 +842,32 @@ body {
   color: var(--text-main);
   margin: 32px 0 14px 0;
   scroll-margin-top: calc(var(--header-height) + 24px);
+}
+
+/* 晶圓刻度分隔線 (Precision Wafer Divider) */
+hr.semi-hr {
+  border: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, #cbd5e1 20%, #94a3b8 50%, #cbd5e1 80%, transparent 100%);
+  margin: 36px 0;
+  position: relative;
+  overflow: visible;
+}
+hr.semi-hr::after {
+  content: "◈ WAFER SCALE ◈";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: var(--semi-blue);
+  background: var(--bg-surface);
+  padding: 0 12px;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-full);
 }
 
 .article-body p.semi-p {
@@ -1598,7 +1595,7 @@ figcaption {
     padding: 24px 20px;
   }
   .ext-hub-btn {
-    display: none;
+    display: none !important;
   }
   .brand-subtitle {
     display: none;
@@ -1623,10 +1620,10 @@ figcaption {
   .header-actions {
     gap: 6px;
   }
-  .app-header .header-actions a.tool-btn span { display: inline; }
+  .app-header .header-actions a.tool-btn:not(.ext-hub-btn) span { display: inline; }
 }
 
-@media (max-width: 560px) {
+@media (max-width: 768px) {
   :root { --header-height: 108px; }
   .brand-title {
     font-size: 13.5px;

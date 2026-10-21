@@ -57,6 +57,6 @@
     <ellipse cx="160" cy="110" rx="190" ry="120" fill="url(#gloss)"/>
     <rect x="14" y="198" width="372" height="3" fill="url(#scanLineGrad)" class="wafer-scan-beam"/>
   </g>
-  <circle cx="200" cy="200" r="181" fill="none" stroke="#7dd3fc" stroke-opacity="0.28" stroke-width="1" stroke-dasharray="4 3"/>
-  <path d="M207.14,385.86 A186,186 0 1 0 192.86,385.86 L200.00,379.49 Z" fill="none" stroke="#bae6fd" stroke-opacity="0.9" stroke-width="3"/>
+  <circle cx="200" cy="200" r="181" fill="none" stroke="#0284c7" stroke-opacity="0.4" stroke-width="1" stroke-dasharray="4 3"/>
+  <path d="M207.14,385.86 A186,186 0 1 0 192.86,385.86 L200.00,379.49 Z" fill="none" stroke="#0284c7" stroke-opacity="0.9" stroke-width="2.5"/>
 </svg>

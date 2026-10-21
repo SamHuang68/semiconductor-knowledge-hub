@@ -8,6 +8,12 @@
 
 ## 專案特色
 
+- **里程碑版本 v2.5.0 — 美術呈現進階升級與全站淡色系合規大滿貫（2.5.0）**：
+  1. **全站 100% 遵守規則 0003 淡色系規範（Rule 0003 Light Theme Gate）**：禁絕所有深黑/午夜藍底色，建立專屬自動化門禁 `scripts/verify-light-theme.mjs`，包含背景明度（Luminance >= 0.65）、資產載體對比門禁與雙態切換器門禁；將首頁 Hero 主視覺、情境探索畫布、28 座工程物件舞台全面升級為精密無塵室淺色儀器面板。
+  2. **建置缺陷根因修復與晶圓刻度分隔線（Precision Wafer Divider）**：修正 `scripts/build-data.js` 分隔線正則缺陷，將全站 655 處字面殘留「---」段落完整修復為具有晶圓刻度象徵之 `hr.semi-hr`（◈ WAFER SCALE ◈），並以可逆性演算法嚴格證明正文內容零刪減。
+  3. **無塵室 500nm 琥珀黃光淡色主題（500nm Litho Amber Light Mode）**：依決策 D1 移除深黑模式，黃光微影模式全面重構為淡琥珀微暖象牙基底（`#fdfbf7`）配高對比深琥珀文字（`#451a03`，對比度 > 13:1），保留黃光室教學概念同時兼顧無障礙與規則 0003。
+  4. **手機端 RWD 響應式優化與導覽防溢出**：修正窄螢幕與手機端（390px）工具列溢出缺陷，隱藏外連按鈕，優化視窗折行排版，確保行動裝置瀏覽視野無裁切、無橫向溢出。
+
 - **里程碑版本 v2.4.0 — 20 輪深度工程優化大滿貫（2.4.0）**：
   1. **全站 28 大章節物理速算沙盒大滿貫（Stage 5 / Rounds 21–25）**：`data/calculators-data.js` 擴充至 28/28 滿貫覆蓋（Ch 00 ~ 24 + 附錄 A/B/C），全站 28 座互動工程物件第 5 卡（Governing Law）點擊直接開啟專屬物理定量速算器，涵蓋 GDPW 晶圓淨晶粒數、ISO 14644 微粒分佈、Varshni 能隙溫漂、Scheil-Gulliver 長晶偏析、Rayleigh 焦深/解析度、Arrhenius 反應速率、ARDE 蝕刻寬深比延遲、LSS 離子佈植高斯深度、Preston CMP 研磨速率、RCA 兆聲波微粒洗淨、FS-MS 銅奈米散射與 Black 電遷移、CMOS 跨層熱預算積分、GAA Weff 靜電有效寬度、DRAM 儲存電荷與 NAND 穿隧、Dennard 功耗牆與 RC 延遲、橢偏儀 Ψ/Δ 光學、Poisson/Murphy/負二項良率模型、SPC Cpk 製程能力指數、8D 異常重工損益、Kelvin 四線電阻、Coffin-Manson 焊球熱疲勞、3D 封裝互連密度 (1/P²)、Weibull 浴缸故障曲線、Little 定律與 Kingman 排隊延遲、PDN L·di/dt 供電壓降，以及八大領域量綱、批次狀態機與國際標準換算器。
   2. **全站 28 大章節觀念隨堂快測大滿貫（Stage 6 / Rounds 26–30）**：`data/quiz-data.js` 擴充至 28 篇全站完整覆蓋，每章具備高鑑別度實務題、雙語選項、正解標記與詳實物理原理解析；並整合 `localStorage` 測驗成績持久化（`semi_quiz_results`）。

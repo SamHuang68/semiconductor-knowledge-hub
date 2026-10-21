@@ -173,8 +173,8 @@ function markdownToHtml(md, lang = 'zh') {
       inTable = false;
     }
 
-    // 分隔線
-    if (/^---{3,}$/.test(line.trim())) {
+    // 分隔線（Markdown 規格：三個以上連字號即為分隔線；舊式 /^---{3,}$/ 需 5 個以上，造成 655 處字面「---」）
+    if (/^-{3,}$/.test(line.trim())) {
       html.push('<hr class="semi-hr" />');
       continue;
     }

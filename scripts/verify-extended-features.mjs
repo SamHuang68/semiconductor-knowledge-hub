@@ -83,12 +83,12 @@ console.log(`[PASS] Stage 4 (Round 17): 觀念隨堂快測 ${totalQuestions} 道
 // 5. 檢驗樣式表 styles.css (Stage 3 & Stage 4)
 const styles = fs.readFileSync(path.join(ROOT_DIR, 'styles.css'), 'utf8');
 assert.ok(styles.includes('[data-theme="litho-amber"]'), 'styles.css 必須包含無塵室 500nm 黃光微影濾光主題模式');
-assert.ok(styles.includes('[data-theme="dark"]'), 'styles.css 必須包含暗色主題模式');
+assert.ok(!styles.includes('[data-theme="dark"]'), 'styles.css 嚴格遵守規則 0003，禁止包含暗色主題');
 assert.ok(styles.includes('.theme-switch-cluster'), 'styles.css 必須包含主題切換器樣式');
 assert.ok(styles.includes('.atlas-sim-bar'), 'styles.css 必須包含全景圖譜天車調度模擬條樣式');
 assert.ok(styles.includes('.btn-jargon-speech'), 'styles.css 必須包含 Web Speech API 發音按鈕樣式');
 assert.ok(styles.includes('@media print'), 'styles.css 必須包含出版級列印排版樣式');
-console.log('[PASS] Stage 4 (Rounds 16 & 18): 500nm 黃光微影濾光主題、暗色主題、天車模擬條與出版級列印樣式全數就緒');
+console.log('[PASS] Stage 4 (Rounds 16 & 18): 500nm 琥珀黃光淡色主題 (規則 0003)、天車模擬條與出版級列印樣式全數就緒');
 
 // 6. 檢驗 index.html 與 app.js (Stage 3 & Stage 4)
 const indexHtml = fs.readFileSync(path.join(ROOT_DIR, 'index.html'), 'utf8');
@@ -102,9 +102,9 @@ assert.ok(appJs.includes('QTIME_MAP ='), 'app.js 必須包含 Q-Time 關鍵時�
 assert.ok(appJs.includes('function speakTerm('), 'app.js 必須包含 Web Speech API 語音發音函式');
 assert.ok(indexHtml.includes('id="soundToggleBtn"'), 'index.html 必須包含音效切換按鈕');
 assert.ok(fs.existsSync(path.join(ROOT_DIR, 'data/sound-fx.js')), '必須存在 data/sound-fx.js');
-assert.equal(pkgJson.version, '2.4.0', 'package.json 版本號必須為 2.4.0');
-assert.ok(indexHtml.includes('版本 2.4.0'), 'index.html 頁尾版本必須升級至 2.4.0');
-assert.ok(appJs.includes('版本 2.4.0'), 'app.js 字典版本必須升級至 2.4.0');
+assert.equal(pkgJson.version, '2.5.0', 'package.json 版本號必須為 2.5.0');
+assert.ok(indexHtml.includes('版本 2.5.0'), 'index.html 頁尾版本必須升級至 2.5.0');
+assert.ok(appJs.includes('版本 2.5.0'), 'app.js 字典版本必須升級至 2.5.0');
 
-console.log('[PASS] Stage 3 & 4 (Rounds 11-15, 19-20): 天車調度模擬、Q-Time 矩陣、語音朗讀與 v2.4.0 進版驗證全數通過！');
+console.log('[PASS] Stage 3 & 4 (Rounds 11-15, 19-20): 天車調度模擬、Q-Time 矩陣、語音朗讀與 v2.5.0 進版驗證全數通過！');
 console.log('=== 20 輪結構化工程優化驗證全數滿貫通過 (0 錯誤) ===');

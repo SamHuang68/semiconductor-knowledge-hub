@@ -13,7 +13,7 @@ body:has(.diagram-dialog[open]) { overflow: hidden; }
 .diagram-controls { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
 .diagram-controls output { min-width: 4ch; font-size: 15px; font-variant-numeric: tabular-nums; }
 #diagramHelp { margin: 0; color: #496570; font-size: 14px; line-height: 1.6; }
-.diagram-viewport { flex: 1; min-height: 100px; overflow: auto; overscroll-behavior: contain; border: 1px solid #789ba4; border-radius: 4px; background: #092b39; padding: 12px; touch-action: pan-x pan-y pinch-zoom; }
+.diagram-viewport { flex: 1; min-height: 100px; overflow: auto; overscroll-behavior: contain; border: 1px solid #789ba4; border-radius: 4px; background: #ffffff; color: #1e293b; border-color: #cbd5e1; padding: 12px; touch-action: pan-x pan-y pinch-zoom; }
 .diagram-stage { position: relative; margin: auto; overflow: hidden; }
 .diagram-canvas { width: 720px; position: absolute; left: 0; top: 0; transform-origin: top left; }
 .diagram-canvas .detail-visual { box-sizing: border-box; }
