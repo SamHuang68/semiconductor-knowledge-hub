@@ -5,8 +5,13 @@
  * 1. 背景明度門禁 (Background Luminance Gate)
  * 2. 禁絕深黑底主題 (No Dark Mode Gate)
  * 3. 晶圓黃光微影模式淡色基底門禁 (Litho Amber Light-Base Gate)
- * 4. 關鍵容器淡色載體門禁 (Key Containers Pale-Surface Gate)
+ * 4. 關鍵主視圖淡色載體門禁 (Key Views Pale-Surface Gate)
  * 5. 圖像載體對比門禁契約 (Asset-on-Carrier Contrast Gate)
+ * 6. 主題切換器收斂門禁 (Theme Switcher Convergence Gate)
+ * 7. 彈窗內部元件無塵室淡色門禁 (Modal Components Pale-Surface Gate)
+ * 8. 實體照片面板與 Lightbox 淡色載體門禁 (Photo Panel & Lightbox Carrier Gate)
+ * 9. 程式碼區塊與橫截面演變帶淡色無塵室門禁 (Code Block & Atlas Stream Cleanroom Gate)
+ * 10. 行動端表格響應式防溢出門禁 (Responsive Data Table Gate)
  */
 
 import { readFileSync, existsSync } from 'node:fs';
@@ -93,8 +98,6 @@ check('關鍵主視圖載體明度門禁：Hero、工程舞台、圖例與訊號
   const legendCss = readFileSync(resolve(ROOT, '圖例檢視.css'), 'utf8');
   const signalCss = readFileSync(resolve(ROOT, '訊號判讀.css'), 'utf8');
 
-  const darkHexRegex = /#0[0-9a-f]{5}|#1[0-4][0-9a-f]{4}/gi;
-
   // 檢查情境探索 hero
   if (/\.explorer-hero[^{]*\{[^}]*background:\s*#092b39/i.test(exploreCss)) {
     throw new Error('情境探索 .explorer-hero 使用了深黑/墨青底 #092b39');
@@ -135,6 +138,80 @@ check('主題切換器收斂門禁：index.html 中主題按鈕為 2 態 (取消
   }
   if (!/data-theme="light"/.test(html) || !/data-theme="litho-amber"/.test(html)) {
     throw new Error('index.html 需包含 light 與 litho-amber 主題按鈕');
+  }
+});
+
+// 6. 檢驗三大彈窗內部核心卡片元件無塵室淡色門禁 (Modal Components Pale-Surface Gate)
+check('彈窗內部元件無塵室淡色門禁：速算公式條、快測選項卡與 OCAP 步驟節點均為淺色 (Luminance >= 0.70)', () => {
+  const engCss = readFileSync(resolve(ROOT, '工程物件.css'), 'utf8');
+
+  // 檢查 calc-formula-banner
+  const calcBannerMatch = engCss.match(/\.calc-formula-banner\s*\{[\s\S]*?background:\s*([^;]+);/);
+  if (!calcBannerMatch) throw new Error('未找到 .calc-formula-banner 背景設定');
+  const calcBannerBg = calcBannerMatch[1].trim();
+  const lumCalcBanner = getRelativeLuminance(calcBannerBg);
+  if (lumCalcBanner < 0.70) throw new Error(`.calc-formula-banner 背景 (${calcBannerBg}) 明度過低: ${lumCalcBanner.toFixed(3)} < 0.70`);
+
+  // 檢查 quiz-opt-btn
+  const quizOptMatch = engCss.match(/\.quiz-opt-btn\s*\{[\s\S]*?background:\s*([^;]+);/);
+  if (!quizOptMatch) throw new Error('未找到 .quiz-opt-btn 背景設定');
+  const quizOptBg = quizOptMatch[1].trim();
+  const lumQuizOpt = getRelativeLuminance(quizOptBg);
+  if (lumQuizOpt < 0.70) throw new Error(`.quiz-opt-btn 背景 (${quizOptBg}) 明度過低: ${lumQuizOpt.toFixed(3)} < 0.70`);
+
+  // 檢查 ocap-step-node
+  const ocapNodeMatch = engCss.match(/\.ocap-step-node\s*\{[\s\S]*?background:\s*([^;]+);/);
+  if (!ocapNodeMatch) throw new Error('未找到 .ocap-step-node 背景設定');
+  const ocapNodeBg = ocapNodeMatch[1].trim();
+  const lumOcapNode = getRelativeLuminance(ocapNodeBg);
+  if (lumOcapNode < 0.70) throw new Error(`.ocap-step-node 背景 (${ocapNodeBg}) 明度過低: ${lumOcapNode.toFixed(3)} < 0.70`);
+});
+
+// 7. 檢驗實體照片面板與 Lightbox 淡色載體門禁 (Photo Panel & Lightbox Carrier Gate)
+check('實體照片面板與 Lightbox 淡色載體門禁：Photo Panel 與 Lightbox 均為淡色無塵室實驗面板', () => {
+  const engCss = readFileSync(resolve(ROOT, '工程物件.css'), 'utf8');
+
+  const photoPanelMatch = engCss.match(/\.eng-obj-photo-panel\s*\{[\s\S]*?background:\s*([^;]+);/);
+  if (!photoPanelMatch) throw new Error('未找到 .eng-obj-photo-panel 背景設定');
+  const photoPanelBg = photoPanelMatch[1].trim();
+  const lumPhotoPanel = getRelativeLuminance(photoPanelBg);
+  if (lumPhotoPanel < 0.70) throw new Error(`.eng-obj-photo-panel 背景 (${photoPanelBg}) 明度過低: ${lumPhotoPanel.toFixed(3)} < 0.70`);
+
+  const lightboxMatch = engCss.match(/\.photo-lightbox-modal\s*\{[\s\S]*?background:\s*([^;]+);/);
+  if (!lightboxMatch) throw new Error('未找到 .photo-lightbox-modal 背景設定');
+  const lightboxBg = lightboxMatch[1].trim();
+  const lumLightbox = getRelativeLuminance(lightboxBg);
+  if (lumLightbox < 0.70) throw new Error(`.photo-lightbox-modal 背景 (${lightboxBg}) 明度過低: ${lumLightbox.toFixed(3)} < 0.70`);
+});
+
+// 8. 檢驗程式碼區塊與橫截面演變帶淡色無塵室門禁 (Code Block & Atlas Stream Cleanroom Gate)
+check('程式碼區塊與橫截面演變帶淡色無塵室門禁：.code-pre 與 .atlas-stream-banner 為淡色底', () => {
+  const stylesCss = readFileSync(resolve(ROOT, 'styles.css'), 'utf8');
+
+  const codeMatch = stylesCss.match(/\.code-pre\s*\{[\s\S]*?background:\s*([^;]+);/);
+  if (!codeMatch) throw new Error('未找到 .code-pre 背景設定');
+  const codeBg = codeMatch[1].trim();
+  const lumCode = getRelativeLuminance(codeBg);
+  if (lumCode < 0.70) throw new Error(`.code-pre 背景 (${codeBg}) 明度過低: ${lumCode.toFixed(3)} < 0.70`);
+
+  const atlasBannerMatch = stylesCss.match(/\.atlas-stream-banner\s*\{[\s\S]*?background:\s*([^;]+);/);
+  if (!atlasBannerMatch) throw new Error('未找到 .atlas-stream-banner 背景設定');
+  const atlasBannerBg = atlasBannerMatch[1].trim();
+  const lumAtlasBanner = getRelativeLuminance(atlasBannerBg);
+  if (lumAtlasBanner < 0.70) throw new Error(`.atlas-stream-banner 背景 (${atlasBannerBg}) 明度過低: ${lumAtlasBanner.toFixed(3)} < 0.70`);
+});
+
+// 9. 檢驗行動端表格響應式防溢出門禁 (Responsive Data Table Gate)
+check('行動端表格響應式防溢出門禁：.table-container 包含 overflow-x: auto 與 max-width: 100%', () => {
+  const stylesCss = readFileSync(resolve(ROOT, 'styles.css'), 'utf8');
+  const tableContainerMatch = stylesCss.match(/\.table-container\s*\{([\s\S]*?)\}/);
+  if (!tableContainerMatch) throw new Error('未找到 .table-container 定義');
+  const block = tableContainerMatch[1];
+  if (!/overflow-x:\s*auto/i.test(block)) {
+    throw new Error('.table-container 缺少 overflow-x: auto 宣告');
+  }
+  if (!/max-width:\s*100%/i.test(block)) {
+    throw new Error('.table-container 缺少 max-width: 100% 宣告');
   }
 });
 

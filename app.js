@@ -56,7 +56,7 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
       explore_open: '開啟互動情境 ↗',
       no_matching_chapters: '查無相符章節',
       footer_attribution: `本專案基於開源教材 <a href="https://github.com/chenwei810/Semiconductor_Manufacturing_Introduction" target="_blank" rel="noopener">chenwei810/Semiconductor_Manufacturing_Introduction</a> （採 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hant" target="_blank" rel="noopener">CC BY-NC-SA 4.0 創用 CC 姓名標示-非商業性-相同方式分享</a> 授權）重製與架構升級。`,
-      footer_desc: '涵蓋 25 章從沙子到晶片的完整晶圓製造旅程 · 28 大模組實體電顯與機台照片並列對照 · 245 筆核心術語與現場實務行話 · 中英雙語無縫支援 · 純前端極速架構 · 零中系依賴 · 版本 2.5.0',
+      footer_desc: '涵蓋 25 章從沙子到晶片的完整晶圓製造旅程 · 28 大模組實體電顯與機台照片並列對照 · 245 筆核心術語與現場實務行話 · 中英雙語無縫支援 · 純前端極速架構 · 零中系依賴 · 版本 2.6.0',
       atlas_title: '晶圓廠 12 大核心製程全景圖譜 (Fab Flow Atlas)',
       btn_close: '關閉 (Esc)',
       jargon_title: '晶圓廠現場行話與術語字典',
@@ -749,8 +749,8 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
       let layersHtml = `
         <defs>
           <linearGradient id="atlasSiGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stop-color="#334155"/>
-            <stop offset="100%" stop-color="#0f172a"/>
+            <stop offset="0%" stop-color="#475569"/>
+            <stop offset="100%" stop-color="#1e293b"/>
           </linearGradient>
           <linearGradient id="atlasOxideGrad" x1="0%" y1="0%" x2="100%" y2="0%">
             <stop offset="0%" stop-color="#0284c7" stop-opacity="0.85"/>
@@ -803,7 +803,7 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
           <rect x="560" y="46" width="380" height="16" rx="2" fill="url(#atlasPrGrad)" opacity="0.9"/>
         `;
         if (progress < 9) {
-          layersHtml += `<text x="500" y="57" text-anchor="middle" fill="#38bdf8" font-size="10" font-weight="700" filter="url(#atlasGlow)">${isEn ? 'Litho Opening (CD)' : '微影開窗 (Litho Opening)'}</text>`;
+          layersHtml += `<text x="500" y="57" text-anchor="middle" fill="#0284c7" font-size="10" font-weight="700">${isEn ? 'Litho Opening (CD)' : '微影開窗 (Litho Opening)'}</text>`;
         }
         if (progress === 3) {
           layersHtml += `
@@ -816,7 +816,7 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
       }
       if (progress >= 4) {
         // Step 4: 非等向性蝕刻深槽
-        layersHtml += `<rect x="440" y="62" width="120" height="24" rx="1" fill="#090e17" stroke="#38bdf8" stroke-width="1.2" stroke-dasharray="3 2"/>`;
+        layersHtml += `<rect x="440" y="62" width="120" height="24" rx="1" fill="#ffffff" stroke="#38bdf8" stroke-width="1.2" stroke-dasharray="3 2"/>`;
         if (progress === 4) {
           layersHtml += `
             <line x1="475" y1="12" x2="475" y2="84" stroke="#a855f7" stroke-width="1.8" stroke-dasharray="3 4" class="anim-ion"/>
