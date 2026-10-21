@@ -16,6 +16,7 @@ import { scenarioForChapter, chapterReturnContext } from './data/情境路徑.js
 import { normalizeChapterHref } from './章節連結.js';
 import { mountEngineeringObject } from './工程物件.js';
 import { REAL_PHOTOS_DATA } from './data/real-photos.js';
+import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
 
 (() => {
   'use strict';
@@ -55,7 +56,7 @@ import { REAL_PHOTOS_DATA } from './data/real-photos.js';
       explore_open: '開啟互動情境 ↗',
       no_matching_chapters: '查無相符章節',
       footer_attribution: `本專案基於開源教材 <a href="https://github.com/chenwei810/Semiconductor_Manufacturing_Introduction" target="_blank" rel="noopener">chenwei810/Semiconductor_Manufacturing_Introduction</a> （採 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hant" target="_blank" rel="noopener">CC BY-NC-SA 4.0 創用 CC 姓名標示-非商業性-相同方式分享</a> 授權）重製與架構升級。`,
-      footer_desc: '涵蓋 25 章從沙子到晶片的完整晶圓製造旅程 · 28 大模組實體電顯與機台照片並列對照 · 245 筆核心術語與現場實務行話 · 中英雙語無縫支援 · 純前端極速架構 · 零中系依賴 · 版本 2.3.0',
+      footer_desc: '涵蓋 25 章從沙子到晶片的完整晶圓製造旅程 · 28 大模組實體電顯與機台照片並列對照 · 245 筆核心術語與現場實務行話 · 中英雙語無縫支援 · 純前端極速架構 · 零中系依賴 · 版本 2.4.0',
       atlas_title: '晶圓廠 12 大核心製程全景圖譜 (Fab Flow Atlas)',
       btn_close: '關閉 (Esc)',
       jargon_title: '晶圓廠現場行話與術語字典',
@@ -93,6 +94,7 @@ import { REAL_PHOTOS_DATA } from './data/real-photos.js';
       theme_light_title: '亮色微暖工程模式 (Light Mode)',
       theme_dark_title: '暗色極致對比模式 (Dark Mode)',
       theme_amber_title: '無塵室 500nm 黃光微影濾光模式 (Litho Amber Mode)',
+      sound_btn_title: '切換無塵室互動音效 (開/關)',
       oht_sim_btn: '啟動天車調度模擬',
       oht_sim_pause: '暫停天車調度模擬',
       qtime_btn: 'Q-Time 時效矩陣',
@@ -146,10 +148,11 @@ import { REAL_PHOTOS_DATA } from './data/real-photos.js';
       explore_open: 'Open Scenario ↗',
       no_matching_chapters: 'No matching chapters found',
       footer_attribution: `Adapted from the open-source book <a href="https://github.com/chenwei810/Semiconductor_Manufacturing_Introduction" target="_blank" rel="noopener">chenwei810/Semiconductor_Manufacturing_Introduction</a> licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a>.`,
-      footer_desc: 'Comprehensive 25-chapter wafer fabrication guide from sand to chip · 28-module authentic SEM & tool photo side-by-side view · 245 core terms & 43 fab jargon · Native bilingual support · Zero Chinese-origin dependencies · v2.3.0',
+      footer_desc: 'Comprehensive 25-chapter wafer fabrication guide from sand to chip · 28-module authentic SEM & tool photo side-by-side view · 245 core terms & 43 fab jargon · Native bilingual support · Zero Chinese-origin dependencies · v2.4.0',
       theme_light_title: 'Light Precision Mode',
       theme_dark_title: 'Dark High-Contrast Mode',
       theme_amber_title: 'Cleanroom 500nm Litho Amber Mode',
+      sound_btn_title: 'Toggle Cleanroom Sound FX (On/Mute)',
       oht_sim_btn: 'Start OHT Simulation',
       oht_sim_pause: 'Pause OHT Simulation',
       qtime_btn: 'Q-Time Windows Matrix',
@@ -240,6 +243,19 @@ import { REAL_PHOTOS_DATA } from './data/real-photos.js';
     });
   });
   applyTheme(currentTheme);
+
+  // 音效切換按鈕監聽
+  const soundToggleBtn = document.getElementById('soundToggleBtn');
+  const soundIcon = document.getElementById('soundIcon');
+  if (soundToggleBtn && soundIcon) {
+    soundIcon.textContent = isSoundEnabled() ? '🔊' : '🔇';
+    soundToggleBtn.addEventListener('click', () => {
+      const enabled = toggleSound();
+      soundIcon.textContent = enabled ? '🔊' : '🔇';
+      if (enabled) playSound('click');
+    });
+  }
+
 
   let currentLang = localStorage.getItem(LANG_STORAGE_KEY) || 'zh';
   const readChapters = new Set(JSON.parse(localStorage.getItem(READ_STORAGE_KEY) || '[]'));
@@ -982,6 +998,7 @@ import { REAL_PHOTOS_DATA } from './data/real-photos.js';
           stepOhtSim();
           ohtSimTimer = setInterval(stepOhtSim, 1800);
           startOhtSimBtn.classList.add('is-active');
+          playSound('launch');
           if (ohtSimBtnText) ohtSimBtnText.textContent = isEn ? t.oht_sim_pause : '暫停天車調度模擬';
         }
       };

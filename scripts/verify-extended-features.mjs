@@ -32,7 +32,7 @@ console.log(`[PASS] Stage 1 (Rounds 1-5): 28 模組照片、Metrology HUD 與 ${
 // 2. 檢驗 8 大物理計算器沙盒 (Stage 2)
 const { PHYSICS_CALCULATORS } = await import(`file://${ROOT_DIR}/data/calculators-data.js`);
 const calcKeys = Object.keys(PHYSICS_CALCULATORS);
-assert.ok(calcKeys.length >= 8, '物理速算器至少收錄 8 套');
+assert.equal(calcKeys.length, 28, '物理速算器必須滿貫收錄全站 28 大模組');
 for (const [id, c] of Object.entries(PHYSICS_CALCULATORS)) {
   assert.ok(c.titleZh && c.titleEn, `計算器 ${id} 缺少雙語標題`);
   assert.ok(c.formulaLatex, `計算器 ${id} 缺少物理公式`);
@@ -65,7 +65,7 @@ console.log(`[PASS] Stage 2 (Rounds 8-10): 28 篇全站 OCAP 異常處置決策�
 // 4. 檢驗觀念隨堂快測題庫 (Stage 4)
 const { CONCEPT_QUIZZES } = await import(`file://${ROOT_DIR}/data/quiz-data.js`);
 const quizKeys = Object.keys(CONCEPT_QUIZZES);
-assert.ok(quizKeys.length >= 8, '隨堂測驗題庫至少覆蓋 8 個核心章節');
+assert.equal(quizKeys.length, 28, '隨堂測驗題庫必須滿貫覆蓋全站 28 大章節與附錄');
 let totalQuestions = 0;
 for (const [id, qList] of Object.entries(CONCEPT_QUIZZES)) {
   assert.ok(Array.isArray(qList) && qList.length >= 1, `題庫 ${id} 題目為空`);
@@ -100,9 +100,11 @@ assert.ok(indexHtml.includes('id="atlasSimBar"'), 'index.html 必須具備天車
 assert.ok(appJs.includes('applyTheme(theme)'), 'app.js 必須具備主題切換管理函式');
 assert.ok(appJs.includes('QTIME_MAP ='), 'app.js 必須包含 Q-Time 關鍵時效矩陣');
 assert.ok(appJs.includes('function speakTerm('), 'app.js 必須包含 Web Speech API 語音發音函式');
-assert.equal(pkgJson.version, '2.3.0', 'package.json 版本號必須為 2.3.0');
-assert.ok(indexHtml.includes('版本 2.3.0'), 'index.html 頁尾版本必須升級至 2.3.0');
-assert.ok(appJs.includes('版本 2.3.0'), 'app.js 字典版本必須升級至 2.3.0');
+assert.ok(indexHtml.includes('id="soundToggleBtn"'), 'index.html 必須包含音效切換按鈕');
+assert.ok(fs.existsSync(path.join(ROOT_DIR, 'data/sound-fx.js')), '必須存在 data/sound-fx.js');
+assert.equal(pkgJson.version, '2.4.0', 'package.json 版本號必須為 2.4.0');
+assert.ok(indexHtml.includes('版本 2.4.0'), 'index.html 頁尾版本必須升級至 2.4.0');
+assert.ok(appJs.includes('版本 2.4.0'), 'app.js 字典版本必須升級至 2.4.0');
 
-console.log('[PASS] Stage 3 & 4 (Rounds 11-15, 19-20): 天車調度模擬、Q-Time 矩陣、語音朗讀與 v2.3.0 進版驗證全數通過！');
+console.log('[PASS] Stage 3 & 4 (Rounds 11-15, 19-20): 天車調度模擬、Q-Time 矩陣、語音朗讀與 v2.4.0 進版驗證全數通過！');
 console.log('=== 20 輪結構化工程優化驗證全數滿貫通過 (0 錯誤) ===');

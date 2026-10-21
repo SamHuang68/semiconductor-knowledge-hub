@@ -1,3 +1,4 @@
+import { playSound } from './data/sound-fx.js';
 import { REAL_PHOTOS_DATA } from './data/real-photos.js';
 import { PHYSICS_CALCULATORS } from './data/calculators-data.js';
 import { OCAP_TREES } from './data/ocap-data.js';
@@ -703,6 +704,7 @@ export function openQuizModal(chId, lang, doc) {
 export function openOcapModal(chId, lang, doc) {
   const ocap = OCAP_TREES[chId];
   if (!ocap) return;
+  playSound('alarm');
   const dialog = doc.createElement('dialog');
   dialog.className = 'ocap-modal';
   dialog.setAttribute('aria-modal', 'true');
@@ -723,7 +725,10 @@ export function openOcapModal(chId, lang, doc) {
           <span class="ocap-badge">OCAP STANDARD PROCEDURE</span>
           <h2 class="ocap-title">${escapeHtml(title)}</h2>
         </div>
-        <button type="button" class="ocap-close-btn" title="${lang === 'en' ? 'Close (Esc)' : '關閉 (Esc)'}">✕</button>
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <button type="button" class="btn-print-8d" title="${lang === 'en' ? 'Print or export formal 8D problem solving sheet' : '列印或匯出標準 8D 異常處置工程表單'}">🖨️ ${lang === 'en' ? '8D Sheet' : '8D 報告表'}</button>
+          <button type="button" class="ocap-close-btn" title="${lang === 'en' ? 'Close (Esc)' : '關閉 (Esc)'}">✕</button>
+        </div>
       </header>
 
       <div class="ocap-body">

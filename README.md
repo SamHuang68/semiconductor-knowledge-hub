@@ -8,6 +8,12 @@
 
 ## 專案特色
 
+- **里程碑版本 v2.4.0 — 20 輪深度工程優化大滿貫（2.4.0）**：
+  1. **全站 28 大章節物理速算沙盒大滿貫（Stage 5 / Rounds 21–25）**：`data/calculators-data.js` 擴充至 28/28 滿貫覆蓋（Ch 00 ~ 24 + 附錄 A/B/C），全站 28 座互動工程物件第 5 卡（Governing Law）點擊直接開啟專屬物理定量速算器，涵蓋 GDPW 晶圓淨晶粒數、ISO 14644 微粒分佈、Varshni 能隙溫漂、Scheil-Gulliver 長晶偏析、Rayleigh 焦深/解析度、Arrhenius 反應速率、ARDE 蝕刻寬深比延遲、LSS 離子佈植高斯深度、Preston CMP 研磨速率、RCA 兆聲波微粒洗淨、FS-MS 銅奈米散射與 Black 電遷移、CMOS 跨層熱預算積分、GAA Weff 靜電有效寬度、DRAM 儲存電荷與 NAND 穿隧、Dennard 功耗牆與 RC 延遲、橢偏儀 Ψ/Δ 光學、Poisson/Murphy/負二項良率模型、SPC Cpk 製程能力指數、8D 異常重工損益、Kelvin 四線電阻、Coffin-Manson 焊球熱疲勞、3D 封裝互連密度 (1/P²)、Weibull 浴缸故障曲線、Little 定律與 Kingman 排隊延遲、PDN L·di/dt 供電壓降，以及八大領域量綱、批次狀態機與國際標準換算器。
+  2. **全站 28 大章節觀念隨堂快測大滿貫（Stage 6 / Rounds 26–30）**：`data/quiz-data.js` 擴充至 28 篇全站完整覆蓋，每章具備高鑑別度實務題、雙語選項、正解標記與詳實物理原理解析；並整合 `localStorage` 測驗成績持久化（`semi_quiz_results`）。
+  3. **晶圓缺陷圖譜 16 大模式與 SPC 管制圖模擬深化、8D 異常表單列印（Stage 7 / Rounds 31–35）**：升級第 16 章缺陷圖譜、第 17 章 SPC 動態模擬與第 18 章 OCAP 戰情室，新增一鍵調用 `@media print` 專用「🖨️ 8D 異常報告表」出版級列印功能，支援完整品質工程異常處置表單紙本匯出與封裝。
+  4. **純原生 Web Audio API 無塵室合成音效引擎與全站無障礙升級（Stage 8 / Rounds 36–40）**：全新建立 `data/sound-fx.js` 獨立音效引擎，採用純前端原生 Web Audio API 即時程序化合成無塵室點擊、答對、答錯、OCAP 警報與天車起步音效；頂部導覽列提供雙語動態靜音切換按鈕（預設靜音、點擊即啟用，記憶於 `localStorage`），具備 Node.js CLI 測試環境安全回退；全面升級無障礙與自動化驗證測試，版本推進至 `v2.4.0`。
+
 - **里程碑版本 v2.3.0 — 20 輪結構化深度工程優化大滿貫（2.3.0）**：
   1. **實體電顯與機台照片深層互動（Stage 1 / Rounds 1–5）**：全站 28 大模組實體半導體電顯（SEM/TEM）與機台照片支援 **全螢幕深層縮放燈箱（Lightbox，支援 +/-/1:1 縮放、拖曳平移、左右箭頭跨章切換）**、**84 處微觀物理特徵標記（Hotspots，標記 Gate Oxide, FinFET Fin, AMHS Track, TSV, Wedge Bond 等物理特徵與交互機制卡片）**、**四態視圖切換器（🔀 並列、⚡ 示意、📷 實體、🌓 疊合）**、**Curtain Overlay 擦除疊合對照滑塊（物理電顯與向量示意圖即時重疊擦除）** 與 **Metrology HUD 計量規格抬頭顯示（檢測技術、放大倍率、加速電壓與 FOV）**。
   2. **物理定量速算器沙盒與全站 OCAP 決策樹（Stage 2 / Rounds 6–10）**：建立獨立資料庫 `calculators-data.js`，收錄 **8 大半導體經典物理速算沙盒（Rayleigh 解析度/焦深、Arrhenius 化學反應動力學、LSS 高斯佈植縱深、Preston CMP 研磨速率、Deal-Grove 氧化厚度、Poisson/Murphy/負二項良率模型、3D 封裝密度、ALT 加速老化）**，支援參數滑桿即時定量重算；建立 `ocap-data.js` 收錄 **28 篇全站異常反應處置決策樹（OCAP，涵蓋觸發警報、緊急防堵隔離、5 階 RCA 決策流、處置放行與長期防呆互鎖）**；並於各章工程物件第 5 卡（Governing Law）與第 6 卡（Failure Diagnostics）無縫直連。

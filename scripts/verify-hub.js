@@ -135,7 +135,7 @@ async function verify() {
   }
 
   // 2. 驗證零中系依賴與安全性
-  const filesToScan = ['index.html', 'styles.css', 'app.js', 'package.json', 'README.md', '工程物件.js', '工程物件.css', '工程物件操作.js', 'data/real-photos.js', 'data/calculators-data.js', 'data/ocap-data.js', 'data/quiz-data.js'];
+  const filesToScan = ['index.html', 'styles.css', 'app.js', 'package.json', 'README.md', '工程物件.js', '工程物件.css', '工程物件操作.js', 'data/real-photos.js', 'data/calculators-data.js', 'data/ocap-data.js', 'data/quiz-data.js', 'data/sound-fx.js'];
   const bannedKeywords = ['deepseek', 'qwen', 'kimi', 'moonshot', 'baidu', 'aliyun', 'tencent', 'bytedance', 'volcengine'];
 
   for (const f of filesToScan) {
