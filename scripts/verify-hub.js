@@ -4,8 +4,10 @@
  */
 import fs from 'fs';
 import path from 'path';
+import { fileURLToPath } from 'url';
 
-const ROOT_DIR = 'C:/Users/Sam/AI-Workspace/projects/semiconductor-knowledge-hub';
+// 依腳本位置推導專案根目錄，於工作樹或 CI 執行時才會驗證到正確的檔案
+const ROOT_DIR = fileURLToPath(new URL('..', import.meta.url)).replace(/\\/g, '/').replace(/\/$/, '');
 
 async function verify() {
   console.log('=== 開始檢驗 Semiconductor Knowledge Hub (中英雙語旗艦版) ===');
@@ -32,6 +34,29 @@ async function verify() {
       }
     });
     console.log('[PASS] 28 個章節與附錄的中英雙語內容全數對齊驗證通過');
+
+    // 正文結構防呆：以 String.prototype.replace 插入含 `$&lt;` 的內容時，`$&` 會被換成比對到的錨點，
+    // 曾把「本章重點」錨點與整段章節複製進表格儲存格（2.6.1 修正）。插入正文請改用函式型 replacer 或 split/join。
+    const SEMI_HR = '<hr class="semi-hr" />';
+    let structureIssues = 0;
+    CHAPTERS_DATA.forEach(ch => {
+      for (const [lang, html] of [['zh', ch.contentHtml], ['en', ch.contentHtmlEn]]) {
+        const fail = msg => { console.error(`[FAIL] ${ch.id} (${lang}) 正文結構：${msg}`); structureIssues++; };
+        if (/<h2 id="[^"]*"(lt;|gt;)/.test(html)) fail('h2 錨點後殘留 lt;／gt;（`$&` 替換毀損）');
+        for (let i = html.indexOf(SEMI_HR); i > 0; i = html.indexOf(SEMI_HR, i + 1)) {
+          if (html[i - 1] !== '\n') { fail(`分隔線未獨立成行（位置 ${i}）`); break; }
+        }
+        const ids = [];
+        for (const m of html.matchAll(/<h2 id="([^"]*)"/g)) {
+          const before = html.slice(0, m.index);
+          if (before.lastIndexOf('<td') > before.lastIndexOf('</td>')) fail(`h2#${m[1]} 位於表格儲存格內`);
+          if (ids.includes(m[1])) fail(`h2#${m[1]} 重複`);
+          ids.push(m[1]);
+        }
+      }
+    });
+    errors += structureIssues;
+    if (!structureIssues) console.log('[PASS] 28 章中英正文結構完整（無表格內標題、無錨點殘留、分隔線獨立成行）');
 
     const { FAB_FLOW_NODES } = await import(`file://${ROOT_DIR}/data/fab-flow.js`);
     console.log(`[PASS] FAB_FLOW_NODES 成功載入，共有 ${FAB_FLOW_NODES.length} 個節點`);

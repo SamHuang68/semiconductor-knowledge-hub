@@ -2046,7 +2046,7 @@ export function renderPlasmaEtchObject(container, lang = 'zh') {
             <circle cx="280" cy="40" r="2.5"/><circle cx="320" cy="40" r="2.5"/><circle cx="360" cy="40" r="2.5"/>
             <circle cx="400" cy="40" r="2.5"/><circle cx="440" cy="40" r="2.5"/><circle cx="480" cy="40" r="2.5"/><circle cx="520" cy="40" r="2.5"/>
           </g>
-          <text x="400" y="24" text-anchor="middle" fill="#94a3b8" font-size="11">${t.ch06_showerhead}</text>
+          <text x="400" y="24" text-anchor="middle" fill="#94a3b8" font-size="11" data-ink="halo">${t.ch06_showerhead}</text>
 
           <!-- ICP 高頻感應線圈 (13.56 MHz Coil) -->
           <g stroke="#f59e0b" stroke-width="3" fill="none">
@@ -2552,7 +2552,7 @@ export function renderTransistor3DObject(container, lang = 'zh') {
 
             <!-- 源極與汲極磊晶塊 (Raised Epitaxial S/D) -->
             <polygon points="90,110 130,90 140,140 100,160" fill="#f59e0b"/>
-            <text x="75" y="165" fill="#f59e0b" font-size="11" font-weight="700">Source</text>
+            <text x="75" y="165" fill="#f59e0b" font-size="11" font-weight="700" data-ink="halo">Source</text>
 
             <polygon points="270,75 310,55 320,105 280,125" fill="#f59e0b"/>
             <text x="325" y="70" fill="#f59e0b" font-size="11" font-weight="700">Drain</text>
@@ -3321,7 +3321,7 @@ export function renderCMPObject(container, lang = 'zh') {
             <rect x="215" y="80" width="70" height="140" fill="#334155"/>
             <!-- 寬銅導線中央下陷 -->
             <path d="M 95,80 Q 155,105 215,80 L 215,220 L 95,220 Z" fill="#f59e0b"/>
-            <text x="155" y="125" text-anchor="middle" fill="#ef4444" font-size="11" font-weight="700">研磨墊彈性下彎造成中央凹陷</text>
+            <text x="155" y="125" text-anchor="middle" fill="#ef4444" font-size="11" font-weight="700" data-ink="halo">研磨墊彈性下彎造成中央凹陷</text>
           </g>
 
           <!-- 2. 假圖形填補 (Dummy Metal Fill) -->
@@ -3676,7 +3676,7 @@ export function renderInterconnectObject(container, lang = 'zh') {
               <line x1="200" y1="90" x2="280" y2="90"/>
               <line x1="320" y1="90" x2="400" y2="90"/>
             </g>
-            <text x="270" y="105" text-anchor="middle" fill="#38bdf8" font-size="12" font-weight="750">
+            <text x="270" y="105" text-anchor="middle" fill="#38bdf8" font-size="12" font-weight="750" data-ink="light">
               電子風 (Electron Wind Force → J = ${currentDensityMA.toFixed(1)} MA/cm²)
             </text>
 
@@ -4321,7 +4321,7 @@ export function renderIngotWaferObject(container, lang = 'zh') {
                 <polygon points="${x},${y - 4} ${x + 4},${y} ${x},${y + 4} ${x - 4},${y}" fill="#ef4444" stroke="#ffffff" stroke-width="0.8"/>
               `;
             }).join('')}
-            <text x="0" y="268" text-anchor="middle" fill="#f87171" font-size="9.5" font-weight="700">八面體微孔 COP / D-defects 聚集區</text>
+            <text x="0" y="268" text-anchor="middle" fill="#f87171" font-size="9.5" font-weight="700" data-ink="halo">八面體微孔 COP / D-defects 聚集區</text>
           </g>
         `;
       } else if (regime === 'interstitial') {
@@ -4334,14 +4334,14 @@ export function renderIngotWaferObject(container, lang = 'zh') {
                 <path d="M 52,${y} Q 35,${y - 8} 50,${y + 12}" fill="none" stroke="#f59e0b" stroke-width="2"/>
               `;
             }).join('')}
-            <text x="0" y="268" text-anchor="middle" fill="#fbbf24" font-size="9.5" font-weight="700">周邊滑移巨大差排環 (Dislocation Loops)</text>
+            <text x="0" y="268" text-anchor="middle" fill="#fbbf24" font-size="9.5" font-weight="700" data-ink="halo">周邊滑移巨大差排環 (Dislocation Loops)</text>
           </g>
         `;
       } else {
         defectVisual = `
           <g opacity="0.95">
             <rect x="-56" y="144" width="112" height="124" rx="4" fill="rgba(16, 185, 129, 0.12)" stroke="#10b981" stroke-dasharray="4 2"/>
-            <text x="0" y="268" text-anchor="middle" fill="#34d399" font-size="9.5" font-weight="700">★ 100% 理想無缺陷純矽 (Pure Silicon)</text>
+            <text x="0" y="268" text-anchor="middle" fill="#34d399" font-size="9.5" font-weight="700" data-ink="halo">★ 100% 理想無缺陷純矽 (Pure Silicon)</text>
           </g>
         `;
       }
@@ -4426,7 +4426,7 @@ export function renderIngotWaferObject(container, lang = 'zh') {
             <!-- 晶棒反向旋轉標示 (Ingot Counter-Rotation CCW) -->
             <text x="0" y="195" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="750">300mm 單晶矽棒 (CZ Ingot)</text>
             <text x="0" y="212" text-anchor="middle" fill="#f8fafc" font-size="10.5">&lt;100&gt; 晶向 · 逆時針旋轉 ↺</text>
-            <text x="0" y="228" text-anchor="middle" fill="${regimeColor}" font-size="10" font-weight="700">提拉 V = ${pullSpeed.toFixed(2)} mm/min · G = ${tempGrad.toFixed(1)} °C/mm</text>
+            <text x="0" y="228" text-anchor="middle" fill="${regimeColor}" font-size="10" font-weight="700" data-ink="halo">提拉 V = ${pullSpeed.toFixed(2)} mm/min · G = ${tempGrad.toFixed(1)} °C/mm</text>
           </g>
           </g>
           <g class="eng-kinetic-wave" pointer-events="none"><circle cx="400" cy="200" r="68" fill="none" stroke="#38bdf8" stroke-width="1.4" class="anim-pulse-ring" opacity="0.45"/><path d="M 140,60 Q 400,32 660,60" fill="none" stroke="#34d399" stroke-width="1.5" class="anim-field-glow" opacity="0.5"/></g>
@@ -5192,7 +5192,7 @@ export function renderCMOSFlowObject(container, lang = 'zh') {
               <!-- Spacers -->
               <rect x="-8" y="15" width="8" height="40" fill="#475569"/>
               <rect x="60" y="15" width="8" height="40" fill="#475569"/>
-              <text x="30" y="38" text-anchor="middle" fill="#ffffff" font-size="10" font-weight="700">Gate</text>
+              <text x="30" y="38" text-anchor="middle" fill="#ffffff" font-size="10" font-weight="700" data-ink="light">Gate</text>
             </g>
             <!-- NMOS 閘極 -->
             <g transform="translate(460, 145)">
@@ -5201,7 +5201,7 @@ export function renderCMOSFlowObject(container, lang = 'zh') {
               <!-- Spacers -->
               <rect x="-8" y="15" width="8" height="40" fill="#475569"/>
               <rect x="60" y="15" width="8" height="40" fill="#475569"/>
-              <text x="30" y="38" text-anchor="middle" fill="#ffffff" font-size="10" font-weight="700">Gate</text>
+              <text x="30" y="38" text-anchor="middle" fill="#ffffff" font-size="10" font-weight="700" data-ink="light">Gate</text>
             </g>
           ` : ''}
 
@@ -5210,8 +5210,8 @@ export function renderCMOSFlowObject(container, lang = 'zh') {
             <!-- PMOS SiGe S/D -->
             <rect x="90" y="190" width="55" height="15" fill="#e11d48" rx="2"/>
             <rect x="235" y="190" width="55" height="15" fill="#e11d48" rx="2"/>
-            <text x="117" y="202" text-anchor="middle" fill="#ffffff" font-size="9" font-weight="700">SiGe S</text>
-            <text x="262" y="202" text-anchor="middle" fill="#ffffff" font-size="9" font-weight="700">SiGe D</text>
+            <text x="117" y="202" text-anchor="middle" fill="#ffffff" font-size="9" font-weight="700" data-ink="light">SiGe S</text>
+            <text x="262" y="202" text-anchor="middle" fill="#ffffff" font-size="9" font-weight="700" data-ink="light">SiGe D</text>
 
             <!-- NMOS Si:C S/D -->
             <rect x="390" y="190" width="55" height="15" fill="#059669" rx="2"/>
@@ -5536,7 +5536,7 @@ export function renderMemoryTechObject(container, lang = 'zh') {
             ${decks > 1 ? `
               <!-- Deck 雙疊對準接合面 (Deck Joint Seam) -->
               <line x1="15" y1="${deckSeamY}" x2="335" y2="${deckSeamY}" stroke="#fbbf24" stroke-width="2" stroke-dasharray="4 2"/>
-              <text x="335" y="${deckSeamY - 4}" text-anchor="end" fill="#fbbf24" font-size="9" font-weight="700">Deck 拼接介面 (${decks}-Stack)</text>
+              <text x="335" y="${deckSeamY - 4}" text-anchor="end" fill="#fbbf24" font-size="9" font-weight="700" data-ink="halo">Deck 拼接介面 (${decks}-Stack)</text>
             ` : ''}
 
             <!-- 貫穿垂直深孔通道 (HAR Etch Channel Holes) -->
@@ -7009,7 +7009,7 @@ export function renderWaferTestObject(container, lang = 'zh') {
               <!-- 中間待測孔 R_DUT -->
               <rect x="110" y="2" width="80" height="42" rx="3" fill="#0284c7" stroke="#38bdf8" stroke-width="2"/>
               <text x="150" y="20" text-anchor="middle" fill="#ffffff" font-size="10.5" font-weight="800">R_DUT</text>
-              <text x="150" y="34" text-anchor="middle" fill="#38bdf8" font-size="10" font-weight="700">${rDUT} Ω (820mΩ)</text>
+              <text x="150" y="34" text-anchor="middle" fill="#38bdf8" font-size="10" font-weight="700" data-ink="light">${rDUT} Ω (820mΩ)</text>
 
               <line x1="80" y1="23" x2="110" y2="23" stroke="#f59e0b" stroke-width="2"/>
               <line x1="190" y1="23" x2="220" y2="23" stroke="#f59e0b" stroke-width="2"/>
@@ -8003,7 +8003,7 @@ export function renderSemiconductorPhysicsObject(container, lang = 'zh') {
               <path d="M 180,75 L 380,75 L ${380 - pinchLen},77 L 180,${75 + channelThick} Z" fill="#f59e0b" stroke="#fbbf24" stroke-width="1.5" opacity="0.95"/>
               <text x="270" y="86" text-anchor="middle" fill="#ffffff" font-size="9" font-weight="800">夾斷反轉層 (Pinch-off Channel)</text>
               <line x1="${380 - pinchLen}" y1="65" x2="${380 - pinchLen}" y2="92" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="2 2"/>
-              <text x="${380 - pinchLen + 4}" y="68" fill="#ef4444" font-size="8.5" font-weight="700">夾斷點</text>
+              <text x="${380 - pinchLen + 4}" y="68" fill="#ef4444" font-size="8.5" font-weight="700" data-ink="halo">夾斷點</text>
             ` : `
               <rect x="180" y="75" width="200" height="${channelThick}" fill="#10b981" stroke="#34d399" stroke-width="1.5"/>
               <text x="280" y="${80 + Math.round(channelThick/2)}" text-anchor="middle" fill="#ffffff" font-size="9.5" font-weight="800">強反轉導電通道 (${channelThick}nm)</text>
@@ -11485,7 +11485,7 @@ export function renderMasteryRoadmapObject(container, lang = 'zh') {
 
               <!-- 維度 4 -->
               <g transform="translate(340, 130)">
-                <rect x="0" y="0" width="300" height="110" rx="6" fill="#ec4899" stroke="#ec4899" stroke-width="1.5"/>
+                <rect x="0" y="0" width="300" height="110" rx="6" fill="#0f172a" stroke="#ec4899" stroke-width="1.5"/>
                 <text x="20" y="28" fill="#ec4899" font-size="12" font-weight="750">4. 軟韌體與硬體真實物理邊界</text>
                 <text x="20" y="52" fill="#cbd5e1" font-size="10">• DRAM Row Hammer 漏電翻轉真實存在</text>
                 <text x="20" y="72" fill="#cbd5e1" font-size="10">• IR Drop 壓降與 PVT 工藝角決定軟體極限</text>

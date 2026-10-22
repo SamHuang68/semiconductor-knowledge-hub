@@ -52,8 +52,11 @@ assert.match(packaging.boundary, /並列選項.*並非先後步驟/, '比較應�
 
 // 正常化換行後核對已讀取的基準來源，防止導覽改版刪減教材。
 // 基準：中英雙語原生擴充版（包含 28 章中英完整教材與雙語字典）。
+// 2.6.1：chapters-data.js 基準由 5a1d3e92… 更新。原基準內含 `$&` 替換毀損（ch08 中英、ch11 中英、ch20 英、ch21 英：
+// 錨點複本與「現場異常徵兆」整段被插進表格儲存格）。還原只把錨點複本改回 `$&lt;`／`$&gt;` 並把該段移回「本章重點」前，
+// 以正向模擬逐字元重現原檔證明無其他增刪；正文結構另由 verify-hub.js 檢查。
 const sourceHashes = {
-  'chapters-data.js': '5a1d3e923f55aea39e3262a6694cb8f0b0d3a81f907fb19c3f70b8e3ed152ba1',
+  'chapters-data.js': '275e82ea20579e1e2c106da587e33099af27e03ab11c33d402eaec91e3c66b25',
   'fab-flow.js': '5cbccd2741a8b85779871c9709e772cfb2cdf898111faa15109d274b70fc7ef1',
   'glossary-data.js': '0ee4bd99a8b3752beb6823ec5082a883d69c24b5c92d4ea4b66733a28b074511',
   'search-index.js': '6965881d25b05366d69267415425d4992ccbd2a8fc71cd6c2d86e80ba852a271'

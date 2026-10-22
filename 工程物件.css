@@ -1238,23 +1238,23 @@
   font-family: var(--font-mono);
   font-size: 11px;
   font-weight: 700;
-  color: #0284c7;
-  background: rgba(14, 165, 233, 0.18);
+  color: #075985;
+  background: #e0f2fe;
   padding: 2px 8px;
   border-radius: 4px;
 }
 
 .lightbox-cat {
   font-size: 12px;
-  color: #38bdf8;
-  border-left: 2px solid rgba(255, 255, 255, 0.2);
+  color: #0369a1;
+  border-left: 2px solid var(--border-subtle);
   padding-left: 8px;
 }
 
 .lightbox-title {
   font-size: 15px;
   font-weight: 700;
-  color: #f8fafc;
+  color: var(--text-main);
   margin: 0;
 }
 
@@ -1265,9 +1265,9 @@
 }
 
 .lightbox-btn {
-  background: rgba(30, 41, 59, 0.85);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  color: #e2e8f0;
+  background: var(--bg-surface-alt);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
   padding: 5px 12px;
   border-radius: 4px;
   font-size: 12px;
@@ -1278,17 +1278,18 @@
 }
 
 .lightbox-btn:hover {
-  background: rgba(56, 189, 248, 0.2);
-  border-color: #38bdf8;
-  color: #38bdf8;
+  background: #e0f2fe;
+  border-color: #0284c7;
+  color: #075985;
 }
 
 .lightbox-btn.is-active {
-  background: rgba(14, 165, 233, 0.3);
-  border-color: #38bdf8;
-  color: #38bdf8;
+  background: #e0f2fe;
+  border-color: #0284c7;
+  color: #075985;
 }
 
+/* 淺色量測台：中心偏白、四周淺板岩，疊加細格線，避免純白素面 */
 .lightbox-canvas-wrap {
   position: relative;
   flex: 1;
@@ -1296,7 +1297,12 @@
   align-items: center;
   justify-content: space-between;
   overflow: hidden;
-  background: radial-gradient(circle at center, #0a1420 0%, #02060b 100%);
+  background-color: #f1f5f9;
+  background-image:
+    linear-gradient(to right, rgba(148, 163, 184, 0.16) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(148, 163, 184, 0.16) 1px, transparent 1px),
+    radial-gradient(circle at center, #ffffff 0%, #f1f5f9 62%, #e2e8f0 100%);
+  background-size: 32px 32px, 32px 32px, 100% 100%;
 }
 
 .lightbox-nav-btn {
@@ -1350,7 +1356,7 @@
   object-fit: contain;
   display: block;
   user-select: none;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.18);
   border-radius: 4px;
 }
 
@@ -1419,20 +1425,20 @@
   gap: 12px 20px;
   font-family: var(--font-mono);
   font-size: 11.5px;
-  color: #94a3b8;
+  color: var(--text-muted);
 }
 
 .lb-metro-item strong {
-  color: #38bdf8;
+  color: #075985;
 }
 
 .lightbox-match-bar {
-  color: #cbd5e1;
+  color: var(--text-secondary);
   font-size: 12px;
 }
 
 .lightbox-match-bar strong {
-  color: #38bdf8;
+  color: #075985;
 }
 
 @media (max-width: 768px) {
@@ -2274,26 +2280,70 @@
   background: #fee2e2 !important;
 }
 
-/* SVG 內部文字與背景在淺色儀表板上維持高對比 */
+/* SVG 淺色調色盤（2.6.1）
+   工程物件 SVG 的原始配色是「深色面板＋淺色字」。淺色外框下依屬性值逐色對應：
+   深色填色換成淺色材質（原色越深、換後越淺，保留層次），淺色字換成同色相的深色字，
+   保留顏色語意並維持 WCAG AA 對比。屬性值也涵蓋依狀態動態產生的顏色。
+   工程物件.js 新增顏色時須在此補上對應，scripts/verify-light-theme.mjs 會檢查遺漏。 */
+/* 圖面固定為白底（不隨主題變色），文字色也固定，避免琥珀主題的棕色字在飽和色塊上對比不足 */
+.eng-obj-viewport {
+  --svg-ink: #0f172a;
+  --svg-ink-2: #334155;
+  --svg-ink-3: #475569;
+}
 .eng-obj-viewport text {
-  fill: var(--text-main);
   font-family: var(--font-sans);
 }
-.eng-obj-viewport text[fill="#ffffff"],
-.eng-obj-viewport text[fill="#f8fafc"],
-.eng-obj-viewport text[fill="#fff"] {
-  fill: var(--text-main) !important;
+
+/* 淺色中性字 → 深色中性字 */
+.eng-obj-viewport :is(text, tspan):is([fill="#ffffff"], [fill="#fff"], [fill="#f8fafc"], [fill="#e2e8f0"]) { fill: var(--svg-ink); }
+.eng-obj-viewport :is(text, tspan)[fill="#cbd5e1"] { fill: var(--svg-ink-2); }
+.eng-obj-viewport :is(text, tspan):is([fill="#94a3b8"], [fill="#64748b"]) { fill: var(--svg-ink-3); }
+
+/* 淺色強調字 → 同色相深色字 */
+.eng-obj-viewport :is(text, tspan)[fill="#38bdf8"] { fill: #075985; }
+.eng-obj-viewport :is(text, tspan)[fill="#e0f2fe"] { fill: #0c4a6e; }
+.eng-obj-viewport :is(text, tspan):is([fill="#f59e0b"], [fill="#fbbf24"]) { fill: #92400e; }
+.eng-obj-viewport :is(text, tspan):is([fill="#10b981"], [fill="#34d399"], [fill="#a7f3d0"]) { fill: #065f46; }
+.eng-obj-viewport :is(text, tspan):is([fill="#ef4444"], [fill="#f87171"], [fill="#fca5a5"]) { fill: #991b1b; }
+.eng-obj-viewport :is(text, tspan)[fill="#ec4899"] { fill: #9d174d; }
+.eng-obj-viewport :is(text, tspan)[fill="#c084fc"] { fill: #6b21a8; }
+.eng-obj-viewport :is(text, tspan)[fill="#a78bfa"] { fill: #5b21b6; }
+.eng-obj-viewport :is(text, tspan):is([fill="#71ece3"], [fill="#14b8a6"]) { fill: #115e59; }
+
+/* 深色面板與元件 → 淺色材質 */
+.eng-obj-viewport :is(rect, path, circle, ellipse, polygon):is([fill="#000000"], [fill="#020617"], [fill="#090d16"], [fill="#09131b"], [fill="#0f172a"], [fill="#111827"]) { fill: #f8fafc; }
+.eng-obj-viewport :is(rect, path, circle, ellipse, polygon)[fill="rgba(15, 23, 42, 0.75)"] { fill: rgba(241, 245, 249, 0.92); }
+.eng-obj-viewport :is(rect, path, circle, ellipse, polygon):is([fill="#131e2b"], [fill="#0b1329"]) { fill: #f1f5f9; }
+.eng-obj-viewport :is(rect, path, circle, ellipse, polygon)[fill="#1e293b"] { fill: #e2e8f0; }
+.eng-obj-viewport :is(rect, path, circle, ellipse, polygon)[fill="#334155"] { fill: #d5dde7; }
+.eng-obj-viewport :is(rect, path, circle, ellipse, polygon)[fill="#475569"] { fill: #cbd5e1; }
+.eng-obj-viewport :is(rect, path, circle, ellipse, polygon)[fill="#064e3b"] { fill: #d1fae5; }
+.eng-obj-viewport :is(rect, path, circle, ellipse, polygon)[fill="#450a0a"] { fill: #fee2e2; }
+.eng-obj-viewport :is(rect, path, circle, ellipse, polygon)[fill="#1e1b4b"] { fill: #e0e7ff; }
+/* 原本沒有外框的深色元件（光圈葉片、地板孔、圖表底板等）換成淺色後，補上中灰外框維持辨識度 */
+.eng-obj-viewport :is(rect, path, circle, ellipse, polygon):is([fill="#09131b"], [fill="#1e293b"], [fill="#334155"], [fill="#475569"]):not([stroke]) {
+  stroke: #64748b;
+  stroke-width: 1px;
+  vector-effect: non-scaling-stroke;
 }
-.eng-obj-viewport text[fill="#cbd5e1"] {
-  fill: var(--text-secondary) !important;
+
+/* 深色飽和色塊上的標籤：不透明（或透明度 0.9 以上）色塊後緊接的白字維持白色；
+   白字對比不足 4.5:1 的兩種底色加深一級。半透明色塊疊在淺底上偏淺，維持深字。 */
+.eng-obj-viewport :is(rect, path, circle, ellipse, polygon):is([fill="#0284c7"], [fill="#0369a1"], [fill="#047857"], [fill="#0f766e"], [fill="#64748b"], [fill="#7c3aed"], [fill="#8b5cf6"], [fill="#b45309"], [fill="#b91c1c"], [fill="#dc2626"], [fill="#e11d48"]):is(:not([opacity]), [opacity^="0.9"], [opacity="1"]) + text:is([fill="#ffffff"], [fill="#fff"], [fill="#f8fafc"]) { fill: #ffffff; }
+.eng-obj-viewport :is(rect, path, circle, ellipse, polygon)[fill="#0284c7"]:is(:not([opacity]), [opacity^="0.9"], [opacity="1"]):has(+ text:is([fill="#ffffff"], [fill="#fff"], [fill="#f8fafc"])) { fill: #0369a1; }
+.eng-obj-viewport :is(rect, path, circle, ellipse, polygon)[fill="#8b5cf6"]:is(:not([opacity]), [opacity^="0.9"], [opacity="1"]):has(+ text:is([fill="#ffffff"], [fill="#fff"], [fill="#f8fafc"])) { fill: #7c3aed; }
+
+/* 無法以相鄰結構判斷底色的標籤，於工程物件.js 以 data-ink 標示 */
+.eng-obj-viewport text[data-ink="light"] { fill: #ffffff; }
+.eng-obj-viewport text[data-ink="halo"] {
+  paint-order: stroke;
+  stroke: #f8fafc;
+  stroke-width: 3px;
+  stroke-linejoin: round;
 }
-.eng-obj-viewport text[fill="#94a3b8"],
-.eng-obj-viewport text[fill="#64748b"] {
-  fill: var(--text-muted) !important;
-}
-.eng-obj-viewport rect[fill="#081119"],
-.eng-obj-viewport rect[fill="#04090e"],
-.eng-obj-viewport rect[fill="#0f172a"],
-.eng-obj-viewport rect[fill="#09121d"] {
-  fill: #f8fafc !important;
+
+/* foreignObject 內的 HTML 說明文字以行內樣式設為淺灰（原搭配深色面板），需以 !important 覆寫 */
+.eng-obj-viewport foreignObject > div {
+  color: var(--svg-ink-2) !important;
 }

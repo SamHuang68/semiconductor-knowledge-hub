@@ -12,6 +12,8 @@
  * 8. 實體照片面板與 Lightbox 淡色載體門禁 (Photo Panel & Lightbox Carrier Gate)
  * 9. 程式碼區塊與橫截面演變帶淡色無塵室門禁 (Code Block & Atlas Stream Cleanroom Gate)
  * 10. 行動端表格響應式防溢出門禁 (Responsive Data Table Gate)
+ * 11. 工程物件 SVG 淺色調色盤涵蓋門禁 (SVG Palette Coverage Gate)
+ * 12. 照片燈箱內部元件淡色門禁 (Lightbox Interior Gate)
  */
 
 import { readFileSync, existsSync } from 'node:fs';
@@ -213,6 +215,66 @@ check('行動端表格響應式防溢出門禁：.table-container 包含 overflo
   if (!/max-width:\s*100%/i.test(block)) {
     throw new Error('.table-container 缺少 max-width: 100% 宣告');
   }
+});
+
+// 10. 工程物件 SVG 淺色調色盤涵蓋門禁 (SVG Palette Coverage Gate)
+// 2.5.0 只把外框改成淺色，SVG 內部的深色面板與淺色字未完整對應，造成深字疊深底（2.6.1 修正）。
+// 工程物件.js 用到的每個深色中性填色與淺色文字，都必須在工程物件.css 的調色盤層有對應。
+check('工程物件 SVG 淺色調色盤涵蓋門禁：深色面板與淺色字皆有淺色主題對應', () => {
+  const engJs = readFileSync(resolve(ROOT, '工程物件.js'), 'utf8');
+  const engCss = readFileSync(resolve(ROOT, '工程物件.css'), 'utf8');
+  const saturation = hex => {
+    const h = hex.slice(1).length === 3 ? hex.slice(1).split('').map(c => c + c).join('') : hex.slice(1);
+    const c = [0, 2, 4].map(i => parseInt(h.slice(i, i + 2), 16));
+    const max = Math.max(...c), min = Math.min(...c);
+    return max ? (max - min) / max : 0;
+  };
+  // 原始碼中的 fill 屬性值（含 ${條件 ? '#a' : '#b'} 這類動態顏色）
+  const usedShape = new Set(), usedText = new Set();
+  for (const m of engJs.matchAll(/<(rect|path|circle|ellipse|polygon|text|tspan)\b[^>]*?\bfill="((?:[^"$]|\$\{[^}]*\})*)"/g)) {
+    for (const h of m[2].matchAll(/#[0-9a-fA-F]{6}\b|#[0-9a-fA-F]{3}\b/g)) {
+      (/^(text|tspan)$/.test(m[1]) ? usedText : usedShape).add(h[0].toLowerCase());
+    }
+  }
+  // 調色盤層：以規則的主體（最後一個 + 之後）判斷對應的是文字或圖形
+  const mappedShape = new Set(), mappedText = new Set();
+  for (const m of engCss.matchAll(/(\.eng-obj-viewport[^{}]*)\{([^}]*)\}/g)) {
+    if (!/\bfill\s*:/.test(m[2])) continue;
+    const subject = m[1].split('+').pop().replace(/:has\([^)]*\)+/g, '');
+    const target = /\b(text|tspan)\b/.test(subject) ? mappedText : /\brect\b/.test(subject) ? mappedShape : null;
+    if (!target) continue;
+    for (const h of subject.matchAll(/\[fill="(#[0-9a-fA-F]{3,6})"\]/g)) target.add(h[1].toLowerCase());
+  }
+  const darkShapes = [...usedShape].filter(h => { const l = getRelativeLuminance(h); return l < 0.06 || (l < 0.12 && saturation(h) < 0.5); });
+  const lightTexts = [...usedText].filter(h => getRelativeLuminance(h) > 0.2);
+  const missingShape = darkShapes.filter(h => !mappedShape.has(h));
+  const missingText = lightTexts.filter(h => !mappedText.has(h));
+  if (missingShape.length) throw new Error(`深色填色未對應淺色材質：${missingShape.join(', ')}`);
+  if (missingText.length) throw new Error(`淺色文字未對應深色字：${missingText.join(', ')}`);
+  if (/<foreignObject/.test(engJs) && !/\.eng-obj-viewport foreignObject[^{]*\{[^}]*color:[^}]*!important/.test(engCss)) {
+    throw new Error('SVG 使用 foreignObject，但調色盤層缺少其行內文字色的覆寫');
+  }
+  console.log(`       已對應深色填色 ${darkShapes.length} 種、淺色文字 ${lightTexts.length} 種`);
+});
+
+// 11. 照片燈箱內部元件淡色門禁 (Lightbox Interior Gate)
+check('照片燈箱內部元件淡色門禁：畫布、按鈕為淡色底，標題為深色字', () => {
+  const engCss = readFileSync(resolve(ROOT, '工程物件.css'), 'utf8');
+  const block = sel => {
+    const m = engCss.match(new RegExp(`\\n${sel.replace('.', '\\.')}\\s*\\{([^}]*)\\}`));
+    if (!m) throw new Error(`未找到 ${sel} 定義`);
+    return m[1];
+  };
+  const canvas = block('.lightbox-canvas-wrap');
+  const canvasBg = (canvas.match(/background-color:\s*([^;]+);/) || [])[1];
+  if (!canvasBg || getRelativeLuminance(canvasBg) < 0.70) throw new Error(`.lightbox-canvas-wrap 底色 (${canvasBg}) 不是淡色`);
+  for (const h of canvas.matchAll(/#[0-9a-fA-F]{6}\b/g)) {
+    if (getRelativeLuminance(h[0]) < 0.70) throw new Error(`.lightbox-canvas-wrap 背景含深色 ${h[0]}`);
+  }
+  const btnBg = (block('.lightbox-btn').match(/background:\s*([^;]+);/) || [])[1] || '';
+  if (/rgba\(\s*(1[0-9]|2[0-9]|3[0-9]|[0-9]),/.test(btnBg)) throw new Error(`.lightbox-btn 背景 (${btnBg}) 為深色`);
+  const title = (block('.lightbox-title').match(/color:\s*([^;]+);/) || [])[1] || '';
+  if (title.startsWith('#') && getRelativeLuminance(title) > 0.2) throw new Error(`.lightbox-title 文字色 (${title}) 過淺`);
 });
 
 console.log('=== 門禁檢驗結束 ===');

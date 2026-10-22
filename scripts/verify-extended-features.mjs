@@ -102,9 +102,10 @@ assert.ok(appJs.includes('QTIME_MAP ='), 'app.js 必須包含 Q-Time 關鍵時�
 assert.ok(appJs.includes('function speakTerm('), 'app.js 必須包含 Web Speech API 語音發音函式');
 assert.ok(indexHtml.includes('id="soundToggleBtn"'), 'index.html 必須包含音效切換按鈕');
 assert.ok(fs.existsSync(path.join(ROOT_DIR, 'data/sound-fx.js')), '必須存在 data/sound-fx.js');
-assert.equal(pkgJson.version, '2.6.0', 'package.json 版本號必須為 2.6.0');
-assert.ok(indexHtml.includes('版本 2.6.0'), 'index.html 頁尾版本必須升級至 2.6.0');
-assert.ok(appJs.includes('版本 2.6.0'), 'app.js 字典版本必須升級至 2.6.0');
+assert.equal(pkgJson.version, '2.6.1', 'package.json 版本號必須為 2.6.1');
+assert.ok(indexHtml.includes(`版本 ${pkgJson.version}`), 'index.html 頁尾版本必須與 package.json 一致');
+assert.ok(appJs.includes(`版本 ${pkgJson.version}`), 'app.js 中文頁尾版本必須與 package.json 一致');
+assert.ok(appJs.includes(`· v${pkgJson.version}'`), 'app.js 英文頁尾版本必須與 package.json 一致');
 
-console.log('[PASS] Stage 3 & 4 (Rounds 11-15, 19-20): 天車調度模擬、Q-Time 矩陣、語音朗讀與 v2.6.0 進版驗證全數通過！');
+console.log(`[PASS] Stage 3 & 4 (Rounds 11-15, 19-20): 天車調度模擬、Q-Time 矩陣、語音朗讀與 v${pkgJson.version} 進版驗證全數通過！`);
 console.log('=== 20 輪結構化工程優化驗證全數滿貫通過 (0 錯誤) ===');

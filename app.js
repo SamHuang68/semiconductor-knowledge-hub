@@ -56,7 +56,7 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
       explore_open: '開啟互動情境 ↗',
       no_matching_chapters: '查無相符章節',
       footer_attribution: `本專案基於開源教材 <a href="https://github.com/chenwei810/Semiconductor_Manufacturing_Introduction" target="_blank" rel="noopener">chenwei810/Semiconductor_Manufacturing_Introduction</a> （採 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hant" target="_blank" rel="noopener">CC BY-NC-SA 4.0 創用 CC 姓名標示-非商業性-相同方式分享</a> 授權）重製與架構升級。`,
-      footer_desc: '涵蓋 25 章從沙子到晶片的完整晶圓製造旅程 · 28 大模組實體電顯與機台照片並列對照 · 245 筆核心術語與現場實務行話 · 中英雙語無縫支援 · 純前端極速架構 · 零中系依賴 · 版本 2.6.0',
+      footer_desc: '涵蓋 25 章從沙子到晶片的完整晶圓製造旅程 · 28 大模組實體電顯與機台照片並列對照 · 245 筆核心術語與現場實務行話 · 中英雙語無縫支援 · 純前端極速架構 · 零中系依賴 · 版本 2.6.1',
       atlas_title: '晶圓廠 12 大核心製程全景圖譜 (Fab Flow Atlas)',
       btn_close: '關閉 (Esc)',
       jargon_title: '晶圓廠現場行話與術語字典',
@@ -148,7 +148,7 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
       explore_open: 'Open Scenario ↗',
       no_matching_chapters: 'No matching chapters found',
       footer_attribution: `Adapted from the open-source book <a href="https://github.com/chenwei810/Semiconductor_Manufacturing_Introduction" target="_blank" rel="noopener">chenwei810/Semiconductor_Manufacturing_Introduction</a> licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a>.`,
-      footer_desc: 'Comprehensive 25-chapter wafer fabrication guide from sand to chip · 28-module authentic SEM & tool photo side-by-side view · 245 core terms & 43 fab jargon · Native bilingual support · Zero Chinese-origin dependencies · v2.4.0',
+      footer_desc: 'Comprehensive 25-chapter wafer fabrication guide from sand to chip · 28-module authentic SEM & tool photo side-by-side view · 245 core terms & 43 fab jargon · Native bilingual support · Zero Chinese-origin dependencies · v2.6.1',
       theme_light_title: 'Light Precision Mode',
       theme_dark_title: 'Dark High-Contrast Mode',
       theme_amber_title: 'Cleanroom 500nm Litho Amber Mode',
@@ -711,18 +711,44 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
   /**
    * 5. 渲染製程全景圖譜 (Atlas 2.0 Modal) — 動態晶圓剖面流與深度模型直達
    */
-  function renderAtlasModal() {
-
+  // 各站之間的 Q-Time 時窗，鍵為 FAB_FLOW_NODES 的 step 編號。
+  // 微影→蝕刻與 OCAP ch23 情境採同一口徑（4 小時）。
   const QTIME_MAP = {
     'step-02': { zh: '⏱️ Q-Time ≤ 4h: 進入微影 (防原生氧化層生長)', en: '⏱️ Q-Time ≤ 4h: Transfer to Litho (Native oxide control)' },
-    'step-03': { zh: '⏱️ Q-Time ≤ 8h: 進入非等向蝕刻 (防光阻 T-Topping 酸氣中毒)', en: '⏱️ Q-Time ≤ 8h: Transfer to Etch (Resist T-topping prevention)' },
+    'step-03': { zh: '⏱️ Q-Time ≤ 4h: 進入非等向蝕刻 (防光阻 T-Topping 酸氣中毒)', en: '⏱️ Q-Time ≤ 4h: Transfer to Etch (Resist T-topping prevention)' },
     'step-04': { zh: '⏱️ Q-Time ≤ 2h: 進入濕式清洗 (防含氯高分子殘留腐蝕)', en: '⏱️ Q-Time ≤ 2h: Transfer to Clean (Polymer residue corrosion prevention)' },
     'step-06': { zh: '⏱️ Q-Time ≤ 4h: 進入薄膜沉積 (防界面金屬有機污染)', en: '⏱️ Q-Time ≤ 4h: Transfer to Deposition (Airborne amine prevention)' },
     'step-09': { zh: '⏱️ Q-Time ≤ 6h: 進入化學機械研磨 (防止電鍍銅晶粒非均勻自退火)', en: '⏱️ Q-Time ≤ 6h: Transfer to CMP (Copper grain self-annealing limit)' }
   };
+  // 模擬與 Q-Time 狀態放在模組層級：renderAtlasModal 會因開啟或切換語言重跑，
+  // 若宣告在函式內，每次重跑都會產生新變數，舊的計時器便無法清除。
   let ohtSimTimer = null;
   let ohtSimCurrentStep = 1;
   let showQTimeOverlay = false;
+
+  function stopOhtSim() {
+    if (ohtSimTimer) clearInterval(ohtSimTimer);
+    ohtSimTimer = null;
+    const t = I18N[currentLang] || I18N.zh;
+    document.getElementById('startOhtSimBtn')?.classList.remove('is-active');
+    const label = document.getElementById('ohtSimBtnText');
+    if (label) label.textContent = t.oht_sim_btn;
+    const badge = document.getElementById('ohtTelemetryBadge');
+    if (badge) {
+      badge.className = 'atlas-telemetry-badge';
+      badge.textContent = currentLang === 'en' ? 'AMHS Standby' : '天車待命 (Standby)';
+    }
+  }
+
+  function closeAtlasModal() {
+    if (atlasModalEl) atlasModalEl.classList.remove('is-open');
+    stopOhtSim();
+  }
+
+  function renderAtlasModal() {
+    // 重繪前先停止既有模擬；若原本在執行（例如切換語言），重繪完成後以新語言接續
+    const resumeOhtSim = ohtSimTimer !== null;
+    stopOhtSim();
 
     if (!atlasGridEl) return;
     const isEn = currentLang === 'en';
@@ -919,6 +945,7 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
       const govLaw = isEn ? (node.governingLawEn || node.governingLawZh || '') : (node.governingLawZh || '');
       const ocapSig = isEn ? (node.ocapSignatureEn || node.ocapSignatureZh || '') : (node.ocapSignatureZh || '');
       const activeClass = parseInt(node.num, 10) === 1 ? ' is-active-step' : '';
+      const qtime = QTIME_MAP[`step-${node.num}`];
 
       html += `
         <button type="button" class="atlas-card${activeClass}" data-jump-ch="${node.chapterId}" data-step-num="${node.num}">
@@ -937,6 +964,7 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
               ${govLaw ? `<div style="color: #0284c7;"><strong>${t.law_label}</strong>${escapeHtml(govLaw)}</div>` : ''}
               ${ocapSig ? `<div style="color: #b45309;"><strong>${t.ocap_label}</strong>${escapeHtml(ocapSig)}</div>` : ''}
             </div>
+            ${qtime ? `<div class="atlas-card-qtime-badge">${escapeHtml(isEn ? qtime.en : qtime.zh)}</div>` : ''}
             <div class="atlas-jump-badge">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
               <span>${isEn ? 'Explore Microscopic Model →' : '探索微觀工程模型 →'}</span>
@@ -956,11 +984,15 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
     const qtimeBtnText = document.getElementById('qtimeBtnText');
 
     if (toggleQtimeBtn) {
+      atlasGridEl.classList.toggle('show-qtime', showQTimeOverlay);
+      toggleQtimeBtn.classList.toggle('is-active', showQTimeOverlay);
+      toggleQtimeBtn.setAttribute('aria-pressed', showQTimeOverlay ? 'true' : 'false');
       toggleQtimeBtn.onclick = (e) => {
         e.stopPropagation();
         showQTimeOverlay = !showQTimeOverlay;
         atlasGridEl.classList.toggle('show-qtime', showQTimeOverlay);
         toggleQtimeBtn.classList.toggle('is-active', showQTimeOverlay);
+        toggleQtimeBtn.setAttribute('aria-pressed', showQTimeOverlay ? 'true' : 'false');
       };
     }
 
@@ -983,26 +1015,24 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
       }
     }
 
+    function startOhtSim() {
+      stepOhtSim();
+      ohtSimTimer = setInterval(stepOhtSim, 1800);
+      startOhtSimBtn.classList.add('is-active');
+      if (ohtSimBtnText) ohtSimBtnText.textContent = t.oht_sim_pause;
+    }
+
     if (startOhtSimBtn) {
       startOhtSimBtn.onclick = (e) => {
         e.stopPropagation();
         if (ohtSimTimer) {
-          clearInterval(ohtSimTimer);
-          ohtSimTimer = null;
-          startOhtSimBtn.classList.remove('is-active');
-          if (ohtSimBtnText) ohtSimBtnText.textContent = isEn ? t.oht_sim_btn : '啟動天車調度模擬';
-          if (ohtTelemetryBadge) {
-            ohtTelemetryBadge.className = 'atlas-telemetry-badge';
-            ohtTelemetryBadge.textContent = isEn ? 'AMHS Standby' : '天車待命 (Standby)';
-          }
+          stopOhtSim();
         } else {
-          stepOhtSim();
-          ohtSimTimer = setInterval(stepOhtSim, 1800);
-          startOhtSimBtn.classList.add('is-active');
+          startOhtSim();
           playSound('launch');
-          if (ohtSimBtnText) ohtSimBtnText.textContent = isEn ? t.oht_sim_pause : '暫停天車調度模擬';
         }
       };
+      if (resumeOhtSim) startOhtSim();
     }
 
 
@@ -1026,7 +1056,7 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
       card.addEventListener('focus', activateStepPreview);
 
       card.addEventListener('click', () => {
-        if (atlasModalEl) atlasModalEl.classList.remove('is-open');
+        closeAtlasModal();
         window.location.hash = chId;
         setTimeout(() => {
           const mountEl = mainCanvasEl.querySelector('.engineering-object-mount');
@@ -1598,7 +1628,7 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
     const atlasCard = e.target.closest('.atlas-card');
     if (atlasCard) {
       const targetId = atlasCard.getAttribute('data-jump-ch');
-      atlasModalEl.classList.remove('is-open');
+      closeAtlasModal();
       loadChapter(targetId);
       return;
     }
@@ -1645,7 +1675,7 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
 
     // 關閉全景圖譜
     if (e.target.closest('#closeAtlasBtn') || (e.target === atlasModalEl)) {
-      atlasModalEl.classList.remove('is-open');
+      closeAtlasModal();
       return;
     }
 
@@ -1755,7 +1785,7 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
 
     // Esc 關閉所有彈窗
     if (e.key === 'Escape') {
-      if (atlasModalEl) atlasModalEl.classList.remove('is-open');
+      closeAtlasModal();
       if (jargonModalEl) jargonModalEl.classList.remove('is-open');
       if (searchModalEl) searchModalEl.classList.remove('is-open');
       if (shortcutsModalEl) shortcutsModalEl.classList.remove('is-open');
