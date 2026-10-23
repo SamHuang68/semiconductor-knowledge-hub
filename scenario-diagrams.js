@@ -15,7 +15,7 @@ export function crossSection(index) {
   else if (index >= 3) layers += segments.map(x => `<rect x="${x}" y="113" width="55" height="32" fill="#57bdb3"/>`).join('');
   if (index === 1) layers += '<rect x="28" y="84" width="280" height="29" fill="#e1ad70"/>';
   if (index === 2 || index === 3) layers += segments.map(x => `<rect x="${x}" y="84" width="55" height="29" fill="#e1ad70"/>`).join('');
-  if (index === 3) layers += '<path d="M111 33v93m84-93v93m84-93v93m-172-8 4 8 4-8m76 0 4 8 4-8m76 0 4 8 4-8" fill="none" stroke="#71ece3" stroke-width="2"/>';
+  if (index === 3) layers += '<path d="M111 33v93m84-93v93m84-93v93m-172-8 4 8 4-8m76 0 4 8 4-8m76 0 4 8 4-8" fill="none" stroke="#0f766e" stroke-width="2"/>';
   if (index === 5) layers += '<path d="M42 87v-12h55v12m-55-6h55" fill="none" stroke="#e1ad70" stroke-width="2"/>';
   return `<svg viewBox="0 0 336 220" role="img" aria-label="${index < 0 ? '尚未鋪設目標薄膜的矽基板' : ['待加工薄膜覆蓋基板', '光阻覆蓋薄膜', '光阻形成開口，下方薄膜仍完整', '蝕刻後薄膜形成圖形，光阻仍在', '去除光阻，留下材料圖形', '量測圖形尺寸'][index]}">${layers}<text x="168" y="175" text-anchor="middle" fill="#102d3a" font-size="16">矽基板</text></svg>`;
 }
@@ -29,7 +29,7 @@ export function packageArt(index) {
 
 export function signalArt(index) {
   const abnormal = index > 2;
-  return `<svg viewBox="0 0 336 220" role="img" aria-label="製程監控示意；沒有實際量測值"><path d="M30 30v145h280M30 57h280M30 143h280" fill="none" stroke="#7194a1" stroke-dasharray="5 5"/><polyline points="30,103 63,89 96,111 129,90 162,102 195,80 228,${abnormal ? 35 : 99} 261,${abnormal ? 46 : 86} 294,${abnormal ? 34 : 100}" fill="none" stroke="${abnormal ? '#e1ad70' : '#71ece3'}" stroke-width="3"/><text x="168" y="205" text-anchor="middle" fill="#c3d5db" font-size="14">${abnormal ? '異常處置依據須回到實際量測' : '先確認資料，再判讀訊號'}</text></svg>`;
+  return `<svg viewBox="0 0 336 220" role="img" aria-label="製程監控示意；沒有實際量測值"><path d="M30 30v145h280M30 57h280M30 143h280" fill="none" stroke="#7194a1" stroke-dasharray="5 5"/><polyline points="30,103 63,89 96,111 129,90 162,102 195,80 228,${abnormal ? 35 : 99} 261,${abnormal ? 46 : 86} 294,${abnormal ? 34 : 100}" fill="none" stroke="${abnormal ? '#c2410c' : '#0369a1'}" stroke-width="3"/><text x="168" y="205" text-anchor="middle" fill="#334155" font-size="14">${abnormal ? '異常處置依據須回到實際量測' : '先確認資料，再判讀訊號'}</text></svg>`;
 }
 
 function packageConnections(index) {
@@ -48,9 +48,9 @@ export function journeyArt(index) {
   if (index === 2) drawing = '<rect x="28" y="26" width="280" height="141" fill="#294c5c"/><rect x="28" y="167" width="280" height="25" fill="#a6bdcb"/><path d="M51 151h98M215 151h65M84 107h65M149 107h70M190 61h85" stroke="#d9ac73" stroke-width="12"/><path d="M149 151v-44m57 0V61M65 167v-16m175 16v-16" stroke="#d9ac73" stroke-width="9"/><text x="61" y="49" fill="#d8e8e9" font-size="15">介電層</text><text x="168" y="185" text-anchor="middle" fill="#092b39" font-size="14">元件區域</text>';
   if (index === 3) {
     const dies = Array.from({ length: 25 }, (_, i) => `<rect x="${158 + i % 5 * 24}" y="${40 + Math.floor(i / 5) * 24}" width="19" height="19" fill="${i % 7 === 0 ? '#d9ac73' : i % 3 === 0 ? '#7194a1' : '#57bdb3'}"/>`).join('');
-    drawing = `<rect x="22" y="36" width="111" height="128" rx="4" fill="#214553" stroke="#7194a1"/><path d="M35 130l15-25 15 11 15-33 15 9 24-27" fill="none" stroke="#71ece3" stroke-width="3"/><text x="78" y="65" text-anchor="middle" fill="white" font-size="19">WAT</text>${dies}<text x="216" y="186" text-anchor="middle" fill="#d8e8e9" font-size="15">CP 晶粒分類圖</text><text x="78" y="186" text-anchor="middle" fill="#d8e8e9" font-size="15">製程電性</text>`;
+    drawing = `<rect x="22" y="36" width="111" height="128" rx="4" fill="#214553" stroke="#7194a1"/><path d="M35 130l15-25 15 11 15-33 15 9 24-27" fill="none" stroke="#71ece3" stroke-width="3"/><text x="78" y="65" text-anchor="middle" fill="white" font-size="19">WAT</text>${dies}<text x="216" y="186" text-anchor="middle" fill="#334155" font-size="15">CP 晶粒分類圖</text><text x="78" y="186" text-anchor="middle" fill="#334155" font-size="15">製程電性</text>`;
   }
-  return `<svg viewBox="0 0 336 230" role="img" aria-label="${caption}">${drawing}<text x="168" y="221" text-anchor="middle" fill="#c3d5db" font-size="13">${caption}</text></svg>`;
+  return `<svg viewBox="0 0 336 230" role="img" aria-label="${caption}">${drawing}<text x="168" y="221" text-anchor="middle" fill="#334155" font-size="13">${caption}</text></svg>`;
 }
 
 export function dispatchArt(s, index) {
@@ -62,7 +62,7 @@ export function dispatchArt(s, index) {
     ['搬運系統', '晶圓盒（FOUP）', 18, 224, [2]]
   ];
   const box = ([title, detail, x, y, active]) => `<div class="dispatch-role ${active.includes(index) ? 'is-active' : ''}" style="left:${x / 360 * 100}%;top:${y / 320 * 100}%" role="group" aria-label="${title}${active.includes(index) ? '，本節焦點' : ''}"><strong>${title}</strong><span>${detail}</span></div>`;
-  const line = (d, active, physical = false) => `<path d="${d}" fill="none" stroke="${active ? '#71ece3' : '#7194a1'}" stroke-width="${active ? 3 : 1.5}" ${physical ? '' : 'stroke-dasharray="5 4"'}/>`;
+  const line = (d, active, physical = false) => `<path d="${d}" fill="none" stroke="${active ? '#0f766e' : '#64748b'}" stroke-width="${active ? 3 : 1.5}" ${physical ? '' : 'stroke-dasharray="5 4"'}/>`;
   return `<div class="dispatch-diagram" role="group" aria-label="${esc(s.nodes[index].title)}的系統角色"><svg class="dispatch-lines" viewBox="0 0 360 320" preserveAspectRatio="none" aria-hidden="true">
     ${line('M156 52h48m-8-5 8 5-8 5', index < 2)}
     ${line('M273 84v38m-5-8 5 8 5-8', index === 1)}

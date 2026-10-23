@@ -56,7 +56,7 @@ assert.match(packaging.boundary, /並列選項.*並非先後步驟/, '比較應�
 // 錨點複本與「現場異常徵兆」整段被插進表格儲存格）。還原只把錨點複本改回 `$&lt;`／`$&gt;` 並把該段移回「本章重點」前，
 // 以正向模擬逐字元重現原檔證明無其他增刪；正文結構另由 verify-hub.js 檢查。
 const sourceHashes = {
-  'chapters-data.js': '275e82ea20579e1e2c106da587e33099af27e03ab11c33d402eaec91e3c66b25',
+  'chapters-data.js': '5bc9f2e03669ea5f833ebe8ec20eddf7ea260a44fbd556be6b42e6f0e9db72b4',
   'fab-flow.js': '5cbccd2741a8b85779871c9709e772cfb2cdf898111faa15109d274b70fc7ef1',
   'glossary-data.js': '0ee4bd99a8b3752beb6823ec5082a883d69c24b5c92d4ea4b66733a28b074511',
   'search-index.js': '6965881d25b05366d69267415425d4992ccbd2a8fc71cd6c2d86e80ba852a271'

@@ -234,11 +234,138 @@ export function disposeDiagramReading(state) {
   if (state.reading?.frame) cancelAnimationFrame(state.reading.frame);
 }
 
+const SHAPE_FILL_MAP = {
+  '#000000': '#f8fafc',
+  '#020617': '#f8fafc',
+  '#090d16': '#f8fafc',
+  '#09131b': '#f8fafc',
+  '#0f172a': '#f8fafc',
+  '#111827': '#f8fafc',
+  'rgba(15, 23, 42, 0.75)': 'rgba(241, 245, 249, 0.92)',
+  '#131e2b': '#f1f5f9',
+  '#0b1329': '#f1f5f9',
+  '#1e293b': '#e2e8f0',
+  '#334155': '#d5dde7',
+  '#475569': '#cbd5e1',
+  '#064e3b': '#d1fae5',
+  '#450a0a': '#fee2e2',
+  '#1e1b4b': '#e0e7ff'
+};
+
+const STROKE_FOR_SHAPES = new Set(['#09131b', '#1e293b', '#334155', '#475569', '#000000', '#020617', '#090d16', '#0f172a', '#111827']);
+
+const TEXT_FILL_MAP = {
+  '#ffffff': '#0f172a',
+  '#fff': '#0f172a',
+  '#f8fafc': '#0f172a',
+  '#e2e8f0': '#0f172a',
+  '#cbd5e1': '#334155',
+  '#94a3b8': '#475569',
+  '#64748b': '#475569',
+  '#38bdf8': '#075985',
+  '#e0f2fe': '#0c4a6e',
+  '#f59e0b': '#92400e',
+  '#fbbf24': '#92400e',
+  '#10b981': '#065f46',
+  '#34d399': '#065f46',
+  '#a7f3d0': '#065f46',
+  '#ef4444': '#991b1b',
+  '#f87171': '#991b1b',
+  '#fca5a5': '#991b1b',
+  '#ec4899': '#9d174d',
+  '#c084fc': '#6b21a8',
+  '#a78bfa': '#5b21b6',
+  '#71ece3': '#115e59',
+  '#14b8a6': '#115e59'
+};
+
+const DARK_SATURATED_FILLS = new Set([
+  '#0284c7', '#0369a1', '#047857', '#0f766e', '#64748b',
+  '#7c3aed', '#8b5cf6', '#b45309', '#b91c1c', '#dc2626', '#e11d48'
+]);
+
+export function applyCleanroomPalette(svg) {
+  const elements = svg.querySelectorAll('*');
+  for (const el of elements) {
+    const tag = el.tagName.toLowerCase();
+    if (['rect', 'path', 'circle', 'ellipse', 'polygon'].includes(tag)) {
+      const fill = (el.getAttribute('fill') || '').trim();
+      const fillLower = fill.toLowerCase();
+      if (fillLower === '#0284c7' || fillLower === '#8b5cf6') {
+        const next = el.nextElementSibling;
+        const nextFill = next?.getAttribute('fill')?.toLowerCase();
+        if (next && ['text', 'tspan'].includes(next.tagName.toLowerCase()) && ['#ffffff', '#fff', '#f8fafc'].includes(nextFill)) {
+          el.setAttribute('fill', fillLower === '#0284c7' ? '#0369a1' : '#7c3aed');
+        }
+      } else if (SHAPE_FILL_MAP[fillLower] || SHAPE_FILL_MAP[fill]) {
+        const targetFill = SHAPE_FILL_MAP[fillLower] || SHAPE_FILL_MAP[fill];
+        el.setAttribute('fill', targetFill);
+        if (STROKE_FOR_SHAPES.has(fillLower) && !el.getAttribute('stroke')) {
+          el.setAttribute('stroke', '#64748b');
+          el.setAttribute('stroke-width', '1px');
+          el.setAttribute('vector-effect', 'non-scaling-stroke');
+        }
+      }
+    } else if (tag === 'text' || tag === 'tspan') {
+      const ink = el.getAttribute('data-ink');
+      if (ink === 'light') {
+        el.setAttribute('fill', '#ffffff');
+      } else if (ink === 'halo') {
+        el.setAttribute('paint-order', 'stroke');
+        el.setAttribute('stroke', '#f8fafc');
+        el.setAttribute('stroke-width', '3px');
+        el.setAttribute('stroke-linejoin', 'round');
+      } else {
+        const prev = el.previousElementSibling;
+        const prevFill = prev?.getAttribute('fill')?.toLowerCase();
+        const prevOpacity = prev?.getAttribute('opacity');
+        const isSolidDarkShape = prev && prevFill && DARK_SATURATED_FILLS.has(prevFill) && (!prevOpacity || Number(prevOpacity) >= 0.9);
+        const textFill = (el.getAttribute('fill') || '').toLowerCase();
+        if (isSolidDarkShape && ['#ffffff', '#fff', '#f8fafc'].includes(textFill)) {
+          el.setAttribute('fill', '#ffffff');
+        } else if (TEXT_FILL_MAP[textFill]) {
+          el.setAttribute('fill', TEXT_FILL_MAP[textFill]);
+        }
+      }
+    } else if (tag === 'foreignobject') {
+      const div = el.querySelector('div');
+      if (div) {
+        div.style.color = '#334155';
+      }
+    } else if (tag === 'stop') {
+      const stopColor = (el.getAttribute('stop-color') || '').toLowerCase();
+      if (SHAPE_FILL_MAP[stopColor]) {
+        el.setAttribute('stop-color', SHAPE_FILL_MAP[stopColor]);
+      }
+    }
+  }
+
+  const doc = svg.ownerDocument || (typeof document !== 'undefined' ? document : null);
+  if (doc) {
+    let defs = svg.querySelector('defs');
+    if (!defs) {
+      defs = doc.createElementNS('http://www.w3.org/2000/svg', 'defs');
+      svg.insertBefore(defs, svg.firstChild);
+    }
+    const style = doc.createElementNS('http://www.w3.org/2000/svg', 'style');
+    style.textContent = `
+      text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }
+      foreignObject > div { color: #334155 !important; }
+    `;
+    defs.appendChild(style);
+  }
+}
+
 export function portableDiagram(svg) {
   const clone = svg.cloneNode(true);
+  applyCleanroomPalette(clone);
   // 只移除本檢視器加入的顯示尺寸，保留原 viewBox、defs、事件目標與圖面內容。
   clone.style.removeProperty('width');
   clone.style.removeProperty('height');
   if (!clone.getAttribute('style')) clone.removeAttribute('style');
   return clone;
+}
+
+if (typeof window !== 'undefined') {
+  window.portableDiagram = portableDiagram;
 }

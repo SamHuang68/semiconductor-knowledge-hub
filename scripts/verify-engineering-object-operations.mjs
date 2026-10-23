@@ -167,11 +167,7 @@ try {
     await detached.dispose();
     await card.locator('[data-mode="high_na"]').click();
     const svg = await card.locator('.eng-obj-viewport > svg').evaluate(el => {
-      const copy = el.cloneNode(true);
-      // 複製契約保留原圖內容；檢視器的畫面縮放不應寫進匯出尺寸。
-      copy.style.removeProperty('width'); copy.style.removeProperty('height');
-      if (!copy.getAttribute('style')) copy.removeAttribute('style');
-      return copy.outerHTML;
+      return (window.portableDiagram ? window.portableDiagram(el) : el.cloneNode(true)).outerHTML;
     });
     await page.evaluate(() => Object.defineProperty(navigator, 'clipboard', { configurable: true, value: { writeText: async text => { window.__已複製SVG = text; } } }));
     await card.locator('[data-action="copy-svg"]').click();

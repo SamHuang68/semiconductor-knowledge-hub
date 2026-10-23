@@ -15,28 +15,28 @@
 .signal-workspace { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(240px, 1fr); gap: 20px; align-items: stretch; }
 .signal-plot { min-width: 0; padding: 18px 16px 12px; border-radius: 5px; background: #ffffff; color: #0f172a; border: 1px solid #cbd5e1; }
 .signal-plot-label { display: flex; gap: 8px; justify-content: space-between; flex-wrap: wrap; font-size: 15px; }
-.signal-plot-label span { color: #bcd3db; font-size: 13px; }
+.signal-plot-label span { color: #475569; font-size: 13px; }
 .signal-chart { display: grid; grid-template-columns: 90px minmax(0, 1fr); gap: 8px; height: 240px; }
 .signal-chart svg { width: 100%; height: 240px; overflow: visible; }
-.signal-axis { position: relative; color: #dcebec; font-size: 13px; white-space: nowrap; }
+.signal-axis { position: relative; color: #334155; font-size: 13px; white-space: nowrap; }
 .signal-axis span { position: absolute; right: 0; transform: translateY(-50%); }
 .signal-axis span:nth-child(1) { top: 25%; }
 .signal-axis span:nth-child(2) { top: 50%; }
 .signal-axis span:nth-child(3) { top: 75%; }
 .signal-limit, .signal-center, .signal-trace, .signal-point, .signal-cross { vector-effect: non-scaling-stroke; }
-.signal-limit { fill: none; stroke: #9ab3bc; stroke-width: 1.5px; stroke-dasharray: 6 5; }
-.signal-center { fill: none; stroke: #9ab3bc; stroke-width: 1px; }
-.signal-trace { fill: none; stroke: #71ece3; stroke-width: 2.5px; }
-.signal-point { fill: #71ece3; stroke: #71ece3; stroke-width: 2px; }
-.signal-point.is-outside { fill: #e1ad70; stroke: #e1ad70; stroke-width: 5px; }
+.signal-limit { fill: none; stroke: #64748b; stroke-width: 1.5px; stroke-dasharray: 6 5; }
+.signal-center { fill: none; stroke: #64748b; stroke-width: 1px; }
+.signal-trace { fill: none; stroke: #0369a1; stroke-width: 2.5px; }
+.signal-point { fill: #0369a1; stroke: #0369a1; stroke-width: 2px; }
+.signal-point.is-outside { fill: #c2410c; stroke: #c2410c; stroke-width: 5px; }
 .signal-cross { fill: none; stroke: #092b39; stroke-width: 1.5px; }
-.signal-order { display: flex; justify-content: space-between; gap: 4px; margin: -10px 0 0 98px; color: #c3d5db; font-size: 12px; }
-.signal-key { font-size: 13px; color: #dcebec; margin: 16px 0 0; line-height: 1.7; }
+.signal-order { display: flex; justify-content: space-between; gap: 4px; margin: -10px 0 0 98px; color: #475569; font-size: 12px; }
+.signal-key { font-size: 13px; color: #334155; margin: 16px 0 0; line-height: 1.7; }
 .signal-preview .signal-chart, .signal-preview .signal-chart svg { height: 192px; }
 .signal-preview .signal-chart svg { margin: 0; }
 .signal-preview .signal-chart { grid-template-columns: 84px minmax(0, 1fr); }
 .signal-preview .signal-order { margin-left: 92px; }
-.signal-preview > p { margin: 15px 0 0; color: #dcebec; text-align: center; font-size: 13px; }
+.signal-preview > p { margin: 15px 0 0; color: #334155; text-align: center; font-size: 13px; }
 .signal-reading { align-self: center; min-width: 0; }
 .signal-reading strong { display: block; font-size: 21px; font-weight: 600; line-height: 1.5; }
 .signal-reading p { line-height: 1.8; margin: 10px 0; }

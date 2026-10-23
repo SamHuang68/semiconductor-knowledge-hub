@@ -102,7 +102,7 @@ assert.ok(appJs.includes('QTIME_MAP ='), 'app.js 必須包含 Q-Time 關鍵時�
 assert.ok(appJs.includes('function speakTerm('), 'app.js 必須包含 Web Speech API 語音發音函式');
 assert.ok(indexHtml.includes('id="soundToggleBtn"'), 'index.html 必須包含音效切換按鈕');
 assert.ok(fs.existsSync(path.join(ROOT_DIR, 'data/sound-fx.js')), '必須存在 data/sound-fx.js');
-assert.equal(pkgJson.version, '2.6.1', 'package.json 版本號必須為 2.6.1');
+assert.equal(pkgJson.version, '2.6.2', 'package.json 版本號必須為 2.6.1');
 assert.ok(indexHtml.includes(`版本 ${pkgJson.version}`), 'index.html 頁尾版本必須與 package.json 一致');
 assert.ok(appJs.includes(`版本 ${pkgJson.version}`), 'app.js 中文頁尾版本必須與 package.json 一致');
 assert.ok(appJs.includes(`· v${pkgJson.version}'`), 'app.js 英文頁尾版本必須與 package.json 一致');

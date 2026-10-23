@@ -3,6 +3,24 @@
 > 2.1.0–2.6.0 當時沒有寫入本檔，只記在 README「專案特色」與 Git 提交訊息；本檔自 2.6.1 起恢復逐版記錄。
 > 本檔原名 `修訂紀錄.md`。2.6.1 依規則 0013 改用英文檔名，歷史條目中的舊檔名保留原文，對照見下方「檔名英文化」條目。
 
+## 2.6.2 · 2026-10-24 · 情境圖例與訊號圖表對比修復、複製 SVG 淺色調色盤匯出與全站目錄 100% 對齊
+
+- 原因：
+  1. 情境探索圖例（`.material-legend`、`.comparison-pair figcaption`、`.dispatch-role`）與訊號判讀圖表（`.signal-plot`、`.signal-axis`、`.signal-trace`）在淡色主題下遺留舊深色模式淡色文字與線條（`#edf8f6`、`#d5e4e8`、`#bcd3db`、`#dcebec`、`#71ece3`），白底對比度低於 2:1，嚴重違反 WCAG AA（$\ge 4.5:1$）。
+  2. 點擊「複製 SVG」匯出的 SVG 程式碼保留原始深色屬性（`fill="#0f172a"` 等），貼至外顯工具（如 PPT、Figma）仍顯示深黑底色。
+  3. 全站 28 章目錄（TOC）與正文 H2 標題存在 3 章順序或標題遺漏不一致：Ch 12 與 Ch 20 TOC 順序與正文相反；Ch 21 存在「已知25d扇出型與3d封裝條例總覽」TOC 與對應表格，卻缺少 `<h2>` 標題。
+- 修改：
+  1. `scenario-explorer.css`、`scenario-diagrams.js`、`signal-reading.css`：
+     - 圖例標籤文字（目標薄膜 `#0d766e`、光阻 `#92400e`）、比較圖標題（`#0f172a`）、系統角色（`#0f172a`／`#475569`）、軸線標記（`#334155`）與訊號折線（`#0369a1`）全面升級高對比配色，對比度全部 $\ge 4.5:1$。
+  2. `engineering-diagram-reader.js`：
+     - 在 `portableDiagram(svg)` 中加入 `applyCleanroomPalette`，深色填色映射為 `#f8fafc` 淺色材質、漸層 `<stop>` 與文字同色相深色映射，並內嵌 `<style>` 標籤，匯出即具備完整淺色無塵室配色。
+     - 同步更新 `scripts/verify-engineering-object-operations.mjs`。
+  3. `data/chapters-data.js`：
+     - Ch 12 與 Ch 20 TOC `headings` 及 `headingsEn` 順序調換以對齊正文 H2。
+     - Ch 21 中英文正文於條例總覽表格前補回對應 H2 標題，全站 28 章目錄與正文達標 100% 對齊。
+     - 更新 `scripts/verify-navigation-contract.mjs` 中的 `chapters-data.js` SHA256 基準（`5bc9f2e0...`）。
+  4. 版本號推進至 `2.6.2`（`package.json`、`index.html`、`app.js`、`scripts/verify-extended-features.mjs`）。
+
 ## 2.6.1 · 2026-10-23 · 規則 0013 檔名英文化（行為不變）
 
 - 原因：規則 0013 要求修改含中文檔名的專案時，一併把檔名與目錄改為 ASCII 英文。本專案 81 個追蹤檔中有 28 個中文路徑，2.5.0、2.6.0 修改時都沒有遷移。依 Sam 決定，在本版以獨立提交完成。
