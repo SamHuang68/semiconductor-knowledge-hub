@@ -20,6 +20,7 @@
      - Ch 21 中英文正文於條例總覽表格前補回對應 H2 標題，全站 28 章目錄與正文達標 100% 對齊。
      - 更新 `scripts/verify-navigation-contract.mjs` 中的 `chapters-data.js` SHA256 基準（`5bc9f2e0...`）。
   4. 版本號推進至 `2.6.2`（`package.json`、`index.html`、`app.js`、`scripts/verify-extended-features.mjs`）。
+- 驗證與發布：本地驗證全數通過（`npm test` 零錯誤、全站 28 章目錄滿貫對齊 155/155、複製 SVG 實測無黑底、WCAG AA 對比度達標）。分支 `feat/v2.6.2-contrast-svg-toc-repair` 快轉合併至 `main`（提交 `42ed478`）並推送至 GitHub，GitHub Pages 部署成功（run 40002294966，15 秒）。線上站點回傳 HTTP 200 並成功載入 2.6.2 版。
 
 ## 2.6.1 · 2026-10-23 · 規則 0013 檔名英文化（行為不變）
 
