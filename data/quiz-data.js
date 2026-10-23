@@ -23,6 +23,15 @@ export const CONCEPT_QUIZZES = {
       answer: 1,
       explanationZh: "在 2.5D/3D 異質整合先進封裝前，必須在晶圓針測 (CP) 階段以探針卡進行全功能高速電性篩檢，確認為良好晶粒 (KGD) 後才進行堆疊鍵合。",
       explanationEn: "KGD certification occurs during Circuit Probing (CP) using probe cards to screen known-good dies before expensive 2.5D/3D bonding."
+    },
+    {
+      questionZh: "半導體產業鏈中，純晶圓代工 (Pure-Play Foundry) 與傳統垂直整合 IDM 模式的核心差異為何？",
+      questionEn: "In the semiconductor ecosystem, what is the defining business difference between a Pure-Play Foundry and an IDM?",
+      optionsZh: ["代工廠專注製造服務而不販售自有品牌晶片","代工廠只做封裝測試不做晶圓製造","IDM 模式不需要光罩","代工廠只生產 200mm 以下晶圓"],
+      optionsEn: ["Pure-play foundries strictly provide manufacturing services without marketing own-brand ICs","Foundries only handle packaging and test","IDMs eliminate mask tooling costs","Foundries are restricted to <=200mm wafers"],
+      answer: 0,
+      explanationZh: "純晶圓代工模式 (如台積電) 恪守不與客戶競爭原則，專精於製程技術代工，客戶提供 IC 設計光罩。",
+      explanationEn: "Pure-play foundries do not design or sell branded ICs, eliminating competitive conflict with fabless customers."
     }
   ],
 
@@ -44,6 +53,15 @@ export const CONCEPT_QUIZZES = {
       answer: 2,
       explanationZh: "超純水去除非水離子後，僅剩水分子自身的極微量解離 (H+ 與 OH-)，25°C 時理論電阻率極限為 18.24 MΩ·cm。",
       explanationEn: "At 25°C, complete deionization leaves only intrinsic H+ and OH- ions, resulting in a theoretical limit of 18.24 MOhm*cm."
+    },
+    {
+      questionZh: "在 ISO 14644-1 潔淨室標準中，Class 1 無塵室每立方米允許大於等於 0.1 µm 的微粒上限是多少？",
+      questionEn: "Under the ISO 14644-1 standard, what is the maximum allowable particle concentration (>=0.1 µm) per cubic meter for an ISO Class 1 cleanroom?",
+      optionsZh: ["1 顆","10 顆","100 顆","1000 顆"],
+      optionsEn: ["1 particle","10 particles","100 particles","1,000 particles"],
+      answer: 1,
+      explanationZh: "ISO Class 1 規範每立方米 >=0.1 µm 微粒不得超過 10 顆，是半導體先進黃光微影室的極限潔淨度指標。",
+      explanationEn: "ISO Class 1 permits a maximum of 10 particles/m³ sized >=0.1 µm, standard for critical lithography exposure bays."
     }
   ],
 
@@ -65,6 +83,15 @@ export const CONCEPT_QUIZZES = {
       answer: 1,
       explanationZh: "當 SiO2 厚度小於 1.5nm 時會產生嚴重的量子直接穿隧漏電流；改用 High-k 可物理性增厚薄膜，同時維持足夠的閘極電容與靜電控制。",
       explanationEn: "High-k materials allow physically thicker films to block quantum tunneling while preserving high capacitive gate control (low EOT)."
+    },
+    {
+      questionZh: "在經典 CMOS 反相器 (Inverter) 中，當輸入端為高電位 (Vin = Vdd) 時，NMOS 與 PMOS 的開關狀態為何？",
+      questionEn: "In a standard CMOS inverter, when the input is high (Vin = Vdd), what are the conduction states of the NMOS and PMOS?",
+      optionsZh: ["NMOS 導通、PMOS 截止","NMOS 截止、PMOS 導通","兩者皆導通產生短路","兩者皆截止"],
+      optionsEn: ["NMOS is ON, PMOS is OFF","NMOS is OFF, PMOS is ON","Both are ON, creating crowbar current","Both are OFF"],
+      answer: 0,
+      explanationZh: "高電位使 NMOS 通道形成電子反轉層而導通，PMOS 則無電洞反轉層而截止，將輸出端平穩拉至接地 (Vout = 0V)。",
+      explanationEn: "A high input creates an electron inversion layer in NMOS turning it ON, while shutting OFF the PMOS, pulling Vout to ground."
     }
   ],
 
@@ -86,6 +113,15 @@ export const CONCEPT_QUIZZES = {
       answer: 1,
       explanationZh: "根據 Scheil 偏析方程式，當 k0 < 1 時，雜質偏好留在液相矽熔湯中，隨著結晶結晶體積增加，熔湯雜質濃度上升，使晶錠尾部摻雜最高。",
       explanationEn: "Per Scheil equation, k0 < 1 causes dopants to partition preferentially into the melt, enriching the tail end as crystallization progresses."
+    },
+    {
+      questionZh: "在長晶拉晶過程中，施加垂直強磁場 (MCZ, Magnetic Czochralski) 的主要物理目的為何？",
+      questionEn: "In single-crystal silicon pulling, what is the primary metallurgical purpose of applying Magnetic Czochralski (MCZ)?",
+      optionsZh: ["降低石英坩堝融化溫度","利用勞侖茲力抑制高溫矽熔湯熱對流，大幅降低氧雜質起伏","加速晶錠冷卻拉出速度","增加矽錠磁性"],
+      optionsEn: ["Lower quartz crucible melting point","Damp thermal melt convection via Lorentz forces to suppress oxygen incorporation fluctuations","Accelerate ingot pull rates","Impart ferromagnetic properties to silicon"],
+      answer: 1,
+      explanationZh: "液態矽為高導電熔湯，強磁場感應逆向勞侖茲力阻尼熱對流亂流，精確控制坩堝釋放的氧原子濃度。",
+      explanationEn: "Lorentz forces in conductive molten silicon damp convective turbulence, minimizing quartz crucible oxygen dissolution."
     }
   ],
 
@@ -107,6 +143,15 @@ export const CONCEPT_QUIZZES = {
       answer: 1,
       explanationZh: "13.5nm 極短波長光子在空氣中的穿透深度僅有微米級，所有氣體皆會強烈吸收 EUV 光束，因此整條光路與晶圓台必須維持高度真空。",
       explanationEn: "13.5nm EUV photons are strongly absorbed by virtually all gases within micrometers, necessitating a high-vacuum chamber environment."
+    },
+    {
+      questionZh: "浸潤式微影 (193i) 利用高純度水 (折射率 n=1.44) 填充透鏡與晶圓之間，能將曝光鏡頭數值孔徑 (NA) 推升至最高多少？",
+      questionEn: "By filling the lens-wafer gap with purified water (n = 1.44), immersion lithography pushes the effective numerical aperture (NA) up to:",
+      optionsZh: ["0.85 NA","0.93 NA","1.35 NA","1.75 NA"],
+      optionsEn: ["0.85 NA","0.93 NA","1.35 NA","1.75 NA"],
+      answer: 2,
+      explanationZh: "空氣中極限 NA < 1.0；介質折射率 n=1.44 使光學系統突破乾式極限，量產掃描機最高達到 1.35 NA。",
+      explanationEn: "Dry lithography is capped at NA < 1.0; water immersion (n = 1.44) enables commercial scanner optics to reach ~1.35 NA."
     }
   ],
 
@@ -128,6 +173,15 @@ export const CONCEPT_QUIZZES = {
       answer: 1,
       explanationZh: "ALD 透過交替脈衝的前驅物氣體，在晶圓表面產生單層飽和化學吸附，多餘氣體不反應並被吹洗，因而具備完美的自對準厚度均勻性。",
       explanationEn: "ALD relies on sequential, self-limiting half-reactions where precursors saturate available surface sites without gas-phase parasitic deposition."
+    },
+    {
+      questionZh: "在雙鑲嵌金屬化前沉積層間介電層時，電漿增強化學氣相沉積 (PECVD) 相對於低壓熱 CVD 的最大優勢為何？",
+      questionEn: "When depositing inter-layer dielectrics over copper interconnects, what is the chief advantage of PECVD over thermal LPCVD?",
+      optionsZh: ["薄膜密度高十倍","利用電漿活化反應氣體，可在 <400°C 低溫下沉積以符合後段熱預算","不需要任何前驅物氣體","薄膜具有超導特性"],
+      optionsEn: ["Ten-fold higher film density","Plasma excitation enables lower deposition temperatures (<400°C) to respect BEOL thermal budgets","Eliminates chemical precursors","Produces superconducting dielectric films"],
+      answer: 1,
+      explanationZh: "後段金屬化含有銅線與 low-k 介電材料，溫度超過 400°C 會引發銅擴散與介電層崩塌，PECVD 能在低溫下完成優質沉積。",
+      explanationEn: "BEOL copper and porous low-k layers degrade above 400°C; PECVD supplies RF plasma energy to drive deposition at lower wafer temperatures."
     }
   ],
 
@@ -149,6 +203,15 @@ export const CONCEPT_QUIZZES = {
       answer: 1,
       explanationZh: "當孔槽深寬比大幅升高時，分子平均自由程大於孔徑，氣體分子與側壁頻繁碰撞（克努森擴散），導致槽底反應物通量下降，蝕刻速率變慢。",
       explanationEn: "At high AR, Knudsen diffusion limits molecular transport of neutral etchants to the bottom, causing etch rates to decrease with depth."
+    },
+    {
+      questionZh: "波希深矽蝕刻技術 (Bosch DRIE) 是透過交替循環哪兩種製程步驟，實現 3D TSV 高深寬比垂直深槽？",
+      questionEn: "The Bosch deep reactive-ion etching (DRIE) process achieves high aspect ratio vertical TSV profiles by alternating between which two steps?",
+      optionsZh: ["SF6 電漿化學蝕刻與 C4F8 聚合物側壁鈍化 (Passivation)","強酸浸泡與純水沖洗","高溫熱氧化與乾式回蝕","離子佈植與退火"],
+      optionsEn: ["SF6 isotropic chemical etch and C4F8 fluorocarbon sidewall polymer passivation","Concentrated acid bath and water rinse","Thermal oxidation and dry strip","Ion implant and thermal drive-in"],
+      answer: 0,
+      explanationZh: "Bosch 製程交替執行 SF6 快速矽蝕刻與 C4F8 沉積氟碳聚合物保護側壁，垂直離子轟擊打穿底部繼續下蝕，維持垂直輪廓。",
+      explanationEn: "Bosch DRIE alternates SF6 isotropic etching with C4F8 polymer deposition; directional ions clear trench bottoms while protecting sidewalls."
     }
   ],
 
@@ -170,6 +233,15 @@ export const CONCEPT_QUIZZES = {
       answer: 1,
       explanationZh: "奈秒至毫秒級的超短脈衝加熱可使晶圓表層達千度活化摻雜原子，但時間極短不足以讓雜質進行固態擴散，保持陡峭的奈米接面。",
       explanationEn: "Sub-millisecond heating provides sufficient thermal energy for lattice substitution and activation while freezing solid-state diffusion."
+    },
+    {
+      questionZh: "離子佈植中，當入射離子束剛好與晶體內部對稱軸或低指數晶面平行時，會發生的「通道效應 (Channeling Effect)」是指？",
+      questionEn: "In ion implantation, what does the \"Channeling Effect\" describe when ion beams align with major crystal axes?",
+      optionsZh: ["離子完全被晶圓表面反射","離子只受微弱電子阻擋長驅直入晶格深處，導致摻雜縱深超出預期無法控制","離子在晶圓表面產生火花放電","離子使矽晶圓瞬間熔化"],
+      optionsEn: ["Total ion reflection at surface","Ions penetrate deeply along open crystallographic channels with minimal nuclear stopping, skewing depth profiles","Surface micro-arcing discharge","Instantaneous localized silicon melting"],
+      answer: 1,
+      explanationZh: "沿著晶向開放通道前進的離子碰撞截面積極小，射程顯著加深；實務上透過晶圓預先傾角 7° 或預先非晶化 (PAI) 杜絕通道效應。",
+      explanationEn: "Ions aligned with crystal channels experience reduced nuclear scattering and travel far beyond projected range Rp; solved via 7° tilt or PAI."
     }
   ],
 
@@ -191,6 +263,15 @@ export const CONCEPT_QUIZZES = {
       answer: 1,
       explanationZh: "Ceria 磨粒對 SiO2 具備化學鍵合切削活性，但對 Si3N4 惰性，使選擇比高達 30:1 以上，作為淺溝槽隔離 (STI) 的完美終點研磨阻擋層。",
       explanationEn: "Ceria slurries selectively form chemical bonds with SiO2 but not Si3N4, yielding >30:1 selectivity for self-stopping planarization."
+    },
+    {
+      questionZh: "化學機械平坦化 (CMP) 後，較寬的金屬走線區域中心因研磨墊微觀彈性彎曲而低於介電層表面，此缺陷稱為？",
+      questionEn: "In chemical mechanical planarization, what is the defect where wide metal lines dip below the surrounding dielectric surface?",
+      optionsZh: ["小丘 (Hillock)","碟化 (Dishing)","滑移 (Slip)","裂片 (Delamination)"],
+      optionsEn: ["Hillock protrusion","Metal Dishing","Crystallographic Slip","Dielectric Delamination"],
+      answer: 1,
+      explanationZh: "彈性研磨墊壓入寬金屬槽內部過度切削，導致金屬中央向下凹陷稱為 Dishing，會增加導線電阻並惡化拓撲平坦度。",
+      explanationEn: "Elastic CMP pads deform into wide metal trenches causing center thinning known as dishing, which raises wire sheet resistance."
     }
   ],
 
@@ -212,6 +293,15 @@ export const CONCEPT_QUIZZES = {
       answer: 1,
       explanationZh: "超臨界流體狀態下液氣介面消失，表面張力 γ = 0，拉普拉斯毛細壓力為零，徹底杜絕微結構受液滴收縮拉倒的缺陷。",
       explanationEn: "Supercritical CO2 eliminates the liquid-gas phase boundary, reducing surface tension to zero and completely preventing capillary collapse."
+    },
+    {
+      questionZh: "半導體濕式清洗經典配方 SC-1 (Standard Clean 1, 又名 APM) 的主要化學成分與清洗目標為何？",
+      questionEn: "What are the chemical components and primary cleaning target of the classic SC-1 (APM) wet bench clean?",
+      optionsZh: ["NH4OH + H2O2 + H2O，利用氧化與微蝕刻去除表面顆粒微粒與有機殘留物","HCl + H2O2 + H2O，去除金屬離子","HF + H2O，剝除二氧化矽","H2SO4 + H2O2，去除厚光阻"],
+      optionsEn: ["NH4OH + H2O2 + H2O: removes surface particles and light organic contamination via gentle etching","HCl + H2O2 + H2O: removes metallic ions","HF + H2O: strips silicon dioxide","H2SO4 + H2O2: strips thick bulk resist"],
+      answer: 0,
+      explanationZh: "SC-1 是氨水與雙氧水混合液，雙氧水氧化矽表面，氨水微溶氧化物，在微觀剝離中藉由 Zeta 負電位排斥脫附微粒。",
+      explanationEn: "SC-1 oxidizes and slightly etches the silicon surface, establishing a repulsive negative zeta potential that lifts particles off."
     }
   ],
 
@@ -233,6 +323,15 @@ export const CONCEPT_QUIZZES = {
       answer: 1,
       explanationZh: "銅在二氧化矽與 low-k 介電材料中擴散係數極高，無阻障層時銅離子會迅速穿透介電層引發短路與可靠度失效。",
       explanationEn: "Copper diffuses rapidly through SiO2 and low-k materials, requiring refractory Ta/TaN liners to block copper ion migration and leakage."
+    },
+    {
+      questionZh: "在 1nm 及次世代金屬互連中，為解決超細銅線電遷移 (EM) 與介面電子散射阻抗暴增，業界積極評估取代銅的候選金屬為？",
+      questionEn: "In sub-2nm interconnects, which candidate metals are actively researched to replace copper due to lower electron mean free paths and zero barrier need?",
+      optionsZh: ["金 (Au) 與銀 (Ag)","釕 (Ru)、鈷 (Co) 與鉬 (Mo)","鋁 (Al) 與鐵 (Fe)","鉛 (Pb) 與錫 (Sn)"],
+      optionsEn: ["Gold (Au) and Silver (Ag)","Ruthenium (Ru), Cobalt (Co), and Molybdenum (Mo)","Aluminum (Al) and Iron (Fe)","Lead (Pb) and Tin (Sn)"],
+      answer: 1,
+      explanationZh: "釕 (Ru) 與鉬 (Mo) 電子平均自由程短，且不需要高電阻的 TaN 阻障層，在小於 12nm 金屬線寬時電阻率與可靠度反超傳統銅導線。",
+      explanationEn: "Ru, Co, and Mo have shorter electron mean free paths and do not require high-resistivity liners, outperforming Cu at <12nm dimensions."
     }
   ],
 
@@ -254,6 +353,15 @@ export const CONCEPT_QUIZZES = {
       answer: 1,
       explanationZh: "前段 FEOL 包含高溫長晶與活化退火 (>1000°C)；中段接觸孔約 500-600°C；後段 BEOL 含有銅金屬與多孔 low-k 介電質，嚴格限制在 400°C 以下。",
       explanationEn: "FEOL permits >1000°C for anneals; MOL is limited to ~550°C; BEOL must remain <400°C to preserve copper liners and fragile low-k polymers."
+    },
+    {
+      questionZh: "自對準接觸孔 (Self-Aligned Contact, SAC) 是利用閘極上方與側壁的何種材質硬遮罩對氧化層的極高蝕刻選擇比？",
+      questionEn: "Self-Aligned Contact (SAC) etching relies on high etch selectivity between SiO2 ILD and what protective cap material over the gate?",
+      optionsZh: ["單晶矽 (Si)","氮化矽 (Si3N4 / SiN)","純銅金屬 (Cu)","聚苯乙烯 (PS)"],
+      optionsEn: ["Monocrystalline Silicon","Silicon Nitride (Si3N4 / SiN)","Metallic Copper","Polystyrene Polymer"],
+      answer: 1,
+      explanationZh: "閘極上方覆蓋 SiN 冠頂 (Nitride Cap)，接觸孔蝕刻時即便光學對齊略微偏移，氟碳電漿只蝕刻 SiO2 而停在 SiN 上，防止接觸孔與閘極短路。",
+      explanationEn: "Si3N4 dielectric hard caps protect gate tops; contact oxide etching stops selectively on SiN, preventing shorts even with overlay error."
     }
   ],
 
@@ -275,6 +383,15 @@ export const CONCEPT_QUIZZES = {
       answer: 1,
       explanationZh: "傳統正面同時走電源與信號會造成金屬層擁擠與巨大 IR Drop 壓降；BSPDN 透過背面埋入導線直接供電，信號繞線自由度提高 20% 以上。",
       explanationEn: "Separating power delivery to the backside removes resistive voltage drops (IR drop) and frees dense metal tracks for logic routing."
+    },
+    {
+      questionZh: "在全環繞閘極 (GAA / Nanosheet) 電晶體中，垂直堆疊多層奈米片的最主要工程目的為何？",
+      questionEn: "In Gate-All-Around (GAA) nanosheet transistors, what is the primary benefit of vertically stacking multiple nanosheet ribbons?",
+      optionsZh: ["減少晶圓加工道數","在相同晶片覆蓋面積 (Footprint) 下大幅倍增有效通道寬度 (Weff)，提供更強驅動電流","增加閘極介電層厚度","完全消除熱膨脹"],
+      optionsEn: ["Reduce processing step count","Multiply effective channel width (Weff) per footprint area, driving higher transistor drive currents","Thicken gate oxide dielectric","Completely eliminate thermal expansion"],
+      answer: 1,
+      explanationZh: "垂直堆疊 3~4 層奈米片使總通道周長與有效寬度 Weff 翻倍，打破平面與 FinFET 幾何面積限制，在極小單元內輸出充足電流。",
+      explanationEn: "Stacking 3-4 sheets multiplies effective channel width Weff within the standard cell footprint, delivering higher drive current per unit area."
     }
   ],
 
@@ -296,6 +413,15 @@ export const CONCEPT_QUIZZES = {
       answer: 1,
       explanationZh: "3D NAND 垂直孔深寬比超過 80:1，常溫下側壁會過度腐蝕；採用極低溫 (-60°C) 電漿蝕刻可凍結側壁反應，維持垂直直筒輪廓。",
       explanationEn: "Cryogenic HAR etching (-60°C to -80°C) freezes lateral sidewall reactions, enabling perfectly vertical profiles at aspect ratios exceeding 80:1."
+    },
+    {
+      questionZh: "在 HBM (High Bandwidth Memory) 3D 堆疊記憶體中，垂直穿透矽晶圓提供數千條高速並列傳輸通道的核心結構為？",
+      questionEn: "In High Bandwidth Memory (HBM) 3D die stacks, what microscopic vertical through-silicon structures provide thousands of high-speed interconnects?",
+      optionsZh: ["打線金屬線 (Gold Wire)","矽穿孔 (Through-Silicon Via, TSV)","表面外延導線","機械同軸電纜"],
+      optionsEn: ["Bonding Wires","Through-Silicon Vias (TSV)","Surface Epitaxial Rails","Coaxial Micro-Cables"],
+      answer: 1,
+      explanationZh: "TSV 是貫穿矽晶粒內部的微型垂直導電柱，配合微凸塊或混合鍵合，提供超過 1024-bit 甚至 2048-bit 超寬並列頻寬。",
+      explanationEn: "TSVs are copper-filled vertical vias etched through thinned silicon dies, enabling high-density parallel buses (>1024-bit) with minimal latency."
     }
   ],
 
@@ -317,6 +443,15 @@ export const CONCEPT_QUIZZES = {
       answer: 1,
       explanationZh: "STCO 是在小晶片 (Chiplet) 與 3D 封裝架構下，從工作負載系統架構層面反向定義製程技術組合，達成效能、功耗與成本最佳化。",
       explanationEn: "STCO co-optimizes the entire system partition (chiplets, 3D stacking, cooling) with underlying process technologies to bypass planar scaling walls."
+    },
+    {
+      questionZh: "2005 年左右 Dennard 微縮定律終結的核心物理瓶頸是什麼？",
+      questionEn: "Around 2005, what physical breakdown brought an end to classic Dennard MOSFET scaling?",
+      optionsZh: ["全球矽礦砂資源耗盡","次臨界漏電流無法隨尺寸等比例縮減，導致工作電壓 (Vdd) 無法再大幅降低，引發「功耗牆 (Power Wall)」","晶圓切割機精度不足","光學微影波長無法小於 1 微米"],
+      optionsEn: ["Global silicon sand exhaustion","Subthreshold leakage stopped scaling, stalling supply voltage (Vdd) reductions and hitting the \"Power Wall\"","Dicing saw mechanical inaccuracies","Lithography wavelengths hit a 1 µm barrier"],
+      answer: 1,
+      explanationZh: "室溫下波茲曼次臨界擺幅限制在 60mV/dec，門檻電壓 Vth 無法無限降低，Vdd 停滯在 ~0.7V，晶片動態與靜態散熱功率飆升撞上功耗牆。",
+      explanationEn: "Boltzmann statistics fixed subthreshold swing at ~60 mV/dec, preventing further Vdd scaling and causing heat dissipation to hit the power wall."
     }
   ],
 
@@ -338,6 +473,15 @@ export const CONCEPT_QUIZZES = {
       answer: 1,
       explanationZh: "橢偏儀量測線偏振光經薄膜反射後變為橢圓偏振光的振幅比 Ψ 與相位延遲 Δ，透過菲涅耳方程擬合奈米甚至次奈米級薄膜厚度。",
       explanationEn: "Ellipsometry measures the change in polarization state (Psi and Delta) upon reflection, fitting Fresnel equations to extract thickness and index."
+    },
+    {
+      questionZh: "在先進封裝無損檢測中，能穿透矽基底與樹脂檢測 TSV 微空洞與介面脫層 (Delamination) 的聲學檢測技術為？",
+      questionEn: "In non-destructive advanced packaging inspection, which acoustic technique penetrates silicon and mold to detect internal voids and delamination?",
+      optionsZh: ["超音波掃描顯微鏡 (Scanning Acoustic Microscopy, C-SAM)","光學干涉儀","雷達衛星成像","熱像儀"],
+      optionsEn: ["Scanning Acoustic Microscopy (C-SAM)","Optical Profilometer","Radar Interferometry","Infrared Thermography"],
+      answer: 0,
+      explanationZh: "C-SAM 利用高頻超音波 (20~300 MHz) 在不同材料聲阻抗 (Acoustic Impedance) 介面產生反射波，對空氣隙、空洞與脫層極度敏感。",
+      explanationEn: "C-SAM uses high-frequency ultrasonic waves reflected at acoustic impedance mismatches, achieving high sensitivity to air gaps and voids."
     }
   ],
 
@@ -359,6 +503,15 @@ export const CONCEPT_QUIZZES = {
       answer: 1,
       explanationZh: "晶圓缺陷往往聚集在特定區域（群聚效應）；Poisson 模型未考慮群聚會過度悲觀估算大晶片良率，負二項模型引入群聚參數 α，預測更精確。",
       explanationEn: "Real defect mechanisms cause clustering; Poisson severely underestimates large die yields, whereas Negative Binomial models cluster factor alpha."
+    },
+    {
+      questionZh: "聚焦離子束與電子顯微鏡雙束系統 (Dual-Beam FIB-SEM) 在晶片失效分析 (FA) 中的主要功能為何？",
+      questionEn: "In semiconductor failure analysis (FA), what is the primary capability of a Dual-Beam FIB-SEM system?",
+      optionsZh: ["大量生產晶圓","以聚焦離子束精確奈米級微割切片，並同步以電子顯微鏡進行高解析斷面成像","測量晶圓重量","清洗晶圓表面"],
+      optionsEn: ["High-volume wafer fab manufacturing","Precise site-specific nanometer FIB cross-sectioning combined with simultaneous high-resolution SEM imaging","Precision wafer mass measurement","Substrate chemical decontamination"],
+      answer: 1,
+      explanationZh: "FIB-SEM 整合鎵/氙離子槍進行定點物理微切割，SEM 電子束同時對切面做百萬倍放大顯微觀察，是定位短路與斷線的終極利器。",
+      explanationEn: "Dual-beam FIB-SEM pairs an ion beam for precision cross-sectional milling with an SEM for real-time nanometer imaging of failure sites."
     }
   ],
 
@@ -380,6 +533,15 @@ export const CONCEPT_QUIZZES = {
       answer: 1,
       explanationZh: "Cpk = 1.33 代表製程分佈中心至最近規格界線剛好為 4 倍標準差 (4-sigma)，在常態分佈下對應的不良率約為 63 PPM。",
       explanationEn: "Cpk = 1.33 corresponds to a 4-sigma margin to specification limits, which yields an expected defect rate of ~63 PPM in normal distributions."
+    },
+    {
+      questionZh: "SPC 統計製程管制中，當量測點出現連續 9 點落在中心線同一側 (Nelson Rule 2) 時，通常代表產線發生了什麼現象？",
+      questionEn: "In Statistical Process Control (SPC), what process deviation is signaled when 9 consecutive points fall on one side of the center line (Nelson Rule 2)?",
+      optionsZh: ["機台零件瞬間斷裂","製程平均值發生了非隨機的系統性偏移 (Process Mean Shift / Drift)","量測儀器電量耗盡","晶圓數量不足"],
+      optionsEn: ["Instantaneous catastrophic tooling failure","A non-random systematic process mean shift or baseline drift","Metrology tool battery depletion","Wafer lot count shortage"],
+      answer: 1,
+      explanationZh: "連續 9 點偏向單側在純隨機分佈下的機率為 (1/2)^9 = 1/512，屬於極小機率事件，代表腔體沈積速率漂移或化學液消耗等系統性偏漂。",
+      explanationEn: "The probability of 9 consecutive points on one side is (0.5)^9 = 0.002, indicating a statistically significant process mean shift."
     }
   ],
 
@@ -401,6 +563,15 @@ export const CONCEPT_QUIZZES = {
       answer: 1,
       explanationZh: "章魚防堵法如章魚觸角般，快速鎖定並隔離可能受害的「同機台、同配方、同腔體」前後關聯批次，防止不良晶圓流入下游封裝。",
       explanationEn: "The Octopus protocol radiates like tentacles to freeze all wafers on the suspect tool, adjacent lots, and same recipe chambers to stop spillover."
+    },
+    {
+      questionZh: "在 8D 品質異常處置架構中，緊急防堵對策 (ICA, D3) 與永久改善對策 (PCA, D5) 的本質差異為何？",
+      questionEn: "In the 8D root-cause problem solving methodology, what is the fundamental difference between ICA (D3) and PCA (D5)?",
+      optionsZh: ["ICA 是暫時阻斷不良品擴散流入下游客戶；PCA 是從物理源頭徹底消除根本原因","ICA 耗費成本較高","PCA 由作業員執行，ICA 由廠長執行","兩者完全相同"],
+      optionsEn: ["ICA acts as a temporary containment to isolate defect leakage; PCA permanently eliminates the underlying physical root cause","ICA has higher CAPEX costs","PCA is executed by operators; ICA by fab directors","Both actions are functionally identical"],
+      answer: 0,
+      explanationZh: "D3 緊急防堵是止血措施（隔離、Hold 機、篩檢）；D5 永久對策是修正根本原因（更換零件、修改 Recipe、硬體防呆互鎖）。",
+      explanationEn: "ICA contains the immediate bleeding to shield customers; PCA targets the physical root cause validated in D4 to eliminate recurrence."
     }
   ],
 
@@ -422,6 +593,15 @@ export const CONCEPT_QUIZZES = {
       answer: 1,
       explanationZh: "凱爾文四線法將「激勵電流迴路 (Force)」與「電壓量測迴路 (Sense)」完全分離，量測電壓表的輸入阻抗極高使電流近乎為零，徹底消除探針接觸電阻。",
       explanationEn: "Kelvin sensing separates current force and voltage sense pairs; high voltmeter impedance prevents current in sense leads, eliminating probe resistance."
+    },
+    {
+      questionZh: "在晶圓針測 (CP) 與 WAT 測試中，探針扎入銲墊留下的接觸痕跡被稱為？",
+      questionEn: "In wafer circuit probing (CP) and WAT, what is the microscopic physical indentation left on the pad by the probe needle called?",
+      optionsZh: ["熱痕 (Heat Mark)","針痕 (Probe Mark)","氣流紋 (Air Streak)","光斑 (Spot)"],
+      optionsEn: ["Thermal Heat Mark","Probe Mark","Air Flow Streak","Optical Spot"],
+      answer: 1,
+      explanationZh: "探針接觸需施加適度超下壓 (Overdrive) 刺破鋁或金屬氧化層以確保電性導通，留下的壓痕稱為 Probe Mark，需嚴格檢測其大小與居中度。",
+      explanationEn: "Probes require scrub overdrive to break native oxide, leaving a microscopic probe mark that must be inspected for area and centering."
     }
   ],
 
@@ -443,6 +623,15 @@ export const CONCEPT_QUIZZES = {
       answer: 1,
       explanationZh: "打線的金屬線具有數個 nH 的寄生電感，限制了信號頻寬並造成供電震盪；覆晶凸塊高度僅數十微米，電感降至 0.1nH 以下。",
       explanationEn: "Bond wires introduce several nH of parasitic inductance; flip-chip micro-bumps shorten the path to <50um, slashing inductance below 0.1nH."
+    },
+    {
+      questionZh: "晶圓級晶粒尺寸封裝 (WLCSP / Fan-In) 相較於傳統打線封裝的最顯著封裝外觀優勢為何？",
+      questionEn: "What is the chief dimensional packaging advantage of Fan-In Wafer Level Chip Scale Packaging (WLCSP) over leadframe wire bonding?",
+      optionsZh: ["封裝體積與裸晶 (Bare Die) 完全相同，達成 1:1 極致小巧","可以在高溫 500°C 下運作","不需要任何錫球","重量比裸晶重十倍"],
+      optionsEn: ["Package footprint is identical to the bare silicon die (1:1 ratio), achieving maximum miniaturization","Capable of sustained operation at 500°C","Eliminates all solder bumps","Ten times heavier than bare die"],
+      answer: 0,
+      explanationZh: "Fan-In WLCSP 直接在晶圓狀態完成 RDL 重佈線與植球後切割，封裝尺寸等於晶粒尺寸 (Die Size = Package Size)。",
+      explanationEn: "WLCSP processes RDL and bump placement directly on the wafer before dicing, resulting in a true 1:1 die-to-package form factor."
     }
   ],
 
@@ -464,6 +653,15 @@ export const CONCEPT_QUIZZES = {
       answer: 1,
       explanationZh: "CoWoS-S 採用面積龐大的全矽中介層，成本與面積受光罩極限限制；CoWoS-L 採用低成本重佈線有機層，僅在晶粒高速交握處嵌入高密度矽橋 (LSI)。",
       explanationEn: "CoWoS-S utilizes a monolithic silicon interposer; CoWoS-L employs cost-effective organic RDL with localized silicon bridges for high-density die-to-die links."
+    },
+    {
+      questionZh: "次世代 3D 混合鍵合 (Hybrid Bonding / SoIC-X) 是指在常溫或中溫下同時完成哪兩種材料的直接無凸塊接合？",
+      questionEn: "Next-generation direct 3D Hybrid Bonding (e.g., TSMC SoIC-X) simultaneously bonds which two material interfaces at sub-micron pitch?",
+      optionsZh: ["介電層 (SiO2-SiO2) 與金屬導體 (Cu-Cu)","塑膠與鋁","金屬錫與金","石墨與矽"],
+      optionsEn: ["Dielectric-to-dielectric (SiO2-SiO2) and metal-to-metal (Cu-Cu)","Plastic-to-aluminum","Solder-to-gold","Graphite-to-silicon"],
+      answer: 0,
+      explanationZh: "混合鍵合在平坦化極致表面 (Ra < 0.5nm) 上，先透過親水性水分子鍵合 SiO2 介電層，後續退火使銅金屬熱膨脹擴散鍵合，無任何錫球凸塊。",
+      explanationEn: "Hybrid bonding bonds hydrophilic SiO2 dielectric surfaces at room temp, followed by anneal causing Cu-Cu thermal expansion and fusion."
     }
   ],
 
@@ -485,6 +683,15 @@ export const CONCEPT_QUIZZES = {
       answer: 1,
       explanationZh: "半導體內部多數缺陷（如熱載子衰退、氧化層擊穿、電遷移）皆受熱活化能 Ea 支配，利用 Arrhenius 方程式可將 125°C 測試等效回推至 55°C 正常運作壽命。",
       explanationEn: "Thermally-activated degradation mechanisms obey Arrhenius kinetics, allowing acceleration factors to extrapolate 125°C burn-in data to 55°C field lifetime."
+    },
+    {
+      questionZh: "在半導體靜電放電 (ESD) 防護驗證中，用來模擬帶電人體接觸晶片引腳瞬間放電的經典標準測試模型為？",
+      questionEn: "In semiconductor electrostatic discharge (ESD) testing, what standard model simulates discharge from a human body contacting a pin?",
+      optionsZh: ["人體放電模型 (Human Body Model, HBM: 100pF / 1500Ω)","機器放電模型 (Machine Model)","元件充電模型 (CDM)","雷擊放電模型"],
+      optionsEn: ["Human Body Model (HBM: 100pF capacitor / 1500Ω resistor)","Machine Model (MM)","Charged Device Model (CDM)","Lightning Surge Model"],
+      answer: 0,
+      explanationZh: "HBM 規範由 100pF 電容透過 1500Ω 電阻對待測元件放電，標準工業規範通常要求引腳耐受度達 2000V (2kV) 以上。",
+      explanationEn: "HBM discharges a 100pF capacitor through a 1500-ohm resistor into the DUT, typically requiring >2kV qualification."
     }
   ],
 
@@ -506,6 +713,15 @@ export const CONCEPT_QUIZZES = {
       answer: 0,
       explanationZh: "SEMI E84 規範了天車手臂伸出前與機台間的光電感測交握信號 (如 TR_REQ, BUSY, COMP 等)，以硬體互鎖徹底杜絕晶圓盒掉落事故。",
       explanationEn: "SEMI E84 defines infrared optical sensor interlock handshakes ensuring mechanical clamping before vehicle hoist release to prevent FOUP drops."
+    },
+    {
+      questionZh: "在晶圓廠電腦整合製造 (CIM) 系統中，MES 與機台設備連線進行 Recipe 自動下載與即時資料採集的 SEMI 通訊協議為？",
+      questionEn: "In semiconductor Computer Integrated Manufacturing (CIM), which SEMI standard protocols govern automated recipe management and equipment data collection?",
+      optionsZh: ["SEMI SECS-II (E5) 與 GEM (E30)","HTTP / RESTful API","FTP 檔案傳輸","MQTT 物聯網協議"],
+      optionsEn: ["SEMI SECS-II (E5) and GEM (E30 / GEM300)","Standard HTTP / RESTful APIs","Plain FTP File Transfer","Lightweight MQTT Protocol"],
+      answer: 0,
+      explanationZh: "SEMI SECS/GEM 是全球晶圓廠設備控制的通用標準語法，規範了 S1F1 (Ping)、S7F1 (Recipe 傳輸) 等嚴格的雙向握手流程。",
+      explanationEn: "SECS-II (E5) and GEM (E30) define the standardized message exchange grammar for fab automation, host recipe downline, and telemetry."
     }
   ],
 
@@ -527,6 +743,15 @@ export const CONCEPT_QUIZZES = {
       answer: 1,
       explanationZh: "隨 DRAM 節點微縮，電容間距小於 10nm，頻繁開關相鄰字元線會透過電容寄生耦合加速鄰近未選取單元的電荷洩漏，引發記憶體位元翻轉。",
       explanationEn: "Row Hammer exploits parasitic capacitive coupling in dense DRAM cells: hammering an aggressor row leaks charge from victim rows, inducing bit flips."
+    },
+    {
+      questionZh: "在晶片軟硬體協同架構中，內部供電網絡 IR Drop 電壓降過大，在時序 (Timing) 視角上會引發什麼致命錯誤？",
+      questionEn: "In hardware-software co-design, how does excessive internal power-grid IR Drop directly degrade logic circuit performance?",
+      optionsZh: ["電晶體有效閘極過驅動電壓降低導致開關延遲暴增，引發時序違規 (Timing Violation / Setup Time Failure)","晶片引腳熔斷","晶片時鐘頻率自動歸零","記憶體容量減半"],
+      optionsEn: ["Reduced overdrive voltage increases transistor gate propagation delays, triggering setup timing violations and bit errors","Physical bonding pin fusion","Clock oscillator frequency drops to zero","Memory capacity spontaneously halves"],
+      answer: 0,
+      explanationZh: "反向驅動電流與導線電阻造成局部供電壓降，使電晶體充放電速度變慢，信號無法在下一個時鐘邊緣抵達正反器，產生致命計算錯誤。",
+      explanationEn: "IR drop lowers effective Vdd at gates, increasing propagation delays; signals fail to arrive before clock edges, causing setup timing faults."
     }
   ],
 
@@ -548,6 +773,15 @@ export const CONCEPT_QUIZZES = {
       answer: 0,
       explanationZh: "EPE 綜合了微影曝光光學近似效應 (OPC)、光罩誤差 (MEEF)、晶圓疊對誤差 (Overlay) 與蝕刻偏差，是次 3nm 幾何圖形對齊的終極預算指標。",
       explanationEn: "EPE synthesizes CD error, optical proximity, reticle error, overlay shift, and etch bias as the ultimate metric for nanometer pattern alignment."
+    },
+    {
+      questionZh: "在半導體機台綜合設備總合效率 (OEE) 指標中，其計算公式由哪三項關鍵比率相乘而成？",
+      questionEn: "Overall Equipment Effectiveness (OEE) for semiconductor tools is mathematically the product of which three key operational ratios?",
+      optionsZh: ["可用率 (Availability) × 性能稼動率 (Performance) × 良品率 (Quality)","機台成本 × 晶圓面積 × 缺陷數","電壓 × 電流 × 功率","無塵室面積 × 天車數量 × 速度"],
+      optionsEn: ["Availability Rate × Performance Efficiency × Quality Yield","Tool Capex × Wafer Area × Defect Count","Voltage × Current × Power Factor","Cleanroom Bay Area × OHT Vehicle Fleet × Speed"],
+      answer: 0,
+      explanationZh: "OEE = Availability (稼動時間比) × Performance (實際產速 vs 理論 UPH) × Quality (良品晶圓比率)，全面量化機台生產效益。",
+      explanationEn: "OEE = Availability (uptime) × Performance (run speed vs theoretical UPH) × Quality (good wafers / total wafers processed)."
     }
   ],
 
@@ -569,6 +803,15 @@ export const CONCEPT_QUIZZES = {
       answer: 1,
       explanationZh: "新清洗或更換零件後的電漿腔體內壁暴露裸露表面，容易吸收自由基導致製程漂移；養腔是在內壁預先沉積保護薄膜以達到電漿阻抗穩定。",
       explanationEn: "Seasoning coats fresh chamber walls with process byproduct film, stabilizing RF impedance and radical consumption prior to running production lots."
+    },
+    {
+      questionZh: "在晶圓廠生產排程行話中，工程師所稱的「Split (實驗分批)」是指何種作業流程？",
+      questionEn: "In wafer fab dispatch jargon, what operational action does a \"Split\" lot instruction represent?",
+      optionsZh: ["把晶圓沿中線切成兩半","將同一個 Lot (通常 25 片) 分拆為多個子批次，分別套用不同條件 (DOE) 進行工程驗證","取消整批生產並報廢","手動搬運晶圓盒"],
+      optionsEn: ["Physically sawing a wafer in half","Splitting a 25-wafer lot into sub-lots to run split-table DOE experiments with varied recipe parameters","Canceling the production order","Manually hand-carrying the carrier"],
+      answer: 1,
+      explanationZh: "Split 是晶圓廠最常見的工程實驗手法，例如 25 片拆成 5 片 A 條件、5 片 B 條件，後續再合併 (Merge) 比對實驗結果。",
+      explanationEn: "A Split separates a 25-wafer carrier into DOE groups to test recipe variations under identical substrate and previous-step conditions."
     }
   ],
 
@@ -590,6 +833,15 @@ export const CONCEPT_QUIZZES = {
       answer: 0,
       explanationZh: "Wolf 與 Tauber 所著的《Silicon Processing for the VLSI Era》（共 4 冊）被譽為半導體製造工程的四庫全書，涵蓋了深度的物理機制與製程化學。",
       explanationEn: "Stanley Wolf and Richard N. Tauber authored the seminal multi-volume treatise \"Silicon Processing for the VLSI Era\", the definitive industry bible."
+    },
+    {
+      questionZh: "預言積體電路上可容納之電晶體數量約每 18 至 24 個月翻倍的「摩爾定律 (Moore's Law)」，最早由 Gordon Moore 於哪一年提出？",
+      questionEn: "In what year did Gordon Moore publish the landmark paper predicting that transistor density on integrated circuits would double every ~2 years?",
+      optionsZh: ["1947 年","1965 年","1985 年","2001 年"],
+      optionsEn: ["1947","1965","1985","2001"],
+      answer: 1,
+      explanationZh: "Gordon Moore 於 1965 年在《Electronics》雜誌發表專文，觀察到微晶片元件數量呈現指數型成長趨勢，奠定了現代半導體微縮技術藍圖。",
+      explanationEn: "Gordon Moore published his seminal observation in the April 19, 1965 issue of Electronics magazine, guiding six decades of scaling."
     }
   ]
 };

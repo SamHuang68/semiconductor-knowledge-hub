@@ -8,6 +8,18 @@
 
 ## 專案特色
 
+- **里程碑版本 v2.8.0 — 50 輪進階結構化工程優化大滿貫（Rounds 91–140 全譜系落地）（2.8.0）**：
+  - **Stage 19 (Rounds 91–95) 晶圓允收測試 WAT 12 大電性參數模型、49 點晶圓熱圖與統計箱型圖 (`data/wat-parametric-data.js`)**：收錄 Vth、Idsat、Ioff、Rs、Tox,inv、BV、Rc、Via Chain、RO Fmax、Cov 等 12 大電性指標，產生 49 點晶圓二維熱圖插值與箱型圖 Cpk 統計分析。
+  - **Stage 20 (Rounds 96–100) 晶圓缺陷 Pareto 二八分析與跨機台超幾何共性歸因儀 (`data/defect-pareto-data.js`)**：80/20 法則缺陷排序與致死率加權，實作跨機台超幾何分佈檢驗 (Hypergeometric Test P-value)，精確鎖定嫌疑腔體共性。
+  - **Stage 21 (Rounds 101–105) 3D 先進封裝 Stoney 熱應力翹曲 Warpage 模擬器 (`data/warpage-simulator-data.js`)**：依據熱雙金屬片方程式與 CTE 失配，定量模擬 CoWoS、InFO、SoIC 與玻璃基板在迴焊 (260°C) 與常溫下的翹曲 (Smile / Cry) 輪廓與 JEDEC 門禁。
+  - **Stage 22 (Rounds 106–110) 晶圓廠四大關鍵廠務 UPW / 特氣 / 洗滌塔 / UPS 遙測監控儀表板 (`data/fab-facilities-data.js`)**：建立超純水 (18.24 MΩ·cm / TOC / DO)、高純特氣 (9N/10N)、廢氣洗滌塔 (pH / VOC 沸石轉輪) 與不斷電雙迴路 (UPS) 之即時數據採樣與警報聯鎖。
+  - **Stage 23 (Rounds 111–115) 先進微影 OPC / ILT 幾何補償與空中成像展示器 (`data/opc-demonstrator-data.js`)**：展示 Corner Rounding、Line-End Shortening、Iso-Dense Bias 次波長繞射失真，與 Serif 襯線、Hammerhead 錘頭、SRAF 輔助圖形之光罩補償與晶圓成像三向對比。
+  - **Stage 24 (Rounds 116–120) 半導體元件 WLR 晶圓級可靠度物理衰退與 10 年壽命外推模型 (`data/wlr-reliability-data.js`)**：收錄 TDDB (介電擊穿)、BTI (偏壓溫度不穩定性)、HCI (熱載子注入) 與 EM (電遷移 Black 模型) 4 大物理衰退模型，計算熱與電壓加速因子並外推 10 年使用壽命。
+  - **Stage 25 (Rounds 121–125) 半導體製程關鍵量綱與工程單位全域高精度轉換器 (`data/unit-converter-data.js`)**：支援長度薄膜 (Å/nm/µm/mil)、氣壓真空 (Torr/mTorr/Pa/mbar/atm)、濃度 (wt%/ppm/ppb/ppt)、熱活化能 (eV/J/kcal/kT) 與佈植劑量之雙向精確浮點換算。
+  - **Stage 26 (Rounds 126–130) 晶圓廠 Little 定律與 Kingman VUT 稼動率排隊延遲週期模擬器 (`data/queueing-simulator-data.js`)**：實作 Little's Law (WIP = TH * CT) 與 Kingman 方程式，動態繪製曲棍球棒 (Hockey Stick) 曲線，展現稼動率突破 85%~90% 時排隊週期呈指數暴增之物理現實。
+  - **Stage 27 (Rounds 131–135) 跨章節工程技術先修依存拓撲 DAG 圖譜 (`data/learning-topology-data.js`)**：建立全書 25 正式章與 3 篇附錄之先修與延伸技術導航有向無環圖 (DAG)，串聯物理基礎、核心模組、整合製程、品質量測與先進封裝四大主幹。
+  - **Stage 28 (Rounds 136–140) 觀念隨堂快測 84 題三重奏滿貫題庫與 v2.8.0 里程碑旗艦版進版**：題庫再擴充至每章 3 題（全站 28 章節 x 3 題 = 84 題滿貫覆蓋），全套自動化測試套件擴充驗證 Stage 1 ~ Stage 28（Rounds 1–140）全數滿貫通過（0 錯誤）。
+
 - **里程碑版本 v2.7.0 — 50 輪結構化深度工程優化大滿貫（Rounds 41–90 全譜系落地）（2.7.0）**：
   - **Stage 9 (Rounds 41–45) 物理速算器 2D 靈敏度曲線繪圖儀 (`data/curve-plotter.js`)**：建立純前端輕量 SVG 座標繪圖引擎，針對 Rayleigh 焦深、Arrhenius 反應速率、ARDE 蝕刻延遲、LSS 離子佈植深度、Black 電遷移、負二項良率與 Cpk 常態分佈動態繪製連續二維曲線與工作點指示游標。
   - **Stage 10 (Rounds 46–50) 晶圓缺陷圖譜 16 模式互動矩陣 (`data/defect-patterns-data.js`)**：結構化收錄 16 種晶圓缺陷圖譜（Ring, Donut, Scratch, Edge, Center, Cluster, Repeat Die, Radial, Slip Lines 等）之實體特徵、嫌疑機台模組、物理肇因分析、SPC 關聯與 8D 緊急防堵指引。

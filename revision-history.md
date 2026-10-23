@@ -3,6 +3,21 @@
 > 2.1.0–2.6.0 當時沒有寫入本檔，只記在 README「專案特色」與 Git 提交訊息；本檔自 2.6.1 起恢復逐版記錄。
 > 本檔原名 `修訂紀錄.md`。2.6.1 依規則 0013 改用英文檔名，歷史條目中的舊檔名保留原文，對照見下方「檔名英文化」條目。
 
+## 2.8.0 · 2026-10-24 · 50 輪進階結構化工程優化大滿貫（Rounds 91–140 全譜系落地）
+
+- 原因：接續使用者「再50輪」指示，在 v2.7.0（Rounds 41–90）的基礎上推進 Stage 19 至 Stage 28 共 50 輪進階工程深度優化，全面涵蓋電性測試熱圖、共性分析歸因、3D 熱應力翹曲、廠務遙測、光學近似修正、可靠度物理外推、工程量綱轉換、排隊延遲模擬與技術依存圖譜，並達成全站 84 道隨堂快測三重奏滿貫。
+- 修改：
+  1. Stage 19 (Rounds 91–95) 晶圓允收測試 WAT 12 大電性參數模型、49 點晶圓熱圖與統計箱型圖：新建 `data/wat-parametric-data.js`，支援 Vth、Idsat、Ioff、Rs、Tox,inv、BV、Rc、Via Chain、RO Fmax、Cov 等 12 大電性指標之 49 點晶圓熱圖與箱型圖 Cpk 統計分析。
+  2. Stage 20 (Rounds 96–100) 晶圓缺陷 Pareto 二八分析與跨機台超幾何共性歸因儀：新建 `data/defect-pareto-data.js`，提供 80/20 缺陷排序、致死率加權與超幾何分佈跨機台共性分析演算法 (P-value)。
+  3. Stage 21 (Rounds 101–105) 3D 先進封裝 Stoney 熱應力翹曲 Warpage 模擬器：新建 `data/warpage-simulator-data.js`，收錄 7 大封裝載板材料參數，定量推算 CoWoS、InFO、SoIC 與玻璃基板在迴焊 (260°C) 與常溫下的翹曲 (Smile / Cry) 輪廓與 JEDEC 門禁。
+  4. Stage 22 (Rounds 106–110) 晶圓廠四大關鍵廠務 UPW / 特氣 / 洗滌塔 / UPS 遙測監控儀表板：新建 `data/fab-facilities-data.js`，建立超純水 (18.24 MΩ·cm / TOC / DO)、高純特氣 (9N/10N)、廢氣洗滌塔 (pH / VOC 沸石轉輪) 與不斷電雙迴路 (UPS) 遙測採樣與警報注入。
+  5. Stage 23 (Rounds 111–115) 先進微影 OPC / ILT 幾何補償與空中成像展示器：新建 `data/opc-demonstrator-data.js`，模擬 Corner Rounding、Line-End Shortening、Iso-Dense Bias 次波長繞射失真，展示 Serif 襯線、Hammerhead 錘頭、SRAF 輔助圖形之光罩補償與晶圓空中成像。
+  6. Stage 24 (Rounds 116–120) 半導體元件 WLR 晶圓級可靠度物理衰退與 10 年壽命外推模型：新建 `data/wlr-reliability-data.js`，收錄 TDDB (介電擊穿)、BTI (偏壓溫度不穩定性)、HCI (熱載子注入) 與 EM (電遷移 Black 模型) 4 大物理衰退模型，計算熱與電壓加速因子並外推 10 年使用壽命。
+  7. Stage 25 (Rounds 121–125) 半導體製程關鍵量綱與工程單位全域高精度轉換器：新建 `data/unit-converter-data.js`，支援長度薄膜 (Å/nm/µm/mil)、氣壓真空 (Torr/mTorr/Pa/mbar/atm)、濃度 (wt%/ppm/ppb/ppt)、熱活化能 (eV/J/kcal/kT) 與佈植劑量之雙向精確浮點換算。
+  8. Stage 26 (Rounds 126–130) 晶圓廠 Little 定律與 Kingman VUT 稼動率排隊延遲週期模擬器：新建 `data/queueing-simulator-data.js`，實作 Little's Law (WIP = TH * CT) 與 Kingman 方程式，動態繪製曲棍球棒 (Hockey Stick) 曲線，展現稼動率突破 85%~90% 時排隊週期呈指數暴增之物理現實。
+  9. Stage 27 (Rounds 131–135) 跨章節工程技術先修依存拓撲 DAG 圖譜：新建 `data/learning-topology-data.js`，建立全書 25 正式章與 3 篇附錄之先修與延伸技術導航有向無環圖 (DAG)。
+  10. Stage 28 (Rounds 136–140) 觀念隨堂快測 84 題三重奏滿貫題庫與 v2.8.0 里程碑旗艦版進版：`data/quiz-data.js` 擴充至每章 3 題（全站 28 章節 x 3 題 = 84 題滿貫覆蓋），版本號正式推進至 2.8.0（`package.json`、`index.html`、`app.js`），升級 `scripts/verify-extended-features.mjs` 達成 Rounds 1–140 全維度測試斷言 100% 通過。
+
 ## 2.7.0 · 2026-10-24 · 50 輪結構化深度工程優化大滿貫（Rounds 41–90 全譜系落地）
 
 - 原因：響應使用者「繼續優化50輪」指示，承接 v2.3.0（Rounds 1–20）與 v2.4.0（Rounds 21–40）結構化深化脈絡，進行 Stage 9 至 Stage 18 共 50 輪全站工程能力跨維度大躍進，達成半導體製造核心知識庫全方位的定量可視化、故障排查工作台、修煉評測與個人化筆記系統。
