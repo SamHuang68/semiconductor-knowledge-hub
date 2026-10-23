@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { mountEngineeringObject } from '../工程物件.js';
+import { mountEngineeringObject } from '../engineering-objects.js';
 
 class MockElement {
   constructor(tag = 'div') {

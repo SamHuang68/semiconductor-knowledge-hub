@@ -1,9 +1,9 @@
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
-import { SCENARIOS } from '../data/情境路徑.js';
+import { SCENARIOS } from '../data/scenario-paths.js';
 import { CHAPTERS_DATA } from '../data/chapters-data.js';
-import { normalizeChapterHref } from '../章節連結.js';
+import { normalizeChapterHref } from '../chapter-links.js';
 
 // 僅驗證本次新增導覽及舊連結相容契約，不啟動網站或外部服務。
 assert.deepEqual(SCENARIOS.map(s => s.id), ['journey', 'pattern', 'quality', 'packaging', 'dispatch'], '五個情境入口必須保留');

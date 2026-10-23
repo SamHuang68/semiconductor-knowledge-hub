@@ -15,6 +15,7 @@
   - 製程全景圖的 Q-Time 時效矩陣實際顯示 5 個時窗徽章（微影→蝕刻與 OCAP 統一為 4 小時）；天車調度模擬在任何關閉路徑都會停止。
   - 新增門禁：`verify-light-theme.mjs` 的調色盤涵蓋與燈箱檢查、`verify-hub.js` 的正文結構檢查，以及瀏覽器層 `scripts/verify-svg-contrast.mjs`、`scripts/verify-atlas-lifecycle.mjs`。
   - 2.6.0 對「100% 淡色化」與燈箱白卡的描述，在 SVG 內部與燈箱畫布並未成立，以本版為準。
+  - 依規則 0013 將 28 個中文檔名改為英文（例如 `工程物件.js` → `engineering-objects.js`），`verify-hub.js` 新增檔名 ASCII 門禁；完整對照見 `revision-history.md`。
 
 - **里程碑版本 v2.6.0 — 無塵室淡色實驗系統深層升級與全站合規大滿貫（2.6.0）**：
   - 100% 徹底落實「規則 0003：簡報與網頁一律只用淡色系（嚴格禁止任何深暗色底）」，全站完成 CDP 真機實測無死角淡色化。
@@ -46,7 +47,7 @@
 
 - **全站 28/28 互動工程物件（Ch00–Ch24 + 附錄 A/B/C）100% 五卡儀表板（含第 5 張「定量統御定律卡」）與多波段 SVG 物理場動畫大滿貫（2.0.5）**：完成 `Ch00`、`Ch13`–`Ch24` 與 `附錄 A/B/C` 共 16 座工程物件的第 5 張雙語「定量統御定律（Quantitative Governing Law）」指標卡與 SVG 諧波能量環升級，達成全站 28 座工程物件 **100% 具備 5 張雙語指標卡（共 140 張中英指標卡）與雙層動態 SVG 物理視覺化**。
 
-- **第 01–12 章（前中後段與元件物理 12 座工程物件）第 5 張「定量統御定律卡」與多波段物理場諧波動畫升級（2.0.4）**：於 `工程物件.css` 新增 `.anim-pulse-ring` 與 `.anim-field-glow` 物理場光暈動畫（完整支援 `prefers-reduced-motion` 無障礙降級），並為 `Ch01`–`Ch12` 共 12 座互動工程物件補齊第 5 張雙語「定量統御定律（Quantitative Governing Law）」指標卡與 SVG 多波段能量場動畫。
+- **第 01–12 章（前中後段與元件物理 12 座工程物件）第 5 張「定量統御定律卡」與多波段物理場諧波動畫升級（2.0.4）**：於 `engineering-objects.css` 新增 `.anim-pulse-ring` 與 `.anim-field-glow` 物理場光暈動畫（完整支援 `prefers-reduced-motion` 無障礙降級），並為 `Ch01`–`Ch12` 共 12 座互動工程物件補齊第 5 張雙語「定量統御定律（Quantitative Governing Law）」指標卡與 SVG 多波段能量場動畫。
 
 - **第 20–24 章（Coffin-Manson 焊球疲勞與 Washburn 毛細流、3D 節距 1/P² 密度律與 Stoney 翹曲方程、Weibull 浴缸與 Peck/FIT 卡方公式、Little's Law 與 Kingman 排隊公式、PDN L·di/dt 壓降與 Hamming/UBER 纠錯定律）定量方程完形（2.0.3）**：完成 `ch20`–`ch24` 雙語定量物理方程與 3D 互鎖表，達成全書 25 個正式章節（`Ch00`–`Ch24`）**100% 具備專屬定量統御方程（Governing Equations）與製程視窗對照表**。
 
@@ -60,7 +61,7 @@
 
 - **晶圓廠現場行話（JARGON_DATA 43 筆雙語詞條與附錄 B）300mm 自動化與 3D 封裝實戰語境深化（1.9.8）**：針對 `data/glossary-data.js` 與附錄 B（`app-jargon`）中的 `Lot`、`Hot Lot (Super Hot / Hand-Carry)`、`Split (DOE / Future Hold)`、`控片 (Monitor)`、`擋片 (Dummy)`、`Recipe (RMS Checksum)`、`PM`、`Seasoning（養腔）`、`Q-Time (Auto-Hold)`、`Hold`、`Rework（黃光去膠重曝）`、`Excursion（戰情室與章魚防堵）`、`MRB` 與 `PE/EE/PIE/YE/TE/PKG` 共 14 項核心行話補齊 300mm 智慧晶圓廠與先進封裝現場運作機制。
 
-- **5 大情境探索路徑（Scenario Explorer 全站 24 個互動節點）雙語製程與防呆條例全面深化（1.9.7）**：將 `data/情境路徑.js` 中「看懂圖形轉移（Pattern Transfer 6 站）」、「處理良率異常（Yield Excursion 6 站判斷樹）」與「走進晶圓廠（Inside the Fab 5 站自動化派工）」共 17 個核心節點的中英雙語技術內容全面升級，串聯 `BARC/CAR/MOR 光阻`、`193i+SAQP / High-NA EUV`、`Cryo-HAR / Bosch DRIE / ALE`、`SCCO₂ 超臨界乾燥`、`APC R2R`、`P/T Ratio < 10%`、`WECO/Nelson + FDC`、`OCAP 章魚防堵法`、`3D LIT + Xe⁺ PFIB/STEM`、`MRB + PAT/SBL` 及 `SEMI E84 / GEM300 / Interface A Zero-Touch Track-In`。
+- **5 大情境探索路徑（Scenario Explorer 全站 24 個互動節點）雙語製程與防呆條例全面深化（1.9.7）**：將 `data/scenario-paths.js` 中「看懂圖形轉移（Pattern Transfer 6 站）」、「處理良率異常（Yield Excursion 6 站判斷樹）」與「走進晶圓廠（Inside the Fab 5 站自動化派工）」共 17 個核心節點的中英雙語技術內容全面升級，串聯 `BARC/CAR/MOR 光阻`、`193i+SAQP / High-NA EUV`、`Cryo-HAR / Bosch DRIE / ALE`、`SCCO₂ 超臨界乾燥`、`APC R2R`、`P/T Ratio < 10%`、`WECO/Nelson + FDC`、`OCAP 章魚防堵法`、`3D LIT + Xe⁺ PFIB/STEM`、`MRB + PAT/SBL` 及 `SEMI E84 / GEM300 / Interface A Zero-Touch Track-In`。
 
 - **全站 28 章節（Ch00–Ch24 + 附錄 A/B/C）雙語條例 H2 錨點與右側目錄（TOC ScrollSpy）100% 導覽整合（1.9.6）**：為全書 25 個正式章節與 3 篇附錄的所有工程與 3D 整合條例總表建立專屬雙語 `<h2>` 標題錨點，並完整註冊於 `chapters-data.js` 的 `headings` 與 `headingsEn` 陣列，支援右側段落目錄（TOC）一鍵跳轉與滾動高亮（ScrollSpy）。
 
@@ -68,7 +69,7 @@
 
 - **核心整合、3D 記憶體、故障分析、SPC 與晶圓針測工程物件 SVG 動態物理光束升級（1.9.4）**：為第 11 章（CMOS 跨層整合）、第 13 章（DRAM / 3D NAND / HBM 垂直 TSV 高速資料流）、第 16 章（良率晶圓圖掃描、雙束 FIB 離子束微割與 HR-TEM 繞射束）、第 17 章（SPC 管制軌跡與 Cpk 動態掃描）與第 19 章（WAT Kelvin 四線電流與 CP 微凸塊探針接觸脈衝）五大互動工程物件全面導入非侵入式 SVG 動態光束與信號脈衝動畫（`.anim-data-flow` / `.anim-beam`）。
 
-- **12 大製程全景圖（Fab Flow Atlas）與 5 大互動情境探索路徑（Scenario Explorer）全譜系條例同步（1.9.3）**：將 `data/fab-flow.js` 第 01 至 11 站（涵蓋 `11N CZ/MCZ 與 SOI/LTHC 載片`、`ISSG 自由基氧化`、`High-NA EUV 與 SAQP/MOR`、`Cryo-HAR 與 Bosch TSV 蝕刻`、`FLA/LSA 零擴散退火`、`100% 保形 ALD 與選擇性磊晶`、`3D 混合鍵合 1–3 nm 銅內凹 CMP`、`Siconi 乾洗與 SCCO₂ 超臨界零張力乾燥`、`無阻障 Co/Ru/Mo 與 Air-Gap/BSPDN`、`GAA/CFET`、`CD-SAXS / C-SAM / 3D X-Ray CT / LIT`）及 `data/情境路徑.js` 中英雙語導覽節點全面升級對齊全書最新條例。
+- **12 大製程全景圖（Fab Flow Atlas）與 5 大互動情境探索路徑（Scenario Explorer）全譜系條例同步（1.9.3）**：將 `data/fab-flow.js` 第 01 至 11 站（涵蓋 `11N CZ/MCZ 與 SOI/LTHC 載片`、`ISSG 自由基氧化`、`High-NA EUV 與 SAQP/MOR`、`Cryo-HAR 與 Bosch TSV 蝕刻`、`FLA/LSA 零擴散退火`、`100% 保形 ALD 與選擇性磊晶`、`3D 混合鍵合 1–3 nm 銅內凹 CMP`、`Siconi 乾洗與 SCCO₂ 超臨界零張力乾燥`、`無阻障 Co/Ru/Mo 與 Air-Gap/BSPDN`、`GAA/CFET`、`CD-SAXS / C-SAM / 3D X-Ray CT / LIT`）及 `data/scenario-paths.js` 中英雙語導覽節點全面升級對齊全書最新條例。
 
 - **附錄 A／B／C（八大領域術語量綱、批次狀態機行話、SEMI／JEDEC／UCIe 標準與頂尖會議）條例補完暨全站 28/28 工程物件指標卡滿貫（1.9.2）**：於附錄 A 新增 `八大工程領域核心縮寫與物理量綱條例總表`；於附錄 B 新增 `晶圓廠批次狀態機（Run/Hold/Future-Hold/Split）、開腔養腔復機（Season/Qual）、戰情室會診與 2.5D/3D 封裝現場行話條例表`；於附錄 C 新增 `SEMI / JEDEC / AEC-Q / UCIe / IEEE 1838 國際標準與 IEDM / VLSI / ISSCC / ECTC / IRPS / SPIE 頂尖會議條例表`，並為附錄 A／B／C 工程物件補齊第 4 張雙語條例總覽指標卡與 SVG 動態資料流，達成全站 28 個工程物件 100% 四卡滿貫。
 
@@ -119,7 +120,7 @@
 - **精密科技淡色系介面（Rule 0003）**：微暖高對比灰白底、晶圓刻度細線、高可讀性文字色彩階層（對比度達 WCAG AA >= 7:1）。
 - **純前端架構**：HTML／CSS／JavaScript ES Modules，免安裝打包套件。新情境使用本機 HTML／SVG；既有章節的 Mermaid 圖表會按需從 jsDelivr 載入，不能視為完全離線能力。
 
-情境圖為教學摘要，不是特定晶圓廠的正式流程、配方或放行指令。工程物件使用未經實測校準的教學模型，內部計算一致不等於實體製程正確或產品效能保證。1.8.1 的局部驗證、審查及公開部署已完成；1.8.2 另完成桌面／手機 188 組圖例文字對照與四尺寸閱讀操作案例。這些證據不涵蓋實體裝置、跨瀏覽器、完整讀屏或整站全套驗證；最終提交、部署及公開資產狀態另以同版本交付紀錄核對。設計範圍見 [情境設計契約](情境設計契約.md)，版本變更見 [修訂紀錄](修訂紀錄.md)。既有正文、附錄與名詞資料保持原樣。
+情境圖為教學摘要，不是特定晶圓廠的正式流程、配方或放行指令。工程物件使用未經實測校準的教學模型，內部計算一致不等於實體製程正確或產品效能保證。1.8.1 的局部驗證、審查及公開部署已完成；1.8.2 另完成桌面／手機 188 組圖例文字對照與四尺寸閱讀操作案例。這些證據不涵蓋實體裝置、跨瀏覽器、完整讀屏或整站全套驗證；最終提交、部署及公開資產狀態另以同版本交付紀錄核對。設計範圍見 [情境設計契約](scenario-design-contract.md)，版本變更見 [修訂紀錄](revision-history.md)。既有正文、附錄與名詞資料保持原樣。
 
 ---
 

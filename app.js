@@ -10,11 +10,11 @@ import { CHAPTERS_DATA } from './data/chapters-data.js';
 import { FAB_FLOW_NODES } from './data/fab-flow.js';
 import { GLOSSARY_DATA, JARGON_DATA } from './data/glossary-data.js';
 import { SEARCH_INDEX } from './data/search-index.js';
-import { renderExplorer } from './情境探索.js';
-import { connectionOrigin, originQuery } from './延伸探索.js';
-import { scenarioForChapter, chapterReturnContext } from './data/情境路徑.js';
-import { normalizeChapterHref } from './章節連結.js';
-import { mountEngineeringObject } from './工程物件.js';
+import { renderExplorer } from './scenario-explorer.js';
+import { connectionOrigin, originQuery } from './extended-exploration.js';
+import { scenarioForChapter, chapterReturnContext } from './data/scenario-paths.js';
+import { normalizeChapterHref } from './chapter-links.js';
+import { mountEngineeringObject } from './engineering-objects.js';
 import { REAL_PHOTOS_DATA } from './data/real-photos.js';
 import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
 

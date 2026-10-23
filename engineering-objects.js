@@ -1,7 +1,7 @@
-import { renderEngineeringCard, bindEngineeringEvent, registerEngineeringCleanup, disposeEngineeringObject } from './工程物件操作.js';
+import { renderEngineeringCard, bindEngineeringEvent, registerEngineeringCleanup, disposeEngineeringObject } from './engineering-object-controls.js';
 
 /**
- * 工程物件.js
+ * engineering-objects.js
  * Semiconductor Knowledge Hub — 製程工程物件與微觀機制模型控制器
  * 
  * 包含四大製程核心之高質感幾何向量與微觀物理模型：

@@ -4,7 +4,7 @@ import { readFile, mkdir } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createRequire } from 'node:module';
-import { SCENARIOS } from '../data/情境路徑.js';
+import { SCENARIOS } from '../data/scenario-paths.js';
 
 const require = createRequire(import.meta.url);
 const { chromium } = require(process.env.PLAYWRIGHT_PACKAGE);

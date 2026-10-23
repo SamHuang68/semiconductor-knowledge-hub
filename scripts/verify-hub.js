@@ -4,6 +4,7 @@
  */
 import fs from 'fs';
 import path from 'path';
+import { execFileSync } from 'child_process';
 import { fileURLToPath } from 'url';
 
 // 依腳本位置推導專案根目錄，於工作樹或 CI 執行時才會驗證到正確的檔案
@@ -160,7 +161,7 @@ async function verify() {
   }
 
   // 2. 驗證零中系依賴與安全性
-  const filesToScan = ['index.html', 'styles.css', 'app.js', 'package.json', 'README.md', '工程物件.js', '工程物件.css', '工程物件操作.js', 'data/real-photos.js', 'data/calculators-data.js', 'data/ocap-data.js', 'data/quiz-data.js', 'data/sound-fx.js'];
+  const filesToScan = ['index.html', 'styles.css', 'app.js', 'package.json', 'README.md', 'engineering-objects.js', 'engineering-objects.css', 'engineering-object-controls.js', 'data/real-photos.js', 'data/calculators-data.js', 'data/ocap-data.js', 'data/quiz-data.js', 'data/sound-fx.js'];
   const bannedKeywords = ['deepseek', 'qwen', 'kimi', 'moonshot', 'baidu', 'aliyun', 'tencent', 'bytedance', 'volcengine'];
 
   for (const f of filesToScan) {
@@ -179,7 +180,7 @@ async function verify() {
 
   // 3. 驗證全站二十八大工程物件模組 (Ch 00 ~ 24 + 附錄 A/B/C 滿貫覆蓋) 雙語渲染
   try {
-    const engObj = await import(`file://${ROOT_DIR}/工程物件.js`);
+    const engObj = await import(`file://${ROOT_DIR}/engineering-objects.js`);
     const testIds = ['ch00', 'ch01', 'ch02', 'ch03', 'ch04', 'ch05', 'ch06', 'ch07', 'ch08', 'ch09', 'ch10', 'ch11', 'ch12', 'ch13', 'ch14', 'ch15', 'ch16', 'ch17', 'ch18', 'ch19', 'ch20', 'ch21', 'ch22', 'ch23', 'ch24', 'app-glossary', 'app-jargon', 'app-reading'];
     for (const id of testIds) {
       for (const lang of ['zh', 'en']) {
@@ -199,7 +200,7 @@ async function verify() {
   }
 
   // 4. 驗證靜態資產
-  const assets = ['assets/cover.svg', 'assets/16-wafer-map-patterns.svg', '.nojekyll', '.github/workflows/deploy.yml', '工程物件.js', '工程物件.css', '工程物件操作.js', 'data/real-photos.js', 'data/calculators-data.js', 'data/ocap-data.js', 'data/quiz-data.js'];
+  const assets = ['assets/cover.svg', 'assets/16-wafer-map-patterns.svg', '.nojekyll', '.github/workflows/deploy.yml', 'engineering-objects.js', 'engineering-objects.css', 'engineering-object-controls.js', 'data/real-photos.js', 'data/calculators-data.js', 'data/ocap-data.js', 'data/quiz-data.js'];
   for (const a of assets) {
     const ap = path.join(ROOT_DIR, a);
     if (!fs.existsSync(ap)) {
@@ -208,6 +209,33 @@ async function verify() {
     } else {
       console.log(`[PASS] 資產檔案存在: ${a}`);
     }
+  }
+
+  // 5. 檔名 ASCII 門禁（規則 0013）：追蹤中的檔案與目錄名稱只允許 ASCII
+  let paths;
+  let source = 'git ls-files';
+  try {
+    paths = execFileSync('git', ['-c', 'core.quotepath=false', 'ls-files', '-z'], { cwd: ROOT_DIR, encoding: 'utf8' }).split('\0').filter(Boolean);
+  } catch {
+    // 沒有 Git 的環境（例如解壓後的發布包）改為走訪目錄
+    source = '目錄走訪（無法執行 git ls-files）';
+    paths = [];
+    const walk = dir => {
+      for (const entry of fs.readdirSync(path.join(ROOT_DIR, dir), { withFileTypes: true })) {
+        if (entry.name === '.git' || entry.name === 'node_modules') continue;
+        const rel = dir ? `${dir}/${entry.name}` : entry.name;
+        paths.push(rel);
+        if (entry.isDirectory()) walk(rel);
+      }
+    };
+    walk('');
+  }
+  const nonAscii = paths.filter(p => /[^\x20-\x7e]/.test(p));
+  if (nonAscii.length) {
+    nonAscii.forEach(p => console.error(`[FAIL] 非 ASCII 檔名（規則 0013）: ${p}`));
+    errors += nonAscii.length;
+  } else {
+    console.log(`[PASS] ${paths.length} 個路徑皆為 ASCII 檔名（來源：${source}）`);
   }
 
   if (errors === 0) {

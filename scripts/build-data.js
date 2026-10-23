@@ -5,7 +5,7 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { normalizeChapterHref } from '../章節連結.js';
+import { normalizeChapterHref } from '../chapter-links.js';
 
 const REF_DIR_ZH = 'C:/Users/Sam/AI-Workspace/reference/Semiconductor_Manufacturing_Introduction/zh-TW';
 const REF_DIR_EN = 'C:/Users/Sam/AI-Workspace/reference/Semiconductor_Manufacturing_Introduction/en';

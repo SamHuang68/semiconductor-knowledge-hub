@@ -3,7 +3,7 @@ import { REAL_PHOTOS_DATA } from './data/real-photos.js';
 import { PHYSICS_CALCULATORS } from './data/calculators-data.js';
 import { OCAP_TREES } from './data/ocap-data.js';
 import { CONCEPT_QUIZZES } from './data/quiz-data.js';
-import { prepareDiagramReading, bindDiagramReading, disposeDiagramReading, portableDiagram } from './工程圖例閱讀.js';
+import { prepareDiagramReading, bindDiagramReading, disposeDiagramReading, portableDiagram } from './engineering-diagram-reader.js';
 
 // 共用工程物件的 DOM 更新、事件綁定與全螢幕生命週期。
 const states = new WeakMap();

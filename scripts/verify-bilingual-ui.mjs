@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { SCENARIOS } from '../data/情境路徑.js';
+import { SCENARIOS } from '../data/scenario-paths.js';
 
 console.log('--- 1. 檢驗 5 大情境與所有節點雙語欄位完整度 ---');
 for (const s of SCENARIOS) {

@@ -1,4 +1,4 @@
-import { SCENARIOS, chapterReturnContext } from './data/情境路徑.js';
+import { SCENARIOS, chapterReturnContext } from './data/scenario-paths.js';
 
 // 編輯關聯只保存目的節點與閱讀理由；名稱、章節與網址取自原情境資料。
 // 這些是學習主題之間的連結，不是製造順序或生產放行條件。

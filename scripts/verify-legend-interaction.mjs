@@ -4,7 +4,7 @@ import { readFile, mkdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createRequire } from 'node:module';
-import { SCENARIOS } from '../data/情境路徑.js';
+import { SCENARIOS } from '../data/scenario-paths.js';
 
 const root = process.env.HUB_VISUAL_BASELINE || fileURLToPath(new URL('../', import.meta.url));
 const evidence = process.env.HUB_EVIDENCE_DIR;

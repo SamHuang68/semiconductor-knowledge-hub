@@ -1,6 +1,50 @@
 # 修訂紀錄
 
 > 2.1.0–2.6.0 當時沒有寫入本檔，只記在 README「專案特色」與 Git 提交訊息；本檔自 2.6.1 起恢復逐版記錄。
+> 本檔原名 `修訂紀錄.md`。2.6.1 依規則 0013 改用英文檔名，歷史條目中的舊檔名保留原文，對照見下方「檔名英文化」條目。
+
+## 2.6.1 · 2026-10-23 · 規則 0013 檔名英文化（行為不變）
+
+- 原因：規則 0013 要求修改含中文檔名的專案時，一併把檔名與目錄改為 ASCII 英文。本專案 81 個追蹤檔中有 28 個中文路徑，2.5.0、2.6.0 修改時都沒有遷移。依 Sam 決定，在本版以獨立提交完成。
+- 修改：以 `git mv` 改名 28 個檔案，並同步更新 `index.html`、所有 JS／MJS import、`package.json` 驗證串、各驗證腳本中的路徑與 `README.md`。歷史條目中的舊檔名保留原文。`scripts/verify-hub.js` 新增檔名 ASCII 門禁：優先使用 `git ls-files`，沒有 Git 時改走訪目錄，並在訊息中標明使用的來源。
+- 檔名對照：
+
+  | 原檔名 | 新檔名 |
+  |---|---|
+  | `修訂紀錄.md` | `revision-history.md` |
+  | `情境設計契約.md` | `scenario-design-contract.md` |
+  | `工程物件.js` | `engineering-objects.js` |
+  | `工程物件.css` | `engineering-objects.css` |
+  | `工程物件操作.js` | `engineering-object-controls.js` |
+  | `工程圖例閱讀.js` | `engineering-diagram-reader.js` |
+  | `圖例檢視.js`／`圖例檢視.css` | `legend-viewer.js`／`legend-viewer.css` |
+  | `延伸探索.js` | `extended-exploration.js` |
+  | `情境圖例.js` | `scenario-diagrams.js` |
+  | `情境探索.js`／`情境探索.css` | `scenario-explorer.js`／`scenario-explorer.css` |
+  | `情境練習.js` | `scenario-practice.js` |
+  | `章節連結.js` | `chapter-links.js` |
+  | `訊號判讀.js`／`訊號判讀.css` | `signal-reading.js`／`signal-reading.css` |
+  | `data/情境路徑.js` | `data/scenario-paths.js` |
+  | `scripts/驗證圖例互動.mjs` | `scripts/verify-legend-interaction.mjs` |
+  | `scripts/驗證圖例排版.mjs` | `scripts/verify-legend-layout.mjs` |
+  | `scripts/驗證圖例檢視.mjs` | `scripts/verify-legend-viewer.mjs` |
+  | `scripts/驗證圖例閱讀.mjs` | `scripts/verify-legend-reading.mjs` |
+  | `scripts/驗證學習操作.mjs` | `scripts/verify-learning-operations.mjs` |
+  | `scripts/驗證導覽契約.mjs` | `scripts/verify-navigation-contract.mjs` |
+  | `scripts/驗證工程物件操作.mjs` | `scripts/verify-engineering-object-operations.mjs` |
+  | `scripts/驗證延伸探索.mjs` | `scripts/verify-extended-exploration.mjs` |
+  | `scripts/驗證情境互動.mjs` | `scripts/verify-scenario-interaction.mjs` |
+  | `scripts/驗證探索回程.mjs` | `scripts/verify-exploration-return.mjs` |
+  | `scripts/驗證訊號判讀.mjs` | `scripts/verify-signal-reading.mjs` |
+
+- 驗證（2026-10-23，本機 headless Edge 與 node）：
+  1. `npm run verify` 全串接通過，含新增的檔名 ASCII 門禁（83 個路徑，來源 `git ls-files`）；同一門禁套用到 v2.6.0 快照會逐一列出中文檔名並失敗。
+  2. 靜態參照檢查：44 個 HTML／JS／CSS 檔、68 個相對 import／src／href 全部指向存在的檔案（另 1 個為瀏覽器頁內 import，屬誤判）。
+  3. `verify-svg-contrast.mjs`（132 個畫面、1,572 個文字）與 `verify-atlas-lifecycle.mjs`（17 項）改名後重跑通過。
+  4. 改名前後行為比對：10 支既有瀏覽器腳本、30 個「腳本×模式」組合，分別在 v2.6.0、改名前（`388694a`）、改名後執行，以結束碼與失敗原因比對。30 組改名前後一致；其中 11 組通過、19 組在三個版本都以相同原因失敗，屬既有問題。唯一一次原因不同的「圖例閱讀／操作」，三個版本各重跑 3 次，9 次失敗原因皆相同，判定為單次不穩定。`排版`、`保全` 兩模式需要先前產生的量測基準檔，無法重建，未執行；需舊版根目錄的模式統一指向 v2.6.0 快照。
+- 既有失敗清單（v2.6.0 即存在，未處理）：圖例互動（基準、圖例、版面）、圖例檢視（基準、檢視）、圖例閱讀（操作、畫面）、學習操作（版面）、工程物件操作（模型、畫面）、延伸探索（導覽）、情境互動、探索回程（回程）、訊號判讀（基準、判讀、版面）。原因包含腳本寫死舊版本字串（例如期望「版本 1.4.0」）、引用不存在的證據檔，以及手機 312px 寬與 200% 字級的水平溢位。
+- 已知限制：`C:\Users\Sam\AI-Workspace\docs\semiconductor-knowledge-hub\` 的舊驗證計畫與交付紀錄仍引用舊檔名，屬歷史紀錄，未修改。線上網址的 CSS／JS 檔名隨之改變；GitHub Pages 快取為 10 分鐘，發布後短時間內可能取得舊檔。
+- 提交／發布狀態：本機候選，與上一條同屬 2.6.1，提交於分支 `fix/v2.6.1-contrast-content-repair`；`push=false`、`deploy=false`，發布授權：無。
 
 ## 2.6.1 · 2026-10-23 · 修正工程物件對比退化、正文表格錯誤標題與製程全景圖 Q-Time／天車計時器
 

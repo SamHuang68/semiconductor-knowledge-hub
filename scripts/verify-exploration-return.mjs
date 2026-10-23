@@ -4,7 +4,7 @@ import { readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createRequire } from 'node:module';
-import { SCENARIOS } from '../data/情境路徑.js';
+import { SCENARIOS } from '../data/scenario-paths.js';
 
 const mode=process.argv[2];
 assert.ok(['基準','回程','補充'].includes(mode),'必須指定定點案例');

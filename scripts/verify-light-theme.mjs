@@ -95,10 +95,10 @@ check('無塵室 500nm 黃光微影模式淡色基底門禁：--bg-app 與 --bg-
 
 // 3. 檢驗關鍵容器的淡色載體明度 (情境探索、工程物件、圖例、訊號判讀)
 check('關鍵主視圖載體明度門禁：Hero、工程舞台、圖例與訊號視圖均為淡色載體 (Luminance >= 0.65)', () => {
-  const exploreCss = readFileSync(resolve(ROOT, '情境探索.css'), 'utf8');
-  const engCss = readFileSync(resolve(ROOT, '工程物件.css'), 'utf8');
-  const legendCss = readFileSync(resolve(ROOT, '圖例檢視.css'), 'utf8');
-  const signalCss = readFileSync(resolve(ROOT, '訊號判讀.css'), 'utf8');
+  const exploreCss = readFileSync(resolve(ROOT, 'scenario-explorer.css'), 'utf8');
+  const engCss = readFileSync(resolve(ROOT, 'engineering-objects.css'), 'utf8');
+  const legendCss = readFileSync(resolve(ROOT, 'legend-viewer.css'), 'utf8');
+  const signalCss = readFileSync(resolve(ROOT, 'signal-reading.css'), 'utf8');
 
   // 檢查情境探索 hero
   if (/\.explorer-hero[^{]*\{[^}]*background:\s*#092b39/i.test(exploreCss)) {
@@ -145,7 +145,7 @@ check('主題切換器收斂門禁：index.html 中主題按鈕為 2 態 (取消
 
 // 6. 檢驗三大彈窗內部核心卡片元件無塵室淡色門禁 (Modal Components Pale-Surface Gate)
 check('彈窗內部元件無塵室淡色門禁：速算公式條、快測選項卡與 OCAP 步驟節點均為淺色 (Luminance >= 0.70)', () => {
-  const engCss = readFileSync(resolve(ROOT, '工程物件.css'), 'utf8');
+  const engCss = readFileSync(resolve(ROOT, 'engineering-objects.css'), 'utf8');
 
   // 檢查 calc-formula-banner
   const calcBannerMatch = engCss.match(/\.calc-formula-banner\s*\{[\s\S]*?background:\s*([^;]+);/);
@@ -171,7 +171,7 @@ check('彈窗內部元件無塵室淡色門禁：速算公式條、快測選項�
 
 // 7. 檢驗實體照片面板與 Lightbox 淡色載體門禁 (Photo Panel & Lightbox Carrier Gate)
 check('實體照片面板與 Lightbox 淡色載體門禁：Photo Panel 與 Lightbox 均為淡色無塵室實驗面板', () => {
-  const engCss = readFileSync(resolve(ROOT, '工程物件.css'), 'utf8');
+  const engCss = readFileSync(resolve(ROOT, 'engineering-objects.css'), 'utf8');
 
   const photoPanelMatch = engCss.match(/\.eng-obj-photo-panel\s*\{[\s\S]*?background:\s*([^;]+);/);
   if (!photoPanelMatch) throw new Error('未找到 .eng-obj-photo-panel 背景設定');
@@ -219,10 +219,10 @@ check('行動端表格響應式防溢出門禁：.table-container 包含 overflo
 
 // 10. 工程物件 SVG 淺色調色盤涵蓋門禁 (SVG Palette Coverage Gate)
 // 2.5.0 只把外框改成淺色，SVG 內部的深色面板與淺色字未完整對應，造成深字疊深底（2.6.1 修正）。
-// 工程物件.js 用到的每個深色中性填色與淺色文字，都必須在工程物件.css 的調色盤層有對應。
+// engineering-objects.js 用到的每個深色中性填色與淺色文字，都必須在engineering-objects.css 的調色盤層有對應。
 check('工程物件 SVG 淺色調色盤涵蓋門禁：深色面板與淺色字皆有淺色主題對應', () => {
-  const engJs = readFileSync(resolve(ROOT, '工程物件.js'), 'utf8');
-  const engCss = readFileSync(resolve(ROOT, '工程物件.css'), 'utf8');
+  const engJs = readFileSync(resolve(ROOT, 'engineering-objects.js'), 'utf8');
+  const engCss = readFileSync(resolve(ROOT, 'engineering-objects.css'), 'utf8');
   const saturation = hex => {
     const h = hex.slice(1).length === 3 ? hex.slice(1).split('').map(c => c + c).join('') : hex.slice(1);
     const c = [0, 2, 4].map(i => parseInt(h.slice(i, i + 2), 16));
@@ -259,7 +259,7 @@ check('工程物件 SVG 淺色調色盤涵蓋門禁：深色面板與淺色字�
 
 // 11. 照片燈箱內部元件淡色門禁 (Lightbox Interior Gate)
 check('照片燈箱內部元件淡色門禁：畫布、按鈕為淡色底，標題為深色字', () => {
-  const engCss = readFileSync(resolve(ROOT, '工程物件.css'), 'utf8');
+  const engCss = readFileSync(resolve(ROOT, 'engineering-objects.css'), 'utf8');
   const block = sel => {
     const m = engCss.match(new RegExp(`\\n${sel.replace('.', '\\.')}\\s*\\{([^}]*)\\}`));
     if (!m) throw new Error(`未找到 ${sel} 定義`);

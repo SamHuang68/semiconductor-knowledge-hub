@@ -1,4 +1,4 @@
-import { getScenario } from './data/情境路徑.js';
+import { getScenario } from './data/scenario-paths.js';
 
 // 人工編排的教學示例；數值只決定圖形座標，不是量測資料或 SPC 判定器。
 const examples = [

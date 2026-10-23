@@ -2284,7 +2284,7 @@
    工程物件 SVG 的原始配色是「深色面板＋淺色字」。淺色外框下依屬性值逐色對應：
    深色填色換成淺色材質（原色越深、換後越淺，保留層次），淺色字換成同色相的深色字，
    保留顏色語意並維持 WCAG AA 對比。屬性值也涵蓋依狀態動態產生的顏色。
-   工程物件.js 新增顏色時須在此補上對應，scripts/verify-light-theme.mjs 會檢查遺漏。 */
+   engineering-objects.js 新增顏色時須在此補上對應，scripts/verify-light-theme.mjs 會檢查遺漏。 */
 /* 圖面固定為白底（不隨主題變色），文字色也固定，避免琥珀主題的棕色字在飽和色塊上對比不足 */
 .eng-obj-viewport {
   --svg-ink: #0f172a;
@@ -2334,7 +2334,7 @@
 .eng-obj-viewport :is(rect, path, circle, ellipse, polygon)[fill="#0284c7"]:is(:not([opacity]), [opacity^="0.9"], [opacity="1"]):has(+ text:is([fill="#ffffff"], [fill="#fff"], [fill="#f8fafc"])) { fill: #0369a1; }
 .eng-obj-viewport :is(rect, path, circle, ellipse, polygon)[fill="#8b5cf6"]:is(:not([opacity]), [opacity^="0.9"], [opacity="1"]):has(+ text:is([fill="#ffffff"], [fill="#fff"], [fill="#f8fafc"])) { fill: #7c3aed; }
 
-/* 無法以相鄰結構判斷底色的標籤，於工程物件.js 以 data-ink 標示 */
+/* 無法以相鄰結構判斷底色的標籤，於engineering-objects.js 以 data-ink 標示 */
 .eng-obj-viewport text[data-ink="light"] { fill: #ffffff; }
 .eng-obj-viewport text[data-ink="halo"] {
   paint-order: stroke;

@@ -1,10 +1,10 @@
-import { bindDiagramViewer } from './圖例檢視.js';
-import { renderConnections, bindConnections, connectionOrigin, originQuery, renderConnectionReturn, carryConnectionOrigin } from './延伸探索.js';
-import { SCENARIOS, getScenario } from './data/情境路徑.js';
+import { bindDiagramViewer } from './legend-viewer.js';
+import { renderConnections, bindConnections, connectionOrigin, originQuery, renderConnectionReturn, carryConnectionOrigin } from './extended-exploration.js';
+import { SCENARIOS, getScenario } from './data/scenario-paths.js';
 import { CHAPTERS_DATA } from './data/chapters-data.js';
-import { waferArt, crossSection, packageArt, journeyArt, dispatchArt, renderComparison, bindComparison, comparisonIsOpen } from './情境圖例.js';
-import { signalPreview, renderSignalLab, bindSignalLab, signalIsOpen } from './訊號判讀.js';
-import { hasPractice, renderPractice, bindPractice } from './情境練習.js';
+import { waferArt, crossSection, packageArt, journeyArt, dispatchArt, renderComparison, bindComparison, comparisonIsOpen } from './scenario-diagrams.js';
+import { signalPreview, renderSignalLab, bindSignalLab, signalIsOpen } from './signal-reading.js';
+import { hasPractice, renderPractice, bindPractice } from './scenario-practice.js';
 
 const esc = text => String(text).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const route = (scenario, node) => `#explore/${scenario}/${node}`;
