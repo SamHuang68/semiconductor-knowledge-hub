@@ -8,6 +8,18 @@
 
 ## 專案特色
 
+- **里程碑版本 v2.9.0 — 50 輪進階微觀物理與晶圓廠營運優化大滿貫 (Rounds 141–190 落地實裝) (2.9.0)**：
+  - **Stage 29 (Rounds 141–145) 微影 PEB 酸擴散動力學與 Mack-4 顯影速率模擬器 (`data/litho-kinetics-data.js`)**：化學增幅光阻 (CAR) 曝光後烘烤 (PEB) 酸擴散半徑 (sigma) 與脫保護反應解算、Mack-4 四參數顯影速率模型、光阻殘餘輪廓與側壁傾角評估。
+  - **Stage 30 (Rounds 146–150) 等離子體電漿鞘層物理與 IEDF 雙峰模擬器 (`data/plasma-sheath-data.js`)**：Bohm 鞘層速度與 Child-Langmuir 鞘層厚度解析、雙頻 RF (60MHz 源頻 + 2MHz 偏壓) 離子能量分佈函數 (IEDF) 雙峰分離，以及高深寬比 (HARC) 腰身鼓脹 (Bowing) 與微負載效應模擬。
+  - **Stage 31 (Rounds 151–155) 熱氧化 Deal-Grove 動力學與 Massoud 超薄增強模擬器 (`data/oxidation-kinetics-data.js`)**：乾氧與水氣 Deal-Grove 線性/拋物線生長常數 Arrhenius 解算、(111) vs (100) 晶向反應增益、超薄膜 (<25nm) Massoud 指數加速修正與目標膜厚工時反推。
+  - **Stage 32 (Rounds 156–160) 薄膜複合應力與 Low-k 界面能量釋放率剝離評估器 (`data/film-stress-data.js`)**：內在應力結合雙軸熱膨脹失配熱應力公式、Griffith 斷裂力學能量釋放率 (G) 與臨界韌性 (Gc) 門檻比對，評定 Low-k / Cu IMD 界面分層剝離風險等級。
+  - **Stage 33 (Rounds 161–165) 離子佈植 Pearson-IV 深度分佈與 TED 擴散模擬器 (`data/implant-profile-data.js`)**：B/P/As/Ge 四階動差 (Rp, Delta-Rp, Skewness, Kurtosis) 剖面分佈解算、晶格通道效應抑制 (PAI)，以及 RTA 退火 {311} 自填隙缺陷團簇誘導之暫態增強擴散 (TED) 結深。
+  - **Stage 34 (Rounds 166–170) 先進 CMP 拋光 Preston 力學與碟凹侵蝕模擬器 (`data/cmp-mechanics-data.js`)**：非線性 Preston 去除速率 (MRR) 化學機械雙分量解算、銅雙鑲嵌圖案密度相依碟形下凹 (Dishing) 與介電侵蝕 (Erosion) 經驗模型、渦電流 (Eddy Current) 殘銅終點 (EPD) 追蹤。
+  - **Stage 35 (Rounds 171–175) 晶圓廠動態派工與爐管組批排程啟發式演算法 (`data/fab-dispatching-data.js`)**：臨界比率法 (Critical Ratio, CR) 交期緊迫度指標、動態 Q-Time 逾時防禦升級 (緊急插隊排程)、擴散爐管同熱歷程批次 (Furnace Batching) 容量上限最佳化組配。
+  - **Stage 36 (Rounds 176–180) 氣態微污染 AMC 4 大類別風險與 TXRF 表面金屬檢驗儀 (`data/contamination-monitor-data.js`)**：SEMI F21 標準 A (酸)、B (鹼)、C (有機可凝聚物)、D (摻雜物) 污染衝擊矩陣與光阻 T-topping 防禦、TXRF 次 ppb (<1e9 atoms/cm^2) 重金屬潔淨度判定。
+  - **Stage 37 (Rounds 181–185) 先進封裝微凸塊 IMC 動力學與柯肯達爾孔洞模擬器 (`data/imc-growth-data.js`)**：Cu-Sn (Cu6Sn5, Cu3Sn) 與 Ni 阻擋層金屬互化物 Arrhenius 擴散生長、微凸塊 (<15um) 焊料完全消耗 (Full Consumption) 判別、差異擴散通量致柯肯達爾孔洞 (Kirkendall Voids) 剪切劣化評估。
+  - **Stage 38 (Rounds 186–190) 觀念隨堂快測 112 題四重奏終極大滿貫與 v2.9.0 里程碑進版**：全站 28 章節與附錄全面擴增第 4 道深度實戰挑戰題 (每章 4 題，總題數達 112 題大滿貫)，全套自動化測試擴充至 32 項斷言全數 100% 通過 (0 錯誤)。
+
 - **里程碑版本 v2.8.0 — 50 輪進階結構化工程優化大滿貫（Rounds 91–140 全譜系落地）（2.8.0）**：
   - **Stage 19 (Rounds 91–95) 晶圓允收測試 WAT 12 大電性參數模型、49 點晶圓熱圖與統計箱型圖 (`data/wat-parametric-data.js`)**：收錄 Vth、Idsat、Ioff、Rs、Tox,inv、BV、Rc、Via Chain、RO Fmax、Cov 等 12 大電性指標，產生 49 點晶圓二維熱圖插值與箱型圖 Cpk 統計分析。
   - **Stage 20 (Rounds 96–100) 晶圓缺陷 Pareto 二八分析與跨機台超幾何共性歸因儀 (`data/defect-pareto-data.js`)**：80/20 法則缺陷排序與致死率加權，實作跨機台超幾何分佈檢驗 (Hypergeometric Test P-value)，精確鎖定嫌疑腔體共性。

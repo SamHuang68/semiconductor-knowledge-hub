@@ -3,6 +3,34 @@
 > 2.1.0–2.6.0 當時沒有寫入本檔，只記在 README「專案特色」與 Git 提交訊息；本檔自 2.6.1 起恢復逐版記錄。
 > 本檔原名 `修訂紀錄.md`。2.6.1 依規則 0013 改用英文檔名，歷史條目中的舊檔名保留原文，對照見下方「檔名英文化」條目。
 
+## 2.9.0 - 2026-10-24
+
+### 新增功能與 50 輪微觀物理及廠務營運深度優化 (Rounds 141–190)
+- **微影 PEB 酸擴散與 Mack-4 顯影速率動力學模擬器 (Stage 29 / Rounds 141–145)**
+  - 新建 `data/litho-kinetics-data.js`，涵蓋 CAR 光阻曝光後烘烤酸擴散長度 (sigma) 與脫保護反應解算。
+  - 實作 Mack-4 顯影速率模型 (Rmax, Rmin, n, mTh) 與光阻側壁角度 (SWA) 對比度評估。
+- **等離子體電漿鞘層物理與 IEDF 雙峰模擬器 (Stage 30 / Rounds 146–150)**
+  - 新建 `data/plasma-sheath-data.js`，涵蓋 Bohm 鞘層速度、Debye 長度與 Child-Langmuir 鞘層厚度計算。
+  - 模擬雙頻 RF (60MHz/2MHz) 偏壓下離子能量分佈 (IEDF) 雙峰分離，以及高深寬比 HARC 蝕刻腰身 Bowing 與 ARDE 微負載。
+- **熱氧化 Deal-Grove 與 Massoud 超薄增強動力學 (Stage 31 / Rounds 151–155)**
+  - 新建 `data/oxidation-kinetics-data.js`，收錄乾氧/濕氧 Arrhenius 速率常數、(111) vs (100) 晶向增益與 Massoud 超薄膜 (<25nm) 指數增強修正。
+- **薄膜複合應力與 Low-k 界面能量釋放率剝離評估器 (Stage 32 / Rounds 156–160)**
+  - 新建 `data/film-stress-data.js`，整合內在應力與熱膨脹失配熱應力，以 Griffith 斷裂力學能量釋放率 G 評估 Low-k / Cu IMD 界面剝離與龜裂風險。
+- **離子佈植 Pearson-IV 深度分佈與 TED 模擬器 (Stage 33 / Rounds 161–165)**
+  - 新建 `data/implant-profile-data.js`，解算 B/P/As/Ge 四階動差 (Rp, Delta-Rp, gamma, beta) 剖面、PAI 通道效應抑制與 RTA 退火 {311} 缺陷暫態增強擴散。
+- **先進 CMP 拋光 Preston 力學與圖案碟凹侵蝕模擬器 (Stage 34 / Rounds 166–170)**
+  - 新建 `data/cmp-mechanics-data.js`，實作非線性 Preston 去除率、銅線寬度與圖案密度相依碟凹 (Dishing) / 侵蝕 (Erosion) 以及渦電流終點感測 (EPD)。
+- **晶圓廠動態指派與爐管組批排程啟發式演算法 (Stage 35 / Rounds 171–175)**
+  - 新建 `data/fab-dispatching-data.js`，包含 Critical Ratio (CR) 派工、動態 Q-Time 逾時防禦升級 (自動優先插隊) 與爐管多批次同熱歷程最佳化組配。
+- **氣態微污染 AMC 4 大類別與 TXRF 表面金屬檢驗分析儀 (Stage 36 / Rounds 176–180)**
+  - 新建 `data/contamination-monitor-data.js`，收錄 SEMI F21 標準 A/B/C/D 類別 AMC 衝擊 (光阻 T-topping 防禦) 與 TXRF 表面次 ppb 重金屬檢驗。
+- **先進封裝微凸塊 IMC 動力學與柯肯達爾孔洞模擬器 (Stage 37 / Rounds 181–185)**
+  - 新建 `data/imc-growth-data.js`，涵蓋 Cu-Sn / Ni-Sn 介金屬化合物 Arrhenius 擴散生長、微凸塊焊料完全消耗判別與柯肯達爾孔洞脆化風險評估。
+- **觀念隨堂快測四重奏大滿貫 (112 題) 與全域工程進版驗證 (Stage 38 / Rounds 186–190)**
+  - 更新 `data/quiz-data.js`，全站 28 個模組章節題庫全面擴充至每章 4 題 (共 112 題終極大滿貫)。
+  - 全套自動化驗證腳本 (`scripts/verify-extended-features.mjs`) 擴充至 32 項斷言，`npm test` 100% 通過 (0 錯誤)。
+  - 升級版號至 `2.9.0`，嚴格遵守規則 0003 淡色系無塵室面板與規則 0013 全純 ASCII 檔名。
+
 ## 2.8.0 · 2026-10-24 · 50 輪進階結構化工程優化大滿貫（Rounds 91–140 全譜系落地）
 
 - 原因：接續使用者「再50輪」指示，在 v2.7.0（Rounds 41–90）的基礎上推進 Stage 19 至 Stage 28 共 50 輪進階工程深度優化，全面涵蓋電性測試熱圖、共性分析歸因、3D 熱應力翹曲、廠務遙測、光學近似修正、可靠度物理外推、工程量綱轉換、排隊延遲模擬與技術依存圖譜，並達成全站 84 道隨堂快測三重奏滿貫。
