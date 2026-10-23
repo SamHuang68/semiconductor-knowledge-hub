@@ -3,6 +3,7 @@ import { REAL_PHOTOS_DATA } from './data/real-photos.js';
 import { PHYSICS_CALCULATORS } from './data/calculators-data.js';
 import { OCAP_TREES } from './data/ocap-data.js';
 import { CONCEPT_QUIZZES } from './data/quiz-data.js';
+import { renderSensitivityPlot } from './data/curve-plotter.js';
 import { prepareDiagramReading, bindDiagramReading, disposeDiagramReading, portableDiagram } from './engineering-diagram-reader.js';
 
 // 共用工程物件的 DOM 更新、事件綁定與全螢幕生命週期。
@@ -488,6 +489,8 @@ export function openPhysicsCalculator(chId, lang, doc) {
             <code class="formula-code">${escapeHtml(calc.formulaLatex)}</code>
             <p class="formula-desc">${escapeHtml(desc)}</p>
           </div>
+
+          ${renderSensitivityPlot(chId, paramState, lang)}
 
           <div class="calc-grid">
             <div class="calc-inputs-pane">

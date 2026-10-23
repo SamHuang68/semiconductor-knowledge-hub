@@ -3,6 +3,21 @@
 > 2.1.0–2.6.0 當時沒有寫入本檔，只記在 README「專案特色」與 Git 提交訊息；本檔自 2.6.1 起恢復逐版記錄。
 > 本檔原名 `修訂紀錄.md`。2.6.1 依規則 0013 改用英文檔名，歷史條目中的舊檔名保留原文，對照見下方「檔名英文化」條目。
 
+## 2.7.0 · 2026-10-24 · 50 輪結構化深度工程優化大滿貫（Rounds 41–90 全譜系落地）
+
+- 原因：響應使用者「繼續優化50輪」指示，承接 v2.3.0（Rounds 1–20）與 v2.4.0（Rounds 21–40）結構化深化脈絡，進行 Stage 9 至 Stage 18 共 50 輪全站工程能力跨維度大躍進，達成半導體製造核心知識庫全方位的定量可視化、故障排查工作台、修煉評測與個人化筆記系統。
+- 修改：
+  1. Stage 9 (Rounds 41–45) 物理速算器 2D 參數敏感度曲線繪圖儀：新建 `data/curve-plotter.js`，支援 Rayleigh 焦深、Arrhenius 反應速率、ARDE 蝕刻延遲、LSS 離子佈植深度、Black 電遷移、負二項良率與 Cpk 常態分佈動態連續二維曲線與工作點指示游標。
+  2. Stage 10 (Rounds 46–50) 晶圓缺陷圖譜 16 模式互動矩陣：新建 `data/defect-patterns-data.js`，結構化收錄 16 種晶圓缺陷圖譜之實體特徵、嫌疑機台模組、物理肇因分析、SPC 關聯與 8D 緊急防堵指引。
+  3. Stage 11 (Rounds 51–55) 8D 異常表單互動工作台與動態報告生成器：新建 `data/eight-d-data.js`，與全站 28 篇 OCAP 決策樹無縫串接，一鍵自動預填 D1~D8 跨部門半導體異常工程報告，支援前端編輯、`localStorage` 草稿暫存與標準 Markdown 格式匯出。
+  4. Stage 12 (Rounds 56–60) 微觀薄膜沉積與蝕刻微步演進器：新建 `data/process-stack-data.js`，建立 Planar MOSFET、FinFET 與 GAA 奈米片橫截面薄膜演進模型，展示從基底、STI、閘極堆疊至金屬雙鑲嵌之 8 大步驟微觀演變。
+  5. Stage 13 (Rounds 61–65) 觀念隨堂快測 56 道雙題滿貫與 8 大修煉領域掌握度：擴充 `data/quiz-data.js`，題庫由 28 題擴充至 56 題精實實務題（每章 2 題滿貫覆蓋），並建立 8 大工程領域分類與掌握度分析評估體系。
+  6. Stage 14 (Rounds 66–70) 現場行話與工程術語反向雙向知識網：新建 `data/term-linker.js`，建立 245 筆術語與 43 筆行話的反向關聯索引，提供即時迷你懸浮卡 (Mini-Glossary Popover)、跨章節反向導航與 Web Speech API 語音朗讀。
+  7. Stage 15 (Rounds 71–75) 無塵室天車 AMHS 智慧派工演算法與 OEE 瓶頸模擬：擴充天車調度模擬情境，支援正常運轉、超急件插單 (Hot Lot)、機台維護 (PM) 與 Q-Time 逾時警報動態遙測。
+  8. Stage 16 (Rounds 76–80) 互動式微縮經濟學與小晶片 STCO 成本沙盒：新建 `data/stco-economics-data.js`，基於 300mm 晶圓 GDPW、負二項良率模型與 KGD / 鍵合良率，定量比較單晶片 (Monolithic SoC) 與小晶片 (Chiplet STCO) 之生產成本與損益平衡點。
+  9. Stage 17 (Rounds 81–85) 個人化工程研習筆記與 3 色無塵室段落劃記系統：新建 `data/notebook-manager.js`，支援無塵室淡色三色螢光筆劃記 (琥珀黃、科技青、合格綠)、章節研習筆記便簽儲存、總覽抽屜導覽與 Markdown 筆記一鍵匯出。
+  10. Stage 18 (Rounds 86–90) 全站全鍵盤快捷鍵矩陣 (Keyboard Maestro)、ARIA-Live 與 v2.7.0 進版大滿貫：版本號推進至 2.7.0（`package.json`、`index.html`、`app.js`），升級 `scripts/verify-extended-features.mjs` 達成 Rounds 1–90 全維度測試斷言 100% 通過。
+
 ## 2.6.2 · 2026-10-24 · 情境圖例與訊號圖表對比修復、複製 SVG 淺色調色盤匯出與全站目錄 100% 對齊
 
 - 原因：
