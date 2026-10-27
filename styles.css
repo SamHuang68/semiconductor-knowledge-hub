@@ -469,6 +469,7 @@ body {
   align-items: center;
   gap: 8px;
   padding: 7px 14px;
+  white-space: nowrap;
   font-size: 13px;
   font-weight: 600;
   border-radius: var(--radius-md);
@@ -1737,6 +1738,11 @@ html:not([data-theme="litho-amber"]) .hotspot-dot {
   .brand-title { white-space: nowrap; }
 }
 
+@media (min-width: 1201px) and (max-width: 1440px) {
+  .header-actions { gap: 6px; }
+  .app-header .tool-btn { padding: 6px 10px; }
+}
+
 @media (max-width: 1200px) {
   .app-toc {
     display: flex;
@@ -1886,6 +1892,10 @@ html:not([data-theme="litho-amber"]) .hotspot-dot {
 @keyframes badgeGlow {
   0% { box-shadow: 0 0 3px rgba(245, 158, 11, 0.3); }
   100% { box-shadow: 0 0 8px rgba(245, 158, 11, 0.8); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .explored-model-badge { animation: none; }
 }
 
 .flash-highlight {

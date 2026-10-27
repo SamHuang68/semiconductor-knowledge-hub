@@ -92,7 +92,7 @@ function flowMap(s, active, isEn = false) {
   return `<div class="flow-map ${s.kind === 'compare' ? 'comparison-map' : ''}" aria-label="${esc(label)}">${s.nodes.map((n, i) => `${item(n, i)}${i < s.nodes.length - 1 && s.kind !== 'compare' ? '<span class="flow-arrow" aria-hidden="true">→</span>' : ''}`).join('')}</div>${s.kind === 'cycle' ? `<div class="cycle-return">${cycleReturn}</div>` : ''}`;
 }
 
-export function renderExplorer(container, hash) {
+export function renderExplorer(container, hash, options = {}) {
   const isEn = (localStorage.getItem('semi_preferred_lang') || 'zh') === 'en';
   const [pathname, query = ''] = hash.split('?');
   const [, scenarioId, nodeId] = pathname.split('/');
@@ -179,8 +179,8 @@ export function renderExplorer(container, hash) {
     ? '<a href="#ch00">Start from Chapter 0 →</a><a href="#app-glossary">View Glossary →</a><a href="#app-reading">Further Reading & References →</a>'
     : '<a href="#ch00">從第 0 章開始 →</a><a href="#app-glossary">查看術語總表 →</a><a href="#app-reading">延伸閱讀與來源 →</a>';
 
-  container.innerHTML = `<div class="explorer">
-    <header class="explorer-hero"><div class="hero-copy"><p class="explorer-kicker">${heroKicker}</p><h1>${heroH1}</h1><p>${heroP}</p><div class="hero-links"><a href="#explore/journey/wafer">${heroLink1} <span aria-hidden="true">↗</span></a><a href="#ch00">${heroLink2}</a></div><div class="hero-stats">${heroStats}</div></div><div class="hero-wafer">${waferArt()}<span>${heroWaferCaption}</span></div></header>
+  const heroBlock = options.skipHero ? '' : `<header class="explorer-hero"><div class="hero-copy"><p class="explorer-kicker">${heroKicker}</p><h1>${heroH1}</h1><p>${heroP}</p><div class="hero-links"><a href="#explore/journey/wafer">${heroLink1} <span aria-hidden="true">↗</span></a><a href="#ch00">${heroLink2}</a></div><div class="hero-stats">${heroStats}</div></div><div class="hero-wafer">${waferArt()}<span>${heroWaferCaption}</span></div></header>`;
+  const explorerBody = `${heroBlock}
     <section class="scenario-section" aria-labelledby="scenarioHeading"><div class="section-heading"><div><p class="explorer-kicker">${scenarioKicker}</p><h2 id="scenarioHeading">${scenarioHeading}</h2></div><span class="section-index">${scenarioIndex1}</span></div><nav class="scenario-nav" aria-label="${isEn ? 'Scenarios' : '探索情境'}">${SCENARIOS.map((item, i) => `<a href="${route(item.id, item.nodes[0].id)}" class="scenario-choice ${item.id === s.id ? 'is-selected' : ''}" ${item.id === s.id ? 'aria-current="page"' : ''}><span class="scenario-number">0${i + 1} <span aria-hidden="true">${item.icon}</span></span><strong>${esc(isEn ? (item.titleEn || item.title) : item.title)}</strong><span>${esc(isEn ? (item.labelEn || item.label) : item.label)}</span></a>`).join('')}</nav></section>
     <nav class="explorer-toolbar" aria-label="${isEn ? 'Scenario Toolbar' : '情境操作'}"><label for="scenarioSelect">${toolbarLabel}<select id="scenarioSelect">${SCENARIOS.map(item => `<option value="${item.id}" ${item.id === s.id ? 'selected' : ''}>${esc(isEn ? (item.titleEn || item.title) : item.title)}</option>`).join('')}</select></label><div class="explorer-tools"><button type="button" data-explorer-view="map">${viewMapText}</button><button type="button" data-explorer-view="detail">${viewDetailText}</button>${hasPractice(s.id) ? `<button type="button" data-explorer-view="practice">${viewPracticeText}</button>` : ''}<button type="button" id="shareStep">${copyStepText}</button></div>
     <p id="shareStatus" class="share-status" role="status" aria-live="polite"></p><div id="manualShare" class="manual-share" hidden><label for="stepUrl">${manualShareLabel}</label><input id="stepUrl" type="url" readonly></div></nav>
@@ -193,8 +193,12 @@ export function renderExplorer(container, hash) {
     ${renderConnections(s, n)}
     ${renderPractice(s.id)}
     ${renderExploreVisuals(isEn)}
-    <section class="explorer-library"><div><p class="explorer-kicker">${libraryKicker}</p><h2>${libraryH2}</h2><p>${libraryP}</p></div><div class="library-links">${libraryLinks}</div></section>
-  </div>`;
+    <section class="explorer-library"><div><p class="explorer-kicker">${libraryKicker}</p><h2>${libraryH2}</h2><p>${libraryP}</p></div><div class="library-links">${libraryLinks}</div></section>`;
+  container.innerHTML = options.skipHero ? explorerBody : `<div class="explorer">${explorerBody}</div>`;
+  if (options.skipHero) {
+    const waferFrame = document.querySelector('#explore-hero-wafer .hero-wafer-frame');
+    if (waferFrame && !waferFrame.querySelector('svg')) waferFrame.innerHTML = waferArt();
+  }
   bindIllustrationSlots(container);
   container.querySelector('#detailTitle').insertAdjacentHTML('afterend', renderConnectionReturn(origin));
   carryConnectionOrigin(container, s, origin);

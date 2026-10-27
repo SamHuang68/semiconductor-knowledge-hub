@@ -289,7 +289,7 @@ export function renderExcursionControlObject(container, lang = 'zh') {
                   <div class="eng-obj-metric-card">
             <div class="eng-obj-metric-label">${lang === 'en' ? 'Failure Diagnostics & OCAP' : '現場異常診斷與防呆 (Failure & OCAP)'}</div>
             <div class="eng-obj-metric-value" style="font-size: 13.5px; color: #d97706;">${lang === 'en' ? 'Octopus Hold · AEC DPAT · ECN Matrix' : 'Octopus Hold · AEC DPAT · ECN Matrix'}</div>
-            <div class="eng-obj-metric-note">${lang === 'en' ? 'Enforces Octopus sister-lot containment, DPAT outlier ink-out & ECN review' : '15 分鐘章魚法全數攔截姊妹批、動態 PAT 淘汰邊際壞晶與 ECN 跨站交互審查'}</div>
+            <div class="eng-obj-metric-note">${lang === 'en' ? 'Enforces Octopus sister-lot containment, DPAT outlier ink-out & ECN review' : '15 分鐘章魚法全數攔截姊妹批、動態 PAT 淘汰邊際壞晶與 ECN 跨站互動審查'}</div>
           </div>
         </div>
 

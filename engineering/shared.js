@@ -347,7 +347,7 @@ export const TEXTS = {
 
     // Ch 16 良率與故障分析
     ch16_title: '16 種晶圓缺陷圖譜空間分佈、FIB 奈米微割與 TEM 結晶分析模型',
-    ch16_sub: '交互診斷環狀、邊緣、刮痕等晶圓圖缺陷物理根因，微觀探索聚焦離子束原位切片與原子級穿透電鏡 (HR-TEM) 缺陷解析',
+    ch16_sub: '互動診斷環狀、邊緣、刮痕等晶圓圖缺陷物理根因，微觀探索聚焦離子束原位切片與原子級穿透電鏡 (HR-TEM) 缺陷解析',
     ch16_tab_wafermap: '晶圓缺陷空間圖譜 (Wafer Map Patterns)',
     ch16_tab_fib: '雙束 FIB 奈米切片 (Dual-Beam FIB)',
     ch16_tab_tem: 'HR-TEM 原子級晶格解析 (HR-TEM Lattice)',
@@ -539,14 +539,14 @@ export const TEXTS = {
 
     // App-Glossary 附錄 A 術語知識星系
     app_glossary_title: '半導體全域術語知識拓撲星系與領域雷達圖',
-    app_glossary_sub: '245 條跨學科核心術語多維分類、六大工程領域分佈雷達與關聯拓撲網絡',
+    app_glossary_sub: '245 條跨學科核心術語多維分類、六大工程領域分佈雷達與關聯拓撲網路',
     app_glossary_tab_radar: '六大領域術語雷達圖 (Domain Radar)',
-    app_glossary_tab_galaxy: '拓撲知識星系網絡 (Knowledge Galaxy)',
+    app_glossary_tab_galaxy: '拓撲知識星系網路 (Knowledge Galaxy)',
     app_glossary_tab_acronyms: '必備縮寫高頻矩陣 (Top Acronyms)',
     app_glossary_metric_terms: '全域權威術語總數',
     app_glossary_metric_domains: '涵蓋工程子領域',
     app_glossary_metric_bilingual: '雙語定義對齊度',
-    app_glossary_radar_desc: '全書 245 條專業術語橫跨微影 (Litho)、薄膜沉積 (Thin Films)、電漿蝕刻 (Etch)、擴散佈植 (Implant/Diff)、良率檢測 (Metrology/Yield) 與先進封裝 (Packaging) 六大軸線，形成完整的半導體製造語意網絡。',
+    app_glossary_radar_desc: '全書 245 條專業術語橫跨微影 (Litho)、薄膜沉積 (Thin Films)、電漿蝕刻 (Etch)、擴散佈植 (Implant/Diff)、良率檢測 (Metrology/Yield) 與先進封裝 (Packaging) 六大軸線，形成完整的半導體製造語意網路。',
     app_glossary_galaxy_desc: '每一項半導體技術都不是孤立存在的：微影決定了蝕刻的深寬比極限，CMP 決定了金屬化互連的平坦度，而線上量測即時為所有站點提供 SPC 閉環數據回饋。',
 
     // App-Jargon 附錄 B 晶圓廠黑話情境解碼器
