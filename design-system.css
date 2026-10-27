@@ -295,7 +295,8 @@ body {
 html.boot-home .app-toc,
 html.boot-explore .app-toc,
 body.is-home .app-toc,
-body.is-part .app-toc {
+body.is-part .app-toc,
+body.is-glossary .app-toc {
   display: none;
 }
 
@@ -447,6 +448,167 @@ body.is-part .app-toc {
     animation: none;
     transition: none;
   }
+}
+
+.glossary-term {
+  color: #075985;
+  text-underline-offset: 3px;
+}
+
+.glossary-page,
+.further-reading,
+.fab-flow {
+  min-width: 0;
+}
+
+.glossary-filter {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 20px 0 12px;
+  color: #334155;
+  font-weight: 650;
+}
+
+.glossary-filter input {
+  min-height: 44px;
+  width: min(100%, 420px);
+  padding: 8px 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font: inherit;
+  color: #0f172a;
+  background: #ffffff;
+}
+
+.glossary-count,
+.glossary-alt,
+.glossary-back,
+.further-meta {
+  color: #334155;
+  font-size: 14px;
+}
+
+.glossary-entry {
+  padding: 16px 0;
+  border-top: 1px solid #e2e8f0;
+}
+
+.glossary-entry[hidden] { display: none; }
+
+.glossary-entry h2 {
+  margin: 0 0 6px;
+  font-size: 22px;
+  line-height: 1.35;
+  color: #0f172a;
+}
+
+.glossary-entry abbr {
+  margin-left: 8px;
+  color: #075985;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.glossary-entry.is-targeted {
+  background: #f0fdfa;
+}
+
+.glossary-back {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 14px;
+}
+
+.fab-flow-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(148px, 1fr));
+  gap: 8px;
+  margin: 18px 0;
+  padding: 0;
+  list-style: none;
+}
+
+.fab-station {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  min-height: 44px;
+  padding: 8px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #0f172a;
+  text-align: left;
+  font: inherit;
+}
+
+.fab-station svg {
+  width: 36px;
+  height: 36px;
+  flex: 0 0 auto;
+}
+
+.fab-station span {
+  min-width: 0;
+}
+
+.fab-station circle {
+  fill: #f0fdfa;
+  stroke: #0f766e;
+}
+
+.fab-station text {
+  fill: #0f172a;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.fab-station[aria-pressed="true"] {
+  border-color: #0f766e;
+  background: #f0fdfa;
+}
+
+.fab-station:focus-visible {
+  outline: 3px solid #0f766e;
+  outline-offset: 2px;
+}
+
+.fab-flow-detail {
+  padding: 16px;
+  border: 1px solid #ccfbf1;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #0f172a;
+}
+
+.fab-flow-detail h3 {
+  margin: 0 0 8px;
+  font-size: 20px;
+}
+
+.further-reading {
+  margin: 36px 0;
+}
+
+.further-reading ul {
+  margin: 16px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.further-reading li {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 12px 0;
+  border-top: 1px solid #e2e8f0;
+}
+
+.further-reading a {
+  color: #075985;
+  overflow-wrap: anywhere;
 }
 
 @media (prefers-color-scheme: dark) {

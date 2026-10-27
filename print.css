@@ -20,7 +20,11 @@
   .home-hero h1,
   .part-entry h1,
   .article-headline,
-  .explorer-hero h1 {
+  .explorer-hero h1,
+  .glossary-page h1,
+  .glossary-entry h2,
+  .further-reading,
+  .fab-flow-detail {
     color: #0f172a !important;
   }
 
