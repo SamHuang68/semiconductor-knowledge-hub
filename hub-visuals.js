@@ -14,7 +14,7 @@ const ISO_CLASS_05UM = [
 ];
 
 function illustrationSlot({ src, alt, caption }) {
-  return `<figure class="illus-slot"><img src="${esc(src)}" alt="${esc(alt)}" data-illustrative="true"><figcaption><span class="illus-badge">示意 Illustrative</span>${esc(caption)}</figcaption></figure>`;
+  return `<figure class="illus-slot"><img src="${esc(src)}" alt="${esc(alt)}" width="1600" height="900" loading="lazy" data-illustrative="true"><figcaption><span class="illus-badge">示意 Illustrative</span>${esc(caption)}</figcaption></figure>`;
 }
 
 export function bindIllustrationSlots(root) {
@@ -81,6 +81,9 @@ function fabFlowStrip(isEn) {
 }
 
 function imageGallery(isEn) {
+  const aiNote = isEn
+    ? 'AI-generated illustration, not a photograph of a real fab.'
+    : '此圖為 AI 生成的示意圖，不是真實晶圓廠的照片。';
   const shots = isEn
     ? [
       ['assets/generated/hero-cleanroom-aisle.webp', 'Illustrative cleanroom aisle with overhead transport, not a photograph of a named fab.', 'Illustrative cleanroom aisle. Not a metrology image and not a specific factory.'],
@@ -98,11 +101,11 @@ function imageGallery(isEn) {
       ['assets/generated/cowos-stack-illustrative.webp', '2.5D 封裝堆疊示意，含中介層與堆疊記憶體，未按比例。', '示意用封裝堆疊，不是產品拆解。'],
       ['assets/generated/oht-foup-bay.webp', '天車吊運 FOUP 經過機台的示意畫面。', '示意用自動搬運，不是 AMHS 配置圖。']
     ];
-  const title = isEn ? 'Illustration slots' : '示意影像預留位';
+  const title = isEn ? 'Illustrative images' : '示意影像';
   const lead = isEn
-    ? 'These frames wait for generated images. Until a file is added, the frame keeps the alt text. Every image in this set is illustrative.'
-    : '這些框位等生成圖放入。檔案還沒到時，框內保留替代文字。這組圖一律是示意，不是量測或拆解。';
-  return `<section class="ds-section" aria-labelledby="illusSlotsTitle"><p class="ds-kicker">Illustrative</p><h2 id="illusSlotsTitle">${title}</h2><p>${lead}</p><div class="illus-grid">${shots.map(([src, alt, caption]) => illustrationSlot({ src, alt, caption })).join('')}</div></section>`;
+    ? 'These six images are AI-generated illustrations, not photographs of real fabs. They are not metrology, tool acceptance, or product teardowns.'
+    : '這六張圖是 AI 生成的示意圖，不是真實晶圓廠的照片，也不是量測、機台驗收或產品拆解。';
+  return `<section class="ds-section" aria-labelledby="illusSlotsTitle"><p class="ds-kicker">Illustrative</p><h2 id="illusSlotsTitle">${title}</h2><p>${lead}</p><div class="illus-grid">${shots.map(([src, alt, caption]) => illustrationSlot({ src, alt, caption: `${caption} ${aiNote}` })).join('')}</div></section>`;
 }
 
 export function renderExploreVisuals(isEn) {
