@@ -14,6 +14,8 @@
 </head>
 <body>
 
+  <a class="skip-link" href="#mainContentArea" data-i18n="skip_to_content">跳至主要內容</a>
+
   <!-- 頂部閱讀進度指示條 -->
   <div class="reading-progress-track" aria-hidden="true">
     <div class="reading-progress-bar" id="readingProgressBar"></div>
@@ -22,7 +24,7 @@
   <!-- 頂部導覽列 -->
   <header class="app-header">
     <div style="display: flex; align-items: center; gap: 10px;">
-      <button type="button" class="mobile-toggle-btn" id="mobileToggleBtn" aria-label="切換章節目錄" title="展開章節目錄" data-i18n-aria="btn_menu_aria" data-i18n-title="btn_menu_title">
+      <button type="button" class="mobile-toggle-btn" id="mobileToggleBtn" aria-label="切換章節目錄" aria-expanded="false" aria-controls="appSidebar" title="展開章節目錄" data-i18n-aria="btn_menu_aria" data-i18n-title="btn_menu_title">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
       </button>
 
@@ -49,8 +51,8 @@
 
       <!-- 主題切換按鈕群組 (亮色 / 暗色 / 500nm 黃光微影濾光模式) -->
       <div class="theme-switch-cluster" role="group" aria-label="Theme Switcher">
-        <button type="button" class="theme-btn is-active" data-theme="light" title="亮色微暖工程模式 (Light Mode)" aria-pressed="true" data-i18n-title="theme_light_title">☀️</button>
-        <button type="button" class="theme-btn" data-theme="litho-amber" title="無塵室 500nm 黃光微影濾光模式 (Litho Amber Mode)" aria-pressed="false" data-i18n-title="theme_amber_title">🟡</button>
+        <button type="button" class="theme-btn is-active" data-theme="light" title="亮色微暖工程模式 (Light Mode)" aria-pressed="true" data-i18n-title="theme_light_title" data-i18n-aria="theme_light_title">☀️</button>
+        <button type="button" class="theme-btn" data-theme="litho-amber" title="無塵室 500nm 黃光微影濾光模式 (Litho Amber Mode)" aria-pressed="false" data-i18n-title="theme_amber_title" data-i18n-aria="theme_amber_title">🟡</button>
       </div>
 
       <!-- 無塵室音效切換按鈕 -->
@@ -59,23 +61,23 @@
       </button>
 
       <a href="#explore" class="tool-btn explore-entry" data-i18n="nav_explore">情境探索</a>
-      <button type="button" class="tool-btn" id="openAtlasBtn" title="開啟 12 大製程全景流程圖 (快捷鍵: M)" data-i18n-title="btn_atlas_title">
+      <button type="button" class="tool-btn" id="openAtlasBtn" title="開啟 12 大製程全景流程圖 (快捷鍵: M)" data-i18n-title="btn_atlas_title" data-i18n-aria="btn_atlas_title">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
         <span data-i18n="nav_atlas">製程全景圖</span>
       </button>
 
-      <button type="button" class="tool-btn" id="openJargonBtn" title="查詢 245 筆名詞與 43 筆晶圓廠現場行話 (快捷鍵: J)" data-i18n-title="btn_jargon_title">
+      <button type="button" class="tool-btn" id="openJargonBtn" title="查詢 245 筆名詞與 43 筆晶圓廠現場行話 (快捷鍵: J)" data-i18n-title="btn_jargon_title" data-i18n-aria="btn_jargon_title">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
         <span data-i18n="nav_jargon">行話與術語字典</span>
       </button>
 
-      <button type="button" class="tool-btn tool-btn-primary" id="openSearchBtn" title="全域即時檢索 (快捷鍵: / 或 Ctrl+K)" data-i18n-title="btn_search_title">
+      <button type="button" class="tool-btn tool-btn-primary" id="openSearchBtn" title="全域即時檢索 (快捷鍵: / 或 Ctrl+K)" data-i18n-title="btn_search_title" data-i18n-aria="btn_search_title">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
         <span data-i18n="nav_search">檢索</span>
         <span class="kbd-badge">/</span>
       </button>
 
-      <button type="button" class="tool-btn icon-only-btn" id="openShortcutsBtn" title="查看鍵盤快捷鍵指南 (快捷鍵: ?)" data-i18n-title="btn_shortcuts_title">
+      <button type="button" class="tool-btn icon-only-btn" id="openShortcutsBtn" title="查看鍵盤快捷鍵指南 (快捷鍵: ?)" data-i18n-title="btn_shortcuts_title" data-i18n-aria="btn_shortcuts_title">
         <span style="font-weight: 800; font-family: var(--font-mono);">?</span>
       </button>
 
@@ -101,22 +103,22 @@
         <a href="#explore" class="explore-entry sidebar-explore" data-i18n="sidebar_explore">◎ 情境探索與流程圖 →</a>
         <div class="study-progress-card">
           <div class="progress-label-row">
-            <span class="progress-title" data-i18n="study_progress">學習進度</span>
+            <span class="progress-title" id="studyProgressLabel" data-i18n="study_progress">學習進度</span>
             <span class="progress-count" id="studyProgressText">0 / 25 章</span>
           </div>
-          <div class="progress-meter-bar">
+          <div class="progress-meter-bar" id="studyProgressMeter" role="progressbar" aria-valuemin="0" aria-valuemax="25" aria-valuenow="0" aria-labelledby="studyProgressLabel">
             <div class="progress-meter-fill" id="studyProgressBar" style="width: 0%;"></div>
           </div>
         </div>
 
         <!-- 快速篩選標籤 -->
         <div class="sidebar-tab-pills">
-          <button type="button" class="side-tab-pill is-active" data-filter-mode="all" data-i18n="tab_all">全部</button>
-          <button type="button" class="side-tab-pill" data-filter-mode="read" data-i18n="tab_read">已讀</button>
-          <button type="button" class="side-tab-pill" data-filter-mode="starred" data-i18n="tab_starred">⭐ 收藏</button>
+          <button type="button" class="side-tab-pill is-active" data-filter-mode="all" data-i18n="tab_all" aria-pressed="true">全部</button>
+          <button type="button" class="side-tab-pill" data-filter-mode="read" data-i18n="tab_read" aria-pressed="false">已讀</button>
+          <button type="button" class="side-tab-pill" data-filter-mode="starred" data-i18n="tab_starred" aria-pressed="false">⭐ 收藏</button>
         </div>
 
-        <input type="text" id="chapterFilter" class="sidebar-filter" placeholder="過濾章節名稱..." data-i18n-placeholder="filter_placeholder">
+        <input type="text" id="chapterFilter" class="sidebar-filter" placeholder="過濾章節名稱..." aria-label="過濾章節名稱" data-i18n-placeholder="filter_placeholder" data-i18n-aria="filter_placeholder">
       </div>
       <nav id="sidebarNav" aria-label="章節樹狀導覽" data-i18n-aria="sidebar_nav_aria"></nav>
     </aside>
@@ -130,12 +132,13 @@
 
     <!-- 右側頁內目錄 -->
     <aside class="app-toc" aria-label="本頁大綱" data-i18n-aria="app_toc_aria">
+      <button type="button" class="toc-drawer-toggle" id="tocDrawerToggle" aria-expanded="true" aria-controls="tocList" data-i18n="toc_heading" data-i18n-aria="toc_toggle_aria">本頁段落大綱</button>
       <div class="reading-controls-bar">
         <span class="controls-label" data-i18n="reading_font_size">閱讀字級</span>
         <div class="font-size-btns">
-          <button type="button" class="font-btn" id="fontSizeDecBtn" title="縮小字體" data-i18n-title="btn_font_dec_title">A-</button>
-          <button type="button" class="font-btn" id="fontSizeResetBtn" title="預設字體" data-i18n-title="btn_font_reset_title">A</button>
-          <button type="button" class="font-btn" id="fontSizeIncBtn" title="放大字體" data-i18n-title="btn_font_inc_title">A+</button>
+          <button type="button" class="font-btn" id="fontSizeDecBtn" title="縮小字體" data-i18n-title="btn_font_dec_title" data-i18n-aria="btn_font_dec_title">A-</button>
+          <button type="button" class="font-btn" id="fontSizeResetBtn" title="預設字體" data-i18n-title="btn_font_reset_title" data-i18n-aria="btn_font_reset_title">A</button>
+          <button type="button" class="font-btn" id="fontSizeIncBtn" title="放大字體" data-i18n-title="btn_font_inc_title" data-i18n-aria="btn_font_inc_title">A+</button>
         </div>
       </div>
       <div class="toc-heading" data-i18n="toc_heading">本頁段落大綱</div>
@@ -219,16 +222,16 @@
         <button type="button" class="tool-btn" id="closeJargonBtn" data-i18n="btn_close">關閉 (Esc)</button>
       </div>
       <div class="jargon-search-bar">
-        <input type="text" id="jargonSearchInput" class="jargon-input" placeholder="輸入名詞、縮寫、行話或定義（例如: Q-Time, CMP, Hot Lot, 浸潤式）..." data-i18n-placeholder="jargon_placeholder">
+        <input type="text" id="jargonSearchInput" class="jargon-input" placeholder="輸入名詞、縮寫、行話或定義（例如: Q-Time, CMP, Hot Lot, 浸潤式）..." aria-label="搜尋行話與術語" data-i18n-placeholder="jargon_placeholder" data-i18n-aria="jargon_placeholder">
       </div>
       <div class="jargon-tabs">
-        <button type="button" class="tab-pill is-active" data-tab="all" data-i18n="jargon_tab_all">全部收錄</button>
-        <button type="button" class="tab-pill" data-tab="glossary" data-i18n="jargon_tab_glossary">術語總表 (附錄 A)</button>
-        <button type="button" class="tab-pill" data-tab="jargon" data-i18n="jargon_tab_jargon">現場行話 (附錄 B)</button>
-        <button type="button" class="tab-pill" data-tab="wafer" data-i18n="jargon_tab_wafer">晶圓與批次</button>
-        <button type="button" class="tab-pill" data-tab="tool" data-i18n="jargon_tab_tool">機台操作</button>
-        <button type="button" class="tab-pill" data-tab="system" data-i18n="jargon_tab_system">系統與流程</button>
-        <button type="button" class="tab-pill" data-tab="quality" data-i18n="jargon_tab_quality">品質與異常</button>
+        <button type="button" class="tab-pill is-active" data-tab="all" data-i18n="jargon_tab_all" aria-pressed="true">全部收錄</button>
+        <button type="button" class="tab-pill" data-tab="glossary" data-i18n="jargon_tab_glossary" aria-pressed="false">術語總表 (附錄 A)</button>
+        <button type="button" class="tab-pill" data-tab="jargon" data-i18n="jargon_tab_jargon" aria-pressed="false">現場行話 (附錄 B)</button>
+        <button type="button" class="tab-pill" data-tab="wafer" data-i18n="jargon_tab_wafer" aria-pressed="false">晶圓與批次</button>
+        <button type="button" class="tab-pill" data-tab="tool" data-i18n="jargon_tab_tool" aria-pressed="false">機台操作</button>
+        <button type="button" class="tab-pill" data-tab="system" data-i18n="jargon_tab_system" aria-pressed="false">系統與流程</button>
+        <button type="button" class="tab-pill" data-tab="quality" data-i18n="jargon_tab_quality" aria-pressed="false">品質與異常</button>
       </div>
       <div class="jargon-list" id="jargonList"></div>
     </div>
@@ -242,8 +245,9 @@
         <button type="button" class="tool-btn" id="closeSearchBtn" data-i18n="btn_close">關閉 (Esc)</button>
       </div>
       <div class="jargon-search-bar">
-        <input type="text" id="searchModalInput" class="jargon-input" placeholder="搜尋 25 章內容、技術主題或製程步驟..." data-i18n-placeholder="search_placeholder">
+        <input type="text" id="searchModalInput" class="jargon-input" placeholder="搜尋 25 章內容、技術主題或製程步驟..." aria-label="搜尋教材" data-i18n-placeholder="search_placeholder" data-i18n-aria="search_placeholder">
       </div>
+      <div id="searchStatus" class="visually-hidden" role="status" aria-live="polite"></div>
       <div class="jargon-list" id="searchResultsList" style="max-height: 50vh;"></div>
     </div>
   </div>

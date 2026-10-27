@@ -23,15 +23,15 @@
   --text-invert: #ffffff;
 
   /* 半導體工程主題色彩 (矽光藍、微影青、現場琥珀) */
-  --semi-blue: #0284c7;
+  --semi-blue: #075985;
   --semi-blue-light: #e0f2fe;
-  --semi-blue-dark: #0369a1;
+  --semi-blue-dark: #0c4a6e;
   --semi-teal: #0f766e;
   --semi-teal-light: #ccfbf1;
   --semi-amber: #b45309;
   --semi-amber-light: #fef3c7;
   --semi-amber-border: #f59e0b;
-  --semi-emerald: #059669;
+  --semi-emerald: #065f46;
   --semi-emerald-light: #d1fae5;
 
   /* 陰影與圓角 */
@@ -69,9 +69,9 @@
   --text-muted: #92400e;       /* 對比度 > 5:1 */
   --text-invert: #ffffff;
 
-  --semi-blue: #d97706;
+  --semi-blue: #9a3412;
   --semi-blue-light: #fef3c7;
-  --semi-blue-dark: #b45309;
+  --semi-blue-dark: #7c2d12;
   --semi-teal: #b45309;
   --semi-teal-light: #fef3c7;
   --semi-amber: #d97706;
@@ -183,16 +183,16 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  color: #94a3b8;
+  color: #334155;
   font-size: 11px;
 }
 
 .atlas-telemetry-badge {
-  background: rgba(16, 185, 129, 0.2);
-  color: #34d399;
+  background: #d1fae5;
+  color: #065f46;
   padding: 2px 8px;
   border-radius: 4px;
-  border: 1px solid rgba(16, 185, 129, 0.4);
+  border: 1px solid #6ee7b7;
   font-weight: 700;
 }
 
@@ -494,7 +494,7 @@ body {
   background: var(--bg-surface-alt);
   border: 1px solid var(--border-subtle);
   border-radius: 4px;
-  color: var(--text-muted);
+  color: #334155;
 }
 
 .sidebar-backdrop {
@@ -617,7 +617,6 @@ body {
   border-radius: var(--radius-sm);
   background: var(--bg-app);
   color: var(--text-main);
-  outline: none;
 }
 
 .sidebar-filter:focus {
@@ -693,7 +692,7 @@ body {
 
 .star-indicator {
   font-size: 11px;
-  color: #f59e0b;
+  color: #9a3412;
   margin-left: 4px;
 }
 
@@ -1463,7 +1462,8 @@ figcaption {
   font-size: 15px;
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-sm);
-  outline: none;
+  background: #ffffff;
+  color: var(--text-main);
 }
 
 .jargon-input:focus {
@@ -1572,9 +1572,130 @@ figcaption {
 /* ══════════════════════════════════════════════════════════════════════════════
    6. 響應式佈局適配 (RWD)
    ══════════════════════════════════════════════════════════════════════════════ */
+.skip-link {
+  position: absolute;
+  left: 12px;
+  top: 8px;
+  z-index: 300;
+  transform: translateY(-140%);
+  background: #ffffff;
+  color: var(--semi-blue-dark);
+  border: 2px solid var(--semi-blue-dark);
+  border-radius: var(--radius-sm);
+  padding: 8px 12px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.skip-link:focus {
+  transform: none;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.toc-drawer-toggle {
+  display: none;
+}
+
+.search-result-jump {
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+/* 亮色主題：工程模型與檢索裡的淺色內聯字改成同色相深字，小字達到 4.5:1。黃光主題另有覆寫。 */
+html:not([data-theme="litho-amber"]) .search-direct-model-btn,
+html:not([data-theme="litho-amber"]) .photo-category-badge,
+html:not([data-theme="litho-amber"]) .eng-obj-card [style*="color: #0284c7"],
+html:not([data-theme="litho-amber"]) .eng-obj-card [style*="color:#0284c7"],
+html:not([data-theme="litho-amber"]) .eng-obj-card [style*="color: #38bdf8"],
+html:not([data-theme="litho-amber"]) .eng-obj-card [style*="color:#38bdf8"] {
+  color: #075985 !important;
+}
+
+html:not([data-theme="litho-amber"]) .eng-obj-card [style*="color: #94a3b8"],
+html:not([data-theme="litho-amber"]) .eng-obj-card [style*="color:#94a3b8"] {
+  color: #475569 !important;
+}
+
+html:not([data-theme="litho-amber"]) .eng-obj-card [style*="color: #10b981"],
+html:not([data-theme="litho-amber"]) .eng-obj-card [style*="color:#10b981"],
+html:not([data-theme="litho-amber"]) .eng-obj-card [style*="color: #34d399"],
+html:not([data-theme="litho-amber"]) .eng-obj-card [style*="color:#34d399"] {
+  color: #065f46 !important;
+}
+
+html:not([data-theme="litho-amber"]) .eng-obj-metric-value,
+html:not([data-theme="litho-amber"]) .eng-obj-card [style*="color: #d97706"],
+html:not([data-theme="litho-amber"]) .eng-obj-card [style*="color:#d97706"],
+html:not([data-theme="litho-amber"]) .eng-obj-card [style*="color: #f59e0b"],
+html:not([data-theme="litho-amber"]) .eng-obj-card [style*="color:#f59e0b"] {
+  color: #9a3412 !important;
+}
+
+html:not([data-theme="litho-amber"]) .hotspot-dot {
+  background: #0369a1 !important;
+  color: #ffffff !important;
+}
+
 @media (max-width: 1200px) {
   .app-toc {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    right: 12px;
+    bottom: 72px;
+    top: auto;
+    width: min(300px, calc(100vw - 24px));
+    height: auto;
+    max-height: min(46vh, 360px);
+    z-index: 80;
+    padding: 12px 14px;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-strong);
+    border-radius: 12px;
+    box-shadow: var(--shadow-popup);
+  }
+  .toc-drawer-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 8px;
+    padding: 6px 8px;
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-sm);
+    background: var(--bg-surface-alt);
+    color: var(--text-main);
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  .app-toc.is-collapsed #tocList,
+  .app-toc.is-collapsed .toc-heading {
     display: none;
+  }
+  .app-toc.is-collapsed .reading-controls-bar {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: 0;
   }
 }
 
@@ -1584,7 +1705,7 @@ figcaption {
   }
   .app-sidebar {
     position: fixed;
-    top: var(--header-height);
+    top: var(--header-offset, var(--header-height));
     left: 0;
     bottom: 0;
     z-index: 90;
@@ -1617,7 +1738,9 @@ figcaption {
     display: none;
   }
   .header-actions .explore-entry {
-    display: none; /* 側邊欄頂部已具備明顯的情境探索入口 */
+    display: inline-flex;
+    padding: 7px 8px;
+    font-size: 12px;
   }
   #openShortcutsBtn {
     display: none; /* 觸控與行動裝置無硬體鍵盤快捷鍵需求 */
@@ -1630,6 +1753,10 @@ figcaption {
 
 @media (max-width: 768px) {
   :root { --header-height: 108px; }
+  .app-header {
+    height: auto;
+    min-height: var(--header-height);
+  }
   .brand-title {
     font-size: 13.5px;
     max-width: 140px;
@@ -1642,8 +1769,15 @@ figcaption {
     flex-wrap: wrap;
     gap: 6px;
   }
-  .app-header > div:first-child { width: 100%; }
-  .header-actions { max-width: 100%; flex-shrink: 0; }
+  .app-header > div:first-child { width: 100%; min-width: 0; }
+  .header-actions {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    flex-shrink: 1;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
   .lang-switch-cluster { flex-shrink: 0; white-space: nowrap; }
   .lang-switch-cluster .lang-btn {
     padding: 4px 8px;
@@ -1659,9 +1793,9 @@ figcaption {
   width: 16px;
   height: 16px;
   font-size: 10px;
-  color: #fbbf24;
-  background: rgba(245, 158, 11, 0.15);
-  border: 1px solid rgba(245, 158, 11, 0.4);
+  color: #92400e;
+  background: #fef3c7;
+  border: 1px solid #fcd34d;
   border-radius: 3px;
   margin-right: 4px;
   animation: badgeGlow 2.5s ease-in-out infinite alternate;

@@ -1,10 +1,13 @@
 // 生成器與瀏覽器共用章節連結契約，兼容已發布的舊連結。
+const UPSTREAM_TRANSLATIONS = 'https://github.com/chenwei810/Semiconductor_Manufacturing_Introduction/blob/master/TRANSLATIONS.md';
+
 export function normalizeChapterHref(href) {
   if (/^#node-\d{2}$/.test(href)) return href.replace('#node-', '#ch');
-  if (/^(https?:|mailto:)/i.test(href)) return href;
-  if (/TRANSLATIONS\.md$/i.test(href)) {
-    return 'https://github.com/chenwei810/Semiconductor_Manufacturing_Introduction/blob/main/TRANSLATIONS.md';
+  // 上游預設分支是 master；教材裡寫死的 blob/main 與相對路徑都會 404。
+  if (/TRANSLATIONS\.md(?:$|[?#])/i.test(href) || /Semiconductor_Manufacturing_Introduction\/blob\/main\/TRANSLATIONS\.md/i.test(href)) {
+    return UPSTREAM_TRANSLATIONS;
   }
+  if (/^(https?:|mailto:)/i.test(href)) return href;
   const chapter = href.match(/(?:^|\/)(\d{2})-[^/]+\/(?:README\.md)?(?:#.*)?$/i);
   if (chapter) return `#ch${chapter[1]}`;
   if (/glossary\.md(?:#.*)?$/.test(href)) return '#app-glossary';
