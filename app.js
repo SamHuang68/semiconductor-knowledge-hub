@@ -1835,7 +1835,7 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
     const isInputActive = document.activeElement && (document.activeElement.tagName === 'INPUT' || document.activeElement.tagName === 'TEXTAREA');
 
     if (searchModalEl?.classList.contains('is-open') && (e.key === 'ArrowDown' || e.key === 'ArrowUp')) {
-      const items = [...searchModalEl.querySelectorAll('[data-search-target]')];
+      const items = [...searchModalEl.querySelectorAll('.search-result-jump')];
       if (items.length) {
         e.preventDefault();
         const current = items.indexOf(document.activeElement);

@@ -31,7 +31,7 @@
   --semi-amber: #b45309;
   --semi-amber-light: #fef3c7;
   --semi-amber-border: #f59e0b;
-  --semi-emerald: #059669;
+  --semi-emerald: #065f46;
   --semi-emerald-light: #d1fae5;
 
   /* 陰影與圓角 */
@@ -692,7 +692,7 @@ body {
 
 .star-indicator {
   font-size: 11px;
-  color: #f59e0b;
+  color: #9a3412;
   margin-left: 4px;
 }
 
@@ -1618,6 +1618,41 @@ figcaption {
   font: inherit;
   text-align: left;
   cursor: pointer;
+}
+
+/* 亮色主題：工程模型與檢索裡的淺色內聯字改成同色相深字，小字達到 4.5:1。黃光主題另有覆寫。 */
+html:not([data-theme="litho-amber"]) .search-direct-model-btn,
+html:not([data-theme="litho-amber"]) .photo-category-badge,
+html:not([data-theme="litho-amber"]) .eng-obj-card [style*="color: #0284c7"],
+html:not([data-theme="litho-amber"]) .eng-obj-card [style*="color:#0284c7"],
+html:not([data-theme="litho-amber"]) .eng-obj-card [style*="color: #38bdf8"],
+html:not([data-theme="litho-amber"]) .eng-obj-card [style*="color:#38bdf8"] {
+  color: #075985 !important;
+}
+
+html:not([data-theme="litho-amber"]) .eng-obj-card [style*="color: #94a3b8"],
+html:not([data-theme="litho-amber"]) .eng-obj-card [style*="color:#94a3b8"] {
+  color: #475569 !important;
+}
+
+html:not([data-theme="litho-amber"]) .eng-obj-card [style*="color: #10b981"],
+html:not([data-theme="litho-amber"]) .eng-obj-card [style*="color:#10b981"],
+html:not([data-theme="litho-amber"]) .eng-obj-card [style*="color: #34d399"],
+html:not([data-theme="litho-amber"]) .eng-obj-card [style*="color:#34d399"] {
+  color: #065f46 !important;
+}
+
+html:not([data-theme="litho-amber"]) .eng-obj-metric-value,
+html:not([data-theme="litho-amber"]) .eng-obj-card [style*="color: #d97706"],
+html:not([data-theme="litho-amber"]) .eng-obj-card [style*="color:#d97706"],
+html:not([data-theme="litho-amber"]) .eng-obj-card [style*="color: #f59e0b"],
+html:not([data-theme="litho-amber"]) .eng-obj-card [style*="color:#f59e0b"] {
+  color: #9a3412 !important;
+}
+
+html:not([data-theme="litho-amber"]) .hotspot-dot {
+  background: #0369a1 !important;
+  color: #ffffff !important;
 }
 
 @media (max-width: 1200px) {
