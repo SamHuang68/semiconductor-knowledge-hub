@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Semiconductor Knowledge Hub · 半導體製造概論知識庫</title>
   <meta name="description" content="從沙子到晶片的半導體製造教材。25 章、5 個互動情境、12 個製程模組，中英對照，不收錄未標出處的數字。">
+  <meta name="robots" id="robotsMeta" content="index,follow">
   <link rel="canonical" id="canonicalLink" href="https://samhuang68.github.io/semiconductor-knowledge-hub/">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Semiconductor Knowledge Hub">
@@ -37,8 +38,8 @@
   <a class="skip-link" href="#mainContentArea" data-i18n="skip_to_content">跳至主要內容</a>
 
   <!-- 頂部閱讀進度指示條 -->
-  <div class="reading-progress-track" aria-hidden="true">
-    <div class="reading-progress-bar" id="readingProgressBar"></div>
+  <div class="reading-progress-track is-idle" id="readingProgressTrack" aria-hidden="true">
+    <div class="reading-progress-bar" id="readingProgressBar" role="progressbar" aria-label="閱讀進度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-valuetext="尚未閱讀章節"></div>
   </div>
 
   <!-- 頂部導覽列 -->

@@ -3,6 +3,7 @@
   .app-sidebar,
   .app-toc,
   .reading-progress-track,
+  .reading-meter,
   .back-to-top-btn,
   .home-actions,
   .route-crumb,
@@ -24,7 +25,10 @@
   .glossary-page h1,
   .glossary-entry h2,
   .further-reading,
-  .fab-flow-detail {
+  .fab-flow-detail,
+  .not-found h1,
+  .chapter-preview,
+  .chapter-preview-summary {
     color: #0f172a !important;
   }
 

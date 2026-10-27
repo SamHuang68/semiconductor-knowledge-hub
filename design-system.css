@@ -296,7 +296,8 @@ html.boot-home .app-toc,
 html.boot-explore .app-toc,
 body.is-home .app-toc,
 body.is-part .app-toc,
-body.is-glossary .app-toc {
+body.is-glossary .app-toc,
+body.is-missing .app-toc {
   display: none;
 }
 
@@ -457,8 +458,87 @@ body.is-glossary .app-toc {
 
 .glossary-page,
 .further-reading,
-.fab-flow {
+.fab-flow,
+.not-found,
+.chapter-preview,
+.reading-meter {
   min-width: 0;
+}
+
+.reading-progress-track.is-idle { visibility: hidden; }
+
+.reading-meter {
+  margin: 0 0 12px;
+  color: #334155;
+  font-size: 14px;
+}
+
+.chapter-preview-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
+  gap: 12px;
+  margin: 24px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.chapter-preview {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  height: 100%;
+  min-height: 44px;
+  padding: 16px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #0f172a;
+  text-decoration: none;
+}
+
+.chapter-preview strong {
+  font-size: 18px;
+  line-height: 1.35;
+}
+
+.chapter-preview-summary {
+  color: #334155;
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.chapter-pagination.is-compact {
+  margin: 0 0 20px;
+  padding-top: 0;
+  border-top: 0;
+}
+
+.page-nav-card { min-width: 0; }
+.nav-title { overflow-wrap: break-word; }
+
+.chapter-pagination .page-nav-card:last-child:not(:only-child) {
+  text-align: right;
+  align-items: flex-end;
+}
+
+.chapter-preview:focus-visible,
+.page-nav-card:focus-visible,
+.route-crumb a:focus-visible,
+.not-found a:focus-visible,
+.home-action:focus-visible {
+  outline: 3px solid #0f766e;
+  outline-offset: 3px;
+}
+
+.site-404 .app-header { height: auto; min-height: 64px; }
+.site-404 .brand-title { max-width: none; white-space: normal; }
+.site-404 .main-canvas { border-right: 0; max-width: 880px; }
+.site-404 .home-actions { flex-direction: column; align-items: stretch; }
+.site-404 .home-action { gap: 0.45em; justify-content: center; flex-wrap: wrap; }
+.site-404 .home-action [lang="en"]::before { content: "· "; font-weight: 550; }
+
+@media (prefers-reduced-motion: reduce) {
+  .reading-progress-bar { transition: none; }
 }
 
 .glossary-filter {

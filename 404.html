@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>找不到頁面 · Semiconductor Knowledge Hub</title>
+  <meta name="description" content="這個網址不在半導體製造概論知識庫裡。">
+  <meta name="robots" content="noindex">
+  <script>
+    (function () {
+      var marker = '/semiconductor-knowledge-hub/';
+      var at = location.pathname.indexOf(marker);
+      window.__SITE_ROOT = at >= 0 ? location.pathname.slice(0, at) + marker : './';
+      ['design-tokens.css', 'styles.css', 'design-system.css'].forEach(function (file) {
+        document.write('<link rel="stylesheet" href="' + window.__SITE_ROOT + file + '">');
+      });
+      document.write('<link rel="icon" type="image/svg+xml" href="' + window.__SITE_ROOT + 'assets/cover.svg">');
+    })();
+  </script>
+</head>
+<body class="site-404">
+  <a class="skip-link" href="#missingMain">跳至主要內容</a>
+  <header class="app-header">
+    <a class="brand-cluster" data-site-link="index.html#home" href="index.html#home">
+      <span class="brand-title">Semiconductor Knowledge Hub</span>
+    </a>
+  </header>
+  <main class="main-canvas" id="missingMain" tabindex="-1">
+    <article class="not-found">
+      <p class="ds-kicker">404</p>
+      <h1>這本書裡沒有這個頁面</h1>
+      <p class="home-lead">這個網址對不上任何章節、分部、術語或情境。教材本身沒有缺頁。</p>
+      <p class="home-lead" lang="en">This address does not match a chapter, a part, the glossary, or a scenario. The chapters themselves are unchanged.</p>
+      <div class="home-actions">
+        <a class="home-action is-primary" data-site-link="index.html#home" href="index.html#home">回到首頁 <span lang="en">Home</span></a>
+        <a class="home-action" data-site-link="index.html#explore" href="index.html#explore">進入情境探索 <span lang="en">Scenario map</span></a>
+        <a class="home-action" data-site-link="index.html#glossary" href="index.html#glossary">查術語 <span lang="en">Glossary</span></a>
+        <a class="home-action" data-site-link="index.html#ch00" href="index.html#ch00">從第 0 章開始 <span lang="en">Chapter 0</span></a>
+      </div>
+    </article>
+  </main>
+  <script>
+    document.querySelectorAll('[data-site-link]').forEach(function (link) {
+      link.setAttribute('href', window.__SITE_ROOT + link.getAttribute('data-site-link'));
+    });
+  </script>
+</body>
+</html>

@@ -14,6 +14,7 @@ import { connectionOrigin, originQuery } from './extended-exploration.js';
 import { scenarioForChapter, chapterReturnContext } from './data/scenario-paths.js';
 import { normalizeChapterHref } from './chapter-links.js';
 import { mountFabFlow } from './fab-flow-diagram.js';
+import { breadcrumbHtml, chapterPagerHtml, notFoundHtml, previewFromSnippet, readingProgressText } from './route-chrome.js';
 import { mountEngineeringObject } from './engineering-objects.js';
 import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
 
@@ -610,9 +611,13 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
     disposeCurrentEngineeringObject?.();
     disposeCurrentEngineeringObject = null;
     document.body.classList.remove('is-exploring');
-    showRoutePanel('dynamic');
+    showRoutePanel('chapter');
     const rawChapter = await loadChapterRecord(chId);
-    if (token !== chapterLoadToken || !rawChapter) return;
+    if (token !== chapterLoadToken) return;
+    if (!rawChapter) {
+      renderNotFound();
+      return;
+    }
     const chapter = getChapterData(rawChapter, currentLang);
     currentChapterId = chapter.id;
 
@@ -650,22 +655,17 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
       `;
     }
 
-    let paginationHtml = `
-      <div class="chapter-pagination">
-        ${prevChapter ? `
-          <a href="#${prevChapter.id}" class="page-nav-card" data-nav-target="${prevChapter.id}">
-            <span class="nav-direction">${t.prev_chapter}</span>
-            <span class="nav-title">${escapeHtml(prevChapter.shortTitle)}</span>
-          </a>
-        ` : '<div></div>'}
-        ${nextChapter ? `
-          <a href="#${nextChapter.id}" class="page-nav-card" style="text-align: right;" data-nav-target="${nextChapter.id}">
-            <span class="nav-direction">${t.next_chapter}</span>
-            <span class="nav-title">${escapeHtml(nextChapter.shortTitle)}</span>
-          </a>
-        ` : '<div></div>'}
-      </div>
-    `;
+    const asNav = (item, compact) => item ? { id: item.id, title: compact ? item.shortTitle : item.fullTitle } : null;
+    const topPager = chapterPagerHtml({ isEn: currentLang === 'en', prev: asNav(prevChapter, true), next: asNav(nextChapter, true), compact: true });
+    const paginationHtml = chapterPagerHtml({ isEn: currentLang === 'en', prev: asNav(prevChapter, false), next: asNav(nextChapter, false), compact: false });
+    const crumb = breadcrumbHtml({
+      isEn: currentLang === 'en',
+      items: [
+        { href: '#home', label: t.nav_home },
+        { href: `#part/${chapter.partId}`, label: chapter.part },
+        { label: chapter.shortTitle, current: true }
+      ]
+    });
 
     const isBookmarked = bookmarkedChapters.has(chapter.id);
     const relatedScenario = scenarioForChapter(chapter.id);
@@ -680,6 +680,9 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
     if (token !== chapterLoadToken) return;
     const routeDynamicEl = document.getElementById('route-dynamic');
     routeDynamicEl.innerHTML = `
+      ${crumb}
+      <p class="reading-meter" id="readingMeter"></p>
+      ${topPager}
       <a href="#explore/${returnContext ? returnContext.value : relatedScenario.id}${originQuery(origin)}" class="chapter-scenario-link">
         <span>${returnContext ? t.explore_scenario_return(escapeHtml(returnNodeTitle)) : t.explore_scenario_intro(escapeHtml(scenarioTitle))}</span>
         <span>${returnContext ? t.explore_continue : t.explore_open}</span>
@@ -740,13 +743,14 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
     await attachEngineeringObjectModel(chapter.id, currentLang, token);
     if (token !== chapterLoadToken) return;
     const { renderFurtherReading } = await import('./further-reading.js');
-    if (token !== chapterLoadToken) return;
+    if (token !== chapterLoadToken || !document.body.classList.contains('is-chapter')) return;
     const readingHtml = renderFurtherReading(chapter.id, currentLang);
-    const pagination = routeDynamicEl.querySelector('.chapter-pagination');
+    const pagination = routeDynamicEl.querySelector('#chapterPagerEnd');
     if (readingHtml && pagination) pagination.insertAdjacentHTML('beforebegin', readingHtml);
 
     // 捲動至頁首
     window.scrollTo({ top: 0, behavior: 'instant' });
+    updateReadingProgress();
     syncRouteMeta();
 
     // 手機版自動收合側邊欄
@@ -785,11 +789,7 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
    */
   window.addEventListener('scroll', () => {
     // 頂部進度條
-    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-    if (docHeight > 0 && readingProgressBar) {
-      const scrollPct = Math.min(100, Math.max(0, (window.scrollY / docHeight) * 100));
-      readingProgressBar.style.width = `${scrollPct}%`;
-    }
+    updateReadingProgress();
 
     // 回到頂部按鈕可見度
     if (backToTopBtn) {
@@ -1660,6 +1660,10 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
       renderRoute();
     } else if (hash) {
       const [chapterId, query = ''] = hash.split('?');
+      if (!CHAPTER_CATALOG.some(ch => ch.id === chapterId)) {
+        renderRoute();
+        return;
+      }
       const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
       const scrollRatio = maxScroll > 0 ? window.scrollY / maxScroll : 0;
       loadChapter(chapterId || currentChapterId, new URLSearchParams(query).get('from'), new URLSearchParams(query).get('via'));
@@ -1724,20 +1728,65 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
     const home = document.getElementById('route-home');
     const explore = document.getElementById('route-explore');
     const dynamic = document.getElementById('route-dynamic');
-    const panel = which === 'glossary' ? 'dynamic' : which;
+    const panel = which === 'home' || which === 'explore' ? which : 'dynamic';
     if (home) home.hidden = panel !== 'home';
     if (explore) explore.hidden = panel !== 'explore';
     if (dynamic) dynamic.hidden = panel !== 'dynamic';
     document.body.classList.toggle('is-home', which === 'home');
     document.body.classList.toggle('is-glossary', which === 'glossary');
-    document.body.classList.toggle('is-part', which === 'dynamic' && (location.hash || '').startsWith('#part/'));
+    document.body.classList.toggle('is-part', which === 'part');
+    document.body.classList.toggle('is-chapter', which === 'chapter');
+    document.body.classList.toggle('is-missing', which === 'missing');
     if (which !== 'explore') document.body.classList.remove('is-exploring');
     document.documentElement.classList.remove('boot-home', 'boot-explore', 'boot-dynamic');
     document.querySelectorAll('[data-route-link]').forEach(link => {
-      const on = link.getAttribute('data-route-link') === which || (which === 'dynamic' && link.getAttribute('data-route-link') === 'explore' && location.hash.startsWith('#explore'));
+      const on = link.getAttribute('data-route-link') === which;
       if (on) link.setAttribute('aria-current', 'page');
       else link.removeAttribute('aria-current');
     });
+  }
+
+  function updateReadingProgress() {
+    const track = document.getElementById('readingProgressTrack');
+    const active = document.body.classList.contains('is-chapter');
+    const isEn = currentLang === 'en';
+    if (!readingProgressBar) return;
+    let percent = 0;
+    if (active) {
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      percent = docHeight > 0 ? Math.min(100, Math.max(0, Math.round((window.scrollY / docHeight) * 100))) : 0;
+      track?.removeAttribute('aria-hidden');
+      track?.classList.remove('is-idle');
+    } else {
+      track?.setAttribute('aria-hidden', 'true');
+      track?.classList.add('is-idle');
+    }
+    const index = CHAPTER_CATALOG.findIndex(item => item.id === currentChapterId);
+    const text = readingProgressText({
+      isEn,
+      percent,
+      place: index >= 0 ? index + 1 : 0,
+      total: CHAPTER_CATALOG.length,
+      active
+    });
+    readingProgressBar.style.width = `${percent}%`;
+    readingProgressBar.setAttribute('aria-label', isEn ? 'Reading progress' : '閱讀進度');
+    readingProgressBar.setAttribute('aria-valuenow', String(percent));
+    readingProgressBar.setAttribute('aria-valuetext', text);
+    const label = document.getElementById('readingMeter');
+    if (label) label.textContent = text;
+  }
+
+  function renderNotFound() {
+    showRoutePanel('missing');
+    currentChapterId = '';
+    updateSidebarActive('');
+    if (tocListEl) tocListEl.innerHTML = '';
+    const isEn = currentLang === 'en';
+    document.getElementById('route-dynamic').innerHTML = notFoundHtml(isEn);
+    mainCanvasEl.focus({ preventScroll: true });
+    updateReadingProgress();
+    syncRouteMeta();
   }
 
   function partGroups() {
@@ -1754,6 +1803,7 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
   function renderHome() {
     showRoutePanel('home');
     currentChapterId = '';
+    updateSidebarActive('');
     const slot = document.getElementById('home-slot');
     const t = I18N[currentLang] || I18N.zh;
     const isEn = currentLang === 'en';
@@ -1767,12 +1817,14 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
       <div id="home-fab-flow"></div>
       <figure class="illus-slot home-figure"><img src="assets/generated/hero-cleanroom-aisle.webp" alt="${escapeHtml(isEn ? 'Illustrative cleanroom aisle with overhead transport, not a photograph of a named fab.' : '無塵室走道與天車的示意畫面，不是指名晶圓廠的照片。')}" width="1600" height="900" loading="lazy" data-illustrative="true"><figcaption><span class="illus-badge">示意 Illustrative</span>${escapeHtml(t.home_figure_caption)}</figcaption></figure>`;
     mountFabFlow(document.getElementById('home-fab-flow'), FAB_FLOW_NODES, isEn);
+    updateReadingProgress();
     syncRouteMeta();
   }
 
   async function renderGlossary() {
     showRoutePanel('glossary');
     currentChapterId = '';
+    updateSidebarActive('');
     if (tocListEl) tocListEl.innerHTML = '';
     const { renderGlossaryPage, bindGlossaryPage } = await import('./glossary-page.js');
     const now = window.location.hash || '';
@@ -1782,30 +1834,52 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
     host.innerHTML = renderGlossaryPage(currentLang, slug);
     bindGlossaryPage(host, slug);
     mainCanvasEl.focus({ preventScroll: true });
+    updateReadingProgress();
     syncRouteMeta();
   }
 
-  function renderPart(partId) {
+  async function renderPart(partId) {
     const group = partGroups().find(item => item.partId === partId);
     if (!group) {
-      loadChapter('ch00');
+      renderNotFound();
       return;
     }
-    showRoutePanel('dynamic');
-    document.body.classList.add('is-part');
+    showRoutePanel('part');
     currentChapterId = '';
+    updateSidebarActive('');
     const t = I18N[currentLang] || I18N.zh;
     const isEn = currentLang === 'en';
+    const previews = await Promise.all(group.chapters.map(async chapter => {
+      try {
+        const mod = await import(`./data/search/${chapter.id}.js`);
+        const snippet = isEn ? mod.entry.snippetEn : mod.entry.snippet;
+        const title = isEn ? (chapter.fullTitleEn || chapter.fullTitle) : chapter.fullTitle;
+        return previewFromSnippet(snippet, isEn, title);
+      } catch {
+        return '';
+      }
+    }));
+    if ((location.hash || '').slice(1).split('?')[0] !== `part/${partId}`) return;
     const name = isEn ? (group.partEn || group.part) : group.part;
     const lead = PART_LEADS[group.partId]?.[isEn ? 1 : 0] || '';
-    const items = group.chapters.map(chapter => {
+    const cards = group.chapters.map((chapter, index) => {
       const title = isEn ? (chapter.fullTitleEn || chapter.fullTitle) : chapter.fullTitle;
       const num = chapter.id.startsWith('app') ? t.appendix_prefix : `CH ${String(chapter.num).padStart(2, '0')}`;
-      return `<li><a class="part-chapter-link" href="#${chapter.id}"><span>${escapeHtml(num)}</span><strong>${escapeHtml(title)}</strong></a></li>`;
+      const summary = previews[index] ? `<span class="chapter-preview-summary">${escapeHtml(previews[index])}</span>` : '';
+      return `<li><a class="chapter-preview" href="#${chapter.id}"><span class="ds-kicker">${escapeHtml(num)}</span><strong>${escapeHtml(title)}</strong>${summary}</a></li>`;
     }).join('');
-    document.getElementById('route-dynamic').innerHTML = `<article class="part-entry"><nav class="route-crumb" aria-label="${isEn ? 'Breadcrumb' : '路徑'}"><a href="#home">${t.nav_home}</a><a href="#explore">${t.nav_explore}</a><span aria-current="page">${escapeHtml(name)}</span></nav><p class="ds-kicker">${t.part_kicker}</p><h1>${escapeHtml(name)}</h1><p class="home-lead">${escapeHtml(lead)}</p><ol class="part-chapter-list">${items}</ol></article>`;
+    const crumb = breadcrumbHtml({
+      isEn,
+      items: [
+        { href: '#home', label: t.nav_home },
+        { href: '#explore', label: t.nav_explore },
+        { label: name, current: true }
+      ]
+    });
+    document.getElementById('route-dynamic').innerHTML = `<article class="part-entry">${crumb}<p class="ds-kicker">${t.part_kicker}</p><h1>${escapeHtml(name)}</h1><p class="home-lead">${escapeHtml(lead)}</p><ol class="chapter-preview-list">${cards}</ol></article>`;
     if (tocListEl) tocListEl.innerHTML = '';
     mainCanvasEl.focus({ preventScroll: true });
+    updateReadingProgress();
     syncRouteMeta();
   }
 
@@ -1813,10 +1887,14 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
     const t = I18N[currentLang] || I18N.zh;
     const isEn = currentLang === 'en';
     const hash = window.location.hash || '#home';
+    const missing = document.body.classList.contains('is-missing');
     let title = isEn ? 'Semiconductor Knowledge Hub · Introduction to Semiconductor Manufacturing' : 'Semiconductor Knowledge Hub · 半導體製造概論知識庫';
     let description = isEn ? t.home_lead.replace(/<[^>]+>/g, '') : t.home_lead.replace(/<[^>]+>/g, '');
     let path = '';
-    if (hash === '#explore' || hash.startsWith('#explore/')) {
+    if (missing) {
+      title = isEn ? 'Page not found · Semiconductor Knowledge Hub' : '找不到頁面 · Semiconductor Knowledge Hub';
+      description = isEn ? 'This address does not match a chapter, a part, the glossary, or a scenario.' : '這個網址對不上任何章節、分部、術語或情境。';
+    } else if (hash === '#explore' || hash.startsWith('#explore/')) {
       title = isEn ? 'Scenario map · Semiconductor Knowledge Hub' : '情境探索 · Semiconductor Knowledge Hub';
       description = isEn ? 'An interactive map of the wafer journey, lithography, quality, packaging, and dispatch.' : '用互動流程圖看晶圓旅程、微影、品質、封裝與派工。';
       path = hash;
@@ -1855,18 +1933,20 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
     if (ogUrl) ogUrl.setAttribute('content', canonical);
     const canonicalLink = document.getElementById('canonicalLink');
     if (canonicalLink) canonicalLink.setAttribute('href', canonical);
+    const robots = document.getElementById('robotsMeta');
+    if (robots) robots.setAttribute('content', missing ? 'noindex' : 'index,follow');
     const ld = document.getElementById('siteJsonLd');
     if (ld) {
       ld.textContent = JSON.stringify({
         '@context': 'https://schema.org',
-        '@type': 'LearningResource',
+        '@type': missing ? 'WebPage' : 'LearningResource',
         name: title,
         description,
         inLanguage: isEn ? 'en' : 'zh-Hant',
         url: canonical,
         image: HERO_IMAGE,
         isAccessibleForFree: true,
-        learningResourceType: hash.startsWith('#ch') || hash.startsWith('#app-') ? 'lesson' : 'curriculum',
+        learningResourceType: missing ? undefined : (hash.startsWith('#ch') || hash.startsWith('#app-') ? 'lesson' : 'curriculum'),
         provider: { '@type': 'Organization', name: 'Semiconductor Knowledge Hub', url: SITE_ORIGIN }
       });
     }
@@ -1876,6 +1956,7 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
   function renderRoute() {
     disposeCurrentEngineeringObject?.();
     disposeCurrentEngineeringObject = null;
+    chapterLoadToken += 1;
     let hashValue = window.location.hash || '#home';
     const normalized = normalizeChapterHref(hashValue);
     if (normalized && normalized !== '#') hashValue = normalized;
@@ -1891,6 +1972,9 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
       if (tocListEl) tocListEl.innerHTML = '';
       appSidebarEl.classList.remove('is-open');
       sidebarBackdropEl.classList.remove('is-active');
+      currentChapterId = '';
+      updateSidebarActive('');
+      updateReadingProgress();
       syncRouteMeta();
     } else if (hash.startsWith('part/')) {
       renderPart(hash.slice(5).split('?')[0]);
@@ -1901,7 +1985,7 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
       if (CHAPTER_CATALOG.some(ch => ch.id === chapterId)) {
         loadChapter(chapterId, new URLSearchParams(query).get('from'), new URLSearchParams(query).get('via'));
       } else {
-        loadChapter('ch00');
+        renderNotFound();
       }
     }
   }
