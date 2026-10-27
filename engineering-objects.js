@@ -5497,7 +5497,7 @@ export function renderMemoryTechObject(container, lang = 'zh') {
       `;
 
       footerNote = t.ch13_dram_desc;
-      footerNote += ' 本例以 64/32 ms 刷新視窗比較保持時間；tREFI 則是刷新命令的平均間隔，兩者不同。實際刷新條件依記憶體料號與溫度規格。<a href="https://my.micron.com/content/dam/micron/global/public/products/white-paper/ddr5-new-features-white-paper.pdf" target="_blank" rel="noopener noreferrer">刷新命令與 tREFI 定義（Micron，第 2 頁）</a>。';
+      footerNote += ' 本例以 64/32 ms 刷新視窗比較保持時間；tREFI 則是刷新命令的平均間隔，兩者不同。實際刷新條件依記憶體料號與溫度規格。<a href="https://assets.micron.com/adobe/assets/urn:aaid:aem:5ea148c8-e3fe-489e-8489-99b1b9cdcd3c/renditions/original/as/ddr5-new-features-white-paper.pdf" target="_blank" rel="noopener noreferrer">刷新命令與 tREFI 定義（Micron，第 2 頁）</a>。';
     } else if (activeTab === 'nand') {
       controlsHtml = `
         <div class="eng-obj-slider-panel">

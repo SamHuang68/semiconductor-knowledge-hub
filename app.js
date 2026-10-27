@@ -109,6 +109,12 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
       btn_font_inc_title: '放大閱讀字體',
       btn_back_to_top_aria: '回到頂部',
       btn_back_to_top_title: '回到頂部',
+      skip_to_content: '跳至主要內容',
+      toc_toggle_aria: '展開或收合本頁段落大綱',
+      sound_on_aria: '音效已開啟，點擊關閉',
+      sound_off_aria: '音效已關閉，點擊開啟',
+      table_region: '可橫向捲動的表格',
+      search_result_count: n => `找到 ${n} 筆結果`,
       sidebar_nav_aria: '章節樹狀導覽',
       app_toc_aria: '本頁大綱',
       or_word: '或',
@@ -201,6 +207,12 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
       btn_font_inc_title: 'Increase reading font size',
       btn_back_to_top_aria: 'Back to top',
       btn_back_to_top_title: 'Back to top',
+      skip_to_content: 'Skip to main content',
+      toc_toggle_aria: 'Show or hide the on-this-page outline',
+      sound_on_aria: 'Sound is on. Activate to mute.',
+      sound_off_aria: 'Sound is off. Activate to turn on.',
+      table_region: 'Horizontally scrollable table',
+      search_result_count: n => `${n} results`,
       sidebar_nav_aria: 'Chapter navigation tree',
       app_toc_aria: 'Table of contents',
       or_word: 'or',
@@ -248,11 +260,18 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
   // 音效切換按鈕監聽
   const soundToggleBtn = document.getElementById('soundToggleBtn');
   const soundIcon = document.getElementById('soundIcon');
+  function syncSoundButton() {
+    if (!soundToggleBtn || !soundIcon) return;
+    const enabled = isSoundEnabled();
+    const t = I18N[currentLang] || I18N.zh;
+    soundIcon.textContent = enabled ? '🔊' : '🔇';
+    soundToggleBtn.setAttribute('aria-pressed', enabled ? 'true' : 'false');
+    soundToggleBtn.setAttribute('aria-label', enabled ? t.sound_on_aria : t.sound_off_aria);
+  }
   if (soundToggleBtn && soundIcon) {
-    soundIcon.textContent = isSoundEnabled() ? '🔊' : '🔇';
     soundToggleBtn.addEventListener('click', () => {
       const enabled = toggleSound();
-      soundIcon.textContent = enabled ? '🔊' : '🔇';
+      syncSoundButton();
       if (enabled) playSound('click');
     });
   }
@@ -277,6 +296,11 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
   const backToTopBtn = document.getElementById('backToTopBtn');
   const studyProgressText = document.getElementById('studyProgressText');
   const studyProgressBar = document.getElementById('studyProgressBar');
+  const studyProgressMeter = document.getElementById('studyProgressMeter');
+  const searchStatusEl = document.getElementById('searchStatus');
+  const appTocEl = document.querySelector('.app-toc');
+  const tocDrawerToggle = document.getElementById('tocDrawerToggle');
+  const appFooterEl = document.querySelector('.app-footer');
 
   const atlasModalEl = document.getElementById('atlasModal');
   const atlasGridEl = document.getElementById('atlasGrid');
@@ -335,6 +359,11 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
     }
     if (studyProgressBar) {
       studyProgressBar.style.width = `${pct}%`;
+    }
+    if (studyProgressMeter) {
+      studyProgressMeter.setAttribute('aria-valuenow', String(coreCount));
+      studyProgressMeter.setAttribute('aria-valuemax', String(totalCoreChapters));
+      studyProgressMeter.setAttribute('aria-valuetext', studyProgressText ? studyProgressText.textContent : `${pct}%`);
     }
   }
 
@@ -612,6 +641,11 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
     }
     mainCanvasEl.querySelectorAll('.article-body a[href]').forEach(link => {
       link.setAttribute('href', normalizeChapterHref(link.getAttribute('href')));
+    });
+    mainCanvasEl.querySelectorAll('.table-container').forEach(region => {
+      region.setAttribute('tabindex', '0');
+      region.setAttribute('role', 'region');
+      region.setAttribute('aria-label', t.table_region);
     });
 
     // 輕量更新側邊欄高亮，避免重複重建整個目錄 DOM
@@ -1203,9 +1237,11 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
     if (!searchResultsEl) return;
     const isEn = currentLang === 'en';
     const t = I18N[currentLang] || I18N.zh;
+    const announce = message => { if (searchStatusEl) searchStatusEl.textContent = message; };
 
     if (!keyword || keyword.trim() === '') {
       searchResultsEl.innerHTML = `<div style="padding: 16px; font-size: 13px; color: var(--text-muted); text-align: center;">${t.search_empty_hint}</div>`;
+      announce(t.search_empty_hint);
       return;
     }
     const q = keyword.trim().toLowerCase();
@@ -1221,8 +1257,10 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
 
     if (hits.length === 0) {
       searchResultsEl.innerHTML = `<div style="padding: 24px; text-align: center; color: var(--text-muted);">${t.search_not_found(keyword)}</div>`;
+      announce(t.search_not_found(keyword));
       return;
     }
+    announce(t.search_result_count(hits.length));
 
     let html = '';
     hits.forEach(hit => {
@@ -1243,8 +1281,10 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
               </button>
             </div>
           </div>
-          <div class="jargon-term" style="cursor: pointer;" data-search-target="${hit.chId}" data-jump-model="false">${escapeHtml(title)}</div>
-          <div class="jargon-meaning" style="font-size: 13px; cursor: pointer;" data-search-target="${hit.chId}" data-jump-model="false">${escapeHtml(snippet)}...</div>
+          <button type="button" class="search-result-jump" data-search-target="${hit.chId}" data-jump-model="false">
+            <span class="jargon-term">${escapeHtml(title)}</span>
+            <span class="jargon-meaning" style="font-size: 13px;">${escapeHtml(snippet)}...</span>
+          </button>
         </div>
       `;
     });
@@ -1391,6 +1431,7 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
       copyBtn.type = 'button';
       copyBtn.textContent = t.btn_copy_code;
       copyBtn.title = t.btn_copy_code;
+      copyBtn.setAttribute('aria-label', t.btn_copy_code);
       copyBtn.addEventListener('click', (e) => {
         e.stopPropagation();
         const code = pre.querySelector('code')?.innerText || pre.innerText;
@@ -1458,6 +1499,8 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
       btn.classList.toggle('is-active', isActive);
       btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
     });
+    syncSoundButton();
+    syncHeaderOffset();
 
     // 更新進度條文字
     updateStudyProgress();
@@ -1523,8 +1566,12 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
   // 2. 側邊欄切換 Tab (全部 / 已讀 / 收藏)
   document.querySelectorAll('.side-tab-pill').forEach(pill => {
     pill.addEventListener('click', () => {
-      document.querySelectorAll('.side-tab-pill').forEach(p => p.classList.remove('is-active'));
+      document.querySelectorAll('.side-tab-pill').forEach(p => {
+        p.classList.remove('is-active');
+        p.setAttribute('aria-pressed', 'false');
+      });
       pill.classList.add('is-active');
+      pill.setAttribute('aria-pressed', 'true');
       activeSidebarFilterMode = pill.getAttribute('data-filter-mode');
       renderSidebar(chapterFilterEl ? chapterFilterEl.value : '');
     });
@@ -1695,8 +1742,12 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
     // 行話字典 Tab 切換
     const tabPill = e.target.closest('.tab-pill');
     if (tabPill) {
-      document.querySelectorAll('.tab-pill').forEach(p => p.classList.remove('is-active'));
+      document.querySelectorAll('.tab-pill').forEach(p => {
+        p.classList.remove('is-active');
+        p.setAttribute('aria-pressed', 'false');
+      });
       tabPill.classList.add('is-active');
+      tabPill.setAttribute('aria-pressed', 'true');
       activeJargonTab = tabPill.getAttribute('data-tab');
       renderJargonModal(jargonSearchInput ? jargonSearchInput.value : '', activeJargonTab);
       return;
@@ -1783,6 +1834,19 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
     // 忽略在輸入框中的按鍵
     const isInputActive = document.activeElement && (document.activeElement.tagName === 'INPUT' || document.activeElement.tagName === 'TEXTAREA');
 
+    if (searchModalEl?.classList.contains('is-open') && (e.key === 'ArrowDown' || e.key === 'ArrowUp')) {
+      const items = [...searchModalEl.querySelectorAll('[data-search-target]')];
+      if (items.length) {
+        e.preventDefault();
+        const current = items.indexOf(document.activeElement);
+        const nextIndex = current === -1
+          ? (e.key === 'ArrowUp' ? items.length - 1 : 0)
+          : (e.key === 'ArrowDown' ? Math.min(items.length - 1, current + 1) : Math.max(0, current - 1));
+        items[nextIndex].focus();
+      }
+      return;
+    }
+
     // Esc 關閉所有彈窗
     if (e.key === 'Escape') {
       closeAtlasModal();
@@ -1863,9 +1927,65 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
     }
   });
 
+  function syncHeaderOffset() {
+    const header = document.querySelector('.app-header');
+    if (!header) return;
+    document.documentElement.style.setProperty('--header-offset', `${header.offsetHeight}px`);
+  }
+
+  let drawerWasOpen = false;
+  function syncDrawerA11y() {
+    if (!appSidebarEl || !mobileToggleBtn) return;
+    const drawer = window.matchMedia('(max-width: 860px)').matches;
+    const open = appSidebarEl.classList.contains('is-open');
+    const hide = drawer && !open;
+    const focusInside = appSidebarEl.contains(document.activeElement);
+    appSidebarEl.inert = hide;
+    appSidebarEl.toggleAttribute('aria-hidden', hide);
+    mobileToggleBtn.setAttribute('aria-expanded', drawer && open ? 'true' : 'false');
+    const lock = drawer && open;
+    if (mainCanvasEl) mainCanvasEl.inert = lock;
+    if (appFooterEl) appFooterEl.inert = lock;
+    if (appTocEl) appTocEl.inert = lock;
+    if (lock && !drawerWasOpen) chapterFilterEl?.focus();
+    if (!open && drawerWasOpen && focusInside) mobileToggleBtn.focus();
+    drawerWasOpen = open;
+  }
+
+  function syncTocDrawer() {
+    if (!appTocEl || !tocDrawerToggle) return;
+    const narrow = window.matchMedia('(max-width: 1200px)').matches;
+    if (!narrow) {
+      appTocEl.classList.remove('is-collapsed');
+      tocDrawerToggle.setAttribute('aria-expanded', 'true');
+      return;
+    }
+    if (!appTocEl.dataset.userToggled) appTocEl.classList.add('is-collapsed');
+    tocDrawerToggle.setAttribute('aria-expanded', appTocEl.classList.contains('is-collapsed') ? 'false' : 'true');
+  }
+
+  if (tocDrawerToggle && appTocEl) {
+    tocDrawerToggle.addEventListener('click', () => {
+      appTocEl.dataset.userToggled = '1';
+      appTocEl.classList.toggle('is-collapsed');
+      tocDrawerToggle.setAttribute('aria-expanded', appTocEl.classList.contains('is-collapsed') ? 'false' : 'true');
+    });
+  }
+  if (appSidebarEl) {
+    new MutationObserver(syncDrawerA11y).observe(appSidebarEl, { attributes: true, attributeFilter: ['class'] });
+  }
+  window.addEventListener('resize', () => {
+    syncHeaderOffset();
+    syncDrawerA11y();
+    syncTocDrawer();
+  });
+
   // 初始載入與初始化
   applyFontSize(currentFontSize);
   applyLanguageUI();
+  syncHeaderOffset();
+  syncDrawerA11y();
+  syncTocDrawer();
   renderRoute();
 
 })();
