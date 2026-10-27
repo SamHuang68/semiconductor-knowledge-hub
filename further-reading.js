@@ -79,7 +79,7 @@ const SOURCES = {
   ch22: [
     book('Reliability Physics and Engineering: Time-To-Failure Modeling', 'J. W. McPherson', '9783319936826', '附錄 C 把這本書列為第 22 章的可靠度讀本。', 'Appendix C lists this book for reliability in chapter 22.'),
     link('conference', 'IEEE IRPS', 'https://www.irps.org/', '附錄 C 把 IRPS 列為可靠度物理的會議。', 'Appendix C lists IRPS for reliability physics.'),
-    link('consortium', 'AEC documents, including AEC-Q100', 'http://www.aecouncil.com/AECDocuments.html', '附錄 C 把 AEC-Q100 列為車用積體電路的可靠度驗證。這一頁是 AEC 公開的文件清單。', 'Appendix C lists AEC-Q100 for automotive IC qualification. This page is the AEC public document list.')
+    link('standard', 'AEC-Q100 Rev J1: Failure Mechanism Based Stress Test Qualification for Integrated Circuits', 'http://www.aecouncil.com/files/Documents/AEC%20Q100-Rev%20J1.pdf', '附錄 C 把 AEC-Q100 列為車用積體電路的可靠度驗證。這份 PDF 是 Automotive Electronics Council 公開的 Rev J1。', 'Appendix C lists AEC-Q100 for automotive IC qualification. This PDF is the Automotive Electronics Council public Rev J1.')
   ],
   ch23: [
     book('Factory Physics', 'Wallace J. Hopp, Mark L. Spearman', '9781577667391', '附錄 C 把這本書列在工廠運作，對應第 1、23 章。', 'Appendix C lists this book for fab operations, chapters 1 and 23.'),
