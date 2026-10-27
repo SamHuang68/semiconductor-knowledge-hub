@@ -3,6 +3,7 @@ import { renderConnections, bindConnections, connectionOrigin, originQuery, rend
 import { SCENARIOS, getScenario } from './data/scenario-paths.js';
 import { CHAPTERS_DATA } from './data/chapters-data.js';
 import { waferArt, crossSection, packageArt, journeyArt, dispatchArt, renderComparison, bindComparison, comparisonIsOpen } from './scenario-diagrams.js';
+import { renderExploreVisuals, bindIllustrationSlots } from './hub-visuals.js';
 import { signalPreview, renderSignalLab, bindSignalLab, signalIsOpen } from './signal-reading.js';
 import { hasPractice, renderPractice, bindPractice } from './scenario-practice.js';
 
@@ -191,8 +192,10 @@ export function renderExplorer(container, hash) {
     <p class="scenario-boundary"><strong>${boundaryLead}</strong>${esc(sBoundary)}</p><p class="explorer-status" role="status" aria-live="polite">${statusViewing}</p></section>
     ${renderConnections(s, n)}
     ${renderPractice(s.id)}
+    ${renderExploreVisuals(isEn)}
     <section class="explorer-library"><div><p class="explorer-kicker">${libraryKicker}</p><h2>${libraryH2}</h2><p>${libraryP}</p></div><div class="library-links">${libraryLinks}</div></section>
   </div>`;
+  bindIllustrationSlots(container);
   container.querySelector('#detailTitle').insertAdjacentHTML('afterend', renderConnectionReturn(origin));
   carryConnectionOrigin(container, s, origin);
   bindNavigation(container, s, n, origin);
