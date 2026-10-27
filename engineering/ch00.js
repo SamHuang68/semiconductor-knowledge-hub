@@ -250,7 +250,7 @@ export function renderChipJourneyObject(container, lang = 'zh') {
               <rect x="0" y="0" width="165" height="300" rx="6" fill="#09131b" stroke="#f59e0b" stroke-width="2"/>
               <rect x="0" y="0" width="165" height="35" rx="6" fill="#f59e0b"/>
               <text x="82" y="23" text-anchor="middle" fill="#09131b" font-size="12" font-weight="800">3. BEOL 後段</text>
-              <text x="82" y="60" text-anchor="middle" fill="#f59e0b" font-size="11" font-weight="700">多層銅導線網絡</text>
+              <text x="82" y="60" text-anchor="middle" fill="#f59e0b" font-size="11" font-weight="700">多層銅導線網路</text>
               <text x="15" y="90" fill="#cbd5e1" font-size="10">• 雙載子鑲嵌製程</text>
               <text x="15" y="115" fill="#cbd5e1" font-size="10">• Low-k 超低介電質</text>
               <text x="15" y="140" fill="#cbd5e1" font-size="10">• 銅電鍍超填 (Superfill)</text>

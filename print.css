@@ -1,0 +1,46 @@
+@media print {
+  .app-header,
+  .app-sidebar,
+  .app-toc,
+  .reading-progress-track,
+  .back-to-top-btn,
+  .home-actions,
+  .route-crumb,
+  .sidebar-backdrop,
+  .theme-switch-cluster,
+  .lang-switch-cluster {
+    display: none !important;
+  }
+
+  html, body, .main-canvas, .home-hero, .part-entry, .explorer, .article-body {
+    background: #ffffff !important;
+    color: #0f172a !important;
+  }
+
+  .home-hero h1,
+  .part-entry h1,
+  .article-headline,
+  .explorer-hero h1 {
+    color: #0f172a !important;
+  }
+
+  a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 10pt;
+    word-break: break-all;
+  }
+
+  .home-hero,
+  .part-entry,
+  .explorer-hero,
+  .chapter-figure,
+  .illus-slot,
+  .part-card {
+    break-inside: avoid;
+  }
+
+  .illus-slot img,
+  .chapter-figure svg {
+    max-width: 100% !important;
+  }
+}

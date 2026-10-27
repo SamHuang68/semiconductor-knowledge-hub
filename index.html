@@ -4,7 +4,24 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Semiconductor Knowledge Hub · 半導體製造概論知識庫</title>
-  <meta name="description" content="從沙子到晶片的完整晶圓製造旅程，涵蓋 25 章 FEOL/BEOL 模組、CMOS/FinFET/GAA 整合、良率量測與 CoWoS/SoIC 先進封裝。">
+  <meta name="description" content="從沙子到晶片的半導體製造教材。25 章、5 個互動情境、12 個製程模組，中英對照，不收錄未標出處的數字。">
+  <link rel="canonical" id="canonicalLink" href="https://samhuang68.github.io/semiconductor-knowledge-hub/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Semiconductor Knowledge Hub">
+  <meta property="og:locale" content="zh_TW">
+  <meta property="og:title" id="ogTitle" content="Semiconductor Knowledge Hub · 半導體製造概論知識庫">
+  <meta property="og:description" id="ogDescription" content="從沙子到晶片的半導體製造教材。25 章、5 個互動情境、12 個製程模組，中英對照。">
+  <meta property="og:url" id="ogUrl" content="https://samhuang68.github.io/semiconductor-knowledge-hub/">
+  <meta property="og:image" content="https://samhuang68.github.io/semiconductor-knowledge-hub/assets/generated/hero-cleanroom-aisle.webp">
+  <meta property="og:image:width" content="1600">
+  <meta property="og:image:height" content="900">
+  <meta property="og:image:alt" content="AI 生成的無塵室走道示意圖，不是真實晶圓廠的照片。">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" id="twitterTitle" content="Semiconductor Knowledge Hub · 半導體製造概論知識庫">
+  <meta name="twitter:description" id="twitterDescription" content="從沙子到晶片的半導體製造教材。25 章、5 個互動情境、12 個製程模組，中英對照。">
+  <meta name="twitter:image" content="https://samhuang68.github.io/semiconductor-knowledge-hub/assets/generated/hero-cleanroom-aisle.webp">
+  <meta name="twitter:image:alt" content="AI 生成的無塵室走道示意圖，不是真實晶圓廠的照片。">
+  <script type="application/ld+json" id="siteJsonLd">{"@context":"https://schema.org","@type":"LearningResource","name":"Semiconductor Knowledge Hub","description":"從沙子到晶片的半導體製造教材。25 章、5 個互動情境、12 個製程模組，中英對照。","inLanguage":["zh-Hant","en"],"url":"https://samhuang68.github.io/semiconductor-knowledge-hub/","image":"https://samhuang68.github.io/semiconductor-knowledge-hub/assets/generated/hero-cleanroom-aisle.webp","isAccessibleForFree":true,"learningResourceType":"curriculum","provider":{"@type":"Organization","name":"Semiconductor Knowledge Hub","url":"https://samhuang68.github.io/semiconductor-knowledge-hub/"}}</script>
   <link rel="stylesheet" href="design-tokens.css">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="scenario-explorer.css">
@@ -12,6 +29,7 @@
   <link rel="stylesheet" href="legend-viewer.css">
   <link rel="stylesheet" href="engineering-objects.css">
   <link rel="stylesheet" href="design-system.css">
+  <link rel="stylesheet" href="print.css" media="print">
   <link rel="icon" type="image/svg+xml" href="assets/cover.svg">
 </head>
 <body>
@@ -30,7 +48,7 @@
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
       </button>
 
-      <a href="#ch00" class="brand-cluster">
+      <a href="#home" class="brand-cluster" data-route-link="home">
         <div class="wafer-logo-icon" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <circle cx="12" cy="12" r="10"></circle>
@@ -54,6 +72,7 @@
       <!-- 主題切換按鈕群組 (亮色 / 暗色 / 500nm 黃光微影濾光模式) -->
       <div class="theme-switch-cluster" role="group" aria-label="Theme Switcher">
         <button type="button" class="theme-btn is-active" data-theme="light" title="亮色微暖工程模式 (Light Mode)" aria-pressed="true" data-i18n-title="theme_light_title" data-i18n-aria="theme_light_title">☀️</button>
+        <button type="button" class="theme-btn" data-color-scheme="dark" title="深色模式 (Dark Mode)" aria-pressed="false" data-i18n-title="theme_dark_title" data-i18n-aria="theme_dark_title">🌙</button>
         <button type="button" class="theme-btn" data-theme="litho-amber" title="無塵室 500nm 黃光微影濾光模式 (Litho Amber Mode)" aria-pressed="false" data-i18n-title="theme_amber_title" data-i18n-aria="theme_amber_title">🟡</button>
       </div>
 
@@ -62,7 +81,8 @@
         <span id="soundIcon">🔊</span>
       </button>
 
-      <a href="#explore" class="tool-btn explore-entry" data-i18n="nav_explore">情境探索</a>
+      <a href="#home" class="tool-btn explore-entry" data-route-link="home" data-i18n="nav_home">首頁</a>
+      <a href="#explore" class="tool-btn explore-entry" data-route-link="explore" data-i18n="nav_explore">情境探索</a>
       <button type="button" class="tool-btn" id="openAtlasBtn" title="開啟 12 大製程全景流程圖 (快捷鍵: M)" data-i18n-title="btn_atlas_title" data-i18n-aria="btn_atlas_title">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
         <span data-i18n="nav_atlas">製程全景圖</span>
@@ -127,10 +147,63 @@
 
     <!-- 中央主要閱讀主體 -->
     <main class="main-canvas" id="mainContentArea" tabindex="-1">
-      <div style="padding: 40px; text-align: center; color: var(--text-muted);" data-i18n="loading_text">
-        正在載入半導體製造核心教材...
+      <div id="route-home" class="route-panel">
+        <header class="home-hero">
+          <p class="ds-kicker" data-i18n="home_kicker">半導體製造概論</p>
+          <h1 data-i18n="home_h1">從沙子到晶片，<br>先建立一張能走完的地圖</h1>
+          <p class="home-lead" data-i18n="home_lead">這座知識庫用 25 章教材、5 個互動情境、12 個製程模組，把晶圓從進廠到出貨串起來。圖上的數字只來自本書目錄或標得出處的公開標準。</p>
+          <div class="home-actions">
+            <a class="home-action is-primary" href="#explore" data-i18n="home_cta_explore">進入情境探索</a>
+            <a class="home-action" href="#part/part-0" data-i18n="home_cta_part">從第 0 部開始</a>
+          </div>
+        </header>
+        <div id="home-slot"></div>
       </div>
+      <div id="route-explore" class="route-panel" hidden>
+        <div class="explorer">
+          <header class="explorer-hero">
+            <div class="hero-copy">
+              <p class="explorer-kicker" data-i18n="explore_hero_kicker">半導體製造概論 · 互動學習地圖</p>
+              <h1 data-i18n="explore_hero_h1">先看懂流程<br>再深入每一站</h1>
+              <p data-i18n="explore_hero_lead">跟著一片晶圓，串起製程、品質與封裝。<br class="desktop-break">選一個問題，從圖中找到答案。</p>
+              <div class="hero-links">
+                <a href="#explore/journey/wafer" data-i18n="explore_hero_start">開始晶圓旅程 <span aria-hidden="true">↗</span></a>
+                <a href="#ch00" data-i18n="explore_hero_read">閱讀完整教材 →</a>
+              </div>
+              <div class="hero-stats" data-i18n="explore_hero_stats"><span><b>25</b> 章教材</span><span><b>5</b> 種探索情境</span><span><b>12</b> 個製程模組</span></div>
+            </div>
+            <div class="hero-wafer" id="explore-hero-wafer">
+              <div class="hero-wafer-frame">
+                <svg viewBox="0 0 360 280" role="img" aria-label="空白晶圓示意：晶粒格、缺口與平坦邊，未按比例">
+    <path d="M259 178 A104 104 0 1 0 259 78 Z" fill="#e2e8f0" stroke="#334155" stroke-width="2"/>
+    <path d="M252 174 A96 96 0 1 0 252 82 Z" fill="#f8fafc" stroke="#64748b"/>
+    <rect x="132" y="36" width="15" height="15" fill="#99f6e4" stroke="#0f766e" stroke-width="0.6"/><rect x="150" y="36" width="15" height="15" fill="#99f6e4" stroke="#0f766e" stroke-width="0.6"/><rect x="168" y="36" width="15" height="15" fill="#fde68a" stroke="#0f766e" stroke-width="0.6"/><rect x="96" y="54" width="15" height="15" fill="#99f6e4" stroke="#0f766e" stroke-width="0.6"/><rect x="114" y="54" width="15" height="15" fill="#99f6e4" stroke="#0f766e" stroke-width="0.6"/><rect x="132" y="54" width="15" height="15" fill="#99f6e4" stroke="#0f766e" stroke-width="0.6"/><rect x="150" y="54" width="15" height="15" fill="#fde68a" stroke="#0f766e" stroke-width="0.6"/><rect x="168" y="54" width="15" height="15" fill="#99f6e4" stroke="#0f766e" stroke-width="0.6"/><rect x="186" y="54" width="15" height="15" fill="#99f6e4" stroke="#0f766e" stroke-width="0.6"/><rect x="204" y="54" width="15" height="15" fill="#99f6e4" stroke="#0f766e" stroke-width="0.6"/><rect x="96" y="72" width="15" height="15" fill="#99f6e4" stroke="#0f766e" stroke-width="0.6"/><rect x="114" y="72" width="15" height="15" fill="#99f6e4" stroke="#0f766e" stroke-width="0.6"/><rect x="132" y="72" width="15" height="15" fill="#fde68a" stroke="#0f766e" stroke-width="0.6"/><rect x="150" y="72" width="15" height="15" fill="#99f6e4" stroke="#0f766e" stroke-width="0.6"/><rect x="168" y="72" width="15" height="15" fill="#99f6e4" stroke="#0f766e" stroke-width="0.6"/><rect x="186" y="72" width="15" height="15" fill="#99f6e4" stroke="#0f766e" stroke-width="0.6"/><rect x="204" y="72" width="15" height="15" fill="#99f6e4" stroke="#0f766e" stroke-width="0.6"/><rect x="78" y="90" width="15" height="15" fill="#99f6e4" stroke="#0f766e" stroke-width="0.6"/><rect x="96" y="90" width="15" height="15" fill="#99f6e4" stroke="#0f766e" stroke-width="0.6"/><rect x="114" y="90" width="15" height="15" fill="#fde68a" stroke="#0f766e" stroke-width="0.6"/><rect x="132" y="90" width="15" height="15" fill="#99f6e4" stroke="#0f766e" stroke-width="0.6"/><rect x="150" y="90" width="15" height="15" fill="#99f6e4" stroke="#0f766e" stroke-width="0.6"/><rect x="168" y="90" width="15" height="15" fill="#99f6e4" stroke="#0f766e" stroke-width="0.6"/><rect x="186" y="90" width="15" height="15" fill="#99f6e4" stroke="#0f766e" stroke-width="0.6"/><rect x="204" y="90" width="15" height="15" fill="#fde68a" stroke="#0f766e" stroke-width="0.6"/><rect x="222" y="90" width="15" height="15" fill="#99f6e4" stroke="#0f766e" stroke-width="0.6"/><rect x="78" y="108" width="15" height="15" fill="#99f6e4" stroke="#0f766e" stroke-width="0.6"/><rect x="96" y="108" width="15" height="15" fill="#fde68a" stroke="#0f766e" stroke-width="0.6"/><rect x="114" y="108" width="15" height="15" fill="#99f6e4" stroke="#0f766e" stroke-width="0.6"/><rect x="132" y="108" width="15" height="15" fill="#99f6e4" stroke="#0f766e" stroke-width="0.6"/><rect x="150" y="108" width="15" height="15" fill="#99f6e4" stroke="#0f766e" stroke-width="0.6"/><rect x="168" y="108" width="15" height="15" fill="#99f6e4" stroke="#0f766e" stroke-width="0.6"/><rect x="186" y="108" width="15" height="15" fill="#fde68a" stroke="#0f766e" stroke-width="0.6"/><rect x="204" y="108" width="15" height="15" fill="#99f6e4" stroke="#0f766e" stroke-width="0.6"/><rect x="222" y="108" width="15" height="15" fill="#99f6e4" stroke="#0f766e" stroke-width="0.6"/><rect x="78" y="126" width="15" height="15" fill="#fde68a" stroke="#0f766e" stroke-width="0.6"/><rect x="96" y="126" width="15" height="15" fill="#99f6e4" stroke="#0f766e" stroke-width="0.6"/><rect x="114" y="126" width="15" height="15" fill="#99f6e4" stroke="#0f766e" stroke-width="0.6"/><rect x="132" y="126" width="15" height="15" fill="#99f6e4" stroke="#0f766e" stroke-width="0.6"/><rect x="150" y="126" width="15" height="15" fill="#99f6e4" stroke="#0f766e" stroke-width="0.6"/><rect x="168" y="126" width="15" height="15" fill="#fde68a" stroke="#0f766e" stroke-width="0.6"/><rect x="186" y="126" width="15" height="15" fill="#99f6e4" stroke="#0f766e" stroke-width="0.6"/><rect x="204" y="126" width="15" height="15" fill="#99f6e4" stroke="#0f766e" stroke-width="0.6"/><rect x="222" y="126" width="15" height="15" fill="#99f6e4" stroke="#0f766e" stroke-width="0.6"/><rect x="96" y="144" width="15" height="15" fill="#99f6e4" stroke="#0f766e" stroke-width="0.6"/><rect x="114" y="144" width="15" height="15" fill="#99f6e4" stroke="#0f766e" stroke-width="0.6"/><rect x="132" y="144" width="15" height="15" fill="#99f6e4" stroke="#0f766e" stroke-width="0.6"/><rect x="150" y="144" width="15" height="15" fill="#fde68a" stroke="#0f766e" stroke-width="0.6"/><rect x="168" y="144" width="15" height="15" fill="#99f6e4" stroke="#0f766e" stroke-width="0.6"/><rect x="186" y="144" width="15" height="15" fill="#99f6e4" stroke="#0f766e" stroke-width="0.6"/><rect x="204" y="144" width="15" height="15" fill="#99f6e4" stroke="#0f766e" stroke-width="0.6"/><rect x="96" y="162" width="15" height="15" fill="#99f6e4" stroke="#0f766e" stroke-width="0.6"/><rect x="114" y="162" width="15" height="15" fill="#99f6e4" stroke="#0f766e" stroke-width="0.6"/><rect x="132" y="162" width="15" height="15" fill="#fde68a" stroke="#0f766e" stroke-width="0.6"/><rect x="150" y="162" width="15" height="15" fill="#99f6e4" stroke="#0f766e" stroke-width="0.6"/><rect x="168" y="162" width="15" height="15" fill="#99f6e4" stroke="#0f766e" stroke-width="0.6"/><rect x="186" y="162" width="15" height="15" fill="#99f6e4" stroke="#0f766e" stroke-width="0.6"/><rect x="204" y="162" width="15" height="15" fill="#99f6e4" stroke="#0f766e" stroke-width="0.6"/><rect x="132" y="180" width="15" height="15" fill="#99f6e4" stroke="#0f766e" stroke-width="0.6"/><rect x="150" y="180" width="15" height="15" fill="#99f6e4" stroke="#0f766e" stroke-width="0.6"/><rect x="168" y="180" width="15" height="15" fill="#99f6e4" stroke="#0f766e" stroke-width="0.6"/>
+    <path d="M150 230 l18 -12 18 12" fill="#f8fafc" stroke="#334155"/>
+    <text x="168" y="132" text-anchor="middle" fill="#0f172a" font-size="13" font-weight="700">Si</text>
+    <text x="168" y="262" text-anchor="middle" fill="#334155" font-size="12">未按比例 · 缺口朝下，右側是平坦邊</text>
+  </svg>
+              </div>
+              <span data-i18n="explore_hero_caption">從晶圓，到每一顆晶粒</span>
+            </div>
+          </header>
+          <div id="explore-slot"></div>
+        </div>
+      </div>
+      <div id="route-dynamic" class="route-panel" hidden></div>
     </main>
+    <script>
+      (function () {
+        var hash = location.hash || '';
+        var home = document.getElementById('route-home');
+        var explore = document.getElementById('route-explore');
+        var dynamic = document.getElementById('route-dynamic');
+        var mode = (!hash || hash === '#home') ? 'home' : (hash === '#explore' || hash.indexOf('#explore/') === 0) ? 'explore' : 'dynamic';
+        home.hidden = mode !== 'home';
+        explore.hidden = mode !== 'explore';
+        dynamic.hidden = mode !== 'dynamic';
+        document.documentElement.classList.add(mode === 'explore' ? 'boot-explore' : mode === 'home' ? 'boot-home' : 'boot-dynamic');
+      })();
+    </script>
 
     <!-- 右側頁內目錄 -->
     <aside class="app-toc" aria-label="本頁大綱" data-i18n-aria="app_toc_aria">
@@ -138,9 +211,9 @@
       <div class="reading-controls-bar">
         <span class="controls-label" data-i18n="reading_font_size">閱讀字級</span>
         <div class="font-size-btns">
-          <button type="button" class="font-btn" id="fontSizeDecBtn" title="縮小字體" data-i18n-title="btn_font_dec_title" data-i18n-aria="btn_font_dec_title">A-</button>
-          <button type="button" class="font-btn" id="fontSizeResetBtn" title="預設字體" data-i18n-title="btn_font_reset_title" data-i18n-aria="btn_font_reset_title">A</button>
-          <button type="button" class="font-btn" id="fontSizeIncBtn" title="放大字體" data-i18n-title="btn_font_inc_title" data-i18n-aria="btn_font_inc_title">A+</button>
+          <button type="button" class="font-btn" id="fontSizeDecBtn" title="縮小字級" data-i18n-title="btn_font_dec_title" data-i18n-aria="btn_font_dec_title">A-</button>
+          <button type="button" class="font-btn" id="fontSizeResetBtn" title="預設字級" data-i18n-title="btn_font_reset_title" data-i18n-aria="btn_font_reset_title">A</button>
+          <button type="button" class="font-btn" id="fontSizeIncBtn" title="放大字級" data-i18n-title="btn_font_inc_title" data-i18n-aria="btn_font_inc_title">A+</button>
         </div>
       </div>
       <div class="toc-heading" data-i18n="toc_heading">本頁段落大綱</div>
@@ -198,7 +271,7 @@
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
             <span id="ohtSimBtnText" data-i18n="oht_sim_btn">啟動天車調度模擬</span>
           </button>
-          <button type="button" class="atlas-sim-btn" id="toggleQtimeBtn" title="顯示晶圓各製程間嚴苛 Q-Time 時效管制窗口">
+          <button type="button" class="atlas-sim-btn" id="toggleQtimeBtn" title="顯示晶圓各製程間嚴苛 Q-Time 時效管制視窗">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
             <span id="qtimeBtnText" data-i18n="qtime_btn">Q-Time 時效矩陣</span>
           </button>

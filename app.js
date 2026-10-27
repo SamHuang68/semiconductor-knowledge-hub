@@ -8,15 +8,12 @@
 
 import { CHAPTER_CATALOG, loadChapterRecord } from './data/chapters-data.js';
 import { FAB_FLOW_NODES } from './data/fab-flow.js';
-import { GLOSSARY_DATA, JARGON_DATA } from './data/glossary-data.js';
 import { loadSearchIndex } from './data/search-index.js';
-import { replaceFigureComments } from './chapter-figures.js';
 import { renderExplorer } from './scenario-explorer.js';
 import { connectionOrigin, originQuery } from './extended-exploration.js';
 import { scenarioForChapter, chapterReturnContext } from './data/scenario-paths.js';
 import { normalizeChapterHref } from './chapter-links.js';
 import { mountEngineeringObject } from './engineering-objects.js';
-import { REAL_PHOTOS_DATA } from './data/real-photos.js';
 import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
 
 (() => {
@@ -26,7 +23,25 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
   const I18N = {
     zh: {
       brand_subtitle: '半導體製造概論 · 25 章完整工程知識庫',
+      nav_home: '首頁',
       nav_explore: '情境探索',
+      home_kicker: '半導體製造概論',
+      home_h1: '從沙子到晶片，<br>先建立一張能走完的地圖',
+      home_lead: '這座知識庫用 25 章教材、5 個互動情境、12 個製程模組，把晶圓從進廠到出貨串起來。圖上的數字只來自本書目錄或標得出處的公開標準。',
+      home_cta_explore: '進入情境探索',
+      home_cta_part: '從第 0 部開始',
+      home_parts_title: '依部進入',
+      home_parts_lead: '每一部是一組章節的入口。章節數來自目錄，不是產能或市場數字。',
+      home_figure_caption: '示意用無塵室走道，不是量測影像，也不是特定工廠。此圖為 AI 生成的示意圖，不是真實晶圓廠的照片。',
+      explore_hero_kicker: '半導體製造概論 · 互動學習地圖',
+      explore_hero_h1: '先看懂流程<br>再深入每一站',
+      explore_hero_lead: '跟著一片晶圓，串起製程、品質與封裝。<br class="desktop-break">選一個問題，從圖中找到答案。',
+      explore_hero_start: '開始晶圓旅程 <span aria-hidden="true">↗</span>',
+      explore_hero_read: '閱讀完整教材 →',
+      explore_hero_stats: '<span><b>25</b> 章教材</span><span><b>5</b> 種探索情境</span><span><b>12</b> 個製程模組</span>',
+      explore_hero_caption: '從晶圓，到每一顆晶粒',
+      part_kicker: '教材分部',
+      part_crumb: '目前這一部',
       nav_atlas: '製程全景圖',
       nav_jargon: '行話與術語字典',
       nav_search: '檢索',
@@ -105,9 +120,9 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
       btn_jargon_title: '查詢 245 筆名詞與 43 筆晶圓廠現場行話 (快捷鍵: J)',
       btn_search_title: '全域即時檢索 (快捷鍵: / 或 Ctrl+K)',
       btn_shortcuts_title: '查看鍵盤快捷鍵指南 (快捷鍵: ?)',
-      btn_font_dec_title: '縮小閱讀字體',
-      btn_font_reset_title: '預設閱讀字體 (16.5px)',
-      btn_font_inc_title: '放大閱讀字體',
+      btn_font_dec_title: '縮小閱讀字級',
+      btn_font_reset_title: '預設閱讀字級 (16.5px)',
+      btn_font_inc_title: '放大閱讀字級',
       btn_back_to_top_aria: '回到頂部',
       btn_back_to_top_title: '回到頂部',
       skip_to_content: '跳至主要內容',
@@ -124,7 +139,25 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
     },
     en: {
       brand_subtitle: 'Semiconductor Manufacturing · 25-Chapter Engineering Hub',
+      nav_home: 'Home',
       nav_explore: 'Scenario Map',
+      home_kicker: 'Semiconductor manufacturing',
+      home_h1: 'From sand to chip,<br>start with a map you can finish',
+      home_lead: 'This hub connects 25 chapters, 5 interactive scenarios, and 12 process modules. Figures use counts from this catalog or a cited public standard.',
+      home_cta_explore: 'Open the scenario map',
+      home_cta_part: 'Start with Part 0',
+      home_parts_title: 'Enter by part',
+      home_parts_lead: 'Each part is an entrance to a group of chapters. Counts come from the catalog, not from capacity or market data.',
+      home_figure_caption: 'Illustrative cleanroom aisle. Not a metrology image and not a specific factory. AI-generated illustration, not a photograph of a real fab.',
+      explore_hero_kicker: 'Semiconductor Manufacturing · Interactive Learning Map',
+      explore_hero_h1: 'Understand the Flow First,<br>Deep-Dive Station by Station',
+      explore_hero_lead: 'Follow a silicon wafer to connect fabrication, quality, and packaging.<br class="desktop-break">Choose a question and discover the answers in the map.',
+      explore_hero_start: 'Start Wafer Journey <span aria-hidden="true">↗</span>',
+      explore_hero_read: 'Read Full Curriculum →',
+      explore_hero_stats: '<span><b>25</b> Chapters</span><span><b>5</b> Scenarios</span><span><b>12</b> Modules</span>',
+      explore_hero_caption: 'From blank wafer to individual dies',
+      part_kicker: 'Curriculum part',
+      part_crumb: 'This part',
       nav_atlas: 'Fab Flow Atlas',
       nav_jargon: 'Jargon & Glossary',
       nav_search: 'Search',
@@ -203,9 +236,9 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
       btn_jargon_title: 'Search 245 glossary terms & 43 fab floor jargon (Shortcut: J)',
       btn_search_title: 'Global curriculum search (Shortcut: / or Ctrl+K)',
       btn_shortcuts_title: 'Keyboard shortcuts guide (Shortcut: ?)',
-      btn_font_dec_title: 'Decrease reading font size',
-      btn_font_reset_title: 'Reset reading font size (16.5px)',
-      btn_font_inc_title: 'Increase reading font size',
+      btn_font_dec_title: 'Decrease reading type size',
+      btn_font_reset_title: 'Reset reading type size (16.5px)',
+      btn_font_inc_title: 'Increase reading type size',
       btn_back_to_top_aria: 'Back to top',
       btn_back_to_top_title: 'Back to top',
       skip_to_content: 'Skip to main content',
@@ -234,29 +267,57 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
   const LANG_STORAGE_KEY = 'semi_preferred_lang';
   const THEME_STORAGE_KEY = 'semi_preferred_theme';
 
-  // 主題管理系統 (Light / Dark / 500nm Litho Amber Mode)
+  // 主題：亮色與黃光寫在 data-theme。深色走 data-color-scheme，避免使用被淡色門禁禁止的 data-theme="dark"。
+  const SCHEME_STORAGE_KEY = 'semi_color_scheme';
   let currentTheme = localStorage.getItem(THEME_STORAGE_KEY) || 'light';
   if (currentTheme === 'dark') currentTheme = 'light';
-  function applyTheme(theme) {
-    currentTheme = theme;
-    document.documentElement.setAttribute('data-theme', theme);
-    try {
-      localStorage.setItem(THEME_STORAGE_KEY, theme);
-    } catch (_) {}
+  function paintThemeButtons() {
+    const root = document.documentElement;
+    const explicit = root.getAttribute('data-color-scheme');
+    const osDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const darkOn = explicit === 'dark' || (!explicit && osDark && root.getAttribute('data-theme') !== 'litho-amber');
     document.querySelectorAll('.theme-btn').forEach(btn => {
-      const isActive = btn.dataset.theme === theme;
-      btn.classList.toggle('is-active', isActive);
-      btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+      const on = btn.dataset.colorScheme === 'dark'
+        ? darkOn
+        : !darkOn && btn.dataset.theme === root.getAttribute('data-theme');
+      btn.classList.toggle('is-active', on);
+      btn.setAttribute('aria-pressed', on ? 'true' : 'false');
     });
   }
-
+  function applyTheme(theme) {
+    currentTheme = theme === 'litho-amber' ? 'litho-amber' : 'light';
+    document.documentElement.setAttribute('data-theme', currentTheme);
+    try { localStorage.setItem(THEME_STORAGE_KEY, currentTheme); } catch (_) {}
+    paintThemeButtons();
+  }
+  function applyColorScheme(scheme, persist) {
+    const root = document.documentElement;
+    if (scheme === 'dark' || scheme === 'light') root.setAttribute('data-color-scheme', scheme);
+    else root.removeAttribute('data-color-scheme');
+    if (persist) {
+      try { localStorage.setItem(SCHEME_STORAGE_KEY, scheme || 'system'); } catch (_) {}
+    }
+    paintThemeButtons();
+  }
   document.querySelectorAll('.theme-btn').forEach(btn => {
     btn.addEventListener('click', () => {
-      const t = btn.dataset.theme;
-      if (t) applyTheme(t);
+      if (btn.dataset.colorScheme === 'dark') {
+        applyTheme('light');
+        applyColorScheme('dark', true);
+        return;
+      }
+      const theme = btn.dataset.theme;
+      if (!theme) return;
+      applyTheme(theme);
+      applyColorScheme('light', true);
     });
   });
   applyTheme(currentTheme);
+  try {
+    const savedScheme = localStorage.getItem(SCHEME_STORAGE_KEY);
+    if (savedScheme === 'dark' || savedScheme === 'light') applyColorScheme(savedScheme, false);
+  } catch (_) {}
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => paintThemeButtons());
 
   // 音效切換按鈕監聽
   const soundToggleBtn = document.getElementById('soundToggleBtn');
@@ -499,7 +560,7 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
     for (const [partName, chapters] of partsMap.entries()) {
       html += `
         <div class="part-group">
-          <div class="part-title">${escapeHtml(partName)}</div>
+          <a class="part-title part-title-link" href="#part/${escapeHtml(chapters[0].partId)}">${escapeHtml(partName)}</a>
           <ul class="chapter-nav-list">
       `;
       chapters.forEach(ch => {
@@ -544,6 +605,7 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
     disposeCurrentEngineeringObject?.();
     disposeCurrentEngineeringObject = null;
     document.body.classList.remove('is-exploring');
+    showRoutePanel('dynamic');
     const rawChapter = await loadChapterRecord(chId);
     if (token !== chapterLoadToken || !rawChapter) return;
     const chapter = getChapterData(rawChapter, currentLang);
@@ -606,7 +668,10 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
     const returnNodeTitle = returnContext ? (isEn ? (returnContext.node.titleEn || returnContext.node.title) : returnContext.node.title) : '';
     const scenarioTitle = relatedScenario ? (isEn ? (relatedScenario.titleEn || relatedScenario.title) : relatedScenario.title) : '';
 
-    mainCanvasEl.innerHTML = `
+    const { replaceFigureComments } = await import('./chapter-figures.js');
+    if (token !== chapterLoadToken) return;
+    const routeDynamicEl = document.getElementById('route-dynamic');
+    routeDynamicEl.innerHTML = `
       <a href="#explore/${returnContext ? returnContext.value : relatedScenario.id}${originQuery(origin)}" class="chapter-scenario-link">
         <span>${returnContext ? t.explore_scenario_return(escapeHtml(returnNodeTitle)) : t.explore_scenario_intro(escapeHtml(scenarioTitle))}</span>
         <span>${returnContext ? t.explore_continue : t.explore_open}</span>
@@ -667,6 +732,7 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
 
     // 捲動至頁首
     window.scrollTo({ top: 0, behavior: 'instant' });
+    syncRouteMeta();
 
     // 手機版自動收合側邊欄
     if (appSidebarEl) {
@@ -1129,8 +1195,16 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
     } catch (_) {}
   }
 
-  function renderJargonModal(query = '', tab = 'all') {
+  let glossaryBundlePromise = null;
+  function loadGlossaryBundle() {
+    if (!glossaryBundlePromise) glossaryBundlePromise = import('./data/glossary-data.js');
+    return glossaryBundlePromise;
+  }
+
+  async function renderJargonModal(query = '', tab = 'all') {
     if (!jargonListEl) return;
+    const { GLOSSARY_DATA, JARGON_DATA } = await loadGlossaryBundle();
+    if (!jargonModalEl || !jargonModalEl.classList.contains('is-open')) return;
     const isEn = currentLang === 'en';
     const t = I18N[currentLang] || I18N.zh;
     let items = [];
@@ -1558,6 +1632,7 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
     if (jargonModalEl && jargonModalEl.classList.contains('is-open')) {
       renderJargonModal(jargonSearchInput ? jargonSearchInput.value : '', activeJargonTab);
     }
+    syncRouteMeta();
   }
 
   function setLanguage(lang) {
@@ -1565,8 +1640,10 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
     localStorage.setItem(LANG_STORAGE_KEY, currentLang);
     applyLanguageUI();
 
-    const hash = (window.location.hash || '#ch00').slice(1);
-    if (!hash.startsWith('explore')) {
+    const hash = (window.location.hash || '#home').slice(1);
+    if (hash === 'home' || hash.startsWith('explore') || hash.startsWith('part/')) {
+      renderRoute();
+    } else if (hash) {
       const [chapterId, query = ''] = hash.split('?');
       const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
       const scrollRatio = maxScroll > 0 ? window.scrollY / maxScroll : 0;
@@ -1577,9 +1654,6 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
           window.scrollTo({ top: scrollRatio * newMaxScroll, behavior: 'instant' });
         }
       });
-    } else {
-      // 在情境探索模式下切換語言，立即重繪探索畫面
-      renderRoute(window.location.hash);
     }
   }
 
@@ -1618,18 +1692,170 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
     });
   });
 
+  const SITE_ORIGIN = 'https://samhuang68.github.io/semiconductor-knowledge-hub/';
+  const HERO_IMAGE = `${SITE_ORIGIN}assets/generated/hero-cleanroom-aisle.webp`;
+  const PART_LEADS = {
+    'part-0': ['開始讀製程之前，先看整趟旅程，以及晶圓廠怎麼運作。', 'Before the process modules, see the whole journey and how a fab runs.'],
+    'part-1': ['把要做的元件，和做出空白晶圓的起點放在一起。', 'The device being built, and the blank wafer it starts from.'],
+    'part-2': ['微影、薄膜、蝕刻、佈植、平坦化、清洗與金屬化，一次看一個模組。', 'Lithography, films, etch, implant, planarization, clean, and metallization, one module at a time.'],
+    'part-3': ['把模組接成電晶體、記憶體，並讀懂節點名稱。', 'Connect the modules into transistors and memory, and read what a node name means.'],
+    'part-4': ['量測、良率、統計管制，以及異常發生時工廠怎麼反應。', 'Metrology, yield, statistical control, and how the fab responds when something goes wrong.'],
+    'part-5': ['晶圓測試之後，封裝讓晶粒可以被使用，也把多顆晶片放在一起。', 'After wafer test, packaging makes a die usable and can place several chips together.'],
+    'part-6': ['離開產線之後，看可靠度、工廠系統，以及製程如何影響韌體。', 'After the line: reliability, fab systems, and how the process shapes firmware.'],
+    'part-app': ['術語、現場行話，以及書裡引用的延伸閱讀。', 'Glossary, fab-floor jargon, and the further reading cited in the book.']
+  };
+
+  function showRoutePanel(which) {
+    const home = document.getElementById('route-home');
+    const explore = document.getElementById('route-explore');
+    const dynamic = document.getElementById('route-dynamic');
+    if (home) home.hidden = which !== 'home';
+    if (explore) explore.hidden = which !== 'explore';
+    if (dynamic) dynamic.hidden = which !== 'dynamic';
+    document.body.classList.toggle('is-home', which === 'home');
+    document.body.classList.toggle('is-part', which === 'dynamic' && (location.hash || '').startsWith('#part/'));
+    if (which !== 'explore') document.body.classList.remove('is-exploring');
+    document.documentElement.classList.remove('boot-home', 'boot-explore', 'boot-dynamic');
+    document.querySelectorAll('[data-route-link]').forEach(link => {
+      const on = link.getAttribute('data-route-link') === which || (which === 'dynamic' && link.getAttribute('data-route-link') === 'explore' && location.hash.startsWith('#explore'));
+      if (on) link.setAttribute('aria-current', 'page');
+      else link.removeAttribute('aria-current');
+    });
+  }
+
+  function partGroups() {
+    const groups = [];
+    for (const chapter of CHAPTER_CATALOG) {
+      const last = groups[groups.length - 1];
+      if (!last || last.partId !== chapter.partId) {
+        groups.push({ partId: chapter.partId, part: chapter.part, partEn: chapter.partEn, chapters: [chapter] });
+      } else last.chapters.push(chapter);
+    }
+    return groups;
+  }
+
+  function renderHome() {
+    showRoutePanel('home');
+    currentChapterId = '';
+    const slot = document.getElementById('home-slot');
+    const t = I18N[currentLang] || I18N.zh;
+    const isEn = currentLang === 'en';
+    if (tocListEl) tocListEl.innerHTML = '';
+    const cards = partGroups().map(group => {
+      const name = isEn ? (group.partEn || group.part) : group.part;
+      const lead = PART_LEADS[group.partId]?.[isEn ? 1 : 0] || '';
+      return `<a class="part-card" href="#part/${group.partId}"><span class="ds-kicker">${escapeHtml(String(group.chapters.length))} ${isEn ? 'chapters' : '章'}</span><strong>${escapeHtml(name)}</strong><span>${escapeHtml(lead)}</span></a>`;
+    }).join('');
+    slot.innerHTML = `<section class="ds-section" aria-labelledby="homePartsTitle"><p class="ds-kicker">Parts</p><h2 id="homePartsTitle">${t.home_parts_title}</h2><p>${t.home_parts_lead}</p><div class="part-card-grid">${cards}</div></section>
+      <figure class="illus-slot home-figure"><img src="assets/generated/hero-cleanroom-aisle.webp" alt="${escapeHtml(isEn ? 'Illustrative cleanroom aisle with overhead transport, not a photograph of a named fab.' : '無塵室走道與天車的示意畫面，不是指名晶圓廠的照片。')}" width="1600" height="900" loading="lazy" data-illustrative="true"><figcaption><span class="illus-badge">示意 Illustrative</span>${escapeHtml(t.home_figure_caption)}</figcaption></figure>`;
+    syncRouteMeta();
+  }
+
+  function renderPart(partId) {
+    const group = partGroups().find(item => item.partId === partId);
+    if (!group) {
+      loadChapter('ch00');
+      return;
+    }
+    showRoutePanel('dynamic');
+    document.body.classList.add('is-part');
+    currentChapterId = '';
+    const t = I18N[currentLang] || I18N.zh;
+    const isEn = currentLang === 'en';
+    const name = isEn ? (group.partEn || group.part) : group.part;
+    const lead = PART_LEADS[group.partId]?.[isEn ? 1 : 0] || '';
+    const items = group.chapters.map(chapter => {
+      const title = isEn ? (chapter.fullTitleEn || chapter.fullTitle) : chapter.fullTitle;
+      const num = chapter.id.startsWith('app') ? t.appendix_prefix : `CH ${String(chapter.num).padStart(2, '0')}`;
+      return `<li><a class="part-chapter-link" href="#${chapter.id}"><span>${escapeHtml(num)}</span><strong>${escapeHtml(title)}</strong></a></li>`;
+    }).join('');
+    document.getElementById('route-dynamic').innerHTML = `<article class="part-entry"><nav class="route-crumb" aria-label="${isEn ? 'Breadcrumb' : '路徑'}"><a href="#home">${t.nav_home}</a><a href="#explore">${t.nav_explore}</a><span aria-current="page">${escapeHtml(name)}</span></nav><p class="ds-kicker">${t.part_kicker}</p><h1>${escapeHtml(name)}</h1><p class="home-lead">${escapeHtml(lead)}</p><ol class="part-chapter-list">${items}</ol></article>`;
+    if (tocListEl) tocListEl.innerHTML = '';
+    mainCanvasEl.focus({ preventScroll: true });
+    syncRouteMeta();
+  }
+
+  function syncRouteMeta() {
+    const t = I18N[currentLang] || I18N.zh;
+    const isEn = currentLang === 'en';
+    const hash = window.location.hash || '#home';
+    let title = isEn ? 'Semiconductor Knowledge Hub · Introduction to Semiconductor Manufacturing' : 'Semiconductor Knowledge Hub · 半導體製造概論知識庫';
+    let description = isEn ? t.home_lead.replace(/<[^>]+>/g, '') : t.home_lead.replace(/<[^>]+>/g, '');
+    let path = '';
+    if (hash === '#explore' || hash.startsWith('#explore/')) {
+      title = isEn ? 'Scenario map · Semiconductor Knowledge Hub' : '情境探索 · Semiconductor Knowledge Hub';
+      description = isEn ? 'An interactive map of the wafer journey, lithography, quality, packaging, and dispatch.' : '用互動流程圖看晶圓旅程、微影、品質、封裝與派工。';
+      path = hash;
+    } else if (hash.startsWith('#part/')) {
+      const group = partGroups().find(item => item.partId === hash.slice(6));
+      if (group) {
+        const name = isEn ? (group.partEn || group.part) : group.part;
+        title = `${name} · Semiconductor Knowledge Hub`;
+        description = PART_LEADS[group.partId]?.[isEn ? 1 : 0] || description;
+        path = hash;
+      }
+    } else if (hash.startsWith('#ch') || hash.startsWith('#app-')) {
+      const id = hash.slice(1).split('?')[0];
+      const chapter = CHAPTER_CATALOG.find(item => item.id === id);
+      if (chapter) {
+        const name = isEn ? (chapter.fullTitleEn || chapter.fullTitle) : chapter.fullTitle;
+        title = `${name} · Semiconductor Knowledge Hub`;
+        description = isEn ? `${chapter.partEn || chapter.part}. ${name}` : `${chapter.part}。${name}`;
+        path = `#${id}`;
+      }
+    }
+    document.title = title;
+    const canonical = `${SITE_ORIGIN}${path}`;
+    const set = (id, value) => { const el = document.getElementById(id); if (el) el.setAttribute('content', value); };
+    const descEl = document.querySelector('meta[name="description"]');
+    if (descEl) descEl.setAttribute('content', description);
+    set('ogTitle', title);
+    set('ogDescription', description);
+    set('twitterTitle', title);
+    set('twitterDescription', description);
+    const ogUrl = document.getElementById('ogUrl');
+    if (ogUrl) ogUrl.setAttribute('content', canonical);
+    const canonicalLink = document.getElementById('canonicalLink');
+    if (canonicalLink) canonicalLink.setAttribute('href', canonical);
+    const ld = document.getElementById('siteJsonLd');
+    if (ld) {
+      ld.textContent = JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'LearningResource',
+        name: title,
+        description,
+        inLanguage: isEn ? 'en' : 'zh-Hant',
+        url: canonical,
+        image: HERO_IMAGE,
+        isAccessibleForFree: true,
+        learningResourceType: hash.startsWith('#ch') || hash.startsWith('#app-') ? 'lesson' : 'curriculum',
+        provider: { '@type': 'Organization', name: 'Semiconductor Knowledge Hub', url: SITE_ORIGIN }
+      });
+    }
+  }
+
   // 3. 情境與教材共用 Hash 路由，保留舊章節網址。
   function renderRoute() {
     disposeCurrentEngineeringObject?.();
     disposeCurrentEngineeringObject = null;
-    const normalized = normalizeChapterHref(window.location.hash || '#explore');
-    if (window.location.hash !== normalized) history.replaceState(null, '', normalized);
-    const hash = normalized.slice(1);
-    if (hash === 'explore' || hash.startsWith('explore/')) {
-      renderExplorer(mainCanvasEl, hash);
-      tocListEl.innerHTML = '';
+    let hashValue = window.location.hash || '#home';
+    const normalized = normalizeChapterHref(hashValue);
+    if (normalized && normalized !== '#') hashValue = normalized;
+    if (!hashValue.startsWith('#')) hashValue = '#home';
+    if (window.location.hash !== hashValue) history.replaceState(null, '', hashValue);
+    const hash = hashValue.slice(1);
+    if (hash === 'home') {
+      renderHome();
+    } else if (hash === 'explore' || hash.startsWith('explore/')) {
+      showRoutePanel('explore');
+      const slot = document.getElementById('explore-slot');
+      renderExplorer(slot, `#${hash}`, { skipHero: true });
+      if (tocListEl) tocListEl.innerHTML = '';
       appSidebarEl.classList.remove('is-open');
       sidebarBackdropEl.classList.remove('is-active');
+      syncRouteMeta();
+    } else if (hash.startsWith('part/')) {
+      renderPart(hash.slice(5).split('?')[0]);
     } else {
       const [chapterId, query = ''] = hash.split('?');
       if (CHAPTER_CATALOG.some(ch => ch.id === chapterId)) {

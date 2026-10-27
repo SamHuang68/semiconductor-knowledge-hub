@@ -1,4 +1,4 @@
-// 生成器與瀏覽器共用章節連結契約，兼容已發布的舊連結。
+// 生成器與瀏覽器共用章節連結契約，相容已發布的舊連結。
 const UPSTREAM_TRANSLATIONS = 'https://github.com/chenwei810/Semiconductor_Manufacturing_Introduction/blob/master/TRANSLATIONS.md';
 
 export function normalizeChapterHref(href) {

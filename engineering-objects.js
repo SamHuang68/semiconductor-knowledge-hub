@@ -1,5 +1,3 @@
-import { disposeEngineeringObject } from './engineering-object-controls.js';
-
 const routes = {
   'ch00': () => import('./engineering/ch00.js'),
   'ch01': () => import('./engineering/ch01.js'),
@@ -39,7 +37,10 @@ export async function mountEngineeringObject(chId, container, lang = 'zh') {
   }
   const load = routes[chId];
   if (!load) return () => {};
-  const mod = await load();
+  const [{ disposeEngineeringObject }, mod] = await Promise.all([
+    import('./engineering-object-controls.js'),
+    load()
+  ]);
   mod.render(container, lang);
   return () => disposeEngineeringObject(container);
 }
