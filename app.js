@@ -13,6 +13,7 @@ import { renderExplorer } from './scenario-explorer.js';
 import { connectionOrigin, originQuery } from './extended-exploration.js';
 import { scenarioForChapter, chapterReturnContext } from './data/scenario-paths.js';
 import { normalizeChapterHref } from './chapter-links.js';
+import { mountFabFlow } from './fab-flow-diagram.js';
 import { mountEngineeringObject } from './engineering-objects.js';
 import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
 
@@ -30,6 +31,8 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
       home_lead: '這座知識庫用 25 章教材、5 個互動情境、12 個製程模組，把晶圓從進廠到出貨串起來。圖上的數字只來自本書目錄或標得出處的公開標準。',
       home_cta_explore: '進入情境探索',
       home_cta_part: '從第 0 部開始',
+      home_cta_glossary: '查術語',
+      sidebar_glossary: '術語總表',
       home_parts_title: '依部進入',
       home_parts_lead: '每一部是一組章節的入口。章節數來自目錄，不是產能或市場數字。',
       home_figure_caption: '示意用無塵室走道，不是量測影像，也不是特定工廠。此圖為 AI 生成的示意圖，不是真實晶圓廠的照片。',
@@ -146,6 +149,8 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
       home_lead: 'This hub connects 25 chapters, 5 interactive scenarios, and 12 process modules. Figures use counts from this catalog or a cited public standard.',
       home_cta_explore: 'Open the scenario map',
       home_cta_part: 'Start with Part 0',
+      home_cta_glossary: 'Open the glossary',
+      sidebar_glossary: 'Glossary',
       home_parts_title: 'Enter by part',
       home_parts_lead: 'Each part is an entrance to a group of chapters. Counts come from the catalog, not from capacity or market data.',
       home_figure_caption: 'Illustrative cleanroom aisle. Not a metrology image and not a specific factory. AI-generated illustration, not a photograph of a real fab.',
@@ -668,7 +673,10 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
     const returnNodeTitle = returnContext ? (isEn ? (returnContext.node.titleEn || returnContext.node.title) : returnContext.node.title) : '';
     const scenarioTitle = relatedScenario ? (isEn ? (relatedScenario.titleEn || relatedScenario.title) : relatedScenario.title) : '';
 
-    const { replaceFigureComments } = await import('./chapter-figures.js');
+    const [{ replaceFigureComments }, { linkGlossaryTerms }] = await Promise.all([
+      import('./chapter-figures.js'),
+      import('./glossary-links.js')
+    ]);
     if (token !== chapterLoadToken) return;
     const routeDynamicEl = document.getElementById('route-dynamic');
     routeDynamicEl.innerHTML = `
@@ -711,6 +719,7 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
     mainCanvasEl.querySelectorAll('.article-body a[href]').forEach(link => {
       link.setAttribute('href', normalizeChapterHref(link.getAttribute('href')));
     });
+    linkGlossaryTerms(mainCanvasEl.querySelector('.article-body'), currentLang);
     mainCanvasEl.querySelectorAll('.table-container').forEach(region => {
       region.setAttribute('tabindex', '0');
       region.setAttribute('role', 'region');
@@ -729,6 +738,12 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
 
     // 掛載全站專屬精細互動工程物件模型 (覆蓋全站 25 正式章 + 3 附錄 = 28 全模組 100% 滿貫)
     await attachEngineeringObjectModel(chapter.id, currentLang, token);
+    if (token !== chapterLoadToken) return;
+    const { renderFurtherReading } = await import('./further-reading.js');
+    if (token !== chapterLoadToken) return;
+    const readingHtml = renderFurtherReading(chapter.id, currentLang);
+    const pagination = routeDynamicEl.querySelector('.chapter-pagination');
+    if (readingHtml && pagination) pagination.insertAdjacentHTML('beforebegin', readingHtml);
 
     // 捲動至頁首
     window.scrollTo({ top: 0, behavior: 'instant' });
@@ -1641,7 +1656,7 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
     applyLanguageUI();
 
     const hash = (window.location.hash || '#home').slice(1);
-    if (hash === 'home' || hash.startsWith('explore') || hash.startsWith('part/')) {
+    if (hash === 'home' || hash.startsWith('explore') || hash.startsWith('part/') || hash === 'glossary' || hash.startsWith('glossary/')) {
       renderRoute();
     } else if (hash) {
       const [chapterId, query = ''] = hash.split('?');
@@ -1709,10 +1724,12 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
     const home = document.getElementById('route-home');
     const explore = document.getElementById('route-explore');
     const dynamic = document.getElementById('route-dynamic');
-    if (home) home.hidden = which !== 'home';
-    if (explore) explore.hidden = which !== 'explore';
-    if (dynamic) dynamic.hidden = which !== 'dynamic';
+    const panel = which === 'glossary' ? 'dynamic' : which;
+    if (home) home.hidden = panel !== 'home';
+    if (explore) explore.hidden = panel !== 'explore';
+    if (dynamic) dynamic.hidden = panel !== 'dynamic';
     document.body.classList.toggle('is-home', which === 'home');
+    document.body.classList.toggle('is-glossary', which === 'glossary');
     document.body.classList.toggle('is-part', which === 'dynamic' && (location.hash || '').startsWith('#part/'));
     if (which !== 'explore') document.body.classList.remove('is-exploring');
     document.documentElement.classList.remove('boot-home', 'boot-explore', 'boot-dynamic');
@@ -1747,7 +1764,24 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
       return `<a class="part-card" href="#part/${group.partId}"><span class="ds-kicker">${escapeHtml(String(group.chapters.length))} ${isEn ? 'chapters' : '章'}</span><strong>${escapeHtml(name)}</strong><span>${escapeHtml(lead)}</span></a>`;
     }).join('');
     slot.innerHTML = `<section class="ds-section" aria-labelledby="homePartsTitle"><p class="ds-kicker">Parts</p><h2 id="homePartsTitle">${t.home_parts_title}</h2><p>${t.home_parts_lead}</p><div class="part-card-grid">${cards}</div></section>
+      <div id="home-fab-flow"></div>
       <figure class="illus-slot home-figure"><img src="assets/generated/hero-cleanroom-aisle.webp" alt="${escapeHtml(isEn ? 'Illustrative cleanroom aisle with overhead transport, not a photograph of a named fab.' : '無塵室走道與天車的示意畫面，不是指名晶圓廠的照片。')}" width="1600" height="900" loading="lazy" data-illustrative="true"><figcaption><span class="illus-badge">示意 Illustrative</span>${escapeHtml(t.home_figure_caption)}</figcaption></figure>`;
+    mountFabFlow(document.getElementById('home-fab-flow'), FAB_FLOW_NODES, isEn);
+    syncRouteMeta();
+  }
+
+  async function renderGlossary() {
+    showRoutePanel('glossary');
+    currentChapterId = '';
+    if (tocListEl) tocListEl.innerHTML = '';
+    const { renderGlossaryPage, bindGlossaryPage } = await import('./glossary-page.js');
+    const now = window.location.hash || '';
+    if (now !== '#glossary' && !now.startsWith('#glossary/')) return;
+    const slug = now.startsWith('#glossary/') ? decodeURIComponent(now.slice('#glossary/'.length).split('?')[0]) : '';
+    const host = document.getElementById('route-dynamic');
+    host.innerHTML = renderGlossaryPage(currentLang, slug);
+    bindGlossaryPage(host, slug);
+    mainCanvasEl.focus({ preventScroll: true });
     syncRouteMeta();
   }
 
@@ -1785,6 +1819,10 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
     if (hash === '#explore' || hash.startsWith('#explore/')) {
       title = isEn ? 'Scenario map · Semiconductor Knowledge Hub' : '情境探索 · Semiconductor Knowledge Hub';
       description = isEn ? 'An interactive map of the wafer journey, lithography, quality, packaging, and dispatch.' : '用互動流程圖看晶圓旅程、微影、品質、封裝與派工。';
+      path = hash;
+    } else if (hash === '#glossary' || hash.startsWith('#glossary/')) {
+      title = isEn ? 'Glossary · Semiconductor Knowledge Hub' : '術語總表 · Semiconductor Knowledge Hub';
+      description = isEn ? 'Traditional Chinese terms from this book, with English names and links back to the chapters.' : '本書既有術語的台灣繁體中文與英文對照，並連回介紹該詞的章節。';
       path = hash;
     } else if (hash.startsWith('#part/')) {
       const group = partGroups().find(item => item.partId === hash.slice(6));
@@ -1856,6 +1894,8 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
       syncRouteMeta();
     } else if (hash.startsWith('part/')) {
       renderPart(hash.slice(5).split('?')[0]);
+    } else if (hash === 'glossary' || hash.startsWith('glossary/')) {
+      renderGlossary();
     } else {
       const [chapterId, query = ''] = hash.split('?');
       if (CHAPTER_CATALOG.some(ch => ch.id === chapterId)) {
