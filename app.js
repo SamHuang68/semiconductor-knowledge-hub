@@ -136,6 +136,10 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
       table_region: '可橫向捲動的表格',
       search_result_count: n => `找到 ${n} 筆結果`,
       sidebar_nav_aria: '章節樹狀導覽',
+      sidebar_expand: '展開章節目錄',
+      sidebar_collapse: '收合章節目錄',
+      sidebar_rail_explore: '情境探索',
+      sidebar_rail_glossary: '術語總表',
       app_toc_aria: '本頁大綱',
       or_word: '或',
       indicator_starred: '已收藏',
@@ -254,6 +258,10 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
       table_region: 'Horizontally scrollable table',
       search_result_count: n => `${n} results`,
       sidebar_nav_aria: 'Chapter navigation tree',
+      sidebar_expand: 'Expand chapter navigation',
+      sidebar_collapse: 'Collapse chapter navigation',
+      sidebar_rail_explore: 'Scenario map',
+      sidebar_rail_glossary: 'Glossary',
       app_toc_aria: 'Table of contents',
       or_word: 'or',
       indicator_starred: 'Starred',
@@ -368,6 +376,8 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
   const searchStatusEl = document.getElementById('searchStatus');
   const appTocEl = document.querySelector('.app-toc');
   const tocDrawerToggle = document.getElementById('tocDrawerToggle');
+  const sidebarRailToggle = document.getElementById('sidebarRailToggle');
+  const sidebarPanelEl = document.getElementById('sidebarPanel');
   const appFooterEl = document.querySelector('.app-footer');
 
   const atlasModalEl = document.getElementById('atlasModal');
@@ -1629,6 +1639,8 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
       btn.classList.toggle('is-active', isActive);
       btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
     });
+    applySidebarChrome();
+    applyTocChrome();
     syncSoundButton();
     syncHeaderOffset();
 
@@ -2240,12 +2252,26 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
 
     // Esc 關閉所有彈窗
     if (e.key === 'Escape') {
+      const modalOpen = [atlasModalEl, jargonModalEl, searchModalEl, shortcutsModalEl].some(el => el?.classList.contains('is-open'));
+      const drawerOpen = appSidebarEl?.classList.contains('is-open');
       closeAtlasModal();
       if (jargonModalEl) jargonModalEl.classList.remove('is-open');
       if (searchModalEl) searchModalEl.classList.remove('is-open');
       if (shortcutsModalEl) shortcutsModalEl.classList.remove('is-open');
       if (appSidebarEl) appSidebarEl.classList.remove('is-open');
       if (sidebarBackdropEl) sidebarBackdropEl.classList.remove('is-active');
+      if (modalOpen || drawerOpen) return;
+      if (wideNavQuery.matches && document.documentElement.dataset.sidebar === 'open') {
+        try { localStorage.setItem('skh-sidebar', 'rail'); } catch { /* private mode */ }
+        applySidebarChrome();
+        sidebarRailToggle?.focus();
+        return;
+      }
+      if (document.documentElement.dataset.toc === 'open' && appTocEl && getComputedStyle(appTocEl).display !== 'none') {
+        try { localStorage.setItem('skh-toc', 'closed'); } catch { /* private mode */ }
+        applyTocChrome();
+        tocDrawerToggle?.focus();
+      }
       return;
     }
 
@@ -2343,23 +2369,75 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
     drawerWasOpen = open;
   }
 
-  function syncTocDrawer() {
-    if (!appTocEl || !tocDrawerToggle) return;
-    const narrow = window.matchMedia('(max-width: 1200px)').matches;
-    if (!narrow) {
-      appTocEl.classList.remove('is-collapsed');
-      tocDrawerToggle.setAttribute('aria-expanded', 'true');
-      return;
+  const wideNavQuery = window.matchMedia('(min-width: 861px)');
+
+  function readChromePref(key, allowed, fallback) {
+    try {
+      const value = localStorage.getItem(key);
+      return allowed.includes(value) ? value : fallback;
+    } catch {
+      return fallback;
     }
-    if (!appTocEl.dataset.userToggled) appTocEl.classList.add('is-collapsed');
-    tocDrawerToggle.setAttribute('aria-expanded', appTocEl.classList.contains('is-collapsed') ? 'false' : 'true');
+  }
+
+  function applySidebarChrome() {
+    if (!appSidebarEl) return;
+    const open = readChromePref('skh-sidebar', ['open', 'rail'], 'rail') === 'open';
+    const wide = wideNavQuery.matches;
+    document.documentElement.dataset.sidebar = open ? 'open' : 'rail';
+    appSidebarEl.classList.toggle('is-rail', wide && !open);
+    if (sidebarRailToggle) {
+      const t = I18N[currentLang] || I18N.zh;
+      const label = wide && open ? t.sidebar_collapse : t.sidebar_expand;
+      sidebarRailToggle.setAttribute('aria-expanded', wide && open ? 'true' : 'false');
+      sidebarRailToggle.setAttribute('aria-label', label);
+      sidebarRailToggle.setAttribute('title', label);
+      const hidden = sidebarRailToggle.querySelector('.visually-hidden');
+      if (hidden) hidden.textContent = label;
+    }
+    if (sidebarPanelEl) {
+      const hidePanel = wide && !open;
+      sidebarPanelEl.inert = hidePanel;
+      if (hidePanel) sidebarPanelEl.setAttribute('aria-hidden', 'true');
+      else sidebarPanelEl.removeAttribute('aria-hidden');
+    }
+  }
+
+  function applyTocChrome() {
+    if (!appTocEl || !tocDrawerToggle) return;
+    const open = readChromePref('skh-toc', ['open', 'closed'], 'closed') === 'open';
+    document.documentElement.dataset.toc = open ? 'open' : 'closed';
+    appTocEl.classList.toggle('is-collapsed', !open);
+    tocDrawerToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    if (tocListEl) tocListEl.inert = !open;
+  }
+
+  function syncTocDrawer() {
+    applyTocChrome();
+  }
+
+  if (sidebarRailToggle) {
+    sidebarRailToggle.addEventListener('click', () => {
+      if (!wideNavQuery.matches) return;
+      const open = document.documentElement.dataset.sidebar !== 'open';
+      const focusInside = sidebarPanelEl?.contains(document.activeElement);
+      try { localStorage.setItem('skh-sidebar', open ? 'open' : 'rail'); } catch { /* private mode */ }
+      applySidebarChrome();
+      if (open) chapterFilterEl?.focus();
+      else if (focusInside) sidebarRailToggle.focus();
+    });
   }
 
   if (tocDrawerToggle && appTocEl) {
     tocDrawerToggle.addEventListener('click', () => {
-      appTocEl.dataset.userToggled = '1';
-      appTocEl.classList.toggle('is-collapsed');
-      tocDrawerToggle.setAttribute('aria-expanded', appTocEl.classList.contains('is-collapsed') ? 'false' : 'true');
+      const open = document.documentElement.dataset.toc !== 'open';
+      const focusInside = tocListEl?.contains(document.activeElement);
+      try { localStorage.setItem('skh-toc', open ? 'open' : 'closed'); } catch { /* private mode */ }
+      applyTocChrome();
+      if (open) {
+        const link = tocListEl?.querySelector('a');
+        (link || tocDrawerToggle).focus();
+      } else if (focusInside) tocDrawerToggle.focus();
     });
   }
   if (appSidebarEl) {
