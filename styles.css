@@ -72,12 +72,12 @@
   --semi-blue: #9a3412;
   --semi-blue-light: #fef3c7;
   --semi-blue-dark: #7c2d12;
-  --semi-teal: #b45309;
+  --semi-teal: #9a3412;
   --semi-teal-light: #fef3c7;
-  --semi-amber: #d97706;
+  --semi-amber: #9a3412;
   --semi-amber-light: #fef9c3;
-  --semi-amber-border: #f59e0b;
-  --semi-emerald: #b45309;
+  --semi-amber-border: #b45309;
+  --semi-emerald: #9a3412;
   --semi-emerald-light: #fef3c7;
 
   --shadow-sm: 0 1px 3px rgba(180, 83, 9, 0.08);
@@ -124,9 +124,61 @@
 }
 
 [data-theme="litho-amber"] .theme-btn.is-active {
-  background: #f59e0b;
-  color: #120d02;
+  background: #9a3412;
+  color: #ffffff;
   font-weight: 700;
+}
+
+[data-theme="litho-amber"] .star-indicator,
+[data-theme="litho-amber"] .callout-knowhow .callout-badge,
+[data-theme="litho-amber"] .article-action-btn.is-bookmarked {
+  color: #9a3412;
+}
+
+[data-theme="litho-amber"] .atlas-sim-btn.is-active,
+[data-theme="litho-amber"] .eng-obj-metric-value {
+  background-color: #9a3412;
+  color: #ffffff !important;
+  border-color: #7c2d12;
+}
+
+[data-theme="litho-amber"] .eng-obj-metric-value {
+  background-color: transparent;
+  color: #7c2d12 !important;
+}
+
+[data-theme="litho-amber"] .article-body a,
+[data-theme="litho-amber"] .source-chapter,
+[data-theme="litho-amber"] .toc-link {
+  color: #9a3412;
+}
+
+/* 黃光主題：內聯淺天藍／淺灰／淺琥珀改為深褐，小字對比達到 WCAG AA 4.5:1 */
+[data-theme="litho-amber"] [style*="color: #0284c7"],
+[data-theme="litho-amber"] [style*="color:#0284c7"],
+[data-theme="litho-amber"] [style*="color: #38bdf8"],
+[data-theme="litho-amber"] [style*="color:#38bdf8"],
+[data-theme="litho-amber"] [style*="color: #94a3b8"],
+[data-theme="litho-amber"] [style*="color:#94a3b8"],
+[data-theme="litho-amber"] [style*="color: #64748b"],
+[data-theme="litho-amber"] [style*="color:#64748b"],
+[data-theme="litho-amber"] [style*="color: #d97706"],
+[data-theme="litho-amber"] [style*="color:#d97706"],
+[data-theme="litho-amber"] [style*="color: #f59e0b"],
+[data-theme="litho-amber"] [style*="color:#f59e0b"] {
+  color: #7c2d12 !important;
+}
+
+[data-theme="litho-amber"] .photo-category-badge,
+[data-theme="litho-amber"] .search-direct-model-btn {
+  color: #7c2d12 !important;
+  background: #fef3c7 !important;
+  border-color: #9a3412 !important;
+}
+
+[data-theme="litho-amber"] .hotspot-dot {
+  background: #9a3412;
+  color: #ffffff;
 }
 
 /* 製程全景圖譜天車調度模擬條 (Atlas OHT Simulation Bar) */
@@ -1653,6 +1705,36 @@ html:not([data-theme="litho-amber"]) .eng-obj-card [style*="color:#f59e0b"] {
 html:not([data-theme="litho-amber"]) .hotspot-dot {
   background: #0369a1 !important;
   color: #ffffff !important;
+}
+
+@media (min-width: 861px) and (max-width: 1200px) {
+  :root { --sidebar-width: 216px; }
+  .app-sidebar { padding: 16px 12px; }
+  .main-canvas {
+    min-width: 0;
+    padding: 28px 28px 96px;
+  }
+  .article-headline { font-size: clamp(26px, 3vw, 34px); }
+  .app-toc {
+    width: min(280px, calc(100vw - 248px));
+    max-height: min(40vh, 300px);
+  }
+  .app-header {
+    height: auto;
+    min-height: var(--header-height);
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 8px 16px;
+    row-gap: 8px;
+  }
+  .header-actions {
+    flex: 1 1 100%;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    min-width: 0;
+    max-width: 100%;
+  }
+  .brand-title { white-space: nowrap; }
 }
 
 @media (max-width: 1200px) {

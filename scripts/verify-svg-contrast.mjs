@@ -121,7 +121,7 @@ async function measure(id, state) {
 
 const results = [];
 await page.goto(base, { waitUntil: 'domcontentloaded' });
-const ids = await page.evaluate(async () => (await import('./data/chapters-data.js')).CHAPTERS_DATA.map(c => c.id));
+const ids = await page.evaluate(async () => (await import('./data/chapters-data.js')).CHAPTER_CATALOG.map(c => c.id));
 const STATE_CONTROLS = '[data-sim],[data-mode],[data-q],[data-burst],[data-step],[data-spc-mode],[data-pattern],[data-node],[data-corner],[data-jargon],.ocap-sim-btn,.qtime-btn,.burst-btn,.pvt-btn,.node-btn,.jargon-btn,#rowHammerAttackBtn,#rowHammerTrrBtn,#damaNextBtn,#aldNextBtn';
 try {
   for (const id of ids) {

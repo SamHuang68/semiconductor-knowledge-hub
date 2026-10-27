@@ -2,7 +2,9 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import { SCENARIOS } from '../data/scenario-paths.js';
-import { CHAPTERS_DATA } from '../data/chapters-data.js';
+import { loadAllChapters } from '../data/chapters-data.js';
+import { loadSearchIndex } from '../data/search-index.js';
+const CHAPTERS_DATA = await loadAllChapters();
 import { normalizeChapterHref } from '../chapter-links.js';
 
 // 僅驗證本次新增導覽及舊連結相容契約，不啟動網站或外部服務。
@@ -56,15 +58,18 @@ assert.match(packaging.boundary, /並列選項.*並非先後步驟/, '比較應�
 // 錨點複本與「現場異常徵兆」整段被插進表格儲存格）。還原只把錨點複本改回 `$&lt;`／`$&gt;` 並把該段移回「本章重點」前，
 // 以正向模擬逐字元重現原檔證明無其他增刪；正文結構另由 verify-hub.js 檢查。
 const sourceHashes = {
-  'chapters-data.js': '5bc9f2e03669ea5f833ebe8ec20eddf7ea260a44fbd556be6b42e6f0e9db72b4',
   'fab-flow.js': '5cbccd2741a8b85779871c9709e772cfb2cdf898111faa15109d274b70fc7ef1',
-  'glossary-data.js': '0ee4bd99a8b3752beb6823ec5082a883d69c24b5c92d4ea4b66733a28b074511',
-  'search-index.js': '6965881d25b05366d69267415425d4992ccbd2a8fc71cd6c2d86e80ba852a271'
+  'glossary-data.js': '0ee4bd99a8b3752beb6823ec5082a883d69c24b5c92d4ea4b66733a28b074511'
 };
 for (const [file, expected] of Object.entries(sourceHashes)) {
   const source = readFileSync(new URL(`../data/${file}`, import.meta.url), 'utf8').replace(/\r\n/g, '\n');
   assert.equal(createHash('sha256').update(source).digest('hex'), expected, `${file} 必須保留基準來源內容`);
 }
+const chapterDigest = createHash('sha256').update(CHAPTERS_DATA.map(c => JSON.stringify([c.id, c.contentHtml, c.contentHtmlEn])).join('\n')).digest('hex');
+assert.equal(chapterDigest, 'e963c32b4fe4989de823194b2ca5bd9b5736606a25dd143c56c33adfbbed5f72', '章節正文必須與拆檔前一致');
+const SEARCH_INDEX = await loadSearchIndex();
+const searchDigest = createHash('sha256').update(SEARCH_INDEX.map(e => JSON.stringify([e.chId, e.keywords, e.title, e.titleEn])).join('\n')).digest('hex');
+assert.equal(searchDigest, '4d3f6b417bb57306634dbf3438d2884a7a1db70c3dbf58c146a9b0f9ba43f07e', '檢索全文必須與拆檔前一致');
 
 const linkCases = [
   ['#node-00', '#ch00'],

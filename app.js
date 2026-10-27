@@ -6,10 +6,11 @@
  * 代碼一鍵複製與全套鍵盤極速導航。
  */
 
-import { CHAPTERS_DATA } from './data/chapters-data.js';
+import { CHAPTER_CATALOG, loadChapterRecord } from './data/chapters-data.js';
 import { FAB_FLOW_NODES } from './data/fab-flow.js';
 import { GLOSSARY_DATA, JARGON_DATA } from './data/glossary-data.js';
-import { SEARCH_INDEX } from './data/search-index.js';
+import { loadSearchIndex } from './data/search-index.js';
+import { replaceFigureComments } from './chapter-figures.js';
 import { renderExplorer } from './scenario-explorer.js';
 import { connectionOrigin, originQuery } from './extended-exploration.js';
 import { scenarioForChapter, chapterReturnContext } from './data/scenario-paths.js';
@@ -474,7 +475,7 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
     const partsMap = new Map();
     const t = I18N[currentLang] || I18N.zh;
 
-    CHAPTERS_DATA.forEach(rawCh => {
+    CHAPTER_CATALOG.forEach(rawCh => {
       const ch = getChapterData(rawCh, currentLang);
       // 搜尋文字過濾
       if (filterText && !ch.fullTitle.toLowerCase().includes(filterText.toLowerCase()) && !ch.shortTitle.toLowerCase().includes(filterText.toLowerCase())) {
@@ -537,11 +538,14 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
   /**
    * 2. 載入並渲染指定章節
    */
-  function loadChapter(chId, from = null, via = null) {
+  let chapterLoadToken = 0;
+  async function loadChapter(chId, from = null, via = null) {
+    const token = ++chapterLoadToken;
     disposeCurrentEngineeringObject?.();
     disposeCurrentEngineeringObject = null;
     document.body.classList.remove('is-exploring');
-    const rawChapter = CHAPTERS_DATA.find(c => c.id === chId) || CHAPTERS_DATA[0];
+    const rawChapter = await loadChapterRecord(chId);
+    if (token !== chapterLoadToken || !rawChapter) return;
     const chapter = getChapterData(rawChapter, currentLang);
     currentChapterId = chapter.id;
 
@@ -559,9 +563,9 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
     }
 
     // 計算上一章與下一章
-    const currentIndex = CHAPTERS_DATA.findIndex(c => c.id === chapter.id);
-    const rawPrev = currentIndex > 0 ? CHAPTERS_DATA[currentIndex - 1] : null;
-    const rawNext = currentIndex < CHAPTERS_DATA.length - 1 ? CHAPTERS_DATA[currentIndex + 1] : null;
+    const currentIndex = CHAPTER_CATALOG.findIndex(c => c.id === chapter.id);
+    const rawPrev = currentIndex > 0 ? CHAPTER_CATALOG[currentIndex - 1] : null;
+    const rawNext = currentIndex >= 0 && currentIndex < CHAPTER_CATALOG.length - 1 ? CHAPTER_CATALOG[currentIndex + 1] : null;
     const prevChapter = getChapterData(rawPrev, currentLang);
     const nextChapter = getChapterData(rawNext, currentLang);
 
@@ -624,7 +628,7 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
         <h1 class="article-headline">${escapeHtml(chapter.fullTitle)}</h1>
       </header>
       <div class="article-body">
-        ${chapter.contentHtml}
+        ${replaceFigureComments(chapter.contentHtml)}
       </div>
       ${paginationHtml}
     `;
@@ -659,7 +663,7 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
     attachCodeCopyButtons();
 
     // 掛載全站專屬精細互動工程物件模型 (覆蓋全站 25 正式章 + 3 附錄 = 28 全模組 100% 滿貫)
-    attachEngineeringObjectModel(chapter.id, currentLang);
+    await attachEngineeringObjectModel(chapter.id, currentLang, token);
 
     // 捲動至頁首
     window.scrollTo({ top: 0, behavior: 'instant' });
@@ -1233,8 +1237,19 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
   /**
    * 7. 全文檢索功能
    */
-  function runSearch(keyword) {
+  function snippetAround(text, query) {
+    const source = String(text || '');
+    const at = source.toLowerCase().indexOf(query);
+    if (at < 0) return source.slice(0, 110);
+    const start = Math.max(0, at - 42);
+    const end = Math.min(source.length, at + query.length + 68);
+    return `${start ? '…' : ''}${source.slice(start, end)}${end < source.length ? '…' : ''}`;
+  }
+
+  let searchToken = 0;
+  async function runSearch(keyword) {
     if (!searchResultsEl) return;
+    const token = ++searchToken;
     const isEn = currentLang === 'en';
     const t = I18N[currentLang] || I18N.zh;
     const announce = message => { if (searchStatusEl) searchStatusEl.textContent = message; };
@@ -1245,15 +1260,36 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
       return;
     }
     const q = keyword.trim().toLowerCase();
+    const SEARCH_INDEX = await loadSearchIndex();
+    if (token !== searchToken) return;
     const hits = [];
 
     SEARCH_INDEX.forEach(idx => {
-      const matchZh = idx.title.toLowerCase().includes(q) || idx.keywords.toLowerCase().includes(q);
-      const matchEn = (idx.titleEn && idx.titleEn.toLowerCase().includes(q)) || (idx.snippetEn && idx.snippetEn.toLowerCase().includes(q));
-      if (matchZh || matchEn) {
-        hits.push(idx);
+      const enAt = idx.titleEn ? idx.keywords.indexOf(idx.titleEn) : -1;
+      const zhBody = enAt > 0 ? idx.keywords.slice(0, enAt) : idx.keywords;
+      const enBody = enAt > 0 ? idx.keywords.slice(enAt) : (idx.snippetEn || idx.keywords);
+      const title = isEn ? (idx.titleEn || idx.title) : idx.title;
+      const primary = isEn ? enBody : zhBody;
+      const secondary = isEn ? zhBody : enBody;
+      const inTitle = title.toLowerCase().includes(q);
+      let body = primary;
+      let at = primary.toLowerCase().indexOf(q);
+      if (at < 0) {
+        const otherAt = secondary.toLowerCase().indexOf(q);
+        if (otherAt >= 0) {
+          body = secondary;
+          at = otherAt;
+        }
       }
+      if (!inTitle && at < 0) return;
+      hits.push({
+        ...idx,
+        rank: inTitle ? 0 : 1,
+        snippet: at >= 0 ? snippetAround(body, q) : (isEn ? idx.snippetEn : idx.snippet),
+        snippetEn: at >= 0 ? snippetAround(body, q) : idx.snippetEn
+      });
     });
+    hits.sort((a, b) => a.rank - b.rank || a.num - b.num);
 
     if (hits.length === 0) {
       searchResultsEl.innerHTML = `<div style="padding: 24px; text-align: center; color: var(--text-muted);">${t.search_not_found(keyword)}</div>`;
@@ -1333,7 +1369,7 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
   /**
    * 8.5 掛載重點製程章節之互動工程物件模型
    */
-  function attachEngineeringObjectModel(chId, lang) {
+  async function attachEngineeringObjectModel(chId, lang, token) {
     const articleBody = mainCanvasEl.querySelector('.article-body');
     if (!articleBody) return;
 
@@ -1408,7 +1444,12 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
       articleBody.prepend(container);
     }
 
-    disposeCurrentEngineeringObject = mountEngineeringObject(chId, container, lang);
+    const dispose = await mountEngineeringObject(chId, container, lang);
+    if (token !== chapterLoadToken) {
+      dispose?.();
+      return;
+    }
+    disposeCurrentEngineeringObject = dispose;
 
     // 監聽使用者互動事件，即時標記為已探索
     const onInteract = () => {
@@ -1591,7 +1632,7 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
       sidebarBackdropEl.classList.remove('is-active');
     } else {
       const [chapterId, query = ''] = hash.split('?');
-      if (CHAPTERS_DATA.some(ch => ch.id === chapterId)) {
+      if (CHAPTER_CATALOG.some(ch => ch.id === chapterId)) {
         loadChapter(chapterId, new URLSearchParams(query).get('from'), new URLSearchParams(query).get('via'));
       } else {
         loadChapter('ch00');
@@ -1876,16 +1917,16 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
     // [ 前往上一章
     if (e.key === '[') {
       if (document.body.classList.contains('is-exploring')) return;
-      const idx = CHAPTERS_DATA.findIndex(c => c.id === currentChapterId);
-      if (idx > 0) loadChapter(CHAPTERS_DATA[idx - 1].id);
+      const idx = CHAPTER_CATALOG.findIndex(c => c.id === currentChapterId);
+      if (idx > 0) loadChapter(CHAPTER_CATALOG[idx - 1].id);
       return;
     }
 
     // ] 前往下一章
     if (e.key === ']') {
       if (document.body.classList.contains('is-exploring')) return;
-      const idx = CHAPTERS_DATA.findIndex(c => c.id === currentChapterId);
-      if (idx < CHAPTERS_DATA.length - 1) loadChapter(CHAPTERS_DATA[idx + 1].id);
+      const idx = CHAPTER_CATALOG.findIndex(c => c.id === currentChapterId);
+      if (idx < CHAPTER_CATALOG.length - 1) loadChapter(CHAPTER_CATALOG[idx + 1].id);
       return;
     }
 

@@ -1,4 +1,4 @@
-import { CHAPTERS_DATA } from './data/chapters-data.js';
+import { CHAPTER_CATALOG as CHAPTERS_DATA } from './data/chapters-data.js';
 import { FAB_FLOW_NODES } from './data/fab-flow.js';
 
 const esc = text => String(text).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));

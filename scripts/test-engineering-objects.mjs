@@ -57,7 +57,7 @@ class MockElement {
 
 console.log('--- 測試 1: Ch 04 微影模型切換 ---');
 const c4 = new MockElement();
-mountEngineeringObject('ch04', c4, 'zh');
+await mountEngineeringObject('ch04', c4, 'zh');
 assert.ok(c4.innerHTML.includes('DUV 浸潤式'), '預設應有浸潤式');
 // 模擬點擊 EUV Tab
 const euvBtn = c4.children.find(c => c.getAttribute('data-mode') === 'euv');
@@ -70,7 +70,7 @@ console.log('[PASS] Ch 04 微影模型互動切換正常');
 
 console.log('--- 測試 2: Ch 05 薄膜 ALD 循環單步前進與 CVD 動力學 ---');
 const c5 = new MockElement();
-mountEngineeringObject('ch05', c5, 'zh');
+await mountEngineeringObject('ch05', c5, 'zh');
 assert.ok(c5.innerHTML.includes('ALD 四步自限循環'), '預設應展示 ALD 模式');
 const nextBtn = c5.querySelector('#aldNextBtn');
 assert.ok(nextBtn, '應存在 aldNextBtn');
@@ -88,13 +88,13 @@ console.log('[PASS] Ch 05 薄膜 ALD 與 CVD 動力學模型正常');
 
 console.log('--- 測試 3: Ch 06 蝕刻模型切換 ---');
 const c6 = new MockElement();
-mountEngineeringObject('ch06', c6, 'zh');
+await mountEngineeringObject('ch06', c6, 'zh');
 assert.ok(c6.innerHTML.includes('ICP'), '預設應展示 ICP 腔體');
 console.log('[PASS] Ch 06 蝕刻腔體模型正常');
 
 console.log('--- 測試 4: Ch 12 電晶體演進切換 ---');
 const c12 = new MockElement();
-mountEngineeringObject('ch12', c12, 'zh');
+await mountEngineeringObject('ch12', c12, 'zh');
 assert.ok(c12.innerHTML.includes('FinFET'), '預設應展示 FinFET');
 assert.ok(c12.innerHTML.includes('Weff') || c12.innerHTML.includes('等效通道') || c12.innerHTML.includes('H_fin'), '應展示 FinFET 等效通道寬度物理方程式');
 const gaaBtn = c12.children.find(c => c.getAttribute('data-gen') === 'gaa');
@@ -108,7 +108,7 @@ console.log('[PASS] Ch 12 電晶體 3D 等角演進模型正常');
 
 console.log('--- 測試 5: Ch 07 離子佈植模型切換 ---');
 const c7 = new MockElement();
-mountEngineeringObject('ch07', c7, 'zh');
+await mountEngineeringObject('ch07', c7, 'zh');
 assert.ok(c7.innerHTML.includes('分析磁鐵'), '預設應展示光路與磁鐵');
 const annealBtn = c7.children.find(c => c.getAttribute('data-tab') === 'anneal');
 assert.ok(annealBtn, '必要控制項不存在：annealBtn');
@@ -120,7 +120,7 @@ console.log('[PASS] Ch 07 離子佈植與退火模型正常');
 
 console.log('--- 測試 6: Ch 08 CMP 運動學與缺陷模型切換 ---');
 const c8 = new MockElement();
-mountEngineeringObject('ch08', c8, 'zh');
+await mountEngineeringObject('ch08', c8, 'zh');
 assert.ok(c8.innerHTML.includes('Preston 方程'), '預設應展示運動學與 Preston');
 const defectBtn = c8.children.find(c => c.getAttribute('data-tab') === 'defects');
 assert.ok(defectBtn, '必要控制項不存在：defectBtn');
@@ -132,7 +132,7 @@ console.log('[PASS] Ch 08 CMP 平坦化模型正常');
 
 console.log('--- 測試 7: Ch 10 金屬化雙鑲嵌單步前進 ---');
 const c10 = new MockElement();
-mountEngineeringObject('ch10', c10, 'zh');
+await mountEngineeringObject('ch10', c10, 'zh');
 assert.ok(c10.innerHTML.includes('雙載子鑲嵌'), '預設應展示雙載子鑲嵌');
 const damaNext = c10.querySelector('#damaNextBtn');
 if (damaNext) {
@@ -143,7 +143,7 @@ console.log('[PASS] Ch 10 金屬化雙載子鑲嵌模型正常');
 
 console.log('--- 測試 8: Ch 21 先進封裝 CoWoS 與 SoIC 切換 ---');
 const c21 = new MockElement();
-mountEngineeringObject('ch21', c21, 'zh');
+await mountEngineeringObject('ch21', c21, 'zh');
 assert.ok(c21.innerHTML.includes('CoWoS'), '預設應展示 CoWoS');
 const soicBtn = c21.children.find(c => c.getAttribute('data-tab') === 'soic');
 assert.ok(soicBtn, '必要控制項不存在：soicBtn');
@@ -155,7 +155,7 @@ console.log('[PASS] Ch 21 先進封裝架構模型正常');
 
 console.log('--- 測試 9: Ch 03 柴氏長晶與切片模型切換 ---');
 const c3 = new MockElement();
-mountEngineeringObject('ch03', c3, 'zh');
+await mountEngineeringObject('ch03', c3, 'zh');
 assert.ok(c3.innerHTML.includes('柴氏長晶爐'), '預設應展示 CZ 長晶爐');
 assert.ok(c3.innerHTML.includes('Voronkov') || c3.innerHTML.includes('V/G'), '應展示 Voronkov 連續物理準則');
 const sawBtn = c3.children.find(c => c.getAttribute('data-tab') === 'saw');
@@ -168,7 +168,7 @@ console.log('[PASS] Ch 03 柴氏長晶與切片拋光模型正常');
 
 console.log('--- 測試 10: Ch 09 清洗與兆聲波模型切換 ---');
 const c9 = new MockElement();
-mountEngineeringObject('ch09', c9, 'zh');
+await mountEngineeringObject('ch09', c9, 'zh');
 assert.ok(c9.innerHTML.includes('SC-1'), '預設應展示 RCA-1 清洗');
 const megaBtn = c9.children.find(c => c.getAttribute('data-tab') === 'megasonic');
 assert.ok(megaBtn, '必要控制項不存在：megaBtn');
@@ -181,7 +181,7 @@ console.log('[PASS] Ch 09 RCA 清洗與兆聲波模型正常');
 
 console.log('--- 測試 11: Ch 11 CMOS 完整整合步進流程 ---');
 const c11 = new MockElement();
-mountEngineeringObject('ch11', c11, 'zh');
+await mountEngineeringObject('ch11', c11, 'zh');
 assert.ok(c11.innerHTML.includes('工步 1 / 6'), '預設應展示步驟 1 STI');
 const cmosNext = c11.querySelector('[data-action="next"]');
 if (cmosNext) {
@@ -192,7 +192,7 @@ console.log('[PASS] Ch 11 CMOS 完整流程步進模型正常');
 
 console.log('--- 測試 12: Ch 13 記憶體 DRAM 與 3D NAND 切換 ---');
 const c13 = new MockElement();
-mountEngineeringObject('ch13', c13, 'zh');
+await mountEngineeringObject('ch13', c13, 'zh');
 assert.ok(c13.innerHTML.includes('DRAM 圓柱') || c13.innerHTML.includes('tREFI'), '預設應展示 DRAM 1T1C 與電荷保持動力學');
 assert.ok(c13.innerHTML.includes('fF') || c13.innerHTML.includes('fA'), '應包含電容值與接面漏電流計算');
 const nandBtn = c13.children.find(c => c.getAttribute('data-tab') === 'nand');
@@ -205,7 +205,7 @@ console.log('[PASS] Ch 13 記憶體 DRAM / 3D NAND / HBM 模型正常');
 
 console.log('--- 測試 13: Ch 15 CD-SEM 與光學檢測切換 ---');
 const c15 = new MockElement();
-mountEngineeringObject('ch15', c15, 'zh');
+await mountEngineeringObject('ch15', c15, 'zh');
 assert.ok(c15.innerHTML.includes('二次電子'), '預設應展示 CD-SEM 二次電子');
 assert.ok(c15.innerHTML.includes('Bottom CD') || c15.innerHTML.includes('LWR') || c15.innerHTML.includes('1/cos'), '應展示 1/cosθ 二次電子逃逸與 CD 物理');
 const opticalBtn = c15.children.find(c => c.getAttribute('data-tab') === 'optical');
@@ -218,7 +218,7 @@ console.log('[PASS] Ch 15 CD-SEM 與光學檢測模型正常');
 
 console.log('--- 測試 14: Ch 16 晶圓缺陷空間圖譜與 FIB 切片切換 ---');
 const c16 = new MockElement();
-mountEngineeringObject('ch16', c16, 'zh');
+await mountEngineeringObject('ch16', c16, 'zh');
 assert.ok(c16.innerHTML.includes('缺陷特徵診斷') || c16.innerHTML.includes('同心圓環狀缺陷'), '預設應展示晶圓缺陷圖譜');
 assert.ok(c16.innerHTML.includes('Murphy') || c16.innerHTML.includes('GDPW'), '應展示 Murphy/Poisson 連續良率缺陷模型');
 const fibBtn = c16.children.find(c => c.getAttribute('data-tab') === 'fib');
@@ -231,7 +231,7 @@ console.log('[PASS] Ch 16 良率缺陷圖譜與 FIB/TEM 模型正常');
 
 console.log('--- 測試 15: Ch 17 SPC 管制圖與判異規則切換 ---');
 const c17 = new MockElement();
-mountEngineeringObject('ch17', c17, 'zh');
+await mountEngineeringObject('ch17', c17, 'zh');
 assert.ok(c17.innerHTML.includes('UCL (+3σ)'), '預設應展示 SPC 3σ 管制界限');
 const shiftBtn = c17.children.find(c => c.getAttribute('data-spc-mode') === 'shift');
 assert.ok(shiftBtn, '必要控制項不存在：shiftBtn');
@@ -243,7 +243,7 @@ console.log('[PASS] Ch 17 SPC 管制圖與 Cpk 模型正常');
 
 console.log('--- 測試 16: Ch 19 WAT 劃線區與 CP 針測切換 ---');
 const c19 = new MockElement();
-mountEngineeringObject('ch19', c19, 'zh');
+await mountEngineeringObject('ch19', c19, 'zh');
 assert.ok(c19.innerHTML.includes('PCM 測試鍵'), '預設應展示 WAT PCM 劃線區測試');
 assert.ok(c19.innerHTML.includes('Kelvin') || c19.innerHTML.includes('R_DUT'), '應展示 Kelvin 四線式接觸阻抗量測法');
 const cpBtn = c19.children.find(c => c.getAttribute('data-tab') === 'cp');
@@ -257,7 +257,7 @@ console.log('[PASS] Ch 19 WAT 與 CP 晶圓測試模型正常');
 
 console.log('--- 測試 17: Ch 01 晶圓廠無塵室與天車 AMHS 切換 ---');
 const c1 = new MockElement();
-mountEngineeringObject('ch01', c1, 'zh');
+await mountEngineeringObject('ch01', c1, 'zh');
 assert.ok(c1.innerHTML.includes('垂直層流'), '預設應展示 Class 1 無塵室層流');
 assert.ok(c1.innerHTML.includes('ISO Class') || c1.innerHTML.includes('ACH') || c1.innerHTML.includes('換氣率'), '應展示 ISO 14644-1 微粒極限與全室換氣率物理模型');
 const amhsBtn = c1.children.find(c => c.getAttribute('data-tab') === 'amhs');
@@ -270,7 +270,7 @@ console.log('[PASS] Ch 01 晶圓廠運作與自動化搬運模型正常');
 
 console.log('--- 測試 18: Ch 02 固態物理能帶與 MOSFET 切換 ---');
 const c2 = new MockElement();
-mountEngineeringObject('ch02', c2, 'zh');
+await mountEngineeringObject('ch02', c2, 'zh');
 assert.ok(c2.innerHTML.includes('能帶結構') || c2.innerHTML.includes('導帶'), '預設應展示能帶結構');
 const mosfetBtn = c2.children.find(c => c.getAttribute('data-tab') === 'inversion');
 assert.ok(mosfetBtn, '必要控制項不存在：mosfetBtn');
@@ -282,7 +282,7 @@ console.log('[PASS] Ch 02 固態物理能帶與電晶體開關模型正常');
 
 console.log('--- 測試 19: Ch 20 傳統封裝與覆晶切換 ---');
 const c20 = new MockElement();
-mountEngineeringObject('ch20', c20, 'zh');
+await mountEngineeringObject('ch20', c20, 'zh');
 assert.ok(c20.innerHTML.includes('打線鍵合') || c20.innerHTML.includes('金線'), '預設應展示打線鍵合');
 const flipBtn = c20.children.find(c => c.getAttribute('data-tab') === 'flipchip');
 assert.ok(flipBtn, '必要控制項不存在：flipBtn');
@@ -295,7 +295,7 @@ console.log('[PASS] Ch 20 傳統封裝到覆晶模型正常');
 
 console.log('--- 測試 20: Ch 22 浴缸曲線與 ESD 靜電放電切換 ---');
 const c22 = new MockElement();
-mountEngineeringObject('ch22', c22, 'zh');
+await mountEngineeringObject('ch22', c22, 'zh');
 assert.ok(c22.innerHTML.includes('浴缸曲線') || c22.innerHTML.includes('早夭期'), '預設應展示浴缸曲線');
 const esdBtn = c22.children.find(c => c.getAttribute('data-tab') === 'esd');
 assert.ok(esdBtn, '必要控制項不存在：esdBtn');
@@ -307,7 +307,7 @@ console.log('[PASS] Ch 22 可靠度與測試模型正常');
 
 console.log('--- 測試 21: Ch 00 晶片一生全景旅程模型切換 ---');
 const c0 = new MockElement();
-mountEngineeringObject('ch00', c0, 'zh');
+await mountEngineeringObject('ch00', c0, 'zh');
 assert.ok(c0.innerHTML.includes('全景製造時間軸') || c0.innerHTML.includes('時間軸'), '預設應展示全景時間軸');
 const bndBtn = c0.children.find(c => c.getAttribute('data-tab') === 'boundary');
 assert.ok(bndBtn, '必要控制項不存在：bndBtn');
@@ -319,7 +319,7 @@ console.log('[PASS] Ch 00 晶片的一生全景旅程模型正常');
 
 console.log('--- 測試 22: Ch 14 製程節點微縮與 Dennard 模型切換 ---');
 const c14 = new MockElement();
-mountEngineeringObject('ch14', c14, 'zh');
+await mountEngineeringObject('ch14', c14, 'zh');
 assert.ok(c14.innerHTML.includes('CPP') || c14.innerHTML.includes('Metal Pitch'), '預設應展示幾何標尺對比');
 const dennardBtn = c14.children.find(c => c.getAttribute('data-tab') === 'dennard');
 assert.ok(dennardBtn, '必要控制項不存在：dennardBtn');
@@ -331,7 +331,7 @@ console.log('[PASS] Ch 14 製程節點與微縮標尺模型正常');
 
 console.log('--- 測試 23: Ch 18 異常處理 OCAP 與重工邊界切換 ---');
 const c18 = new MockElement();
-mountEngineeringObject('ch18', c18, 'zh');
+await mountEngineeringObject('ch18', c18, 'zh');
 assert.ok(c18.innerHTML.includes('OCAP') || c18.innerHTML.includes('系統截停'), '預設應展示 OCAP 決策樹');
 const reworkBtn = c18.children.find(c => c.getAttribute('data-tab') === 'rework');
 assert.ok(reworkBtn, '必要控制項不存在：reworkBtn');
@@ -343,7 +343,7 @@ console.log('[PASS] Ch 18 異常處理與防堵追溯模型正常');
 
 console.log('--- 測試 24: Ch 23 智慧製造 Q-Time 與防呆互鎖切換 ---');
 const c23 = new MockElement();
-mountEngineeringObject('ch23', c23, 'zh');
+await mountEngineeringObject('ch23', c23, 'zh');
 assert.ok(c23.innerHTML.includes('Q-Time') || c23.innerHTML.includes('倒數'), '預設應展示 Q-Time 倒數儀表');
 const interlockBtn = c23.children.find(c => c.getAttribute('data-tab') === 'interlock');
 assert.ok(interlockBtn, '必要控制項不存在：interlockBtn');
@@ -355,7 +355,7 @@ console.log('[PASS] Ch 23 晶圓廠自動化與智慧製造模型正常');
 
 console.log('--- 測試 25: Ch 24 軟韌體視角 Row Hammer 與 IR Drop 切換 ---');
 const c24 = new MockElement();
-mountEngineeringObject('ch24', c24, 'zh');
+await mountEngineeringObject('ch24', c24, 'zh');
 assert.ok(c24.innerHTML.includes('Row Hammer') || c24.innerHTML.includes('字元線'), '預設應展示 Row Hammer 模型');
 const pvtBtn = c24.children.find(c => c.getAttribute('data-tab') === 'pvt');
 assert.ok(pvtBtn, '必要控制項不存在：pvtBtn');
@@ -367,7 +367,7 @@ console.log('[PASS] Ch 24 軟韌體視角硬體真相模型正常');
 
 console.log('--- 測試 26: 附錄 A (app-glossary) 術語拓撲星系與雷達切換 ---');
 const cGlossary = new MockElement();
-mountEngineeringObject('app-glossary', cGlossary, 'zh');
+await mountEngineeringObject('app-glossary', cGlossary, 'zh');
 assert.ok(cGlossary.innerHTML.includes('雷達') || cGlossary.innerHTML.includes('Radar') || cGlossary.innerHTML.includes('術語'), '預設應展示領域雷達圖');
 const galaxyBtn = cGlossary.children.find(c => c.getAttribute('data-tab') === 'galaxy');
 assert.ok(galaxyBtn, '必要控制項不存在：galaxyBtn');
@@ -379,7 +379,7 @@ console.log('[PASS] 附錄 A 術語拓撲星系與領域雷達模型正常');
 
 console.log('--- 測試 27: 附錄 B (app-jargon) 晶圓廠現場四大情境與作息時鐘切換 ---');
 const cJargon = new MockElement();
-mountEngineeringObject('app-jargon', cJargon, 'zh');
+await mountEngineeringObject('app-jargon', cJargon, 'zh');
 assert.ok(cJargon.innerHTML.includes('交接') || cJargon.innerHTML.includes('情境') || cJargon.innerHTML.includes('帶線'), '預設應展示現場情境模擬');
 const clockBtn = cJargon.children.find(c => c.getAttribute('data-tab') === 'culture');
 assert.ok(clockBtn, '必要控制項不存在：clockBtn');
@@ -391,7 +391,7 @@ console.log('[PASS] 附錄 B 晶圓廠現場行話與交接作息模型正常');
 
 console.log('--- 測試 28: 附錄 C (app-reading) 4階工程修煉技能樹與經典聖經切換 ---');
 const cReading = new MockElement();
-mountEngineeringObject('app-reading', cReading, 'zh');
+await mountEngineeringObject('app-reading', cReading, 'zh');
 assert.ok(cReading.innerHTML.includes('技能樹') || cReading.innerHTML.includes('修煉') || cReading.innerHTML.includes('Tree'), '預設應展示技能樹');
 const classicsBtn = cReading.children.find(c => c.getAttribute('data-tab') === 'classics');
 assert.ok(classicsBtn, '必要控制項不存在：classicsBtn');
