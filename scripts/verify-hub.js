@@ -16,7 +16,8 @@ async function verify() {
 
   // 1. 驗證章節與雙語資料完整性
   try {
-    const { CHAPTERS_DATA } = await import(`file://${ROOT_DIR}/data/chapters-data.js`);
+    const { loadAllChapters } = await import(`file://${ROOT_DIR}/data/chapters-data.js`);
+    const CHAPTERS_DATA = await loadAllChapters();
     console.log(`[PASS] CHAPTERS_DATA 成功載入，共有 ${CHAPTERS_DATA.length} 個雙語章節`);
     if (CHAPTERS_DATA.length < 28) {
       console.error(`[FAIL] 章節數量不足 28 (預期 25 正式章 + 3 附錄，實得 ${CHAPTERS_DATA.length})`);
@@ -95,7 +96,8 @@ async function verify() {
     });
     console.log('[PASS] 術語總表 (245 筆) 與 現場行話 (43 筆) 中英對照全數驗證通過');
 
-    const { SEARCH_INDEX } = await import(`file://${ROOT_DIR}/data/search-index.js`);
+    const { loadSearchIndex } = await import(`file://${ROOT_DIR}/data/search-index.js`);
+    const SEARCH_INDEX = await loadSearchIndex();
     console.log(`[PASS] SEARCH_INDEX 成功載入，共有 ${SEARCH_INDEX.length} 條雙語全文檢索條目`);
     if (SEARCH_INDEX.length < 28) {
       console.error('[FAIL] 全文索引條目不足 28 筆');
@@ -161,16 +163,23 @@ async function verify() {
   }
 
   // 2. 驗證零中系依賴與安全性
-  const filesToScan = ['index.html', 'styles.css', 'app.js', 'package.json', 'README.md', 'engineering-objects.js', 'engineering-objects.css', 'engineering-object-controls.js', 'data/real-photos.js', 'data/calculators-data.js', 'data/ocap-data.js', 'data/quiz-data.js', 'data/sound-fx.js'];
+  const filesToScan = ['index.html', 'styles.css', 'app.js', 'package.json', 'README.md', 'engineering-objects.js', 'engineering', 'engineering-objects.css', 'engineering-object-controls.js', 'data/real-photos.js', 'data/calculators-data.js', 'data/ocap-data.js', 'data/quiz-data.js', 'data/sound-fx.js'];
   const bannedKeywords = ['deepseek', 'qwen', 'kimi', 'moonshot', 'baidu', 'aliyun', 'tencent', 'bytedance', 'volcengine'];
 
+  const filesToRead = [];
   for (const f of filesToScan) {
     const p = path.join(ROOT_DIR, f);
+    if (!fs.existsSync(p)) continue;
+    if (fs.statSync(p).isDirectory()) {
+      for (const name of fs.readdirSync(p)) if (name.endsWith('.js')) filesToRead.push(path.join(p, name));
+    } else filesToRead.push(p);
+  }
+  for (const p of filesToRead) {
     if (fs.existsSync(p)) {
       const content = fs.readFileSync(p, 'utf8').toLowerCase();
       for (const kw of bannedKeywords) {
         if (content.includes(kw)) {
-          console.error(`[FAIL] 發現禁止中系關鍵字 "${kw}" 在 ${f}`);
+          console.error(`[FAIL] 發現禁止中系關鍵字 "${kw}" 在 ${p}`);
           errors++;
         }
       }
@@ -185,7 +194,7 @@ async function verify() {
     for (const id of testIds) {
       for (const lang of ['zh', 'en']) {
         const dummy = { innerHTML: '', querySelectorAll: () => [], querySelector: () => null };
-        engObj.mountEngineeringObject(id, dummy, lang);
+        await engObj.mountEngineeringObject(id, dummy, lang);
         const cardCount = (dummy.innerHTML.match(/class="eng-obj-metric-card"/g) || []).length;
         if (!dummy.innerHTML || dummy.innerHTML.length < 500 || cardCount < 6) {
           console.error(`[FAIL] 工程物件 ${id} (${lang}) 渲染輸出異常`);

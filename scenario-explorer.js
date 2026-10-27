@@ -1,7 +1,7 @@
 import { bindDiagramViewer } from './legend-viewer.js';
 import { renderConnections, bindConnections, connectionOrigin, originQuery, renderConnectionReturn, carryConnectionOrigin } from './extended-exploration.js';
 import { SCENARIOS, getScenario } from './data/scenario-paths.js';
-import { CHAPTERS_DATA } from './data/chapters-data.js';
+import { CHAPTER_CATALOG as CHAPTERS_DATA } from './data/chapters-data.js';
 import { waferArt, crossSection, packageArt, journeyArt, dispatchArt, renderComparison, bindComparison, comparisonIsOpen } from './scenario-diagrams.js';
 import { renderExploreVisuals, bindIllustrationSlots } from './hub-visuals.js';
 import { signalPreview, renderSignalLab, bindSignalLab, signalIsOpen } from './signal-reading.js';

@@ -16,7 +16,7 @@
  * 12. 照片燈箱內部元件淡色門禁 (Lightbox Interior Gate)
  */
 
-import { readFileSync, existsSync } from 'node:fs';
+import { readFileSync, existsSync, readdirSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -221,7 +221,10 @@ check('行動端表格響應式防溢出門禁：.table-container 包含 overflo
 // 2.5.0 只把外框改成淺色，SVG 內部的深色面板與淺色字未完整對應，造成深字疊深底（2.6.1 修正）。
 // engineering-objects.js 用到的每個深色中性填色與淺色文字，都必須在engineering-objects.css 的調色盤層有對應。
 check('工程物件 SVG 淺色調色盤涵蓋門禁：深色面板與淺色字皆有淺色主題對應', () => {
-  const engJs = readFileSync(resolve(ROOT, 'engineering-objects.js'), 'utf8');
+  const engDir = resolve(ROOT, 'engineering');
+  const engJs = [readFileSync(resolve(ROOT, 'engineering-objects.js'), 'utf8')]
+    .concat(existsSync(engDir) ? readdirSync(engDir).filter(name => name.endsWith('.js')).map(name => readFileSync(resolve(engDir, name), 'utf8')) : [])
+    .join('\n');
   const engCss = readFileSync(resolve(ROOT, 'engineering-objects.css'), 'utf8');
   const saturation = hex => {
     const h = hex.slice(1).length === 3 ? hex.slice(1).split('').map(c => c + c).join('') : hex.slice(1);
