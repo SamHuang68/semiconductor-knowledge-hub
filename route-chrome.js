@@ -42,11 +42,22 @@ export function breadcrumbHtml({ isEn, items }) {
   return `<nav class="route-crumb" aria-label="${isEn ? 'Breadcrumb' : '路徑'}">${parts}</nav>`;
 }
 
+export function chapterNavTarget(href, dataNavTarget) {
+  const explicit = typeof dataNavTarget === 'string' ? dataNavTarget.trim() : '';
+  if (explicit && explicit !== 'null') return explicit;
+  const raw = String(href || '');
+  if (!raw.startsWith('#')) return '';
+  const id = raw.slice(1);
+  if (!id || id === 'null') return '';
+  try { return decodeURIComponent(id); } catch { return id; }
+}
+
 export function chapterPagerHtml({ isEn, prev, next, compact }) {
   const link = (chapter, dir) => {
     if (!chapter) return '';
     const label = dir === 'prev' ? (isEn ? 'Previous chapter' : '上一章') : (isEn ? 'Next chapter' : '下一章');
-    return `<a class="page-nav-card" href="#${escapeHtml(chapter.id)}"><span class="nav-direction">${label}</span><span class="nav-title">${escapeHtml(chapter.title)}</span></a>`;
+    const id = escapeHtml(chapter.id);
+    return `<a class="page-nav-card" href="#${id}" data-nav-target="${id}"><span class="nav-direction">${label}</span><span class="nav-title">${escapeHtml(chapter.title)}</span></a>`;
   };
   const prevHtml = link(prev, 'prev');
   const nextHtml = link(next, 'next');

@@ -14,7 +14,7 @@ import { connectionOrigin, originQuery } from './extended-exploration.js';
 import { scenarioForChapter, chapterReturnContext } from './data/scenario-paths.js';
 import { normalizeChapterHref } from './chapter-links.js';
 import { mountFabFlow } from './fab-flow-diagram.js';
-import { breadcrumbHtml, chapterPagerHtml, notFoundHtml, previewFromSnippet, readingProgressText } from './route-chrome.js';
+import { breadcrumbHtml, chapterNavTarget, chapterPagerHtml, notFoundHtml, previewFromSnippet, readingProgressText } from './route-chrome.js';
 import { mountEngineeringObject } from './engineering-objects.js';
 import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
 
@@ -2062,8 +2062,9 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
     // 章節底部分頁點擊
     const pageNav = e.target.closest('.page-nav-card');
     if (pageNav) {
+      const targetId = chapterNavTarget(pageNav.getAttribute('href'), pageNav.getAttribute('data-nav-target'));
+      if (!targetId) return;
       e.preventDefault();
-      const targetId = pageNav.getAttribute('data-nav-target');
       window.location.hash = targetId;
       return;
     }
