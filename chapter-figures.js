@@ -2,8 +2,9 @@ const esc = text => String(text).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': 
 const L = (en, zh, enText) => (en ? enText : zh);
 
 function frame(caption, en, body) {
-  const note = L(en, '未按比例', 'Not to scale');
-  return `<figure class="chapter-figure"><svg viewBox="0 0 640 232" role="img" aria-label="${esc(`${caption} ${note}`)}">${body}<text x="16" y="222" fill="#334155" font-size="12">${esc(note)}</text></svg><figcaption><span class="illus-badge">${esc(note)}</span>${esc(caption)}</figcaption></figure>`;
+  const badge = L(en, '示意 · 未按比例', 'Schematic · not to scale');
+  const source = L(en, '沒有量測值。名稱取自本章，不另編數字。', 'No measured values. Names come from this chapter. No added numbers.');
+  return `<figure class="chapter-figure"><svg viewBox="0 0 640 232" role="img" aria-label="${esc(`${caption}. ${badge}. ${source}`)}">${body}</svg><figcaption><span class="illus-badge">${esc(badge)}</span><span class="figure-caption">${esc(caption)}</span><span class="figure-source">${esc(source)}</span></figcaption></figure>`;
 }
 
 function flow(labels) {
@@ -142,6 +143,68 @@ function bathtub(en) {
   return `<path d="M48 170 v-120 h540" fill="none" stroke="#334155"/><path d="M70 70 C140 70 160 130 230 140 S360 140 420 140 500 80 570 60" fill="none" stroke="#9a3412" stroke-width="2.5"/><text x="110" y="60" fill="#9a3412" font-size="12">${L(en, '早期失效', 'Early')}</text><text x="300" y="128" fill="#0f766e" font-size="12">${L(en, '穩定', 'Stable')}</text><text x="500" y="52" fill="#9a3412" font-size="12">${L(en, '老化', 'Wear-out')}</text><text x="48" y="196" fill="#334155" font-size="12">${L(en, '曲線只有形狀，沒有失效率數字', 'Shape only, no failure-rate numbers')}</text>`;
 }
 
+function labeledBox(x, y, w, h, label) {
+  return `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="4" fill="#f8fafc" stroke="#334155"/><text x="${x + w / 2}" y="${y + h / 2 + 4}" text-anchor="middle" fill="#0f172a" font-size="12">${esc(label)}</text>`;
+}
+
+function ocap(en) {
+  const labels = [L(en, '異常訊號', 'Signal'), L(en, '先 Hold', 'Hold'), L(en, '找出範圍', 'Scope'), L(en, '判定', 'Decide')];
+  const width = 136;
+  const gap = 18;
+  const top = labels.map((label, index) => {
+    const x = 20 + index * (width + gap);
+    const arrow = index < labels.length - 1
+      ? `<path d="M${x + width + 2} 46 h${gap - 4}" stroke="#0f766e" stroke-width="1.5"/>`
+      : '';
+    return labeledBox(x, 28, width, 36, label) + arrow;
+  }).join('');
+  const decide = 20 + 3 * (width + gap) + width / 2;
+  const branch = `<path d="M${decide} 64 V84 H88 V100 M${decide} 84 H320 V100 M${decide} 84 H552 V100" fill="none" stroke="#0f766e" stroke-width="1.5"/>`;
+  const outcomes = [
+    labeledBox(20, 100, 136, 36, L(en, '放行', 'Release')),
+    labeledBox(252, 100, 136, 36, L(en, '重工', 'Rework')),
+    labeledBox(484, 100, 136, 36, L(en, '報廢', 'Scrap'))
+  ].join('');
+  const aside = `<text x="320" y="168" text-anchor="middle" fill="#334155" font-size="12">${L(en, '工程變更另外審查，不在這條處置線上', 'An engineering change is reviewed apart from this line')}</text>`;
+  return top + branch + outcomes + aside;
+}
+
+function fabSystems(en) {
+  return flow([
+    L(en, '到站', 'Arrive'),
+    L(en, '核對路徑', 'Route'),
+    L(en, '防呆允許', 'Interlock'),
+    L(en, '機台加工', 'Run'),
+    L(en, '寫入履歷', 'History')
+  ]) + `<text x="320" y="150" text-anchor="middle" fill="#334155" font-size="12">${L(en, '只有先後，沒有節拍或等待時間', 'Order only, no takt time or queue time')}</text>`;
+}
+
+function firmware(en) {
+  const panel = (x, title, inner) => `<rect x="${x}" y="24" width="192" height="156" rx="6" fill="#f8fafc" stroke="#cbd5e1"/><text x="${x + 96}" y="48" text-anchor="middle" fill="#0f172a" font-size="13">${esc(title)}</text>${inner}`;
+  const dram = panel(20, 'DRAM', `<rect x="76" y="78" width="80" height="46" fill="#e0f2fe" stroke="#075985"/><path d="M116 124 v22" stroke="#9a3412" stroke-width="1.5"/><path d="M110 140 h12 l-6 8 z" fill="#9a3412"/><text x="116" y="164" text-anchor="middle" fill="#334155" font-size="12">${L(en, '電荷會漏', 'Charge leaks')}</text>`);
+  const hammer = panel(224, L(en, '鄰近列', 'Neighbors'), `<rect x="248" y="70" width="144" height="16" fill="#e2e8f0" stroke="#64748b"/><rect x="248" y="96" width="144" height="16" fill="#fde68a" stroke="#92400e"/><rect x="248" y="122" width="144" height="16" fill="#e2e8f0" stroke="#64748b"/><text x="320" y="156" text-anchor="middle" fill="#334155" font-size="12">${L(en, '中間列被存取', 'Middle row accessed')}</text>`);
+  const ecc = panel(428, 'ECC', `${labeledBox(448, 68, 152, 28, L(en, '資料與檢查碼', 'Data and checks'))}<path d="M524 96 v16" stroke="#0f766e" stroke-width="1.5"/>${labeledBox(448, 112, 152, 28, L(en, '訂正後再讀出', 'Corrected read'))}`);
+  return dram + hammer + ecc;
+}
+
+const SUPPLEMENTS = {
+  ch18: {
+    zh: '異常之後：先擋下、找出範圍，再放行、重工或報廢',
+    en: 'After an abnormality: hold, find the scope, then release, rework, or scrap',
+    draw: ocap
+  },
+  ch23: {
+    zh: '晶圓到站之後：核對路徑、防呆允許、機台加工、寫入履歷',
+    en: 'After a wafer arrives: check the route, pass the interlock, run the tool, write the history',
+    draw: fabSystems
+  },
+  ch24: {
+    zh: '製程留下的三種硬體事實：電荷會漏、鄰近列受擾、錯誤要訂正',
+    en: 'Three hardware facts the process leaves behind: charge leaks, neighbor rows are disturbed, errors are corrected',
+    draw: firmware
+  }
+};
+
 const MATCHERS = [
   [/一生|life of a chip/i, life],
   [/晶粒|die and chip/i, waferDieChip],
@@ -181,9 +244,23 @@ export function figureForCaption(caption) {
   return frame(caption, en, body);
 }
 
-export function replaceFigureComments(html) {
-  const swap = (_, kind, body) => figureForCaption(body.trim());
-  return String(html)
+export function replaceFigureComments(html, chapterId = '') {
+  let count = 0;
+  const swap = (_, kind, body) => {
+    count += 1;
+    return figureForCaption(body.trim());
+  };
+  let next = String(html)
     .replace(/<p class="semi-p">\s*<!--\s*(圖：|Figure:)\s*([\s\S]*?)-->\s*<\/p>/g, swap)
     .replace(/<!--\s*(圖：|Figure:)\s*([\s\S]*?)-->/g, swap);
+  const supplement = SUPPLEMENTS[chapterId];
+  if (count === 0 && supplement) {
+    const en = !/[\u4e00-\u9fff]/.test(next.slice(0, 800));
+    const figure = frame(en ? supplement.en : supplement.zh, en, supplement.draw(en));
+    const h1 = next.indexOf('</h1>');
+    const h2 = next.indexOf('</h2>');
+    const cut = h1 >= 0 ? h1 + 5 : (h2 >= 0 ? h2 + 5 : -1);
+    next = cut >= 0 ? next.slice(0, cut) + figure + next.slice(cut) : figure + next;
+  }
+  return next;
 }

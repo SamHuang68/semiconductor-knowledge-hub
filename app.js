@@ -714,7 +714,7 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
         <h1 class="article-headline">${escapeHtml(chapter.fullTitle)}</h1>
       </header>
       <div class="article-body">
-        ${replaceFigureComments(chapter.contentHtml)}
+        ${replaceFigureComments(chapter.contentHtml, chapter.id)}
       </div>
       ${paginationHtml}
     `;

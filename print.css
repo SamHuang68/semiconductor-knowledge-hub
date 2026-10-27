@@ -51,4 +51,11 @@
   .chapter-figure svg {
     max-width: 100% !important;
   }
+
+  .figure-source,
+  .figure-caption,
+  .semi-table th,
+  .semi-table td {
+    color: #0f172a !important;
+  }
 }

@@ -8,6 +8,6 @@
   "scripts": {
     "test": "npm run verify",
     "build:data": "node scripts/build-data.js",
-    "verify": "node scripts/verify-hub.js && node scripts/verify-navigation-contract.mjs && node scripts/test-chapter-pager.mjs && node scripts/verify-bilingual-ui.mjs && node scripts/test-engineering-objects.mjs && node scripts/verify-extended-features.mjs && node scripts/verify-light-theme.mjs"
+    "verify": "node scripts/verify-hub.js && node scripts/verify-navigation-contract.mjs && node scripts/test-chapter-pager.mjs && node scripts/test-chapter-figures.mjs && node scripts/verify-bilingual-ui.mjs && node scripts/test-engineering-objects.mjs && node scripts/verify-extended-features.mjs && node scripts/verify-light-theme.mjs"
   }
 }
