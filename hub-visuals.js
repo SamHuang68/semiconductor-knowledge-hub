@@ -4,13 +4,13 @@ import { FAB_FLOW_NODES } from './data/fab-flow.js';
 const esc = text => String(text).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 
 const ISO_CLASS_05UM = [
-  [2, 4],
   [3, 35],
   [4, 352],
   [5, 3520],
   [6, 35200],
   [7, 352000],
-  [8, 3520000]
+  [8, 3520000],
+  [9, 35200000]
 ];
 
 function illustrationSlot({ src, alt, caption }) {
@@ -63,8 +63,8 @@ function isoChart(isEn) {
   const title = isEn ? 'ISO 14644-1 cleanroom classes' : 'ISO 14644-1 潔淨室等級';
   const axis = isEn ? 'Particles / m³ at ≥ 0.5 µm. Bar length is logarithmic; the number is the table value.' : '≥ 0.5 µm 顆粒數 / m³。長條是對數長度，數字是表列值。';
   const source = isEn
-    ? 'Source: ISO 14644-1:2015 Table 1, maximum permitted concentration at ≥ 0.5 µm. Published limits, not measurements from this site. Class 1 has no 0.5 µm limit in that table, so it is omitted.'
-    : '來源：ISO 14644-1:2015 Table 1，粒徑 ≥ 0.5 µm 的允許最大濃度。這是標準表列值，不是本站量測。Class 1 在該表沒有 0.5 µm 上限，因此未列入。';
+    ? 'Source: ISO 14644-1:2015 Table 1, maximum permitted concentration at ≥ 0.5 µm. Published limits, not measurements from this site. Class 1 and Class 2 are marked not applicable at 0.5 µm (note d), so they are omitted. Class 9 applies to the operational state (note g).'
+    : '來源：ISO 14644-1:2015 Table 1，粒徑 ≥ 0.5 µm 的允許最大濃度。這是標準表列值，不是本站量測。Class 1 與 Class 2 在該表此粒徑標為不適用（註 d），因此未列入。Class 9 只適用於運轉狀態（註 g）。';
   return `<article class="chart-card"><h3>${title}</h3><p class="chart-axis">${axis}</p><ul class="bar-chart">${bars}</ul><p class="chart-source">${source}</p></article>`;
 }
 

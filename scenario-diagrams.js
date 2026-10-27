@@ -10,12 +10,12 @@ export function waferArt() {
     dies.push(`<rect x="${78 + x * 18}" y="${36 + y * 18}" width="15" height="15" fill="${partial ? '#fde68a' : '#99f6e4'}" stroke="#0f766e" stroke-width="0.6"/>`);
   }
   return `<svg viewBox="0 0 360 280" role="img" aria-label="空白晶圓示意：晶粒格、缺口與平坦邊，未按比例">
-    <circle cx="168" cy="128" r="104" fill="#e2e8f0" stroke="#334155" stroke-width="2"/>
-    <circle cx="168" cy="128" r="96" fill="#f8fafc" stroke="#64748b"/>
+    <path d="M259 178 A104 104 0 1 0 259 78 Z" fill="#e2e8f0" stroke="#334155" stroke-width="2"/>
+    <path d="M252 174 A96 96 0 1 0 252 82 Z" fill="#f8fafc" stroke="#64748b"/>
     ${dies.join('')}
     <path d="M150 230 l18 -12 18 12" fill="#f8fafc" stroke="#334155"/>
     <text x="168" y="132" text-anchor="middle" fill="#0f172a" font-size="13" font-weight="700">Si</text>
-    <text x="168" y="262" text-anchor="middle" fill="#334155" font-size="12">未按比例 · 缺口朝下</text>
+    <text x="168" y="262" text-anchor="middle" fill="#334155" font-size="12">未按比例 · 缺口朝下，右側是平坦邊</text>
   </svg>`;
 }
 
@@ -34,7 +34,7 @@ export function crossSection(index) {
   if (resistFull) layers += '<rect x="36" y="96" width="360" height="36" fill="#e1ad70" stroke="#92400e"/>';
   if (resistOpen) layers += windows.map(x => `<rect x="${x}" y="96" width="72" height="36" fill="#e1ad70" stroke="#92400e"/>`).join('');
   if (index === 3) layers += windows.map(x => `<path d="M${x + 36} 78 v58" fill="none" stroke="#0f766e" stroke-width="1.5" stroke-dasharray="3 3"/>`).join('');
-  if (index === 5) layers += '<path d="M48 84 h72 M48 84 v8 M120 84 v8" fill="none" stroke="#0f172a" stroke-width="1.5"/><text x="84" y="76" text-anchor="middle" fill="#0f172a" font-size="12">CD</text>';
+  if (index === 5) layers += '<path d="M48 120 h72 M48 120 v12 M120 120 v12" fill="none" stroke="#0f172a" stroke-width="1.5"/><text x="84" y="112" text-anchor="middle" fill="#0f172a" font-size="12">CD</text>';
   const callout = index < 0 ? '只有基板' : (index < 3 ? '目標薄膜仍連續' : '開口下的薄膜已分成線條');
   return `<svg viewBox="0 0 520 250" role="img" aria-label="${aria}">
     <text x="16" y="22" fill="#334155" font-size="12">未按比例 · 顏色對應圖例</text>
@@ -54,9 +54,9 @@ export function packageArt(index) {
   if (index === 0) {
     body = '<rect x="132" y="96" width="152" height="56" fill="#57bdb3" stroke="#0f766e"/><text x="208" y="128" text-anchor="middle" fill="#0f172a" font-size="14">晶粒</text><path d="M156 152 v16 M208 152 v16 M260 152 v16" stroke="#92400e" stroke-width="3"/>';
   } else if (index === 1) {
-    body = '<rect x="40" y="148" width="336" height="16" fill="#fde68a" stroke="#92400e"/><text x="208" y="160" text-anchor="middle" fill="#0f172a" font-size="11">中介層</text><rect x="72" y="88" width="120" height="48" fill="#57bdb3" stroke="#0f766e"/><rect x="220" y="96" width="100" height="40" fill="#99f6e4" stroke="#0f766e"/><text x="132" y="116" text-anchor="middle" fill="#0f172a" font-size="13">晶粒</text><text x="270" y="120" text-anchor="middle" fill="#0f172a" font-size="13">晶粒</text>';
+    body = '<rect x="40" y="148" width="336" height="16" fill="#fde68a" stroke="#92400e"/><path d="M96 156 H170 M246 156 H312" stroke="#92400e" stroke-width="2"/><text x="208" y="160" text-anchor="middle" fill="#0f172a" font-size="11">中介層</text><rect x="72" y="100" width="120" height="48" fill="#57bdb3" stroke="#0f766e"/><rect x="220" y="108" width="100" height="40" fill="#99f6e4" stroke="#0f766e"/><text x="132" y="128" text-anchor="middle" fill="#0f172a" font-size="13">晶粒</text><text x="270" y="132" text-anchor="middle" fill="#0f172a" font-size="13">晶粒</text>';
   } else {
-    body = '<rect x="108" y="112" width="200" height="40" fill="#bae6fd" stroke="#075985"/><text x="208" y="137" text-anchor="middle" fill="#0f172a" font-size="13">下層晶粒</text><rect x="108" y="60" width="200" height="40" fill="#57bdb3" stroke="#0f766e"/><text x="208" y="85" text-anchor="middle" fill="#0f172a" font-size="13">上層晶粒</text><path d="M148 100 v12 M188 100 v12 M228 100 v12 M268 100 v12" stroke="#92400e" stroke-width="4"/>';
+    body = '<rect x="108" y="128" width="200" height="40" fill="#bae6fd" stroke="#075985"/><text x="208" y="153" text-anchor="middle" fill="#0f172a" font-size="13">下層晶粒</text><rect x="108" y="76" width="200" height="40" fill="#57bdb3" stroke="#0f766e"/><text x="208" y="101" text-anchor="middle" fill="#0f172a" font-size="13">上層晶粒</text><path d="M148 116 v12 M188 116 v12 M228 116 v12 M268 116 v12" stroke="#92400e" stroke-width="4"/>';
   }
   return `<svg viewBox="0 0 420 250" role="img" aria-label="${aria}"><text x="16" y="22" fill="#334155" font-size="12">未按比例 · 並列結構，沒有先後</text><text x="16" y="42" fill="#0f172a" font-size="14" font-weight="700">${aria}</text>${substrate}${balls}${body}</svg>`;
 }
