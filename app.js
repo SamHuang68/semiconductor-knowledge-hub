@@ -76,7 +76,7 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
       explore_open: '開啟互動情境 ↗',
       no_matching_chapters: '查無相符章節',
       footer_attribution: `本專案基於開源教材 <a href="https://github.com/chenwei810/Semiconductor_Manufacturing_Introduction" target="_blank" rel="noopener">chenwei810/Semiconductor_Manufacturing_Introduction</a> （採 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hant" target="_blank" rel="noopener">CC BY-NC-SA 4.0 創用 CC 姓名標示-非商業性-相同方式分享</a> 授權）重製與架構升級。`,
-      footer_desc: '涵蓋 25 章從沙子到晶片的完整晶圓製造旅程 · 28 大模組實體電顯與機台照片並列對照 · 245 筆核心術語與現場實務行話 · 中英雙語無縫支援 · 純前端極速架構 · 零中系依賴 · 版本 2.9.0',
+      footer_desc: '涵蓋 25 章從沙子到晶片的完整晶圓製造旅程 · 28 大模組實體電顯與機台照片並列對照 · 245 筆核心術語與現場實務行話 · 中英雙語無縫支援 · 純前端極速架構 · 零中系依賴 · 版本 2.10.0',
       atlas_title: '晶圓廠 12 大核心製程全景圖譜 (Fab Flow Atlas)',
       btn_close: '關閉 (Esc)',
       jargon_title: '晶圓廠現場行話與術語字典',
@@ -198,7 +198,7 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
       explore_open: 'Open Scenario ↗',
       no_matching_chapters: 'No matching chapters found',
       footer_attribution: `Adapted from the open-source book <a href="https://github.com/chenwei810/Semiconductor_Manufacturing_Introduction" target="_blank" rel="noopener">chenwei810/Semiconductor_Manufacturing_Introduction</a> licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a>.`,
-      footer_desc: 'Comprehensive 25-chapter wafer fabrication guide from sand to chip · 28-module authentic SEM & tool photo side-by-side view · 245 core terms & 43 fab jargon · Native bilingual support · Zero Chinese-origin dependencies · v2.9.0',
+      footer_desc: 'Comprehensive 25-chapter wafer fabrication guide from sand to chip · 28-module authentic SEM & tool photo side-by-side view · 245 core terms & 43 fab jargon · Native bilingual support · Zero Chinese-origin dependencies · v2.10.0',
       theme_light_title: 'Light Precision Mode',
       theme_dark_title: 'Dark High-Contrast Mode',
       theme_amber_title: 'Cleanroom 500nm Litho Amber Mode',
@@ -683,10 +683,11 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
     const returnNodeTitle = returnContext ? (isEn ? (returnContext.node.titleEn || returnContext.node.title) : returnContext.node.title) : '';
     const scenarioTitle = relatedScenario ? (isEn ? (relatedScenario.titleEn || relatedScenario.title) : relatedScenario.title) : '';
 
-    const [{ replaceFigureComments }, { linkGlossaryTerms }, { insertSourcedCharts }] = await Promise.all([
+    const [{ replaceFigureComments }, { linkGlossaryTerms }, { insertSourcedCharts }, { insertSectionDiagrams }] = await Promise.all([
       import('./chapter-figures.js'),
       import('./glossary-links.js'),
-      import('./sourced-charts.js')
+      import('./sourced-charts.js'),
+      import('./section-diagrams.js')
     ]);
     if (token !== chapterLoadToken) return;
     const routeDynamicEl = document.getElementById('route-dynamic');
@@ -715,7 +716,7 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
         <h1 class="article-headline">${escapeHtml(chapter.fullTitle)}</h1>
       </header>
       <div class="article-body">
-        ${insertSourcedCharts(replaceFigureComments(chapter.contentHtml, chapter.id), chapter.id, currentLang)}
+        ${insertSectionDiagrams(insertSourcedCharts(replaceFigureComments(chapter.contentHtml, chapter.id), chapter.id, currentLang), chapter.id, currentLang)}
       </div>
       ${paginationHtml}
     `;

@@ -103,6 +103,17 @@ body {
   height: auto;
 }
 
+/* 窄螢幕：圖面維持可讀寬度（圖內字約 10.5px 以上），圖框可左右滑動，圖說仍依螢幕寬度換行 */
+@media screen and (max-width: 640px) {
+  .chapter-figure {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .chapter-figure svg {
+    min-width: 600px;
+  }
+}
+
 .chapter-figure figcaption {
   margin-top: 8px;
   font-size: var(--ds-size-1);

@@ -752,7 +752,8 @@ export function insertSourcedCharts(html, chapterId, lang) {
     if (chart.chapterId !== chapterId) continue;
     const heading = en ? chart.headingEn : chart.headingZh;
     const pattern = new RegExp(`(<h2\\b[^>]*>[\\s\\S]*?${escapeRegExp(heading)}[\\s\\S]*?</h2>)`);
-    next = next.replace(pattern, `$1${chart.render(lang)}`);
+    // 函式型 replacer：圖表內容若含 `$&`、`$1`（例如美元金額）不會被當成替換樣式（見 8D 陷阱 0028）
+    next = next.replace(pattern, match => match + chart.render(lang));
   }
   return next;
 }

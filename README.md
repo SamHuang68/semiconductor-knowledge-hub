@@ -8,6 +8,8 @@
 
 ## 專案特色
 
+- **版本 v2.10.0 — 段落示意圖 (2.10.0)**：在全部 25 章與附錄 B 現場行話的純文字段落後補上 96 張雙語示意圖（流程、分支、對照、循環、分層），正文不刪減；圖內名稱取自該段正文、不帶數字，並標示「示意 · 未按比例」。由 `section-diagrams.js` 與 `data/section-diagrams.js` 產生，`scripts/test-section-diagrams.mjs` 檢查錨點、長度與正文不變。
+
 - **里程碑版本 v2.9.0 — 50 輪進階微觀物理與晶圓廠營運優化大滿貫 (Rounds 141–190 落地實裝) (2.9.0)**：
   - **Stage 29 (Rounds 141–145) 微影 PEB 酸擴散動力學與 Mack-4 顯影速率模擬器 (`data/litho-kinetics-data.js`)**：化學增幅光阻 (CAR) 曝光後烘烤 (PEB) 酸擴散半徑 (sigma) 與脫保護反應解算、Mack-4 四參數顯影速率模型、光阻殘餘輪廓與側壁傾角評估。
   - **Stage 30 (Rounds 146–150) 等離子體電漿鞘層物理與 IEDF 雙峰模擬器 (`data/plasma-sheath-data.js`)**：Bohm 鞘層速度與 Child-Langmuir 鞘層厚度解析、雙頻 RF (60MHz 源頻 + 2MHz 偏壓) 離子能量分佈函數 (IEDF) 雙峰分離，以及高深寬比 (HARC) 腰身鼓脹 (Bowing) 與微負載效應模擬。
