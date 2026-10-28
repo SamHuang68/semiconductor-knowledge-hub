@@ -1,9 +1,12 @@
 import assert from 'node:assert/strict';
-import { insertSourcedCharts, SOURCED_CHARTS, wstsRegionPoints, wstsWorldwidePoints } from '../sourced-charts.js';
+import { asmlRdPoints, insertSourcedCharts, lamRdPoints, SOURCED_CHARTS, tsmcRdPoints, wstsRegionPoints, wstsWorldwidePoints } from '../sourced-charts.js';
 import { chapter as ch00 } from '../data/chapters/ch00.js';
 import { chapter as ch01 } from '../data/chapters/ch01.js';
 import { chapter as ch03 } from '../data/chapters/ch03.js';
+import { chapter as ch04 } from '../data/chapters/ch04.js';
+import { chapter as ch06 } from '../data/chapters/ch06.js';
 import { chapter as ch14 } from '../data/chapters/ch14.js';
+import { chapter as ch15 } from '../data/chapters/ch15.js';
 
 const wafer = SOURCED_CHARTS.find(chart => chart.id === 'semi-wafer-shipments');
 const ppe = SOURCED_CHARTS.find(chart => chart.id === 'tsmc-ppe-purchases');
@@ -70,7 +73,7 @@ assert.ok(ppeEn.includes('convenience translations at each year-end exchange rat
 assert.ok(ppeZh.indexOf('29,155,400,000') < ppeZh.indexOf('以新台幣編製報表'), '匯率說明要放在金額表後面');
 assert.ok(!ppeZh.includes('29.76') && !ppeEn.includes('29.76'), '不混入另一套資本支出數字');
 
-const untouched = insertSourcedCharts(ch14.contentHtml, 'ch14', 'zh');
+const untouched = insertSourcedCharts(ch15.contentHtml, 'ch15', 'zh');
 assert.equal((untouched.match(/sourced-chart/g) || []).length, 0, '沒有可核對序列的章節不補圖');
 
 function figureById(html, id) {
@@ -126,4 +129,45 @@ assert.ok(regionZh.includes('width:100.00%') && regionZh.includes('width:44.37%'
 assert.ok(regionZh.includes('不是晶圓廠所在地') && regionEn.includes('not fab locations'), '分區是帳單地區');
 assert.ok(!regionZh.includes('<th scope="row">2026</th>'), '分區表不收 2026');
 
-console.log('[PASS] 公開數據圖只使用已核對的出貨表、20-F 金額與 WSTS Total Year 儲存格，並附上資料表');
+function assertRd(chapter, id, before, after, beforeEn, afterEn, points, extra) {
+  const zh = insertSourcedCharts(chapter.contentHtml, chapter.id, 'zh');
+  const en = insertSourcedCharts(chapter.contentHtmlEn, chapter.id, 'en');
+  assert.equal((zh.match(/class="sourced-chart"/g) || []).length, 1, `${chapter.id} 中文要有一張公開數據圖`);
+  assert.equal((en.match(/class="sourced-chart"/g) || []).length, 1, `${chapter.id} 英文要有一張公開數據圖`);
+  const figureZh = figureById(zh, id);
+  const figureEn = figureById(en, id);
+  assert.ok(zh.indexOf(before) < zh.indexOf(`chart-${id}`) && zh.indexOf(`chart-${id}`) < zh.indexOf(after), `${id} 要接在中文小標後面`);
+  assert.ok(en.indexOf(beforeEn) < en.indexOf(`chart-${id}`) && en.indexOf(`chart-${id}`) < en.indexOf(afterEn), `${id} 要接在英文小標後面`);
+  for (const point of points) {
+    for (const cell of [point.end, point.valueText, point.filed, point.accn]) {
+      assert.ok(figureZh.includes(cell) && figureEn.includes(cell), `${id} 要保留 ${cell}`);
+    }
+  }
+  assert.ok(figureZh.includes('公開數據') && figureEn.includes('Published data'), `${id} 要標成公開數據`);
+  assert.ok(!figureZh.includes('未按比例'), `${id} 不使用示意圖徽章`);
+  extra(figureZh, figureEn);
+}
+
+assertRd(ch04, 'asml-rd-expense', 'EUV：最先進的微影', '對準：每一層都要對得剛好', 'EUV: the most advanced lithography', 'Alignment: every layer must line up exactly', asmlRdPoints, (zh, en) => {
+  assert.ok(zh.includes('https://data.sec.gov/api/xbrl/companyfacts/CIK0000937966.json') && en.includes('ResearchAndDevelopmentExpense'), 'ASML 圖要附上 SEC 路徑');
+  assert.ok(zh.includes('width:100.00%') && zh.includes('width:41.89%'), 'ASML 2025 年是滿條，2019 年按同一比例');
+  assert.ok(zh.includes('不是一台 EUV 曝光機的售價') && en.includes('not the price of one EUV scanner'), '研發費用不能被讀成曝光機售價');
+  assert.ok(!zh.includes('2018-12-31') && !zh.includes('2016-12-31'), '不把沒有當年 20-F 列的年度放進 ASML 表');
+});
+
+assertRd(ch06, 'lam-rd-expense', '電漿：蝕刻的工具', '蝕刻要看哪些指標', 'Plasma: the etching tool', 'What to measure in etching', lamRdPoints, (zh, en) => {
+  assert.ok(zh.includes('https://data.sec.gov/api/xbrl/companyfacts/CIK0000707549.json') && en.includes('LAM RESEARCH CORPORATION'), 'Lam 圖要附上 SEC 路徑');
+  assert.ok(zh.includes('width:100.00%') && zh.includes('width:15.71%'), 'Lam 2026 會計年度是滿條，2011 年按同一比例');
+  assert.ok(zh.includes('會計年度在 6 月結束') && en.includes('fiscal year ends in June'), '要寫明 Lam 的會計年度在 6 月結束');
+  assert.ok(zh.includes('不是一台蝕刻機的售價') && en.includes('not the price of one etch tool'), '研發費用不能被讀成蝕刻機售價');
+});
+
+assertRd(ch14, 'tsmc-rd-expense', '微縮不只靠製程', '成熟製程一樣重要', 'Scaling is not only about the process', 'Mature processes matter just as much', tsmcRdPoints, (zh, en) => {
+  assert.ok(zh.includes('units.TWD') && en.includes('ResearchAndDevelopmentExpense.units.TWD'), '台積電研發費用要用新台幣列');
+  assert.ok(zh.includes('width:100.00%') && zh.includes('width:39.54%'), '台積電 2024 年研發費用是滿條，2017 年按同一比例');
+  assert.ok(zh.includes('不是某一奈米節點的成本') && en.includes('not the cost of one nanometer node'), '研發費用不能被讀成節點成本');
+  assert.ok(!zh.includes('6,227,000,000') && !en.includes('6,227,000,000'), '不混入 20-F 的美元方便換算');
+  assert.ok(!zh.includes('<th scope="row">2016-12-31</th>'), '不把只有比較欄的 2016 年放進表');
+});
+
+console.log('[PASS] 公開數據圖只使用已核對的出貨表、20-F 金額、WSTS Total Year 與年報研發費用，並附上資料表');
