@@ -683,9 +683,10 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
     const returnNodeTitle = returnContext ? (isEn ? (returnContext.node.titleEn || returnContext.node.title) : returnContext.node.title) : '';
     const scenarioTitle = relatedScenario ? (isEn ? (relatedScenario.titleEn || relatedScenario.title) : relatedScenario.title) : '';
 
-    const [{ replaceFigureComments }, { linkGlossaryTerms }] = await Promise.all([
+    const [{ replaceFigureComments }, { linkGlossaryTerms }, { insertSourcedCharts }] = await Promise.all([
       import('./chapter-figures.js'),
-      import('./glossary-links.js')
+      import('./glossary-links.js'),
+      import('./sourced-charts.js')
     ]);
     if (token !== chapterLoadToken) return;
     const routeDynamicEl = document.getElementById('route-dynamic');
@@ -714,7 +715,7 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
         <h1 class="article-headline">${escapeHtml(chapter.fullTitle)}</h1>
       </header>
       <div class="article-body">
-        ${replaceFigureComments(chapter.contentHtml, chapter.id)}
+        ${insertSourcedCharts(replaceFigureComments(chapter.contentHtml, chapter.id), chapter.id, currentLang)}
       </div>
       ${paginationHtml}
     `;
