@@ -3,6 +3,20 @@
 > 2.1.0–2.6.0 當時沒有寫入本檔，只記在 README「專案特色」與 Git 提交訊息；本檔自 2.6.1 起恢復逐版記錄。
 > 本檔原名 `修訂紀錄.md`。2.6.1 依規則 0013 改用英文檔名，歷史條目中的舊檔名保留原文，對照見下方「檔名英文化」條目。
 
+## 部署流程 · 2026-10-28 · 部署前執行門禁並只發布網站檔案（網站內容不變，版本維持 2.9.0）
+
+- 原因：原本的 `.github/workflows/deploy.yml` 不跑任何驗證，`npm run verify` 只在本機執行，攔不住有問題的部署；而且整個 repo 根目錄都被公開，例如線上 `scripts/verify-hub.js` 回應 200。
+- 修改：
+  - 部署流程拆成 `verify` 與 `deploy` 兩個 job。每次推送與 PR 都先跑 `npm run verify`，再以新增的 `scripts/build-site.mjs` 建立 `_site/`。只有 main 的推送才上傳並部署，驗證失敗就不部署。
+  - `build-site.mjs` 以 `git ls-files` 為來源，排除 `.github/`、`docs/`、`scripts/`、`README.md`、`revision-history.md`、`scenario-design-contract.md`、`package.json`、`.gitignore`。它也檢查產物內所有相對參照都存在，且大小寫完全一致（Pages 在 Linux 上區分大小寫）。
+  - `_site/` 加入 `.gitignore`。
+- 驗證（本機 Windows、node 24）：
+  - `npm run verify` 通過。
+  - 產物共 186 個檔案（排除 75 個），138 個相對參照全部存在。
+  - 把 `_site/` 架成本機站：開發檔回應 404。首頁、情境探索與 28 章在 1440 與 390 寬度共 60 個路由，HTTP 錯誤、頁面錯誤、主控台錯誤與水平溢位皆為 0。
+- 未驗證：CI 跑在 Ubuntu 與 node 22，門禁在 Linux 上能否通過，要推送後看 Actions 結果。瀏覽器層門禁（`verify-svg-contrast`、`verify-atlas-lifecycle` 等）需要 Playwright 與 Edge，沒有放進 CI。
+- 提交／發布狀態：本機提交於分支 `ci/verify-before-deploy`；`push=false`、`deploy=false`。
+
 ## 2.9.0 - 2026-10-24
 
 ### 新增功能與 50 輪微觀物理及廠務營運深度優化 (Rounds 141–190)
