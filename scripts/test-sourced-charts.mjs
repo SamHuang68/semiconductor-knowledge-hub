@@ -1,12 +1,16 @@
 import assert from 'node:assert/strict';
-import { asmlRdPoints, insertSourcedCharts, lamRdPoints, SOURCED_CHARTS, tsmcRdPoints, wstsRegionPoints, wstsWorldwidePoints } from '../sourced-charts.js';
+import { amatRdPoints, asmlRdPoints, axcelisRdPoints, insertSourcedCharts, klaRdPoints, lamRdPoints, micronRevenuePoints, SOURCED_CHARTS, tsmcRdPoints, wstsRegionPoints, wstsWorldwidePoints } from '../sourced-charts.js';
 import { chapter as ch00 } from '../data/chapters/ch00.js';
 import { chapter as ch01 } from '../data/chapters/ch01.js';
 import { chapter as ch03 } from '../data/chapters/ch03.js';
 import { chapter as ch04 } from '../data/chapters/ch04.js';
+import { chapter as ch05 } from '../data/chapters/ch05.js';
 import { chapter as ch06 } from '../data/chapters/ch06.js';
+import { chapter as ch07 } from '../data/chapters/ch07.js';
+import { chapter as ch13 } from '../data/chapters/ch13.js';
 import { chapter as ch14 } from '../data/chapters/ch14.js';
 import { chapter as ch15 } from '../data/chapters/ch15.js';
+import { chapter as ch16 } from '../data/chapters/ch16.js';
 
 const wafer = SOURCED_CHARTS.find(chart => chart.id === 'semi-wafer-shipments');
 const ppe = SOURCED_CHARTS.find(chart => chart.id === 'tsmc-ppe-purchases');
@@ -73,7 +77,7 @@ assert.ok(ppeEn.includes('convenience translations at each year-end exchange rat
 assert.ok(ppeZh.indexOf('29,155,400,000') < ppeZh.indexOf('以新台幣編製報表'), '匯率說明要放在金額表後面');
 assert.ok(!ppeZh.includes('29.76') && !ppeEn.includes('29.76'), '不混入另一套資本支出數字');
 
-const untouched = insertSourcedCharts(ch15.contentHtml, 'ch15', 'zh');
+const untouched = insertSourcedCharts(ch16.contentHtml, 'ch16', 'zh');
 assert.equal((untouched.match(/sourced-chart/g) || []).length, 0, '沒有可核對序列的章節不補圖');
 
 function figureById(html, id) {
@@ -150,9 +154,11 @@ function assertRd(chapter, id, before, after, beforeEn, afterEn, points, extra) 
 
 assertRd(ch04, 'asml-rd-expense', 'EUV：最先進的微影', '對準：每一層都要對得剛好', 'EUV: the most advanced lithography', 'Alignment: every layer must line up exactly', asmlRdPoints, (zh, en) => {
   assert.ok(zh.includes('https://data.sec.gov/api/xbrl/companyfacts/CIK0000937966.json') && en.includes('ResearchAndDevelopmentExpense'), 'ASML 圖要附上 SEC 路徑');
-  assert.ok(zh.includes('width:100.00%') && zh.includes('width:41.89%'), 'ASML 2025 年是滿條，2019 年按同一比例');
+  assert.ok(zh.includes('width:100.00%') && zh.includes('width:41.89%') && zh.includes('width:12.56%'), 'ASML 2025 年是滿條，2019 與 2011 年按同一比例');
   assert.ok(zh.includes('不是一台 EUV 曝光機的售價') && en.includes('not the price of one EUV scanner'), '研發費用不能被讀成曝光機售價');
-  assert.ok(!zh.includes('2018-12-31') && !zh.includes('2016-12-31'), '不把沒有當年 20-F 列的年度放進 ASML 表');
+  assert.ok(zh.includes('2011 到 2014') && en.includes('The row after 2014 is 2019'), '註腳要說明 2011 到 2014 有全年列，以及 2014 之後為什麼接到 2019');
+  assert.ok(zh.indexOf('2014-12-31') < zh.indexOf('2019-12-31'), '2014 的下一列是 2019');
+  assert.ok(!zh.includes('2018-12-31') && !zh.includes('2016-12-31') && !zh.includes('2015-12-31') && !zh.includes('2017-12-31'), '不把沒有當年 20-F 列的年度放進 ASML 表');
 });
 
 assertRd(ch06, 'lam-rd-expense', '電漿：蝕刻的工具', '蝕刻要看哪些指標', 'Plasma: the etching tool', 'What to measure in etching', lamRdPoints, (zh, en) => {
@@ -168,6 +174,49 @@ assertRd(ch14, 'tsmc-rd-expense', '微縮不只靠製程', '成熟製程一樣�
   assert.ok(zh.includes('不是某一奈米節點的成本') && en.includes('not the cost of one nanometer node'), '研發費用不能被讀成節點成本');
   assert.ok(!zh.includes('6,227,000,000') && !en.includes('6,227,000,000'), '不混入 20-F 的美元方便換算');
   assert.ok(!zh.includes('<th scope="row">2016-12-31</th>'), '不把只有比較欄的 2016 年放進表');
+});
+
+function barWidth(points, value) {
+  const max = Math.max(...points.map(point => point.value));
+  return ((value / max) * 100).toFixed(2);
+}
+
+assertRd(ch05, 'amat-rd-expense', '為什麼需要薄膜', '熱氧化：讓矽自己長出氧化層', 'Why thin films are needed', 'Thermal oxidation: letting silicon grow its own oxide', amatRdPoints, (zh, en) => {
+  assert.ok(zh.includes('https://data.sec.gov/api/xbrl/companyfacts/CIK0000006951.json') && en.includes('APPLIED MATERIALS INC /DE'), 'Applied Materials 圖要附上 SEC 路徑');
+  assert.ok(zh.includes(`width:${barWidth(amatRdPoints, 3570000000)}%`) && zh.includes(`width:${barWidth(amatRdPoints, 1118000000)}%`), 'Applied Materials 2025 會計年度是滿條，2011 年按同一比例');
+  assert.ok(zh.includes('不是一台 CVD、PVD 或 ALD 機台的售價') && en.includes('not the price of one CVD, PVD, or ALD tool'), '研發費用不能被讀成機台售價');
+  assert.ok(zh.includes('會計年度在 10 月結束') && en.includes('fiscal year ends in October'), '要寫明 Applied Materials 的會計年度在 10 月結束');
+  assert.ok(zh.includes('1,774,000,000') && zh.includes('1,781,000,000') && en.includes('2,022,000,000'), '註腳要寫出 2017 與 2018 兩套不一致的金額');
+  assert.ok(!zh.includes('<th scope="row">2017-10-29</th>') && !zh.includes('<th scope="row">2018-10-28</th>') && !zh.includes('<th scope="row">2009-10-25</th>'), '不一致的年度不放進 Applied Materials 表');
+  assert.ok(zh.indexOf('2016-10-30') < zh.indexOf('2019-10-27'), '2016 的下一列是 2019');
+});
+
+assertRd(ch07, 'axcelis-rd-expense', '佈植機怎麼運作', '兩個最重要的參數', 'How an implanter works', 'The two most important parameters', axcelisRdPoints, (zh, en) => {
+  assert.ok(zh.includes('https://data.sec.gov/api/xbrl/companyfacts/CIK0001113232.json') && en.includes('AXCELIS TECHNOLOGIES INC'), 'Axcelis 圖要附上 SEC 路徑');
+  assert.ok(zh.includes(`width:${barWidth(axcelisRdPoints, 108958000)}%`) && zh.includes(`width:${barWidth(axcelisRdPoints, 32586000)}%`), 'Axcelis 2025 年是滿條，2015 年按同一比例');
+  assert.ok(zh.includes('不是一台離子佈植機的售價') && en.includes('not the price of one ion implanter'), '研發費用不能被讀成佈植機售價');
+  assert.ok(zh.includes('33,533,000') && zh.includes('0001047469-15-002063') && en.includes('10-K/A'), '註腳要寫出 2014 年 10-K/A 的金額與 accession');
+  assert.ok(!zh.includes('<th scope="row">2014-12-31</th>'), '2014 年不放進 Axcelis 表');
+  assert.ok(zh.indexOf('2013-12-31') < zh.indexOf('2015-12-31'), '2013 的下一列是 2015');
+});
+
+assertRd(ch13, 'micron-contract-revenue', '記憶體和邏輯晶片有什麼不同', 'DRAM：一個電晶體加一個電容', 'How memory differs from logic', 'DRAM: one transistor and one capacitor', micronRevenuePoints, (zh, en) => {
+  assert.ok(zh.includes('https://data.sec.gov/api/xbrl/companyfacts/CIK0000723125.json') && en.includes('RevenueFromContractWithCustomerExcludingAssessedTax'), 'Micron 圖要附上 SEC 路徑');
+  assert.ok(zh.includes(`width:${barWidth(micronRevenuePoints, 133188000000)}%`) && zh.includes(`width:${barWidth(micronRevenuePoints, 15540000000)}%`), 'Micron 2026 會計年度是滿條，2023 年按同一比例');
+  assert.ok(zh.includes('不是單列 DRAM') && en.includes('not DRAM alone'), '合併收入不能被讀成單列 DRAM');
+  assert.ok(zh.includes('2018-08-31') && zh.includes('2026-09-03') && en.includes('late August or early September'), '表上要有期初與期末，並寫明會計年度不是日曆年底');
+  assert.ok(!zh.includes('6,056,000,000') && !zh.includes('4,870,000,000'), '不把標成 FY 的季度金額放進 Micron 表');
+  assert.ok(!zh.includes('<th scope="row">2017-09-01</th>'), '不把只有比較欄的 2018 會計年度放進表');
+});
+
+assertRd(ch15, 'kla-rd-expense', '量測與檢測不一樣', '常見的量測', 'Metrology and inspection are not the same', 'Common measurements', klaRdPoints, (zh, en) => {
+  assert.ok(zh.includes('https://data.sec.gov/api/xbrl/companyfacts/CIK0000319201.json') && en.includes('KLA Corporation'), 'KLA 圖要附上 SEC 路徑');
+  assert.ok(zh.includes(`width:${barWidth(klaRdPoints, 1532118000)}%`) && zh.includes(`width:${barWidth(klaRdPoints, 386163000)}%`), 'KLA 2026 會計年度是滿條，2011 年按同一比例');
+  assert.ok(zh.includes('不是一台量測機或檢測機的售價') && en.includes('not the price of one metrology or inspection tool'), '研發費用不能被讀成量測機售價');
+  assert.ok(zh.includes('會計年度在 6 月 30 日結束') && en.includes('fiscal year ends on 30 June'), '要寫明 KLA 的會計年度在 6 月 30 日結束');
+  assert.ok(zh.includes('526,870,000') && zh.includes('526,688,000') && en.includes('608,531,000'), '註腳要寫出 2017 與 2018 兩套不一致的金額');
+  assert.ok(!zh.includes('<th scope="row">2017-06-30</th>') && !zh.includes('<th scope="row">2018-06-30</th>'), '不一致的年度不放進 KLA 表');
+  assert.ok(zh.indexOf('2016-06-30') < zh.indexOf('2019-06-30'), '2016 的下一列是 2019');
 });
 
 console.log('[PASS] 公開數據圖只使用已核對的出貨表、20-F 金額、WSTS Total Year 與年報研發費用，並附上資料表');

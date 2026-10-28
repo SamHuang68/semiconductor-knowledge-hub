@@ -22,6 +22,10 @@ const WSTS_PAGE = 'https://www.wsts.org/67/Historical-Billings-Report';
 const WSTS_XLSX = 'https://www.wsts.org/esraCMS/extension/media/f/WST/7803/WSTS-Historical-Billings-Report-Aug_2026.xlsx';
 const ASML_URL = 'https://data.sec.gov/api/xbrl/companyfacts/CIK0000937966.json';
 const LAM_URL = 'https://data.sec.gov/api/xbrl/companyfacts/CIK0000707549.json';
+const AMAT_URL = 'https://data.sec.gov/api/xbrl/companyfacts/CIK0000006951.json';
+const AXCELIS_URL = 'https://data.sec.gov/api/xbrl/companyfacts/CIK0001113232.json';
+const MICRON_URL = 'https://data.sec.gov/api/xbrl/companyfacts/CIK0000723125.json';
+const KLA_URL = 'https://data.sec.gov/api/xbrl/companyfacts/CIK0000319201.json';
 
 const waferPoints = [
   { year: '2020', areaValue: 12407, areaText: '12,407', revenueValue: 11.2, revenueText: '11.2' },
@@ -113,6 +117,10 @@ function rdPoints(rows) {
 }
 
 export const asmlRdPoints = rdPoints([
+  ['2011-12-31', 590270000, '2012-02-14', '0001193125-12-058548'],
+  ['2012-12-31', 589182000, '2013-02-13', '0001193125-13-053249'],
+  ['2013-12-31', 882029000, '2014-02-12', '0001193125-14-046822'],
+  ['2014-12-31', 1074035000, '2015-02-11', '0001193125-15-042676'],
   ['2019-12-31', 1968500000, '2020-02-12', '0000937966-20-000011'],
   ['2020-12-31', 2200800000, '2021-02-10', '0000937966-21-000007'],
   ['2021-12-31', 2547000000, '2022-02-09', '0000937966-22-000013'],
@@ -152,12 +160,91 @@ export const tsmcRdPoints = rdPoints([
   ['2024-12-31', 204181800000, '2025-04-17', '0001193125-25-083423']
 ]);
 
+export const amatRdPoints = rdPoints([
+  ['2011-10-30', 1118000000, '2011-12-06', '0001193125-11-332050'],
+  ['2012-10-28', 1237000000, '2012-12-05', '0000006951-12-000018'],
+  ['2013-10-27', 1320000000, '2013-12-04', '0000006951-13-000044'],
+  ['2014-10-26', 1428000000, '2014-12-17', '0000006951-14-000037'],
+  ['2015-10-25', 1451000000, '2015-12-09', '0000006951-15-000034'],
+  ['2016-10-30', 1540000000, '2016-12-15', '0000006951-16-000068'],
+  ['2019-10-27', 2054000000, '2019-12-13', '0000006951-19-000046'],
+  ['2020-10-25', 2234000000, '2020-12-11', '0000006951-20-000048'],
+  ['2021-10-31', 2485000000, '2021-12-17', '0000006951-21-000043'],
+  ['2022-10-30', 2771000000, '2022-12-16', '0000006951-22-000043'],
+  ['2023-10-29', 3102000000, '2023-12-15', '0000006951-23-000041'],
+  ['2024-10-27', 3233000000, '2024-12-13', '0000006951-24-000044'],
+  ['2025-10-26', 3570000000, '2025-12-12', '0001628280-25-056742']
+]);
+
+export const axcelisRdPoints = rdPoints([
+  ['2011-12-31', 47176000, '2012-02-29', '0001047469-12-001874'],
+  ['2012-12-31', 40401000, '2013-03-01', '0001047469-13-002045'],
+  ['2013-12-31', 34756000, '2014-03-03', '0001047469-14-001681'],
+  ['2015-12-31', 32586000, '2016-03-04', '0001047469-16-010788'],
+  ['2016-12-31', 34402000, '2017-03-14', '0001558370-17-001778'],
+  ['2017-12-31', 43071000, '2018-03-14', '0001558370-18-002060'],
+  ['2018-12-31', 51876000, '2019-03-11', '0001558370-19-001791'],
+  ['2019-12-31', 53931000, '2020-03-02', '0001558370-20-001858'],
+  ['2020-12-31', 61833000, '2021-02-26', '0001558370-21-001972'],
+  ['2021-12-31', 65431000, '2022-02-25', '0001558370-22-002096'],
+  ['2022-12-31', 78356000, '2023-02-24', '0001558370-23-002006'],
+  ['2023-12-31', 96907000, '2024-02-23', '0001558370-24-001628'],
+  ['2024-12-31', 105497000, '2025-02-28', '0001558370-25-001855'],
+  ['2025-12-31', 108958000, '2026-02-26', '0001104659-26-020461']
+]);
+
+export const micronRevenuePoints = [
+  ['2018-08-31', '2019-08-29', 23406000000, '2019-10-17', '0000723125-19-000094'],
+  ['2019-08-30', '2020-09-03', 21435000000, '2020-10-19', '0000723125-20-000082'],
+  ['2020-09-04', '2021-09-02', 27705000000, '2021-10-08', '0000723125-21-000065'],
+  ['2021-09-03', '2022-09-01', 30758000000, '2022-10-07', '0000723125-22-000048'],
+  ['2022-09-02', '2023-08-31', 15540000000, '2023-10-06', '0000723125-23-000054'],
+  ['2023-09-01', '2024-08-29', 25111000000, '2024-10-04', '0000723125-24-000027'],
+  ['2024-08-30', '2025-08-28', 37378000000, '2025-10-03', '0000723125-25-000028'],
+  ['2025-08-29', '2026-09-03', 133188000000, '2026-10-09', '0000723125-26-000023']
+].map(([start, end, value, filed, accn]) => ({
+  start,
+  end,
+  year: end.slice(0, 4),
+  value,
+  valueText: group(value),
+  filed,
+  accn
+}));
+
+export const klaRdPoints = rdPoints([
+  ['2011-06-30', 386163000, '2011-08-05', '0001445305-11-002394'],
+  ['2012-06-30', 452937000, '2012-08-06', '0000319201-12-000008'],
+  ['2013-06-30', 487832000, '2013-08-08', '0000319201-13-000033'],
+  ['2014-06-30', 539469000, '2014-08-08', '0000319201-14-000038'],
+  ['2015-06-30', 530616000, '2015-08-07', '0000319201-15-000053'],
+  ['2016-06-30', 481258000, '2016-08-05', '0000319201-16-000090'],
+  ['2019-06-30', 711030000, '2019-08-16', '0000319201-19-000031'],
+  ['2020-06-30', 863864000, '2020-08-10', '0000319201-20-000047'],
+  ['2021-06-30', 928487000, '2021-08-06', '0000319201-21-000029'],
+  ['2022-06-30', 1105254000, '2022-08-05', '0000319201-22-000023'],
+  ['2023-06-30', 1296727000, '2023-08-04', '0000319201-23-000031'],
+  ['2024-06-30', 1278981000, '2024-08-05', '0000319201-24-000021'],
+  ['2025-06-30', 1360334000, '2025-08-08', '0000319201-25-000024'],
+  ['2026-06-30', 1532118000, '2026-08-06', '0000319201-26-000027']
+]);
+
 function rdFigure(chart, lang, points, unit) {
   const en = lang === 'en';
+  const hasStart = points.some(point => point.start);
+  const startLabel = en ? 'Period start' : '期初';
   const endLabel = en ? 'Period end' : '期末';
   const valueLabel = en ? chart.valueEn : chart.valueZh;
   const filedLabel = en ? 'Annual report filed' : '年報申報日';
-  const rows = points.map(point => `<tr><th scope="row">${point.end}</th><td>${point.valueText}</td><td>${point.filed}</td><td>${point.accn}</td></tr>`).join('');
+  const rows = points.map(point => {
+    const lead = hasStart
+      ? `<th scope="row">${point.start}</th><td>${point.end}</td>`
+      : `<th scope="row">${point.end}</th>`;
+    return `<tr>${lead}<td>${point.valueText}</td><td>${point.filed}</td><td>${point.accn}</td></tr>`;
+  }).join('');
+  const head = hasStart
+    ? `<th scope="col">${startLabel}</th><th scope="col">${endLabel}</th>`
+    : `<th scope="col">${endLabel}</th>`;
   return `<figure class="sourced-chart" id="chart-${chart.id}">
     <figcaption>
       <span class="sourced-badge">${en ? 'Published data' : '公開數據'}</span>
@@ -174,7 +261,7 @@ function rdFigure(chart, lang, points, unit) {
     <div class="table-container">
       <table class="semi-table sourced-data-table">
         <caption>${esc(en ? chart.titleEn : chart.titleZh)}</caption>
-        <thead><tr><th scope="col">${endLabel}</th><th scope="col">${esc(valueLabel)}</th><th scope="col">${filedLabel}</th><th scope="col">accession</th></tr></thead>
+        <thead><tr>${head}<th scope="col">${esc(valueLabel)}</th><th scope="col">${filedLabel}</th><th scope="col">accession</th></tr></thead>
         <tbody>${rows}</tbody>
       </table>
     </div>
@@ -379,8 +466,8 @@ export const SOURCED_CHARTS = [
     valueEn: 'Euros',
     locatorZh: 'SEC Company Facts，CIK 0000937966，ASML HOLDING NV。路徑 facts.us-gaap.ResearchAndDevelopmentExpense.units.EUR。只取 form 為 20-F、fp 為 FY，而且 fy 等於該列期末年度的那一筆。金額、申報日與 accession 見下表。',
     locatorEn: 'SEC Company Facts, CIK 0000937966, ASML HOLDING NV. Path: facts.us-gaap.ResearchAndDevelopmentExpense.units.EUR. Only the row with form 20-F, fp FY, and fy equal to the period-end year is used. The amount, filing date, and accession are in the table.',
-    footnoteZh: '2015 與 2016 在這份 Company Facts 沒有這個科目的全年列。2017 與 2018 只出現在較晚 20-F 的比較欄，所以這張圖不收，從 2019 年那份 20-F 起算。',
-    footnoteEn: '2015 and 2016 have no full-year row for this concept in this Company Facts file. 2017 and 2018 appear only as comparative columns in a later 20-F, so they are left out. The chart starts with the 2019 20-F.',
+    footnoteZh: '2011 到 2014 是該年自己的 20-F 全年列，較晚 20-F 的比較欄金額相同，所以畫進來。2015 與 2016 在這份 Company Facts 沒有這個科目的全年列。2017 與 2018 只出現在較晚 20-F 的比較欄，沒有 fy 等於該年的 20-F，所以不畫。表上 2014 的下一列是 2019。',
+    footnoteEn: '2011 through 2014 are that year’s own 20-F full-year rows, and the comparative columns in later 20-Fs show the same amounts, so they are included. 2015 and 2016 have no full-year row for this concept in this Company Facts file. 2017 and 2018 appear only as comparative columns in a later 20-F, with no 20-F whose fy equals that year, so they are left out. The row after 2014 is 2019.',
     render(lang) {
       return rdFigure(this, lang, asmlRdPoints, 'EUR');
     }
@@ -423,6 +510,86 @@ export const SOURCED_CHARTS = [
     footnoteEn: '2016 appears only as a comparative column in a later 20-F, so the chart starts with the 2017 20-F. The US dollar rows are not shown.',
     render(lang) {
       return rdFigure(this, lang, tsmcRdPoints, 'TWD');
+    }
+  },
+  {
+    id: 'amat-rd-expense',
+    chapterId: 'ch05',
+    headingZh: '為什麼需要薄膜',
+    headingEn: 'Why thin films are needed',
+    titleZh: 'Applied Materials 研究發展費用',
+    titleEn: 'Applied Materials research and development expense',
+    noteZh: '這是 Applied Materials 合併損益表的研究發展費用，單位是美元。它不是一台 CVD、PVD 或 ALD 機台的售價。這家公司也賣薄膜以外的設備，數字是整家公司的，沒有拆成薄膜部門。會計年度在 10 月結束，表上的日期是期末。',
+    noteEn: 'This is Applied Materials’ consolidated research and development expense, in US dollars. It is not the price of one CVD, PVD, or ALD tool. The company also sells equipment outside thin films, and this figure is for the whole company, not a thin-film segment. The fiscal year ends in October. The date in the table is the period end.',
+    url: AMAT_URL,
+    valueZh: '美元',
+    valueEn: 'US dollars',
+    locatorZh: 'SEC Company Facts，CIK 0000006951，APPLIED MATERIALS INC /DE。路徑 facts.us-gaap.ResearchAndDevelopmentExpense.units.USD。只取 form 為 10-K、fp 為 FY、fy 等於該列期末年度，而且期初到期末至少 300 天的那一筆。金額、申報日與 accession 見下表。',
+    locatorEn: 'SEC Company Facts, CIK 0000006951, APPLIED MATERIALS INC /DE. Path: facts.us-gaap.ResearchAndDevelopmentExpense.units.USD. Only the row with form 10-K, fp FY, fy equal to the period-end year, and a start-to-end span of at least 300 days is used. The amount, filing date, and accession are in the table.',
+    footnoteZh: '2017 年當年 10-K 是 1,774,000,000 美元（申報日 2017-12-15，accession 0000006951-17-000038），2019 年 10-K 的比較欄是 1,781,000,000 美元（申報日 2019-12-13，accession 0000006951-19-000046）。2018 年當年 10-K 是 2,019,000,000 美元（申報日 2018-12-13，accession 0000006951-18-000041），2019 年 10-K 與 2020 年 10-K 的比較欄是 2,022,000,000 美元（2020 年那份申報日 2020-12-11，accession 0000006951-20-000048）。這兩年兩套數字不一樣，所以不畫。2009 年當年 10-K 是 934,115,000 美元（申報日 2009-12-11，accession 0000950123-09-070205），較晚的 10-K 寫成 934,000,000。2010 年當年 10-K 是 1,143,521,000 美元（申報日 2010-12-10，accession 0000950123-10-112754），較晚的 10-K 寫成 1,143,000,000。整數對不上，所以 2009 與 2010 也不畫。表上 2016 的下一列是 2019。',
+    footnoteEn: 'The fiscal 2017 10-K reports 1,774,000,000 US dollars (filed 2017-12-15, accession 0000006951-17-000038). The comparative column in the fiscal 2019 10-K reports 1,781,000,000 (filed 2019-12-13, accession 0000006951-19-000046). The fiscal 2018 10-K reports 2,019,000,000 (filed 2018-12-13, accession 0000006951-18-000041). The comparative columns in the fiscal 2019 and fiscal 2020 10-Ks report 2,022,000,000 (the fiscal 2020 filing date is 2020-12-11, accession 0000006951-20-000048). Those two years disagree, so they are left out. The fiscal 2009 10-K reports 934,115,000 (filed 2009-12-11, accession 0000950123-09-070205); a later 10-K prints 934,000,000. The fiscal 2010 10-K reports 1,143,521,000 (filed 2010-12-10, accession 0000950123-10-112754); a later 10-K prints 1,143,000,000. The integers do not match, so 2009 and 2010 are left out too. The row after 2016 is 2019.',
+    render(lang) {
+      return rdFigure(this, lang, amatRdPoints, 'USD');
+    }
+  },
+  {
+    id: 'axcelis-rd-expense',
+    chapterId: 'ch07',
+    headingZh: '佈植機怎麼運作',
+    headingEn: 'How an implanter works',
+    titleZh: 'Axcelis 研究發展費用',
+    titleEn: 'Axcelis research and development expense',
+    noteZh: '這是 Axcelis Technologies 合併損益表的研究發展費用，單位是美元。它不是一台離子佈植機的售價。會計年度在 12 月 31 日結束。',
+    noteEn: 'This is Axcelis Technologies’ consolidated research and development expense, in US dollars. It is not the price of one ion implanter. The fiscal year ends on 31 December.',
+    url: AXCELIS_URL,
+    valueZh: '美元',
+    valueEn: 'US dollars',
+    locatorZh: 'SEC Company Facts，CIK 0001113232，AXCELIS TECHNOLOGIES INC。路徑 facts.us-gaap.ResearchAndDevelopmentExpense.units.USD。只取 form 為 10-K、fp 為 FY、fy 等於該列期末年度，而且期初到期末至少 300 天的那一筆。金額、申報日與 accession 見下表。',
+    locatorEn: 'SEC Company Facts, CIK 0001113232, AXCELIS TECHNOLOGIES INC. Path: facts.us-gaap.ResearchAndDevelopmentExpense.units.USD. Only the row with form 10-K, fp FY, fy equal to the period-end year, and a start-to-end span of at least 300 days is used. The amount, filing date, and accession are in the table.',
+    footnoteZh: '2014 年沒有 fy 等於 2014 的 10-K 全年列。Company Facts 裡當年的全年列是 10-K/A，金額 33,533,000 美元，期末 2014-12-31，申報日 2015-03-12，accession 0001047469-15-002063。較晚的 10-K 比較欄是同一個金額（fy 為 2015 的 10-K，申報日 2016-03-04，accession 0001047469-16-010788），但那不是 2014 年自己的 10-K。這張圖只收 10-K，所以 2014 不畫。表上 2013 的下一列是 2015。',
+    footnoteEn: '2014 has no 10-K full-year row whose fy equals 2014. The full-year row for that year in Company Facts is a 10-K/A: 33,533,000 US dollars, period end 2014-12-31, filed 2015-03-12, accession 0001047469-15-002063. A later 10-K comparative column shows the same amount (the 10-K with fy 2015, filed 2016-03-04, accession 0001047469-16-010788), but that is not 2014’s own 10-K. This chart uses only 10-K rows, so 2014 is left out. The row after 2013 is 2015.',
+    render(lang) {
+      return rdFigure(this, lang, axcelisRdPoints, 'USD');
+    }
+  },
+  {
+    id: 'micron-contract-revenue',
+    chapterId: 'ch13',
+    headingZh: '記憶體和邏輯晶片有什麼不同',
+    headingEn: 'How memory differs from logic',
+    titleZh: 'Micron 來自客戶合約的收入',
+    titleEn: 'Micron revenue from contracts with customers',
+    noteZh: '這是 Micron Technology 合併報表的來自客戶合約的收入，不含稅，單位是美元。它把 DRAM、NAND 與其他產品合在一起，不是單列 DRAM，也不是單列 NAND，更不是每一顆位元的價格。會計年度在 8 月底或 9 月初結束，不是日曆年 12 月 31 日。',
+    noteEn: 'This is Micron Technology’s consolidated revenue from contracts with customers, excluding assessed tax, in US dollars. It combines DRAM, NAND, and other products. It is not DRAM alone, not NAND alone, and not a price per bit. The fiscal year ends in late August or early September, not on calendar 31 December.',
+    url: MICRON_URL,
+    valueZh: '美元',
+    valueEn: 'US dollars',
+    locatorZh: 'SEC Company Facts，CIK 0000723125，Micron Technology, Inc.。路徑 facts.us-gaap.RevenueFromContractWithCustomerExcludingAssessedTax.units.USD。只取 form 為 10-K、fp 為 FY、fy 等於期末年度，而且期初到期末至少 300 天的那一筆。期初、期末、金額、申報日與 accession 見下表。',
+    locatorEn: 'SEC Company Facts, CIK 0000723125, Micron Technology, Inc. Path: facts.us-gaap.RevenueFromContractWithCustomerExcludingAssessedTax.units.USD. Only the row with form 10-K, fp FY, fy equal to the period-end year, and a start-to-end span of at least 300 days is used. The period start, period end, amount, filing date, and accession are in the table.',
+    footnoteZh: '同一期末若還有一筆約 90 天、而且也被標成 fp FY 的金額，那是季度數，沒有採用。2018 會計年度在這個科目沒有 fy 等於 2018 的 10-K 全年列，只出現在較晚 10-K 的比較欄，所以表從 2019 會計年度起。更早的年度用的是別的 XBRL 科目，沒有混進來。',
+    footnoteEn: 'Where the same period end also has an amount of about 90 days that is tagged fp FY, that amount is a quarter and is not used. Fiscal 2018 has no 10-K full-year row for this concept whose fy equals 2018. It appears only as a comparative column in a later 10-K, so the table starts with fiscal 2019. Earlier years use a different XBRL concept and are not mixed in.',
+    render(lang) {
+      return rdFigure(this, lang, micronRevenuePoints, 'USD');
+    }
+  },
+  {
+    id: 'kla-rd-expense',
+    chapterId: 'ch15',
+    headingZh: '量測與檢測不一樣',
+    headingEn: 'Metrology and inspection are not the same',
+    titleZh: 'KLA 研究發展費用',
+    titleEn: 'KLA research and development expense',
+    noteZh: '這是 KLA Corporation 合併損益表的研究發展費用，單位是美元。它不是一台量測機或檢測機的售價，也沒有拆成量測部門與檢測部門。會計年度在 6 月 30 日結束，表上的日期是期末。',
+    noteEn: 'This is KLA Corporation’s consolidated research and development expense, in US dollars. It is not the price of one metrology or inspection tool, and it is not split into a metrology segment and an inspection segment. The fiscal year ends on 30 June. The date in the table is the period end.',
+    url: KLA_URL,
+    valueZh: '美元',
+    valueEn: 'US dollars',
+    locatorZh: 'SEC Company Facts，CIK 0000319201，KLA Corporation。路徑 facts.us-gaap.ResearchAndDevelopmentExpense.units.USD。只取 form 為 10-K、fp 為 FY、fy 等於該列期末年度，而且期初到期末至少 300 天的那一筆。金額、申報日與 accession 見下表。',
+    locatorEn: 'SEC Company Facts, CIK 0000319201, KLA Corporation. Path: facts.us-gaap.ResearchAndDevelopmentExpense.units.USD. Only the row with form 10-K, fp FY, fy equal to the period-end year, and a start-to-end span of at least 300 days is used. The amount, filing date, and accession are in the table.',
+    footnoteZh: '2017 年當年 10-K 是 526,870,000 美元（申報日 2017-08-04，accession 0000319201-17-000034），2019 年 10-K 的比較欄是 526,688,000 美元（申報日 2019-08-16，accession 0000319201-19-000031）。2018 年當年 10-K 是 608,712,000 美元（申報日 2018-08-06，accession 0000319201-18-000045），2019 年與 2020 年 10-K 的比較欄是 608,531,000 美元（2020 年那份申報日 2020-08-10，accession 0000319201-20-000047）。這兩年兩套數字不一樣，所以不畫。表上 2016 的下一列是 2019。',
+    footnoteEn: 'The fiscal 2017 10-K reports 526,870,000 US dollars (filed 2017-08-04, accession 0000319201-17-000034). The comparative column in the fiscal 2019 10-K reports 526,688,000 (filed 2019-08-16, accession 0000319201-19-000031). The fiscal 2018 10-K reports 608,712,000 (filed 2018-08-06, accession 0000319201-18-000045). The comparative columns in the fiscal 2019 and fiscal 2020 10-Ks report 608,531,000 (the fiscal 2020 filing date is 2020-08-10, accession 0000319201-20-000047). Those two years disagree, so they are left out. The row after 2016 is 2019.',
+    render(lang) {
+      return rdFigure(this, lang, klaRdPoints, 'USD');
     }
   }
 ];
