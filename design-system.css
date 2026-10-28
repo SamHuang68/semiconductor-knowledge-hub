@@ -784,8 +784,89 @@ body { background: var(--chrome-page, var(--bg-app)); }
   background: color-mix(in srgb, var(--semi-blue-light) 70%, var(--bg-surface));
 }
 
+.sourced-chart {
+  margin: 28px 0;
+  padding: 16px 16px 12px;
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  background: var(--bg-surface);
+  min-width: 0;
+  max-width: 100%;
+}
+.sourced-chart .figure-source,
+.sourced-chart .sourced-url {
+  overflow-wrap: anywhere;
+}
+.sourced-chart .table-container { max-width: 100%; }
+.sourced-badge {
+  display: inline-block;
+  margin-bottom: 8px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: #e0f2fe;
+  color: #075985;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+.sourced-url {
+  display: block;
+  margin-top: 4px;
+  color: #334155;
+  font-size: 13px;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+.sourced-plot { margin: 16px 0; }
+.sourced-plot-title {
+  margin: 14px 0 8px;
+  color: #0f172a;
+  font-size: 14px;
+  font-weight: 700;
+}
+.sourced-bar {
+  display: grid;
+  grid-template-columns: 3.4rem minmax(0, 1fr);
+  grid-template-areas:
+    "year value"
+    "track track";
+  gap: 4px 8px;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.sourced-bar-year { grid-area: year; color: #0f172a; font-size: 14px; font-weight: 650; font-variant-numeric: tabular-nums; }
+.sourced-bar-track {
+  grid-area: track;
+  height: 10px;
+  border-radius: 999px;
+  background: var(--bg-surface-alt);
+  border: 1px solid var(--border-subtle);
+  overflow: hidden;
+}
+.sourced-bar-fill {
+  display: block;
+  height: 100%;
+  background: #0f766e;
+}
+.sourced-bar-value {
+  grid-area: value;
+  justify-self: end;
+  color: #334155;
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+.sourced-data-table caption {
+  caption-side: bottom;
+  padding-top: 8px;
+  color: #334155;
+  font-size: 13px;
+  text-align: left;
+}
+
 .article-body .table-container,
 .article-body .chapter-figure,
+.article-body .sourced-chart,
 .article-body .engineering-object-mount,
 .article-body pre,
 .article-body .mermaid,
