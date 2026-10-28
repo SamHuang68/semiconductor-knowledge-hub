@@ -834,7 +834,15 @@ body { background: var(--chrome-page, var(--bg-app)); }
   align-items: center;
   margin-bottom: 8px;
 }
-.sourced-bar-year { grid-area: year; color: #0f172a; font-size: 14px; font-weight: 650; font-variant-numeric: tabular-nums; }
+.sourced-bar-wide {
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas:
+    "year"
+    "value"
+    "track";
+}
+.sourced-bar-wide .sourced-bar-value { justify-self: start; }
+.sourced-bar-year { grid-area: year; min-width: 0; overflow-wrap: anywhere; color: #0f172a; font-size: 14px; font-weight: 650; font-variant-numeric: tabular-nums; }
 .sourced-bar-track {
   grid-area: track;
   height: 10px;
@@ -851,6 +859,8 @@ body { background: var(--chrome-page, var(--bg-app)); }
 .sourced-bar-value {
   grid-area: value;
   justify-self: end;
+  min-width: 0;
+  overflow-wrap: anywhere;
   color: #334155;
   font-size: 13px;
   font-variant-numeric: tabular-nums;
