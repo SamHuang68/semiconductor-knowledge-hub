@@ -2579,20 +2579,20 @@ export const SECTION_DIAGRAMS = [
           {
             "zh": "切割道上的測試結構",
             "en": "Test structures in the scribe lines",
-            "noteZh": "測什麼",
-            "noteEn": "What it tests"
+            "keyZh": "測什麼",
+            "keyEn": "What it tests"
           },
           {
             "zh": "確認製程是否正常",
             "en": "Confirms the process was normal",
-            "noteZh": "目的",
-            "noteEn": "Purpose"
+            "keyZh": "目的",
+            "keyEn": "Purpose"
           },
           {
             "zh": "檢查製程做得對不對",
             "en": "Checks: was the process done right",
-            "noteZh": "簡單來說",
-            "noteEn": "Put simply"
+            "keyZh": "簡單來說",
+            "keyEn": "Put simply"
           }
         ]
       },
@@ -2603,20 +2603,20 @@ export const SECTION_DIAGRAMS = [
           {
             "zh": "每一顆晶粒的功能",
             "en": "The function of every die",
-            "noteZh": "測什麼",
-            "noteEn": "What it tests"
+            "keyZh": "測什麼",
+            "keyEn": "What it tests"
           },
           {
             "zh": "找出哪些晶粒是好的",
             "en": "Finds out which dies are good",
-            "noteZh": "目的",
-            "noteEn": "Purpose"
+            "keyZh": "目的",
+            "keyEn": "Purpose"
           },
           {
             "zh": "檢查每顆晶片能不能用",
             "en": "Checks: does each chip work",
-            "noteZh": "簡單來說",
-            "noteEn": "Put simply"
+            "keyZh": "簡單來說",
+            "keyEn": "Put simply"
           }
         ]
       }
@@ -2753,8 +2753,8 @@ export const SECTION_DIAGRAMS = [
           {
             "zh": "微控制器、電源管理晶片",
             "en": "Microcontrollers, power management chips",
-            "noteZh": "常見用途",
-            "noteEn": "Typical use"
+            "keyZh": "常見用途",
+            "keyEn": "Typical use"
           }
         ]
       },
@@ -2773,8 +2773,8 @@ export const SECTION_DIAGRAMS = [
           {
             "zh": "處理器、繪圖晶片",
             "en": "Processors, graphics chips",
-            "noteZh": "常見用途",
-            "noteEn": "Typical use"
+            "keyZh": "常見用途",
+            "keyEn": "Typical use"
           }
         ]
       },
@@ -2793,8 +2793,8 @@ export const SECTION_DIAGRAMS = [
           {
             "zh": "手機中的小型晶片",
             "en": "Small chips in phones",
-            "noteZh": "常見用途",
-            "noteEn": "Typical use"
+            "keyZh": "常見用途",
+            "keyEn": "Typical use"
           }
         ]
       }

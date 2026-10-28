@@ -138,13 +138,21 @@ const stepMark = i => 'ABCDEFGH'[i];
 function cycle(spec, en) {
   const steps = spec.steps;
   const n = steps.length;
-  const cx = 320, cy = 150, rx = 220, ry = 92;
   const w = n > 5 ? 128 : 144;
-  const h = Math.ceil(Math.max(52, ...steps.map(step => boxHeight(w, pick(step, en), '', en))));
-  const pts = steps.map((_, i) => {
-    const a = -Math.PI / 2 + (i * 2 * Math.PI) / n;
-    return [cx + rx * Math.cos(a), cy + ry * Math.sin(a)];
-  });
+  const noteOf = step => (step.noteZh ? pick({ zh: step.noteZh, en: step.noteEn }, en) : '');
+  const h = Math.ceil(Math.max(52, ...steps.map(step => boxHeight(w, pick(step, en), noteOf(step), en))));
+  const angle = i => -Math.PI / 2 + (i * 2 * Math.PI) / n;
+  const rx = 220;
+  // 同側上下相鄰、水平距離不足的節點不可重疊：依節點高度放大縱向半徑
+  let ry = 92;
+  for (let i = 0; i < n; i++) {
+    for (let j = i + 1; j < n; j++) {
+      const k = Math.abs(Math.sin(angle(i)) - Math.sin(angle(j)));
+      if (k > 0 && rx * Math.abs(Math.cos(angle(i)) - Math.cos(angle(j))) < w + 8) ry = Math.max(ry, (h + 12) / k);
+    }
+  }
+  const cx = 320, cy = 16 + h / 2 + ry;
+  const pts = steps.map((_, i) => [cx + rx * Math.cos(angle(i)), cy + ry * Math.sin(angle(i))]);
   let svg = `<ellipse cx="${cx}" cy="${cy}" rx="${rx}" ry="${ry}" fill="none" stroke="${LINE}" stroke-width="1.2" stroke-dasharray="5 5"/>`;
   for (let i = 0; i < n; i++) {
     const a = -Math.PI / 2 + ((i + 0.5) * 2 * Math.PI) / n;
@@ -154,11 +162,11 @@ function cycle(spec, en) {
   }
   steps.forEach((step, i) => {
     const [x, y] = pts[i];
-    svg += box(x - w / 2, y - h / 2, w, h, TONES[i % TONES.length], pick(step, en), '', en);
+    svg += box(x - w / 2, y - h / 2, w, h, TONES[i % TONES.length], pick(step, en), noteOf(step), en);
     svg += `<circle cx="${x - w / 2 + 2}" cy="${y - h / 2 + 2}" r="8.5" fill="#ffffff" stroke="${LINE}"/><text x="${x - w / 2 + 2}" y="${y - h / 2 + 5.5}" text-anchor="middle" fill="${LINE}" font-size="10" font-weight="700">${stepMark(i)}</text>`;
   });
   if (spec.centerZh) svg += textBlock(cx, cy, wrap(pick({ zh: spec.centerZh, en: spec.centerEn }, en), 200, 13, en, 2), 13, INK_2, 600);
-  return { svg, height: 300 };
+  return { svg, height: Math.ceil(cy + ry + h / 2 + 16) };
 }
 
 // 層疊結構：由上到下畫出層次，右側可加註每層作用
@@ -182,16 +190,21 @@ function stack(spec, en) {
   return { svg, height: 24 + layers.length * (h + 4) + 16 };
 }
 
-// 並排比較：二到三欄，每欄標題加要點
+// 並排比較：二到三欄，每欄標題加要點；要點可在上方加列標題（key）、下方加補充（note）
 function compare(spec, en) {
   const cols = spec.columns;
   const gap = 18;
   const w = (608 - gap * (cols.length - 1)) / cols.length;
   const maxItems = Math.max(...cols.map(c => c.items.length));
-  const lh = 11.5 * 1.25;
-  const linesOf = item => wrap(pick(item, en), w - 34, 11.5, en, MAX_LINES);
-  // 同一列的要點等高，取各欄該列所需行數的最大值
-  const rowH = Array.from({ length: maxItems }, (_, ii) => Math.max(38, ...cols.map(c => (c.items[ii] ? linesOf(c.items[ii]).length * lh + 12 : 0))));
+  const SMALL = 10.5;
+  const partsOf = item => [
+    ...(item.keyZh ? wrap(pick({ zh: item.keyZh, en: item.keyEn }, en), w - 34, SMALL, en, 2).map(text => ({ text, size: SMALL, color: INK_2, weight: 600 })) : []),
+    ...wrap(pick(item, en), w - 34, 11.5, en, MAX_LINES).map(text => ({ text, size: 11.5, color: INK, weight: 400 })),
+    ...(item.noteZh ? wrap(pick({ zh: item.noteZh, en: item.noteEn }, en), w - 34, SMALL, en, MAX_LINES).map(text => ({ text, size: SMALL, color: INK_2, weight: 400 })) : []),
+  ];
+  const blockOf = parts => parts.reduce((sum, p) => sum + p.size * 1.25, 0);
+  // 同一列的要點等高，取各欄該列所需高度的最大值
+  const rowH = Array.from({ length: maxItems }, (_, ii) => Math.max(38, ...cols.map(c => (c.items[ii] ? blockOf(partsOf(c.items[ii])) + 12 : 0))));
   const titleLines = Math.max(...cols.map(c => wrap(pick({ zh: c.titleZh, en: c.titleEn }, en), w - 16, 13, en, 2).length));
   const titleH = titleLines > 1 ? 52 : 40;
   const height = 16 + titleH + 10 + rowH.reduce((a, b) => a + b + 8, 0) + 20;
@@ -205,9 +218,12 @@ function compare(spec, en) {
     let y = 16 + titleH + 10;
     col.items.forEach((item, ii) => {
       svg += `<circle cx="${x + 14}" cy="${y + rowH[ii] / 2}" r="3" fill="${tone.stroke}"/>`;
-      const lines = linesOf(item);
-      const top = y + rowH[ii] / 2 - ((lines.length - 1) * lh) / 2 + 4;
-      svg += lines.map((line, li) => `<text x="${x + 24}" y="${top + li * lh}" fill="${INK}" font-size="11.5">${esc(line)}</text>`).join('');
+      const parts = partsOf(item);
+      let cursor = y + rowH[ii] / 2 - blockOf(parts) / 2;
+      for (const p of parts) {
+        svg += `<text x="${x + 24}" y="${cursor + p.size * 0.625 + p.size * 0.35}" fill="${p.color}" font-size="${p.size}"${p.weight > 400 ? ` font-weight="${p.weight}"` : ''}>${esc(p.text)}</text>`;
+        cursor += p.size * 1.25;
+      }
       y += rowH[ii] + 8;
     });
   });

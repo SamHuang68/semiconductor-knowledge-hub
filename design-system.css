@@ -112,6 +112,11 @@ body {
   .chapter-figure svg {
     min-width: 600px;
   }
+  /* 圖說固定在圖框左緣：左右滑動圖面時，示意標章與圖說仍留在畫面內 */
+  .chapter-figure figcaption {
+    position: sticky;
+    left: 0;
+  }
 }
 
 .chapter-figure figcaption {

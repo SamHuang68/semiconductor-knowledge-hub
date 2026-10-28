@@ -9,13 +9,25 @@ for (const file of readdirSync(new URL('../data/chapters/', import.meta.url)).fi
   chapters[chapter.id] = chapter;
 }
 
-const LIMITS = { zh: { label: 12, note: 16, leaf: 16, item: 18, layer: 14, layerNote: 18, caption: 30 }, en: { label: 34, note: 44, leaf: 46, item: 48, layer: 30, layerNote: 40, caption: 80 } };
+const LIMITS = { zh: { label: 12, note: 16, leaf: 16, item: 18, key: 6, layer: 14, layerNote: 18, caption: 30 }, en: { label: 34, note: 44, leaf: 46, item: 48, key: 16, layer: 30, layerNote: 40, caption: 80 } };
 const COUNTS = { flow: ['steps', 3, 8], cycle: ['steps', 3, 6], stack: ['layers', 3, 7], compare: ['columns', 2, 3], branch: ['branches', 2, 5] };
 // 常見簡體字：出現即視為誤用（本站中文一律臺灣繁體）
 const SIMPLIFIED = /[这为们发会来时说对过进还从动点现质应产线业设计实关结图层压电热测体级]/; // zh-tw-guard:allow
 // h2 文字解碼後再比對；規格中的標題存一般文字
 const decode = text => text.replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&amp;/g, '&');
 const headings = html => [...html.matchAll(/<h2\b[^>]*>([\s\S]*?)<\/h2>/g)].map(m => decode(m[1].replace(/<[^>]+>/g, '').replace(/#$/, '').trim()));
+// 規格中該語言的所有文字欄位（zh／en 與 *Zh／*En），標題錨點與圖型除外
+const ANCHOR_KEYS = new Set(['chapterId', 'headingZh', 'headingEn', 'type']);
+const specTexts = (node, lang, out = []) => {
+  for (const [key, value] of Object.entries(node)) {
+    if (ANCHOR_KEYS.has(key)) continue;
+    if (value && typeof value === 'object') specTexts(value, lang, out);
+    else if (typeof value === 'string' && (lang === 'zh' ? key === 'zh' || key.endsWith('Zh') : key === 'en' || key.endsWith('En'))) out.push(value);
+  }
+  return out;
+};
+// 圖中實際顯示的文字：去標籤、解碼、去空白（換行後各行相接）
+const shownText = html => decode(html.replace(/<[^>]+>/g, '')).replace(/\s+/g, '');
 const sectionText = (html, heading) => {
   const part = html.split(/(?=<h2\b)/).find(p => headings(p)[0]?.includes(heading)) || '';
   return part.replace(/<[^>]+>/g, ' ');
@@ -43,7 +55,7 @@ for (const spec of SECTION_DIAGRAMS) {
   const add = (zh, en, kind) => { if (zh !== undefined) zhNodes.push([zh, kind]); if (en !== undefined) enNodes.push([en, kind]); };
   for (const n of spec.steps || []) { add(n.zh, n.en, 'label'); add(n.noteZh, n.noteEn, 'note'); }
   for (const n of spec.layers || []) { add(n.zh, n.en, 'layer'); add(n.noteZh, n.noteEn, 'layerNote'); }
-  for (const c of spec.columns || []) { add(c.titleZh, c.titleEn, 'label'); for (const n of c.items) add(n.zh, n.en, 'item'); }
+  for (const c of spec.columns || []) { add(c.titleZh, c.titleEn, 'label'); for (const n of c.items) { add(n.keyZh, n.keyEn, 'key'); add(n.zh, n.en, 'item'); add(n.noteZh, n.noteEn, 'note'); } }
   if (spec.root) { add(spec.root.zh, spec.root.en, 'label'); add(spec.root.noteZh, spec.root.noteEn, 'note'); }
   for (const b of spec.branches || []) { add(b.zh, b.en, 'label'); add(b.leafZh, b.leafEn, 'leaf'); }
   add(spec.centerZh, spec.centerEn, 'note');
@@ -72,6 +84,13 @@ for (const spec of SECTION_DIAGRAMS) {
   for (const lang of ['zh', 'en']) {
     const figure = renderSectionDiagram(spec, lang);
     assert.ok(figure.includes(lang === 'zh' ? '示意 · 未按比例' : 'Schematic · not to scale'), `${id} 須標示示意、未按比例`);
+    // 規格裡的每段文字都要畫進圖中：渲染器漏讀欄位或截字即失敗（2.10.0 曾漏畫 compare 與 cycle 的註記）
+    // 圖內文字只在 SVG 內找、圖說只在 figcaption 內找，避免短標籤被圖說裡的同字誤判為已顯示
+    const [svgPart, captionPart] = figure.split('</svg>');
+    const caption = lang === 'zh' ? spec.captionZh : spec.captionEn;
+    assert.ok(shownText(captionPart).includes(caption.replace(/\s+/g, '')), `${id} ${lang} 圖說沒有出現在 figcaption`);
+    const shown = shownText(svgPart);
+    for (const text of specTexts(spec, lang).filter(t => t !== caption)) assert.ok(shown.includes(text.replace(/\s+/g, '')), `${id} ${lang} 規格文字沒有出現在圖中：${text}`);
   }
 }
 

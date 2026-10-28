@@ -310,7 +310,7 @@ const indexHtml = fs.readFileSync(path.join(ROOT_DIR, 'index.html'), 'utf8');
 const appJs = fs.readFileSync(path.join(ROOT_DIR, 'app.js'), 'utf8');
 const pkgJson = JSON.parse(fs.readFileSync(path.join(ROOT_DIR, 'package.json'), 'utf8'));
 
-assert.equal(pkgJson.version, '2.10.0', 'package.json 版本號必須為 2.10.0');
+assert.equal(pkgJson.version, '2.10.1', 'package.json 版本號必須為 2.10.1');
 assert.ok(indexHtml.includes(`版本 ${pkgJson.version}`), 'index.html 頁尾版本必須與 package.json 一致');
 assert.ok(appJs.includes(`版本 ${pkgJson.version}`), 'app.js 中文頁尾版本必須與 package.json 一致');
 assert.ok(appJs.includes(`· v${pkgJson.version}'`), 'app.js 英文頁尾版本必須與 package.json 一致');
