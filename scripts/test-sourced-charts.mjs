@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { amatRdPoints, asmlRdPoints, axcelisRdPoints, insertSourcedCharts, klaRdPoints, lamRdPoints, micronRevenuePoints, SOURCED_CHARTS, tsmcRdPoints, wstsRegionPoints, wstsWorldwidePoints } from '../sourced-charts.js';
+import { acmrRdPoints, amatRdPoints, amkorRdPoints, asmlRdPoints, axcelisRdPoints, entgRdPoints, formfactorRdPoints, insertSourcedCharts, klaRdPoints, lamRdPoints, micronRevenuePoints, SOURCED_CHARTS, tsmcRdPoints, wstsRegionPoints, wstsWorldwidePoints } from '../sourced-charts.js';
 import { chapter as ch00 } from '../data/chapters/ch00.js';
 import { chapter as ch01 } from '../data/chapters/ch01.js';
 import { chapter as ch03 } from '../data/chapters/ch03.js';
@@ -7,10 +7,14 @@ import { chapter as ch04 } from '../data/chapters/ch04.js';
 import { chapter as ch05 } from '../data/chapters/ch05.js';
 import { chapter as ch06 } from '../data/chapters/ch06.js';
 import { chapter as ch07 } from '../data/chapters/ch07.js';
+import { chapter as ch08 } from '../data/chapters/ch08.js';
+import { chapter as ch09 } from '../data/chapters/ch09.js';
 import { chapter as ch13 } from '../data/chapters/ch13.js';
 import { chapter as ch14 } from '../data/chapters/ch14.js';
 import { chapter as ch15 } from '../data/chapters/ch15.js';
 import { chapter as ch16 } from '../data/chapters/ch16.js';
+import { chapter as ch19 } from '../data/chapters/ch19.js';
+import { chapter as ch20 } from '../data/chapters/ch20.js';
 
 const wafer = SOURCED_CHARTS.find(chart => chart.id === 'semi-wafer-shipments');
 const ppe = SOURCED_CHARTS.find(chart => chart.id === 'tsmc-ppe-purchases');
@@ -156,7 +160,8 @@ assertRd(ch04, 'asml-rd-expense', 'EUV：最先進的微影', '對準：每一�
   assert.ok(zh.includes('https://data.sec.gov/api/xbrl/companyfacts/CIK0000937966.json') && en.includes('ResearchAndDevelopmentExpense'), 'ASML 圖要附上 SEC 路徑');
   assert.ok(zh.includes('width:100.00%') && zh.includes('width:41.89%') && zh.includes('width:12.56%'), 'ASML 2025 年是滿條，2019 與 2011 年按同一比例');
   assert.ok(zh.includes('不是一台 EUV 曝光機的售價') && en.includes('not the price of one EUV scanner'), '研發費用不能被讀成曝光機售價');
-  assert.ok(zh.includes('2011 到 2014') && en.includes('The row after 2014 is 2019'), '註腳要說明 2011 到 2014 有全年列，以及 2014 之後為什麼接到 2019');
+  assert.ok(zh.includes('2011 到 2013') && zh.includes('2014 只出現在該年自己的 20-F') && en.includes('2014 appears only in that year’s own 20-F') && en.includes('The row after 2014 is 2019'), '註腳要分開寫 2011 到 2013 的比較欄，以及 2014 只在當年 20-F');
+  assert.ok(!zh.includes('2011 到 2014 是該年自己的 20-F') && !en.includes('2011 through 2014 are that year’s own 20-F'), '不能再把 2014 說成較晚 20-F 也有相同金額');
   assert.ok(zh.indexOf('2014-12-31') < zh.indexOf('2019-12-31'), '2014 的下一列是 2019');
   assert.ok(!zh.includes('2018-12-31') && !zh.includes('2016-12-31') && !zh.includes('2015-12-31') && !zh.includes('2017-12-31'), '不把沒有當年 20-F 列的年度放進 ASML 表');
 });
@@ -217,6 +222,47 @@ assertRd(ch15, 'kla-rd-expense', '量測與檢測不一樣', '常見的量測', 
   assert.ok(zh.includes('526,870,000') && zh.includes('526,688,000') && en.includes('608,531,000'), '註腳要寫出 2017 與 2018 兩套不一致的金額');
   assert.ok(!zh.includes('<th scope="row">2017-06-30</th>') && !zh.includes('<th scope="row">2018-06-30</th>'), '不一致的年度不放進 KLA 表');
   assert.ok(zh.indexOf('2016-06-30') < zh.indexOf('2019-06-30'), '2016 的下一列是 2019');
+});
+
+assertRd(ch08, 'entg-rd-expense', 'CMP 怎麼運作', 'CMP 用在哪裡', 'How CMP works', 'Where CMP is used', entgRdPoints, (zh, en) => {
+  assert.ok(zh.includes('https://data.sec.gov/api/xbrl/companyfacts/CIK0001101302.json') && en.includes('Entegris, Inc.'), 'Entegris 圖要附上 SEC 路徑');
+  assert.ok(zh.includes(`width:${barWidth(entgRdPoints, 329000000)}%`) && zh.includes(`width:${barWidth(entgRdPoints, 47980000)}%`), 'Entegris 2025 年是滿條，2011 年按同一比例');
+  assert.ok(zh.includes('不是一片研磨墊或研磨液的價格') && en.includes('not the price of one polishing pad or of slurry'), '研發費用不能被讀成研磨墊或研磨液的價格');
+  assert.ok(zh.includes('沒有拆成 CMP') && en.includes('not a CMP segment'), '要寫明這是整家公司，不是 CMP 部門');
+  assert.ok(zh.includes('277,313,000') && zh.includes('277,300,000') && zh.includes('316,111,000') && en.includes('316,100,000'), '註腳要寫出 2023 與 2024 兩套不一致的金額');
+  assert.ok(zh.includes('0001101302-24-000009') && en.includes('0001101302-26-000012'), '註腳要寫出不一致年度的 accession');
+  assert.ok(!zh.includes('<th scope="row">2023-12-31</th>') && !zh.includes('<th scope="row">2024-12-31</th>'), '不一致的年度不放進 Entegris 表');
+  assert.ok(zh.indexOf('2022-12-31') < zh.indexOf('2025-12-31'), '2022 的下一列是 2025');
+});
+
+assertRd(ch09, 'acmr-rd-expense', '怎麼洗', 'Q-Time：清洗的效果會過期', 'How wafers are cleaned', 'Q-time: a clean surface has an expiration date', acmrRdPoints, (zh, en) => {
+  assert.ok(zh.includes('https://data.sec.gov/api/xbrl/companyfacts/CIK0001680062.json') && en.includes('ACM Research, Inc.'), 'ACM Research 圖要附上 SEC 路徑');
+  assert.ok(zh.includes(`width:${barWidth(acmrRdPoints, 144989000)}%`) && zh.includes(`width:${barWidth(acmrRdPoints, 5138000)}%`), 'ACM Research 2025 年是滿條，2017 年按同一比例');
+  assert.ok(zh.includes('不是一台清洗機的售價') && en.includes('not the price of one cleaning tool'), '研發費用不能被讀成清洗機售價');
+  assert.ok(zh.includes('濕式清洗、電鍍與先進封裝') && en.includes('wet cleaning, plating, and advanced packaging'), '要寫明業務不只有清洗');
+  assert.ok(zh.includes('3,259,000') && zh.includes('0001654954-18-002950') && en.includes('fy 2017'), '註腳要寫出 2016 年比較欄的金額與 accession');
+  assert.ok(!zh.includes('<th scope="row">2016-12-31</th>'), '2016 年不放進 ACM Research 表');
+  assert.ok(zh.indexOf('2017-12-31') < zh.indexOf('2018-12-31'), '表從 2017 年那份 10-K 起算');
+});
+
+assertRd(ch19, 'formfactor-rd-expense', 'CP：一顆一顆測', '測試也是成本', 'CP: testing die by die', 'Testing costs money too', formfactorRdPoints, (zh, en) => {
+  assert.ok(zh.includes('https://data.sec.gov/api/xbrl/companyfacts/CIK0001039399.json') && en.includes('FormFactor, Inc.'), 'FormFactor 圖要附上 SEC 路徑');
+  assert.ok(zh.includes(`width:${barWidth(formfactorRdPoints, 121938000)}%`) && zh.includes(`width:${barWidth(formfactorRdPoints, 40130000)}%`), 'FormFactor 2024 會計年度是滿條，2012 年按同一比例');
+  assert.ok(zh.includes('不是一張探針卡的售價') && en.includes('not the price of one probe card'), '研發費用不能被讀成探針卡售價');
+  assert.ok(zh.includes('不是每一年的 12 月 31 日') && en.includes('not 31 December in every year'), '要寫明期末不一定是 12 月 31 日');
+  assert.ok(zh.includes('2012-12-29') && zh.includes('2025-12-27') && en.includes('about 90 days'), '表上要有不是 12 月 31 日的期末，並排除標成 FY 的季度數');
+  assert.ok(!zh.includes('10,683,000'), '不把標成 FY 的季度金額放進 FormFactor 表');
+});
+
+assertRd(ch20, 'amkor-rd-expense', '為什麼要封裝', '傳統封裝的流程', 'Why chips need packages', 'The traditional packaging flow', amkorRdPoints, (zh, en) => {
+  assert.ok(zh.includes('https://data.sec.gov/api/xbrl/companyfacts/CIK0001047127.json') && en.includes('AMKOR TECHNOLOGY, INC.'), 'Amkor 圖要附上 SEC 路徑');
+  assert.ok(zh.includes(`width:${barWidth(amkorRdPoints, 177473000)}%`) && zh.includes(`width:${barWidth(amkorRdPoints, 47534000)}%`), 'Amkor 2023 年是滿條，2010 年按同一比例');
+  assert.ok(zh.includes('不是一顆封裝的價格') && en.includes('not the price of one package'), '研發費用不能被讀成封裝價格');
+  assert.ok(zh.includes('委外封裝與測試') && en.includes('combines packaging and test'), '要寫明數字含封裝與測試');
+  assert.ok(zh.includes('117,206,000') && zh.includes('117,210,000') && zh.includes('166,614,000') && en.includes('166,627,000'), '註腳要寫出 2016 與 2017 兩套不一致的金額');
+  assert.ok(zh.includes('0001047127-17-000011') && en.includes('0001047127-20-000006'), '註腳要寫出不一致年度的 accession');
+  assert.ok(!zh.includes('<th scope="row">2016-12-31</th>') && !zh.includes('<th scope="row">2017-12-31</th>'), '不一致的年度不放進 Amkor 表');
+  assert.ok(zh.indexOf('2015-12-31') < zh.indexOf('2018-12-31'), '2015 的下一列是 2018');
 });
 
 console.log('[PASS] 公開數據圖只使用已核對的出貨表、20-F 金額、WSTS Total Year 與年報研發費用，並附上資料表');

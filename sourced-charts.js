@@ -26,6 +26,10 @@ const AMAT_URL = 'https://data.sec.gov/api/xbrl/companyfacts/CIK0000006951.json'
 const AXCELIS_URL = 'https://data.sec.gov/api/xbrl/companyfacts/CIK0001113232.json';
 const MICRON_URL = 'https://data.sec.gov/api/xbrl/companyfacts/CIK0000723125.json';
 const KLA_URL = 'https://data.sec.gov/api/xbrl/companyfacts/CIK0000319201.json';
+const ENTG_URL = 'https://data.sec.gov/api/xbrl/companyfacts/CIK0001101302.json';
+const ACMR_URL = 'https://data.sec.gov/api/xbrl/companyfacts/CIK0001680062.json';
+const FORM_URL = 'https://data.sec.gov/api/xbrl/companyfacts/CIK0001039399.json';
+const AMKR_URL = 'https://data.sec.gov/api/xbrl/companyfacts/CIK0001047127.json';
 
 const waferPoints = [
   { year: '2020', areaValue: 12407, areaText: '12,407', revenueValue: 11.2, revenueText: '11.2' },
@@ -211,6 +215,69 @@ export const micronRevenuePoints = [
   filed,
   accn
 }));
+
+export const entgRdPoints = rdPoints([
+  ['2011-12-31', 47980000, '2012-02-24', '0001193125-12-078423'],
+  ['2012-12-31', 50940000, '2013-02-22', '0001193125-13-071771'],
+  ['2013-12-31', 55320000, '2014-02-20', '0001101302-14-000002'],
+  ['2014-12-31', 87711000, '2015-02-26', '0001101302-15-000002'],
+  ['2015-12-31', 105900000, '2016-02-29', '0001101302-16-000012'],
+  ['2016-12-31', 106991000, '2017-02-17', '0001101302-17-000005'],
+  ['2017-12-31', 106951000, '2018-02-15', '0001101302-18-000008'],
+  ['2018-12-31', 118456000, '2019-02-11', '0001101302-19-000010'],
+  ['2019-12-31', 121140000, '2020-02-07', '0001101302-20-000013'],
+  ['2020-12-31', 136057000, '2021-02-05', '0001101302-21-000011'],
+  ['2021-12-31', 167632000, '2022-02-04', '0001101302-22-000010'],
+  ['2022-12-31', 228994000, '2023-02-23', '0001101302-23-000021'],
+  ['2025-12-31', 329000000, '2026-02-11', '0001101302-26-000012']
+]);
+
+export const acmrRdPoints = rdPoints([
+  ['2017-12-31', 5138000, '2018-03-23', '0001654954-18-002950'],
+  ['2018-12-31', 10380000, '2019-03-14', '0001654954-19-002737'],
+  ['2019-12-31', 12900000, '2020-03-24', '0001140361-20-006743'],
+  ['2020-12-31', 19119000, '2021-03-01', '0001140361-21-006683'],
+  ['2021-12-31', 34207000, '2022-03-01', '0001140361-22-007348'],
+  ['2022-12-31', 62226000, '2023-03-02', '0001140361-23-009508'],
+  ['2023-12-31', 92709000, '2024-02-28', '0001680062-24-000008'],
+  ['2024-12-31', 105473000, '2025-03-03', '0001680062-25-000003'],
+  ['2025-12-31', 144989000, '2026-03-02', '0001628280-26-013231']
+]);
+
+export const formfactorRdPoints = rdPoints([
+  ['2011-12-31', 43544000, '2012-02-21', '0001039399-12-000006'],
+  ['2012-12-29', 40130000, '2013-03-13', '0001445305-13-000585'],
+  ['2013-12-28', 42139000, '2014-03-07', '0001039399-14-000007'],
+  ['2014-12-27', 42725000, '2015-03-06', '0001039399-15-000005'],
+  ['2015-12-26', 44184000, '2016-03-04', '0001039399-16-000037'],
+  ['2016-12-31', 57453000, '2017-03-15', '0001039399-17-000009'],
+  ['2017-12-30', 73807000, '2018-02-27', '0001039399-18-000014'],
+  ['2018-12-29', 74976000, '2019-02-26', '0001039399-19-000010'],
+  ['2019-12-28', 81499000, '2020-02-21', '0001039399-20-000011'],
+  ['2020-12-26', 89034000, '2021-02-22', '0001039399-21-000009'],
+  ['2021-12-25', 100937000, '2022-02-18', '0001039399-22-000014'],
+  ['2022-12-31', 109222000, '2023-02-24', '0001039399-23-000010'],
+  ['2023-12-30', 115765000, '2024-02-23', '0001039399-24-000007'],
+  ['2024-12-28', 121938000, '2025-02-21', '0001039399-25-000023'],
+  ['2025-12-27', 115682000, '2026-02-20', '0001039399-26-000009']
+]);
+
+export const amkorRdPoints = rdPoints([
+  ['2010-12-31', 47534000, '2011-02-24', '0000950123-11-017901'],
+  ['2011-12-31', 50386000, '2012-02-24', '0001445305-12-000428'],
+  ['2012-12-31', 54118000, '2013-03-08', '0001047127-13-000007'],
+  ['2013-12-31', 64625000, '2014-02-28', '0001047127-14-000006'],
+  ['2014-12-31', 76864000, '2015-02-19', '0001047127-15-000010'],
+  ['2015-12-31', 82017000, '2016-02-22', '0001047127-16-000049'],
+  ['2018-12-31', 157182000, '2019-02-22', '0001047127-19-000007'],
+  ['2019-12-31', 137638000, '2020-02-19', '0001047127-20-000006'],
+  ['2020-12-31', 140727000, '2021-02-19', '0001047127-21-000010'],
+  ['2021-12-31', 166037000, '2022-02-18', '0001047127-22-000006'],
+  ['2022-12-31', 149429000, '2023-02-22', '0001047127-23-000009'],
+  ['2023-12-31', 177473000, '2024-02-16', '0001047127-24-000019'],
+  ['2024-12-31', 162951000, '2025-02-21', '0001047127-25-000030'],
+  ['2025-12-31', 166743000, '2026-02-20', '0001047127-26-000014']
+]);
 
 export const klaRdPoints = rdPoints([
   ['2011-06-30', 386163000, '2011-08-05', '0001445305-11-002394'],
@@ -466,8 +533,8 @@ export const SOURCED_CHARTS = [
     valueEn: 'Euros',
     locatorZh: 'SEC Company Facts，CIK 0000937966，ASML HOLDING NV。路徑 facts.us-gaap.ResearchAndDevelopmentExpense.units.EUR。只取 form 為 20-F、fp 為 FY，而且 fy 等於該列期末年度的那一筆。金額、申報日與 accession 見下表。',
     locatorEn: 'SEC Company Facts, CIK 0000937966, ASML HOLDING NV. Path: facts.us-gaap.ResearchAndDevelopmentExpense.units.EUR. Only the row with form 20-F, fp FY, and fy equal to the period-end year is used. The amount, filing date, and accession are in the table.',
-    footnoteZh: '2011 到 2014 是該年自己的 20-F 全年列，較晚 20-F 的比較欄金額相同，所以畫進來。2015 與 2016 在這份 Company Facts 沒有這個科目的全年列。2017 與 2018 只出現在較晚 20-F 的比較欄，沒有 fy 等於該年的 20-F，所以不畫。表上 2014 的下一列是 2019。',
-    footnoteEn: '2011 through 2014 are that year’s own 20-F full-year rows, and the comparative columns in later 20-Fs show the same amounts, so they are included. 2015 and 2016 have no full-year row for this concept in this Company Facts file. 2017 and 2018 appear only as comparative columns in a later 20-F, with no 20-F whose fy equals that year, so they are left out. The row after 2014 is 2019.',
+    footnoteZh: '2011 到 2013 是該年自己的 20-F 全年列，較晚 20-F 的比較欄金額相同，所以畫進來。2014 只出現在該年自己的 20-F，較晚的 20-F 沒有這一列，圖上仍用當年那一份。2015 與 2016 在這份 Company Facts 沒有這個科目的全年列。2017 與 2018 只出現在較晚 20-F 的比較欄，沒有 fy 等於該年的 20-F，所以不畫。表上 2014 的下一列是 2019。',
+    footnoteEn: '2011 through 2013 are that year’s own 20-F full-year rows, and the comparative columns in later 20-Fs show the same amounts, so they are included. 2014 appears only in that year’s own 20-F. Later 20-Fs do not repeat that row, and the chart still uses the 2014 filing. 2015 and 2016 have no full-year row for this concept in this Company Facts file. 2017 and 2018 appear only as comparative columns in a later 20-F, with no 20-F whose fy equals that year, so they are left out. The row after 2014 is 2019.',
     render(lang) {
       return rdFigure(this, lang, asmlRdPoints, 'EUR');
     }
@@ -590,6 +657,86 @@ export const SOURCED_CHARTS = [
     footnoteEn: 'The fiscal 2017 10-K reports 526,870,000 US dollars (filed 2017-08-04, accession 0000319201-17-000034). The comparative column in the fiscal 2019 10-K reports 526,688,000 (filed 2019-08-16, accession 0000319201-19-000031). The fiscal 2018 10-K reports 608,712,000 (filed 2018-08-06, accession 0000319201-18-000045). The comparative columns in the fiscal 2019 and fiscal 2020 10-Ks report 608,531,000 (the fiscal 2020 filing date is 2020-08-10, accession 0000319201-20-000047). Those two years disagree, so they are left out. The row after 2016 is 2019.',
     render(lang) {
       return rdFigure(this, lang, klaRdPoints, 'USD');
+    }
+  },
+  {
+    id: 'entg-rd-expense',
+    chapterId: 'ch08',
+    headingZh: 'CMP 怎麼運作',
+    headingEn: 'How CMP works',
+    titleZh: 'Entegris 研究發展費用',
+    titleEn: 'Entegris research and development expense',
+    noteZh: '這是 Entegris 合併損益表的研究發展費用，單位是美元。它不是一片研磨墊或研磨液的價格。年報把 CMP 研磨液與研磨墊放在材料部門，另外還有過濾與污染控制部門，這張圖是整家公司的費用，沒有拆成 CMP。會計年度在 12 月 31 日結束。',
+    noteEn: 'This is Entegris’ consolidated research and development expense, in US dollars. It is not the price of one polishing pad or of slurry. The annual report places CMP slurries and pads in the materials segment and also reports a filtration and contamination-control segment. This figure is the whole company, not a CMP segment. The fiscal year ends on 31 December.',
+    url: ENTG_URL,
+    valueZh: '美元',
+    valueEn: 'US dollars',
+    locatorZh: 'SEC Company Facts，CIK 0001101302，Entegris, Inc.。路徑 facts.us-gaap.ResearchAndDevelopmentExpense.units.USD。只取 form 為 10-K、fp 為 FY、fy 等於該列期末年度，而且期初到期末至少 300 天的那一筆。金額、申報日與 accession 見下表。',
+    locatorEn: 'SEC Company Facts, CIK 0001101302, Entegris, Inc. Path: facts.us-gaap.ResearchAndDevelopmentExpense.units.USD. Only the row with form 10-K, fp FY, fy equal to the period-end year, and a start-to-end span of at least 300 days is used. The amount, filing date, and accession are in the table.',
+    footnoteZh: '2023 年當年 10-K 是 277,313,000 美元（申報日 2024-02-15，accession 0001101302-24-000009）。2024 年 10-K 的比較欄仍是 277,313,000 美元（申報日 2025-02-12，accession 0001101302-25-000015），2025 年 10-K 的比較欄是 277,300,000 美元（申報日 2026-02-11，accession 0001101302-26-000012）。2024 年當年 10-K 是 316,111,000 美元（申報日 2025-02-12，accession 0001101302-25-000015），2025 年 10-K 的比較欄是 316,100,000 美元（同一份，accession 0001101302-26-000012）。這兩年兩套數字不一樣，所以不畫。表上 2022 的下一列是 2025。',
+    footnoteEn: 'The fiscal 2023 10-K reports 277,313,000 US dollars (filed 2024-02-15, accession 0001101302-24-000009). The comparative column in the fiscal 2024 10-K still reports 277,313,000 (filed 2025-02-12, accession 0001101302-25-000015). The comparative column in the fiscal 2025 10-K reports 277,300,000 (filed 2026-02-11, accession 0001101302-26-000012). The fiscal 2024 10-K reports 316,111,000 (filed 2025-02-12, accession 0001101302-25-000015). The comparative column in the fiscal 2025 10-K reports 316,100,000 (same filing, accession 0001101302-26-000012). Those two years disagree, so they are left out. The row after 2022 is 2025.',
+    render(lang) {
+      return rdFigure(this, lang, entgRdPoints, 'USD');
+    }
+  },
+  {
+    id: 'acmr-rd-expense',
+    chapterId: 'ch09',
+    headingZh: '怎麼洗',
+    headingEn: 'How wafers are cleaned',
+    titleZh: 'ACM Research 研究發展費用',
+    titleEn: 'ACM Research research and development expense',
+    noteZh: '這是 ACM Research 合併損益表的研究發展費用，單位是美元。它不是一台清洗機的售價。年報寫目前的業務以濕式清洗、電鍍與先進封裝為主，數字是整家公司的，沒有拆成清洗。會計年度在 12 月 31 日結束。',
+    noteEn: 'This is ACM Research’s consolidated research and development expense, in US dollars. It is not the price of one cleaning tool. The annual report says the current business is mainly wet cleaning, plating, and advanced packaging. This figure is the whole company, not a cleaning segment. The fiscal year ends on 31 December.',
+    url: ACMR_URL,
+    valueZh: '美元',
+    valueEn: 'US dollars',
+    locatorZh: 'SEC Company Facts，CIK 0001680062，ACM Research, Inc.。路徑 facts.us-gaap.ResearchAndDevelopmentExpense.units.USD。只取 form 為 10-K、fp 為 FY、fy 等於該列期末年度，而且期初到期末至少 300 天的那一筆。金額、申報日與 accession 見下表。',
+    locatorEn: 'SEC Company Facts, CIK 0001680062, ACM Research, Inc. Path: facts.us-gaap.ResearchAndDevelopmentExpense.units.USD. Only the row with form 10-K, fp FY, fy equal to the period-end year, and a start-to-end span of at least 300 days is used. The amount, filing date, and accession are in the table.',
+    footnoteZh: '2016 年沒有 fy 等於 2016 的 10-K 全年列，只出現在較晚 10-K 的比較欄：3,259,000 美元，期末 2016-12-31，申報日 2018-03-23，accession 0001654954-18-002950（fy 為 2017 的 10-K）。所以表從 2017 年那份 10-K 起算。同一年度若在較晚的 10-K 又出現一次，金額與這裡相同。表上用的是該會計年度自己的 10-K。',
+    footnoteEn: '2016 has no 10-K full-year row whose fy equals 2016. It appears only as a comparative column in a later 10-K: 3,259,000 US dollars, period end 2016-12-31, filed 2018-03-23, accession 0001654954-18-002950 (the 10-K with fy 2017). The table therefore starts with the 2017 10-K. Where a later 10-K repeats a year that is on the chart, the amount matches the row shown here. The table uses that fiscal year’s own 10-K.',
+    render(lang) {
+      return rdFigure(this, lang, acmrRdPoints, 'USD');
+    }
+  },
+  {
+    id: 'formfactor-rd-expense',
+    chapterId: 'ch19',
+    headingZh: 'CP：一顆一顆測',
+    headingEn: 'CP: testing die by die',
+    titleZh: 'FormFactor 研究發展費用',
+    titleEn: 'FormFactor research and development expense',
+    noteZh: '這是 FormFactor 合併損益表的研究發展費用，單位是美元。它不是一張探針卡的售價。年報列的產品有探針卡、分析探針、探針台、溫控系統與低溫系統，數字是整家公司的，沒有拆開。會計年度在 12 月結束，表上的日期是期末，不是每一年的 12 月 31 日。',
+    noteEn: 'This is FormFactor’s consolidated research and development expense, in US dollars. It is not the price of one probe card. The annual report lists probe cards, analytical probes, probe stations, thermal systems, and cryogenic systems, and this figure is the whole company, not one product line. The fiscal year ends in December. The date in the table is the period end, not 31 December in every year.',
+    url: FORM_URL,
+    valueZh: '美元',
+    valueEn: 'US dollars',
+    locatorZh: 'SEC Company Facts，CIK 0001039399，FormFactor, Inc.。路徑 facts.us-gaap.ResearchAndDevelopmentExpense.units.USD。只取 form 為 10-K、fp 為 FY、fy 等於該列期末年度，而且期初到期末至少 300 天的那一筆。金額、申報日與 accession 見下表。',
+    locatorEn: 'SEC Company Facts, CIK 0001039399, FormFactor, Inc. Path: facts.us-gaap.ResearchAndDevelopmentExpense.units.USD. Only the row with form 10-K, fp FY, fy equal to the period-end year, and a start-to-end span of at least 300 days is used. The amount, filing date, and accession are in the table.',
+    footnoteZh: '同一年度若在較晚的 10-K 又出現一次，金額與這裡相同。表上用的是該會計年度自己的 10-K。同一期末若還有一筆約 90 天、而且也被標成 fp FY 的金額，那是季度數，沒有採用。',
+    footnoteEn: 'Where a later 10-K repeats the same year, the amount matches the row shown here. The table uses that fiscal year’s own 10-K. Where the same period end also has an amount of about 90 days that is tagged fp FY, that amount is a quarter and is not used.',
+    render(lang) {
+      return rdFigure(this, lang, formfactorRdPoints, 'USD');
+    }
+  },
+  {
+    id: 'amkor-rd-expense',
+    chapterId: 'ch20',
+    headingZh: '為什麼要封裝',
+    headingEn: 'Why chips need packages',
+    titleZh: 'Amkor 研究發展費用',
+    titleEn: 'Amkor research and development expense',
+    noteZh: '這是 Amkor Technology 合併損益表的研究發展費用，單位是美元。它不是一顆封裝的價格。年報把這家公司寫成委外封裝與測試服務，數字含封裝與測試，沒有拆開。會計年度在 12 月 31 日結束。',
+    noteEn: 'This is Amkor Technology’s consolidated research and development expense, in US dollars. It is not the price of one package. The annual report describes the company as an outsourced semiconductor packaging and test service provider, and this figure combines packaging and test. The fiscal year ends on 31 December.',
+    url: AMKR_URL,
+    valueZh: '美元',
+    valueEn: 'US dollars',
+    locatorZh: 'SEC Company Facts，CIK 0001047127，AMKOR TECHNOLOGY, INC.。路徑 facts.us-gaap.ResearchAndDevelopmentExpense.units.USD。只取 form 為 10-K、fp 為 FY、fy 等於該列期末年度，而且期初到期末至少 300 天的那一筆。金額、申報日與 accession 見下表。',
+    locatorEn: 'SEC Company Facts, CIK 0001047127, AMKOR TECHNOLOGY, INC. Path: facts.us-gaap.ResearchAndDevelopmentExpense.units.USD. Only the row with form 10-K, fp FY, fy equal to the period-end year, and a start-to-end span of at least 300 days is used. The amount, filing date, and accession are in the table.',
+    footnoteZh: '2016 年當年 10-K 是 117,206,000 美元（申報日 2017-02-24，accession 0001047127-17-000011）。2017 年 10-K 的比較欄仍是 117,206,000 美元（申報日 2018-02-23，accession 0001047127-18-000009），2018 年 10-K 的比較欄是 117,210,000 美元（申報日 2019-02-22，accession 0001047127-19-000007）。2017 年當年 10-K 是 166,614,000 美元（申報日 2018-02-23，accession 0001047127-18-000009）。2018 年與 2019 年 10-K 的比較欄是 166,627,000 美元（2019 年那份申報日 2020-02-19，accession 0001047127-20-000006）。這兩年兩套數字不一樣，所以不畫。表上 2015 的下一列是 2018。',
+    footnoteEn: 'The fiscal 2016 10-K reports 117,206,000 US dollars (filed 2017-02-24, accession 0001047127-17-000011). The comparative column in the fiscal 2017 10-K still reports 117,206,000 (filed 2018-02-23, accession 0001047127-18-000009). The comparative column in the fiscal 2018 10-K reports 117,210,000 (filed 2019-02-22, accession 0001047127-19-000007). The fiscal 2017 10-K reports 166,614,000 (filed 2018-02-23, accession 0001047127-18-000009). The comparative columns in the fiscal 2018 and fiscal 2019 10-Ks report 166,627,000 (the fiscal 2019 filing date is 2020-02-19, accession 0001047127-20-000006). Those two years disagree, so they are left out. The row after 2015 is 2018.',
+    render(lang) {
+      return rdFigure(this, lang, amkorRdPoints, 'USD');
     }
   }
 ];
