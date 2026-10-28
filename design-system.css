@@ -750,6 +750,40 @@ body { background: var(--chrome-page, var(--bg-app)); }
   max-width: 75ch;
 }
 
+.figure-caption { font-weight: 650; color: #0f172a; }
+.figure-source { display: block; margin-top: 4px; font-size: 14px; line-height: 1.5; color: #334155; }
+
+.semi-table { font-variant-numeric: tabular-nums; }
+.semi-table th {
+  white-space: normal;
+  line-height: 1.35;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+.semi-table th:first-child,
+.semi-table td:first-child {
+  position: sticky;
+  left: 0;
+}
+.semi-table thead th:first-child {
+  z-index: 3;
+  background: var(--bg-surface-alt);
+}
+.semi-table tbody td:first-child {
+  z-index: 2;
+  background: var(--bg-surface);
+  font-weight: 650;
+  color: var(--text-main);
+  box-shadow: 1px 0 0 var(--border-subtle);
+}
+.semi-table tbody tr:nth-child(even) td {
+  background: color-mix(in srgb, var(--bg-surface-alt) 65%, var(--bg-surface));
+}
+.semi-table tbody tr:hover td {
+  background: color-mix(in srgb, var(--semi-blue-light) 70%, var(--bg-surface));
+}
+
 .article-body .table-container,
 .article-body .chapter-figure,
 .article-body .engineering-object-mount,
