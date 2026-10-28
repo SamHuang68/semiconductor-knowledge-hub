@@ -64,6 +64,9 @@ for (const row of ppeRows) {
 }
 assert.ok(ppeZh.includes(ppe.url) && ppeEn.includes('PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities'), '台積電圖要附上 SEC JSON 路徑');
 assert.ok(ppeZh.includes('width:100.00%') && ppeZh.includes('width:29.26%'), '購置金額最大的一年是滿條，2018 年按同一比例縮短');
+assert.ok(ppeZh.includes('台積電以新台幣編製報表。表上的美元是各年 20-F 依年底匯率做的方便換算，年與年的變化有一部分來自匯率。'), '中文圖底下要註明新台幣與年底匯率換算');
+assert.ok(ppeEn.includes('convenience translations at each year-end exchange rate'), '英文圖底下要有同一句匯率說明');
+assert.ok(ppeZh.indexOf('29,155,400,000') < ppeZh.indexOf('以新台幣編製報表'), '匯率說明要放在金額表後面');
 assert.ok(!ppeZh.includes('29.76') && !ppeEn.includes('29.76'), '不混入另一套資本支出數字');
 
 const untouched = insertSourcedCharts(ch14.contentHtml, 'ch14', 'zh');

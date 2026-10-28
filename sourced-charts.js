@@ -95,6 +95,8 @@ export const SOURCED_CHARTS = [
     url: TSMC_URL,
     locatorZh: 'SEC Company Facts，CIK 0001046179。路徑 facts.ifrs-full.PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities.units.USD。只取 form 為 20-F、fp 為 FY 的列。金額、申報日與 accession 見下表。',
     locatorEn: 'SEC Company Facts, CIK 0001046179. Path: facts.ifrs-full.PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities.units.USD. Only rows with form 20-F and fp FY are used. The amount, filing date, and accession are in the table.',
+    fxNoteZh: '台積電以新台幣編製報表。表上的美元是各年 20-F 依年底匯率做的方便換算，年與年的變化有一部分來自匯率。',
+    fxNoteEn: 'TSMC reports in NT dollars. The US dollar amounts are the 20-F convenience translations at each year-end exchange rate, so year-over-year changes partly reflect currency moves.',
     render(lang) {
       const en = lang === 'en';
       const yearLabel = en ? 'Fiscal year' : '會計年度';
@@ -121,6 +123,7 @@ export const SOURCED_CHARTS = [
             <tbody>${rows}</tbody>
           </table>
         </div>
+        <p class="figure-source">${esc(en ? this.fxNoteEn : this.fxNoteZh)}</p>
       </figure>`;
     }
   }
