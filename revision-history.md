@@ -14,8 +14,14 @@
   - `npm run verify` 通過。
   - 產物共 186 個檔案（排除 75 個），138 個相對參照全部存在。
   - 把 `_site/` 架成本機站：開發檔回應 404。首頁、情境探索與 28 章在 1440 與 390 寬度共 60 個路由，HTTP 錯誤、頁面錯誤、主控台錯誤與水平溢位皆為 0。
-- 未驗證：CI 跑在 Ubuntu 與 node 22，門禁在 Linux 上能否通過，要推送後看 Actions 結果。瀏覽器層門禁（`verify-svg-contrast`、`verify-atlas-lifecycle` 等）需要 Playwright 與 Edge，沒有放進 CI。
-- 提交／發布狀態：本機提交於分支 `ci/verify-before-deploy`；`push=false`、`deploy=false`。
+- CI 驗證：
+  - 分支推送的 run `40676024382` 中，`verify` 在 Ubuntu／node 22 通過，`deploy` 依設計跳過。
+  - main 的 run `40685560962` 中，`verify` 與 `deploy` 都成功。
+- 發布後線上驗證（2026-10-28）：
+  - 網站檔案回應 200；`scripts/`、`docs/`、`README.md`、`package.json`、`revision-history.md`、`.github/workflows/deploy.yml` 都回應 404。
+  - 60 個路由（1440／390）的 HTTP 錯誤、頁面錯誤、主控台錯誤與水平溢位皆為 0。
+- 未納入 CI：瀏覽器層門禁（`verify-svg-contrast`、`verify-atlas-lifecycle` 等）需要 Playwright 與 Edge。
+- 提交／發布狀態：已推送、已部署。提交 `f6005964d2170f6d15abfa79690399b1a2981864`，main 由 `374416d` 快轉；GitHub Pages run `40685560962` 成功。
 
 ## 2.9.0 - 2026-10-24
 
