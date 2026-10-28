@@ -20,6 +20,8 @@ const WAFER_URL = 'https://www.prnewswire.com/news-releases/worldwide-silicon-wa
 const TSMC_URL = 'https://data.sec.gov/api/xbrl/companyfacts/CIK0001046179.json';
 const WSTS_PAGE = 'https://www.wsts.org/67/Historical-Billings-Report';
 const WSTS_XLSX = 'https://www.wsts.org/esraCMS/extension/media/f/WST/7803/WSTS-Historical-Billings-Report-Aug_2026.xlsx';
+const ASML_URL = 'https://data.sec.gov/api/xbrl/companyfacts/CIK0000937966.json';
+const LAM_URL = 'https://data.sec.gov/api/xbrl/companyfacts/CIK0000707549.json';
 
 const waferPoints = [
   { year: '2020', areaValue: 12407, areaText: '12,407', revenueValue: 11.2, revenueText: '11.2' },
@@ -98,6 +100,87 @@ export const wstsRegionPoints = [
   usdText: group(point.usdThousand),
   usdValue: point.usdThousand
 }));
+
+function rdPoints(rows) {
+  return rows.map(([end, value, filed, accn]) => ({
+    end,
+    year: end.slice(0, 4),
+    value,
+    valueText: group(value),
+    filed,
+    accn
+  }));
+}
+
+export const asmlRdPoints = rdPoints([
+  ['2019-12-31', 1968500000, '2020-02-12', '0000937966-20-000011'],
+  ['2020-12-31', 2200800000, '2021-02-10', '0000937966-21-000007'],
+  ['2021-12-31', 2547000000, '2022-02-09', '0000937966-22-000013'],
+  ['2022-12-31', 3253500000, '2023-02-15', '0000937966-23-000014'],
+  ['2023-12-31', 3980600000, '2024-02-14', '0000937966-24-000008'],
+  ['2024-12-31', 4303700000, '2025-03-05', '0000937966-25-000009'],
+  ['2025-12-31', 4698800000, '2026-02-25', '0001628280-26-011378']
+]);
+
+export const lamRdPoints = rdPoints([
+  ['2011-06-26', 373293000, '2011-08-19', '0001193125-11-227691'],
+  ['2012-06-24', 444559000, '2012-08-22', '0001193125-12-365446'],
+  ['2013-06-30', 683688000, '2013-08-27', '0001193125-13-348269'],
+  ['2014-06-29', 716471000, '2014-08-26', '0001193125-14-321759'],
+  ['2015-06-28', 825242000, '2015-08-13', '0001193125-15-290023'],
+  ['2016-06-26', 913712000, '2016-08-17', '0000707549-16-000050'],
+  ['2017-06-25', 1033742000, '2017-08-15', '0000707549-17-000100'],
+  ['2018-06-24', 1189514000, '2018-08-14', '0000707549-18-000115'],
+  ['2019-06-30', 1191320000, '2019-08-20', '0000707549-19-000124'],
+  ['2020-06-28', 1252412000, '2020-08-18', '0000707549-20-000138'],
+  ['2021-06-27', 1493408000, '2021-08-17', '0000707549-21-000136'],
+  ['2022-06-26', 1604248000, '2022-08-24', '0000707549-22-000107'],
+  ['2023-06-25', 1727162000, '2023-08-15', '0000707549-23-000102'],
+  ['2024-06-30', 1902444000, '2024-08-29', '0000707549-24-000106'],
+  ['2025-06-29', 2096387000, '2025-08-11', '0000707549-25-000075'],
+  ['2026-06-28', 2375873000, '2026-08-07', '0000707549-26-000037']
+]);
+
+export const tsmcRdPoints = rdPoints([
+  ['2017-12-31', 80732500000, '2018-04-19', '0001193125-18-121866'],
+  ['2018-12-31', 85895600000, '2019-04-17', '0001193125-19-108390'],
+  ['2019-12-31', 91418700000, '2020-04-15', '0001193125-20-107579'],
+  ['2020-12-31', 109486000000, '2021-04-16', '0001193125-21-118512'],
+  ['2021-12-31', 124734800000, '2022-04-14', '0001193125-22-104891'],
+  ['2022-12-31', 163262200000, '2023-04-20', '0001193125-23-107214'],
+  ['2023-12-31', 182370200000, '2024-04-18', '0001193125-24-099840'],
+  ['2024-12-31', 204181800000, '2025-04-17', '0001193125-25-083423']
+]);
+
+function rdFigure(chart, lang, points, unit) {
+  const en = lang === 'en';
+  const endLabel = en ? 'Period end' : '期末';
+  const valueLabel = en ? chart.valueEn : chart.valueZh;
+  const filedLabel = en ? 'Annual report filed' : '年報申報日';
+  const rows = points.map(point => `<tr><th scope="row">${point.end}</th><td>${point.valueText}</td><td>${point.filed}</td><td>${point.accn}</td></tr>`).join('');
+  return `<figure class="sourced-chart" id="chart-${chart.id}">
+    <figcaption>
+      <span class="sourced-badge">${en ? 'Published data' : '公開數據'}</span>
+      <span class="figure-caption">${esc(en ? chart.titleEn : chart.titleZh)}</span>
+      <span class="figure-source">${esc(en ? chart.noteEn : chart.noteZh)}</span>
+      <span class="figure-source"><a href="${esc(chart.url)}" rel="noopener noreferrer">SEC Company Facts JSON</a></span>
+      <span class="sourced-url">${esc(chart.url)}</span>
+      <span class="figure-source">${esc(en ? chart.locatorEn : chart.locatorZh)}</span>
+    </figcaption>
+    <div class="sourced-plot" aria-hidden="true">
+      <p class="sourced-plot-title">${esc(valueLabel)}</p>
+      ${bars(points, 'value', 'valueText', unit)}
+    </div>
+    <div class="table-container">
+      <table class="semi-table sourced-data-table">
+        <caption>${esc(en ? chart.titleEn : chart.titleZh)}</caption>
+        <thead><tr><th scope="col">${endLabel}</th><th scope="col">${esc(valueLabel)}</th><th scope="col">${filedLabel}</th><th scope="col">accession</th></tr></thead>
+        <tbody>${rows}</tbody>
+      </table>
+    </div>
+    <p class="figure-source">${esc(en ? chart.footnoteEn : chart.footnoteZh)}</p>
+  </figure>`;
+}
 
 export const SOURCED_CHARTS = [
   {
@@ -280,6 +363,66 @@ export const SOURCED_CHARTS = [
           </table>
         </div>
       </figure>`;
+    }
+  },
+  {
+    id: 'asml-rd-expense',
+    chapterId: 'ch04',
+    headingZh: 'EUV：最先進的微影',
+    headingEn: 'EUV: the most advanced lithography',
+    titleZh: 'ASML 研究發展費用',
+    titleEn: 'ASML research and development expense',
+    noteZh: '這是 ASML 合併損益表的研究發展費用，單位是歐元。它不是一台 EUV 曝光機的售價，也不是晶圓廠的微影成本。',
+    noteEn: 'This is ASML’s consolidated research and development expense, in euros. It is not the price of one EUV scanner, and it is not a fab’s lithography cost.',
+    url: ASML_URL,
+    valueZh: '歐元',
+    valueEn: 'Euros',
+    locatorZh: 'SEC Company Facts，CIK 0000937966，ASML HOLDING NV。路徑 facts.us-gaap.ResearchAndDevelopmentExpense.units.EUR。只取 form 為 20-F、fp 為 FY，而且 fy 等於該列期末年度的那一筆。金額、申報日與 accession 見下表。',
+    locatorEn: 'SEC Company Facts, CIK 0000937966, ASML HOLDING NV. Path: facts.us-gaap.ResearchAndDevelopmentExpense.units.EUR. Only the row with form 20-F, fp FY, and fy equal to the period-end year is used. The amount, filing date, and accession are in the table.',
+    footnoteZh: '2015 與 2016 在這份 Company Facts 沒有這個科目的全年列。2017 與 2018 只出現在較晚 20-F 的比較欄，所以這張圖不收，從 2019 年那份 20-F 起算。',
+    footnoteEn: '2015 and 2016 have no full-year row for this concept in this Company Facts file. 2017 and 2018 appear only as comparative columns in a later 20-F, so they are left out. The chart starts with the 2019 20-F.',
+    render(lang) {
+      return rdFigure(this, lang, asmlRdPoints, 'EUR');
+    }
+  },
+  {
+    id: 'lam-rd-expense',
+    chapterId: 'ch06',
+    headingZh: '電漿：蝕刻的工具',
+    headingEn: 'Plasma: the etching tool',
+    titleZh: 'Lam Research 研究發展費用',
+    titleEn: 'Lam Research research and development expense',
+    noteZh: '這是 Lam Research 合併損益表的研究發展費用，單位是美元。它不是一台蝕刻機的售價。會計年度在 6 月結束，表上的日期是期末，不是日曆年 12 月 31 日。',
+    noteEn: 'This is Lam Research’s consolidated research and development expense, in US dollars. It is not the price of one etch tool. The fiscal year ends in June. The date in the table is the period end, not calendar 31 December.',
+    url: LAM_URL,
+    valueZh: '美元',
+    valueEn: 'US dollars',
+    locatorZh: 'SEC Company Facts，CIK 0000707549，LAM RESEARCH CORPORATION。路徑 facts.us-gaap.ResearchAndDevelopmentExpense.units.USD。只取 form 為 10-K、fp 為 FY，而且 fy 等於該列期末年度的那一筆。金額、申報日與 accession 見下表。',
+    locatorEn: 'SEC Company Facts, CIK 0000707549, LAM RESEARCH CORPORATION. Path: facts.us-gaap.ResearchAndDevelopmentExpense.units.USD. Only the row with form 10-K, fp FY, and fy equal to the period-end year is used. The amount, filing date, and accession are in the table.',
+    footnoteZh: '同一年度若在較晚的 10-K 又出現一次，金額與這裡相同。表上用的是該會計年度自己的 10-K。',
+    footnoteEn: 'Where a later 10-K repeats the same year, the amount matches the row shown here. The table uses that fiscal year’s own 10-K.',
+    render(lang) {
+      return rdFigure(this, lang, lamRdPoints, 'USD');
+    }
+  },
+  {
+    id: 'tsmc-rd-expense',
+    chapterId: 'ch14',
+    headingZh: '微縮不只靠製程',
+    headingEn: 'Scaling is not only about the process',
+    titleZh: '台積電研究發展費用',
+    titleEn: 'TSMC research and development expense',
+    noteZh: '這是台積電合併損益表的研究發展費用，單位是新台幣。它不是某一奈米節點的成本，也不是 20-F 另做的美元方便換算。',
+    noteEn: 'This is TSMC’s consolidated research and development expense, in NT dollars. It is not the cost of one nanometer node, and it is not the 20-F convenience translation into US dollars.',
+    url: TSMC_URL,
+    valueZh: '新台幣',
+    valueEn: 'NT dollars',
+    locatorZh: 'SEC Company Facts，CIK 0001046179。路徑 facts.ifrs-full.ResearchAndDevelopmentExpense.units.TWD。只取 form 為 20-F、fp 為 FY，而且 fy 等於該列期末年度的那一筆。金額、申報日與 accession 見下表。',
+    locatorEn: 'SEC Company Facts, CIK 0001046179. Path: facts.ifrs-full.ResearchAndDevelopmentExpense.units.TWD. Only the row with form 20-F, fp FY, and fy equal to the period-end year is used. The amount, filing date, and accession are in the table.',
+    footnoteZh: '2016 年只出現在較晚 20-F 的比較欄，所以這張圖從 2017 年那份 20-F 起算。美元列沒有畫進來。',
+    footnoteEn: '2016 appears only as a comparative column in a later 20-F, so the chart starts with the 2017 20-F. The US dollar rows are not shown.',
+    render(lang) {
+      return rdFigure(this, lang, tsmcRdPoints, 'TWD');
     }
   }
 ];
