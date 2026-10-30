@@ -195,49 +195,75 @@ export const REAL_PHOTOS_DATA = {
   "ch04": {
     "id": "ch04",
     "src": "assets/photos/ch04-stepper-scanner.jpg",
-    "categoryZh": "微影機台實景",
-    "categoryEn": "Photolithography Stepper Equipment",
-    "titleZh": "無塵室微影曝光機台與投影物鏡載台系統",
-    "titleEn": "Cleanroom Photolithography Stepper & Wafer Stage",
-    "scaleZh": "奈米級步進對位 · 數值孔徑 NA 光學鏡筒",
-    "scaleEn": "Nanoscale Step Alignment · High-NA Projection Column",
-    "captionZh": "晶圓廠無塵室黃光區實體步進投影曝光機台（Stepper），包含紫外線光源模組、遮光罩對準載台、精密縮小投影物鏡與雙工件晶圓掃描台。",
-    "captionEn": "Cleanroom photolithography stepper showing UV illumination optics, reticle alignment stage, reduction projection lens, and dual wafer stages.",
-    "matchZh": "對應左側 4:1 投影鏡頭縮小與光阻化學機構：微影曝光機台真實物理外觀與結構。",
-    "matchEn": "Brings theoretical 4:1 projection reduction and Rayleigh limit mechanics to life with real cleanroom stepper hardware.",
+    "categoryZh": "微影對準曝光設備",
+    "categoryEn": "Lithography alignment equipment",
+    "titleZh": "LAAS-CNRS 的 EVG-620 與 MA-150",
+    "titleEn": "EVG-620 and MA-150 at LAAS-CNRS",
+    "scaleZh": "設備外觀參考 · 無校準比例",
+    "scaleEn": "Equipment reference · no calibrated scale",
+    "captionZh": "來源辨識左側為 EVG-620、右側為 MA-150，攝於 LAAS-CNRS 黃光環境。此圖呈現機台外觀，不能據此辨認內部投影光路、雙工件台或浸潤水層。",
+    "captionEn": "The source identifies an EVG-620 on the left and an MA-150 on the right at LAAS-CNRS under yellow lighting. This exterior view does not identify internal projection optics, dual wafer stages or an immersion-water layer.",
+    "matchZh": "與本章共同說明微影設備的使用情境；不是旁側 DUV／EUV 投影模型的同型機台或結構剖面。",
+    "matchEn": "A reference for the lithography environment, not a matching machine or cross-section of the adjacent DUV/EUV projection model.",
     "metrology": {
-      "voltage": "Laser 193nm / EUV 13.5nm",
-      "mag": "Reduction 4:1",
-      "fov": "26×33 mm Field",
-      "techniqueZh": "浸潤式雙工件台曝光掃描機 (ArFi Scanner)",
-      "techniqueEn": "TwinScan Immersion Photolithography Stepper"
+      "voltage": "Not reported by source",
+      "voltageZh": "來源未提供",
+      "mag": "Not reported by source",
+      "magZh": "來源未提供",
+      "fov": "Not reported by source",
+      "fovZh": "來源未提供",
+      "techniqueZh": "可見光設備照片",
+      "techniqueEn": "Visible-light equipment photograph"
     },
     "hotspots": [
       {
-        "x": 50,
-        "y": 25,
-        "labelZh": "投影縮小透鏡組筒 (Projection Lens Column)",
-        "labelEn": "High-NA Projection Column",
-        "detailZh": "超高數值孔徑精密光學透鏡系統，將光罩圖形以 4:1 比例縮小投影至晶圓光阻層。",
-        "detailEn": "Multi-element optical column reducing reticle patterns by 4:1 onto photoresist."
+        "x": 34,
+        "y": 39,
+        "labelZh": "左側 EVG-620 設備",
+        "labelEn": "EVG-620 equipment on the left",
+        "detailZh": "機台名稱依原始照片說明；標記指向左側設備外觀，不指認內部光學元件。",
+        "detailEn": "Equipment identity follows the source caption. The marker identifies the exterior, not an internal optical component."
       },
       {
-        "x": 50,
-        "y": 72,
-        "labelZh": "晶圓雙工件載台 (TwinScan Dual Stage)",
-        "labelEn": "Dual Wafer Stage",
-        "detailZh": "磁浮奈米定位雙工件台，一端進行高速曝光、另一端同步進行全域雷射對位量測。",
-        "detailEn": "Magnetically levitated dual stages measuring alignment while exposing."
+        "x": 66,
+        "y": 46,
+        "labelZh": "右側 MA-150 設備",
+        "labelEn": "MA-150 equipment on the right",
+        "detailZh": "機台名稱依原始照片說明；照片不足以推定曝光波長、縮小倍率或晶圓載台機構。",
+        "detailEn": "Equipment identity follows the source caption. Wavelength, reduction ratio and wafer-stage design cannot be inferred from this view."
       },
       {
-        "x": 28,
-        "y": 45,
-        "labelZh": "浸潤式超純水注水區 (Immersion Water Hood)",
-        "labelEn": "Water Immersion Hood",
-        "detailZh": "透鏡末端與晶圓間注入折射率 1.44 之高純去離子水，大幅提升有效數值孔徑。",
-        "detailEn": "High-purity DI water meniscus (n=1.44) boosting numerical aperture above 1.0."
+        "x": 14,
+        "y": 18,
+        "labelZh": "黃光作業環境",
+        "labelEn": "Yellow-light working environment",
+        "detailZh": "來源描述為不感光照明環境；照片的顏色不是曝光波長或照明光譜的量測結果。",
+        "detailEn": "The source describes inactinic lighting. The photograph colour is not a measurement of exposure wavelength or lighting spectrum."
       }
-    ]
+    ],
+    "reference": {
+      "sourceTitle": "Wikimedia Commons",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:EVG-620_%26_MA-150_steppers_at_LAAS_(FDLS_2007)_0430.jpg",
+      "author": "Guillaume Paumier",
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "noteZh": "沿用現有照片；本站另加熱點與圖說。原始頁亦提供 GFDL 授權。來源未提供本圖的曝光波長、倍率或校準視場。",
+      "noteEn": "Existing local photo retained; markers and captions added by this site. The source also offers GFDL. Exposure wavelength, magnification and calibrated field of view are not reported."
+    },
+    "diagramReference": {
+      "noteZh": "原理示意・非按比例。DUV 使用透鏡；EUV 使用反射式光罩與鏡面。High-NA 的兩軸縮小率為 4×／8×。光線路徑及鏡面數量為教學簡化，不是機台光學處方。",
+      "noteEn": "Principle diagram · not to scale. DUV uses lenses; EUV uses a reflective mask and mirrors. High-NA demagnifies by 4× / 8× on its two axes. Paths and mirror count are simplified, not an optical prescription.",
+      "links": [
+        {
+          "label": "ASML · lenses / mirrors",
+          "url": "https://www.asml.com/en/technology/lithography-principles/lenses-and-mirrors"
+        },
+        {
+          "label": "ASML · High-NA",
+          "url": "https://www.asml.com/en/company/stories/2024/5-things-high-na-euv"
+        }
+      ]
+    }
   },
   "ch05": {
     "id": "ch05",
@@ -994,49 +1020,71 @@ export const REAL_PHOTOS_DATA = {
   "ch21": {
     "id": "ch21",
     "src": "assets/photos/ch21-advanced-3d-packaging.jpg",
-    "categoryZh": "先進封裝實體",
-    "categoryEn": "Advanced 3D Packaging Artifact",
-    "titleZh": "3D 先進立體晶片異質整合封裝樣品 (Advanced 3D Packaging)",
-    "titleEn": "3D Advanced Heterogeneous Silicon Packaging Interface",
-    "scaleZh": "次微米互連節距 · 矽中介層多晶片拼接",
-    "scaleEn": "Sub-Micron Interconnect Pitch · Multi-Die Interposer",
-    "captionZh": "先進微電子立體多晶片異質封裝實體，展示跨晶片高密度對接微結構，打破單晶片光罩極限（Reticle Limit），實現晶粒與高頻寬記憶體（HBM）之高速互連。",
-    "captionEn": "Advanced multi-die heterogeneous 3D packaging prototype demonstrating ultra-dense edge-to-edge inter-die communication beyond reticle limits.",
-    "matchZh": "對應左側 CoWoS/SoIC 2.5D/3D 先進封裝架構：中介層與高密度微凸塊之實物對照。",
-    "matchEn": "Physical manifestation of silicon interposers, micro-bumps, and modular chiplet architectures.",
+    "categoryZh": "封裝研究樣品",
+    "categoryEn": "Packaging research sample",
+    "titleZh": "3D Orthogonal Quilt Packaging 樣品",
+    "titleEn": "3D Orthogonal Quilt Packaging sample",
+    "scaleZh": "附公分尺規 · 非微結構量測",
+    "scaleEn": "Centimetre ruler · not a microstructure measurement",
+    "captionZh": "原始照片名為 3D Orthogonal Quilt Packaging。可見水平放置的方形樣品、中央直立結構及前方尺規；來源未指認 HBM、TSV、C4 或 RDL，也未提供封裝尺寸與放大倍率。",
+    "captionEn": "The source names this sample 3D Orthogonal Quilt Packaging. A horizontal square sample, an upright structure and a ruler are visible. The source does not identify HBM, TSVs, C4 or RDL, or report package dimensions or magnification.",
+    "matchZh": "用來觀察立體組裝的外觀。旁側 CoWoS／SoIC 圖為獨立原理示意，不能把圖中的中介層、記憶體或接點對號到這張照片。",
+    "matchEn": "An exterior example of three-dimensional assembly. The adjacent CoWoS/SoIC diagrams are separate teaching models; their interposer, memory and contacts cannot be mapped onto this photo.",
     "metrology": {
-      "voltage": "Optical Macro",
-      "mag": "Macro 2:1",
-      "fov": "50×50 mm Package",
-      "techniqueZh": "CoWoS 2.5D/3D 先進矽中介層封裝實體樣品",
-      "techniqueEn": "CoWoS 2.5D/3D Advanced Packaging Sample"
+      "voltage": "Not reported by source",
+      "voltageZh": "來源未提供",
+      "mag": "Not reported by source",
+      "magZh": "來源未提供",
+      "fov": "Not reported by source",
+      "fovZh": "來源未提供",
+      "techniqueZh": "可見光樣品照片",
+      "techniqueEn": "Visible-light sample photograph"
     },
     "hotspots": [
       {
-        "x": 48,
-        "y": 35,
-        "labelZh": "高密度矽中介層 (Silicon Interposer)",
-        "labelEn": "TSV Silicon Interposer",
-        "detailZh": "內建密集亞微米金屬線與矽穿孔 (TSV) 的高純度矽基底，以極低延遲互聯運算與記憶晶粒。",
-        "detailEn": "Silicon interposer containing sub-micron lines and TSVs bridging CPU and HBM."
+        "x": 43,
+        "y": 43,
+        "labelZh": "水平放置的樣品",
+        "labelEn": "Horizontal sample",
+        "detailZh": "可見方形表面與金色圖樣；來源未說明其電路功能，不能據此認定為矽中介層或 TSV。",
+        "detailEn": "A square surface with gold-coloured patterns is visible. Their circuit function is not identified; this is not evidence of a silicon interposer or TSVs."
       },
       {
-        "x": 28,
-        "y": 40,
-        "labelZh": "高頻寬記憶體堆疊 (HBM 3D Memory Stack)",
-        "labelEn": "HBM 3D DRAM Stack",
-        "detailZh": "多層 DRAM 裸晶透過微凸塊與 TSV 垂直堆疊封裝，提供突破 TB/s 級的超大記憶體頻寬。",
-        "detailEn": "Multi-layer 3D stacked DRAM dies providing terabytes-per-second memory bandwidth."
+        "x": 51,
+        "y": 28,
+        "labelZh": "中央直立結構",
+        "labelEn": "Central upright structure",
+        "detailZh": "可見相對於底面直立的薄片結構；來源未將其辨識為 HBM 或多層 DRAM。",
+        "detailEn": "A thin structure stands upright relative to the base. The source does not identify it as HBM or stacked DRAM."
       },
       {
         "x": 50,
         "y": 80,
-        "labelZh": "重佈線層微凸塊陣列 (C4 Bump / RDL Array)",
-        "labelEn": "C4 Bump & RDL Grid",
-        "detailZh": "中介層底部的控陷微凸塊與重佈線層，將高密度訊號轉接焊接至多層有機封裝基板。",
-        "detailEn": "Fine-pitch C4 bumps distributing power and I/O signals to package substrate."
+        "labelZh": "公分尺規",
+        "labelEn": "Centimetre ruler",
+        "detailZh": "照片前方標有 cm 的尺規，提供外觀尺度參考。此處不是 C4 凸塊或 RDL；透視照片不可當作微結構節距量測。",
+        "detailEn": "The ruler marked cm provides a visual size reference. This is not a C4 bump or RDL array; a perspective photograph is not a microstructure-pitch measurement."
       }
-    ]
+    ],
+    "reference": {
+      "sourceTitle": "Wikimedia Commons",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:3D_Orthogonal_Quilt_Packaging.jpg",
+      "author": "Jacksontlu",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "noteZh": "沿用現有照片；本站另加熱點與圖說。來源未提供拍攝倍率、校準視場或接點節距。",
+      "noteEn": "Existing local photo retained; markers and captions added by this site. Magnification, calibrated field of view and contact pitch are not reported."
+    },
+    "diagramReference": {
+      "noteZh": "剖面原理示意・非按比例。CoWoS-S 的中介層互連與 SoIC 的垂直鍵合分開呈現；顯示數值為既有教學案例，不是照片量測值，也不是所有產品的規格。",
+      "noteEn": "Conceptual cross-section · not to scale. CoWoS-S interposer connections and SoIC vertical bonding are separate models. Values are existing teaching examples, not photo measurements or specifications for every product.",
+      "links": [
+        {
+          "label": "TSMC · off-chip interconnect",
+          "url": "https://research.tsmc.com/page/off-chip-interconnect/1.html"
+        }
+      ]
+    }
   },
   "ch22": {
     "id": "ch22",

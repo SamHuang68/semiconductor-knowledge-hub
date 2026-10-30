@@ -57,8 +57,9 @@ export function renderCMPObject(container, lang = 'zh') {
               <circle cx="0" cy="0" r="35" fill="none" stroke="#38bdf8" stroke-dasharray="4 4"/>
               <circle cx="0" cy="0" r="8" fill="#f59e0b"/>
             </g>
-            <text x="0" y="-88" text-anchor="middle" fill="#38bdf8" font-size="12" font-weight="700">${t.ch08_head_label}</text>
-            <text x="0" y="98" text-anchor="middle" fill="#94a3b8" font-size="10.5">300mm 晶圓 (下向壓 P: ${pressure.toFixed(1)} psi)</text>
+            <line x1="80" y1="0" x2="120" y2="0" stroke="#0284c7" stroke-width="1.2"/>
+            <text x="135" y="-8" text-anchor="start" fill="#38bdf8" font-size="12" font-weight="700">${svgTextLines(t.ch08_head_label.replace(' (', '\n('), 135, -8)}</text>
+            <text x="0" y="98" text-anchor="middle" fill="#94a3b8" font-size="10.5">${lang === 'en' ? "300mm wafer (down-force P:" : "300mm 晶圓 (下向壓 P:"} ${pressure.toFixed(1)} psi)</text>
           </g>
 
           <!-- 3. 研磨液滴注臂 (Slurry Delivery Arm) -->
@@ -74,12 +75,12 @@ export function renderCMPObject(container, lang = 'zh') {
           <!-- 4. 鑽石修整器 (Diamond Conditioner Disk) -->
           <g transform="translate(190, 290)">
             <circle cx="0" cy="0" r="38" fill="#334155" stroke="#f59e0b" stroke-width="1.5"/>
-            <text x="0" y="4" text-anchor="middle" fill="#f59e0b" font-size="10" font-weight="700">鑽石修整盤</text>
-            <text x="0" y="52" text-anchor="middle" fill="#94a3b8" font-size="9.5">去除釉質 / 粗糙化</text>
+            <text x="0" y="4" text-anchor="middle" fill="#f59e0b" font-size="10" font-weight="700">${lang === 'en' ? svgTextLines("Diamond\nconditioner\ndisk", 0, -12, 14) : "鑽石修整盤"}</text>
+            <text x="0" y="52" text-anchor="middle" fill="#94a3b8" font-size="9.5">${lang === 'en' ? "Deglaze / roughen" : "去除釉質 / 粗糙化"}</text>
           </g>
 
           <!-- 速度與 Preston 標註 -->
-          <text x="680" y="80" text-anchor="middle" fill="#f59e0b" font-size="14" font-weight="700">Preston 方程</text>
+          <text x="680" y="80" text-anchor="middle" fill="#f59e0b" font-size="14" font-weight="700">${lang === 'en' ? "Preston equation" : "Preston 方程"}</text>
           <text x="680" y="105" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="600">MRR = Kp · P · V</text>
           <text x="680" y="130" text-anchor="middle" fill="#38bdf8" font-size="16" font-weight="750">≈ ${mrr} nm/min</text>
           <g class="eng-kinetic-wave" pointer-events="none"><circle cx="400" cy="200" r="68" fill="none" stroke="#38bdf8" stroke-width="1.4" class="anim-pulse-ring" opacity="0.45"/><path d="M 140,60 Q 400,32 660,60" fill="none" stroke="#34d399" stroke-width="1.5" class="anim-field-glow" opacity="0.5"/></g>
@@ -90,17 +91,17 @@ export function renderCMPObject(container, lang = 'zh') {
         <div class="eng-obj-metric-card">
           <div class="eng-obj-metric-label">${t.ch08_mrr_label}</div>
           <div class="eng-obj-metric-value">${mrr} nm/min</div>
-          <div class="eng-obj-metric-note">材料移除速率 (Preston Kp=1.5)</div>
+          <div class="eng-obj-metric-note">${lang === 'en' ? "Material removal rate (Preston Kp=1.5)" : "材料移除速率 (Preston Kp=1.5)"}</div>
         </div>
         <div class="eng-obj-metric-card">
-          <div class="eng-obj-metric-label">接觸壓力 P (Down-Force)</div>
+          <div class="eng-obj-metric-label">${lang === 'en' ? "Contact pressure P (down-force)" : "接觸壓力 P (Down-Force)"}</div>
           <div class="eng-obj-metric-value">${pressure.toFixed(1)} psi</div>
-          <div class="eng-obj-metric-note">多區氣囊分區調控晶圓平坦度</div>
+          <div class="eng-obj-metric-note">${lang === 'en' ? "Multi-zone air bladders control wafer flatness" : "多區氣囊分區調控晶圓平坦度"}</div>
         </div>
         <div class="eng-obj-metric-card">
-          <div class="eng-obj-metric-label">相對研磨轉速 V (Platen Speed)</div>
+          <div class="eng-obj-metric-label">${lang === 'en' ? "Relative polishing speed V (platen speed)" : "相對研磨轉速 V (Platen Speed)"}</div>
           <div class="eng-obj-metric-value">${speed} RPM</div>
-          <div class="eng-obj-metric-note">同向旋轉確保全晶圓相對速度均勻</div>
+          <div class="eng-obj-metric-note">${lang === 'en' ? "Same-direction rotation keeps relative speed uniform across the wafer" : "同向旋轉確保全晶圓相對速度均勻"}</div>
         </div>
       `;
 
@@ -113,7 +114,7 @@ export function renderCMPObject(container, lang = 'zh') {
             <rect x="0" y="0" width="600" height="40" fill="#334155" stroke="#64748b"/>
             <!-- 墊表面粗糙微峰 (Asperities) -->
             <path d="M 0,40 Q 50,55 100,40 Q 150,55 200,40 Q 250,55 300,40 Q 350,55 400,40 Q 450,55 500,40 Q 550,55 600,40 Z" fill="#475569"/>
-            <text x="300" y="24" text-anchor="middle" fill="#e2e8f0" font-size="12" font-weight="700">聚氨酯研磨墊粗糙微峰 (Pad Asperities 下壓磨削)</text>
+            <text x="300" y="24" text-anchor="middle" fill="#e2e8f0" font-size="12" font-weight="700">${lang === 'en' ? "Polyurethane polishing pad asperities press down for abrasion" : "聚氨酯研磨墊粗糙微峰 (Pad Asperities 下壓磨削)"}</text>
           </g>
 
           <!-- 研磨液納米磨粒 (CeO2 / SiO2 Abrasive Particles) -->
@@ -121,7 +122,7 @@ export function renderCMPObject(container, lang = 'zh') {
             <circle cx="220" cy="115" r="7"/><circle cx="350" cy="118" r="7"/><circle cx="480" cy="116" r="7"/>
             <circle cx="280" cy="140" r="6"/><circle cx="410" cy="142" r="6"/>
           </g>
-          <text x="650" y="125" fill="#38bdf8" font-size="11">奈米磨粒 (SiO₂ / CeO₂)</text>
+          <text x="650" y="125" fill="#38bdf8" font-size="11">${lang === 'en' ? svgTextLines("Nano-abrasives\n(SiO₂ / CeO₂)", 650, 125, 17) : "奈米磨粒 (SiO₂ / CeO₂)"}</text>
 
           <!-- 下方晶圓表面微觀輪廓：突出高點 vs 低窪處 -->
           <g transform="translate(100, 180)">
@@ -136,9 +137,9 @@ export function renderCMPObject(container, lang = 'zh') {
             <rect x="0" y="76" width="150" height="6" fill="#10b981"/>
             <rect x="300" y="76" width="150" height="6" fill="#10b981"/>
 
-            <text x="225" y="25" text-anchor="middle" fill="#ef4444" font-size="12" font-weight="700">高點受壓：機械磨除氧化層</text>
-            <text x="75" y="115" text-anchor="middle" fill="#10b981" font-size="11" font-weight="700">低處不承受壓力：鈍化保護</text>
-            <text x="375" y="115" text-anchor="middle" fill="#10b981" font-size="11" font-weight="700">低處不承受壓力：鈍化保護</text>
+            <text x="225" y="25" text-anchor="middle" fill="#ef4444" font-size="12" font-weight="700">${lang === 'en' ? svgTextLines("High spots under pressure:\nmechanical oxide removal", 225, 8, 17) : "高點受壓：機械磨除氧化層"}</text>
+            <text x="75" y="115" text-anchor="middle" fill="#10b981" font-size="11" font-weight="700">${lang === 'en' ? svgTextLines("Low areas: no pressure;\npassivation protection", 75, 115, 17) : "低處不承受壓力：鈍化保護"}</text>
+            <text x="375" y="115" text-anchor="middle" fill="#10b981" font-size="11" font-weight="700">${lang === 'en' ? svgTextLines("Low areas: no pressure;\npassivation protection", 375, 115, 17) : "低處不承受壓力：鈍化保護"}</text>
           </g>
           <g class="eng-kinetic-wave" pointer-events="none"><circle cx="400" cy="200" r="68" fill="none" stroke="#38bdf8" stroke-width="1.4" class="anim-pulse-ring" opacity="0.45"/><path d="M 140,60 Q 400,32 660,60" fill="none" stroke="#34d399" stroke-width="1.5" class="anim-field-glow" opacity="0.5"/></g>
         </svg>
@@ -146,19 +147,19 @@ export function renderCMPObject(container, lang = 'zh') {
 
       dashboardHtml = `
         <div class="eng-obj-metric-card">
-          <div class="eng-obj-metric-label">化學作用 (Chemical)</div>
-          <div class="eng-obj-metric-value" style="font-size: 15px;">氧化鈍化軟化</div>
-          <div class="eng-obj-metric-note">生成疏鬆 CuO/Cu(OH)₂ 水合膜</div>
+          <div class="eng-obj-metric-label">${lang === 'en' ? "Chemical action" : "化學作用 (Chemical)"}</div>
+          <div class="eng-obj-metric-value" style="font-size: 15px;">${lang === 'en' ? "Oxidation, passivation and softening" : "氧化鈍化軟化"}</div>
+          <div class="eng-obj-metric-note">${lang === 'en' ? "Forms a porous hydrated CuO/Cu(OH)₂ film" : "生成疏鬆 CuO/Cu(OH)₂ 水合膜"}</div>
         </div>
         <div class="eng-obj-metric-card">
-          <div class="eng-obj-metric-label">機械作用 (Mechanical)</div>
-          <div class="eng-obj-metric-value" style="font-size: 15px;">高點選擇性磨除</div>
-          <div class="eng-obj-metric-note">奈米磨粒擦碰刮除微峰凸起</div>
+          <div class="eng-obj-metric-label">${lang === 'en' ? "Mechanical action" : "機械作用 (Mechanical)"}</div>
+          <div class="eng-obj-metric-value" style="font-size: 15px;">${lang === 'en' ? "Selective removal of high spots" : "高點選擇性磨除"}</div>
+          <div class="eng-obj-metric-note">${lang === 'en' ? "Nano-abrasives rub away raised asperities" : "奈米磨粒擦碰刮除微峰凸起"}</div>
         </div>
         <div class="eng-obj-metric-card">
-          <div class="eng-obj-metric-label">全域平坦化能力</div>
+          <div class="eng-obj-metric-label">${lang === 'en' ? "Global planarization capability" : "全域平坦化能力"}</div>
           <div class="eng-obj-metric-value" style="color: var(--semi-teal);">Planarization &gt; 95%</div>
-          <div class="eng-obj-metric-note">微影焦深 (DOF) 唯一定焦保障技術</div>
+          <div class="eng-obj-metric-note">${lang === 'en' ? "Sole focus safeguard for lithography depth of focus (DOF)" : "微影焦深 (DOF) 唯一定焦保障技術"}</div>
         </div>
       `;
 
@@ -170,19 +171,19 @@ export function renderCMPObject(container, lang = 'zh') {
           <!-- 1. 碟化 (Dishing) -->
           <g transform="translate(60, 40)">
             <rect x="0" y="0" width="310" height="260" rx="4" fill="#131e2b" stroke="#ef4444"/>
-            <text x="155" y="26" text-anchor="middle" fill="#ef4444" font-size="13" font-weight="700">寬導線碟化 (Dishing)</text>
+            <text x="155" y="26" text-anchor="middle" fill="#ef4444" font-size="13" font-weight="700">${lang === 'en' ? "Wide-line dishing" : "寬導線碟化 (Dishing)"}</text>
             <!-- 介電層 -->
             <rect x="25" y="80" width="70" height="140" fill="#334155"/>
             <rect x="215" y="80" width="70" height="140" fill="#334155"/>
             <!-- 寬銅導線中央下陷 -->
             <path d="M 95,80 Q 155,105 215,80 L 215,220 L 95,220 Z" fill="#f59e0b"/>
-            <text x="155" y="125" text-anchor="middle" fill="#ef4444" font-size="11" font-weight="700" data-ink="halo">研磨墊彈性下彎造成中央凹陷</text>
+            <text x="155" y="125" text-anchor="middle" fill="#ef4444" font-size="11" font-weight="700" data-ink="halo">${lang === 'en' ? svgTextLines("Elastic pad bends down,\ndepressing the center", 155, 125, 17) : "研磨墊彈性下彎造成中央凹陷"}</text>
           </g>
 
           <!-- 2. 假圖形填補 (Dummy Metal Fill) -->
           <g transform="translate(430, 40)">
             <rect x="0" y="0" width="310" height="260" rx="4" fill="#131e2b" stroke="#10b981"/>
-            <text x="155" y="26" text-anchor="middle" fill="#10b981" font-size="13" font-weight="700">假圖形填補 (Dummy Metal Fill)</text>
+            <text x="155" y="26" text-anchor="middle" fill="#10b981" font-size="13" font-weight="700">${lang === 'en' ? "Dummy metal fill" : "假圖形填補 (Dummy Metal Fill)"}</text>
             <!-- 均勻平整表面 -->
             <rect x="25" y="80" width="260" height="140" fill="#334155"/>
             <!-- 均勻分佈之虛擬金屬方塊 -->
@@ -191,7 +192,7 @@ export function renderCMPObject(container, lang = 'zh') {
               <rect x="125" y="80" width="25" height="140"/><rect x="165" y="80" width="25" height="140"/>
               <rect x="205" y="80" width="25" height="140"/><rect x="245" y="80" width="25" height="140"/>
             </g>
-            <text x="155" y="125" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="700">金屬密度平衡在 30%-50% · 完美平坦</text>
+            <text x="155" y="125" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="700">${lang === 'en' ? svgTextLines("Dummy fill balances pattern density\nSchematic; not a flatness guarantee", 155, 125, 17) : "虛設填補平衡圖形密度 · 示意非平坦度保證"}</text>
           </g>
           <g class="eng-kinetic-wave" pointer-events="none"><circle cx="400" cy="200" r="68" fill="none" stroke="#38bdf8" stroke-width="1.4" class="anim-pulse-ring" opacity="0.45"/><path d="M 140,60 Q 400,32 660,60" fill="none" stroke="#34d399" stroke-width="1.5" class="anim-field-glow" opacity="0.5"/></g>
         </svg>
@@ -199,14 +200,14 @@ export function renderCMPObject(container, lang = 'zh') {
 
       dashboardHtml = `
         <div class="eng-obj-metric-card">
-          <div class="eng-obj-metric-label">圖形密度規範 (Pattern Density)</div>
+          <div class="eng-obj-metric-label">${lang === 'en' ? "Illustrative pattern density" : "圖形密度教學示例 (Pattern Density)"}</div>
           <div class="eng-obj-metric-value">35% ~ 50%</div>
-          <div class="eng-obj-metric-note">晶片全域金屬覆蓋率嚴格約束</div>
+          <div class="eng-obj-metric-note">${lang === 'en' ? "Example only; apply the qualified process design rules." : "僅為示例；實際限制應依已驗證製程的設計規則。"}</div>
         </div>
         <div class="eng-obj-metric-card">
-          <div class="eng-obj-metric-label">最大允許碟化深度 (Dishing Spec)</div>
+          <div class="eng-obj-metric-label">${lang === 'en' ? "Maximum allowed dishing depth" : "最大允許碟化深度 (Dishing Spec)"}</div>
           <div class="eng-obj-metric-value">&lt; 15 nm</div>
-          <div class="eng-obj-metric-note">避免上層微影對焦不良與阻抗波動</div>
+          <div class="eng-obj-metric-note">${lang === 'en' ? "Avoids poor upper-layer lithography focus and impedance variation" : "避免上層微影對焦不良與阻抗波動"}</div>
         </div>
       `;
 
@@ -251,8 +252,8 @@ export function renderCMPObject(container, lang = 'zh') {
           </div>
                   <div class="eng-obj-metric-card">
             <div class="eng-obj-metric-label">${lang === 'en' ? 'Failure Diagnostics & OCAP' : '現場異常診斷與防呆 (Failure & OCAP)'}</div>
-            <div class="eng-obj-metric-value" style="font-size: 13.5px; color: #d97706;">${lang === 'en' ? 'Cu Dishing · POU Scratch · 1.5nm Recess' : 'Cu Dishing · POU Scratch · 1.5nm Recess'}</div>
-            <div class="eng-obj-metric-note">${lang === 'en' ? 'Controls Cu dishing, slurry chatter scratches & 1–2.5nm hybrid-bond recess' : '以虛設金屬填補與多區氣囊頭消除碟形凹陷、凝膠刮痕並鎖定 3D 混合鍵合凹盤'}</div>
+            <div class="eng-obj-metric-value" style="font-size: 13.5px; color: #d97706;">${lang === 'en' ? 'Cu dishing · Scratches · Recess (example: 1.5 nm)' : '銅碟化 · 刮痕 · 凹陷（示例：1.5 nm）'}</div>
+            <div class="eng-obj-metric-note">${lang === 'en' ? 'For dishing, review pattern density; for scratches, slurry particle control; for hybrid-bond recess, CMP endpoint control. Qualify actions for each process.' : '碟化應檢查圖形密度，刮痕應檢查研磨液粒子控制，混合鍵合凹陷應檢查 CMP 終點控制；改善措施須依各製程驗證。'}</div>
           </div>
         </div>
 

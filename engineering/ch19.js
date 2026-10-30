@@ -57,11 +57,11 @@ export function renderWaferTestObject(container, lang = 'zh') {
           </div>
           <div style="margin-left: auto; display: flex; align-items: center; gap: 8px;">
             <span style="font-size: 11px; color: #94a3b8; font-family: monospace;">${t.ch19_rdut_label}: <strong style="color: #38bdf8; font-size: 13px;">${rDUT} Ω</strong></span>
-            <span style="font-size: 11px; padding: 2px 7px; border-radius: 4px; background: rgba(15,23,42,0.6); border: 1px solid var(--border-subtle); color: #ef4444; font-weight: 700;">
+            <span class="ch19-test-status" data-status="error" style="font-size: 11px; padding: 2px 7px; border-radius: 4px; background: rgba(15,23,42,0.6); border: 1px solid var(--border-subtle); color: #ef4444; font-weight: 700;">
               2-Wire: ${r2Wire.toFixed(2)} Ω (+${err2Wire}%)
             </span>
-            <span style="font-size: 11px; padding: 2px 7px; border-radius: 4px; background: rgba(15,23,42,0.6); border: 1px solid var(--border-subtle); color: #10b981; font-weight: 700;">
-              4-Wire: ${r4Wire.toFixed(2)} Ω (0.0% 誤差)
+            <span class="ch19-test-status" data-status="pass" style="font-size: 11px; padding: 2px 7px; border-radius: 4px; background: rgba(15,23,42,0.6); border: 1px solid var(--border-subtle); color: #10b981; font-weight: 700;">
+              4-Wire: ${r4Wire.toFixed(2)} Ω (${lang === 'en' ? "0.0% error" : "0.0% 誤差"})
             </span>
           </div>
         </div>
@@ -72,7 +72,7 @@ export function renderWaferTestObject(container, lang = 'zh') {
           <!-- 左側：晶圓切割劃線道 (Scribe-Line Street @ 80µm 寬) 與 PCM 測試結構 -->
           <g transform="translate(40, 30)">
             <rect x="0" y="0" width="340" height="360" fill="#0f172a" stroke="#334155" stroke-width="1.5" rx="6"/>
-            <text x="170" y="24" text-anchor="middle" fill="#38bdf8" font-size="12" font-weight="750">劃線道 PCM 測試鍵 (Process Control Monitor)</text>
+            <text x="170" y="24" text-anchor="middle" fill="#38bdf8" font-size="12" font-weight="750">${lang === 'en' ? "Scribe-line PCM test keys (Process Control Monitor)" : "劃線道 PCM 測試鍵 (Process Control Monitor)"}</text>
 
             <!-- 左右相鄰實體晶片與中間劃線道 -->
             <g transform="translate(15, 45)">
@@ -114,12 +114,12 @@ export function renderWaferTestObject(container, lang = 'zh') {
           <!-- 右側：Kelvin 4-Wire 測量等效電路與誤差解析 -->
           <g transform="translate(400, 30)">
             <rect x="0" y="0" width="360" height="360" fill="#0f172a" stroke="#f59e0b" stroke-width="1.5" rx="6"/>
-            <text x="180" y="24" text-anchor="middle" fill="#fbbf24" font-size="12" font-weight="750">Kelvin 四線式接觸阻抗量測法 (4-Wire Sense)</text>
+            <text x="180" y="24" text-anchor="middle" fill="#fbbf24" font-size="12" font-weight="750">${lang === 'en' ? "Kelvin contact resistance (4-Wire Sense)" : "Kelvin 四線式接觸阻抗量測法 (4-Wire Sense)"}</text>
 
             <!-- 電流源 (Force Loop: 橘線) -->
             <g transform="translate(30, 45)">
               <rect x="0" y="0" width="300" height="42" rx="4" fill="#1e293b" stroke="#f59e0b" stroke-width="1.5"/>
-              <text x="150" y="25" text-anchor="middle" fill="#fbbf24" font-size="11" font-weight="700">定電流源 I_force = ${forceCurrent.toFixed(1)} mA</text>
+              <text x="150" y="25" text-anchor="middle" fill="#fbbf24" font-size="11" font-weight="700">${lang === 'en' ? "Constant-current source I_force =" : "定電流源 I_force ="} ${forceCurrent.toFixed(1)} mA</text>
             </g>
 
             <!-- 導線與待測電阻 DUT 串聯網格 -->
@@ -152,15 +152,15 @@ export function renderWaferTestObject(container, lang = 'zh') {
             <!-- 高阻抗電壓表 (Sense Meter: 藍框) -->
             <g transform="translate(80, 205)">
               <rect x="0" y="0" width="200" height="50" rx="4" fill="#0b1329" stroke="#38bdf8" stroke-width="1.5"/>
-              <text x="100" y="22" text-anchor="middle" fill="#38bdf8" font-size="11" font-weight="750">高阻抗電壓計 (I_sense ≈ 0)</text>
+              <text x="100" y="22" text-anchor="middle" fill="#38bdf8" font-size="11" font-weight="750">${lang === 'en' ? "High-Z voltmeter (I_sense ≈ 0)" : "高阻抗電壓計 (I_sense ≈ 0)"}</text>
               <text x="100" y="38" text-anchor="middle" fill="#34d399" font-size="10.5" font-family="monospace" font-weight="700">V_sense = ${vSense} mV</text>
             </g>
 
             <!-- 比較結論看板 -->
             <g transform="translate(25, 275)">
               <rect x="0" y="0" width="310" height="65" rx="4" fill="#020617" stroke="#334155" stroke-width="1"/>
-              <text x="15" y="24" fill="#ef4444" font-size="10.5" font-weight="700">傳統 2-Wire: ${r2Wire.toFixed(2)} Ω (包含導線壓降，誤差 +${err2Wire}%)</text>
-              <text x="15" y="48" fill="#10b981" font-size="11" font-weight="800">Kelvin 4-Wire: ${r4Wire.toFixed(2)} Ω (Sense 無電流，精準零誤差!)</text>
+              <text x="15" y="24" fill="#ef4444" font-size="10.5" font-weight="700">${lang === 'en' ? "2-Wire:" : "傳統 2-Wire:"} ${r2Wire.toFixed(2)} Ω ${lang === 'en' ? "(lead drop; error +" : "(包含導線壓降，誤差 +"}${err2Wire}%)</text>
+              <text x="15" y="48" fill="#10b981" font-size="11" font-weight="800">Kelvin 4-Wire: ${r4Wire.toFixed(2)} Ω ${lang === 'en' ? "(zero sense current, zero error!)" : "(Sense 無電流，精準零誤差!)"}</text>
             </g>
           </g>
           <g class="eng-kinetic-wave" pointer-events="none"><circle cx="400" cy="205" r="72" fill="none" stroke="#38bdf8" stroke-width="1.4" class="anim-pulse-ring" opacity="0.45"/><path d="M 130,65 Q 400,35 670,65" fill="none" stroke="#34d399" stroke-width="1.5" class="anim-field-glow" opacity="0.5"/></g><g class="eng-kinetic-overlay" pointer-events="none"><path d="M 220,90 L 380,220 L 580,90" fill="none" stroke="#fbbf24" stroke-width="2.2" stroke-dasharray="7 5" class="anim-data-flow" opacity="0.75"/><circle cx="380" cy="220" r="24" fill="none" stroke="#38bdf8" stroke-width="1.8" stroke-dasharray="4 4" class="anim-beam" opacity="0.7"/></g>
@@ -169,19 +169,19 @@ export function renderWaferTestObject(container, lang = 'zh') {
 
       dashboardHtml = `
         <div class="eng-obj-metric-card">
-          <div class="eng-obj-metric-label">接觸孔真實電阻 (R_DUT)</div>
+          <div class="eng-obj-metric-label">${lang === 'en' ? "True contact resistance (R_DUT)" : "接觸孔真實電阻 (R_DUT)"}</div>
           <div class="eng-obj-metric-value" style="color: var(--semi-teal);">${rDUT} Ω (820 mΩ)</div>
-          <div class="eng-obj-metric-note">Via / Contact Plug 物理真值</div>
+          <div class="eng-obj-metric-note">${lang === 'en' ? "True via / contact plug resistance" : "Via / Contact Plug 物理真值"}</div>
         </div>
         <div class="eng-obj-metric-card">
-          <div class="eng-obj-metric-label">傳統二線量測值 (2-Wire)</div>
+          <div class="eng-obj-metric-label">${lang === 'en' ? "Standard reading (2-Wire)" : "傳統二線量測值 (2-Wire)"}</div>
           <div class="eng-obj-metric-value" style="color: #ef4444;">${r2Wire.toFixed(2)} Ω (+${err2Wire}%)</div>
-          <div class="eng-obj-metric-note">寄生導線阻抗 ${leadResistance}×2 Ω 嚴重失真</div>
+          <div class="eng-obj-metric-note">${lang === 'en' ? "Parasitic lead resistance " : "寄生導線阻抗 "}${leadResistance}×2${lang === 'en' ? " Ω causes large error" : " Ω 嚴重失真"}</div>
         </div>
         <div class="eng-obj-metric-card">
-          <div class="eng-obj-metric-label">Kelvin 四線量測值 (4-Wire)</div>
-          <div class="eng-obj-metric-value" style="color: var(--semi-blue-dark);">${r4Wire.toFixed(2)} Ω (0.00% 誤差)</div>
-          <div class="eng-obj-metric-note">Sense 端零電流，徹底抵消導線電阻</div>
+          <div class="eng-obj-metric-label">${lang === 'en' ? "Kelvin reading (4-Wire)" : "Kelvin 四線量測值 (4-Wire)"}</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-blue-dark);">${r4Wire.toFixed(2)} Ω (${lang === 'en' ? "0.00% error" : "0.00% 誤差"})</div>
+          <div class="eng-obj-metric-note">${lang === 'en' ? "Zero sense current eliminates lead resistance" : "Sense 端零電流，徹底抵消導線電阻"}</div>
         </div>
       `;
 
@@ -195,9 +195,9 @@ export function renderWaferTestObject(container, lang = 'zh') {
             <span class="eng-obj-slider-val">${probeOD} µm</span>
           </div>
           <div style="margin-left: auto; display: flex; align-items: center; gap: 8px;">
-            <span style="font-size: 11px; color: #94a3b8; font-family: monospace;">下壓力: <strong style="color: #38bdf8; font-size: 13px;">${contactForce} gf/pin</strong></span>
-            <span style="font-size: 11px; padding: 2px 7px; border-radius: 4px; background: rgba(15,23,42,0.6); border: 1px solid var(--border-subtle); color: ${cpStatus === 'pass' ? '#10b981' : (cpStatus === 'false_open' ? '#ef4444' : '#f59e0b')}; font-weight: 700;">
-              ${t.ch19_rc_label}: ${rcProbe} Ω (${cpStatus === 'pass' ? '✓ 良好接觸' : (cpStatus === 'false_open' ? '⚠️ 假開路 (未破氧化膜)' : '⚠️ 過壓 (刮傷凸塊)')})
+            <span style="font-size: 11px; color: #94a3b8; font-family: monospace;">${lang === 'en' ? "Contact force:" : "下壓力:"} <strong style="color: #38bdf8; font-size: 13px;">${contactForce} gf/pin</strong></span>
+            <span class="ch19-test-status" data-status="${cpStatus}" style="font-size: 11px; padding: 2px 7px; border-radius: 4px; background: rgba(15,23,42,0.6); border: 1px solid var(--border-subtle); color: ${cpStatus === 'pass' ? '#10b981' : (cpStatus === 'false_open' ? '#ef4444' : '#f59e0b')}; font-weight: 700;">
+              ${t.ch19_rc_label}: ${rcProbe} Ω (${cpStatus === 'pass' ? (lang === 'en' ? "✓ Good contact" : '✓ 良好接觸') : (cpStatus === 'false_open' ? (lang === 'en' ? "⚠️ False open (oxide intact)" : '⚠️ 假開路 (未破氧化膜)') : (lang === 'en' ? "⚠️ Excess pressure (bump damage)" : '⚠️ 過壓 (刮傷凸塊)'))})
             </span>
           </div>
         </div>
@@ -212,7 +212,7 @@ export function renderWaferTestObject(container, lang = 'zh') {
           <!-- 上方探針卡基板 (Probe Card PCB & Space Transformer) -->
           <g transform="translate(80, 25)">
             <rect x="0" y="0" width="640" height="42" rx="3" fill="#1e293b" stroke="#38bdf8" stroke-width="2"/>
-            <text x="320" y="26" text-anchor="middle" fill="#38bdf8" font-size="12.5" font-weight="750">垂直探針卡基板 (Vertical Probe Card: 45,000+ MEMS 微彈簧針)</text>
+            <text x="320" y="26" text-anchor="middle" fill="#38bdf8" font-size="12.5" font-weight="750">${lang === 'en' ? "Vertical probe card: 45,000+ MEMS spring probes" : "垂直探針卡基板 (Vertical Probe Card: 45,000+ MEMS 微彈簧針)"}</text>
           </g>
 
           <!-- 微彈簧垂直探針束 (動態下壓與滑移 Scrubbing) -->
@@ -230,7 +230,7 @@ export function renderWaferTestObject(container, lang = 'zh') {
                 </g>
               `;
             }).join('')}
-            <text x="290" y="65" text-anchor="middle" fill="#94a3b8" font-size="11">下壓行程 ${probeOD} µm · 觸地接觸壓力 ${contactForce} gf/pin · 針尖水平滑移破膜 ${tipDx} µm</text>
+            <text x="290" y="65" text-anchor="middle" fill="#94a3b8" font-size="11">${lang === 'en' ? "Overdrive " : "下壓行程 "}${probeOD} µm${lang === 'en' ? " · Contact force " : " · 觸地接觸壓力 "}${contactForce} gf/pin${lang === 'en' ? " · Tip scrub to break oxide " : " · 針尖水平滑移破膜 "}${tipDx} µm</text>
           </g>
 
           <!-- 下方被測晶粒微凸塊 (Die Micro-Bumps) 與晶圓 -->
@@ -248,13 +248,13 @@ export function renderWaferTestObject(container, lang = 'zh') {
 
             <!-- 被測晶粒主體 (DUT) -->
             <rect x="10" y="12" width="620" height="95" rx="4" fill="#0f172a" stroke="#10b981" stroke-width="2"/>
-            <text x="320" y="50" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="750">待測晶片 (Die Under Test: CPU/GPU 核心)</text>
-            <text x="320" y="72" text-anchor="middle" fill="#34d399" font-size="11">高速測試向量激勵 (2.4 GHz Clock · Scan Chain · BIST 自檢) · 接觸電阻 Rc = ${rcProbe} Ω</text>
+            <text x="320" y="50" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="750">${lang === 'en' ? "Die under test: CPU/GPU core" : "待測晶片 (Die Under Test: CPU/GPU 核心)"}</text>
+            <text x="320" y="72" text-anchor="middle" fill="#34d399" font-size="11">${lang === 'en' ? "Test vectors (2.4 GHz Clock · Scan Chain · BIST) · Contact resistance Rc =" : "高速測試向量激勵 (2.4 GHz Clock · Scan Chain · BIST 自檢) · 接觸電阻 Rc ="} ${rcProbe} Ω</text>
           </g>
 
           <!-- 下方晶圓真空吸盤 (Wafer Chuck) -->
           <rect x="60" y="340" width="680" height="30" fill="#334155" rx="3"/>
-          <text x="400" y="360" text-anchor="middle" fill="#cbd5e1" font-size="11">晶圓真空吸盤載台 (Wafer Prober Chuck with Thermal Control -40°C ~ 125°C)</text>
+          <text x="400" y="360" text-anchor="middle" fill="#cbd5e1" font-size="11">${lang === 'en' ? "Wafer prober vacuum chuck: thermal control -40°C ~ 125°C" : "晶圓真空吸盤載台 (Wafer Prober Chuck with Thermal Control -40°C ~ 125°C)"}</text>
           <g class="eng-kinetic-overlay" pointer-events="none"><path d="M 220,90 L 380,220 L 580,90" fill="none" stroke="#fbbf24" stroke-width="2.2" stroke-dasharray="7 5" class="anim-data-flow" opacity="0.75"/><circle cx="380" cy="220" r="24" fill="none" stroke="#38bdf8" stroke-width="1.8" stroke-dasharray="4 4" class="anim-beam" opacity="0.7"/></g>
           <g class="eng-kinetic-wave" pointer-events="none"><circle cx="400" cy="200" r="68" fill="none" stroke="#38bdf8" stroke-width="1.4" class="anim-pulse-ring" opacity="0.45"/><path d="M 140,60 Q 400,32 660,60" fill="none" stroke="#34d399" stroke-width="1.5" class="anim-field-glow" opacity="0.5"/></g>
         </svg>
@@ -263,18 +263,18 @@ export function renderWaferTestObject(container, lang = 'zh') {
       dashboardHtml = `
         <div class="eng-obj-metric-card">
           <div class="eng-obj-metric-label">${t.ch19_metric_pins}</div>
-          <div class="eng-obj-metric-value" style="color: var(--semi-blue-dark);">45,000+ 針</div>
-          <div class="eng-obj-metric-note">垂直 MEMS 微彈簧針高密度佈置</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-blue-dark);">${lang === 'en' ? "45,000+ pins" : "45,000+ 針"}</div>
+          <div class="eng-obj-metric-note">${lang === 'en' ? "Dense vertical MEMS spring probe array" : "垂直 MEMS 微彈簧針高密度佈置"}</div>
         </div>
         <div class="eng-obj-metric-card">
-          <div class="eng-obj-metric-label">接觸電阻 (Rc)</div>
+          <div class="eng-obj-metric-label">${lang === 'en' ? "Contact resistance (Rc)" : "接觸電阻 (Rc)"}</div>
           <div class="eng-obj-metric-value" style="color: ${cpStatus === 'pass' ? 'var(--semi-teal)' : '#ef4444'};">${rcProbe} Ω (${contactForce} gf)</div>
-          <div class="eng-obj-metric-note">${cpStatus === 'pass' ? '破膜充分，測試訊號完整度極佳' : (cpStatus === 'false_open' ? '⚠️ 下壓不足，氧化膜未破造成假開路' : '⚠️ 下壓過大，微凸塊刮痕過深！')}</div>
+          <div class="eng-obj-metric-note">${cpStatus === 'pass' ? (lang === 'en' ? "Oxide fully broken; excellent test-signal integrity" : '破膜充分，測試訊號完整度極佳') : (cpStatus === 'false_open' ? (lang === 'en' ? "⚠️ Insufficient overdrive; intact oxide causes a false open" : '⚠️ 下壓不足，氧化膜未破造成假開路') : (lang === 'en' ? "⚠️ Excessive overdrive; deep micro-bump scratches!" : '⚠️ 下壓過大，微凸塊刮痕過深！'))}</div>
         </div>
         <div class="eng-obj-metric-card">
           <div class="eng-obj-metric-label">${t.ch19_metric_freq}</div>
           <div class="eng-obj-metric-value">&gt; 2.4 GHz</div>
-          <div class="eng-obj-metric-note">微彈簧同軸屏蔽，阻抗匹配良好</div>
+          <div class="eng-obj-metric-note">${lang === 'en' ? "Coaxial spring-probe shielding and impedance matching" : "微彈簧同軸屏蔽，阻抗匹配良好"}</div>
         </div>
       `;
 
@@ -317,33 +317,33 @@ export function renderWaferTestObject(container, lang = 'zh') {
           <!-- 右側：Bin 分類圖例與封裝對接說明 -->
           <g transform="translate(440, 40)">
             <rect x="0" y="0" width="310" height="320" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
-            <text x="20" y="32" fill="#38bdf8" font-size="13" font-weight="750">CP 晶粒分類結果 (Bin Classification)</text>
+            <text x="20" y="32" fill="#38bdf8" font-size="13" font-weight="750">${lang === 'en' ? "CP die bin classification" : "CP 晶粒分類結果 (Bin Classification)"}</text>
 
             <g transform="translate(20, 55)">
               <!-- Bin 1 -->
               <rect x="0" y="0" width="20" height="20" fill="#10b981" rx="2"/>
-              <text x="30" y="15" fill="#34d399" font-size="11" font-weight="750">Bin 1: Prime 良品 (全功能通過 · 94.2%)</text>
+              <text x="30" y="15" fill="#34d399" font-size="11" font-weight="750">${lang === 'en' ? "Bin 1: Prime (all functions pass · 94.2%)" : "Bin 1: Prime 良品 (全功能通過 · 94.2%)"}</text>
 
               <!-- Bin 2 -->
               <rect x="0" y="35" width="20" height="20" fill="#f59e0b" rx="2"/>
-              <text x="30" y="50" fill="#fbbf24" font-size="11" font-weight="750">Bin 2: Speed Bin (降頻/部分核心可用 · 3.1%)</text>
+              <text x="30" y="50" fill="#fbbf24" font-size="11" font-weight="750">${lang === 'en' ? "Bin 2: Lower speed / partial cores · 3.1%" : "Bin 2: Speed Bin (降頻/部分核心可用 · 3.1%)"}</text>
 
               <!-- Bin 7 -->
               <rect x="0" y="70" width="20" height="20" fill="#ef4444" rx="2"/>
-              <text x="30" y="85" fill="#f87171" font-size="11" font-weight="750">Bin 7: Gross Fail (開路/短路失效 · 1.8%)</text>
+              <text x="30" y="85" fill="#f87171" font-size="11" font-weight="750">${lang === 'en' ? "Bin 7: Gross Fail (open / short · 1.8%)" : "Bin 7: Gross Fail (開路/短路失效 · 1.8%)"}</text>
 
               <!-- Bin 9 -->
               <rect x="0" y="105" width="20" height="20" fill="#8b5cf6" rx="2"/>
-              <text x="30" y="120" fill="#a78bfa" font-size="11" font-weight="750">Bin 9: Parametric Fail (漏電超標 · 0.9%)</text>
+              <text x="30" y="120" fill="#a78bfa" font-size="11" font-weight="750">${lang === 'en' ? "Bin 9: Parametric Fail (excess leakage · 0.9%)" : "Bin 9: Parametric Fail (漏電超標 · 0.9%)"}</text>
             </g>
 
             <!-- 封裝揀晶對接流程 -->
             <g transform="translate(20, 205)">
               <rect x="0" y="0" width="270" height="95" rx="4" fill="#1e293b" stroke="#38bdf8" stroke-width="1"/>
-              <text x="12" y="24" fill="#38bdf8" font-size="11" font-weight="750">傳送至先進封裝廠 (To Assembly):</text>
+              <text x="12" y="24" fill="#38bdf8" font-size="11" font-weight="750">${lang === 'en' ? "To advanced packaging assembly:" : "傳送至先進封裝廠 (To Assembly):"}</text>
               <foreignObject x="12" y="32" width="246" height="55">
                 <div xmlns="http://www.w3.org/1999/xhtml" style="font-size: 11px; color: #cbd5e1; line-height: 1.4;">
-                  電子 Bin Map XML 隨晶圓出貨。自動揀晶機 (Die Bonder) 只吸取綠色 Bin 1 良品進入 2.5D/3D 封裝，杜絕浪費高價中介層！
+                  ${lang === 'en' ? "Bin Map XML ships with the wafer. Pick only green Bin 1 dies for 2.5D/3D packaging to avoid costly interposer waste." : "電子 Bin Map XML 隨晶圓出貨。自動揀晶機 (Die Bonder) 只吸取綠色 Bin 1 良品進入 2.5D/3D 封裝，杜絕浪費高價中介層！"}
                 </div>
               </foreignObject>
             </g>
@@ -355,19 +355,19 @@ export function renderWaferTestObject(container, lang = 'zh') {
 
       dashboardHtml = `
         <div class="eng-obj-metric-card">
-          <div class="eng-obj-metric-label">CP 晶粒合格良率 (Prime Yield)</div>
-          <div class="eng-obj-metric-value" style="color: var(--semi-teal);">94.2% (584 / 620 顆)</div>
-          <div class="eng-obj-metric-note">成熟旗艦節點的高良率量產典範</div>
+          <div class="eng-obj-metric-label">${lang === 'en' ? "CP prime die yield" : "CP 晶粒合格良率 (Prime Yield)"}</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-teal);">94.2% (${lang === 'en' ? "584 / 620 dies" : "584 / 620 顆"})</div>
+          <div class="eng-obj-metric-note">${lang === 'en' ? "High-yield production example for a mature flagship node" : "成熟旗艦節點的高良率量產典範"}</div>
         </div>
         <div class="eng-obj-metric-card">
-          <div class="eng-obj-metric-label">次級可用晶粒 (Bin 2)</div>
-          <div class="eng-obj-metric-value">3.1% (可做降頻版)</div>
-          <div class="eng-obj-metric-note">熔斷禁用瑕疵運算單元 (eFuse) 轉售市場</div>
+          <div class="eng-obj-metric-label">${lang === 'en' ? "Secondary usable dies (Bin 2)" : "次級可用晶粒 (Bin 2)"}</div>
+          <div class="eng-obj-metric-value">${lang === 'en' ? "3.1% (lower-speed products)" : "3.1% (可做降頻版)"}</div>
+          <div class="eng-obj-metric-note">${lang === 'en' ? "Disable faulty compute units with eFuses for resale" : "熔斷禁用瑕疵運算單元 (eFuse) 轉售市場"}</div>
         </div>
         <div class="eng-obj-metric-card">
-          <div class="eng-obj-metric-label">封裝對接格式</div>
+          <div class="eng-obj-metric-label">${lang === 'en' ? "Assembly handoff format" : "封裝對接格式"}</div>
           <div class="eng-obj-metric-value">SEMI E142 XML</div>
-          <div class="eng-obj-metric-note">晶圓圖座標直接驅動高精度固晶機</div>
+          <div class="eng-obj-metric-note">${lang === 'en' ? "Wafer-map coordinates guide the precision die bonder" : "晶圓圖座標直接驅動高精度固晶機"}</div>
         </div>
       `;
 

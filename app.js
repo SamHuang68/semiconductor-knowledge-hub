@@ -76,7 +76,7 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
       explore_open: '開啟互動情境 ↗',
       no_matching_chapters: '查無相符章節',
       footer_attribution: `本專案基於開源教材 <a href="https://github.com/chenwei810/Semiconductor_Manufacturing_Introduction" target="_blank" rel="noopener">chenwei810/Semiconductor_Manufacturing_Introduction</a> （採 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hant" target="_blank" rel="noopener">CC BY-NC-SA 4.0 創用 CC 姓名標示-非商業性-相同方式分享</a> 授權）重製與架構升級。`,
-      footer_desc: '涵蓋 25 章從沙子到晶片的完整晶圓製造旅程 · 28 大模組實體電顯與機台照片並列對照 · 245 筆核心術語與現場實務行話 · 中英雙語無縫支援 · 純前端極速架構 · 零中系依賴 · 版本 2.10.1',
+      footer_desc: '涵蓋 25 章從沙子到晶片的完整晶圓製造旅程 · 28 大模組實體電顯與機台照片並列對照 · 245 筆核心術語與現場實務行話 · 中英雙語無縫支援 · 純前端極速架構 · 零中系依賴 · 版本 2.11.0',
       atlas_title: '晶圓廠 12 大核心製程全景圖譜 (Fab Flow Atlas)',
       btn_close: '關閉 (Esc)',
       jargon_title: '晶圓廠現場行話與術語字典',
@@ -198,7 +198,7 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
       explore_open: 'Open Scenario ↗',
       no_matching_chapters: 'No matching chapters found',
       footer_attribution: `Adapted from the open-source book <a href="https://github.com/chenwei810/Semiconductor_Manufacturing_Introduction" target="_blank" rel="noopener">chenwei810/Semiconductor_Manufacturing_Introduction</a> licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a>.`,
-      footer_desc: 'Comprehensive 25-chapter wafer fabrication guide from sand to chip · 28-module authentic SEM & tool photo side-by-side view · 245 core terms & 43 fab jargon · Native bilingual support · Zero Chinese-origin dependencies · v2.10.1',
+      footer_desc: 'Comprehensive 25-chapter wafer fabrication guide from sand to chip · 28-module authentic SEM & tool photo side-by-side view · 245 core terms & 43 fab jargon · Native bilingual support · Zero Chinese-origin dependencies · v2.11.0',
       theme_light_title: 'Light Precision Mode',
       theme_dark_title: 'Dark High-Contrast Mode',
       theme_amber_title: 'Cleanroom 500nm Litho Amber Mode',
@@ -704,7 +704,7 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
         <div class="article-top-bar">
           <span class="article-part-label">${chapter.part}</span>
           <div class="article-action-cluster">
-            <button type="button" class="article-action-btn ${isBookmarked ? 'is-bookmarked' : ''}" id="toggleBookmarkBtn" title="${isBookmarked ? t.bookmark_btn_saved : t.bookmark_btn_unsaved} (快捷鍵: B)">
+            <button type="button" class="article-action-btn ${isBookmarked ? 'is-bookmarked' : ''}" id="toggleBookmarkBtn" title="${isBookmarked ? t.bookmark_btn_saved : t.bookmark_btn_unsaved} (${currentLang === 'en' && ['ch04', 'ch05', 'ch06', 'ch07', 'ch08', 'ch09', 'ch10', 'ch19', 'ch20', 'ch21'].includes(chapter.id) ? 'Shortcut' : '快捷鍵'}: B)">
               ${isBookmarked ? t.bookmark_btn_saved : t.bookmark_btn_unsaved}
             </button>
             <button type="button" class="article-action-btn" id="copyLinkBtn" title="${t.copy_link_btn}">
@@ -744,8 +744,10 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
     // 輕量更新側邊欄高亮，避免重複重建整個目錄 DOM
     updateSidebarActive(chapter.id);
 
-    // 渲染段落 TOC
-    renderToc(chapter.headings);
+    // 僅核定樣板章節前置原本的本章重點，目錄同步採相同閱讀順序。
+    const sampleTakeaways = ['ch04', 'ch05', 'ch06', 'ch07', 'ch08', 'ch09', 'ch10', 'ch19', 'ch20', 'ch21'].includes(chapter.id) ? applyChapterSampleLayout(routeDynamicEl) : null;
+    const sampleHeadings = sampleTakeaways ? [...chapter.headings.filter(h => h.id === sampleTakeaways), ...chapter.headings.filter(h => h.id !== sampleTakeaways)] : chapter.headings;
+    renderToc(sampleHeadings);
 
     // 渲染 Mermaid 圖表與代碼複製鈕
     renderMermaidDiagrams();
@@ -772,6 +774,39 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
     if (sidebarBackdropEl) {
       sidebarBackdropEl.classList.remove('is-active');
     }
+  }
+
+  // 僅重排已核定 ch04／ch05／ch06／ch07／ch08／ch09／ch10／ch19／ch20／ch21 的既有節點；章節資料、連結與事件保持原樣。
+  function applyChapterSampleLayout(root) {
+    document.body.classList.add('is-chapter-sample');
+    const header = root.querySelector('.article-header');
+    root.querySelector('.route-crumb').after(header);
+    header.append(root.querySelector('#readingMeter'));
+    const article = root.querySelector('.article-body');
+    const heading = article.querySelector('#key-takeaways, #本章重點');
+    let overview = header;
+    if (heading?.nextElementSibling?.matches('ol')) {
+      const list = heading.nextElementSibling;
+      const separator = heading.previousElementSibling;
+      if (separator?.matches('hr.semi-hr')) separator.remove();
+      overview = document.createElement('section');
+      overview.className = 'chapter-key-takeaways';
+      overview.setAttribute('aria-labelledby', heading.id);
+      overview.append(heading, list);
+      header.after(overview);
+    }
+    const track = article.querySelector('.callout-wafer-pos');
+    const banner = root.querySelector(':scope > .wafer-track-banner');
+    const normalized = nodes => [...nodes].map(node => node.textContent.replace(/\s+/g, ' ').trim()).join('|');
+    if (track && banner && normalized(track.querySelectorAll('li')) === normalized(banner.querySelectorAll('.chapter-track-parts > span'))) {
+      banner.remove(); // 只移除與教材旅程逐字相同的產生式副本。
+    }
+    const tools = document.createElement('div');
+    tools.className = 'chapter-reading-tools';
+    tools.append(root.querySelector(':scope > .chapter-pagination.is-compact'), appTocEl);
+    overview.after(tools);
+    tools.after(root.querySelector('.chapter-scenario-link'));
+    return heading?.id;
   }
 
   /**
@@ -1739,6 +1774,8 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
   };
 
   function showRoutePanel(which) {
+    if (document.body.classList.contains('is-chapter-sample') && appTocEl) mainCanvasEl.after(appTocEl);
+    document.body.classList.remove('is-chapter-sample');
     const home = document.getElementById('route-home');
     const explore = document.getElementById('route-explore');
     const dynamic = document.getElementById('route-dynamic');
@@ -1827,9 +1864,9 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
       const lead = PART_LEADS[group.partId]?.[isEn ? 1 : 0] || '';
       return `<a class="part-card" href="#part/${group.partId}"><span class="ds-kicker">${escapeHtml(String(group.chapters.length))} ${isEn ? 'chapters' : '章'}</span><strong>${escapeHtml(name)}</strong><span>${escapeHtml(lead)}</span></a>`;
     }).join('');
-    slot.innerHTML = `<section class="ds-section" aria-labelledby="homePartsTitle"><p class="ds-kicker">Parts</p><h2 id="homePartsTitle">${t.home_parts_title}</h2><p>${t.home_parts_lead}</p><div class="part-card-grid">${cards}</div></section>
-      <div id="home-fab-flow"></div>
-      <figure class="illus-slot home-figure"><img src="assets/generated/hero-cleanroom-aisle.webp" alt="${escapeHtml(isEn ? 'Illustrative cleanroom aisle with overhead transport, not a photograph of a named fab.' : '無塵室走道與天車的示意畫面，不是指名晶圓廠的照片。')}" width="1600" height="900" loading="lazy" data-illustrative="true"><figcaption><span class="illus-badge">示意 Illustrative</span>${escapeHtml(t.home_figure_caption)}</figcaption></figure>`;
+    slot.innerHTML = `<div id="home-fab-flow"></div>
+      <section class="ds-section" aria-labelledby="homePartsTitle"><p class="ds-kicker">Parts</p><h2 id="homePartsTitle">${t.home_parts_title}</h2><p>${t.home_parts_lead}</p><div class="part-card-grid">${cards}</div></section>
+      <figure class="illus-slot home-figure"><img src="assets/generated/hero-cleanroom-aisle.webp" alt="${escapeHtml(isEn ? 'Illustrative cleanroom aisle with overhead transport, not a photograph of a named fab.' : '無塵室走道與天車的示意畫面，不是指名晶圓廠的照片。')}" width="1600" height="900" loading="lazy" data-illustrative="true"><figcaption><span class="illus-badge">${isEn ? 'Illustrative' : '示意'}</span>${escapeHtml(t.home_figure_caption)}</figcaption></figure>`;
     mountFabFlow(document.getElementById('home-fab-flow'), FAB_FLOW_NODES, isEn);
     updateReadingProgress();
     syncRouteMeta();
@@ -1977,6 +2014,14 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
     if (!hashValue.startsWith('#')) hashValue = '#home';
     if (window.location.hash !== hashValue) history.replaceState(null, '', hashValue);
     const hash = hashValue.slice(1);
+    // 限定已核定的首頁與十章；離開時恢復其他頁原有提示，不擴張語系修正範圍。
+    const scopedEnglish = currentLang === 'en' && ['home', 'ch04', 'ch05', 'ch06', 'ch07', 'ch08', 'ch09', 'ch10', 'ch19', 'ch20', 'ch21'].includes(hash.split('?')[0]);
+    for (const [href, en, zh] of [
+      ['https://hub.samhuang68.org/', 'Switch to NVM Knowledge Hub (Silicon IP)', '切換至 NVM Knowledge Hub (Silicon IP)'],
+      ['https://samhuang68.github.io/', 'Return to the project portal', '返回 Portal 專案入口']
+    ]) {
+      document.querySelector(`.ext-hub-btn[href="${href}"]`)?.setAttribute('title', scopedEnglish ? en : zh);
+    }
     if (hash === 'home') {
       renderHome();
     } else if (hash === 'explore' || hash.startsWith('explore/')) {
@@ -2042,7 +2087,7 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
     // 情境／章節的原生連結使用瀏覽器歷史，段落錨點保留章節資訊。
     const localLink = e.target.closest('a[href^="#"]');
     if (localLink && (e.ctrlKey || e.metaKey || e.shiftKey || e.altKey)) return;
-    if (localLink && (localLink.classList.contains('toc-link') || localLink.closest('.article-body'))) {
+    if (localLink && (localLink.classList.contains('toc-link') || localLink.closest('.article-body, .chapter-key-takeaways'))) {
       const href = normalizeChapterHref(localLink.getAttribute('href'));
       if (!/^#(?:ch\d{2}|app-|explore)/.test(href)) {
         let id;

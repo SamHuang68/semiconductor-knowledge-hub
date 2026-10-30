@@ -67,11 +67,11 @@ export function renderPlasmaEtchObject(container, lang = 'zh') {
           <!-- 高密度電漿輝光區 (Plasma Glow Discharge) -->
           <ellipse cx="400" cy="170" rx="${140 + (rfSourcePower / 1500) * 45}" ry="${70 + (rfSourcePower / 1500) * 25}" fill="rgba(113, 236, 227, ${plasmaBrightness})" filter="drop-shadow(0 0 18px rgba(56, 189, 248, 0.75))" class="anim-plasma"/>
           <text x="400" y="165" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="700">${t.ch06_plasma_glow}</text>
-          <text x="400" y="185" text-anchor="middle" fill="#e0f2fe" font-size="11.5">離子通量: ${ionFlux} × 10¹¹ cm⁻³ | 自由基: F*, Cl*</text>
+          <text x="400" y="185" text-anchor="middle" fill="#e0f2fe" font-size="11.5">${lang === 'en' ? "Ion flux:" : "離子通量:"} ${ionFlux} × 10¹¹ cm⁻³ | ${lang === 'en' ? "Radicals:" : "自由基:"} F*, Cl*</text>
 
           <!-- 電漿鞘層 (Plasma Sheath - 暗區電壓降) -->
           <rect x="240" y="${295 - sheathThickness}" width="320" height="${sheathThickness}" fill="rgba(15, 23, 42, 0.75)" stroke="#0284c7" stroke-dasharray="4 3"/>
-          <text x="575" y="${295 - sheathThickness / 2 + 4}" fill="#38bdf8" font-size="11">${t.ch06_sheath} (-Vdc: ${biasVoltage} V)</text>
+          <text x="630" y="230" fill="#38bdf8" font-size="11">${svgTextLines(t.ch06_sheath.replace(' (', '\n(') + '\n(-Vdc: ' + biasVoltage + ' V)', 630, 230)}</text>
 
           <!-- 離子加速垂直箭頭 -->
           <g stroke="#71ece3" stroke-width="${1.5 + (rfBiasPower / 600) * 2.0}" opacity="0.9">
@@ -84,11 +84,11 @@ export function renderPlasmaEtchObject(container, lang = 'zh') {
 
           <!-- 300mm 晶圓載台與靜電吸盤 (ESC) -->
           <rect x="250" y="295" width="300" height="8" rx="2" fill="#38bdf8"/>
-          <text x="160" y="302" text-anchor="end" fill="#38bdf8" font-size="12" font-weight="700">300mm 晶圓</text>
+          <text x="160" y="302" text-anchor="end" fill="#38bdf8" font-size="12" font-weight="700">${lang === 'en' ? "300mm wafer" : "300mm 晶圓"}</text>
           
           <rect x="230" y="305" width="340" height="45" rx="3" fill="#1e293b" stroke="#0284c7" stroke-width="1.5"/>
           <text x="400" y="325" text-anchor="middle" fill="#ffffff" font-size="12.5" font-weight="700">${t.ch06_esc}</text>
-          <text x="400" y="342" text-anchor="middle" fill="#94a3b8" font-size="11">He 背面氦氣冷卻 (10 Torr, 25°C)</text>
+          <text x="400" y="342" text-anchor="middle" fill="#94a3b8" font-size="11">${lang === 'en' ? "Backside He cooling (10 Torr, 25°C)" : "He 背面氦氣冷卻 (10 Torr, 25°C)"}</text>
 
           <!-- 下方 RF 偏壓產生器 (RF Bias Generator) -->
           <rect x="330" y="365" width="140" height="30" rx="3" fill="#0f172a" stroke="#0284c7"/>
@@ -102,17 +102,17 @@ export function renderPlasmaEtchObject(container, lang = 'zh') {
         <div class="eng-obj-metric-card">
           <div class="eng-obj-metric-label">RF Source Power (${rfSourcePower} W)</div>
           <div class="eng-obj-metric-value" style="color: var(--semi-blue-dark);">${ionFlux} × 10¹¹ cm⁻³</div>
-          <div class="eng-obj-metric-note">直接調控電漿離子通量 (Ion Density)</div>
+          <div class="eng-obj-metric-note">${lang === 'en' ? "Direct control of plasma ions (Ion Density)" : "直接調控電漿離子通量 (Ion Density)"}</div>
         </div>
         <div class="eng-obj-metric-card">
-          <div class="eng-obj-metric-label">自偏壓 Self-Bias (-Vdc)</div>
+          <div class="eng-obj-metric-label">${lang === 'en' ? "Self-bias (-Vdc)" : "自偏壓 Self-Bias (-Vdc)"}</div>
           <div class="eng-obj-metric-value" style="color: #f59e0b;">-${biasVoltage} V</div>
-          <div class="eng-obj-metric-note">垂直加速正離子之轟擊動能 (${biasVoltage} eV)</div>
+          <div class="eng-obj-metric-note">${lang === 'en' ? "Vertical positive-ion impact energy" : "垂直加速正離子之轟擊動能"} (${biasVoltage} eV)</div>
         </div>
         <div class="eng-obj-metric-card">
-          <div class="eng-obj-metric-label">RF 雙頻解耦架構</div>
-          <div class="eng-obj-metric-value" style="color: var(--semi-teal);">獨立解耦</div>
-          <div class="eng-obj-metric-note">高頻產離子 · 低頻拉動能 · 兼顧速率與選擇比</div>
+          <div class="eng-obj-metric-label">${lang === 'en' ? "Dual-frequency RF architecture" : "RF 雙頻解耦架構"}</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-teal);">${lang === 'en' ? "Independent control" : "獨立解耦"}</div>
+          <div class="eng-obj-metric-note">${lang === 'en' ? "High frequency generates ions; low frequency controls energy for rate and selectivity" : "高頻產離子 · 低頻拉動能 · 兼顧速率與選擇比"}</div>
         </div>
       `;
 
@@ -174,16 +174,16 @@ export function renderPlasmaEtchObject(container, lang = 'zh') {
             <!-- 光阻遮罩 (Photoresist Mask) -->
             <rect x="30" y="0" width="${leftMaskEdge - 30}" height="40" fill="#f59e0b" opacity="0.9"/>
             <rect x="${rightMaskEdge}" y="0" width="${450 - rightMaskEdge}" height="40" fill="#f59e0b" opacity="0.9"/>
-            <text x="100" y="25" text-anchor="middle" fill="#09131b" font-size="12" font-weight="700">光阻遮罩 (PR)</text>
-            <text x="380" y="25" text-anchor="middle" fill="#09131b" font-size="12" font-weight="700">光阻遮罩 (PR)</text>
+            <text x="100" y="25" text-anchor="middle" fill="#09131b" font-size="12" font-weight="700">${lang === 'en' ? "Photoresist mask (PR)" : "光阻遮罩 (PR)"}</text>
+            <text x="380" y="25" text-anchor="middle" fill="#09131b" font-size="12" font-weight="700">${lang === 'en' ? "Photoresist mask (PR)" : "光阻遮罩 (PR)"}</text>
 
             <!-- 側壁鈍化聚合物膜 (Passivation Film, 如 CFx) -->
             ${anisotropy > 0.65 ? `
               <path d="M ${leftMaskEdge},${trenchTopY} C ${leftMaskEdge - undercutOffset},${trenchTopY + 30} ${leftMaskEdge + botOffset},${trenchBottomY - 40} ${leftMaskEdge + botOffset},${trenchBottomY}" fill="none" stroke="#10b981" stroke-width="5" stroke-linecap="round"/>
               <path d="M ${rightMaskEdge},${trenchTopY} C ${rightMaskEdge + undercutOffset},${trenchTopY + 30} ${rightMaskEdge - botOffset},${trenchBottomY - 40} ${rightMaskEdge - botOffset},${trenchBottomY}" fill="none" stroke="#10b981" stroke-width="5" stroke-linecap="round"/>
-              <text x="135" y="160" fill="#10b981" font-size="11" font-weight="700">側壁 CFx 鈍化膜</text>
+              <text x="135" y="160" fill="#10b981" font-size="11" font-weight="700">${lang === 'en' ? "CFx sidewall passivation" : "側壁 CFx 鈍化膜"}</text>
             ` : `
-              <text x="135" y="160" fill="#ef4444" font-size="11" font-weight="700">鈍化不足 (底切)</text>
+              <text x="135" y="160" fill="#ef4444" font-size="11" font-weight="700">${lang === 'en' ? "Weak passivation: undercut" : "鈍化不足 (底切)"}</text>
             `}
 
             <!-- 垂直高能離子轟擊 (打擊底部) -->
@@ -192,10 +192,10 @@ export function renderPlasmaEtchObject(container, lang = 'zh') {
               <line x1="240" y1="10" x2="240" y2="255" stroke-dasharray="5 3"/>
               <line x1="270" y1="10" x2="270" y2="255" stroke-dasharray="5 3"/>
             </g>
-            <text x="240" y="100" text-anchor="middle" fill="#38bdf8" font-size="11.5" font-weight="700">垂直離子轟擊 (Ar⁺, CF₃⁺)</text>
+            <text x="240" y="100" text-anchor="middle" fill="#38bdf8" font-size="11.5" font-weight="700">${lang === 'en' ? "Vertical ion impact (Ar⁺, CF₃⁺)" : "垂直離子轟擊 (Ar⁺, CF₃⁺)"}</text>
 
             <!-- 底部化學揮發反應 (SiF4) -->
-            <text x="240" y="265" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="700">反應脫附 (SiF₄ ↑)</text>
+            <text x="240" y="265" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="700">${lang === 'en' ? "Product desorption (SiF₄ ↑)" : "反應脫附 (SiF₄ ↑)"}</text>
             
             <!-- 垂直度與角度標註 -->
             <text x="${rightMaskEdge - botOffset - 15}" y="${trenchBottomY - 15}" fill="${anisotropy > 0.85 ? '#10b981' : '#f59e0b'}" font-size="13" font-weight="750">
@@ -210,21 +210,21 @@ export function renderPlasmaEtchObject(container, lang = 'zh') {
         <div class="eng-obj-metric-card">
           <div class="eng-obj-metric-label">${t.ch06_sidewall_angle}</div>
           <div class="eng-obj-metric-value" style="color: ${parseFloat(profileAngle) >= 88 ? 'var(--semi-teal)' : '#f59e0b'};">${profileAngle}°</div>
-          <div class="eng-obj-metric-note">${parseFloat(profileAngle) >= 88 ? '高度非等向性 (Vertical)' : '等向性擴散側蝕增加'}</div>
+          <div class="eng-obj-metric-note">${lang === 'en' ? (parseFloat(profileAngle) >= 88 ? 'Highly anisotropic (vertical)' : 'Isotropic diffusion increases lateral etching') : (parseFloat(profileAngle) >= 88 ? '高度非等向性 (Vertical)' : '等向性擴散側蝕增加')}</div>
         </div>
         <div class="eng-obj-metric-card">
           <div class="eng-obj-metric-label">${t.ch06_anisotropy_label}</div>
           <div class="eng-obj-metric-value" style="color: var(--semi-blue-dark);">${anisotropy.toFixed(2)}</div>
-          <div class="eng-obj-metric-note">平均自由程 λ_mfp: ~${mfp} µm</div>
+          <div class="eng-obj-metric-note">${lang === 'en' ? "Mean free path λ_mfp:" : "平均自由程 λ_mfp:"} ~${mfp} µm</div>
         </div>
         <div class="eng-obj-metric-card">
           <div class="eng-obj-metric-label">${t.ch06_undercut_depth}</div>
           <div class="eng-obj-metric-value" style="color: ${undercutNm > 15 ? '#ef4444' : '#10b981'};">${undercutNm} nm</div>
-          <div class="eng-obj-metric-note">${undercutNm === 0 ? '完美側壁零掏空保護' : '氣壓過高導致橫向侵蝕'}</div>
+          <div class="eng-obj-metric-note">${lang === 'en' ? (undercutNm === 0 ? 'Protected sidewalls; zero undercut' : 'High pressure causes lateral erosion') : (undercutNm === 0 ? '完美側壁零掏空保護' : '氣壓過高導致橫向侵蝕')}</div>
         </div>
       `;
 
-      footerNote = '非等向性蝕刻的核心在於「物理離子轟擊打碎底部晶格 + 化學自由基結合揮發 + 側壁鈍化膜保護免於橫向掏空」，三位一體實現深寬比超過 20:1 的筆直奈米溝槽。';
+      footerNote = lang === 'en' ? 'Anisotropic etching combines ion bombardment to break the bottom lattice, radical reactions to form volatile products, and sidewall passivation to prevent lateral undercut. Together, these mechanisms produce straight nanoscale trenches with aspect ratios above 20:1.' : '非等向性蝕刻的核心在於「物理離子轟擊打碎底部晶格 + 化學自由基結合揮發 + 側壁鈍化膜保護免於橫向掏空」，三位一體實現深寬比超過 20:1 的筆直奈米溝槽。';
     } else {
       // 異常與微負載效應 (Anomalies & RIE Lag)
       viewportHtml = `
@@ -258,25 +258,25 @@ export function renderPlasmaEtchObject(container, lang = 'zh') {
             <text text-anchor="middle" fill="#38bdf8" font-size="12" font-weight="700">${svgTextLines(t.ch06_profile_lag.replace(' / ', '\n/ ').replace(' (', '\n('), 70, -35)}</text>
             <!-- 寬槽 (深) -->
             <path d="M 10,40 L 30,40 L 30,220 L 70,220 L 70,40 L 85,40 L 85,150 L 105,150 L 105,40 L 130,40 L 130,240 L 10,240 Z" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5"/>
-            <text x="50" y="235" text-anchor="middle" fill="#38bdf8" font-size="10">寬槽深</text>
-            <text x="95" y="165" text-anchor="middle" fill="#ef4444" font-size="10">窄孔淺</text>
+            <text x="50" y="235" text-anchor="middle" fill="#38bdf8" font-size="10">${lang === 'en' ? "Wide: deep" : "寬槽深"}</text>
+            <text x="95" y="165" text-anchor="middle" fill="#ef4444" font-size="10">${lang === 'en' ? "Narrow: shallow" : "窄孔淺"}</text>
           </g>
           <g class="eng-kinetic-wave" pointer-events="none"><circle cx="400" cy="200" r="68" fill="none" stroke="#38bdf8" stroke-width="1.4" class="anim-pulse-ring" opacity="0.45"/><path d="M 140,60 Q 400,32 660,60" fill="none" stroke="#34d399" stroke-width="1.5" class="anim-field-glow" opacity="0.5"/></g>
         </svg>
       `;
       dashboardHtml = `
         <div class="eng-obj-metric-card">
-          <div class="eng-obj-metric-label">RIE Lag 根本成因</div>
-          <div class="eng-obj-metric-value" style="font-size: 15px;">Knudsen 分子擴散受限</div>
-          <div class="eng-obj-metric-note">窄高深寬比孔徑使中性氣體交換速率驟降</div>
+          <div class="eng-obj-metric-label">${lang === 'en' ? "Root cause of RIE lag" : "RIE Lag 根本成因"}</div>
+          <div class="eng-obj-metric-value" style="font-size: 15px;">${lang === 'en' ? "Knudsen diffusion limit" : "Knudsen 分子擴散受限"}</div>
+          <div class="eng-obj-metric-note">${lang === 'en' ? "Narrow, high-aspect-ratio holes sharply reduce neutral-gas exchange" : "窄高深寬比孔徑使中性氣體交換速率驟降"}</div>
         </div>
         <div class="eng-obj-metric-card">
-          <div class="eng-obj-metric-label">終點偵測技術 (EPD)</div>
-          <div class="eng-obj-metric-value">OES 光發射光譜</div>
-          <div class="eng-obj-metric-note">監控特定反應波長突變精準停止蝕刻</div>
+          <div class="eng-obj-metric-label">${lang === 'en' ? "Endpoint detection (EPD)" : "終點偵測技術 (EPD)"}</div>
+          <div class="eng-obj-metric-value">${lang === 'en' ? "Optical emission spectroscopy (OES)" : "OES 光發射光譜"}</div>
+          <div class="eng-obj-metric-note">${lang === 'en' ? "Detect abrupt changes at reaction-specific wavelengths to stop etching precisely" : "監控特定反應波長突變精準停止蝕刻"}</div>
         </div>
       `;
-      footerNote = '在同片晶圓上，大面積開口蝕刻速度快、深寬比大的微小穿孔蝕刻速度慢，稱為 RIE 延遲 (RIE Lag)；需仰賴過蝕刻 (Over-Etch) 與終點偵測 (EPD) 確保所有孔洞完全貫穿。';
+      footerNote = lang === 'en' ? 'On the same wafer, wide openings etch faster than small, high-aspect-ratio holes. This is RIE lag. Over-etch and endpoint detection (EPD) are used to ensure that all holes are fully opened.' : '在同片晶圓上，大面積開口蝕刻速度快、深寬比大的微小穿孔蝕刻速度慢，稱為 RIE 延遲 (RIE Lag)；需仰賴過蝕刻 (Over-Etch) 與終點偵測 (EPD) 確保所有孔洞完全貫穿。';
     }
 
     renderEngineeringCard(container, `

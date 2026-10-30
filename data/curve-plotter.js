@@ -20,6 +20,20 @@ function escapeXml(str) {
 /**
  * 物理曲線定義與動態求值
  */
+/**
+ * CH10 teaching ratio, not a calibrated lifetime prediction.
+ * Fixed reference: Jref = 2 MA/cm², Tref = 105°C; n = 2, Ea = 0.9 eV.
+ * Inputs follow the calculator's positive-current and temperature ranges.
+ */
+export function relativeEmLifetime(currentJ, tempC) {
+  const kB = 8.617e-5; // eV/K
+  const referenceJ = 2;
+  const referenceT = 105 + 273.15; // K, fixed as the operating temperature varies
+  const temperature = tempC + 273.15;
+  return Math.pow(referenceJ / currentJ, 2)
+    * Math.exp((0.9 / kB) * (1 / temperature - 1 / referenceT));
+}
+
 export const SENSITIVITY_CURVE_MODELS = {
   // Ch 04: Rayleigh 光學微影焦深 (DOF vs NA)
   ch04: {
@@ -106,14 +120,12 @@ export const SENSITIVITY_CURVE_MODELS = {
   ch10: {
     xLabelZh: '電流密度 J (MA/cm²)',
     xLabelEn: 'Current Density J (MA/cm²)',
-    yLabelZh: '平均失效時間 MTTF (相對年限)',
-    yLabelEn: 'MTTF (Arbitrary Years)',
+    yLabelZh: '相對模型壽命 L/Lref',
+    yLabelEn: 'Relative modeled lifetime L/Lref',
     xMin: 0.5,
-    xMax: 10.0,
-    compute: (x, p) => {
-      return 100 / (x * x);
-    },
-    getCurrentX: p => p.currentDensity || 2.0
+    xMax: 5.0,
+    compute: (x, p) => relativeEmLifetime(x, p.tempC ?? 105),
+    getCurrentX: p => p.currentJ ?? 2.0
   },
 
   // Ch 14: RC 互連線延遲 (Delay vs Wire Length)

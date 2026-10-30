@@ -24,15 +24,15 @@ export function renderAdvancedPackagingObject(container, lang = 'zh') {
             <line x1="30" y1="10" x2="30" y2="80" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="2 2"/>
             <line x1="70" y1="10" x2="70" y2="80" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="2 2"/>
             <line x1="110" y1="10" x2="110" y2="80" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="2 2"/>
-            <text x="70" y="42" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="700">HBM3e 記憶體</text>
-            <text x="70" y="58" text-anchor="middle" fill="#f59e0b" font-size="10">8-16 層 3D TSV 堆疊</text>
+            <text x="70" y="42" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="700">${lang === 'en' ? "HBM3e memory" : "HBM3e 記憶體"}</text>
+            <text x="70" y="58" text-anchor="middle" fill="#f59e0b" font-size="10">${lang === 'en' ? "8-16 DRAM layers / TSVs" : "8-16 層 3D TSV 堆疊"}</text>
           </g>
 
           <!-- 中央高效能運算邏輯晶片 (SoC / GPU Die) -->
           <g transform="translate(280, 40)">
             <rect x="0" y="0" width="240" height="100" rx="3" fill="#0f172a" stroke="#0284c7" stroke-width="2"/>
-            <text x="120" y="45" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="750">先進運算核心 (SoC / GPU)</text>
-            <text x="120" y="65" text-anchor="middle" fill="#38bdf8" font-size="11">3nm / 4nm 邏輯晶片</text>
+            <text x="120" y="45" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="750">${lang === 'en' ? "Compute die (SoC / GPU)" : "先進運算核心 (SoC / GPU)"}</text>
+            <text x="120" y="65" text-anchor="middle" fill="#38bdf8" font-size="11">${lang === 'en' ? "3nm / 4nm logic die" : "3nm / 4nm 邏輯晶片"}</text>
           </g>
 
           <!-- 右側 HBM 堆疊 -->
@@ -41,8 +41,8 @@ export function renderAdvancedPackagingObject(container, lang = 'zh') {
             <line x1="30" y1="10" x2="30" y2="80" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="2 2"/>
             <line x1="70" y1="10" x2="70" y2="80" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="2 2"/>
             <line x1="110" y1="10" x2="110" y2="80" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="2 2"/>
-            <text x="70" y="42" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="700">HBM3e 記憶體</text>
-            <text x="70" y="58" text-anchor="middle" fill="#f59e0b" font-size="10">8-16 層 3D TSV 堆疊</text>
+            <text x="70" y="42" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="700">${lang === 'en' ? "HBM3e memory" : "HBM3e 記憶體"}</text>
+            <text x="70" y="58" text-anchor="middle" fill="#f59e0b" font-size="10">${lang === 'en' ? "8-16 DRAM layers / TSVs" : "8-16 層 3D TSV 堆疊"}</text>
           </g>
 
           <!-- 微凸塊層 (Micro-Bumps: 間距 35µm) -->
@@ -50,7 +50,7 @@ export function renderAdvancedPackagingObject(container, lang = 'zh') {
             ${Array.from({ length: 28 }, (_, i) => `
               <circle cx="${i * 23 + 10}" cy="8" r="3.5" fill="#e2e8f0"/>
             `).join('')}
-            <text x="320" y="12" fill="#94a3b8" font-size="10.5">微凸塊 Micro-Bumps (Pitch 35µm)</text>
+            <text x="320" y="12" data-ink="halo" fill="#94a3b8" font-size="10.5">${lang === 'en' ? "Micro-bumps (Pitch 35µm)" : "微凸塊 Micro-Bumps (Pitch 35µm)"}</text>
           </g>
 
           <!-- 中層：大面積矽中介層 (Silicon Interposer, 內含超密 RDL 導線與 TSV) -->
@@ -64,7 +64,7 @@ export function renderAdvancedPackagingObject(container, lang = 'zh') {
             ${Array.from({ length: 12 }, (_, i) => `
               <line x1="${i * 55 + 40}" y1="15" x2="${i * 55 + 40}" y2="55" stroke="#f59e0b" stroke-width="3"/>
             `).join('')}
-            <text x="340" y="38" text-anchor="middle" fill="#ffffff" font-size="12.5" font-weight="750">2.5D 矽中介層 (Silicon Interposer with TSVs)</text>
+            <text x="340" y="38" text-anchor="middle" fill="#ffffff" font-size="12.5" font-weight="750">${lang === 'en' ? "2.5D silicon interposer with TSVs" : "2.5D 矽中介層 (Silicon Interposer with TSVs)"}</text>
           </g>
 
           <!-- C4 凸塊層 (C4 Bumps: 間距 150µm) -->
@@ -72,13 +72,13 @@ export function renderAdvancedPackagingObject(container, lang = 'zh') {
             ${Array.from({ length: 14 }, (_, i) => `
               <circle cx="${i * 48 + 15}" cy="10" r="6" fill="#f59e0b"/>
             `).join('')}
-            <text x="320" y="15" fill="#f59e0b" font-size="11">C4 Bumps (Pitch 150µm)</text>
+            <text x="320" y="15" data-ink="halo" fill="#f59e0b" font-size="11">C4 Bumps (Pitch 150µm)</text>
           </g>
 
           <!-- 底層：大型 ABF 封裝基板 (Organic Substrate) -->
           <g transform="translate(40, 245)">
             <rect x="0" y="0" width="720" height="50" rx="3" fill="#0f172a" stroke="#64748b" stroke-width="1.5"/>
-            <text x="360" y="30" text-anchor="middle" fill="#cbd5e1" font-size="12" font-weight="700">ABF 封裝基板 (Package Substrate)</text>
+            <text x="360" y="30" text-anchor="middle" fill="#cbd5e1" font-size="12" font-weight="700">${lang === 'en' ? "ABF package substrate" : "ABF 封裝基板 (Package Substrate)"}</text>
           </g>
 
           <!-- BGA 錫球 (Ball Grid Array 連接至 PCB 主機板) -->
@@ -86,7 +86,7 @@ export function renderAdvancedPackagingObject(container, lang = 'zh') {
             ${Array.from({ length: 12 }, (_, i) => `
               <circle cx="${i * 58 + 25}" cy="16" r="10" fill="#94a3b8"/>
             `).join('')}
-            <text x="340" y="22" text-anchor="middle" fill="#ffffff" font-size="11.5" font-weight="700">BGA 錫球 (Pitch 1.0 mm → PCB 主機板)</text>
+            <text x="340" y="22" text-anchor="middle" data-ink="halo" fill="#ffffff" font-size="11.5" font-weight="700">${lang === 'en' ? "BGA balls (Pitch 1.0 mm → PCB)" : "BGA 錫球 (Pitch 1.0 mm → PCB 主機板)"}</text>
           </g>
           <g class="eng-kinetic-wave" pointer-events="none"><circle cx="400" cy="205" r="72" fill="none" stroke="#38bdf8" stroke-width="1.4" class="anim-pulse-ring" opacity="0.45"/><path d="M 130,65 Q 400,35 670,65" fill="none" stroke="#34d399" stroke-width="1.5" class="anim-field-glow" opacity="0.5"/></g>
         </svg>
@@ -95,12 +95,12 @@ export function renderAdvancedPackagingObject(container, lang = 'zh') {
       dashboardHtml = `
         <div class="eng-obj-metric-card">
           <div class="eng-obj-metric-label">${lang === 'en' ? 'HBM Aggregate Bandwidth' : 'HBM 互連總頻寬'}</div>
-          <div class="eng-obj-metric-value" style="color: var(--semi-blue-dark);">&gt; 1.2 TB/s · 堆疊</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-blue-dark);">&gt; 1.2 TB/s · ${lang === 'en' ? 'stack' : '堆疊'}</div>
           <div class="eng-obj-metric-note">${lang === 'en' ? '1024-bit wide parallel bus per stack' : '1024-bit 匯流排超寬平行傳輸'}</div>
         </div>
         <div class="eng-obj-metric-card">
           <div class="eng-obj-metric-label">${lang === 'en' ? 'Interposer Size' : '中介層面積 (Interposer Size)'}</div>
-          <div class="eng-obj-metric-value">&gt; 3.3× ~ 8× 光罩視場</div>
+          <div class="eng-obj-metric-value">&gt; 3.3× ~ 8× ${lang === 'en' ? 'reticle field' : '光罩視場'}</div>
           <div class="eng-obj-metric-note">${lang === 'en' ? 'CoWoS-S / CoWoS-L reticle stitching' : '台積電 CoWoS-S / CoWoS-L 突破單光罩限制'}</div>
         </div>
         <div class="eng-obj-metric-card">
@@ -122,7 +122,7 @@ export function renderAdvancedPackagingObject(container, lang = 'zh') {
           <!-- 上晶片 (Top Chip) -->
           <g transform="translate(200, 50)">
             <rect x="0" y="0" width="400" height="90" rx="3" fill="#0f172a" stroke="#0284c7" stroke-width="1.5"/>
-            <text x="200" y="45" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="700">上層晶片 (Top Chip: 例如 SRAM 快取)</text>
+            <text x="200" y="45" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="700">${lang === 'en' ? "Top chip (e.g. SRAM cache)" : "上層晶片 (Top Chip: 例如 SRAM 快取)"}</text>
             <!-- 表面微銅接點 (Cu Pads, 直徑 0.5µm, 間距 0.9µm) -->
             ${Array.from({ length: 9 }, (_, i) => `
               <rect x="${i * 42 + 25}" y="76" width="20" height="14" fill="#f59e0b"/>
@@ -135,7 +135,7 @@ export function renderAdvancedPackagingObject(container, lang = 'zh') {
             ${Array.from({ length: 9 }, (_, i) => `
               <line x1="${i * 42 + 35}" y1="-8" x2="${i * 42 + 35}" y2="24" stroke="#fde047" stroke-width="2" stroke-dasharray="3 3" class="anim-data-flow"/>
             `).join('')}
-            <text x="200" y="12" text-anchor="middle" fill="#10b981" font-size="11" font-weight="700">無凸塊混合鍵合介面 (SiO₂-SiO₂ 親水鍵合 + Cu-Cu 熱擴散)</text>
+            <text x="200" y="12" text-anchor="middle" fill="#10b981" font-size="11" font-weight="700">${lang === 'en' ? "Hybrid interface: SiO₂-SiO₂ + Cu-Cu bonding" : "無凸塊混合鍵合介面 (SiO₂-SiO₂ 親水鍵合 + Cu-Cu 熱擴散)"}</text>
           </g>
 
           <!-- 下晶片 (Bottom Chip) -->
@@ -145,11 +145,11 @@ export function renderAdvancedPackagingObject(container, lang = 'zh') {
               <rect x="${i * 42 + 25}" y="0" width="20" height="14" fill="#f59e0b"/>
             `).join('')}
             <rect x="0" y="14" width="400" height="90" rx="3" fill="#1e293b" stroke="#0284c7" stroke-width="1.5"/>
-            <text x="200" y="65" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="700">下層運算邏輯晶片 (Bottom Compute Die)</text>
+            <text x="200" y="65" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="700">${lang === 'en' ? "Bottom compute die" : "下層運算邏輯晶片 (Bottom Compute Die)"}</text>
           </g>
 
           <!-- 說明指標 -->
-          <text x="400" y="300" text-anchor="middle" fill="#10b981" font-size="13" font-weight="750">無焊錫 · 無底部填充膠 · 接點間距 &lt; 1.0 µm</text>
+          <text x="400" y="300" text-anchor="middle" fill="#10b981" font-size="13" font-weight="750">${lang === 'en' ? "Bumpless interface · example pitch &lt; 1.0 µm" : "無凸塊介面・教學例間距 &lt; 1.0 µm"}</text>
           <g class="eng-kinetic-wave" pointer-events="none"><circle cx="400" cy="200" r="68" fill="none" stroke="#38bdf8" stroke-width="1.4" class="anim-pulse-ring" opacity="0.45"/><path d="M 140,60 Q 400,32 660,60" fill="none" stroke="#34d399" stroke-width="1.5" class="anim-field-glow" opacity="0.5"/></g>
         </svg>
       `;
@@ -187,19 +187,19 @@ export function renderAdvancedPackagingObject(container, lang = 'zh') {
       let techName = '';
       let techBadgeColor = '';
       if (bumpPitch <= 1.5) {
-        techName = '3D SoIC (Cu-Cu 混合鍵合 Hybrid Bonding)';
+        techName = lang === 'en' ? '3D SoIC (Cu-Cu hybrid bonding)' : '3D SoIC（Cu-Cu 混合鍵合）';
         techBadgeColor = 'var(--semi-teal)';
       } else if (bumpPitch <= 15) {
-        techName = '次世代超細節距 3D 堆疊 (Ultra-Fine Pitch)';
+        techName = lang === 'en' ? 'Ultra-fine-pitch 3D stacking' : '超細節距 3D 堆疊';
         techBadgeColor = '#38bdf8';
       } else if (bumpPitch <= 55) {
-        techName = '2.5D CoWoS 微凸塊 (Micro-Bumps)';
+        techName = lang === 'en' ? '2.5D CoWoS micro-bumps' : '2.5D CoWoS 微凸塊';
         techBadgeColor = '#f59e0b';
       } else if (bumpPitch <= 160) {
-        techName = '標準覆晶封裝 (Flip-Chip C4)';
+        techName = lang === 'en' ? 'Flip-chip C4' : '標準覆晶封裝（Flip-Chip C4）';
         techBadgeColor = '#94a3b8';
       } else {
-        techName = '傳統封裝 (BGA / Wire Bonding)';
+        techName = lang === 'en' ? 'BGA / wire bonding' : '傳統封裝（BGA／打線）';
         techBadgeColor = '#ef4444';
       }
 
@@ -233,7 +233,7 @@ export function renderAdvancedPackagingObject(container, lang = 'zh') {
             <!-- 當前技術標註看板 -->
             <rect x="0" y="0" width="520" height="34" rx="4" fill="#0f172a" stroke="${techBadgeColor}" stroke-width="1.5"/>
             <text x="260" y="22" text-anchor="middle" fill="${techBadgeColor}" font-size="13" font-weight="750">
-              匹配架構: ${techName}
+              ${lang === 'en' ? 'Illustrative class' : '示意分類'}: ${techName}
             </text>
 
             <!-- 上層晶片 (Die A) -->
@@ -245,7 +245,7 @@ export function renderAdvancedPackagingObject(container, lang = 'zh') {
               ${bumpPitch <= 1.5 ? `
                 <!-- 無凸塊 Cu-Cu 擴散層 -->
                 <rect x="0" y="0" width="440" height="12" fill="rgba(16, 185, 129, 0.4)" stroke="#10b981"/>
-                <text x="220" y="10" text-anchor="middle" fill="#ffffff" font-size="10" font-weight="700">原子級 Cu-Cu 擴散鍵合 (Zero Bump)</text>
+                <text x="220" y="10" text-anchor="middle" fill="#ffffff" font-size="10" font-weight="700">${lang === 'en' ? "Cu-Cu bonding (zero bump)" : "原子級 Cu-Cu 擴散鍵合 (Zero Bump)"}</text>
               ` : `
                 <!-- 離散凸塊陣列 -->
                 ${Array.from({ length: numBumps }, (_, i) => `
@@ -275,7 +275,7 @@ export function renderAdvancedPackagingObject(container, lang = 'zh') {
 
               <!-- 當前 Pitch 指針 -->
               <polygon points="${Math.max(5, Math.min(435, (bumpPitch / 150) * 440))},38 ${Math.max(5, Math.min(435, (bumpPitch / 150) * 440)) - 6},48 ${Math.max(5, Math.min(435, (bumpPitch / 150) * 440)) + 6},48" fill="${techBadgeColor}"/>
-              <text x="${Math.max(25, Math.min(415, (bumpPitch / 150) * 440))}" y="62" text-anchor="middle" fill="${techBadgeColor}" font-size="11" font-weight="700">當前: ${bumpPitch.toFixed(1)}µm</text>
+              <text x="${Math.max(25, Math.min(415, (bumpPitch / 150) * 440))}" y="62" text-anchor="middle" fill="${techBadgeColor}" font-size="11" font-weight="700">${lang === 'en' ? 'Current' : '當前'}: ${bumpPitch.toFixed(1)}µm</text>
             </g>
           </g>
           <g class="eng-kinetic-wave" pointer-events="none"><circle cx="400" cy="200" r="68" fill="none" stroke="#38bdf8" stroke-width="1.4" class="anim-pulse-ring" opacity="0.45"/><path d="M 140,60 Q 400,32 660,60" fill="none" stroke="#34d399" stroke-width="1.5" class="anim-field-glow" opacity="0.5"/></g>
@@ -286,45 +286,45 @@ export function renderAdvancedPackagingObject(container, lang = 'zh') {
         <div class="eng-obj-metric-card">
           <div class="eng-obj-metric-label">${t.ch21_density_label}</div>
           <div class="eng-obj-metric-value" style="color: ${techBadgeColor};">${density.toLocaleString()} / mm²</div>
-          <div class="eng-obj-metric-note">幾何面積互連密度 (1 / Pitch²)</div>
+          <div class="eng-obj-metric-note">${lang === 'en' ? 'Geometric interconnect density (1 / Pitch²)' : '幾何面積互連密度 (1 / Pitch²)'}</div>
         </div>
         <div class="eng-obj-metric-card">
           <div class="eng-obj-metric-label">${t.ch21_bw_label}</div>
           <div class="eng-obj-metric-value" style="color: var(--semi-blue-dark);">${bwDensity} TB/s/mm²</div>
-          <div class="eng-obj-metric-note">單線 ${dataRateGbps} Gbps 平行傳輸總頻寬</div>
+          <div class="eng-obj-metric-note">${lang === 'en' ? `${dataRateGbps} Gbps per link · aggregate parallel bandwidth` : `單線 ${dataRateGbps} Gbps 平行傳輸總頻寬`}</div>
         </div>
         <div class="eng-obj-metric-card">
           <div class="eng-obj-metric-label">${t.ch21_energy_label}</div>
           <div class="eng-obj-metric-value" style="color: ${parseFloat(energyPj) < 0.1 ? 'var(--semi-teal)' : '#f59e0b'};">${energyPj} pJ / bit</div>
-          <div class="eng-obj-metric-note">${parseFloat(energyPj) < 0.1 ? '微米級 Cu 擴散 · 極致超低傳輸能耗' : '微凸塊寄生電容損耗'}</div>
+          <div class="eng-obj-metric-note">${lang === 'en' ? 'Illustrative energy model; not measured device data' : '教學能耗模型；非元件實測數據'}</div>
         </div>
       `;
 
       // 恢復四世代概略參考比較；現有可調模型與滑桿範圍保持不變。
       viewportHtml += `
         <svg viewBox="0 0 800 380" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Packaging Interconnect Density Comparison">
-          <text x="400" y="25" text-anchor="middle" fill="#cbd5e1" font-size="12">四世代互連參考比較（概略密度；柱長為示意，非線性比例）</text>
+          <text x="400" y="25" text-anchor="middle" fill="#cbd5e1" font-size="12">${lang === 'en' ? "Interconnect examples (approximate density; bars not to scale)" : "四世代互連參考比較（概略密度；柱長為示意，非線性比例）"}</text>
           <!-- 橫向柱狀對照圖 -->
           <g transform="translate(180, 50)">
             <!-- 1. BGA -->
             <rect x="0" y="0" width="8" height="28" fill="#64748b"/>
-            <text x="-15" y="19" text-anchor="end" fill="#94a3b8" font-size="12">打線 / BGA</text>
-            <text x="20" y="19" fill="#e2e8f0" font-size="11.5">間距 1000 µm · 密度 1 / mm²</text>
+            <text x="-15" y="19" text-anchor="end" fill="#94a3b8" font-size="12">${lang === 'en' ? "Wire bonding / BGA" : "打線 / BGA"}</text>
+            <text x="20" y="19" fill="#e2e8f0" font-size="11.5">${lang === 'en' ? "Pitch 1000 µm · density 1 / mm²" : "間距 1000 µm · 密度 1 / mm²"}</text>
 
             <!-- 2. Flip-Chip C4 -->
             <rect x="0" y="55" width="30" height="28" fill="#0284c7"/>
-            <text x="-15" y="74" text-anchor="end" fill="#94a3b8" font-size="12">覆晶 (Flip-Chip C4)</text>
-            <text x="42" y="74" fill="#e2e8f0" font-size="11.5">間距 150 µm · 密度約 40 / mm²</text>
+            <text x="-15" y="74" text-anchor="end" fill="#94a3b8" font-size="12">${lang === 'en' ? "Flip-chip C4" : "覆晶 (Flip-Chip C4)"}</text>
+            <text x="42" y="74" fill="#e2e8f0" font-size="11.5">${lang === 'en' ? "Pitch 150 µm · approx. 40 / mm²" : "間距 150 µm · 密度約 40 / mm²"}</text>
 
             <!-- 3. 2.5D CoWoS 微凸塊 -->
             <rect x="0" y="110" width="110" height="28" fill="#f59e0b"/>
-            <text x="-15" y="129" text-anchor="end" fill="#f59e0b" font-size="12">2.5D CoWoS 微凸塊</text>
-            <text x="122" y="129" fill="#e2e8f0" font-size="11.5">間距 35 µm · 密度約 800 / mm²</text>
+            <text x="-15" y="129" text-anchor="end" fill="#f59e0b" font-size="12">${lang === 'en' ? '2.5D CoWoS micro-bumps' : '2.5D CoWoS 微凸塊'}</text>
+            <text x="122" y="129" fill="#e2e8f0" font-size="11.5">${lang === 'en' ? 'Pitch 35 µm · approx. 800 / mm²' : '間距 35 µm · 密度約 800 / mm²'}</text>
 
             <!-- 4. 3D SoIC 混合鍵合 -->
             <rect x="0" y="165" width="460" height="34" fill="#10b981"/>
-            <text x="-15" y="187" text-anchor="end" fill="#10b981" font-size="13" font-weight="700">3D SoIC 混合鍵合</text>
-            <text x="20" y="222" fill="#10b981" font-size="13" font-weight="750">約 0.9 µm · 約 1,200,000 / mm²（約提升 1500 倍）</text>
+            <text x="-15" y="187" text-anchor="end" fill="#10b981" font-size="13" font-weight="700">${lang === 'en' ? "3D SoIC hybrid bonding" : "3D SoIC 混合鍵合"}</text>
+            <text x="20" y="222" fill="#10b981" font-size="13" font-weight="750">${lang === 'en' ? "Approx. 0.9 µm · 1,200,000 / mm² (about 1500×)" : "約 0.9 µm · 約 1,200,000 / mm²（約提升 1500 倍）"}</text>
           </g>
           <g class="eng-kinetic-wave" pointer-events="none"><circle cx="400" cy="200" r="68" fill="none" stroke="#38bdf8" stroke-width="1.4" class="anim-pulse-ring" opacity="0.45"/><path d="M 140,60 Q 400,32 660,60" fill="none" stroke="#34d399" stroke-width="1.5" class="anim-field-glow" opacity="0.5"/></g>
         </svg>
@@ -332,14 +332,14 @@ export function renderAdvancedPackagingObject(container, lang = 'zh') {
 
       dashboardHtml += `
         <div class="eng-obj-metric-card">
-          <div class="eng-obj-metric-label">互連密度躍升幅度</div>
-          <div class="eng-obj-metric-value" style="color: var(--semi-teal);">1,500 倍</div>
-          <div class="eng-obj-metric-note">從 2.5D 微凸塊邁向 3D Cu-Cu 混合鍵合</div>
+          <div class="eng-obj-metric-label">${lang === 'en' ? 'Illustrative density ratio' : '示意互連密度比'}</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-teal);">${lang === 'en' ? '1,500×' : '1,500 倍'}</div>
+          <div class="eng-obj-metric-note">${lang === 'en' ? '2.5D micro-bumps to 3D Cu-Cu hybrid bonding' : '從 2.5D 微凸塊邁向 3D Cu-Cu 混合鍵合'}</div>
         </div>
         <div class="eng-obj-metric-card">
-          <div class="eng-obj-metric-label">小晶片 (Chiplet) 戰略意義</div>
-          <div class="eng-obj-metric-value" style="font-size: 15px;">打破摩爾定律物理極限</div>
-          <div class="eng-obj-metric-note">算力、快取與高頻寬記憶體異質整合</div>
+          <div class="eng-obj-metric-label">${lang === 'en' ? 'Chiplet integration' : '小晶片（Chiplet）整合'}</div>
+          <div class="eng-obj-metric-value" style="font-size: 15px;">${lang === 'en' ? 'Integration across dies' : '跨晶粒整合'}</div>
+          <div class="eng-obj-metric-note">${lang === 'en' ? 'Heterogeneous compute, cache and HBM' : '運算、快取與高頻寬記憶體異質整合'}</div>
         </div>
       `;
 

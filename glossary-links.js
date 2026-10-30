@@ -12,7 +12,8 @@ function escapeRegExp(value) {
   return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
 
-function buildTerms(lang) {
+function buildTerms(lang, context) {
+  const hasPolishingPad = /\bpolishing[\s-]+pads?\b/i.test(context);
   const terms = [];
   for (const entry of GLOSSARY_DATA) {
     const slug = glossarySlug(entry.en);
@@ -23,6 +24,8 @@ function buildTerms(lang) {
     if (lang === 'en' && entry.en && entry.en.length >= 4) {
       terms.push({ slug, text: entry.en, kind: 'word' });
     }
+    // 出現拋光墊時，Pad 語意不明；完整 Bond Pad 與中文焊墊仍保留。
+    if (hasPolishingPad && slug === 'bond-pad') continue;
     if (entry.abbr && entry.abbr.length >= 3 && /^[A-Za-z0-9]+$/.test(entry.abbr)) {
       terms.push({ slug, text: entry.abbr, kind: 'word' });
     }
@@ -66,7 +69,7 @@ function linkTextNode(node, terms, used) {
 
 export function linkGlossaryTerms(root, lang) {
   if (!root) return 0;
-  const terms = buildTerms(lang === 'en' ? 'en' : 'zh');
+  const terms = buildTerms(lang === 'en' ? 'en' : 'zh', root.textContent || '');
   const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
     acceptNode(node) {
       const parent = node.parentElement;

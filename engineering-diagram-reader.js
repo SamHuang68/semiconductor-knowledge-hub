@@ -45,7 +45,8 @@ function ensureSharedSvgDefs(svgs, doc) {
   }
 }
 
-export function prepareDiagramReading(next, previous, state) {
+export function prepareDiagramReading(next, previous, state, lang = 'zh') {
+  const isEn = lang === 'en' && ['engObjCh04Title', 'engObjCh05Title', 'engObjCh06Title', 'engObjCh07Title', 'engObjCh08Title', 'engObjCh09Title', 'engObjCh10Title', 'engObjCh19Title', 'engObjCh20Title', 'engObjCh21Title'].includes(next.getAttribute('aria-labelledby'));
   const reading = readingState(state);
   const oldReader = previous?.querySelector('.eng-diagram-reader');
   if (oldReader) reading.open = oldReader.open;
@@ -56,7 +57,7 @@ export function prepareDiagramReading(next, previous, state) {
   ensureSharedSvgDefs(svgs, doc);
   viewport.tabIndex = 0;
   viewport.setAttribute('role', 'region');
-  viewport.setAttribute('aria-label', '互動圖面；放大後可捲動或用方向鍵平移');
+  viewport.setAttribute('aria-label', isEn ? 'Interactive diagram; scroll or use arrow keys to pan when zoomed in' : '互動圖面；放大後可捲動或用方向鍵平移');
   viewport.dataset.view = reading.view;
   viewport.dataset.scale = String(reading.scale);
   if (reading.view !== 'fit') {
@@ -66,38 +67,38 @@ export function prepareDiagramReading(next, previous, state) {
   const toolbar = doc.createElement('div');
   toolbar.className = 'eng-diagram-toolbar';
   toolbar.setAttribute('role', 'group');
-  toolbar.setAttribute('aria-label', '圖例閱讀方式');
-  for (const [action, label] of [['fit', '看全圖'], ['read', '閱讀比例'], ['out', '−'], ['in', '＋'], ['text', '圖中文字 ↓']]) {
+  toolbar.setAttribute('aria-label', isEn ? 'Diagram reading controls' : '圖例閱讀方式');
+  for (const [action, label] of [['fit', isEn ? 'Fit diagram' : '看全圖'], ['read', isEn ? 'Reading size' : '閱讀比例'], ['out', '−'], ['in', '＋'], ['text', isEn ? 'Diagram text ↓' : '圖中文字 ↓']]) {
     const button = doc.createElement('button');
     button.type = 'button';
     button.dataset.diagramAction = action;
     button.textContent = label;
-    if (action === 'out' || action === 'in') button.setAttribute('aria-label', action === 'out' ? '縮小圖面' : '放大圖面');
+    if (action === 'out' || action === 'in') button.setAttribute('aria-label', isEn ? (action === 'out' ? 'Zoom out' : 'Zoom in') : (action === 'out' ? '縮小圖面' : '放大圖面'));
     toolbar.append(button);
   }
   const scale = doc.createElement('output');
   scale.className = 'eng-diagram-scale';
-  scale.setAttribute('aria-label', '相對原始圖面縮放比例');
+  scale.setAttribute('aria-label', isEn ? 'Scale relative to the original diagram' : '相對原始圖面縮放比例');
   toolbar.append(scale);
   const help = doc.createElement('p');
   help.className = 'eng-diagram-help';
-  help.textContent = '先看全圖，再用閱讀比例查看細節；放大後可捲動或用方向鍵平移。圖中文字另列於卡片下方。';
+  help.textContent = isEn ? 'Start with the full diagram, then use Reading size for details. Scroll or use arrow keys to pan. Diagram text is listed below.' : '先看全圖，再用閱讀比例查看細節；放大後可捲動或用方向鍵平移。圖中文字另列於卡片下方。';
   viewport.before(toolbar, help);
 
   const reader = doc.createElement('details');
   reader.className = 'eng-diagram-reader';
   reader.open = reading.open;
   const summary = doc.createElement('summary');
-  summary.textContent = '圖中文字與即時數值';
+  summary.textContent = isEn ? 'Diagram text and current values' : '圖中文字與即時數值';
   reader.append(summary);
   const note = doc.createElement('p');
-  note.textContent = '依目前圖面順序列出；選取文字可在圖中定位。圖形操作仍可直接使用。';
+  note.textContent = isEn ? 'Listed in diagram order. Select a label to locate it in the diagram; direct interaction remains available.' : '依目前圖面順序列出；選取文字可在圖中定位。圖形操作仍可直接使用。';
   reader.append(note);
   svgs.forEach((svg, diagramIndex) => {
     const group = doc.createElement('section');
     group.className = 'eng-diagram-text-group';
     const title = doc.createElement('h4');
-    title.textContent = svgs.length > 1 ? `圖 ${diagramIndex + 1}・${svg.getAttribute('aria-label') || '互動示意'}` : '目前圖面';
+    title.textContent = svgs.length > 1 ? `${isEn ? 'Diagram' : '圖'} ${diagramIndex + 1}・${svg.getAttribute('aria-label') || (isEn ? 'Interactive schematic' : '互動示意')}` : (isEn ? 'Current diagram' : '目前圖面');
     group.append(title);
     const list = doc.createElement('ol');
     list.className = 'eng-diagram-text-list';
@@ -108,7 +109,7 @@ export function prepareDiagramReading(next, previous, state) {
       button.dataset.diagramIndex = String(diagramIndex);
       button.dataset.textIndex = String(textIndex);
       button.textContent = textOf(text);
-      button.title = '在圖中定位這段文字';
+      button.title = isEn ? 'Locate this text in the diagram' : '在圖中定位這段文字';
       item.append(button);
       list.append(item);
     });

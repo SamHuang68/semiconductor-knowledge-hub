@@ -175,10 +175,10 @@ export const TEXTS = {
     ch07_energy_slider: '加速能量 (Beam Energy E_acc):',
     ch07_peak_conc: '峰值濃度 Peak Concentration (C_max):',
     ch07_straggle: '射程離散 Longitudinal Straggle (ΔRp):',
-    ch07_lss_desc: 'LSS 理論 (Lindhard-Scharff-Schiøtt)：離子在矽靶中受核阻止能與電子阻止能減速，形成投影射程 Rp 與離散 ΔRp 之高斯濃度分佈 C(x)。',
+    ch07_lss_desc: "LSS 相關教學近似：以投影射程 Rp、離散 ΔRp 與高斯輪廓示意離子深度分佈。本模型使用簡化經驗係數；不取代依材料、離子種類及能量校準的佈植模擬。",
     ch07_beamline_desc: '利用磁場勞侖茲力 F = q(v × B)，不同質量電荷比 (m/z) 的離子在均勻磁場中偏轉半徑 r = mv / (qB) 不同。透過精確狹縫濾除雜質，僅讓目標摻質（如純 ¹¹B⁺）進入加速管射入晶圓。',
-    ch07_anneal_desc: '高速離子注入將原本整齊的單晶矽晶格撞擊成混亂非晶層 (Amorphized Layer)，此時摻質未進入格位且無電性。透過快速熱退火 (RTA ~1050°C 數秒) 提供熱能，觸發固相磊晶再結晶，摻質取代矽原子格位達成 95% 以上電性活化！',
-    ch07_channeling_desc: '當離子束沿著晶軸（如 <110>）直射時，將穿過原子間隙長驅直入（通道效應），產生無法控制的過深尾端。工廠標準做法是將晶圓傾斜 7° (Tilt) 並偏轉 27° (Twist)，打亂對齊確保淺接面輪廓受控。',
+    ch07_anneal_desc: "佈植可能造成晶格損傷或非晶化；退火可修復損傷並促進摻質活化。本圖 RTA ~1050°C、數秒及 >95% 活化率是教學示例，非通用保證；實際結果取決於佈植與退火條件。",
+    ch07_channeling_desc: "沿主要晶軸（如 <110>）入射可能產生通道效應與較深尾端。7° 傾角及 27° 旋轉為本圖教學示例；適當偏離晶軸可降低通道效應，實際設定須依晶向與製程驗證。",
 
     // Ch 08 CMP 化學機械研磨
     ch08_title: '化學機械研磨 (CMP) 運動學與全域平坦化微觀機制模型',
@@ -193,7 +193,7 @@ export const TEXTS = {
     ch08_mrr_label: '材料移除率 (MRR)',
     ch08_preston_note: '依據 Preston 方程：MRR = Kp · P · V。多區氣囊精確調控晶圓中心至邊緣之接觸壓力 P，研磨墊與研磨頭同向等速旋轉維持相對速度 V 恆定，實現晶圓級全域平坦化。',
     ch08_micro_desc: '化學氧化劑（如雙氧水）在金屬表面反應生成一層數奈米厚的疏鬆水合氧化薄膜（化學軟化）；突出高點承受磨粒強烈摩擦被刮除，低窪處則受鈍化膜保護免於腐蝕，實現「只磨高處、不磨低處」的平坦化。',
-    ch08_defects_desc: '大寬度銅導線因彈性研磨墊下陷易產生「碟化 (Dishing)」；密集導線區易產生「介電層侵蝕 (Erosion)」。透過在空曠區填入「假圖形 (Dummy Metal Fill)」平衡圖形密度在 30%-50%，是現代晶圓廠必備之微影平坦化對策。',
+    ch08_defects_desc: '寬銅導線可能產生碟化，密集導線區可能產生侵蝕。虛設金屬填補可協助平衡圖形密度；填補方式與密度限制須依製程、層別及設計規則決定。本圖為示意，不保證平坦度。',
 
     // Ch 10 金屬化與雙載子鑲嵌
     ch10_title: '銅導線雙載子鑲嵌 (Dual Damascene) 與電遷移 (EM) 微觀模型',
@@ -212,11 +212,11 @@ export const TEXTS = {
     ch10_cap_label: '頂部帽層技術 (Capping Tech):',
     ch10_cap_sicn: '標準 SiCN 介電帽層 (Ea~0.85eV)',
     ch10_cap_coru: '先進 Co/Ru 金屬帽層 (Ea~1.25eV)',
-    ch10_mttf_label: '預估中位壽命 (MTTF):',
+    ch10_mttf_label: "平均失效時間示例 (MTTF):",
     ch10_ea_label: '擴散活化能 (Activation Energy Ea):',
-    ch10_risk_label: '可靠度風險評估 (Reliability Risk):',
-    ch10_damascene_desc: '銅無法像鋁一樣進行乾式電漿蝕刻（無室溫揮發性副產物），因此採用「先挖凹槽、再填銅、最後磨平」的大馬士革製程 (Damascene)；雙載子鑲嵌更將導通孔與上方溝槽一次填銅，大幅降低接觸阻抗。',
-    ch10_superfill_desc: '電鍍液中添加「抑制劑 (Suppressor)」在大孔口抑制沉積，而「加速劑 (Accelerator)」在孔底微小曲率處大量累積，使銅由孔底噴泉式向上生長，杜絕深孔中途閉合形成縫隙 (Seam) 或空洞 (Void)！',
+    ch10_risk_label: "模型壽命區間（非產品認證）:",
+    ch10_damascene_desc: "在常用傳統條件下，銅難以用乾式電漿蝕刻形成易揮發副產物，因此常採先蝕刻溝槽、再填銅、最後 CMP 的鑲嵌製程。雙鑲嵌將導通孔與上方溝槽共同填銅；接觸電阻改善須依實際結構與製程驗證。",
+    ch10_superfill_desc: "適當添加劑與製程控制可使抑制劑限制孔口沉積、加速劑促進孔底生長，形成由下而上的超填。本圖為理想化示意；接縫與空洞風險仍取決於幾何、添加劑與製程條件。",
     ch10_em_desc: '在電流密度 > 10⁶ A/cm² 下，高速電子流對銅原子產生衝撞力（電子風 Electron Wind）。銅原子沿晶界遷移，上游形成孔洞 (Void) 引發斷路，下游堆積成凸起 (Hillock) 刺穿相鄰線路引發短路。',
 
     // Ch 21 先進封裝
@@ -725,10 +725,10 @@ export const TEXTS = {
     ch07_energy_slider: 'Beam Acceleration Energy (E_acc):',
     ch07_peak_conc: 'Peak Concentration (C_max):',
     ch07_straggle: 'Longitudinal Straggle (ΔRp):',
-    ch07_lss_desc: 'LSS Theory (Lindhard-Scharff-Schiøtt): Ions decelerate via nuclear and electronic stopping, creating a Gaussian depth distribution C(x) characterized by Rp and ΔRp.',
+    ch07_lss_desc: "LSS-inspired teaching approximation: Rp, ΔRp and a Gaussian profile illustrate the depth distribution. Simplified empirical coefficients do not replace implant simulation calibrated for material, ion species and energy.",
     ch07_beamline_desc: 'Based on Lorentz force F = q(v × B), ions with different mass-to-charge ratios (m/z) bend with distinct radii r = mv / (qB) in a magnetic field. Resolving slits filter out unwanted contaminants, selecting only target dopants.',
-    ch07_anneal_desc: 'Energetic ion collisions shatter the crystalline silicon into an amorphous damaged layer with zero electrical activity. Rapid Thermal Annealing (RTA ~1050°C) triggers Solid Phase Epitaxial Regrowth, placing dopants into substitution lattice sites (>95% activation).',
-    ch07_channeling_desc: 'Ions incident along major crystal axes (<110>) steer down open atomic corridors without nuclear collisions (channeling effect). Tilting wafers by 7° with a 27° twist de-aligns the axes, ensuring tight, controlled Gaussian profiles.',
+    ch07_anneal_desc: "Implantation can cause lattice damage or amorphization; annealing can repair damage and promote dopant activation. RTA ~1050°C for a few seconds and >95% activation are teaching examples, not universal guarantees; results depend on implant and anneal conditions.",
+    ch07_channeling_desc: "Incidence along major crystal axes, such as <110>, can produce channeling and deeper tails. The 7° tilt and 27° twist are teaching examples; suitable misalignment can reduce channeling, while actual settings require validation for crystal orientation and process.",
 
     // Ch 08 CMP
     ch08_title: 'Chemical Mechanical Planarization (CMP) Model',
@@ -743,7 +743,7 @@ export const TEXTS = {
     ch08_mrr_label: 'Material Removal Rate (MRR)',
     ch08_preston_note: 'Governed by Preston equation: MRR = Kp · P · V. Multi-zone air bladders tune down-force P from center to edge, while synchronized head and pad rotation keeps relative velocity V constant across the 300mm wafer.',
     ch08_micro_desc: 'Oxidizers chemically react with metal surfaces to form a soft, porous nanometer-thin oxide layer. Abrasives under pressure polish off high-spot peaks, while recessed valleys remain protected by the passivation film, achieving true global planarization.',
-    ch08_defects_desc: 'Pad elasticity causes dishing in wide metal lines and erosion in dense arrays. Inserting non-functional dummy metal fill tiles keeps pattern density uniform at 30%-50%, eliminating topography variations across the die.',
+    ch08_defects_desc: 'Wide metal lines can exhibit dishing, and dense arrays can exhibit erosion. Dummy metal fill can help balance pattern density; fill strategy and density limits depend on the process, layer and design rules. This schematic does not guarantee flatness.',
 
     // Ch 10 BEOL & Dual Damascene
     ch10_title: 'Copper Dual Damascene & Electromigration (EM) Model',
@@ -762,11 +762,11 @@ export const TEXTS = {
     ch10_cap_label: 'Top Capping Layer Tech:',
     ch10_cap_sicn: 'Standard SiCN Dielectric Cap (Ea~0.85eV)',
     ch10_cap_coru: 'Advanced Co/Ru Metal Cap (Ea~1.25eV)',
-    ch10_mttf_label: 'Estimated Median Lifetime (MTTF):',
+    ch10_mttf_label: "Illustrative mean time to failure (MTTF):",
     ch10_ea_label: 'Diffusion Activation Energy (Ea):',
-    ch10_risk_label: 'Reliability Risk Assessment:',
-    ch10_damascene_desc: 'Copper lacks volatile byproducts for dry plasma etching, necessitating the Damascene process: etch trenches first, electroplate copper, then polish flat. Dual Damascene fills vias and trenches simultaneously.',
-    ch10_superfill_desc: 'Plating additives orchestrate seamless filling: Suppressors retard deposition at upper openings, while Accelerators concentrate at concave trench bottoms, driving fountain-like bottom-up growth with zero seams or voids.',
+    ch10_risk_label: "Model lifetime regime (not qualification):",
+    ch10_damascene_desc: "Under conventional processing conditions, copper is difficult to dry-etch into readily volatile products, so damascene commonly etches trenches first, fills copper and then applies CMP. Dual damascene fills vias and trenches together; contact-resistance improvement requires validation for the actual structure and process.",
+    ch10_superfill_desc: "With suitable additives and process control, suppressors can limit deposition near openings while accelerators promote bottom-up growth. This is an idealized superfilling schematic; seam and void risk still depends on geometry, additives and process conditions.",
     ch10_em_desc: 'At extreme current densities (> 10⁶ A/cm²), momentum transfer from drifting electrons (Electron Wind) nudges copper atoms along grain boundaries. Atoms migrate away forming voids (opens), or pile up forming hillocks (shorts).',
 
     // Ch 21 Advanced Packaging

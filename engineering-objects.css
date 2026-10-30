@@ -2347,3 +2347,41 @@
 .eng-obj-viewport foreignObject > div {
   color: var(--svg-ink-2) !important;
 }
+
+
+/* Stage 2: only source-verified CH04/CH21 reference blocks opt in. */
+.photo-source-note, .eng-reference-note {
+  padding: 12px 14px;
+  border: 1px solid #b9d8d1;
+  border-radius: 8px;
+  background: #f3faf7;
+  color: #173d38;
+  font-size: 13px;
+  line-height: 1.65;
+  overflow-wrap: anywhere;
+}
+.photo-source-note { margin: 12px 0; display: grid; gap: 4px; }
+.eng-reference-note { margin: 0 20px 16px; }
+.photo-source-note p, .eng-reference-note p { margin: 0 0 4px; }
+.photo-source-note a, .eng-reference-note a { color: #0f766e; text-decoration: underline; text-underline-offset: 3px; }
+.has-photo-reference > .photo-hotspot-tooltip {
+  position: static;
+  width: auto;
+  max-width: none;
+  transform: none;
+  margin: 12px 16px 0;
+  box-shadow: none;
+}
+.lightbox-footer .photo-source-note { margin: 8px 0; }
+
+.photo-lightbox-modal.has-photo-reference .lightbox-hotspot-card {
+  position: static;
+  max-width: none;
+  transform: none;
+  animation: none;
+  box-shadow: none;
+}
+.photo-lightbox-modal.has-photo-reference .lightbox-footer {
+  max-height: 38vh;
+  overflow-y: auto;
+}

@@ -55,13 +55,13 @@ export function renderDepositionMechanismObject(container, lang = 'zh') {
         <svg viewBox="0 0 800 440" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="PVD Sputtering Mechanism">
           <!-- 上方靶材 (Sputter Target) -->
           <rect x="250" y="30" width="300" height="28" rx="3" fill="#b45309" stroke="#f59e0b" stroke-width="1.5"/>
-          <text x="400" y="49" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="700">金屬靶材 (Sputter Target: Cu / Ti)</text>
+          <text x="400" y="49" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="700">${lang === 'en' ? "Sputter target: Cu / Ti" : "金屬靶材 (Sputter Target: Cu / Ti)"}</text>
 
           <!-- 氬離子轟擊與濺射原子粒子 (Line of sight) -->
           <g opacity="0.85">
             <!-- Ar+ 離子向上轟擊 -->
             <path d="M 320,110 L 340,65 M 480,110 L 460,65" stroke="#38bdf8" stroke-width="2" stroke-dasharray="3 3" class="anim-beam"/>
-            <text x="310" y="125" fill="#38bdf8" font-size="11">Ar⁺ 離子轟擊</text>
+            <text x="310" y="125" fill="#38bdf8" font-size="11">${lang === 'en' ? "Ar⁺ bombardment" : "Ar⁺ 離子轟擊"}</text>
             <!-- 濺射原子向下噴發 (視線直進) -->
             <path d="M 350,60 L 370,220 M 400,60 L 400,220 M 450,60 L 430,220" stroke="#f59e0b" stroke-width="2" stroke-dasharray="4 3" class="anim-ion"/>
           </g>
@@ -88,10 +88,10 @@ export function renderDepositionMechanismObject(container, lang = 'zh') {
             <rect x="100" y="204" width="100" height="6" fill="#f59e0b" opacity="0.7"/>
 
             <!-- 標註懸垂與空洞風險 -->
-            <text x="320" y="50" fill="#f59e0b" font-size="12" font-weight="700">開口懸垂 (Overhang)</text>
+            <text x="320" y="50" fill="#f59e0b" font-size="12" font-weight="700">${lang === 'en' ? "Aperture overhang" : "開口懸垂 (Overhang)"}</text>
             <path d="M 310,47 L 215,35" stroke="#f59e0b" stroke-width="1.2"/>
-            <text x="150" y="140" text-anchor="middle" fill="#ef4444" font-size="12" font-weight="700">空洞風險 (Void)</text>
-            <text x="320" y="200" fill="#94a3b8" font-size="11.5">孔底覆蓋率僅 15-20%</text>
+            <text x="150" y="140" text-anchor="middle" fill="#ef4444" font-size="12" font-weight="700">${lang === 'en' ? "Void risk" : "空洞風險 (Void)"}</text>
+            <text x="320" y="200" fill="#94a3b8" font-size="11.5">${lang === 'en' ? "Bottom coverage: only 15-20%" : "孔底覆蓋率僅 15-20%"}</text>
           </g>
           <g class="eng-kinetic-wave" pointer-events="none"><circle cx="400" cy="200" r="68" fill="none" stroke="#38bdf8" stroke-width="1.4" class="anim-pulse-ring" opacity="0.45"/><path d="M 140,60 Q 400,32 660,60" fill="none" stroke="#34d399" stroke-width="1.5" class="anim-field-glow" opacity="0.5"/></g>
         </svg>
@@ -100,17 +100,17 @@ export function renderDepositionMechanismObject(container, lang = 'zh') {
         <div class="eng-obj-metric-card">
           <div class="eng-obj-metric-label">${t.ch05_metric_coverage}</div>
           <div class="eng-obj-metric-value" style="color: #ef4444;">15% - 25%</div>
-          <div class="eng-obj-metric-note">視線沉積導致深孔底部覆蓋嚴重不足</div>
+          <div class="eng-obj-metric-note">${lang === 'en' ? "Line-of-sight deposition leaves poor coverage at deep-hole bottoms" : "視線沉積導致深孔底部覆蓋嚴重不足"}</div>
         </div>
         <div class="eng-obj-metric-card">
           <div class="eng-obj-metric-label">${t.ch05_metric_rate}</div>
           <div class="eng-obj-metric-value">0.5 - 2.0 nm/s</div>
-          <div class="eng-obj-metric-note">高速金屬導體沉積</div>
+          <div class="eng-obj-metric-note">${lang === 'en' ? "Fast deposition of conductive metals" : "高速金屬導體沉積"}</div>
         </div>
         <div class="eng-obj-metric-card">
           <div class="eng-obj-metric-label">${t.ch05_metric_temp}</div>
-          <div class="eng-obj-metric-value">室溫 ~ 150°C</div>
-          <div class="eng-obj-metric-note">熱預算負擔低</div>
+          <div class="eng-obj-metric-value">${lang === 'en' ? "Room temperature ~ 150°C" : "室溫 ~ 150°C"}</div>
+          <div class="eng-obj-metric-note">${lang === 'en' ? "Low thermal budget" : "熱預算負擔低"}</div>
         </div>
       `;
       footerNote = t.ch05_pvd_desc;
@@ -129,7 +129,7 @@ export function renderDepositionMechanismObject(container, lang = 'zh') {
           </div>
           <div style="margin-left: auto; display: flex; align-items: center; gap: 8px;">
             <span style="font-size: 11px; color: #94a3b8; font-family: monospace;">R_dep: <strong style="color: #38bdf8; font-size: 13px;">${rDep.toFixed(1)} nm/min</strong></span>
-            <span style="font-size: 11px; padding: 2px 7px; border-radius: 4px; background: rgba(15,23,42,0.6); border: 1px solid ${regimeColor}; color: ${regimeColor}; font-weight: 700;">
+            <span class="ch05-cvd-status" data-regime="${regime}" style="font-size: 11px; padding: 2px 7px; border-radius: 4px; background: rgba(15,23,42,0.6); border: 1px solid ${regimeColor}; color: ${regimeColor}; font-weight: 700;">
               ${regime === 'surface' ? '✓ SURFACE LIMITED' : '⚠ MASS TRANSPORT LIMITED'}
             </span>
           </div>
@@ -141,7 +141,7 @@ export function renderDepositionMechanismObject(container, lang = 'zh') {
           <!-- 上方氣體前驅物分子雲 -->
           <g transform="translate(250, 30)">
             <rect x="0" y="0" width="300" height="35" rx="3" fill="#0284c7" stroke="#38bdf8"/>
-            <text x="150" y="22" text-anchor="middle" fill="#ffffff" font-size="12.5" font-weight="700">前驅反應氣體 (SiH₄ + O₂ / WF₆ + H₂)</text>
+            <text x="150" y="22" text-anchor="middle" fill="#ffffff" font-size="12.5" font-weight="700">${lang === 'en' ? "Precursors: SiH₄ + O₂ / WF₆ + H₂" : "前驅反應氣體 (SiH₄ + O₂ / WF₆ + H₂)"}</text>
           </g>
 
           <!-- 擴散氣體分子 (擴散進孔內) -->
@@ -172,12 +172,12 @@ export function renderDepositionMechanismObject(container, lang = 'zh') {
             <rect x="100" y="${210 - bottomThickPx}" width="100" height="${bottomThickPx}" fill="#0284c7"/>
 
             <!-- 狀態標註 -->
-            <text x="310" y="60" fill="${regimeColor}" font-size="12" font-weight="700">${regime === 'surface' ? '表面反應受限：ks < hg' : '質傳擴散受限：ks ≥ hg'}</text>
-            <text x="310" y="85" fill="${regimeColor}" font-size="11.5" font-weight="700">階梯覆蓋率 Step Coverage: ${stepCoverage}%</text>
+            <text x="310" y="60" fill="${regimeColor}" font-size="12" font-weight="700">${lang === 'en' ? (regime === 'surface' ? 'Surface-limited: ks < hg' : 'Transport-limited: ks ≥ hg') : (regime === 'surface' ? '表面反應受限：ks < hg' : '質傳擴散受限：ks ≥ hg')}</text>
+            <text x="310" y="85" fill="${regimeColor}" font-size="11.5" font-weight="700">${lang === 'en' ? "Step coverage:" : "階梯覆蓋率 Step Coverage:"} ${stepCoverage}%</text>
             <text x="310" y="108" fill="#94a3b8" font-size="11">R_dep = ${rDep.toFixed(1)} nm/min · Ea = 1.35 eV</text>
 
             ${regime === 'mass' ? `
-              <text x="150" y="130" text-anchor="middle" fill="#ef4444" font-size="10.5" font-weight="700">⚠️ 孔口早閉空洞 (Void Risk)</text>
+              <text x="150" y="130" text-anchor="middle" fill="#ef4444" font-size="10.5" font-weight="700">${lang === 'en' ? "⚠️ Early pinch-off: void risk" : "⚠️ 孔口早閉空洞 (Void Risk)"}</text>
             ` : ''}
           </g>
           <g class="eng-kinetic-wave" pointer-events="none"><circle cx="400" cy="200" r="68" fill="none" stroke="#38bdf8" stroke-width="1.4" class="anim-pulse-ring" opacity="0.45"/><path d="M 140,60 Q 400,32 660,60" fill="none" stroke="#34d399" stroke-width="1.5" class="anim-field-glow" opacity="0.5"/></g>
@@ -192,15 +192,15 @@ export function renderDepositionMechanismObject(container, lang = 'zh') {
         <div class="eng-obj-metric-card">
           <div class="eng-obj-metric-label">${t.ch05_rate_label}</div>
           <div class="eng-obj-metric-value" style="color: var(--semi-blue-dark);">${rDep.toFixed(1)} nm/min</div>
-          <div class="eng-obj-metric-note">Arrhenius ks: ${ks.toFixed(1)} · 氣相 hg: ${hg.toFixed(1)}</div>
+          <div class="eng-obj-metric-note">Arrhenius ks: ${ks.toFixed(1)}${lang === 'en' ? " · Gas-phase hg:" : " · 氣相 hg:"} ${hg.toFixed(1)}</div>
         </div>
         <div class="eng-obj-metric-card">
           <div class="eng-obj-metric-label">${t.ch05_regime_label}</div>
           <div class="eng-obj-metric-value" style="font-size: 13.5px; color: ${regimeColor};">${regimeLabel}</div>
-          <div class="eng-obj-metric-note">${regime === 'surface' ? '活化能主導 · 分子有充沛時間擴散至孔底' : '反應極快受限於氣體擴散 · 易封孔形成空洞'}</div>
+          <div class="eng-obj-metric-note">${lang === 'en' ? (regime === 'surface' ? 'Activation-energy controlled; molecules have time to reach the bottom' : 'Rapid reaction is limited by gas diffusion; pinch-off can form voids') : (regime === 'surface' ? '活化能主導 · 分子有充沛時間擴散至孔底' : '反應極快受限於氣體擴散 · 易封孔形成空洞')}</div>
         </div>
       `;
-      footerNote = t.ch05_cvd_desc;
+      footerNote = lang === 'en' ? 'CVD uses precursor gas diffusion and thermal surface reactions. In this teaching model, the smaller rate in the series model controls the regime: ks < hg is surface-reaction limited; ks ≥ hg is mass-transport limited. Both temperature and pressure affect the result. Step coverage, overhang and pinch-off voids illustrate trends, not measured predictions for a material or process.' : t.ch05_cvd_desc;
     } else {
       // ALD 4-Step Self-Limiting Cycle
       const thicknessNm = (aldCycleCount * 0.11).toFixed(2);
@@ -237,8 +237,8 @@ export function renderDepositionMechanismObject(container, lang = 'zh') {
                 <circle cx="196" cy="60" r="4"/><circle cx="196" cy="120" r="4"/><circle cx="196" cy="180" r="4"/>
                 <circle cx="130" cy="226" r="4"/><circle cx="170" cy="226" r="4"/>
               </g>
-              <text x="310" y="80" fill="#f59e0b" font-size="12" font-weight="700">前驅物 A 自限單分子吸附</text>
-              <text x="310" y="105" fill="#94a3b8" font-size="11.5">表面活性位點飽和後反應自動停止</text>
+              <text x="310" y="80" fill="#f59e0b" font-size="12" font-weight="700">${lang === 'en' ? "A: self-limiting monolayer adsorption" : "前驅物 A 自限單分子吸附"}</text>
+              <text x="310" y="105" fill="#94a3b8" font-size="11.5">${lang === 'en' ? "Stops when surface sites saturate" : "表面活性位點飽和後反應自動停止"}</text>
             ` : ''}
 
             ${aldStep === 2 ? `
@@ -246,8 +246,8 @@ export function renderDepositionMechanismObject(container, lang = 'zh') {
               <g stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="3 3">
                 <line x1="150" y1="50" x2="150" y2="200"/>
               </g>
-              <text x="310" y="80" fill="#38bdf8" font-size="12" font-weight="700">N₂ 吹除未吸附多餘分子</text>
-              <text x="310" y="105" fill="#94a3b8" font-size="11.5">避免前驅物在氣相中提早反應</text>
+              <text x="310" y="80" fill="#38bdf8" font-size="12" font-weight="700">${lang === 'en' ? "N₂ purges unadsorbed molecules" : "N₂ 吹除未吸附多餘分子"}</text>
+              <text x="310" y="105" fill="#94a3b8" font-size="11.5">${lang === 'en' ? "Prevents early gas-phase reaction" : "避免前驅物在氣相中提早反應"}</text>
             ` : ''}
 
             ${aldStep === 3 ? `
@@ -257,17 +257,17 @@ export function renderDepositionMechanismObject(container, lang = 'zh') {
                 <circle cx="196" cy="80" r="4"/><circle cx="196" cy="140" r="4"/>
                 <circle cx="150" cy="226" r="4"/>
               </g>
-              <text x="310" y="80" fill="#14b8a6" font-size="12" font-weight="700">前驅物 B 化學鍵結成膜</text>
-              <text x="310" y="105" fill="#94a3b8" font-size="11.5">反應生成 Al-O 單一原子層</text>
+              <text x="310" y="80" fill="#14b8a6" font-size="12" font-weight="700">${lang === 'en' ? "Precursor B bonds to form film" : "前驅物 B 化學鍵結成膜"}</text>
+              <text x="310" y="105" fill="#94a3b8" font-size="11.5">${lang === 'en' ? "Forms one Al-O atomic layer" : "反應生成 Al-O 單一原子層"}</text>
             ` : ''}
 
             ${aldStep === 4 ? `
               <!-- Purge B 吹掃副產物 -->
-              <text x="310" y="80" fill="#10b981" font-size="12" font-weight="700">吹除反應副產物 (CH₄)</text>
-              <text x="310" y="105" fill="#94a3b8" font-size="11.5">恢復表面活性羥基，完成 1 循環！</text>
+              <text x="310" y="80" fill="#10b981" font-size="12" font-weight="700">${lang === 'en' ? "Purge CH₄ byproducts" : "吹除反應副產物 (CH₄)"}</text>
+              <text x="310" y="105" fill="#94a3b8" font-size="11.5">${lang === 'en' ? "Restore hydroxyl sites; 1 cycle done" : "恢復表面活性羥基，完成 1 循環！"}</text>
             ` : ''}
 
-            <text x="150" y="160" text-anchor="middle" fill="#14b8a6" font-size="12" font-weight="700">100% 完美保形階梯覆蓋</text>
+            <text x="150" y="160" text-anchor="middle" fill="#14b8a6" font-size="12" font-weight="700">${lang === 'en' ? "100% conformal step coverage" : "100% 完美保形階梯覆蓋"}</text>
           </g>
           <g class="eng-kinetic-wave" pointer-events="none"><circle cx="400" cy="200" r="68" fill="none" stroke="#38bdf8" stroke-width="1.4" class="anim-pulse-ring" opacity="0.45"/><path d="M 140,60 Q 400,32 660,60" fill="none" stroke="#34d399" stroke-width="1.5" class="anim-field-glow" opacity="0.5"/></g>
         </svg>
@@ -291,18 +291,18 @@ export function renderDepositionMechanismObject(container, lang = 'zh') {
       dashboardHtml = `
         <div class="eng-obj-metric-card">
           <div class="eng-obj-metric-label">${t.ch05_metric_coverage}</div>
-          <div class="eng-obj-metric-value" style="color: var(--semi-teal);">100% 完美保形</div>
-          <div class="eng-obj-metric-note">側壁、孔底、角落厚度完全等厚</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-teal);">${lang === 'en' ? "100% conformal" : "100% 完美保形"}</div>
+          <div class="eng-obj-metric-note">${lang === 'en' ? "Equal thickness on sidewalls, bottoms and corners" : "側壁、孔底、角落厚度完全等厚"}</div>
         </div>
         <div class="eng-obj-metric-card">
           <div class="eng-obj-metric-label">${t.ch05_metric_uniformity}</div>
           <div class="eng-obj-metric-value">0.11 nm / cycle</div>
-          <div class="eng-obj-metric-note">精確單原子分子層成長控制 (GPC)</div>
+          <div class="eng-obj-metric-note">${lang === 'en' ? "Precise atomic monolayer growth control (GPC)" : "精確單原子分子層成長控制 (GPC)"}</div>
         </div>
         <div class="eng-obj-metric-card">
-          <div class="eng-obj-metric-label">主要關鍵應用</div>
-          <div class="eng-obj-metric-value" style="font-size: 15px;">HKMG 閘極介電層</div>
-          <div class="eng-obj-metric-note">3D NAND 高深寬比穿孔、DRAM 電容</div>
+          <div class="eng-obj-metric-label">${lang === 'en' ? "Key applications" : "主要關鍵應用"}</div>
+          <div class="eng-obj-metric-value" style="font-size: 15px;">${lang === 'en' ? "HKMG gate dielectric" : "HKMG 閘極介電層"}</div>
+          <div class="eng-obj-metric-note">${lang === 'en' ? "High-aspect-ratio 3D NAND holes and DRAM capacitors" : "3D NAND 高深寬比穿孔、DRAM 電容"}</div>
         </div>
       `;
 

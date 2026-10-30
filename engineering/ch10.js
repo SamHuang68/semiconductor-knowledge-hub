@@ -20,7 +20,7 @@ export function renderInterconnectObject(container, lang = 'zh') {
       const stepTitle = t[`ch10_step_dama_${damaStep}`];
 
       viewportHtml = `
-        <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Dual Damascene Flow">
+        <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="${lang === 'en' ? "Dual Damascene Flow" : "雙鑲嵌流程"}">
           <!-- 步驟標題指示膠囊 -->
           <rect x="180" y="25" width="440" height="34" rx="4" fill="#0284c7" stroke="#38bdf8"/>
           <text x="400" y="47" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="700">${stepTitle}</text>
@@ -36,14 +36,14 @@ export function renderInterconnectObject(container, lang = 'zh') {
           <g transform="translate(260, 120)">
             <!-- 下層金屬層 M(n-1) -->
             <rect x="0" y="180" width="280" height="50" fill="#b45309"/>
-            <text x="140" y="210" text-anchor="middle" fill="#ffffff" font-size="11.5" font-weight="700">下層金屬線 M(n-1) 銅導線</text>
+            <text x="140" y="210" text-anchor="middle" fill="#ffffff" font-size="11.5" font-weight="700">${lang === 'en' ? "Lower Cu line M(n-1)" : "下層金屬線 M(n-1) 銅導線"}</text>
 
             <!-- 介電層 (Low-k SiCOH) -->
             <rect x="0" y="0" width="280" height="180" fill="#1e293b" stroke="#334155" stroke-width="2"/>
 
             <!-- 步驟 1: 介電層實體 -->
             ${damaStep === 1 ? `
-              <text x="140" y="90" text-anchor="middle" fill="#38bdf8" font-size="13" font-weight="700">Low-k 介電層 (SiCOH, k=2.5)</text>
+              <text x="140" y="90" text-anchor="middle" fill="#38bdf8" font-size="13" font-weight="700">${lang === 'en' ? "Low-k dielectric (SiCOH, k=2.5)" : "Low-k 介電層 (SiCOH, k=2.5)"}</text>
             ` : ''}
 
             <!-- 步驟 2 以上：挖出通孔 (Via) 與上方金屬溝槽 (Trench) -->
@@ -70,7 +70,7 @@ export function renderInterconnectObject(container, lang = 'zh') {
               <rect x="110" y="70" width="60" height="110" fill="#f59e0b" opacity="0.95"/>
               <!-- 頂部過載鍍銅層 (Overburden) -->
               <rect x="0" y="-15" width="280" height="15" fill="#f59e0b"/>
-              <text x="140" y="-3" text-anchor="middle" fill="#09131b" font-size="10" font-weight="700">電鍍過載銅層 (Overburden)</text>
+              <text x="140" y="-3" text-anchor="middle" fill="#09131b" font-size="10" font-weight="700">${lang === 'en' ? "Plated Cu overburden" : "電鍍過載銅層 (Overburden)"}</text>
             ` : ''}
 
             <!-- 步驟 6: CMP 磨平與覆蓋頂部帽層 (SiCN Cap) -->
@@ -79,8 +79,8 @@ export function renderInterconnectObject(container, lang = 'zh') {
               <rect x="110" y="70" width="60" height="110" fill="#f59e0b"/>
               <!-- 頂部 SiCN 介電遮罩帽層 -->
               <rect x="0" y="-6" width="280" height="6" fill="#0f766e"/>
-              <text x="140" y="40" text-anchor="middle" fill="#09131b" font-size="12" font-weight="700">金屬溝槽 Trench (Mn)</text>
-              <text x="140" y="125" text-anchor="middle" fill="#09131b" font-size="11" font-weight="700">導通孔 Via (Vn)</text>
+              <text x="140" y="40" text-anchor="middle" fill="#09131b" font-size="12" font-weight="700">${lang === 'en' ? "Metal trench (Mn)" : "金屬溝槽 Trench (Mn)"}</text>
+              <text x="140" y="125" text-anchor="middle" fill="#09131b" font-size="11" font-weight="700">${lang === 'en' ? "Via (Vn)" : "導通孔 Via (Vn)"}</text>
             ` : ''}
           </g>
           <g class="eng-kinetic-wave" pointer-events="none"><circle cx="400" cy="200" r="68" fill="none" stroke="#38bdf8" stroke-width="1.4" class="anim-pulse-ring" opacity="0.45"/><path d="M 140,60 Q 400,32 660,60" fill="none" stroke="#34d399" stroke-width="1.5" class="anim-field-glow" opacity="0.5"/></g>
@@ -94,33 +94,33 @@ export function renderInterconnectObject(container, lang = 'zh') {
             <button type="button" class="eng-obj-btn" id="damaResetBtn">${t.btn_reset}</button>
           </div>
           <div class="eng-obj-stepper-info">
-            <span>雙鑲嵌步驟：<strong>${damaStep} / 6</strong></span>
+            <span>${lang === 'en' ? 'Dual-damascene step: ' : '雙鑲嵌步驟：'}<strong>${damaStep} / 6</strong></span>
           </div>
         </div>
       `;
 
       dashboardHtml = `
         <div class="eng-obj-metric-card">
-          <div class="eng-obj-metric-label">介電常數 Low-k (SiCOH)</div>
+          <div class="eng-obj-metric-label">${lang === 'en' ? "Low-k dielectric constant (SiCOH)" : "介電常數 Low-k (SiCOH)"}</div>
           <div class="eng-obj-metric-value">k ≈ 2.4 ~ 2.7</div>
-          <div class="eng-obj-metric-note">大幅降低相鄰金屬線間寄生電容</div>
+          <div class="eng-obj-metric-note">${lang === 'en' ? "Low-k materials can reduce interline capacitance." : "低介電常數材料可降低線間寄生電容。"}</div>
         </div>
         <div class="eng-obj-metric-card">
-          <div class="eng-obj-metric-label">擴散阻擋層 (Barrier)</div>
+          <div class="eng-obj-metric-label">${lang === 'en' ? "Diffusion barrier" : "擴散阻擋層 (Barrier)"}</div>
           <div class="eng-obj-metric-value">1.5 nm Ta/TaN</div>
-          <div class="eng-obj-metric-note">阻止銅原子熱擴散進入介電層</div>
+          <div class="eng-obj-metric-note">${lang === 'en' ? "Barrier example; diffusion blocking requires process qualification." : "阻障層示例；抑制銅擴散的效果須依製程驗證。"}</div>
         </div>
         <div class="eng-obj-metric-card">
-          <div class="eng-obj-metric-label">雙鑲嵌核心優勢</div>
-          <div class="eng-obj-metric-value" style="font-size: 15px;">孔與溝槽一體成型</div>
-          <div class="eng-obj-metric-note">免除接觸介面，接觸電阻降低 40%</div>
+          <div class="eng-obj-metric-label">${lang === 'en' ? "Dual-damascene integration" : "雙鑲嵌核心優勢"}</div>
+          <div class="eng-obj-metric-value" style="font-size: 15px;">${lang === 'en' ? "Integrated via and trench" : "孔與溝槽一體成型"}</div>
+          <div class="eng-obj-metric-note">${lang === 'en' ? "40% reduction is an uncalibrated teaching example, not a guaranteed contact-resistance result." : "40% 降低僅為未校準教學示例，並非接觸電阻保證。"}</div>
         </div>
       `;
 
       footerNote = t.ch10_damascene_desc;
     } else if (activeTab === 'superfill') {
       viewportHtml = `
-        <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="ECD Superfilling">
+        <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="${lang === 'en' ? "ECD Superfilling" : "電鍍超填示意"}">
           <g transform="translate(250, 40)">
             <rect x="0" y="0" width="300" height="280" rx="4" fill="#131e2b" stroke="#334155" stroke-width="2"/>
             
@@ -129,20 +129,20 @@ export function renderInterconnectObject(container, lang = 'zh') {
             
             <!-- 底部銅自底向上噴泉生長 -->
             <path d="M 90,160 Q 150,110 210,160 L 210,230 L 90,230 Z" fill="#f59e0b"/>
-            <text x="150" y="195" text-anchor="middle" fill="#09131b" font-size="12" font-weight="700">自底向上電鍍生長</text>
+            <text x="150" y="195" text-anchor="middle" fill="#09131b" font-size="12" font-weight="700">${lang === 'en' ? "Bottom-up plating" : "自底向上電鍍生長"}</text>
 
             <!-- 抑制劑 Suppressor 在孔口邊角 -->
             <g fill="#ef4444">
               <rect x="75" y="0" width="20" height="12" rx="2"/>
               <rect x="205" y="0" width="20" height="12" rx="2"/>
             </g>
-            <text x="150" y="-12" text-anchor="middle" fill="#ef4444" font-size="11.5" font-weight="700">抑制劑 Suppressor (開口阻生長)</text>
+            <text x="150" y="-12" text-anchor="middle" fill="#ef4444" font-size="11.5" font-weight="700">${lang === 'en' ? "Suppressor: slows growth at opening" : "抑制劑 Suppressor (開口阻生長)"}</text>
 
             <!-- 加速劑 Accelerator 在孔底高曲率處累積 -->
             <g fill="#10b981">
               <circle cx="110" cy="175" r="4"/><circle cx="150" cy="155" r="4"/><circle cx="190" cy="175" r="4"/>
             </g>
-            <text x="150" y="255" text-anchor="middle" fill="#10b981" font-size="11.5" font-weight="700">加速劑 Accelerator (孔底加速填平)</text>
+            <text x="150" y="255" text-anchor="middle" fill="#10b981" font-size="11.5" font-weight="700">${lang === 'en' ? "Accelerator: promotes bottom-up fill" : "加速劑 Accelerator (孔底加速填平)"}</text>
           </g>
           <g class="eng-kinetic-wave" pointer-events="none"><circle cx="400" cy="200" r="68" fill="none" stroke="#38bdf8" stroke-width="1.4" class="anim-pulse-ring" opacity="0.45"/><path d="M 140,60 Q 400,32 660,60" fill="none" stroke="#34d399" stroke-width="1.5" class="anim-field-glow" opacity="0.5"/></g>
         </svg>
@@ -150,14 +150,14 @@ export function renderInterconnectObject(container, lang = 'zh') {
 
       dashboardHtml = `
         <div class="eng-obj-metric-card">
-          <div class="eng-obj-metric-label">電鍍填孔模式</div>
-          <div class="eng-obj-metric-value" style="color: var(--semi-teal);">無縫超填 (Superfilling)</div>
-          <div class="eng-obj-metric-note">孔底成長速率為孔口的 5 倍以上</div>
+          <div class="eng-obj-metric-label">${lang === 'en' ? "Plating fill mode" : "電鍍填孔模式"}</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-teal);">${lang === 'en' ? "Superfilling schematic" : "超填示意 (Superfilling)"}</div>
+          <div class="eng-obj-metric-note">${lang === 'en' ? "Illustrative bottom/opening growth ratio: >5x; not calibrated." : "孔底／孔口成長速率比示例：5 倍以上；未校準。"}</div>
         </div>
         <div class="eng-obj-metric-card">
-          <div class="eng-obj-metric-label">空洞與接縫 (Voids/Seams)</div>
-          <div class="eng-obj-metric-value">0% 零缺陷</div>
-          <div class="eng-obj-metric-note">徹底消除高深寬比接觸窗孔洞斷線</div>
+          <div class="eng-obj-metric-label">${lang === 'en' ? "Voids and seams" : "空洞與接縫 (Voids/Seams)"}</div>
+          <div class="eng-obj-metric-value">${lang === 'en' ? "0% (idealized example)" : "0%（理想示例）"}</div>
+          <div class="eng-obj-metric-note">${lang === 'en' ? "Actual seam/void risk depends on geometry, additives and process control." : "實際接縫／空洞風險取決於幾何、添加劑與製程控制。"}</div>
         </div>
       `;
 
@@ -177,13 +177,13 @@ export function renderInterconnectObject(container, lang = 'zh') {
       let riskText = '';
       let riskColor = '';
       if (mttfYears >= 10.0) {
-        riskText = `${mttfYears.toFixed(1)} 年 (車規/伺服器極致可靠)`;
+        riskText = lang === 'en' ? `${mttfYears.toFixed(1)} years (longer model regime)` : `${mttfYears.toFixed(1)} 年（較長模型區間）`;
         riskColor = 'var(--semi-teal)';
       } else if (mttfYears >= 1.0) {
-        riskText = `${mttfYears.toFixed(1)} 年 (合格消費電子標竿)`;
+        riskText = lang === 'en' ? `${mttfYears.toFixed(1)} years (intermediate model regime)` : `${mttfYears.toFixed(1)} 年（中間模型區間）`;
         riskColor = '#38bdf8';
       } else {
-        riskText = `${Math.round(mttfHours)} 小時 (⚠️ 早期斷路風險)`;
+        riskText = lang === 'en' ? `${Math.round(mttfHours)} hours (shorter model regime)` : `${Math.round(mttfHours)} 小時（較短模型區間）`;
         riskColor = '#ef4444';
       }
 
@@ -199,14 +199,14 @@ export function renderInterconnectObject(container, lang = 'zh') {
                 <span class="eng-obj-slider-label">${t.ch10_j_slider}</span>
                 <span class="eng-obj-slider-val" id="jVal">${currentDensityMA.toFixed(1)} MA/cm²</span>
               </div>
-              <input type="range" class="eng-obj-slider" id="jSlider" min="0.5" max="5.0" step="0.1" value="${currentDensityMA}" aria-label="Current Density">
+              <input type="range" class="eng-obj-slider" id="jSlider" min="0.5" max="5.0" step="0.1" value="${currentDensityMA}" aria-label="${lang === 'en' ? "Current Density" : "電流密度"}">
             </div>
             <div class="eng-obj-slider-unit">
               <div class="eng-obj-slider-header">
                 <span class="eng-obj-slider-label">${t.ch10_temp_slider}</span>
                 <span class="eng-obj-slider-val" id="tempVal">${tempC} °C</span>
               </div>
-              <input type="range" class="eng-obj-slider" id="tempSlider" min="50" max="150" step="5" value="${tempC}" aria-label="Junction Temperature">
+              <input type="range" class="eng-obj-slider" id="tempSlider" min="50" max="150" step="5" value="${tempC}" aria-label="${lang === 'en' ? "Junction Temperature" : "接面溫度"}">
             </div>
           </div>
         </div>
@@ -218,7 +218,7 @@ export function renderInterconnectObject(container, lang = 'zh') {
       const hillockHeight = Math.round(10 + emIntensity * 38);
 
       viewportHtml = `
-        <svg viewBox="0 0 800 380" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Electromigration Live Engine">
+        <svg viewBox="0 0 800 380" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="${lang === 'en' ? "Electromigration Live Engine" : "電遷移教學模型"}">
           <g transform="translate(130, 45)">
             <rect x="0" y="0" width="540" height="200" rx="4" fill="#131e2b" stroke="#334155" stroke-width="2"/>
             
@@ -228,7 +228,7 @@ export function renderInterconnectObject(container, lang = 'zh') {
             <!-- 頂部帽層 (SiCN vs Co/Ru) -->
             <rect x="40" y="47" width="460" height="8" fill="${capTech === 'coru' ? '#10b981' : '#0f766e'}" filter="${capTech === 'coru' ? 'drop-shadow(0 0 6px #10b981)' : 'none'}"/>
             <text x="270" y="42" text-anchor="middle" fill="${capTech === 'coru' ? '#10b981' : '#94a3b8'}" font-size="11" font-weight="700">
-              ${capTech === 'coru' ? 'Co/Ru 金屬沉積覆蓋帽層 (強鍵合鎖緊原子 · Ea = 1.25 eV)' : 'SiCN 介電帽層 (介面易滑移 · Ea = 0.85 eV)'}
+              ${capTech === 'coru' ? (lang === 'en' ? 'Co/Ru cap: assumed Ea = 1.25 eV' : 'Co/Ru 金屬帽層：假設 Ea = 1.25 eV') : (lang === 'en' ? 'SiCN cap: assumed Ea = 0.85 eV' : 'SiCN 介電帽層：假設 Ea = 0.85 eV')}
             </text>
 
             <!-- 電子風方向 (向右大量電子流動畫線) -->
@@ -237,21 +237,17 @@ export function renderInterconnectObject(container, lang = 'zh') {
               <line x1="200" y1="90" x2="280" y2="90"/>
               <line x1="320" y1="90" x2="400" y2="90"/>
             </g>
-            <text x="270" y="105" text-anchor="middle" fill="#38bdf8" font-size="12" font-weight="750" data-ink="light">
-              電子風 (Electron Wind Force → J = ${currentDensityMA.toFixed(1)} MA/cm²)
-            </text>
+            <text x="270" y="105" text-anchor="middle" fill="#38bdf8" font-size="12" font-weight="750" data-ink="light">${lang === 'en' ? `Electron wind; J = ${currentDensityMA.toFixed(1)} MA/cm²` : `電子風；J = ${currentDensityMA.toFixed(1)} MA/cm²`}</text>
 
             <!-- 上游形成空洞 (Void - 斷路風險) -->
             <path d="M 80,55 Q ${80 + voidWidth},90 80,125 Z" fill="#09131b" stroke="#ef4444" stroke-width="1.5"/>
-            <text x="80" y="145" text-anchor="middle" fill="#ef4444" font-size="11" font-weight="700">空洞 (Void)</text>
+            <text x="80" y="145" text-anchor="middle" fill="#ef4444" font-size="11" font-weight="700">${lang === 'en' ? "Void" : "空洞 (Void)"}</text>
 
             <!-- 下游擠出金屬丘陵 (Hillock - 短路風險) -->
             <path d="M 430,55 Q ${445},${55 - hillockHeight} 460,55 Z" fill="#f59e0b" stroke="#f59e0b" stroke-width="1.5"/>
-            <text x="445" y="${Math.min(35, 50 - hillockHeight)}" text-anchor="middle" fill="#f59e0b" font-size="11" font-weight="700">丘陵 (Hillock)</text>
+            <text x="445" y="${Math.min(35, 50 - hillockHeight)}" text-anchor="middle" fill="#f59e0b" font-size="11" font-weight="700">${lang === 'en' ? "Hillock" : "丘陵 (Hillock)"}</text>
 
-            <text x="270" y="175" text-anchor="middle" fill="#cbd5e1" font-size="11">
-              Black 方程：MTTF ∝ J⁻² · exp(Ea / kT) | 當前溫度: ${tempC}°C (${(tempC + 273.15).toFixed(1)} K)
-            </text>
+            <text x="270" y="175" text-anchor="middle" fill="#cbd5e1" font-size="11">${lang === 'en' ? `Black model: MTTF ∝ J⁻² · exp(Ea / kT) | T: ${tempC}°C (${(tempC + 273.15).toFixed(1)} K)` : `Black 方程：MTTF ∝ J⁻² · exp(Ea / kT) | 當前溫度: ${tempC}°C (${(tempC + 273.15).toFixed(1)} K)`}</text>
           </g>
           <g class="eng-kinetic-wave" pointer-events="none"><circle cx="400" cy="200" r="68" fill="none" stroke="#38bdf8" stroke-width="1.4" class="anim-pulse-ring" opacity="0.45"/><path d="M 140,60 Q 400,32 660,60" fill="none" stroke="#34d399" stroke-width="1.5" class="anim-field-glow" opacity="0.5"/></g>
         </svg>
@@ -261,17 +257,17 @@ export function renderInterconnectObject(container, lang = 'zh') {
         <div class="eng-obj-metric-card">
           <div class="eng-obj-metric-label">${t.ch10_mttf_label}</div>
           <div class="eng-obj-metric-value" style="color: ${riskColor}; font-size: 16px;">${riskText}</div>
-          <div class="eng-obj-metric-note">Black 方程預估之中位壽命</div>
+          <div class="eng-obj-metric-note">${lang === 'en' ? "Mean time to failure: uncalibrated Black-model estimate, not product qualification." : "平均失效時間：未校準 Black 模型估計，非產品合格判定。"}</div>
         </div>
         <div class="eng-obj-metric-card">
           <div class="eng-obj-metric-label">${t.ch10_ea_label}</div>
           <div class="eng-obj-metric-value" style="color: ${capTech === 'coru' ? 'var(--semi-teal)' : '#f59e0b'};">${ea} eV</div>
-          <div class="eng-obj-metric-note">${capTech === 'coru' ? '鈷釕帽層消除頂部界面擴散通道' : '銅介電層介面為主要遷移路徑'}</div>
+          <div class="eng-obj-metric-note">${capTech === 'coru' ? (lang === 'en' ? 'Cap mitigation is illustrated; actual interface diffusion requires validation.' : '帽層抑制作用為示意；實際界面擴散須驗證。') : (lang === 'en' ? 'The Cu/dielectric interface is a possible diffusion path.' : '銅／介電層界面是可能的擴散路徑。')}</div>
         </div>
         <div class="eng-obj-metric-card">
           <div class="eng-obj-metric-label">${t.ch10_risk_label}</div>
           <div class="eng-obj-metric-value" style="color: ${riskColor}; font-size: 15px;">
-            ${mttfYears >= 10.0 ? 'Tier-1 汽車/超算' : (mttfYears >= 1.0 ? '消費電子標準' : '超限警示 (Fail)')}
+            ${mttfYears >= 10.0 ? (lang === 'en' ? 'Longer model lifetime' : '較長模型壽命') : (mttfYears >= 1.0 ? (lang === 'en' ? 'Intermediate model lifetime' : '中間模型壽命') : (lang === 'en' ? 'Shorter model lifetime' : '較短模型壽命'))}
           </div>
           <div class="eng-obj-metric-note">J = ${currentDensityMA} MA/cm² · T = ${tempC}°C</div>
         </div>
@@ -316,12 +312,12 @@ export function renderInterconnectObject(container, lang = 'zh') {
           <div class="eng-obj-metric-card">
             <div class="eng-obj-metric-label">${lang === 'en' ? 'Fuchs-Sondheimer & Black EM Law' : '奈米尺寸效應與電遷移律 (BEOL Law)'}</div>
             <div class="eng-obj-metric-value" style="font-size: 13.5px; color: #0284c7;">${lang === 'en' ? 'ρ_eff ∝ ρ0·λ0/W · MTTF = A·J^-n·e^(Ea/kT)' : 'ρ_eff ∝ ρ0·λ0/W · MTTF = A·J^-n·e^(Ea/kT)'}</div>
-            <div class="eng-obj-metric-note">${lang === 'en' ? 'Proves barrierless Ru/Mo beats Cu <15nm, plus Elmore L² & EM' : '證明 <15nm 下無阻障 Ru/Mo 勝過銅，以及 Elmore L² 與 Blech 長度'}</div>
+            <div class="eng-obj-metric-note">${lang === 'en' ? "Teaching overview: <15 nm material trade-offs, Elmore L² delay and Blech/EM limits; no universal Ru/Mo advantage is established." : "教學概覽：<15 nm 材料取捨、Elmore L² 延遲與 Blech／電遷移限制；不證明 Ru/Mo 普遍優於銅。"}</div>
           </div>
                   <div class="eng-obj-metric-card">
             <div class="eng-obj-metric-label">${lang === 'en' ? 'Failure Diagnostics & OCAP' : '現場異常診斷與防呆 (Failure & OCAP)'}</div>
             <div class="eng-obj-metric-value" style="font-size: 13.5px; color: #d97706;">${lang === 'en' ? 'Via Open/SIV · ULK TDDB · EM Hillock' : 'Via Open/SIV · ULK TDDB · EM Hillock'}</div>
-            <div class="eng-obj-metric-note">${lang === 'en' ? 'Prevents via SIV opens, ULK plasma-damage TDDB & EM cathode voids' : '以無阻障 Co/Ru 通孔、孔隙修復與選擇性鈷蓋層防範通孔開路、TDDB 與電遷移'}</div>
+            <div class="eng-obj-metric-note">${lang === 'en' ? "Review via integrity, ULK dielectric damage and EM voiding; qualify mitigation for each process." : "檢查通孔完整性、ULK 介電層損傷與電遷移空洞；改善措施須依製程驗證。"}</div>
           </div>
         </div>
 

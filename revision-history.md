@@ -3,6 +3,148 @@
 > 2.1.0–2.6.0 當時沒有寫入本檔，只記在 README「專案特色」與 Git 提交訊息；本檔自 2.6.1 起恢復逐版記錄。
 > 本檔原名 `修訂紀錄.md`。2.6.1 依規則 0013 改用英文檔名，歷史條目中的舊檔名保留原文，對照見下方「檔名英文化」條目。
 
+
+
+
+
+## 2.11.0 · 2026-10-30 · 首頁與十章閱讀樣板、圖文及術語修正（本機發布候選）
+
+- Sam 已核可 Stage 0～2、Stage 3 首批及 B2～B5 成果；B5 來源 Sentinel_b8256689f78c81918a2e0762fc36b9f8「確認」，對應核可成果並提交、發布目前累積修改。B5 五項核可 5/5，並非全站或最終成品驗收。
+- 首頁突出既有十二站製程概覽；CH04、05、06、07、08、09、10、19、20、21 標題及原重點前置、重複旅程資訊合併、目錄與字級工具流內化、桌面與手機圖面閱讀改善。保留正文、來源、照片與互動入口。
+- 修正 CH08 polishing pad 誤連 Bond Pad；校正 CH04／CH21 參考圖身分與 CH21 公分尺熱點；修正各批限定英文動態字句及中英技術語意。CH09 聲微流明列教學模型；CH10 計算器／曲線依核可改固定 J=2 MA/cm²、T=105°C 的相對壽命比值，並共用 currentJ，不再宣稱未校準絕對年限。
+- 沿用各批有效局部 L2 與真正 AGY 限定靜態審查。B5 原 218 通過與 9 失敗收據保留，失敗由定向 50/50 補驗解決；相對模型定向 80/80。此次發布準備只比對指定來源雜湊、版本差異及 Git 暫存內容，不重跑產品測試。
+- package.json、index.html、app.js 中英頁尾及版本斷言同步為 2.11.0；斷言只更新預期版本，未移除或弱化檢查。既有首次繁中及儲存語言偏好保持不變，與最新「English 預設」要求有待釐清，未默改。
+- 限制：模型為未校準教學示例，AGY 未親自操作或重跑測試。只有首頁與上述十章閱讀樣板已驗收；其他十五章及三附錄未納入本批驗收，不宣稱全站完成。
+- 發布狀態：本機候選；限定提交的完整 SHA 與暫存檔案清單由同任務 release-b5-evidence/publication-status.json 記錄。尚未 push／部署。既有 deploy.yml 所有 push／PR／手動觸發皆執行十支完整驗證及全產物參照檢查；本次發布授權未包含該範圍，因此在 push 前停止待決，不停用 CI、不另路發布。B6 規劃待正式發布後開始，未進 Stage 4；ZIP 由 Sam 手動處理。
+
+## 未提交 B5 AGY 完成 · 2026-10-30（待Sam成果核可）
+
+- Sam解鎖桌面後，原AGY對話092356a1-eb8e-4b71-b012-39b3ab115e15確認第二則未送，移除舊08、載入新版相對模型圖並替換文字及兩檔模型diff。依新增明確披露核可重試原Send一次成功；第一則封包與01–04不重傳，未改道，原拒絕／視窗阻擋解除。
+- Gemini3.8FlashHigh實收九圖及最新差異，UI第二則時間晚上11:19，回覆五項無新增具體缺陷／無阻擋。主控指出calculator另有helper／公式／輸出變更、218通過＋9失敗、currentJ動態依據為主控80/80、5.20:1來自原50項computed CSS，以及聊天跳脫格式不是bytes證據；晚上11:22短校正經AGY確認不影響原結論。
+- AGY只靜態審查差異／圖與主控收據，未親自操作、測試、量測對比或校準模型。沒有新產品修正或重跑測試；原71／218有效與9失敗歷史／50補驗／模型80證據保留。相對壽命模型與其他模型來源限制不因AGY結論而消失。
+- 原任務單一stage-execution-plan.md、B5 review-summary、agy-review／source、比較頁與manifest更新；九產品檔及修訂紀錄。B5五項本機交付及限定AGY完成，Sam成果Gate仍0/5，停Review Gate待核可，不進B6／Stage4。
+- 版本2.10.1，HEAD 2b3471d5e8c275433a0d90b5a862280cc5d5ba6f，branch codex/fix-polishing-pad-link；無新提交或公開部署。未commit／push／merge／deploy／ZIP、額外付費或治理修改。
+
+## 未提交 CH10 相對模型補正 · 2026-10-30 · B5（AGY待恢復視窗）
+
+- Sam Sentinel_00bab9c17c988191807d1ccc096d7142明確同意CH10計算器／曲線改相對壽命，以及原AGY第二則五圖／指示傳送。這是範圍例外核可，不是B5成果核可；Sam仍0/5，下方原模型待決／傳送拒絕保留歷史。
+- 僅data/curve-plotter.js新增relativeEmLifetime及CH10定義、data/calculators-data.js加入helper import並改CH10公式／文案／輸出。固定Jref2MA/cm²、Tref105°C=378.15K，r=(2/J)²exp[(0.9/8.617e-5)(1/(T°C+273.15)−1/378.15)]；n2、Ea0.9eV沿用教學假設。r1是參考定義、不指定年限。曲線讀currentJ、範圍0.5–5，卡／曲線／操作點共用函數。原電阻率、其他章節與工程頁籤保留。
+- 本次明確授權替換了原約2.82×10¹²years輸出，不能繼續聲稱該公式／年限未改。新模型仍非校準可靠度預測或產品合格；原CH10工程頁籤帽層模型及CH07兩套近似亦不能互為校準。
+- 唯一新定向L2 80/80（run-20261030T224026-f711f5fd）：兩檔before/after hash與HTTP身份、其他章節bytes及電阻率保全、數學參考及趨勢、EN1440×1000與ZH390×844實際J/T控制、卡／曲線／工作點／語意／裁切／Escape焦點、page-console error0。結果1.000→J4時0.250→T110時0.174；圖工作點顯示至2位小數、卡3位，並非數值矛盾。
+- 主控實看新中英完整計算器圖；僅截圖時展開modal捲動內容並還原，原viewport／scroll幾何另存。既有218有效及50項補驗重用，未整批或全站重跑。新model-change.patch、model-definition.md與results.json存原task/stage3-b5-evidence/relative-model；累計九產品檔。
+- AGY新披露授權已取得。原對話092356a1-eb8e-4b71-b012-39b3ab115e15可讀AX，確認五附件及舊文字仍在草稿；但視窗截圖全黑，Escape／公開Raise皆failed to activate captured window。本輪沒有按Send、沒有再次自動審查拒絕，一次送出重試尚未使用，沒有繞路。已請恢復桌面／原視窗；恢復後須換掉草稿舊08及舊指示，再依授權送一次。本機08與完整新指示／diff已備妥，第一則已送資料不重傳。
+- 單一計畫、B5 Plan/Actual與本機比較已更新模型已修／AGY技術阻擋；成果Gate仍0/5，不得冒稱AGY完成。版本2.10.1、HEAD 2b3471d5e8c275433a0d90b5a862280cc5d5ba6f未變；未commit／push／merge／deploy／ZIP、額外付費或安全設定變更，不B6／Stage4，線上未更新。
+
+## 未提交 B5 本機候選 · 2026-10-30 · CH07／CH10（AGY送出被拒、模型待決）
+
+- B4含技術文案補正已由Sam Sentinel_3ba407e15c4c81919e89066ef3c42150核可5/5；B5 CH07／CH10範圍由Sentinel_a0054f95017481918565fa701d7687b2核可。本批成果未核可，Sam Gate0/5；歷史條目保留當時狀態。
+- 八產品檔限定兩章：app.js、design-system.css、engineering-diagram-reader.js、engineering-object-controls.js加入既有樣板與限定語系／calculator class；engineering/ch07.js、engineering/ch10.js、engineering/shared.js及data/calculators-data.js改兩章指定文字。標題及各原五點重點前置、完全重複旅程合併、TOC／字級進閱讀流；桌面圖約551→888.34px、手機347px單欄。正文資料、照片、來源、公式、參數、運算輸出保留。
+- 補SVG／控制／動態分支英文，CH10六步驟文字漏翻已修。移除未建模的完全活化／零擴散／產品認證保證，保留原數字並標教學示例；MTTF統一mean／平均、CH07峰值為體積濃度而非dose／表面峰值，CH10表面散射近似不假稱獨立晶界模型。逐項old/new/reason在原任務b5-copy-edits.json、copy-findings.md。
+- 基準71/71（run-20261030T191549-97de2814）；修後218通過9失敗（run-20261030T191734-d73368a3）保留原紀錄：七筆同一步驟漏翻、一筆runner未打開sidebar、一筆完成旗標衍生失敗。僅定向補驗50/50（run-20261030T192607-323434a4）解決上述失敗並補徽章對比5.20:1／Escape與焦點，未重跑整批。只EN1440×1000與ZH390×844、兩章代表動態；page／console error0，主控親看前後／最終圖。不是全站、真機或完整參數認證。
+- 真正AGY對話092356a1-eb8e-4b71-b012-39b3ab115e15／Gemini3.8FlashHigh已收到八檔diff封包及01–04四圖，只回覆收件確認。05–09五圖已載入編輯器，但第二則Send message遭自動核准審查拒絕，理由未認定特定本地證據披露授權；只讀確認附件及指示仍在草稿，該送出未執行，未重試或換路。不能聲稱五圖尚未上傳或AGY已完成；完整拒絕與待確認記於原任務stage3-b5-evidence/agy-review.md。
+- 技術待決：CH10同屏曲線100/J²任意尺度值25與數值卡約2.82×10¹²years不同尺度；曲線讀currentDensity、calculator用currentJ，操作點可能固定預設（原碼推論，未另動態重現）。本輪未改curve-plotter、公式或輸出。需先決定相對教學尺度或取得校準來源再顯示絕對年限，再接參數並定向驗證；不任意調常數。CH07兩處模型近似也不能互相校準。第五項不能稱技術完全達成。
+- 單一stage-execution-plan.md、stage3-b5-evidence/review-summary.md、delivery-manifest.json與stage3-b5.patch可追溯。本機比較http://127.0.0.1:5320/stage3-b5-review.html，操作4635/#ch07與#ch10；僅同機預覽。
+- 版本2.10.1、HEAD 2b3471d5e8c275433a0d90b5a862280cc5d5ba6f，branch codex/fix-polishing-pad-link；無新提交SHA，既有dirty保留。停B5待解除AGY阻擋及Sam模型決策／成果Gate，不下一批或Stage4。未commit／push／merge／deploy／ZIP，無額外付費或安全／治理修改，線上未更新。
+
+## 未提交技術文案差異補正 · 2026-10-30 · Stage 3-B4（待 Sam 成果核可）
+
+- Sam Sentinel_2ead064607a08191818173960542c5d9指定「先處理 B4 列出的技術文案差異」，並非B4成果核可；Sam仍0/5，不進下一批。
+- CH08診斷卡中英統一為各缺陷的檢查方向及依製程驗證，移除未支持的1–2.5nm敘述，原相鄰1.5nm保留並標示示例。密度圖／圖說不再有另一套無條件30%～50%或完美平坦／消除起伏保證，原35%～50%卡明示為教學示例，實際依製程設計規則。
+- CH09計算器中英介紹與輸出註記明示Fdrag/Fvdw百分比不是PRE，SC-1化學未建模；移除99%PRE承諾。沒有改公式、參數、運算輸出或先前microstreaming／polishing pad修復。
+- 新影響僅engineering/ch08.js、engineering/shared.js兩個CH08圖說字串與data/calculators-data.js的CH09說明；B4累計八產品檔。逐項原句、修正與來源記於task/stage3-b4-evidence/technical-copy-review.md；一般原書缺逐項依據，SkyWater PDK僅支持規則適用條件，不用其數字校準教材；指定論文DOI未能開啟，未引用二手摘要當校準。
+- 一次最小L2 112/112（run-20261030T154853-00991a12）：三檔反向字串後逐bytes等於原檔，前次CH09工程／glossary hash保全。僅CH08缺陷卡、CH09計算器EN桌面／ZH手機四情境，六張原生畫面實看；30→40nm時0.62→0.83nN、39.9%保留，page／console error0。舊211／53／42有效契約證據重用，未整批重跑。
+- 原AGY對話092356a1-eb8e-4b71-b012-39b3ab115e15／Gemini3.8FlashHigh實收本次三檔diff封包與四圖，確認文意一致、無新增具體缺陷或阻擋；只靜態補審，未親自操作／校準，不重審全輪。回覆與附件hash保存於同一agy-review.md／agy-review-source.json補審欄。
+- 版本2.10.1，HEAD 2b3471d5e8c275433a0d90b5a862280cc5d5ba6f未產生新提交。仍是未提交本機候選；無commit／push／merge／deploy／ZIP或額外付費，線上未更新。單一計畫與本機比較5320/stage3-b4-review.html已更新，停B4成果Gate待Sam。
+
+## 未提交文案校正與 AGY 完成 · 2026-10-30 UTC · Stage 3-B4（待 Sam 成果核可）
+
+- Sam以Sentinel_3b28be9f96b48191a6da4e5a25b38634「一起核可」，明確允許CH09最小文案校正，以及B4指定封包／九圖送原AGY對話。這不是成果核可，Sam B4 Gate仍0/5；下方首次被拒條目保留歷史。
+- 僅engineering/ch09.js兩個文字表達式：高頻狀態改Controlled microstreaming (teaching-model regime)／受控聲微流（教學模型區間），移除盾牌；相鄰註記移除無條件零損傷及2nm GAA保證，指向原PRE計算欄。公式、參數、運算輸出及低頻／過渡分支均未改。
+- 只補EN桌面1.00／2.00MHz與ZH手機1.00MHz三態，42/42（run-20261030T133531-1786b2c0）；保留1.82x／98.1%及3.46x／99.9%，status對比7.68:1，文字未裁切，四圖實看。此輪數值斷言用既有英文fixed同參數紀錄，先前繁中觀測另留存；未重跑211／53或全站，不作模型校準。
+- 先前Files動作確定未執行，收到新具體授權後原入口重新審核一次獲允許；原AGY對話092356a1-eb8e-4b71-b012-39b3ab115e15／Gemini3.8FlashHigh實收更新六檔diff與九圖，確認五項限定審查通過，無新增具體缺陷或阻擋。AGY只審靜態圖／diff／主控證據，未親自操作或跑測試；無需Claude第二意見。
+- 保留原內容限制：CH08 Failure note語意及30%–50%／35%～50%差異、CH09低頻兩語字句及計算器SC1 99%原註記未校準。未宣稱全部技術正確、全站全英或來源重新認證。此輪已核可之高頻兩句矛盾已修，不再列未處理。
+- 原任務單一stage-execution-plan.md已更新五項Plan／Actual及Sam0/5；stage3-b4-evidence/agy-review.md、agy-review-source.json、pre-copy.patch、pre-copy-followup與delivery-manifest.json可追溯。比較http://127.0.0.1:5320/stage3-b4-review.html；CH08／09預覽4635。
+- 同一隔離worktree、HEAD 2b3471d5e8c275433a0d90b5a862280cc5d5ba6f、版本2.10.1，無新commit。停B4成果Gate待Sam核可，不下一批／Stage4；未commit／push／merge／deploy／ZIP、無額外付費或安全設定變更，線上未更新。
+
+## 未提交閱讀樣板與英文修正 · 2026-10-30 UTC · Stage 3-B4（AGY 被拒未驗）
+
+- B3成果已獲Sam核可5/5，B4僅CH08／CH09範圍已核可；本機五項證據就緒，尚缺必備AGY交叉審查，不能稱本批完整通過。Sam成果Gate仍0/5；以下舊條目保留歷史，最新狀態見原任務單一執行計畫。
+- 六產品檔限定兩章閱讀helper／英文範圍；標題及原五點重點前置、僅完全重複旅程去重、TOC／字級流內化。桌面主圖550.84→888.34px、手機347px單欄；正文、來源、原照片、數字與互動保全。CH08 polishing pad不誤連，glossary-links.js未改，Stage0有效結果重用。
+- CH08／09補齊模型SVG、動態提示、控制刻度與局部footer英文；CH09控制列及狀態深色、兩章計算器標題可讀。實看另修CH08中英研磨頭完整標籤分行移右加引線、CH09刻度11px三欄換行，無模型公式或技術數值修改。
+- 局部基準69/69、修後211/211；29英文代表狀態未分類中文0，四個明示雙語術語及語言名稱精確例外。只對兩處畫面補驗53/53，未重跑211或前批；收據run-20261030T124541-f4bb0170、124713-e000178c、125425-628831d0。最後七圖及六頁籤實看，無page／console error；不等於全站認證。
+- 原內容限制未擅改：CH09高頻EN固定「Zero Damage PRE >99%」與另外計算之PRE並非全區間相符，ZH無該宣稱；CH08ENFailure note 1–2.5nm與ZH主題不同、圖30%–50%／metric35%～50%原差異保留，待內容校正決策，未獲Sam接受。RCA local footer對齊原ZH Fe/Cu，70°C與公式保留，shared.js未改。
+- AGY原對話092356a1-eb8e-4b71-b012-39b3ab115e15／Gemini3.8FlashHigh之Files入口遭自動審核拒絕：未認定具體B4資料外傳授權。尚未選檔／上傳／送出／取得回覆，不換路或重試，不冒稱審查完成。封包與九圖只在本機，精確阻擋及所需確認見原任務stage3-b4-evidence/agy-review.md。
+- 證據stage3-b4-evidence/review-summary.md、delivery-manifest.json、stage3-b4.patch；本機比較http://127.0.0.1:5320/stage3-b4-review.html，操作4635/#ch08及#ch09。未驗全站、全參數／尺寸、真機、照片OCR或來源／模型校準；首次zh契約保留。
+- HEAD仍2b3471d5e8c275433a0d90b5a862280cc5d5ba6f，版本2.10.1，無新commit。未提交／push／merge／deploy／ZIP／額外付費／治理修改，線上未更新。停B4，先解除AGY阻擋及完成審查再供Sam成果Gate，不下一批或Stage4。
+
+## 未提交閱讀樣板與英文修正 · 2026-10-29 UTC · Stage 3-B3（待 Sam 成果核可）
+
+- B2含可讀性補正已獲Sam核可5/5；Sam另核可B3 CH05／CH06範圍。本批五項技術交付與AGY審查完成，Sam成果Gate仍0/5。以下舊條目保留當時歷史，現行狀態以原任務單一執行計畫為準。
+- 六產品檔限定加入兩章閱讀helper／英文白名單，章節標題及原重點前置、完全重複旅程去重，TOC／字級流內化。桌面主圖550.84→888.34px、手機347px單欄；保留正文、數字、來源、照片與互動。
+- CH05／06補齊模型SVG、動態提示及footer英化；CVD補現有繁中教學趨勢邊界，公式未改。CH05徽章白底深紅綠、兩章計算器深色標題；CH06中英文鞘層完整名稱／括註／Vdc分三行移至腔壁外，未改結構圖形。
+- 一次局部L2修後230/230，35英文代表狀態未分類中文0；四個明示雙語詞彙及語言名精確例外。圖面觀察追加EN鞘層兩態與CVD質傳分支8/8，再僅ZH鞘層Fit／Reading5/5；沒有重跑已過套件。page／console error0；基準79/79。收據run-20261030T024255-34146593、024601-3da320fe、025132-6e3ac305。
+- AGY沿用原Gemini3.8FlashHigh對話092356a1-eb8e-4b71-b012-39b3ab115e15，實收六檔diff／摘要與九張圖，未提阻擋性缺陷；未親自動態操作。旅程／重點、圖09無尺規、測試與class改動描述經校正並確認，未追加產品重做、重測或Claude審查。
+- 同任務stage3-b3-evidence/review-summary.md、agy-review.md、delivery-manifest.json、stage3-b3.patch可追溯；本機比較http://127.0.0.1:5320/stage3-b3-review.html，操作4635/#ch05及#ch06。未驗全站、全尺寸參數、真機或照片OCR；原來源／教學模型未重新認證，首次zh契約保留。
+- HEAD仍2b3471d5e8c275433a0d90b5a862280cc5d5ba6f，版本2.10.1；無新commit。未commit／push／merge／deploy／ZIP，未額外付費或改治理。停B3成果Gate待Sam核可，不下一批／Stage4，線上未更新。
+
+## 未提交可讀性補正 · 2026-10-29 · Stage 3-B2 Gate 釐清
+
+- 前次將 CH19 徽章與 CH21 計算器標題列既有低對比卻統稱技術完成，處置不充分；兩項均屬本次限定可讀性缺陷，已最小修正，下面初次交付紀錄保留當時狀態。
+- 僅 design-system.css、engineering-object-controls.js、engineering/ch19.js 新增章節限定 class／狀態色；CH19 徽章白底深紅綠橙，CH21 計算器標題深色。文字、數值、公式、來源、事件未改。最低對比 6.47:1／16.30:1。
+- 只補兩處 1440×1000 EN 及各一 ZH；滑桿、三種 CP 狀態、計算器數值與 Esc 實測通過，錯誤0。原43斷言37通過、6筆誤抓文字footer之數值斷言保留；以同次 records 離線精確限定更正6/6，沒有重跑瀏覽器或132／108。收據run-20261029T215430-e6f45ad4及readability/assertion-correction.json。
+- AGY 原 Gemini 對話僅補看兩張局部英文圖及三檔小差異描述，確認可讀、未提具體缺陷，未親自操作；不是全部AGY重審。證據見原任務stage3-b2-evidence/agy-review.md與readability.patch。雙語例外與四項證據歸因更正已在原review-summary.md明確說明。
+- 本次兩處已修無產品阻擋，五項限定技術證據完成；Sam B2成果Gate仍0/5待核可，不進下一批／Stage4。未commit／push／merge／deploy／ZIP，無新SHA與版本，線上未更新。
+
+## 未提交閱讀樣板與英文修正 · 2026-10-29 · Stage 3-B2（待 Sam 成果核可）
+
+- Sam已核可B1成果4/4及B2 CH19／20範圍，並新增首頁／CH04／CH21／CH19／CH20定向英文補查。本批四項原交付保留，英文完整性另列第五項；Sam成果Gate仍待核可0/5。單一計畫記錄最新核可，下面B1條目保留當時交付歷史。
+- CH19／20套用既有標題／重點前置、完全相同旅程去重、TOC／字級流內化及桌面圖拓寬／手機單欄。主圖550.84→888.34px，手機347px。保全教材／來源／照片／計算與互動。
+- 補齊CH04 PR／scan及CH19／20 SVG、metric note、動態提示英文；共用reader／模型界線／複製錯誤與aria文字限指定四章，書籤／站外導航title限指定頁。修正CH19英文長句裁切與CH20控制區對比。共七個產品檔，本批index.html未改。
+- 局部L2：132/132；五頁108英文狀態未分類中文0。八個術語中英對照、黃光地域用語及「中文」切換名稱為精確例外，非全站零漢字。原英文metrics空欄不當保全證據，數字依預設SVG比較及diff。七態補驗45/48，僅CH20三態對比不足；修純白後僅四態18/18，保留失敗不全套重跑。
+- AGY沿用原Gemini3.8FlashHigh對話092356a1-eb8e-4b71-b012-39b3ab115e15，實收限定封包與九張真實畫面，五項技術符合。未親自操作網站／真機；底色、逐字保全及教材／工程檔hash歸因已校正。無新增產品修正或Claude重複審查。
+- 證據：同任務stage3-b2-evidence/review-summary.md、agy-review.md、delivery-manifest.json、stage3-b2.patch；收據run-20261029T210416-badf1a82、run-20261029T210417-b7832c91、run-20261029T211912-ea2f0e82、run-20261029T212345-a338877f。比較http://127.0.0.1:5320/stage3-b2-review.html，僅本機。
+- CH21既有計算器標題對比、CH19灰底狀態徽章未修；未重新驗證照片來源真實性／模型認證，未全面OCR、全站、全尺寸或真機。現行首次zh保留。停B2 Gate不進下一批／Stage4；未commit／push／merge／deploy／ZIP，版本2.10.1，基準HEAD仍2b3471d5e8c275433a0d90b5a862280cc5d5ba6f，線上未更新。
+
+## 未提交閱讀樣板 · 2026-10-29 · Stage 3 首批僅 CH21（待 Sam 成果核可）
+
+- Sam已核可Stage2四項及本批範圍；沿用原隔離分支與單一stage-execution-plan.md，Stage0／1／2成果保留。
+- app.js樣板條件加入CH21，沿用CH04原helper前置標題與原五項重點、僅去除完全相同旅程副本；TOC／字級移入閱讀工具區。design-system.css桌面split選擇器加入CH21，主圖約551→888px，手機維持347px單欄。僅兩個產品檔，本章教材、數字／模型、來源、照片及控制元件未改。
+- 最小L2：英文1440×1000與繁中390×844；初輪71/72，唯一手機熱點擷圖問題由靜止指標在自動捲動時觸發mouseleave造成。僅補驗失敗契約3/3通過，無產品追加修改，保留歷史失敗；未重跑其餘71項或Stage0～2套件。AGY在原對話審閱限定diff、有效證據與八張前後圖，四項符合，未見阻擋性缺陷；AGY未親自操作網站／真機。
+- 證據：同任務stage3-b1-evidence/，主收據run-20261029T184807-c39e5e5f、補驗run-20261029T185058-dd2b4f24、agy-review.md、delivery-manifest.json。比較http://127.0.0.1:5320/stage3-b1-review.html，候選http://127.0.0.1:4635/#ch21，僅本機。
+- 停首批成果Review Gate，Sam待核可0/4；不進下一批／Stage4。未驗全站、全尺寸、真機或多點觸控；現行預設zh保留。未commit／push／merge／deploy／ZIP，沒有新commitSHA，版本仍2.10.1，線上未更新。
+
+## 未提交圖解校正 · 2026-10-29 · Stage 2 CH04／CH21（AGY 已完成，Sam 已核可）
+
+- 沿用已核可 Stage 0／1 的隔離分支 `codex/fix-polishing-pad-link`，基準 2.10.1／`2b3471d5e8c275433a0d90b5a862280cc5d5ba6f`。未產生新 commit SHA 或提高版本。
+- CH04／CH21 兩張原照片位元組保留；補 Wikimedia Commons 原頁、作者、授權與處理說明。CH04 正名 EVG-620／MA-150 對準曝光設備；CH21 為 3D Orthogonal Quilt Packaging 參考樣品，不能當成 CoWoS／SoIC 實物證據。無來源支持的倍率／視野／量測規格改為來源未提供。
+- CH21 #3 保持原座標，明確標為公分尺；其他熱點只指可見物件，不猜測內部 C4／RDL／TSV。兩個來源照片的熱點說明移到圖下，燈箱卡移頁尾，避免手機裁切與遮點。
+- CH04 EUV／High-NA 改為反射光學原理示意，High-NA 兩軸4×／8×；標明簡化光路、非按比例。CH21 補英繁標籤及模型界線，兩章工具英文入口限定啟用。教材正文、原計算數字／公式、原圖與非目標照片資料保留。
+- 定向 L2：81/81，收據 `run-20261029T165751-c46eec0b`；英文桌面1440×1000／繁中手機390×844。首輪手機燈箱遮點失敗已局部修正。收尾英文文字與閱讀工具另33/33，收據 `run-20261029T170641-54ccc98f`；不重跑81項或Stage1的103項，不跑全站／完整套件／真機。
+- AGY 首次附檔因授權未被認定而遭自動審查拒絕；確認未執行後，父層提供 Sam 持續協作授權的新證據，原操作重新審核一次獲允許，未繞過拒絕。既有 Antigravity／Gemini 3.8 Flash High 對話 `092356a1-eb8e-4b71-b012-39b3ab115e15` 已實收限定封包與4＋5張圖，S2-1～S2-4均判定符合，未提出阻擋性產品缺陷。審查者將待補EUV圖語系誤記繁中的描述已校正為英文，無產品修改或測試重跑，無需Claude重複審查。AGY未親自操作瀏覽器／真機，僅閱附檔。沒有改安全設定或額外付費；完整授權歷史與來源見同任務 `stage2-evidence/agy-review.md`。
+- 單一計畫與證據：`C:/Users/Sam/Documents/Codex/2026-10-29/task/stage-execution-plan.md`、`stage2-evidence/`；比較頁 `http://127.0.0.1:5320/stage2-review.html`，候選 `http://127.0.0.1:4635/#ch04`／`#ch21`，僅限本機。精確差異與雜湊在 `stage2.patch`／`delivery-manifest.json`。
+- Stage2 四項實作、局部驗證與AGY交叉審查已完成；Sam於 Sentinel_6c1512b0babc819185be4a435916ea9a 回覆「核可」，Gate4/4。既有繁中首次預設／語言偏好保留，英文預設交接矛盾待回覆。CH21模板擴章、全站與真機未驗。原AGY授權阻擋已解除。Stage3只有分批原則，尚無已核可的具體首批；本輪在同一計畫提出僅CH21閱讀樣板推廣及四項驗收，停批次範圍Gate，未實作；未commit／push／merge／deploy／ZIP，線上未更新。
+
+## 未提交樣板 · 2026-10-29 · Stage 1 首頁與微影章節（Sam 已核可）
+
+- 基準仍為 2.10.1／`2b3471d5e8c275433a0d90b5a862280cc5d5ba6f`，沿用 `codex/fix-polishing-pad-link` 未提交工作樹與已驗收 Stage 0。
+- 首頁：既有 12 站製程流程移到部別目錄前，以紙白、青綠、深色文字整理層級；站點資料、CTA 與鍵盤操作保留。
+- ch04：標題與原五項要點前置；只合併文字相同的重複 WaferTrack；保留頁首／頁尾章節導覽。TOC／字級工具改在文件流內，主工程圖桌面可用寬度約 551→888px；四種圖面模式、來源照片、放大與焦點返回保留。圖面工具英文只套用 ch04。
+- 產品差異限 `app.js`、`design-system.css`、`engineering-diagram-reader.js`、`engineering-object-controls.js`；保留繁中預設與既有語言偏好。未改教材、數值、模型或照片來源；未動 ch21 熱點。
+- L2：`scripts/test-stage1.mjs` 最終 103/103；首頁／ch04、中英、1440×1000／390×844 畫面保全；英文桌面與繁中手機驗鍵盤選站、目錄／字級、圖面模式、全螢幕／照片焦點返回與語言切換。只以 ch03 作離開 ch04 的工具復位邊界。未跑全站或完整套件。
+- 唯讀覆核發現並修正前置重點錨點及手機字級；最後覆核無剩餘阻擋。其後依 Sam 指示，由真正 Antigravity／Gemini 3.8 Flash High 完成限定 diff、既有結果及 8 張桌面／手機圖的交叉審閱，未提出阻擋性缺陷；已校正把既有圖面工具誤稱新增的描述。本次只更新紀錄，產品檔雜湊不變，沒有重跑 103 項。AGY 未親自操作瀏覽器或真機；真機觸控與多點手勢未驗。來源對話 092356a1-eb8e-4b71-b012-39b3ab115e15，結果見同任務 stage1-evidence/agy-review.md；後續 Sam 已明確核可 Stage 1 四項。
+- 單一計畫：`C:/Users/Sam/Documents/Codex/2026-10-29/task/stage-execution-plan.md`；前後比較：`http://127.0.0.1:5320/stage1-review.html`；本機候選：`http://127.0.0.1:4635/#ch04`。證據在同任務 `stage1-evidence/`，最終互動收據 `run-20261029T125617-3895b03e`。
+- Stage 1 技術交付完成且 Sam Gate 已核可4/4；後續 Stage 2 狀態見上方新紀錄。未 commit／push／merge／deploy，沒有新 commit SHA，線上未更新；版本未提升。
+
+## 未提交修補 · 2026-10-29 · Stage 0 拋光墊術語消歧（Sam 已核可）
+
+- 基準：2.10.1，`2b3471d5e8c275433a0d90b5a862280cc5d5ba6f`；隔離分支 `codex/fix-polishing-pad-link`，尚無新 commit SHA。
+- 原因：術語表將 Pad 列為 Bond Pad 縮寫，原自動連結只比單字，將 CMP 拋光墊語境的 pad 連成焊墊。
+- 修改：`glossary-links.js` 在文章含 polishing pad 時排除歧義的 Pad 縮寫候選；完整 Bond Pad／中文焊墊，以及無拋光語境的 Pad 功能保留。沒有修改教材、術語資料或圖表。
+- 定向 L2：`scripts/test-glossary-pad.mjs` 的七個術語案例與第 8 章英文頁，共 18 項斷言；原版 6 項失敗，修後 18/18 通過。只用本機 Edge 1440×1000，不跑完整套件或全站掃描。
+- 保全：第 8 章前後 325 個數字片段、7 個 SVG 雜湊一致，章節來源與 canonical 位元組相同。
+- 狀態與限制：本機未提交 diff；版本仍為 2.10.1，未 commit／push／merge／deploy，尚非正式發布候選。含拋光墊語境時單獨 Pad 保守地不自動連結；未驗全站其他同形術語。
+- Stage 0 已由 Sam 明確核可，允許進入 Stage 1；核可不包含 commit／push／merge／deploy。ch21 熱點修正仍未開始。單一執行計畫及 Plan／Actual：`C:/Users/Sam/Documents/Codex/2026-10-29/task/stage-execution-plan.md`；定向證據位於同目錄 `pad-evidence/`。
+
 ## 2.10.1 · 2026-10-28 · 段落示意圖補畫漏掉的註記，手機圖說不再捲出畫面
 
 - 原因：2.10.0 部署後的獨立檢查發現兩個問題。

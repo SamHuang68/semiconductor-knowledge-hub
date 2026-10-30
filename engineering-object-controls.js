@@ -187,7 +187,7 @@ async function copySvg(container) {
   const status = feedback.querySelector('[role="status"]');
   const field = feedback.querySelector('textarea');
   if (!svg) {
-    state.status = '目前圖形沒有可複製的 SVG。';
+    state.status = state.isScopedEnglish ? 'No SVG is available for the current diagram.' : '目前圖形沒有可複製的 SVG。';
     status.textContent = state.status;
     feedback.hidden = false;
     return;
@@ -222,7 +222,7 @@ async function copySvg(container) {
     field.value = '';
   } catch {
     if (!container.isConnected) return;
-    state.status = '自動複製未完成。可從下方欄位手動複製目前的 SVG。';
+    state.status = state.isScopedEnglish ? 'Automatic copying did not complete. Copy the current SVG manually from the field below.' : '自動複製未完成。可從下方欄位手動複製目前的 SVG。';
     state.fallback = code;
     status.textContent = state.status;
     field.hidden = false;
@@ -255,6 +255,7 @@ export function openPhotoLightbox(initialId, lang, doc) {
     const photoId = ALL_PHOTO_IDS[currentIdx];
     const photo = REAL_PHOTOS_DATA[photoId];
     if (!photo) return;
+    dialog.classList.toggle('has-photo-reference', Boolean(photo.reference));
 
     const title = lang === 'en' ? photo.titleEn : photo.titleZh;
     const cat = lang === 'en' ? photo.categoryEn : photo.categoryZh;
@@ -262,9 +263,9 @@ export function openPhotoLightbox(initialId, lang, doc) {
     const match = lang === 'en' ? photo.matchEn : photo.matchZh;
     const metrology = photo.metrology || {};
     const tech = lang === 'en' ? (metrology.techniqueEn || '') : (metrology.techniqueZh || '');
-    const mag = metrology.mag || '';
-    const volt = metrology.voltage || '';
-    const fov = metrology.fov || '';
+    const mag = metrology['mag' + (lang === 'en' ? 'En' : 'Zh')] ?? metrology.mag ?? '';
+    const volt = metrology['voltage' + (lang === 'en' ? 'En' : 'Zh')] ?? metrology.voltage ?? '';
+    const fov = metrology['fov' + (lang === 'en' ? 'En' : 'Zh')] ?? metrology.fov ?? '';
     const hotspots = photo.hotspots || [];
 
     dialog.innerHTML = `
@@ -300,12 +301,13 @@ export function openPhotoLightbox(initialId, lang, doc) {
                 </div>
               ` : ''}
             </div>
-            <div class="lightbox-hotspot-card" hidden></div>
+            ${photo.reference ? '' : '<div class="lightbox-hotspot-card" hidden></div>'}
           </div>
           <button type="button" class="lightbox-nav-btn lb-next" title="${lang === 'en' ? 'Next Photo (Right Arrow)' : '下一張照片 (右箭頭)'}">▶</button>
         </div>
 
         <footer class="lightbox-footer">
+          ${photo.reference ? '<div class="lightbox-hotspot-card" role="status" hidden></div>' : ''}
           <div class="lightbox-metrology">
             <span class="lb-metro-item"><strong>${lang === 'en' ? 'Technique:' : '檢測技術:'}</strong> ${escapeHtml(tech)}</span>
             <span class="lb-metro-item"><strong>${lang === 'en' ? 'Magnification:' : '倍率:'}</strong> ${escapeHtml(mag)}</span>
@@ -313,6 +315,7 @@ export function openPhotoLightbox(initialId, lang, doc) {
             <span class="lb-metro-item"><strong>${lang === 'en' ? 'Field of View:' : '視場 (FOV):'}</strong> ${escapeHtml(fov)}</span>
             <span class="lb-metro-item"><strong>${lang === 'en' ? 'Scale:' : '尺度規格:'}</strong> ${escapeHtml(scale)}</span>
           </div>
+          ${renderPhotoSource(photo, lang)}
           <div class="lightbox-match-bar">
             <strong>${lang === 'en' ? 'Physical Significance:' : '理論與物理實證：'}</strong> ${escapeHtml(match)}
           </div>
@@ -459,7 +462,7 @@ export function openPhysicsCalculator(chId, lang, doc) {
   const calc = PHYSICS_CALCULATORS[chId];
   if (!calc) return;
   const dialog = doc.createElement('dialog');
-  dialog.className = 'physics-calc-modal';
+  dialog.className = chId === 'ch21' ? 'physics-calc-modal ch21-physics-calc-modal' : ['ch05', 'ch06'].includes(chId) ? 'physics-calc-modal b3-physics-calc-modal' : ['ch08', 'ch09'].includes(chId) ? 'physics-calc-modal b4-physics-calc-modal' : ['ch07', 'ch10'].includes(chId) ? 'physics-calc-modal b5-physics-calc-modal' : 'physics-calc-modal';
   dialog.setAttribute('aria-modal', 'true');
   dialog.setAttribute('aria-label', lang === 'en' ? calc.titleEn : calc.titleZh);
 
@@ -797,6 +800,18 @@ export function openOcapModal(chId, lang, doc) {
   dialog.showModal();
 }
 
+
+// Only source-verified photo entries opt into this evidence block.
+function renderPhotoSource(photo, lang) {
+  const source = photo.reference;
+  if (!source) return '';
+  return `<div class="photo-source-note">
+    <strong>${lang === 'en' ? 'Photo source' : '照片來源'}</strong>
+    <span>${escapeHtml(source.author)} · <a href="${escapeHtml(source.sourceUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(source.sourceTitle)}</a> · <a href="${escapeHtml(source.licenseUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(source.license)}</a></span>
+    <p>${escapeHtml(lang === 'en' ? source.noteEn : source.noteZh)}</p>
+  </div>`;
+}
+
 export function renderEngineeringCard(container, markup, labels) {
   // 字串層單元測試仍沿用原契約；真正 DOM 的行為另由瀏覽器案例覆核。
   if (!container.ownerDocument?.createElement) { container.innerHTML = markup; return; }
@@ -811,6 +826,7 @@ export function renderEngineeringCard(container, markup, labels) {
   // 偵測章節識別與中英雙語語系，查詢實體照片資料庫
   const chId = detectChId(container, next);
   const lang = container.getAttribute?.('data-lang') || (doc.documentElement?.lang === 'en' ? 'en' : 'zh');
+  state.isScopedEnglish = lang === 'en' && ['ch04', 'ch05', 'ch06', 'ch07', 'ch08', 'ch09', 'ch10', 'ch19', 'ch20', 'ch21'].includes(chId);
   const photo = chId ? REAL_PHOTOS_DATA[chId] : null;
 
   if (photo) {
@@ -847,7 +863,7 @@ export function renderEngineeringCard(container, markup, labels) {
       stage.append(viewport);
 
       const photoPanel = doc.createElement('aside');
-      photoPanel.className = 'eng-obj-photo-panel';
+      photoPanel.className = 'eng-obj-photo-panel' + (photo.reference ? ' has-photo-reference' : '');
       photoPanel.setAttribute('aria-label', lang === 'en' ? 'Authentic Semiconductor Photo & Micrograph' : '半導體實體照片與微觀電顯');
 
       const title = lang === 'en' ? photo.titleEn : photo.titleZh;
@@ -857,9 +873,9 @@ export function renderEngineeringCard(container, markup, labels) {
       const match = lang === 'en' ? photo.matchEn : photo.matchZh;
       const metrology = photo.metrology || {};
       const tech = lang === 'en' ? (metrology.techniqueEn || '') : (metrology.techniqueZh || '');
-      const mag = metrology.mag || '';
-      const volt = metrology.voltage || '';
-      const fov = metrology.fov || '';
+      const mag = metrology['mag' + (lang === 'en' ? 'En' : 'Zh')] ?? metrology.mag ?? '';
+      const volt = metrology['voltage' + (lang === 'en' ? 'En' : 'Zh')] ?? metrology.voltage ?? '';
+      const fov = metrology['fov' + (lang === 'en' ? 'En' : 'Zh')] ?? metrology.fov ?? '';
       const hotspots = photo.hotspots || [];
 
       photoPanel.innerHTML = `
@@ -890,11 +906,12 @@ export function renderEngineeringCard(container, markup, labels) {
                   <span class="hotspot-dot">${idx + 1}</span>
                 </button>
               `).join('')}
-              <div class="photo-hotspot-tooltip" hidden></div>
+              ${photo.reference ? '' : '<div class="photo-hotspot-tooltip" hidden></div>'}
             </div>
           ` : ''}
         </div>
 
+        ${photo.reference ? '<div class="photo-hotspot-tooltip" role="status" hidden></div>' : ''}
         <div class="photo-overlay-caption">
           <div class="photo-title">${escapeHtml(title)}</div>
           <div class="photo-caption">${escapeHtml(caption)}</div>
@@ -904,6 +921,7 @@ export function renderEngineeringCard(container, markup, labels) {
             <span class="hud-item"><strong class="hud-lbl">${lang === 'en' ? 'Energy/Bias:' : '能量/偏壓:'}</strong> ${escapeHtml(volt)}</span>
             <span class="hud-item"><strong class="hud-lbl">${lang === 'en' ? 'FOV:' : '視場:'}</strong> ${escapeHtml(fov)}</span>
           </div>
+          ${renderPhotoSource(photo, lang)}
           <div class="photo-match-note"><strong>${lang === 'en' ? 'Theory vs. Physical:' : '理論與實體對照：'}</strong> ${escapeHtml(match)}</div>
         </div>
       `;
@@ -920,6 +938,14 @@ export function renderEngineeringCard(container, markup, labels) {
       `;
       stage.append(curtainBar);
     }
+  }
+
+  if (photo?.diagramReference) {
+    const note = doc.createElement('div');
+    note.className = 'eng-reference-note';
+    const reference = photo.diagramReference;
+    note.innerHTML = `<p>${escapeHtml(lang === 'en' ? reference.noteEn : reference.noteZh)}</p><div>${reference.links.map(link => `<a href="${escapeHtml(link.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(link.label)}</a>`).join(' · ')}</div>`;
+    next.querySelector('.eng-obj-controls').before(note);
   }
 
   // 物理速算器與 OCAP 快捷按鈕群
@@ -982,7 +1008,7 @@ export function renderEngineeringCard(container, markup, labels) {
 
   const boundary = doc.createElement('p');
   boundary.className = 'eng-obj-boundary';
-  boundary.textContent = '互動教學示意：數值用於觀察模型趨勢，未經特定設備或產品校準；不能作為製程配方、量產預測或放行依據。';
+  boundary.textContent = state.isScopedEnglish ? 'Interactive teaching model: values illustrate model trends and are not calibrated to a specific tool or product. Do not use them as process recipes, production forecasts or release criteria.' : '互動教學示意：數值用於觀察模型趨勢，未經特定設備或產品校準；不能作為製程配方、量產預測或放行依據。';
   next.querySelector('.eng-obj-header').append(boundary);
 
   const feedback = doc.createElement('div');
@@ -992,7 +1018,7 @@ export function renderEngineeringCard(container, markup, labels) {
   status.setAttribute('role', 'status');
   status.textContent = state.status;
   const field = doc.createElement('textarea');
-  field.setAttribute('aria-label', '目前圖形的 SVG 原始碼');
+  field.setAttribute('aria-label', state.isScopedEnglish ? 'SVG source of the current diagram' : '目前圖形的 SVG 原始碼');
   field.readOnly = true;
   field.hidden = !state.fallback;
   field.value = state.fallback;
@@ -1001,7 +1027,7 @@ export function renderEngineeringCard(container, markup, labels) {
 
   if (state.dialog?.open) next.classList.add('is-fullscreen');
   const previous = container.querySelector('.eng-obj-card');
-  prepareDiagramReading(next, previous, state);
+  prepareDiagramReading(next, previous, state, lang);
   if (previous) syncNode(previous, next);
   else container.replaceChildren(next);
 
