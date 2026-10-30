@@ -7,6 +7,13 @@
 
 
 
+## 2.11.0 發布續作 · 2026-10-30 · 首次英文與完整 CI 核可
+
+- Sam Sentinel_d25d1dbb2480819190d8c082605881e4「同意」本次首次英文修正、既有十支完整 CI 與全產物參照檢查，通過後發布至既有 GitHub Pages。此核可僅限本次，不延伸往後批次或額外付費／ZIP。
+- app.js 首次未保存語言時由 zh 改 en；既有 semi_preferred_lang 的 en／zh 及切換儲存不變。index.html 初始 lang 與語言按鈕 active／aria-pressed 同步英文。未更動正文、模型或其他功能。
+- 語言初始化／切換七個狀態、62/62檢查通過（run-20261031T005557-4cd9015d）：無偏好英文、切換繁中／重載、切回英文／重載、已存en與zh直接進CH10；兩來源HTTP一致、頁面／主控台錯誤0，主控實看中英首頁。結果與完整提交SHA記於同任務 release-b5-evidence。完整驗證與 build 只由現有 main push workflow 執行一次，驗證成功才部署；不在本機重跑同套，不弱化 CI。
+- 本條是發布前準備；CI／部署／正式資源完成狀態以同版本 publication-status.json 及 stage-execution-plan.md 的真實回執為準，不將 push 或排程當發布成功。既有模型未校準與覆蓋範圍限制保留。
+
 ## 2.11.0 · 2026-10-30 · 首頁與十章閱讀樣板、圖文及術語修正（本機發布候選）
 
 - Sam 已核可 Stage 0～2、Stage 3 首批及 B2～B5 成果；B5 來源 Sentinel_b8256689f78c81918a2e0762fc36b9f8「確認」，對應核可成果並提交、發布目前累積修改。B5 五項核可 5/5，並非全站或最終成品驗收。

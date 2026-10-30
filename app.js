@@ -353,7 +353,7 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
   }
 
 
-  let currentLang = localStorage.getItem(LANG_STORAGE_KEY) || 'zh';
+  let currentLang = localStorage.getItem(LANG_STORAGE_KEY) || 'en';
   const readChapters = new Set(JSON.parse(localStorage.getItem(READ_STORAGE_KEY) || '[]'));
   const bookmarkedChapters = new Set(JSON.parse(localStorage.getItem(BOOKMARK_STORAGE_KEY) || '[]'));
   const exploredModels = new Set(JSON.parse(localStorage.getItem(EXPLORED_STORAGE_KEY) || '[]'));
