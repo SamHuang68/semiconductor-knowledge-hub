@@ -114,7 +114,9 @@ const annealBtn = c7.children.find(c => c.getAttribute('data-tab') === 'anneal')
 assert.ok(annealBtn, '必要控制項不存在：annealBtn');
 {
   annealBtn.dispatchEvent({ type: 'click' });
-  assert.ok(c7.innerHTML.includes('RTA 快速退火'), '點擊退火後應展示退火介面');
+  assert.ok(c7.innerHTML.includes('RTA 活化示例'), '點擊退火後應展示已核可的 RTA 教學示例');
+  assert.ok(c7.innerHTML.includes('晶格退火與活化示意'), '退火頁應保留對應圖面');
+  assert.ok(c7.innerHTML.includes('教學示例，非活化率保證。'), '退火頁應明列未校準活化率限制');
 }
 console.log('[PASS] Ch 07 離子佈植與退火模型正常');
 
