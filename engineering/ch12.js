@@ -31,7 +31,7 @@ export function renderTransistor3DObject(container, lang = 'zh') {
       ssMvDec = 62.0 + 1.1 * (finWidth - 4) + 0.08 * (65 - finHeight);
       ionRatio = (weffNm / 100) * Math.pow(85 / ssMvDec, 1.1);
       controlsHtml = `
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px; margin-top: 10px; padding: 12px; background: rgba(15, 23, 42, 0.6); border-radius: 8px; border: 1px solid rgba(56, 189, 248, 0.2);">
+        <div class="ch12-geometry-controls" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px; margin-top: 10px; padding: 12px; background: rgba(15, 23, 42, 0.6); border-radius: 8px; border: 1px solid rgba(56, 189, 248, 0.2);">
           <div>
             <div style="display: flex; justify-content: space-between; font-size: 11px; margin-bottom: 4px;">
               <span style="color: #94a3b8; font-weight: 600;">${t.ch12_fin_height_slider}</span>
@@ -39,9 +39,9 @@ export function renderTransistor3DObject(container, lang = 'zh') {
             </div>
             <input type="range" id="ch12FinHeightSlider" min="30" max="65" step="1" value="${finHeight}" style="width: 100%; accent-color: #0ea5e9; cursor: pointer;">
             <div style="display: flex; justify-content: space-between; font-size: 9px; color: #64748b; margin-top: 2px;">
-              <span>30 nm (初期節點)</span>
-              <span>45 nm (成熟 FinFET)</span>
-              <span>65 nm (極致高深寬比)</span>
+              <span>${lang === 'en' ? `30 nm (height example)` : `30 nm（高度例值）`}</span>
+              <span>${lang === 'en' ? `45 nm (default height)` : `45 nm（預設高度）`}</span>
+              <span>${lang === 'en' ? `65 nm (height example)` : `65 nm（高度例值）`}</span>
             </div>
           </div>
           <div>
@@ -51,9 +51,9 @@ export function renderTransistor3DObject(container, lang = 'zh') {
             </div>
             <input type="range" id="ch12FinWidthSlider" min="4" max="12" step="1" value="${finWidth}" style="width: 100%; accent-color: #10b981; cursor: pointer;">
             <div style="display: flex; justify-content: space-between; font-size: 9px; color: #64748b; margin-top: 2px;">
-              <span>4 nm (超薄完全空乏)</span>
-              <span>6 nm (3nm FinFET)</span>
-              <span>12 nm (16nm FinFET)</span>
+              <span>${lang === 'en' ? `4 nm (width example)` : `4 nm（寬度例值）`}</span>
+              <span>${lang === 'en' ? `6 nm (illustrative 3nm node)` : `6 nm（3nm 節點例示）`}</span>
+              <span>${lang === 'en' ? `12 nm (illustrative 16nm node)` : `12 nm（16nm 節點例示）`}</span>
             </div>
           </div>
         </div>
@@ -64,7 +64,7 @@ export function renderTransistor3DObject(container, lang = 'zh') {
       ssMvDec = 60.5 + 35.0 / nsWidth;
       ionRatio = (weffNm / 100) * Math.pow(85 / ssMvDec, 1.25);
       controlsHtml = `
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px; margin-top: 10px; padding: 12px; background: rgba(15, 23, 42, 0.6); border-radius: 8px; border: 1px solid rgba(56, 189, 248, 0.2);">
+        <div class="ch12-geometry-controls" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px; margin-top: 10px; padding: 12px; background: rgba(15, 23, 42, 0.6); border-radius: 8px; border: 1px solid rgba(56, 189, 248, 0.2);">
           <div>
             <div style="display: flex; justify-content: space-between; font-size: 11px; margin-bottom: 4px;">
               <span style="color: #94a3b8; font-weight: 600;">${t.ch12_ns_width_slider}</span>
@@ -72,21 +72,21 @@ export function renderTransistor3DObject(container, lang = 'zh') {
             </div>
             <input type="range" id="ch12NsWidthSlider" min="20" max="55" step="1" value="${nsWidth}" style="width: 100%; accent-color: #0ea5e9; cursor: pointer;">
             <div style="display: flex; justify-content: space-between; font-size: 9px; color: #64748b; margin-top: 2px;">
-              <span>20 nm (低功耗窄片)</span>
-              <span>35 nm (標稱 GAA)</span>
-              <span>55 nm (高驅動寬片)</span>
+              <span>${lang === 'en' ? `20 nm (narrow-sheet example)` : `20 nm（窄片例值）`}</span>
+              <span>${lang === 'en' ? `35 nm (default sheet width)` : `35 nm（預設片寬）`}</span>
+              <span>${lang === 'en' ? `55 nm (wide-sheet example)` : `55 nm（寬片例值）`}</span>
             </div>
           </div>
           <div>
             <div style="display: flex; justify-content: space-between; font-size: 11px; margin-bottom: 4px;">
               <span style="color: #94a3b8; font-weight: 600;">${t.ch12_ns_layers_slider}</span>
-              <span style="color: #f59e0b; font-weight: 750; font-family: monospace;">${nsLayers} 層 (Tiers)</span>
+              <span style="color: #f59e0b; font-weight: 750; font-family: monospace;">${lang === 'en' ? `${nsLayers} sheets` : `${nsLayers} 層`}</span>
             </div>
             <input type="range" id="ch12NsLayersSlider" min="2" max="4" step="1" value="${nsLayers}" style="width: 100%; accent-color: #f59e0b; cursor: pointer;">
             <div style="display: flex; justify-content: space-between; font-size: 9px; color: #64748b; margin-top: 2px;">
-              <span>2 層 (超薄)</span>
-              <span>3 層 (主流 A16/N2)</span>
-              <span>4 層 (極限密度)</span>
+              <span>${lang === 'en' ? `2 sheets (example)` : `2 層（例示）`}</span>
+              <span>${lang === 'en' ? `3 sheets (A16/N2 teaching example)` : `3 層（A16/N2 教學例示）`}</span>
+              <span>${lang === 'en' ? `4 sheets (example)` : `4 層（例示）`}</span>
             </div>
           </div>
         </div>
@@ -95,7 +95,7 @@ export function renderTransistor3DObject(container, lang = 'zh') {
 
     if (activeGen === 'planar') {
       viewportHtml = `
-        <svg viewBox="0 0 800 440" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="2D Planar MOSFET 3D Cutaway">
+        <svg viewBox="0 0 800 440" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="${lang === 'en' ? `Planar MOSFET cutaway schematic; not to scale` : `平面 MOSFET 立體剖面示意；非按比例`}">
           <g transform="translate(180, 80)">
             <!-- 3D 等角投影基底 (Silicon Substrate Base) -->
             <polygon points="220,40 380,120 180,220 20,140" fill="#334155" stroke="#475569" stroke-width="1.2"/>
@@ -111,22 +111,23 @@ export function renderTransistor3DObject(container, lang = 'zh') {
 
             <!-- 2D 通道 (Channel - 僅限表面單一平面薄層) -->
             <polygon points="140,110 240,160 210,175 110,125" fill="#0284c7" opacity="0.85"/>
-            <text x="175" y="145" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="700">2D 表面通道 (單面控制)</text>
+            <path d="M 175,168 L 175,154" fill="none" stroke="#0284c7" stroke-width="1"/>
+            <text x="175" y="180" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="700">${lang === 'en' ? `2D surface channel (top-gate control)` : `2D 表面通道（單面控制）`}</text>
 
             <!-- 閘極氧化層與金屬閘極 (Gate Electrode) -->
             <polygon points="175,70 235,100 175,130 115,100" fill="#64748b" stroke="#94a3b8"/>
             <polygon points="115,100 175,130 175,145 115,115" fill="#475569" stroke="#64748b"/>
             <polygon points="175,130 235,100 235,115 175,145" fill="#334155" stroke="#64748b"/>
-            <text x="175" y="95" text-anchor="middle" fill="#ffffff" font-size="11.5" font-weight="700">Gate 閘極</text>
+            <text x="175" y="95" text-anchor="middle" fill="#ffffff" font-size="11.5" font-weight="700">${lang === 'en' ? `Gate` : `閘極`}</text>
 
             <!-- 漏電路徑標註 -->
             <path d="M 100,165 Q 180,210 260,135" fill="none" stroke="#ef4444" stroke-width="2" stroke-dasharray="3 3"/>
-            <text x="180" y="205" text-anchor="middle" fill="#ef4444" font-size="11" font-weight="700">基底短通道穿透漏電 (DIBL Leakage)</text>
+            <text x="180" y="205" text-anchor="middle" fill="#ef4444" font-size="11" font-weight="700">${lang === 'en' ? `Short-channel leakage schematic` : `短通道漏電示意`}</text>
 
             <!-- 物理標籤浮水印 -->
             <rect x="230" y="20" width="180" height="42" rx="4" fill="#0f172a" opacity="0.85" stroke="#ef4444" stroke-width="1"/>
             <text x="320" y="38" text-anchor="middle" fill="#f87171" font-size="10.5" font-weight="750">SS = ln(10)·(kT/q)·(1+Cd/Cox)</text>
-            <text x="320" y="52" text-anchor="middle" fill="#cbd5e1" font-size="9.5">SS ≈ ${ssMvDec.toFixed(1)} mV/dec (開關關不緊)</text>
+            <text x="320" y="52" text-anchor="middle" fill="#cbd5e1" font-size="9.5">${lang === 'en' ? `SS ≈ ${ssMvDec.toFixed(1)} mV/dec (teaching value)` : `SS ≈ ${ssMvDec.toFixed(1)} mV/dec（教學例值）`}</text>
           </g>
           <g class="eng-kinetic-wave" pointer-events="none"><circle cx="400" cy="200" r="68" fill="none" stroke="#38bdf8" stroke-width="1.4" class="anim-pulse-ring" opacity="0.45"/><path d="M 140,60 Q 400,32 660,60" fill="none" stroke="#34d399" stroke-width="1.5" class="anim-field-glow" opacity="0.5"/></g>
         </svg>
@@ -134,18 +135,18 @@ export function renderTransistor3DObject(container, lang = 'zh') {
       dashboardHtml = `
         <div class="eng-obj-metric-card">
           <div class="eng-obj-metric-label">${t.ch12_gate_wrap}</div>
-          <div class="eng-obj-metric-value">1 面控制 (Top Gate)</div>
-          <div class="eng-obj-metric-note">僅覆蓋二維通道頂部表面</div>
+          <div class="eng-obj-metric-value">${lang === 'en' ? `1 control face (top gate)` : `1 面控制（頂閘極）`}</div>
+          <div class="eng-obj-metric-note">${lang === 'en' ? `Gate covers the channel top surface; geometry schematic` : `閘極覆蓋通道頂面；本圖為幾何示意`}</div>
         </div>
         <div class="eng-obj-metric-card">
           <div class="eng-obj-metric-label">${t.ch12_ss_calc_label}</div>
           <div class="eng-obj-metric-value" style="color: #ef4444; font-family: monospace;">${ssMvDec.toFixed(1)} mV/dec</div>
-          <div class="eng-obj-metric-note">次臨界漏電高，關態待機功耗龐大</div>
+          <div class="eng-obj-metric-note">${lang === 'en' ? `Teaching SS value; off-state leakage and standby power are not calculated` : `SS 為教學例值；未計算關態漏電或待機功耗`}</div>
         </div>
         <div class="eng-obj-metric-card">
           <div class="eng-obj-metric-label">${t.ch12_weff_label}</div>
-          <div class="eng-obj-metric-value">${weffNm} nm (基準 1.0x)</div>
-          <div class="eng-obj-metric-note">受限於水平二維佈局面積</div>
+          <div class="eng-obj-metric-value">${lang === 'en' ? `${weffNm} nm (teaching baseline 1.0x)` : `${weffNm} nm（教學基準 1.0x）`}</div>
+          <div class="eng-obj-metric-note">${lang === 'en' ? `Fixed reference geometry, not an equal-footprint device comparison` : `固定基準幾何，不代表等面積器件比較`}</div>
         </div>
       `;
       footerNote = t.ch12_planar_desc;
@@ -155,7 +156,7 @@ export function renderTransistor3DObject(container, lang = 'zh') {
       const finVisualW = Math.max(4, Math.round(finWidth * 1.2));
 
       viewportHtml = `
-        <svg viewBox="0 0 800 440" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="3D FinFET Isometric Cutaway">
+        <svg viewBox="0 0 800 440" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="${lang === 'en' ? `FinFET isometric cutaway schematic; not to scale` : `FinFET 等角剖面示意；非按比例`}">
           <g transform="translate(180, 80)">
             <!-- 3D 矽基底 (Substrate) -->
             <polygon points="220,50 380,130 180,230 20,150" fill="#334155" stroke="#475569" stroke-width="1.2"/>
@@ -174,7 +175,7 @@ export function renderTransistor3DObject(container, lang = 'zh') {
 
             <!-- 標註立體三面包覆 -->
             <text x="210" y="${55 - finVisualH}" text-anchor="middle" fill="#38bdf8" font-size="12" font-weight="750">
-              Tri-Gate 三面立體包覆 (H_fin = ${finHeight}nm, W_fin = ${finWidth}nm)
+              ${lang === 'en' ? `Tri-Gate wrap (H_fin=${finHeight}nm, W_fin=${finWidth}nm)` : `Tri-Gate 三面包覆（H_fin=${finHeight}nm，W_fin=${finWidth}nm）`}
             </text>
             <path d="M 210,${62 - finVisualH} L 210,${90 - finVisualH}" stroke="#38bdf8" stroke-width="1.2" stroke-dasharray="2 2"/>
 
@@ -187,7 +188,7 @@ export function renderTransistor3DObject(container, lang = 'zh') {
 
             <!-- 物理公式標籤 -->
             <text x="200" y="215" text-anchor="middle" fill="#71ece3" font-size="11.5" font-weight="750">
-              W_eff = 2·H_fin + W_fin = 2×${finHeight} + ${finWidth} = ${weffNm} nm (${ionRatio.toFixed(2)}x 電流)
+              ${lang === 'en' ? `W_eff = 2·H_fin + W_fin = 2×${finHeight} + ${finWidth} = ${weffNm} nm (${ionRatio.toFixed(2)}x model current)` : `W_eff = 2·H_fin + W_fin = 2×${finHeight} + ${finWidth} = ${weffNm} nm（${ionRatio.toFixed(2)}x 模型電流）`}
             </text>
           </g>
           <g class="eng-kinetic-wave" pointer-events="none"><circle cx="400" cy="200" r="68" fill="none" stroke="#38bdf8" stroke-width="1.4" class="anim-pulse-ring" opacity="0.45"/><path d="M 140,60 Q 400,32 660,60" fill="none" stroke="#34d399" stroke-width="1.5" class="anim-field-glow" opacity="0.5"/></g>
@@ -199,19 +200,19 @@ export function renderTransistor3DObject(container, lang = 'zh') {
           <div class="eng-obj-metric-value" style="color: var(--semi-blue-dark); font-family: monospace;">
             ${weffNm} nm (${ionRatio.toFixed(2)}x Ion)
           </div>
-          <div class="eng-obj-metric-note">Weff = 2·H_fin + W_fin · 驅動能力大增</div>
+          <div class="eng-obj-metric-note">${lang === 'en' ? `Weff = 2·H_fin + W_fin; Ion ratio is an uncalibrated teaching model` : `Weff = 2·H_fin + W_fin；Ion 比值為未校準教學模型`}</div>
         </div>
         <div class="eng-obj-metric-card">
           <div class="eng-obj-metric-label">${t.ch12_ss_calc_label}</div>
           <div class="eng-obj-metric-value" style="color: var(--semi-teal); font-family: monospace;">
             ${ssMvDec.toFixed(1)} mV/dec
           </div>
-          <div class="eng-obj-metric-note">三面靜電抑制 · 漏電流較平面驟降 10 倍</div>
+          <div class="eng-obj-metric-note">${lang === 'en' ? `Three-sided gate control; 10x leakage improvement is an original teaching example, not calculated here` : `三面閘極控制；10 倍漏電改善為原教學例示，非本模型輸出`}</div>
         </div>
         <div class="eng-obj-metric-card">
           <div class="eng-obj-metric-label">${t.ch12_node_span}</div>
-          <div class="eng-obj-metric-value">16nm ~ 3nm 世代</div>
-          <div class="eng-obj-metric-note">台積電 / Intel / 三星黃金十年主力架構</div>
+          <div class="eng-obj-metric-value">${lang === 'en' ? `16nm ~ 3nm (illustrative node names)` : `16nm ~ 3nm（節點名稱例示）`}</div>
+          <div class="eng-obj-metric-note">${lang === 'en' ? `TSMC / Intel / Samsung examples; physical dimensions are not node names` : `台積電 / Intel / 三星架構例示；尺寸不等同節點名稱`}</div>
         </div>
       `;
       footerNote = t.ch12_finfet_desc;
@@ -221,7 +222,7 @@ export function renderTransistor3DObject(container, lang = 'zh') {
       const nsVisualW = Math.round(30 * nsScaleW);
 
       viewportHtml = `
-        <svg viewBox="0 0 800 440" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="3D GAA Nanosheet Isometric Cutaway">
+        <svg viewBox="0 0 800 440" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="${lang === 'en' ? `GAA nanosheet cutaway schematic; not to scale` : `GAA 奈米片等角剖面示意；非按比例`}">
           <g transform="translate(180, 80)">
             <!-- 3D 矽基底 (Substrate) -->
             <polygon points="220,50 380,130 180,230 20,150" fill="#334155" stroke="#475569" stroke-width="1.2"/>
@@ -234,7 +235,7 @@ export function renderTransistor3DObject(container, lang = 'zh') {
               return `
                 <g>
                   <polygon points="90,${yOffset} ${310 + nsVisualW},${yOffset - 30} ${330 + nsVisualW},${yOffset - 20} 110,${yOffset + 10}" fill="#38bdf8"/>
-                  <text x="75" y="${yOffset + 8}" fill="#38bdf8" font-size="9" font-weight="700">Tier ${nsLayers - idx}</text>
+                  <text x="75" y="${yOffset + 8}" fill="#38bdf8" font-size="9" font-weight="700">${lang === 'en' ? `Sheet ${nsLayers - idx}` : `第 ${nsLayers - idx} 層`}</text>
                 </g>
               `;
             }).join('')}
@@ -248,7 +249,7 @@ export function renderTransistor3DObject(container, lang = 'zh') {
             }).join('')}
 
             <text x="210" y="20" text-anchor="middle" fill="#10b981" font-size="12" font-weight="750">
-              GAA 360° 全環繞閘極 (${nsLayers}層奈米片 · 寬度 ${nsWidth}nm)
+              ${lang === 'en' ? `GAA 360° wrap (${nsLayers} sheets, width ${nsWidth}nm)` : `GAA 360° 包覆（${nsLayers} 層，寬 ${nsWidth}nm）`}
             </text>
             <text x="355" y="45" fill="#38bdf8" font-size="11" font-weight="700">
               W_eff = ${nsLayers}×(2×${nsWidth}+10) = ${weffNm} nm
@@ -257,8 +258,8 @@ export function renderTransistor3DObject(container, lang = 'zh') {
             <!-- 次世代背面供電網路 (BSPDN) -->
             <path d="M 100,240 L 100,275 M 260,190 L 260,275" stroke="#f59e0b" stroke-width="3"/>
             <path d="M 100,275 L 100,238 M 260,275 L 260,188" stroke="#fde047" stroke-width="2" stroke-dasharray="5 5" class="anim-data-flow"/>
-            <text x="180" y="260" text-anchor="middle" fill="#f59e0b" font-size="11.5" font-weight="700">背面供電網路 (BSPDN / SuperPower Rail)</text>
-            <text x="180" y="278" text-anchor="middle" fill="#94a3b8" font-size="10.5">電源線移至晶圓背部 · 正面純繞訊號</text>
+            <text x="180" y="260" text-anchor="middle" fill="#f59e0b" font-size="11.5" font-weight="700">${lang === 'en' ? `Backside power concept (BSPDN / SuperPower Rail)` : `背面供電概念（BSPDN / SuperPower Rail）`}</text>
+            <text x="180" y="278" text-anchor="middle" fill="#94a3b8" font-size="10.5">${lang === 'en' ? `Backside power can free frontside routing; implementation varies` : `背面供電可釋放正面繞線資源；實際架構依製程而異`}</text>
           </g>
           <g class="eng-kinetic-wave" pointer-events="none"><circle cx="400" cy="200" r="68" fill="none" stroke="#38bdf8" stroke-width="1.4" class="anim-pulse-ring" opacity="0.45"/><path d="M 140,60 Q 400,32 660,60" fill="none" stroke="#34d399" stroke-width="1.5" class="anim-field-glow" opacity="0.5"/></g>
         </svg>
@@ -269,19 +270,19 @@ export function renderTransistor3DObject(container, lang = 'zh') {
           <div class="eng-obj-metric-value" style="color: var(--semi-blue-dark); font-family: monospace;">
             ${weffNm} nm (${ionRatio.toFixed(2)}x Ion)
           </div>
-          <div class="eng-obj-metric-note">Weff = N·(2W_ns + 2T_ns) · 超高飽和電流</div>
+          <div class="eng-obj-metric-note">${lang === 'en' ? `Weff = N·(2W_ns + 2T_ns); Ion ratio is an uncalibrated teaching model` : `Weff = N·(2W_ns + 2T_ns)；Ion 比值為未校準教學模型`}</div>
         </div>
         <div class="eng-obj-metric-card">
           <div class="eng-obj-metric-label">${t.ch12_ss_calc_label}</div>
           <div class="eng-obj-metric-value" style="color: var(--semi-teal); font-family: monospace;">
             ${ssMvDec.toFixed(1)} mV/dec
           </div>
-          <div class="eng-obj-metric-note">逼近理論極限 (60 mV/dec) · 零漏電死區</div>
+          <div class="eng-obj-metric-note">${lang === 'en' ? `60 mV/dec is the original teaching reference; this model neither calculates nor guarantees zero leakage` : `60 mV/dec 為原教學參考值；本模型不計算或保證零漏電`}</div>
         </div>
         <div class="eng-obj-metric-card">
           <div class="eng-obj-metric-label">${t.ch12_node_span}</div>
           <div class="eng-obj-metric-value">2nm (N2 / A16 / 18A)</div>
-          <div class="eng-obj-metric-note">結合背面供電 (BSPDN) 邁入埃米時代</div>
+          <div class="eng-obj-metric-note">${lang === 'en' ? `Backside power is an integration option, not required for every GAA device` : `背面供電是可搭配的整合選項，非所有 GAA 的必備結構`}</div>
         </div>
       `;
       footerNote = t.ch12_gaa_desc;
@@ -319,14 +320,14 @@ export function renderTransistor3DObject(container, lang = 'zh') {
             <div class="eng-obj-metric-note">${lang === 'en' ? 'Intel PowerVia (nTSV), TSMC SPR (A16), Samsung BSPDN, 3D CFET' : '含 Intel PowerVia (nTSV)、TSMC SPR、Samsung BSPDN、CFET 垂直堆疊'}</div>
           </div>
           <div class="eng-obj-metric-card">
-            <div class="eng-obj-metric-label">${lang === 'en' ? 'Natural Length λ_N & GAA Weff Law' : '自然靜電長度與有效通道寬度律 (GAA Law)'}</div>
+            <div class="eng-obj-metric-label">${lang === 'en' ? `Natural-length and effective-width concepts` : `自然長度與有效通道寬度概念`}</div>
             <div class="eng-obj-metric-value" style="font-size: 13.5px; color: #0284c7;">${lang === 'en' ? 'λ_GAA < λ_Fin < λ_Planar · Weff = 2N(W+T)' : 'λ_GAA < λ_Fin < λ_Planar · Weff = 2N(W+T)'}</div>
-            <div class="eng-obj-metric-note">${lang === 'en' ? 'Lg ≥ 5λN suppresses DIBL while N-stack nanosheets multiply Weff' : '閘極長度 Lg ≥ 5λN 壓制 DIBL 與 GAA 垂直堆疊有效寬度倍增'}</div>
+            <div class="eng-obj-metric-note">${lang === 'en' ? `Lg ≥ 5λN is a teaching guideline; λN and DIBL are not calculated; N-sheet geometry sets Weff` : `Lg ≥ 5λN 為教學準則；本圖未計算 λN 或 DIBL，N 層幾何用於 Weff`}</div>
           </div>
                   <div class="eng-obj-metric-card">
             <div class="eng-obj-metric-label">${lang === 'en' ? 'Failure Diagnostics & OCAP' : '現場異常診斷與防呆 (Failure & OCAP)'}</div>
             <div class="eng-obj-metric-value" style="font-size: 13.5px; color: #d97706;">${lang === 'en' ? 'Dry SiGe Release · BDI · nTSV Overlay' : 'Dry SiGe Release · BDI · nTSV Overlay'}</div>
-            <div class="eng-obj-metric-note">${lang === 'en' ? 'Prevents GAA sheet stiction, sub-sheet leakage (BDI) & BSPDN overlay drift' : '以氣相無水蝕刻防奈米片沾黏、BDI 底部絕緣防漏電與紅外線對準鎖定背面供電'}</div>
+            <div class="eng-obj-metric-note">${lang === 'en' ? `Review sheet stiction, bottom leakage and backside overlay; qualify dry release, BDI and alignment measures` : `檢查奈米片沾黏、底部漏電及背面對準；乾式釋放、BDI 與對準改善須依製程驗證`}</div>
           </div>
         </div>
 

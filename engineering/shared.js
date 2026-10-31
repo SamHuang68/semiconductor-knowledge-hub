@@ -149,9 +149,9 @@ export const TEXTS = {
     ch12_weff_label: '等效通道導通寬度 W_eff',
     ch12_ss_calc_label: '次臨界擺幅 SS',
     ch12_dibl_label: '汲極引致能障降低 DIBL',
-    ch12_planar_desc: 'Planar MOSFET 閘極僅覆蓋二維通道頂部 (單面控制)。通道微縮至 20nm 時，汲極電場穿透引發嚴重 DIBL (汲極引致能障降低) 與次臨界漏電，物理微縮面臨極限。',
-    ch12_finfet_desc: 'FinFET 將矽通道立體「豎起」成鰭片，金屬閘極三面包覆 (Tri-Gate)，等效通道寬度 Weff = 2·Hfin + Wfin 大幅增加，通道靜電控制力倍增，漏電降低 10 倍以上。',
-    ch12_gaa_desc: 'GAA Nanosheet 將垂直鰭片改為 3-4 層水平超薄矽奈米片，閘極 360° 全方位環繞穿插四周，次臨界擺幅逼近理論極限 (63 mV/dec)，搭配背面供電網路 (BSPDN) 釋放正面互連瓶頸！',
+    ch12_planar_desc: "Planar MOSFET 由頂閘極控制通道；縮短通道可能增加 DIBL 與漏電。20nm 是教學例示而非普遍失效門檻；此圖未計算 DIBL 或漏電。",
+    ch12_finfet_desc: "FinFET 以三面閘極包覆矽鰭片，幾何近似為 Weff = 2·Hfin + Wfin。Ion 比值與 SS 是未校準教學模型；原英文三倍電流與 10 倍以上漏電改善為教學例示，非本圖的性能保證。",
+    ch12_gaa_desc: "GAA 以閘極 360° 包覆水平奈米片。3-4 層與 63 mV/dec 為原教學例示，非所有滑桿狀態的結果；本圖使用可調層數及未校準 SS／Ion 近似。BSPDN 是整合選項。",
 
     // Ch 07 離子佈植與退火
     ch07_title: '離子佈植機電磁光路偏轉與晶格退火活化模型',
@@ -304,7 +304,7 @@ export const TEXTS = {
     ch11_metric_yield: '成熟量產晶圓良率',
     ch11_feol_desc: 'FEOL (前段製程) 是晶圓廠最精密神經外科手術：在矽基板上鑿出淺溝槽 (STI) 灌入氧化物隔絕相鄰元件，打入硼與磷形成雙井，沉積數奈米級 High-k 氧化鉿與功函數金屬做為開關閘極，再磊晶生長應變應力源汲極。',
     ch11_mol_desc: 'MOL (中段製程) 是奈米電晶體與微米金屬線的樞紐橋樑：利用自對準矽化物降低寄生電阻，蝕刻高深寬比接觸孔 (Contact)，充填金屬鎢 (W-Plugs)，將數十億顆電晶體的閘極、源極與汲極精確引出。',
-    ch11_beol_desc: 'BEOL (後段製程) 打造晶片內部摩天高速公路：堆疊 10 至 15 層雙載子鑲嵌銅導線與 Low-k 絕緣介電質，底層極細 (M1-M3, 局部短距訊號傳輸) 到頂層粗厚 (M10-M12, 全域時脈分配與電源供電)，最後完成打線引腳平坦化。',
+    ch11_beol_desc: "BEOL 以雙鑲嵌銅線與 Low-k 介電質建立多層互連；10 至 15 層、M1-M3 局部線與 M10-M12 頂層線為教學例示。實際層數、尺寸與最後鈍化／接墊流程依製程而異。",
 
     // Ch 13 記憶體製程技術
     ch13_title: '三大記憶體架構微觀立體模型 (DRAM 1T1C、3D NAND 200+層階梯、HBM 3D TSV)',
@@ -699,9 +699,9 @@ export const TEXTS = {
     ch12_weff_label: 'Effective Channel Width W_eff',
     ch12_ss_calc_label: 'Subthreshold Swing SS',
     ch12_dibl_label: 'Drain-Induced Barrier Lowering DIBL',
-    ch12_planar_desc: 'Planar MOSFET gates only control the top 2D surface of the channel. Scaling below 20nm leads to catastrophic DIBL and punch-through leakage, halting planar scaling.',
-    ch12_finfet_desc: 'FinFET stands the silicon channel up as a 3D fin, with the metal gate wrapping over 3 sides (Tri-Gate). Weff = 2·Hfin + Wfin triples drive current while slashing leakage by >10x.',
-    ch12_gaa_desc: 'GAA Nanosheet divides the fin into 3-4 vertically stacked horizontal nanosheets, wrapped 360° on all 4 sides by the gate. SS approaches 63 mV/dec, paired with Backside Power Delivery (BSPDN).',
+    ch12_planar_desc: "A planar MOSFET uses top-gate control of a 2D surface channel; shorter channels can increase DIBL and leakage. The 20nm value is illustrative, not a universal failure threshold; this figure does not calculate DIBL or leakage.",
+    ch12_finfet_desc: "FinFET wraps a silicon fin on 3 sides, with geometric approximation Weff = 2·Hfin + Wfin. Ion ratio and SS are uncalibrated teaching models; 3x current and >10x leakage improvement are original teaching examples, not calculated here.",
+    ch12_gaa_desc: "GAA wraps horizontal nanosheets 360° on all 4 sides. The 3-4 layers and 63 mV/dec are original teaching examples, not results for every slider state; this figure uses adjustable layers and uncalibrated SS/Ion approximations. BSPDN is an integration option.",
 
     // Ch 07 Ion Implantation
     ch07_title: 'Ion Implanter Beamline Magnetics & Lattice Anneal Model',
@@ -854,7 +854,7 @@ export const TEXTS = {
     ch11_metric_yield: 'Mature Production Yield',
     ch11_feol_desc: 'FEOL (Front-End-of-Line) forms the microscopic transistor switches: etching shallow trench isolation (STI) backfilled with oxide, implanting dopants for twin-wells, laying atomic-thin HfO₂ high-k gates, and epitaxially growing strained source/drain regions.',
     ch11_mol_desc: 'MOL (Middle-of-Line) provides the electrical bridge between nanoscale transistor terminals and microscale copper wiring: using self-aligned silicide to drop contact resistance, etching vertical contact vias, and plugging with CVD tungsten (W).',
-    ch11_beol_desc: 'BEOL (Back-End-of-Line) constructs the multi-level highway network: stacking 10 to 15 layers of dual damascene copper wires separated by low-k dielectric, from dense tight-pitch M1-M3 to thick top-level power distribution rails (M10-M12).',
+    ch11_beol_desc: "BEOL builds multilevel wiring with dual-damascene copper and low-k dielectric. The 10 to 15 layers, local M1-M3 and top M10-M12 wires are teaching examples; actual layers, dimensions and final passivation/pad steps depend on the process.",
 
     // Ch 13 Memory Technologies
     ch13_title: 'Three Major Memory Architectures 3D Model (DRAM 1T1C, 3D NAND Staircase, HBM 3D TSV)',

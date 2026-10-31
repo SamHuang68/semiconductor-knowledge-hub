@@ -597,47 +597,50 @@ export const REAL_PHOTOS_DATA = {
   "ch12": {
     "id": "ch12",
     "src": "assets/photos/ch12-transistor-micrograph.jpg",
-    "categoryZh": "電晶體電顯 (SEM/TEM)",
-    "categoryEn": "Transistor Micrograph",
-    "titleZh": "奈米尺度微處理器電晶體通道截面電顯影像",
-    "titleEn": "Nanoscale Transistor Channel Cross-Section Micrograph",
-    "scaleZh": "奈米尺度解析度 · 多向閘極立體包覆",
-    "scaleEn": "Nanoscale Resolution · 3D Multi-Gate Channel Wrapping",
-    "captionZh": "電子顯微鏡下高倍率真實晶片通道截面，清楚顯示多層微縮金屬線（M1-M4）與底層立體微型電晶體結構，具備極高深寬比與極低次臨界擺幅漏電特性。",
-    "captionEn": "High-resolution electron micrograph showing multiple metal interconnect levels above 3D nanoscale transistor channels with superior gate control.",
-    "matchZh": "對應左側 Planar -> FinFET -> GAA 演進模型：真實微觀電顯晶體通道與金屬閘極截面。",
-    "matchEn": "Brings theoretical 3D FinFET fins and GAA nanosheet cross-sections into concrete physical reality.",
+    "categoryZh": "晶片區塊參考圖",
+    "categoryEn": "Chip-Region Reference Image",
+    "titleZh": "晶片區塊影像（成像規格未確認）",
+    "titleEn": "Chip-Region Image (Imaging Specifications Unverified)",
+    "scaleZh": "可見尺標 50 µm · 非電晶體截面證據",
+    "scaleEn": "Visible scale bar: 50 µm · Not evidence of a transistor cross-section",
+    "captionZh": "可見重複長方形區塊、橫向平行帶狀圖樣與右下的 50 µm 尺標。本輪未核實原始來源、成像方式或量測規格；不能據此辨識奈米片、HfO₂ 介電層或 SiGe 材料。",
+    "captionEn": "Repeated rectangular blocks, horizontal bands and a 50 µm scale bar at the lower right are visible. Original provenance, imaging method and measurement settings are unverified in this review; the image does not identify nanosheets, HfO₂ dielectric or SiGe material.",
+    "matchZh": "此圖提供晶片區塊層級的參考。旁側 Planar／FinFET／GAA 是獨立原理示意；三個熱點不代表電晶體截面，也不是漏電或遷移率的量測證據。",
+    "matchEn": "This image provides chip-region context. The adjacent Planar/FinFET/GAA diagrams are separate teaching schematics; the three markers do not identify transistor cross-sections or establish leakage or mobility measurements.",
     "metrology": {
-      "voltage": "300 kV STEM",
-      "mag": "250,000×",
-      "fov": "180 nm",
-      "techniqueZh": "球面像差校正掃描穿透式電顯 (Cs-Corrected STEM)",
-      "techniqueEn": "Aberration-Corrected STEM Transistor Cross-Section"
+      "voltage": "Unverified",
+      "voltageZh": "未確認",
+      "mag": "Unverified",
+      "magZh": "未確認",
+      "fov": "Unverified",
+      "fovZh": "未確認",
+      "techniqueZh": "未確認（僅描述可見圖樣）",
+      "techniqueEn": "Unverified (visible features only)"
     },
     "hotspots": [
       {
         "x": 50,
         "y": 30,
-        "labelZh": "環繞閘極通道 (GAA / Nanosheet Channel)",
-        "labelEn": "GAA Nanosheet Channel",
-        "detailZh": "數層水平疊加之單晶矽奈米片，閘極全方位 360 度包覆，徹底消除次臨界漏電流。",
-        "detailEn": "Vertically stacked silicon nanosheets wrapped 360 degrees by gate electrode."
+        "labelZh": "橫向平行帶狀圖樣",
+        "labelEn": "Horizontal Parallel Bands",
+        "detailZh": "標記附近可見多條橫向平行帶狀圖樣。本圖不足以判定其電路功能或截面結構。",
+        "detailEn": "Several horizontal parallel bands are visible near the marker. Their circuit function and cross-sectional structure cannot be established from this image."
       },
       {
         "x": 50,
         "y": 58,
-        "labelZh": "高介電閘極材料 (High-k Gate Dielectric)",
-        "labelEn": "HfO2 Dielectric Interface",
-        "detailZh": "原子層沉積之二氧化鉿 (HfO2) 與金屬閘極，提供超大單位面積閘極電容。",
-        "detailEn": "ALD-grown hafnium oxide and TiN metal gate offering high capacitance."
+        "labelZh": "中央長方形排列區",
+        "labelEn": "Central Rectangular Pattern Region",
+        "detailZh": "標記附近可見長方形區域與重複線條。無法由此判定閘極介電層成分或厚度。",
+        "detailEn": "A rectangular region with repeated lines is visible near the marker. Gate-dielectric composition or thickness cannot be determined here."
       },
       {
         "x": 25,
         "y": 72,
-        "labelZh": "源極/汲極應力磊晶 (SiGe Source/Drain Stressor)",
-        "labelEn": "Embedded SiGe Stressor",
-        "detailZh": "選擇性外延生長之矽鍺結晶，對電晶體通道施加單軸應變，使電洞移動率提升 2 倍以上。",
-        "detailEn": "Epitaxial SiGe inducing uniaxial compressive strain to boost hole mobility."
+        "labelZh": "左下密集圖樣區",
+        "labelEn": "Lower-Left Dense Pattern Region",
+        "detailZh": "標記附近可見密集且形狀多樣的圖樣。此影像不能辨識 SiGe 應變源，也不能證明遷移率增益。",
+        "detailEn": "Dense patterns with varied shapes are visible near the marker. This image does not identify a SiGe stressor or demonstrate a mobility gain."
       }
     ]
   },

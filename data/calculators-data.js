@@ -293,14 +293,14 @@ export const PHYSICS_CALCULATORS = {
   // Ch 11: CMOS 流程整合
   ch11: {
     id: 'ch11',
-    titleZh: 'CMOS 跨層熱預算積分與擴散長度計算器 (Thermal Budget & Diffusion Length)',
-    titleEn: 'CMOS Thermal Budget & Dopant Diffusion Length Calculator',
+    titleZh: "CMOS 等溫熱預算與擴散長度教學計算器",
+    titleEn: "CMOS Isothermal Thermal-Budget & Diffusion Teaching Calculator",
     formulaLatex: 'L_{diff} = 2 \\sqrt{D \\cdot t}, \\quad D = D_0 \\exp\\left(-\\frac{E_a}{k_B T}\\right)',
-    descriptionZh: '評估前段高溫退火 (RTA/FLA/LSA) 累積熱預算對雜質擴散縱深 Ldiff 之影響，避免超淺接面 (USJ) 失控。',
-    descriptionEn: 'Assess cumulative thermal budget and dopant diffusion length across RTA, flash, and laser annealing.',
+    descriptionZh: "以單一固定溫度與持續時間計算 Ldiff；D0=0.76 cm²/s、Ea=3.46 eV 為沿用教學假設，未積分升降溫曲線、跨站累積或校準實際 RTA／FLA／LSA。",
+    descriptionEn: "Calculate Ldiff at one constant temperature and dwell time. D0=0.76 cm²/s and Ea=3.46 eV are existing teaching assumptions; this does not integrate ramps or process history, or calibrate actual RTA/FLA/LSA.",
     params: [
       { id: 'tempRta', nameZh: '尖峰退火溫度 (Peak T)', nameEn: 'Peak Anneal Temp', min: 950, max: 1350, step: 25, default: 1050, unit: '°C', presets: [{ label: 'Spike RTA (1050°C)', val: 1050 }, { label: 'Flash Anneal (1250°C)', val: 1250 }, { label: 'Nanosecond Laser (1300°C)', val: 1300 }] },
-      { id: 'timeSec', nameZh: '高溫持續時間 (Dwell Time)', nameEn: 'Dwell Time', min: 0.001, max: 10.0, step: 0.1, default: 1.5, unit: 'sec', presets: [{ label: 'Laser (10 µs)', val: 0.001 }, { label: 'Flash (5 ms)', val: 0.005 }, { label: 'Spike (1.5s)', val: 1.5 }] }
+      { id: 'timeSec', nameZh: '高溫持續時間 (Dwell Time)', nameEn: 'Dwell Time', min: 0.001, max: 10.0, step: 0.001, default: 1.5, unit: 'sec', presets: [{ label: '1 ms teaching example', val: 0.001 }, { label: 'Flash (5 ms)', val: 0.005 }, { label: 'Spike (1.5s)', val: 1.5 }] }
     ],
     calculate: (p) => {
       const kB = 8.617e-5;
@@ -311,8 +311,8 @@ export const PHYSICS_CALCULATORS = {
       const Ldiff_cm = 2 * Math.sqrt(D * p.timeSec);
       const Ldiff_nm = Ldiff_cm * 1e7;
       return [
-        { labelZh: '雜質擴散長度 (Ldiff)', labelEn: 'Diffusion Length', value: Ldiff_nm < 0.1 ? Ldiff_nm.toExponential(2) : Ldiff_nm.toFixed(2), unit: 'nm', highlight: true, noteZh: '先進節點要求擴散長度 < 2 nm', noteEn: 'Sub-3nm nodes demand Ldiff < 2 nm' },
-        { labelZh: '熱預算因子 (D·t)', labelEn: 'Thermal Metric (D·t)', value: (D * p.timeSec * 1e14).toFixed(3), unit: 'nm²', highlight: false, noteZh: '雷達圖跨站熱累加依據', noteEn: 'Thermal load tracking index across steps' }
+        { labelZh: '雜質擴散長度 (Ldiff)', labelEn: 'Diffusion Length', value: Ldiff_nm < 0.1 ? Ldiff_nm.toExponential(2) : Ldiff_nm.toFixed(2), unit: 'nm', highlight: true, noteZh: "< 2 nm 為教學目標例值，非通用節點規格", noteEn: "< 2 nm is an illustrative target, not a universal sub-3nm specification" },
+        { labelZh: '熱預算因子 (D·t)', labelEn: 'Thermal Metric (D·t)', value: (D * p.timeSec * 1e14).toFixed(3), unit: 'nm²', highlight: false, noteZh: "單一等溫步驟的 D·t；未包含跨站累積", noteEn: "D·t for one isothermal step; no multi-step accumulation" }
       ];
     }
   },
@@ -323,21 +323,21 @@ export const PHYSICS_CALCULATORS = {
     titleZh: 'GAA 奈米片有效寬度與飽和驅動電流計算器 (GAA Nanosheet Weff & Ion Drive)',
     titleEn: 'GAA Nanosheet Effective Width & Saturation Drive Current Calculator',
     formulaLatex: 'W_{eff} = 2 \\cdot N_{sheet} \\cdot (W_{sheet} + T_{sheet}), \\quad I_{on} = W_{eff} \\cdot J_{sat}',
-    descriptionZh: '計算 GAA 奈米片（Nanosheet）四面閘極環繞架構相較於 FinFET 的通道有效導電寬度增益與飽和開態電流 Ion。',
-    descriptionEn: 'Compute total effective channel width and saturation drive current for multi-stacked nanosheets.',
+    descriptionZh: "依四面矩形通道近似計算 GAA 的 Weff，並以輸入 Jsat 換算 Ion。未建立同佔位面積的 FinFET 比較、實測電流校準或電路模型。",
+    descriptionEn: "Use a four-sided rectangular-channel approximation for GAA Weff and the supplied Jsat for Ion. No equal-footprint FinFET comparison, measured-current calibration or circuit model is included.",
     params: [
       { id: 'nSheets', nameZh: '奈米片堆疊層數 (Sheets N)', nameEn: 'Number of Sheets', min: 2, max: 4, step: 1, default: 3, unit: '層', presets: [{ label: '2 Sheets', val: 2 }, { label: '3 Sheets (Standard)', val: 3 }, { label: '4 Sheets (High-Drive)', val: 4 }] },
       { id: 'wSheet', nameZh: '奈米片寬度 (Width W)', nameEn: 'Sheet Width (W)', min: 15, max: 55, step: 5, default: 35, unit: 'nm', presets: [{ label: 'Narrow (20nm)', val: 20 }, { label: 'Standard (35nm)', val: 35 }, { label: 'Wide (50nm)', val: 50 }] },
       { id: 'tSheet', nameZh: '奈米片厚度 (Thickness T)', nameEn: 'Sheet Thickness (T)', min: 4, max: 8, step: 0.5, default: 5, unit: 'nm' },
-      { id: 'jsat', nameZh: '電流密度常數 (Jsat)', nameEn: 'Sat Current Density', min: 0.8, max: 2.0, step: 0.1, default: 1.4, unit: 'mA/µm' }
+      { id: 'jsat', nameZh: "單位有效寬度電流 (Jsat)", nameEn: "Current per Effective Width", min: 0.8, max: 2.0, step: 0.1, default: 1.4, unit: 'mA/µm' }
     ],
     calculate: (p) => {
       const weff_single = 2 * (p.wSheet + p.tSheet);
       const weff_total = p.nSheets * weff_single; // nm
       const ion = (weff_total / 1000) * p.jsat; // mA
       return [
-        { labelZh: '總有效導電通道寬度 (Weff)', labelEn: 'Effective Width (Weff)', value: weff_total, unit: 'nm', highlight: true, noteZh: '大幅超越同等佔位面積下 FinFET 之通道寬度', noteEn: 'Significantly exceeds FinFET channel width' },
-        { labelZh: '飽和開態電流 (Drive Ion)', labelEn: 'Saturation Drive Ion', value: ion.toFixed(2), unit: 'mA', highlight: false, noteZh: '提升邏輯閘切換速度與抗壓降能力', noteEn: 'Boosts inverter switching speed & noise margin' }
+        { labelZh: '總有效導電通道寬度 (Weff)', labelEn: 'Effective Width (Weff)', value: weff_total, unit: 'nm', highlight: true, noteZh: "矩形通道周長加總；未建立等佔位面積 FinFET 比較", noteEn: "Sum of rectangular channel perimeters; no equal-footprint FinFET comparison" },
+        { labelZh: '飽和開態電流 (Drive Ion)', labelEn: 'Saturation Drive Ion', value: ion.toFixed(2), unit: 'mA', highlight: false, noteZh: "Ion = Weff × Jsat 教學估計；未計算延遲、壓降或雜訊容限", noteEn: "Ion = Weff × Jsat teaching estimate; delay, IR drop and noise margin are not calculated" }
       ];
     }
   },

@@ -12,42 +12,43 @@ export function renderCMOSFlowObject(container, lang = 'zh') {
 
     if (activeStep === 1) {
       stepTitle = t.ch11_step_1;
-      stepDesc = '淺溝槽隔離 (STI)：在 P 型基板上透過微影蝕刻出 300nm 溝槽，沉積高密度電漿氧化物 (HDP-CVD SiO₂) 充填，再以 CMP 研磨平整，將相鄰 NMOS 與 PMOS 活性區徹底絕緣隔開。';
+      stepDesc = lang === 'en' ? "STI schematic: etch the P-type substrate, fill with HDP-CVD SiO₂ and planarize by CMP to isolate active regions. The 300nm depth is a teaching example, not a universal specification." : "STI 示意：在 P 型基板蝕刻溝槽，以 HDP-CVD SiO₂ 充填並經 CMP 平坦化，隔離相鄰活性區。300nm 為教學例值，非通用規格。";
       sectionTag = t.ch11_tab_feol;
     } else if (activeStep === 2) {
       stepTitle = t.ch11_step_2;
-      stepDesc = '雙井區離子佈植 (Twin-Well)：光阻遮蔽左側 PMOS 區，高能注入磷 (P⁺) 形成 N-Well；光阻遮蔽右側 NMOS 區，注入硼 (B⁺) 形成 P-Well，界定不同極性電晶體的背底基板。';
+      stepDesc = lang === 'en' ? "Twin-well schematic: expose the left PMOS region for phosphorus (P⁺) implantation into the N-well, and the right NMOS region for boron (B⁺) implantation into the P-well; photoresist protects the other regions. This follows diagram positions, not a complete implant recipe." : "雙井區示意：分別開放圖左 PMOS 區注入磷 (P⁺) 形成 N-Well，及圖右 NMOS 區注入硼 (B⁺) 形成 P-Well；其他區域由光阻保護。此說明對齊圖中位置，不代表完整佈植配方。";
       sectionTag = t.ch11_tab_feol;
     } else if (activeStep === 3) {
       stepTitle = t.ch11_step_3;
-      stepDesc = 'High-k 金屬閘極 (HKMG Stack)：沉積 1.5nm 超薄氧化鉿 (HfO₂, k~25) 介電層，上方覆蓋功函數調節金屬層 (TiN/TaN) 與鎢閘極，兩側形成氮化矽 (Si₃N₄) 間隔側牆 (Spacers)。';
+      stepDesc = lang === 'en' ? "HKMG stack schematic: HfO₂, TiN/TaN work-function metal, a tungsten gate and Si₃N₄ spacers. The 1.5nm thickness and k~25 are teaching examples. This diagram groups structures; the RMG flow in the chapter replaces the gate after high-temperature source/drain steps." : "HKMG 堆疊示意：HfO₂、TiN/TaN 功函數金屬、鎢閘極與 Si₃N₄ 側牆。1.5nm、k~25 為教學例值。本圖依結構分組；正文所述 RMG 流程會在高溫源汲極步驟後置換金屬閘極。";
       sectionTag = t.ch11_tab_feol;
     } else if (activeStep === 4) {
       stepTitle = t.ch11_step_4;
-      stepDesc = '源極/汲極應變磊晶與佈植：PMOS 區選擇性磊晶成長 SiGe (引入雙軸壓縮應力，電洞遷移率提升 60%)；NMOS 區磊晶 Si:C (引入伸張應力，電子遷移率提升 50%) 並注入重摻雜離子。';
+      stepDesc = lang === 'en' ? "Source/drain strain and implant schematic: SiGe for PMOS and Si:C for NMOS illustrate strain engineering with doping. The 60% hole and 50% electron mobility gains are original uncalibrated teaching examples; this figure does not calculate stress or mobility." : "源汲極應變與佈植示意：PMOS 的 SiGe 與 NMOS 的 Si:C 用於應變工程，並搭配摻雜。電洞 60%、電子 50% 的遷移率提升為原未校準教學例值；此圖未計算應力或遷移率。";
       sectionTag = t.ch11_tab_feol;
     } else if (activeStep === 5) {
       stepTitle = t.ch11_step_5;
-      stepDesc = '中段製程 (MOL: Contact & Plugs)：源汲極表面反應生成低阻抗自對準矽化鎳 (NiSi)；覆蓋層間介電質 (ILD0) 後蝕刻高深寬比接觸孔，並以 CVD 鎢 (Tungsten W) 填滿接腳。';
+      stepDesc = lang === 'en' ? "MOL contact schematic: form NiSi at source/drain surfaces, deposit ILD0, etch contacts and fill with CVD tungsten. Materials and sequence illustrate a teaching flow; integration varies by process." : "MOL 接觸示意：源汲極表面形成 NiSi，覆蓋 ILD0 後蝕刻接觸孔並以 CVD 鎢填充。材料與順序為教學例示，實際整合依製程而異。";
       sectionTag = t.ch11_tab_mol;
     } else if (activeStep === 6) {
       stepTitle = t.ch11_step_6;
-      stepDesc = '後段製程 (BEOL: 10+ 層金屬互連線)：以雙載子鑲嵌 (Dual Damascene) 工藝依序堆疊 M1 至 M10+ 層銅導線與通孔 (Vias)，並由極低介電常數 (Low-k) 材料隔離，完成全功能晶片！';
+      stepDesc = lang === 'en' ? "BEOL schematic: form copper lines and vias by dual damascene, separated by low-k dielectric. The 10+ layers and M1 to M10+ range are teaching examples; this figure shows partial wiring, not the full stack or a qualified flow." : "BEOL 互連示意：以雙鑲嵌建立銅線與通孔，並以 Low-k 介電質隔離。10+ 層、M1 至 M10+ 為教學例示；圖只顯示局部互連，不代表完整層數或製程驗證。";
       sectionTag = t.ch11_tab_beol;
     }
 
     const viewportHtml = `
-      <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="CMOS Integrated Process Step Cross-Section">
+      <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="${lang === 'en' ? `CMOS process cross-section schematic; not to scale` : `CMOS 製程剖面示意；非按比例`}">
         <!-- 頂部步進標示 -->
         <rect x="40" y="15" width="720" height="35" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
-        <text x="60" y="38" fill="#38bdf8" font-size="12" font-weight="750">[${sectionTag}] ${stepTitle}</text>
-        <text x="730" y="38" text-anchor="end" fill="#94a3b8" font-size="11">工步 ${activeStep} / 6</text>
+        <text x="60" y="28" fill="#38bdf8" font-size="10" font-weight="750">${sectionTag}</text>
+        <text x="60" y="43" fill="#38bdf8" font-size="11.5" font-weight="750">${stepTitle}</text>
+        <text x="730" y="28" text-anchor="end" fill="#94a3b8" font-size="11">${lang === 'en' ? `Step ${activeStep} / 6` : `工步 ${activeStep} / 6`}</text>
 
         <!-- 矽基底本體 (P-Substrate @ 底部) -->
         <g transform="translate(60, 60)">
           <!-- 矽基板 -->
           <rect x="0" y="240" width="680" height="90" fill="#1e293b" stroke="#475569" stroke-width="1.5"/>
-          <text x="340" y="295" text-anchor="middle" fill="#94a3b8" font-size="12">P-Type 矽基底 (P-Substrate &lt;100&gt;)</text>
+          <text x="340" y="295" text-anchor="middle" fill="#94a3b8" font-size="12">${lang === 'en' ? `P-type silicon substrate (&lt;100&gt;)` : `P 型矽基底 (&lt;100&gt;)`}</text>
 
           <!-- 步驟 1+: STI 隔離槽 (中間與兩側) -->
           <rect x="0" y="200" width="80" height="40" fill="#0284c7" opacity="0.7"/>
@@ -58,13 +59,13 @@ export function renderCMOSFlowObject(container, lang = 'zh') {
           <!-- 步驟 2+: 雙井區 (N-Well 左側 PMOS, P-Well 右側 NMOS) -->
           ${activeStep >= 2 ? `
             <rect x="80" y="190" width="220" height="90" fill="#f59e0b" opacity="0.25" stroke="#f59e0b" stroke-dasharray="2 2"/>
-            <text x="190" y="260" text-anchor="middle" fill="#fbbf24" font-size="12" font-weight="700">N-Well (PMOS 區域)</text>
+            <text x="190" y="260" text-anchor="middle" fill="#fbbf24" font-size="12" font-weight="700">${lang === 'en' ? `N-well (PMOS region)` : `N-Well（PMOS 區域）`}</text>
 
             <rect x="380" y="190" width="220" height="90" fill="#10b981" opacity="0.25" stroke="#10b981" stroke-dasharray="2 2"/>
-            <text x="490" y="260" text-anchor="middle" fill="#34d399" font-size="12" font-weight="700">P-Well (NMOS 區域)</text>
+            <text x="490" y="260" text-anchor="middle" fill="#34d399" font-size="12" font-weight="700">${lang === 'en' ? `P-well (NMOS region)` : `P-Well（NMOS 區域）`}</text>
           ` : `
-            <text x="190" y="225" text-anchor="middle" fill="#64748b" font-size="11">活性區 1 (待做 PMOS)</text>
-            <text x="490" y="225" text-anchor="middle" fill="#64748b" font-size="11">活性區 2 (待做 NMOS)</text>
+            <text x="190" y="225" text-anchor="middle" fill="#64748b" font-size="11">${lang === 'en' ? `Active region 1 (PMOS)` : `活性區 1（PMOS）`}</text>
+            <text x="490" y="225" text-anchor="middle" fill="#64748b" font-size="11">${lang === 'en' ? `Active region 2 (NMOS)` : `活性區 2（NMOS）`}</text>
           `}
 
           <!-- 步驟 3+: HKMG 閘極堆疊 -->
@@ -112,7 +113,7 @@ export function renderCMOSFlowObject(container, lang = 'zh') {
             ${[117, 190, 262, 417, 490, 562].map(x => `
               <rect x="${x - 5}" y="80" width="10" height="80" fill="#cbd5e1" stroke="#f59e0b" stroke-width="1"/>
             `).join('')}
-            <text x="340" y="115" text-anchor="middle" fill="#fbbf24" font-size="11" font-weight="750">MOL Contact 鎢插塞 (W-Plugs)</text>
+            <text x="340" y="115" text-anchor="middle" fill="#fbbf24" font-size="11" font-weight="750">${lang === 'en' ? `MOL contacts: W plugs` : `MOL 接觸：鎢插塞`}</text>
           ` : ''}
 
           <!-- 步驟 6+: BEOL 銅導線 (M1) -->
@@ -124,7 +125,7 @@ export function renderCMOSFlowObject(container, lang = 'zh') {
               <rect x="230" y="10" width="100" height="40" rx="3" fill="#ea580c" stroke="#f97316" stroke-width="1.5"/>
               <rect x="400" y="10" width="120" height="40" rx="3" fill="#ea580c" stroke="#f97316" stroke-width="1.5"/>
               <rect x="550" y="10" width="60" height="40" rx="3" fill="#ea580c" stroke="#f97316" stroke-width="1.5"/>
-              <text x="340" y="35" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="800">BEOL M1 / M2 雙鑲嵌銅導線 (Cu Interconnects)</text>
+              <text x="340" y="35" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="800">${lang === 'en' ? `BEOL M1 / M2 dual-damascene Cu` : `BEOL M1 / M2 雙鑲嵌銅線`}</text>
             </g>
           ` : ''}
         </g>
@@ -135,18 +136,18 @@ export function renderCMOSFlowObject(container, lang = 'zh') {
     const dashboardHtml = `
       <div class="eng-obj-metric-card">
         <div class="eng-obj-metric-label">${t.ch11_metric_masks}</div>
-        <div class="eng-obj-metric-value" style="color: var(--semi-blue-dark);">60 ~ 80+ 層</div>
-        <div class="eng-obj-metric-note">DUV/EUV 多重曝光精確疊對</div>
+        <div class="eng-obj-metric-value" style="color: var(--semi-blue-dark);">${lang === 'en' ? `60 ~ 80+ layers` : `60 ~ 80+ 層`}</div>
+        <div class="eng-obj-metric-note">${lang === 'en' ? `DUV/EUV mask-count example; process dependent` : `DUV/EUV 光罩數教學例值；依製程而異`}</div>
       </div>
       <div class="eng-obj-metric-card">
         <div class="eng-obj-metric-label">${t.ch11_metric_steps}</div>
-        <div class="eng-obj-metric-value">1,200 ~ 1,500 步</div>
-        <div class="eng-obj-metric-note">包含薄膜、微影、蝕刻、佈植與 CMP 循環</div>
+        <div class="eng-obj-metric-value">${lang === 'en' ? `1,200 ~ 1,500 steps` : `1,200 ~ 1,500 步`}</div>
+        <div class="eng-obj-metric-note">${lang === 'en' ? `Includes films, lithography, etch, implant and CMP; illustrative step count` : `包含薄膜、微影、蝕刻、佈植與 CMP；步數為教學例值`}</div>
       </div>
       <div class="eng-obj-metric-card">
         <div class="eng-obj-metric-label">${t.ch11_metric_cycle}</div>
-        <div class="eng-obj-metric-value">2.5 ~ 3.5 個月</div>
-        <div class="eng-obj-metric-note">晶圓在全自動無塵室中穿越數千台設備</div>
+        <div class="eng-obj-metric-value">${lang === 'en' ? `2.5 ~ 3.5 months` : `2.5 ~ 3.5 個月`}</div>
+        <div class="eng-obj-metric-note">${lang === 'en' ? `Illustrative cycle time; depends on flow, capacity and scheduling` : `週期為教學例值，受流程、產能與排程影響`}</div>
       </div>
     `;
 
@@ -181,19 +182,19 @@ export function renderCMOSFlowObject(container, lang = 'zh') {
         <div class="eng-obj-dashboard">
           ${dashboardHtml}
           <div class="eng-obj-metric-card">
-            <div class="eng-obj-metric-label">${lang === 'en' ? 'Cross-Tier CMOS Clauses' : '跨層製程整合條例 (CMOS Clauses)'}</div>
+            <div class="eng-obj-metric-label">${lang === 'en' ? `Cross-tier CMOS integration overview` : `跨層製程整合概覽`}</div>
             <div class="eng-obj-metric-value" style="font-size: 13.5px; color: var(--semi-teal);">${lang === 'en' ? 'FEOL · MOL · BEOL · BSPDN · 3D' : 'FEOL · MOL · BEOL · BSPDN · 3D'}</div>
             <div class="eng-obj-metric-note">${lang === 'en' ? 'STI/HKMG/GAA → COAG/SAC/BPR → Multi-tier Cu → Backside nTSV & 3D WLP' : 'STI/HKMG/GAA → COAG/SAC/BPR → 多層銅線 → 背面 nTSV 與 3D WLP'}</div>
           </div>
           <div class="eng-obj-metric-card">
-            <div class="eng-obj-metric-label">${lang === 'en' ? 'Monotonic Thermal & TLM Contact Law' : '跨層單調熱預算與接觸電阻律 (PIE Law)'}</div>
+            <div class="eng-obj-metric-label">${lang === 'en' ? `Thermal-budget and contact-resistivity examples` : `熱預算與接觸電阻教學例示`}</div>
             <div class="eng-obj-metric-value" style="font-size: 13.5px; color: #0284c7;">${lang === 'en' ? 'T_FEOL(1050°C) > T_MOL(500°C) > T_BEOL(400°C)' : 'T_FEOL(1050°C) > T_MOL(500°C) > T_BEOL(400°C)'}</div>
-            <div class="eng-obj-metric-note">${lang === 'en' ? 'Strict thermal hierarchy & TLM contact resistivity <10⁻⁹ Ω·cm²' : '跨層熱預算單調遞減鐵律與 TLM 傳輸線超低接觸電阻率 <10⁻⁹ Ω·cm²'}</div>
+            <div class="eng-obj-metric-note">${lang === 'en' ? `Temperatures and <10⁻⁹ Ω·cm² are illustrative; thermal history and TLM contact resistance are not calculated` : `溫度與 <10⁻⁹ Ω·cm² 為例示；此圖未計算熱歷程或 TLM 接觸電阻`}</div>
           </div>
                   <div class="eng-obj-metric-card">
             <div class="eng-obj-metric-label">${lang === 'en' ? 'Failure Diagnostics & OCAP' : '現場異常診斷與防呆 (Failure & OCAP)'}</div>
             <div class="eng-obj-metric-value" style="font-size: 13.5px; color: #d97706;">${lang === 'en' ? '400°C Ceiling · SAC Short · STI Hump' : '400°C Ceiling · SAC Short · STI Hump'}</div>
-            <div class="eng-obj-metric-note">${lang === 'en' ? 'Enforces thermal budget hierarchy, SAC cap margins & STI corner rounding' : '嚴守全流程熱預算金字塔、自對準接觸護牆防短路與 STI 轉角圓滑化防漏電'}</div>
+            <div class="eng-obj-metric-note">${lang === 'en' ? `Review thermal history, SAC insulation margins and STI corners; qualify mitigation for each process` : `檢查熱歷程、SAC 絕緣裕度與 STI 轉角；改善措施須依製程驗證`}</div>
           </div>
         </div>
 

@@ -704,7 +704,7 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
         <div class="article-top-bar">
           <span class="article-part-label">${chapter.part}</span>
           <div class="article-action-cluster">
-            <button type="button" class="article-action-btn ${isBookmarked ? 'is-bookmarked' : ''}" id="toggleBookmarkBtn" title="${isBookmarked ? t.bookmark_btn_saved : t.bookmark_btn_unsaved} (${currentLang === 'en' && ['ch04', 'ch05', 'ch06', 'ch07', 'ch08', 'ch09', 'ch10', 'ch19', 'ch20', 'ch21'].includes(chapter.id) ? 'Shortcut' : '快捷鍵'}: B)">
+            <button type="button" class="article-action-btn ${isBookmarked ? 'is-bookmarked' : ''}" id="toggleBookmarkBtn" title="${isBookmarked ? t.bookmark_btn_saved : t.bookmark_btn_unsaved} (${currentLang === 'en' && ['ch04', 'ch05', 'ch06', 'ch07', 'ch08', 'ch09', 'ch10', 'ch11', 'ch12', 'ch19', 'ch20', 'ch21'].includes(chapter.id) ? 'Shortcut' : '快捷鍵'}: B)">
               ${isBookmarked ? t.bookmark_btn_saved : t.bookmark_btn_unsaved}
             </button>
             <button type="button" class="article-action-btn" id="copyLinkBtn" title="${t.copy_link_btn}">
@@ -745,7 +745,7 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
     updateSidebarActive(chapter.id);
 
     // 僅核定樣板章節前置原本的本章重點，目錄同步採相同閱讀順序。
-    const sampleTakeaways = ['ch04', 'ch05', 'ch06', 'ch07', 'ch08', 'ch09', 'ch10', 'ch19', 'ch20', 'ch21'].includes(chapter.id) ? applyChapterSampleLayout(routeDynamicEl) : null;
+    const sampleTakeaways = ['ch04', 'ch05', 'ch06', 'ch07', 'ch08', 'ch09', 'ch10', 'ch11', 'ch12', 'ch19', 'ch20', 'ch21'].includes(chapter.id) ? applyChapterSampleLayout(routeDynamicEl) : null;
     const sampleHeadings = sampleTakeaways ? [...chapter.headings.filter(h => h.id === sampleTakeaways), ...chapter.headings.filter(h => h.id !== sampleTakeaways)] : chapter.headings;
     renderToc(sampleHeadings);
 
@@ -776,7 +776,7 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
     }
   }
 
-  // 僅重排已核定 ch04／ch05／ch06／ch07／ch08／ch09／ch10／ch19／ch20／ch21 的既有節點；章節資料、連結與事件保持原樣。
+  // 僅重排已核定 ch04／ch05／ch06／ch07／ch08／ch09／ch10／ch11／ch12／ch19／ch20／ch21 的既有節點；章節資料、連結與事件保持原樣。
   function applyChapterSampleLayout(root) {
     document.body.classList.add('is-chapter-sample');
     const header = root.querySelector('.article-header');
@@ -2014,8 +2014,8 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
     if (!hashValue.startsWith('#')) hashValue = '#home';
     if (window.location.hash !== hashValue) history.replaceState(null, '', hashValue);
     const hash = hashValue.slice(1);
-    // 限定已核定的首頁與十章；離開時恢復其他頁原有提示，不擴張語系修正範圍。
-    const scopedEnglish = currentLang === 'en' && ['home', 'ch04', 'ch05', 'ch06', 'ch07', 'ch08', 'ch09', 'ch10', 'ch19', 'ch20', 'ch21'].includes(hash.split('?')[0]);
+    // 限定已核定的首頁與十二章；離開時恢復其他頁原有提示，不擴張語系修正範圍。
+    const scopedEnglish = currentLang === 'en' && ['home', 'ch04', 'ch05', 'ch06', 'ch07', 'ch08', 'ch09', 'ch10', 'ch11', 'ch12', 'ch19', 'ch20', 'ch21'].includes(hash.split('?')[0]);
     for (const [href, en, zh] of [
       ['https://hub.samhuang68.org/', 'Switch to NVM Knowledge Hub (Silicon IP)', '切換至 NVM Knowledge Hub (Silicon IP)'],
       ['https://samhuang68.github.io/', 'Return to the project portal', '返回 Portal 專案入口']

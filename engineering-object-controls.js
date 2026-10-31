@@ -462,7 +462,7 @@ export function openPhysicsCalculator(chId, lang, doc) {
   const calc = PHYSICS_CALCULATORS[chId];
   if (!calc) return;
   const dialog = doc.createElement('dialog');
-  dialog.className = chId === 'ch21' ? 'physics-calc-modal ch21-physics-calc-modal' : ['ch05', 'ch06'].includes(chId) ? 'physics-calc-modal b3-physics-calc-modal' : ['ch08', 'ch09'].includes(chId) ? 'physics-calc-modal b4-physics-calc-modal' : ['ch07', 'ch10'].includes(chId) ? 'physics-calc-modal b5-physics-calc-modal' : 'physics-calc-modal';
+  dialog.className = chId === 'ch21' ? 'physics-calc-modal ch21-physics-calc-modal' : ['ch05', 'ch06'].includes(chId) ? 'physics-calc-modal b3-physics-calc-modal' : ['ch08', 'ch09'].includes(chId) ? 'physics-calc-modal b4-physics-calc-modal' : ['ch07', 'ch10'].includes(chId) ? 'physics-calc-modal b5-physics-calc-modal' : ['ch11', 'ch12'].includes(chId) ? 'physics-calc-modal b6-physics-calc-modal' : 'physics-calc-modal';
   dialog.setAttribute('aria-modal', 'true');
   dialog.setAttribute('aria-label', lang === 'en' ? calc.titleEn : calc.titleZh);
 
@@ -502,11 +502,12 @@ export function openPhysicsCalculator(chId, lang, doc) {
                 ${calc.params.map(p => {
                   const pName = lang === 'en' ? p.nameEn : p.nameZh;
                   const currentVal = paramState[p.id];
+                  const pUnit = chId === 'ch12' && p.id === 'nSheets' && lang === 'en' ? 'layers' : p.unit;
                   return `
                     <div class="calc-param-group" data-param="${p.id}">
                       <div class="calc-param-header">
                         <label class="calc-param-label" for="param-${p.id}">${escapeHtml(pName)}</label>
-                        <span class="calc-param-value" id="val-${p.id}">${currentVal} ${escapeHtml(p.unit)}</span>
+                        <span class="calc-param-value" id="val-${p.id}">${currentVal} ${escapeHtml(pUnit)}</span>
                       </div>
                       <input type="range" class="calc-slider" id="param-${p.id}"
                         min="${p.min}" max="${p.max}" step="${p.step}" value="${currentVal}"
@@ -514,7 +515,7 @@ export function openPhysicsCalculator(chId, lang, doc) {
                       ${p.presets ? `
                         <div class="calc-presets">
                           ${p.presets.map(pr => `
-                            <button type="button" class="calc-preset-btn ${currentVal === pr.val ? 'is-selected' : ''}" data-param="${p.id}" data-val="${pr.val}">${escapeHtml(pr.label)}</button>
+                            <button type="button" class="calc-preset-btn ${currentVal === pr.val ? 'is-selected' : ''}" data-param="${p.id}" data-val="${pr.val}">${escapeHtml(chId === 'ch11' && p.id === 'timeSec' && pr.val === 0.001 && lang === 'zh' ? '1 ms 教學示例' : pr.label)}</button>
                           `).join('')}
                         </div>
                       ` : ''}
@@ -826,7 +827,7 @@ export function renderEngineeringCard(container, markup, labels) {
   // 偵測章節識別與中英雙語語系，查詢實體照片資料庫
   const chId = detectChId(container, next);
   const lang = container.getAttribute?.('data-lang') || (doc.documentElement?.lang === 'en' ? 'en' : 'zh');
-  state.isScopedEnglish = lang === 'en' && ['ch04', 'ch05', 'ch06', 'ch07', 'ch08', 'ch09', 'ch10', 'ch19', 'ch20', 'ch21'].includes(chId);
+  state.isScopedEnglish = lang === 'en' && ['ch04', 'ch05', 'ch06', 'ch07', 'ch08', 'ch09', 'ch10', 'ch11', 'ch12', 'ch19', 'ch20', 'ch21'].includes(chId);
   const photo = chId ? REAL_PHOTOS_DATA[chId] : null;
 
   if (photo) {
@@ -906,12 +907,12 @@ export function renderEngineeringCard(container, markup, labels) {
                   <span class="hotspot-dot">${idx + 1}</span>
                 </button>
               `).join('')}
-              ${photo.reference ? '' : '<div class="photo-hotspot-tooltip" hidden></div>'}
+              ${photo.reference || chId === 'ch12' ? '' : '<div class="photo-hotspot-tooltip" hidden></div>'}
             </div>
           ` : ''}
         </div>
 
-        ${photo.reference ? '<div class="photo-hotspot-tooltip" role="status" hidden></div>' : ''}
+        ${photo.reference || chId === 'ch12' ? '<div class="photo-hotspot-tooltip" role="status" hidden></div>' : ''}
         <div class="photo-overlay-caption">
           <div class="photo-title">${escapeHtml(title)}</div>
           <div class="photo-caption">${escapeHtml(caption)}</div>

@@ -1082,7 +1082,7 @@ body.is-chapter-sample .article-body > .semi-ul,
 body.is-chapter-sample .article-body > .semi-ol { max-width: 72ch; }
 body.is-chapter-sample .article-body .engineering-object-mount { max-width: 80rem; }
 @media (min-width: 981px) {
-  .eng-obj-card:is([aria-labelledby="engObjCh04Title"], [aria-labelledby="engObjCh05Title"], [aria-labelledby="engObjCh06Title"], [aria-labelledby="engObjCh07Title"], [aria-labelledby="engObjCh08Title"], [aria-labelledby="engObjCh09Title"], [aria-labelledby="engObjCh10Title"], [aria-labelledby="engObjCh19Title"], [aria-labelledby="engObjCh20Title"], [aria-labelledby="engObjCh21Title"]) .eng-obj-stage.is-view-split { grid-template-columns: minmax(0, 1.6fr) minmax(280px, .7fr); }
+  .eng-obj-card:is([aria-labelledby="engObjCh04Title"], [aria-labelledby="engObjCh05Title"], [aria-labelledby="engObjCh06Title"], [aria-labelledby="engObjCh07Title"], [aria-labelledby="engObjCh08Title"], [aria-labelledby="engObjCh09Title"], [aria-labelledby="engObjCh10Title"], [aria-labelledby="engObjCh11Title"], [aria-labelledby="engObjCh12Title"], [aria-labelledby="engObjCh19Title"], [aria-labelledby="engObjCh20Title"], [aria-labelledby="engObjCh21Title"]) .eng-obj-stage.is-view-split { grid-template-columns: minmax(0, 1.6fr) minmax(280px, .7fr); }
 }
 @media (max-width: 1100px) {
   body.is-home .home-hero { display: block; }
@@ -1180,3 +1180,24 @@ body.is-chapter-sample .eng-obj-card[aria-labelledby="engObjCh20Title"] .ch20-mo
 
 /* B5: keep the calculator badge readable on its light header. */
 .b5-physics-calc-modal .calc-badge { color: #0f766e; background: #ecfdf5; border-color: #99f6e4; }
+
+
+/* B6: retain readable calculator headings and badges on the light surface. */
+.b6-physics-calc-modal .calc-title { color: #0f172a; }
+.b6-physics-calc-modal .calc-badge { color: #0f766e; background: #ecfdf5; border-color: #99f6e4; }
+
+
+/* B6: scoped light-surface controls; retain all values and slider ranges. */
+.eng-obj-card[aria-labelledby="engObjCh12Title"] .ch12-geometry-controls { background: #f8fafc !important; border-color: #cbd5e1 !important; }
+.eng-obj-card[aria-labelledby="engObjCh12Title"] .ch12-geometry-controls span { color: #334155 !important; }
+.eng-obj-card[aria-labelledby="engObjCh12Title"] .ch12-geometry-controls > div > div:last-child { font-size: 11px !important; flex-wrap: wrap; gap: 4px 8px; }
+
+/* B6: keep CH12 photo hotspot descriptions below the image and clear of all pins. */
+.eng-obj-card[aria-labelledby="engObjCh12Title"] .eng-obj-photo-panel > .photo-hotspot-tooltip {
+  position: static;
+  width: auto;
+  max-width: none;
+  transform: none;
+  margin: 12px 16px 0;
+  box-shadow: none;
+}
