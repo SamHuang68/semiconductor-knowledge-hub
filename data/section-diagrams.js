@@ -3176,8 +3176,8 @@ export const SECTION_DIAGRAMS = [
   },
   {
     "chapterId": "ch23",
-    "headingZh": "防呆：讓錯誤無法發生",
-    "headingEn": "Interlocks: making mistakes impossible",
+    "headingZh": "防呆：降低錯誤風險",
+    "headingEn": "Interlocks: reducing error risk",
     "type": "branch",
     "captionZh": "各條防呆規則在條件不符時由系統自動擋下",
     "captionEn": "Each interlock rule automatically stops the lot when its condition is not met",
