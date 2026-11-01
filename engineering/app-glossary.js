@@ -3,6 +3,17 @@ import { esc, svgTextLines, TEXTS } from './shared.js';
 
 export function renderGlossaryGalaxyObject(container, lang = 'zh') {
   const t = TEXTS[lang] || TEXTS.zh;
+  const tx = (zh, en) => lang === 'en' ? en : zh;
+  const wrap = (text, width) => {
+    if (lang !== 'en') return text;
+    const lines = [''];
+    for (const word of text.split(' ')) {
+      const last = lines.length - 1;
+      if (lines[last] && lines[last].length + word.length + 1 > width) lines.push(word);
+      else lines[last] += (lines[last] ? ' ' : '') + word;
+    }
+    return lines.join('\n');
+  };
   let activeTab = 'radar'; // 'radar' | 'galaxy' | 'acronyms'
 
   function update() {
@@ -52,28 +63,28 @@ export function renderGlossaryGalaxyObject(container, lang = 'zh') {
 
             <!-- 6 大頂點文字標記 -->
             <!-- 0 (頂部): 微影技術 -->
-            <text x="400" y="45" text-anchor="middle" fill="#38bdf8" font-size="12" font-weight="800">微影與圖形化 (Litho & Patterning)</text>
-            <text x="400" y="60" text-anchor="middle" fill="#94a3b8" font-size="10">EUV / NA / CD / Overlay (48 詞)</text>
+            <text x="400" y="45" text-anchor="middle" fill="#38bdf8" font-size="12" font-weight="800">${tx("微影與圖形化 (Litho & Patterning)", "Lithography & Patterning")}</text>
+            <text x="400" y="60" text-anchor="middle" fill="#94a3b8" font-size="10">${tx("EUV / NA / CD / Overlay (48 詞)", "EUV / NA / CD / Overlay (48 terms)")}</text>
 
             <!-- 1 (右上): 薄膜沉積 -->
-            <text x="560" y="130" text-anchor="start" fill="#10b981" font-size="12" font-weight="800">薄膜沉積 (Thin Films)</text>
-            <text x="560" y="145" text-anchor="start" fill="#94a3b8" font-size="10">ALD / PVD / CVD / CMP (42 詞)</text>
+            <text x="560" y="130" text-anchor="start" fill="#10b981" font-size="12" font-weight="800">${tx("薄膜沉積 (Thin Films)", "Thin-Film Deposition")}</text>
+            <text x="560" y="145" text-anchor="start" fill="#94a3b8" font-size="10">${tx("ALD / PVD / CVD / CMP (42 詞)", "ALD / PVD / CVD / CMP (42 terms)")}</text>
 
             <!-- 2 (右下): 電漿蝕刻 -->
-            <text x="560" y="275" text-anchor="start" fill="#f59e0b" font-size="12" font-weight="800">電漿蝕刻 (Plasma Etch)</text>
-            <text x="560" y="290" text-anchor="start" fill="#94a3b8" font-size="10">ICP / RIE / Selectivity (38 詞)</text>
+            <text x="560" y="275" text-anchor="start" fill="#f59e0b" font-size="12" font-weight="800">${tx("電漿蝕刻 (Plasma Etch)", "Plasma Etching")}</text>
+            <text x="560" y="290" text-anchor="start" fill="#94a3b8" font-size="10">${tx("ICP / RIE / Selectivity (38 詞)", "ICP / RIE / Selectivity (38 terms)")}</text>
 
             <!-- 3 (底部): 擴散佈植 -->
-            <text x="400" y="360" text-anchor="middle" fill="#c084fc" font-size="12" font-weight="800">佈植與熱處理 (Implant & Thermal)</text>
-            <text x="400" y="375" text-anchor="middle" fill="#94a3b8" font-size="10">RTA / Junction / Channelling (32 詞)</text>
+            <text x="400" y="360" text-anchor="middle" fill="#c084fc" font-size="12" font-weight="800">${tx("佈植與熱處理 (Implant & Thermal)", "Implantation & Thermal Processing")}</text>
+            <text x="400" y="375" text-anchor="middle" fill="#94a3b8" font-size="10">${tx("RTA / Junction / Channelling (32 詞)", "RTA / Junction / Channelling (32 terms)")}</text>
 
             <!-- 4 (左下): 量測良率 -->
-            <text x="240" y="275" text-anchor="end" fill="#34d399" font-size="12" font-weight="800">線上量測與良率 (Metrology & Yield)</text>
-            <text x="240" y="290" text-anchor="end" fill="#94a3b8" font-size="10">CD-SEM / SPC / FIB / TEM (50 詞)</text>
+            <text x="240" y="275" text-anchor="end" fill="#34d399" font-size="12" font-weight="800">${tx("線上量測與良率 (Metrology & Yield)", "Metrology & Yield")}</text>
+            <text x="240" y="290" text-anchor="end" fill="#94a3b8" font-size="10">${tx("CD-SEM / SPC / FIB / TEM (50 詞)", "CD-SEM / SPC / FIB / TEM (50 terms)")}</text>
 
             <!-- 5 (左上): 先進封裝 -->
-            <text x="240" y="130" text-anchor="end" fill="#ec4899" font-size="12" font-weight="800">先進封裝 (Advanced Packaging)</text>
-            <text x="240" y="145" text-anchor="end" fill="#94a3b8" font-size="10">2.5D CoWoS / SoIC / TSV (35 詞)</text>
+            <text x="240" y="130" text-anchor="end" fill="#ec4899" font-size="12" font-weight="800">${tx("先進封裝 (Advanced Packaging)", "Advanced Packaging")}</text>
+            <text x="240" y="145" text-anchor="end" fill="#94a3b8" font-size="10">${tx("2.5D CoWoS / SoIC / TSV (35 詞)", "2.5D CoWoS / SoIC / TSV (35 terms)")}</text>
           </g>
           <g class="eng-kinetic-wave" pointer-events="none"><circle cx="400" cy="205" r="72" fill="none" stroke="#38bdf8" stroke-width="1.4" class="anim-pulse-ring" opacity="0.45"/><path d="M 130,65 Q 400,35 670,65" fill="none" stroke="#34d399" stroke-width="1.5" class="anim-field-glow" opacity="0.5"/></g><g class="eng-kinetic-overlay" pointer-events="none"><circle cx="400" cy="210" r="145" fill="none" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="8 8" class="anim-data-flow" opacity="0.55"/><path d="M 190,110 L 400,210 L 610,110 M 190,310 L 400,210 L 610,310" fill="none" stroke="#34d399" stroke-width="1.8" stroke-dasharray="6 6" class="anim-beam" opacity="0.65"/></g>
         </svg>
@@ -82,18 +93,18 @@ export function renderGlossaryGalaxyObject(container, lang = 'zh') {
       dashboardHtml = `
         <div class="eng-obj-metric-card">
           <div class="eng-obj-metric-label">${t.app_glossary_metric_terms}</div>
-          <div class="eng-obj-metric-value" style="color: var(--semi-blue-dark);">245 條</div>
-          <div class="eng-obj-metric-note">涵蓋半導體製造全產業鏈核心語彙</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-blue-dark);">${tx("245 條", "245 terms")}</div>
+          <div class="eng-obj-metric-note">${tx("涵蓋半導體製造全產業鏈核心語彙", "Core vocabulary across semiconductor manufacturing")}</div>
         </div>
         <div class="eng-obj-metric-card">
           <div class="eng-obj-metric-label">${t.app_glossary_metric_domains}</div>
-          <div class="eng-obj-metric-value">6 大核心軸線</div>
-          <div class="eng-obj-metric-note">微影 · 薄膜 · 蝕刻 · 佈植 · 檢測 · 封裝</div>
+          <div class="eng-obj-metric-value">${tx("6 大核心軸線", "6 core domains")}</div>
+          <div class="eng-obj-metric-note">${tx("微影 · 薄膜 · 蝕刻 · 佈植 · 檢測 · 封裝", "Lithography · Films · Etch · Implant · Inspection · Packaging")}</div>
         </div>
         <div class="eng-obj-metric-card">
           <div class="eng-obj-metric-label">${t.app_glossary_metric_bilingual}</div>
-          <div class="eng-obj-metric-value" style="color: var(--semi-teal);">100% 雙語對齊</div>
-          <div class="eng-obj-metric-note">附權威英文縮寫與完整定義解釋</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-teal);">${tx("100% 雙語對齊", "100% bilingual alignment")}</div>
+          <div class="eng-obj-metric-note">${tx("附權威英文縮寫與完整定義解釋", "English acronyms with complete definitions")}</div>
         </div>
       `;
 
@@ -108,17 +119,17 @@ export function renderGlossaryGalaxyObject(container, lang = 'zh') {
 
             <!-- 中心太陽：300mm 晶圓實體 -->
             <circle cx="0" cy="0" r="42" fill="#0f172a" stroke="#38bdf8" stroke-width="3"/>
-            <text x="0" y="5" text-anchor="middle" fill="#38bdf8" font-size="12" font-weight="800">300mm 晶圓</text>
-            <text x="0" y="20" text-anchor="middle" fill="#94a3b8" font-size="9">全域拓撲核心</text>
+            <text x="0" y="5" text-anchor="middle" fill="#38bdf8" font-size="12" font-weight="800">${tx("300mm 晶圓", "300mm wafer")}</text>
+            <text x="0" y="20" text-anchor="middle" fill="#94a3b8" font-size="9">${tx("全域拓撲核心", "Network hub")}</text>
 
             <!-- 環繞衛星節點 (6大星系群) -->
             ${[
-              { name: '微影 Litho', color: '#38bdf8', angle: 0, r: 150 },
-              { name: '薄膜 CVD/ALD', color: '#10b981', angle: 60, r: 155 },
-              { name: '電漿蝕刻 Etch', color: '#f59e0b', angle: 120, r: 145 },
-              { name: '離子佈植 Implant', color: '#c084fc', angle: 180, r: 155 },
-              { name: 'SPC 良率控制', color: '#34d399', angle: 240, r: 150 },
-              { name: '3D 異質封裝', color: '#ec4899', angle: 300, r: 160 }
+              { name: tx("微影 Litho", "Lithography"), color: '#38bdf8', angle: 0, r: 150 },
+              { name: tx("薄膜 CVD/ALD", "Films CVD/ALD"), color: '#10b981', angle: 60, r: 155 },
+              { name: tx("電漿蝕刻 Etch", "Plasma Etch"), color: '#f59e0b', angle: 120, r: 145 },
+              { name: tx("離子佈植 Implant", "Implantation"), color: '#c084fc', angle: 180, r: 155 },
+              { name: tx("SPC 良率控制", "SPC / Yield"), color: '#34d399', angle: 240, r: 150 },
+              { name: tx("3D 異質封裝", "3D Packaging"), color: '#ec4899', angle: 300, r: 160 }
             ].map(sat => {
               const rad = sat.angle * Math.PI / 180;
               const x = sat.r * Math.cos(rad);
@@ -140,19 +151,19 @@ export function renderGlossaryGalaxyObject(container, lang = 'zh') {
 
       dashboardHtml = `
         <div class="eng-obj-metric-card">
-          <div class="eng-obj-metric-label">跨章節關聯引用鏈</div>
-          <div class="eng-obj-metric-value" style="color: var(--semi-blue-dark);">&gt; 380 處</div>
-          <div class="eng-obj-metric-note">點擊術語可無縫跨章跳轉學習</div>
+          <div class="eng-obj-metric-label">${tx("跨章節關聯引用鏈", "Cross-Chapter References")}</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-blue-dark);">${tx("&gt; 380 處", "&gt; 380 links")}</div>
+          <div class="eng-obj-metric-note">${tx("點擊術語可無縫跨章跳轉學習", "Select linked terms to continue across chapters")}</div>
         </div>
         <div class="eng-obj-metric-card">
-          <div class="eng-obj-metric-label">最密集關鍵字</div>
+          <div class="eng-obj-metric-label">${tx("最密集關鍵字", "Most-Connected Terms")}</div>
           <div class="eng-obj-metric-value">CD, CMP, SPC, GAA</div>
-          <div class="eng-obj-metric-note">半導體跨學科共通高頻術語</div>
+          <div class="eng-obj-metric-note">${tx("半導體跨學科共通高頻術語", "Frequent terms shared across semiconductor disciplines")}</div>
         </div>
         <div class="eng-obj-metric-card">
-          <div class="eng-obj-metric-label">學習效率增益</div>
-          <div class="eng-obj-metric-value" style="color: var(--semi-teal);">+ 300% 脈絡理解</div>
-          <div class="eng-obj-metric-note">打通前後段與軟硬體知識邊界</div>
+          <div class="eng-obj-metric-label">${tx("學習效率增益", "Learning-Gain Illustration")}</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-teal);">${tx("+ 300%（未驗證的理解增益示例）", "+ 300% (unverified learning-gain example)")}</div>
+          <div class="eng-obj-metric-note">${tx("打通前後段與軟硬體知識邊界", "Connect front-end, back-end, hardware and software concepts")}</div>
         </div>
       `;
 
@@ -173,7 +184,7 @@ export function renderGlossaryGalaxyObject(container, lang = 'zh') {
       viewportHtml = `
         <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Top Semiconductor Acronyms Matrix">
           <g transform="translate(60, 30)">
-            <text x="340" y="20" text-anchor="middle" fill="#38bdf8" font-size="13" font-weight="750">工程師必備高頻英語縮寫矩陣 (Top Industry Acronyms)</text>
+            <text x="340" y="20" text-anchor="middle" fill="#38bdf8" font-size="13" font-weight="750">${tx("工程師必備高頻英語縮寫矩陣 (Top Industry Acronyms)", "Industry Acronyms · English / Traditional Chinese")}</text>
             <g transform="translate(0, 40)">
               ${topAcronyms.map((item, idx) => {
                 const r = Math.floor(idx / 4);
@@ -183,8 +194,8 @@ export function renderGlossaryGalaxyObject(container, lang = 'zh') {
                     <rect x="0" y="0" width="165" height="120" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
                     <rect x="0" y="0" width="165" height="36" rx="6" fill="#1e293b"/>
                     <text x="82" y="24" text-anchor="middle" fill="#38bdf8" font-size="14" font-weight="800">${item.ac}</text>
-                    <text x="82" y="60" text-anchor="middle" fill="#10b981" font-size="10.5" font-weight="700">${item.full}</text>
-                    <text x="82" y="90" text-anchor="middle" fill="#cbd5e1" font-size="10">${item.zh}</text>
+                    <text x="82" y="54" text-anchor="middle" fill="#10b981" font-size="10.5" font-weight="700">${svgTextLines(wrap(item.full, 25), 82, 54, 13)}</text>
+                    <text x="82" y="90" text-anchor="middle" fill="#cbd5e1" font-size="10" data-bilingual-term="zh" lang="zh-Hant">${item.zh}</text>
                   </g>
                 `;
               }).join('')}
@@ -197,19 +208,19 @@ export function renderGlossaryGalaxyObject(container, lang = 'zh') {
 
       dashboardHtml = `
         <div class="eng-obj-metric-card">
-          <div class="eng-obj-metric-label">收錄英文縮寫</div>
-          <div class="eng-obj-metric-value">&gt; 180 個</div>
-          <div class="eng-obj-metric-note">國際 SEMI 標準術語規範</div>
+          <div class="eng-obj-metric-label">${tx("收錄英文縮寫", "English Acronyms")}</div>
+          <div class="eng-obj-metric-value">${tx("&gt; 180 個", "&gt; 180 entries")}</div>
+          <div class="eng-obj-metric-note">${tx("國際 SEMI 標準術語規範", "Terminology associated with international SEMI standards")}</div>
         </div>
         <div class="eng-obj-metric-card">
-          <div class="eng-obj-metric-label">常用會議行話縮寫</div>
+          <div class="eng-obj-metric-label">${tx("常用會議行話縮寫", "Common Meeting Acronyms")}</div>
           <div class="eng-obj-metric-value" style="color: var(--semi-blue-dark);">Hold, WIP, OOC, Scrap</div>
-          <div class="eng-obj-metric-note">跨廠工程溝通零障礙</div>
+          <div class="eng-obj-metric-note">${tx("跨廠工程溝通零障礙", "Shared vocabulary for communication across fabs")}</div>
         </div>
         <div class="eng-obj-metric-card">
-          <div class="eng-obj-metric-label">查詢與導覽相容</div>
-          <div class="eng-obj-metric-value" style="color: var(--semi-teal);">快捷鍵 J 鍵速開</div>
-          <div class="eng-obj-metric-note">任何頁面隨時召喚行話與術語字典</div>
+          <div class="eng-obj-metric-label">${tx("查詢與導覽相容", "Lookup and Navigation")}</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-teal);">${tx("快捷鍵 J 鍵速開", "Press J to open")}</div>
+          <div class="eng-obj-metric-note">${tx("任何頁面隨時召喚行話與術語字典", "Open the jargon and terminology dictionary from any page")}</div>
         </div>
       `;
 
@@ -228,10 +239,10 @@ export function renderGlossaryGalaxyObject(container, lang = 'zh') {
         </header>
 
         <div class="eng-obj-controls">
-          <div class="eng-obj-tab-group" role="tablist">
-            <button type="button" class="eng-obj-tab ${activeTab === 'radar' ? 'is-active' : ''}" data-tab="radar">${t.app_glossary_tab_radar}</button>
-            <button type="button" class="eng-obj-tab ${activeTab === 'galaxy' ? 'is-active' : ''}" data-tab="galaxy">${t.app_glossary_tab_galaxy}</button>
-            <button type="button" class="eng-obj-tab ${activeTab === 'acronyms' ? 'is-active' : ''}" data-tab="acronyms">${t.app_glossary_tab_acronyms}</button>
+          <div class="eng-obj-tab-group" role="group" aria-label="${tx('工程圖視圖', 'Engineering views')}">
+            <button type="button" class="eng-obj-tab ${activeTab === 'radar' ? 'is-active' : ''}" data-tab="radar" aria-pressed="${activeTab === 'radar'}">${t.app_glossary_tab_radar}</button>
+            <button type="button" class="eng-obj-tab ${activeTab === 'galaxy' ? 'is-active' : ''}" data-tab="galaxy" aria-pressed="${activeTab === 'galaxy'}">${t.app_glossary_tab_galaxy}</button>
+            <button type="button" class="eng-obj-tab ${activeTab === 'acronyms' ? 'is-active' : ''}" data-tab="acronyms" aria-pressed="${activeTab === 'acronyms'}">${t.app_glossary_tab_acronyms}</button>
           </div>
         </div>
 

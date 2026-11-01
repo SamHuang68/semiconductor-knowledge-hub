@@ -2,7 +2,8 @@ import assert from 'node:assert/strict';
 import { mountEngineeringObject } from '../engineering-objects.js';
 
 class MockElement {
-  constructor(tag = 'div') {
+  constructor(tag = 'div', ownerDocument = { activeElement: null }) {
+    this.ownerDocument = ownerDocument;
     this.tagName = tag.toUpperCase();
     this.children = [];
     this._listeners = {};
@@ -11,6 +12,13 @@ class MockElement {
   }
   setAttribute(k, v) { this._attrs[k] = String(v); }
   getAttribute(k) { return this._attrs[k] || null; }
+  get id() { return this.getAttribute('id') || ''; }
+  get dataset() {
+    return Object.fromEntries(Object.entries(this._attrs)
+      .filter(([name]) => name.startsWith('data-'))
+      .map(([name, value]) => [name.slice(5).replace(/-([a-z])/g, (_, letter) => letter.toUpperCase()), value]));
+  }
+  focus() { this.ownerDocument.activeElement = this; }
   addEventListener(evt, fn) {
     if (!this._listeners[evt]) this._listeners[evt] = [];
     this._listeners[evt].push(fn);
@@ -20,15 +28,18 @@ class MockElement {
   }
   dispatchEvent(evt) {
     evt.target ||= this;
+    evt.preventDefault ||= function () { this.defaultPrevented = true; };
     const list = [...(this._listeners[evt.type] || [])];
     for (const fn of list) fn(evt);
   }
   set innerHTML(val) {
     this._html = val;
+    // Re-render removes the focused old control; newly parsed controls share its document.
+    if (this.children.includes(this.ownerDocument.activeElement)) this.ownerDocument.activeElement = null;
     this.children = [];
     // 解析真實控制項屬性；data-* 與 id 各自可選，不要求兩者同時存在。
     for (const match of val.matchAll(/<(button|input|rect|g|circle)\b([^>]*)>/gi)) {
-      const element = new MockElement(match[1]);
+      const element = new MockElement(match[1], this.ownerDocument);
       for (const attr of match[2].matchAll(/([\w:-]+)="([^"]*)"/g)) element.setAttribute(attr[1], attr[2]);
       element.className = element.getAttribute('class') || '';
       element.value = element.getAttribute('value') || '';
@@ -39,9 +50,10 @@ class MockElement {
   querySelectorAll(sel) {
     if (sel.startsWith('.')) return this.children.filter(element => element.className.split(/\s+/).includes(sel.slice(1)));
     if (sel.includes('[data-')) {
-      const attrMatch = sel.match(/\[(data-[a-z-]+)\]/);
+      const attrMatch = sel.match(/\[(data-[a-z-]+)(?:="([^"]*)")?\]/);
       if (attrMatch) {
-        return this.children.filter(c => c.getAttribute(attrMatch[1]) !== null);
+        return this.children.filter(c => c.getAttribute(attrMatch[1]) !== null
+          && (attrMatch[2] === undefined || c.getAttribute(attrMatch[1]) === attrMatch[2]));
       }
     }
     return [];
@@ -51,7 +63,7 @@ class MockElement {
       const id = sel.slice(1);
       return this.children.find(c => c.getAttribute('id') === id) || null;
     }
-    return null;
+    return this.querySelectorAll(sel)[0] || null;
   }
 }
 
@@ -164,7 +176,7 @@ const sawBtn = c3.children.find(c => c.getAttribute('data-tab') === 'saw');
 assert.ok(sawBtn, '必要控制項不存在：sawBtn');
 {
   sawBtn.dispatchEvent({ type: 'click' });
-  assert.ok(c3.innerHTML.includes('金剛石鋸線'), '點擊線鋸後應展示金剛石線鋸切片');
+  assert.ok(c3.innerHTML.includes('金剛石線鋸（40 m/s 示例）'), '點擊線鋸後應展示已核可的金剛石線鋸示例');
 }
 console.log('[PASS] Ch 03 柴氏長晶與切片拋光模型正常');
 
@@ -239,7 +251,7 @@ const shiftBtn = c17.children.find(c => c.getAttribute('data-spc-mode') === 'shi
 assert.ok(shiftBtn, '必要控制項不存在：shiftBtn');
 {
   shiftBtn.dispatchEvent({ type: 'click' });
-  assert.ok(c17.innerHTML.includes('WECO 規則 2'), '點擊 Shift 後應觸發 WECO 規則 2 警報');
+  assert.ok(c17.innerHTML.includes('Nelson 規則 2：連續 9 點在中心線同側'), '點擊 Shift 後應觸發 Nelson 規則 2 的連續 9 點同側警報');
 }
 console.log('[PASS] Ch 17 SPC 管制圖與 Cpk 模型正常');
 

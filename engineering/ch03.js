@@ -3,6 +3,7 @@ import { esc, svgTextLines, TEXTS } from './shared.js';
 
 export function renderIngotWaferObject(container, lang = 'zh') {
   const t = TEXTS[lang] || TEXTS.zh;
+  const tx = (zh, en) => lang === 'en' ? en : zh;
   let activeTab = 'cz'; // 'cz' | 'saw' | 'polish'
   let pullSpeed = 1.20; // 0.40 ~ 2.20 mm/min
   let tempGrad = 9.0;   // 4.0 ~ 16.0 °C/mm
@@ -49,7 +50,7 @@ export function renderIngotWaferObject(container, lang = 'zh') {
           <div style="margin-left: auto; display: flex; align-items: center; gap: 8px;">
             <span style="font-size: 11px; color: #94a3b8; font-family: monospace;">(V/G) = <strong style="color: ${regimeColor}; font-size: 13px;">${xi.toFixed(3)}</strong></span>
             <span style="font-size: 11px; padding: 2px 7px; border-radius: 4px; background: rgba(15,23,42,0.6); border: 1px solid ${regimeColor}; color: ${regimeColor}; font-weight: 700;">
-              ${regime === 'pure' ? '✓ DEFECT-FREE' : (regime === 'vacancy' ? '⚠ VACANCY-RICH' : '⚠ INTERSTITIAL-RICH')}
+              ${regime === 'pure' ? tx("低風險示例區間", "LOW-RISK EXAMPLE") : (regime === 'vacancy' ? tx("空位主導示例", "VACANCY-RICH EXAMPLE") : tx("自間隙主導示例", "INTERSTITIAL-RICH EXAMPLE"))}
             </span>
           </div>
         </div>
@@ -67,7 +68,7 @@ export function renderIngotWaferObject(container, lang = 'zh') {
                 <polygon points="${x},${y - 4} ${x + 4},${y} ${x},${y + 4} ${x - 4},${y}" fill="#ef4444" stroke="#ffffff" stroke-width="0.8"/>
               `;
             }).join('')}
-            <text x="0" y="268" text-anchor="middle" fill="#f87171" font-size="9.5" font-weight="700" data-ink="halo">八面體微孔 COP / D-defects 聚集區</text>
+            <text x="0" y="268" text-anchor="middle" fill="#f87171" font-size="9.5" font-weight="700" data-ink="halo">${tx("COP／D-defect 聚集示意", "COP / D-defect schematic")}</text>
           </g>
         `;
       } else if (regime === 'interstitial') {
@@ -80,14 +81,14 @@ export function renderIngotWaferObject(container, lang = 'zh') {
                 <path d="M 52,${y} Q 35,${y - 8} 50,${y + 12}" fill="none" stroke="#f59e0b" stroke-width="2"/>
               `;
             }).join('')}
-            <text x="0" y="268" text-anchor="middle" fill="#fbbf24" font-size="9.5" font-weight="700" data-ink="halo">周邊滑移巨大差排環 (Dislocation Loops)</text>
+            <text x="0" y="268" text-anchor="middle" fill="#fbbf24" font-size="9.5" font-weight="700" data-ink="halo">${tx("自間隙缺陷環示意", "Interstitial loops schematic")}</text>
           </g>
         `;
       } else {
         defectVisual = `
           <g opacity="0.95">
             <rect x="-56" y="144" width="112" height="124" rx="4" fill="rgba(16, 185, 129, 0.12)" stroke="#10b981" stroke-dasharray="4 2"/>
-            <text x="0" y="268" text-anchor="middle" fill="#34d399" font-size="9.5" font-weight="700" data-ink="halo">★ 100% 理想無缺陷純矽 (Pure Silicon)</text>
+            <text x="0" y="268" text-anchor="middle" fill="#34d399" font-size="9.5" font-weight="700" data-ink="halo">${tx("低缺陷風險教學區間", "Low-defect-risk teaching regime")}</text>
           </g>
         `;
       }
@@ -118,21 +119,21 @@ export function renderIngotWaferObject(container, lang = 'zh') {
           <!-- 外圍超導磁體線圈 (MCZ Coils: 產生水平/尖峰磁場抑制對流) -->
           <g transform="translate(60, 160)">
             <rect x="0" y="0" width="50" height="150" rx="6" fill="#1e293b" stroke="#0ea5e9" stroke-width="2"/>
-            <text x="25" y="80" text-anchor="middle" fill="#38bdf8" font-size="11" transform="rotate(-90 25 80)">MCZ 磁場線圈</text>
+            <text x="25" y="80" text-anchor="middle" fill="#38bdf8" font-size="11" transform="rotate(-90 25 80)">${tx("MCZ 磁場線圈", "MCZ field coil")}</text>
           </g>
           <g transform="translate(690, 160)">
             <rect x="0" y="0" width="50" height="150" rx="6" fill="#1e293b" stroke="#0ea5e9" stroke-width="2"/>
-            <text x="25" y="80" text-anchor="middle" fill="#38bdf8" font-size="11" transform="rotate(90 25 80)">MCZ 磁場線圈</text>
+            <text x="25" y="80" text-anchor="middle" fill="#38bdf8" font-size="11" transform="rotate(90 25 80)">${tx("MCZ 磁場線圈", "MCZ field coil")}</text>
           </g>
 
           <!-- 左右兩側石墨電阻加熱器 (Graphite Heaters @ 1450°C) -->
           <g transform="translate(200, 170)">
             <rect x="0" y="0" width="24" height="150" rx="4" fill="#dc2626" stroke="#f87171" stroke-width="1.5" class="anim-heat"/>
-            <text x="12" y="80" text-anchor="middle" fill="#ffffff" font-size="10" transform="rotate(-90 12 80)">石墨加熱器</text>
+            <text x="12" y="80" text-anchor="middle" fill="#ffffff" font-size="10" transform="rotate(-90 12 80)">${tx("石墨加熱器", "Graphite heater")}</text>
           </g>
           <g transform="translate(576, 170)">
             <rect x="0" y="0" width="24" height="150" rx="4" fill="#dc2626" stroke="#f87171" stroke-width="1.5" class="anim-heat"/>
-            <text x="12" y="80" text-anchor="middle" fill="#ffffff" font-size="10" transform="rotate(90 12 80)">石墨加熱器</text>
+            <text x="12" y="80" text-anchor="middle" fill="#ffffff" font-size="10" transform="rotate(90 12 80)">${tx("石墨加熱器", "Graphite heater")}</text>
           </g>
 
           <!-- 石英坩堝外層碳-碳複合托杯與支持軸 (Crucible Shaft with Rotation) -->
@@ -145,7 +146,7 @@ export function renderIngotWaferObject(container, lang = 'zh') {
             <ellipse cx="160" cy="22" rx="135" ry="12" fill="#fbbf24" opacity="0.6"/>
             <!-- 坩堝旋轉標示 (Crucible Rotation CW) -->
             <line x1="160" y1="150" x2="160" y2="210" stroke="#94a3b8" stroke-width="6"/>
-            <text x="160" y="200" text-anchor="middle" fill="#38bdf8" font-size="11">坩堝順時針旋轉 ↻ (5-15 RPM)</text>
+            <text x="160" y="200" text-anchor="middle" fill="#38bdf8" font-size="11">${tx("坩堝順轉 ↻（5–15 RPM 示例）", "Crucible ↻ (5–15 RPM example)")}</text>
           </g>
 
           <!-- 頂部提拉纜繩、夾頭與單晶晶棒 (Ingot with Dash Necking & Pull Motion) -->
@@ -159,7 +160,7 @@ export function renderIngotWaferObject(container, lang = 'zh') {
             <rect x="-4" y="55" width="8" height="18" fill="#e2e8f0"/>
             <!-- 消除差排之細頸 (Dash Necking: 直徑 3-4mm, 長度 > 50mm) -->
             <path d="M -4,73 C -2,85 -2,95 -2,105 L 2,105 C 2,95 2,85 4,73 Z" fill="#94a3b8"/>
-            <text x="15" y="92" fill="#38bdf8" font-size="10.5">Dash 細頸 (消除晶格差排)</text>
+            <text x="15" y="92" fill="#38bdf8" font-size="10.5">${tx("Dash 細頸（減少差排）", "Dash necking (dislocation reduction)")}</text>
 
             <!-- 放肩錐形 (Shoulder / Crown) -->
             <path d="M -2,105 L -60,140 L 60,140 L 2,105 Z" fill="url(#czIngotGrad)" stroke="#cbd5e1" stroke-width="1"/>
@@ -170,9 +171,9 @@ export function renderIngotWaferObject(container, lang = 'zh') {
             ${defectVisual}
 
             <!-- 晶棒反向旋轉標示 (Ingot Counter-Rotation CCW) -->
-            <text x="0" y="195" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="750">300mm 單晶矽棒 (CZ Ingot)</text>
-            <text x="0" y="212" text-anchor="middle" fill="#f8fafc" font-size="10.5">&lt;100&gt; 晶向 · 逆時針旋轉 ↺</text>
-            <text x="0" y="228" text-anchor="middle" fill="${regimeColor}" font-size="10" font-weight="700" data-ink="halo">提拉 V = ${pullSpeed.toFixed(2)} mm/min · G = ${tempGrad.toFixed(1)} °C/mm</text>
+            <text x="0" y="195" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="750">${tx("300 mm CZ 晶棒示意", "300 mm CZ ingot schematic")}</text>
+            <text x="0" y="212" text-anchor="middle" fill="#f8fafc" font-size="10.5">${tx("&lt;100&gt; 晶向 · 逆時針旋轉 ↺", "&lt;100&gt; orientation · rotation ↺")}</text>
+            <text x="0" y="228" text-anchor="middle" fill="${regimeColor}" font-size="10" font-weight="700" data-ink="halo">${tx("提拉 V", "Pull V")} = ${pullSpeed.toFixed(2)} mm/min · G = ${tempGrad.toFixed(1)} °C/mm</text>
           </g>
           </g>
           <g class="eng-kinetic-wave" pointer-events="none"><circle cx="400" cy="200" r="68" fill="none" stroke="#38bdf8" stroke-width="1.4" class="anim-pulse-ring" opacity="0.45"/><path d="M 140,60 Q 400,32 660,60" fill="none" stroke="#34d399" stroke-width="1.5" class="anim-field-glow" opacity="0.5"/></g>
@@ -188,11 +189,11 @@ export function renderIngotWaferObject(container, lang = 'zh') {
         <div class="eng-obj-metric-card">
           <div class="eng-obj-metric-label">${t.ch03_defect_regime}</div>
           <div class="eng-obj-metric-value" style="font-size: 13.5px; color: ${regimeColor};">${regimeLabel}</div>
-          <div class="eng-obj-metric-note">${regime === 'pure' ? '熱力學自間隙矽原子與空位對稱完全湮滅' : (regime === 'vacancy' ? '過飽和空位凝聚聚集為八面體微孔 (D-defect)' : '過剩矽原子凝聚形成大尺寸滑移差排環')}</div>
+          <div class="eng-obj-metric-note">${regime === 'pure' ? tx("模型區間不等於零缺陷保證；需搭配熱場與冷卻條件", "The model regime is not a zero-defect guarantee; thermal field and cooling also matter") : (regime === 'vacancy' ? tx("空位聚集可能形成微孔，取決於冷卻與雜質條件", "Vacancy clusters may form voids, depending on cooling and impurities") : tx("自間隙原子聚集可能形成缺陷環", "Self-interstitial clustering may form defect loops"))}</div>
         </div>
         <div class="eng-obj-metric-card">
           <div class="eng-obj-metric-label">${t.ch03_yield_impact}</div>
-          <div class="eng-obj-metric-value" style="font-size: 13.5px; color: ${regime === 'pure' ? 'var(--semi-teal)' : '#f87171'};">${regime === 'pure' ? '100% 理想無原生微缺陷' : (regime === 'vacancy' ? 'GOI 閘極氧化層早期擊穿' : '接面逆向漏電流暴增')}</div>
+          <div class="eng-obj-metric-value" style="font-size: 13.5px; color: ${regime === 'pure' ? 'var(--semi-teal)' : '#f87171'};">${regime === 'pure' ? tx("低缺陷風險示例", "Low-defect-risk example") : (regime === 'vacancy' ? tx("可能影響氧化層完整性", "Possible oxide-integrity risk") : tx("可能增加接面漏電", "Possible junction-leakage risk"))}</div>
           <div class="eng-obj-metric-note">${impactLabel}</div>
         </div>
       `;
@@ -210,8 +211,8 @@ export function renderIngotWaferObject(container, lang = 'zh') {
           <!-- 頂部進給架與進給單晶矽棒 (300mm Ingot Downward Feed) -->
           <g transform="translate(200, 30)">
             <rect x="0" y="0" width="400" height="130" rx="8" fill="#475569" stroke="#94a3b8" stroke-width="2"/>
-            <text x="200" y="45" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="700">300mm 單晶矽晶棒 (Silicon Ingot)</text>
-            <text x="200" y="65" text-anchor="middle" fill="#38bdf8" font-size="11">垂直微進給 ↓ (Feed Rate ~0.5 mm/min)</text>
+            <text x="200" y="45" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="700">${tx("300 mm 單晶矽晶棒", "300 mm silicon ingot")}</text>
+            <text x="200" y="65" text-anchor="middle" fill="#38bdf8" font-size="11">${tx("垂直進給 ↓（約 0.5 mm/min 示例）", "Feed ↓ (~0.5 mm/min example)")}</text>
             <!-- 切割切痕線條 (Slits being cut) -->
             ${Array.from({ length: 18 }, (_, i) => `
               <line x1="${i * 20 + 30}" y1="80" x2="${i * 20 + 30}" y2="130" stroke="#0f172a" stroke-width="2.5"/>
@@ -228,8 +229,8 @@ export function renderIngotWaferObject(container, lang = 'zh') {
             ${Array.from({ length: 24 }, (_, i) => `
               <line x1="20" y1="${i * 3 + 10}" x2="460" y2="${i * 3 + 10}" stroke="#0ea5e9" stroke-width="1.8"/>
             `).join('')}
-            <text x="240" y="95" text-anchor="middle" fill="#38bdf8" font-size="12" font-weight="700">⇄ 金剛石鋸線高速往復運動 (Wire Speed: 40 m/s)</text>
-            <text x="240" y="112" text-anchor="middle" fill="#94a3b8" font-size="11">電鍍金剛石顆粒 (8-12 µm 磨料) + 冷卻研磨切削液</text>
+            <text x="240" y="95" text-anchor="middle" fill="#38bdf8" font-size="12" font-weight="700">${tx("⇄ 金剛石線鋸（40 m/s 示例）", "⇄ Diamond wire (40 m/s example)")}</text>
+            <text x="240" y="112" text-anchor="middle" fill="#94a3b8" font-size="11">${tx("金剛石磨粒（8–12 µm 示例）＋冷卻液", "Diamond abrasive (8–12 µm example) + coolant")}</text>
           </g>
           </g>
 
@@ -239,8 +240,8 @@ export function renderIngotWaferObject(container, lang = 'zh') {
             ${Array.from({ length: 20 }, (_, i) => `
               <rect x="${i * 18 + 25}" y="15" width="8" height="60" rx="1.5" fill="#94a3b8" stroke="#38bdf8" stroke-width="1"/>
             `).join('')}
-            <text x="200" y="48" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="700">一次切出 400+ 片超薄晶圓</text>
-            <text x="200" y="66" text-anchor="middle" fill="#38bdf8" font-size="11">單片厚度 ~775 µm · 切縫損耗 Kerf Loss ~110 µm</text>
+            <text x="200" y="48" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="700">${tx("一次切出 400+ 片（示例）", "400+ wafers per pass (example)")}</text>
+            <text x="200" y="66" text-anchor="middle" fill="#38bdf8" font-size="11">${tx("厚度約 775 µm · 切縫約 110 µm（示例）", "Thickness ~775 µm · kerf ~110 µm (example)")}</text>
           </g>
           <g class="eng-kinetic-wave" pointer-events="none"><circle cx="400" cy="200" r="68" fill="none" stroke="#38bdf8" stroke-width="1.4" class="anim-pulse-ring" opacity="0.45"/><path d="M 140,60 Q 400,32 660,60" fill="none" stroke="#34d399" stroke-width="1.5" class="anim-field-glow" opacity="0.5"/></g>
         </svg>
@@ -250,17 +251,17 @@ export function renderIngotWaferObject(container, lang = 'zh') {
         <div class="eng-obj-metric-card">
           <div class="eng-obj-metric-label">${t.ch03_metric_thick}</div>
           <div class="eng-obj-metric-value" style="color: var(--semi-blue-dark);">775 ± 20 µm</div>
-          <div class="eng-obj-metric-note">SEMI 標準 300mm 晶圓規格</div>
+          <div class="eng-obj-metric-note">${tx("300 mm 晶圓示例；公差須依供應商與採購規格確認", "300 mm wafer example; confirm tolerance in the supplier and purchase specification")}</div>
         </div>
         <div class="eng-obj-metric-card">
-          <div class="eng-obj-metric-label">切縫損耗 (Kerf Loss)</div>
+          <div class="eng-obj-metric-label">${tx("切縫損耗示例", "Example kerf loss")}</div>
           <div class="eng-obj-metric-value">~ 110 µm</div>
-          <div class="eng-obj-metric-note">超細金剛石鋼線大幅降低矽材浪費</div>
+          <div class="eng-obj-metric-note">${tx("切縫依線徑、磨粒與切割條件而變", "Kerf depends on wire diameter, abrasive and sawing conditions")}</div>
         </div>
         <div class="eng-obj-metric-card">
-          <div class="eng-obj-metric-label">晶圓翹曲度 (Warp / Bow)</div>
+          <div class="eng-obj-metric-label">${tx("翹曲量示例（Warp／Bow）", "Example deformation (warp / bow)")}</div>
           <div class="eng-obj-metric-value">&lt; 25 µm</div>
-          <div class="eng-obj-metric-note">恆定線張力控制確保平直切削面</div>
+          <div class="eng-obj-metric-note">${tx("Warp 與 Bow 為不同量測；此值不是兩者的通用規格", "Warp and bow are different measurements; this is not a universal limit for either")}</div>
         </div>
       `;
 
@@ -271,18 +272,18 @@ export function renderIngotWaferObject(container, lang = 'zh') {
           <!-- 左側：晶圓邊緣倒角研磨 (Edge Beveling & Profiling) -->
           <g transform="translate(60, 40)">
             <rect x="0" y="0" width="320" height="340" rx="8" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
-            <text x="160" y="32" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="750">晶圓邊緣倒角研磨 (Edge Beveling)</text>
-            <text x="160" y="50" text-anchor="middle" fill="#94a3b8" font-size="10.5">消除尖銳直角 · 防碎邊與光阻堆積</text>
+            <text x="160" y="32" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="750">${tx("晶圓邊緣倒角研磨", "Wafer edge beveling")}</text>
+            <text x="160" y="50" text-anchor="middle" fill="#94a3b8" font-size="10.5">${tx("修整尖角 · 降低碎邊風險", "Round sharp edges · reduce chipping risk")}</text>
 
             <!-- 晶圓截面放大 (銳角尖端 vs 圓弧 R 倒角) -->
             <g transform="translate(60, 90)">
               <!-- 原始未處理直角易裂輪廓 (Sharp Edge) -->
               <path d="M 0,40 L 80,40 L 80,100 L 0,100" fill="#334155" stroke="#ef4444" stroke-width="2" stroke-dasharray="3 3"/>
-              <text x="90" y="50" fill="#f87171" font-size="10">未倒角尖銳邊緣 (應力集中易碎)</text>
+              <text x="90" y="50" fill="#f87171" font-size="10">${tx("尖角：應力集中", "Sharp edge: stress concentration")}</text>
 
               <!-- 鑽石砂輪 CNC 研磨後的標準圓弧輪廓 (SEMI T-Profile) -->
               <path d="M 0,140 L 50,140 C 75,140 85,150 85,170 C 85,190 75,200 50,200 L 0,200 Z" fill="#64748b" stroke="#10b981" stroke-width="2"/>
-              <text x="95" y="165" fill="#34d399" font-size="10.5" font-weight="700">圓弧 R 倒角 (R-Profile)</text>
+              <text x="95" y="165" fill="#34d399" font-size="10.5" font-weight="700">${tx("圓弧倒角示意", "Rounded-edge schematic")}</text>
               <text x="95" y="182" fill="#94a3b8" font-size="9.5">Bevel Radius R ~ 250 µm</text>
             </g>
           </g>
@@ -290,33 +291,33 @@ export function renderIngotWaferObject(container, lang = 'zh') {
           <!-- 右側：化學機械雙面拋光 (DSP: Double-Side Polishing) -->
           <g transform="translate(420, 40)">
             <rect x="0" y="0" width="320" height="340" rx="8" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
-            <text x="160" y="32" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="750">雙面化學機械拋光 (DSP)</text>
-            <text x="160" y="50" text-anchor="middle" fill="#38bdf8" font-size="10.5">行星齒輪夾持 · 兩面同時超鏡面拋光</text>
+            <text x="160" y="32" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="750">${tx("雙面化學機械拋光", "Double-side polishing (DSP)")}</text>
+            <text x="160" y="50" text-anchor="middle" fill="#38bdf8" font-size="10.5">${tx("行星輪夾持 · 兩面同時拋光", "Planetary carrier · both sides polished")}</text>
 
             <!-- 上下旋轉拋光盤與微觀晶圓夾持 -->
             <g transform="translate(30, 80)">
               <!-- 上拋光盤 (Top Plate) -->
               <rect x="0" y="0" width="260" height="30" rx="3" fill="#1e293b" stroke="#cbd5e1" stroke-width="1.5"/>
-              <text x="130" y="20" text-anchor="middle" fill="#cbd5e1" font-size="11">上研磨盤 (Top Polishing Plate ↓ 壓力)</text>
+              <text x="130" y="20" text-anchor="middle" fill="#cbd5e1" font-size="11">${tx("上拋光盤 ↓ 壓力", "Top plate ↓ pressure")}</text>
 
               <!-- 中間游星輪 (Planetary Carrier) 與被拋光矽晶圓 -->
               <g transform="translate(20, 45)">
                 <rect x="0" y="0" width="220" height="40" rx="4" fill="#09131b" stroke="#0ea5e9" stroke-width="1.5"/>
                 <!-- 旋轉運動箭頭 -->
                 <circle cx="110" cy="20" r="16" fill="#38bdf8" opacity="0.3"/>
-                <text x="110" y="25" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="700">矽晶圓 (自轉 + 公轉)</text>
+                <text x="110" y="25" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="700">${tx("矽晶圓（自轉＋公轉）", "Wafer (spin + orbit)")}</text>
               </g>
 
               <!-- 下拋光盤 (Bottom Plate) -->
               <rect x="0" y="100" width="260" height="30" rx="3" fill="#1e293b" stroke="#cbd5e1" stroke-width="1.5"/>
-              <text x="130" y="120" text-anchor="middle" fill="#cbd5e1" font-size="11">下研磨盤 (Bottom Plate ↺ 旋轉)</text>
+              <text x="130" y="120" text-anchor="middle" fill="#cbd5e1" font-size="11">${tx("下拋光盤 ↺ 旋轉", "Bottom plate ↺ rotation")}</text>
 
               <!-- 表面奈米粗糙度放大對比 -->
               <g transform="translate(0, 160)">
                 <rect x="0" y="0" width="260" height="75" rx="4" fill="#1e293b" stroke="#334155" stroke-width="1"/>
-                <text x="10" y="22" fill="#94a3b8" font-size="10.5">拋光前：線鋸機械刮痕 RMS ~ 1 µm</text>
+                <text x="10" y="22" fill="#94a3b8" font-size="10.5">${tx("拋光前示例：RMS 約 1 µm", "Before: RMS ~1 µm (example)")}</text>
                 <path d="M 10,32 Q 30,22 50,32 T 90,32 T 130,32 T 170,32 T 210,32 T 250,32" fill="none" stroke="#f87171" stroke-width="1.5"/>
-                <text x="10" y="55" fill="#34d399" font-size="10.5" font-weight="700">拋光後：原子級光滑鏡面 RMS &lt; 0.1 nm</text>
+                <text x="10" y="55" fill="#34d399" font-size="10.5" font-weight="700">${tx("拋光後目標示例：RMS &lt; 0.1 nm", "After: RMS &lt; 0.1 nm (example target)")}</text>
                 <line x1="10" y1="65" x2="250" y2="65" stroke="#10b981" stroke-width="2"/>
               </g>
             </g>
@@ -328,18 +329,18 @@ export function renderIngotWaferObject(container, lang = 'zh') {
       dashboardHtml = `
         <div class="eng-obj-metric-card">
           <div class="eng-obj-metric-label">${t.ch03_metric_roughness}</div>
-          <div class="eng-obj-metric-value" style="color: var(--semi-teal);">&lt; 0.1 nm (次埃級)</div>
-          <div class="eng-obj-metric-note">原子級超平整表面滿足 EUV 微影景深</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-teal);">${tx("&lt; 0.1 nm（示例目標）", "&lt; 0.1 nm (example target)")}</div>
+          <div class="eng-obj-metric-note">${tx("粗糙度須附量測面積與頻寬；不能單獨證明微影景深合格", "Roughness needs a measurement area and bandwidth; it alone does not establish lithography focus compliance")}</div>
         </div>
         <div class="eng-obj-metric-card">
-          <div class="eng-obj-metric-label">全域平坦度 (GBIR / SFQR)</div>
+          <div class="eng-obj-metric-label">${tx("平坦度示例（GBIR／SFQR）", "Example flatness (GBIR / SFQR)")}</div>
           <div class="eng-obj-metric-value">&lt; 0.05 µm</div>
-          <div class="eng-obj-metric-note">整片 300mm 晶圓奈米級厚度一致性</div>
+          <div class="eng-obj-metric-note">${tx("GBIR 為全域、SFQR 為局部量；須分別指定量測定義與限值", "GBIR is global and SFQR is site-based; specify their measurement definitions and limits separately")}</div>
         </div>
         <div class="eng-obj-metric-card">
-          <div class="eng-obj-metric-label">邊緣倒角形狀</div>
-          <div class="eng-obj-metric-value">SEMI T-Profile</div>
-          <div class="eng-obj-metric-note">預防高溫製程熱應力碎裂及晶邊脫膜</div>
+          <div class="eng-obj-metric-label">${tx("邊緣輪廓示意", "Illustrative edge profile")}</div>
+          <div class="eng-obj-metric-value">${tx("邊緣輪廓示意（規格另定）", "Edge profile (specification required)")}</div>
+          <div class="eng-obj-metric-note">${tx("輪廓與量測規格須確認；倒角可降低處理時的碎邊風險", "Confirm the profile specification; beveling can reduce chipping during handling")}</div>
         </div>
       `;
 
@@ -358,10 +359,10 @@ export function renderIngotWaferObject(container, lang = 'zh') {
         </header>
 
         <div class="eng-obj-controls">
-          <div class="eng-obj-tab-group" role="tablist">
-            <button type="button" class="eng-obj-tab ${activeTab === 'cz' ? 'is-active' : ''}" data-tab="cz">${t.ch03_tab_cz}</button>
-            <button type="button" class="eng-obj-tab ${activeTab === 'saw' ? 'is-active' : ''}" data-tab="saw">${t.ch03_tab_saw}</button>
-            <button type="button" class="eng-obj-tab ${activeTab === 'polish' ? 'is-active' : ''}" data-tab="polish">${t.ch03_tab_polish}</button>
+          <div class="eng-obj-tab-group" role="group" aria-label="${tx('工程圖視圖', 'Engineering views')}">
+            <button type="button" class="eng-obj-tab ${activeTab === 'cz' ? 'is-active' : ''}" data-tab="cz" aria-pressed="${activeTab === 'cz'}">${t.ch03_tab_cz}</button>
+            <button type="button" class="eng-obj-tab ${activeTab === 'saw' ? 'is-active' : ''}" data-tab="saw" aria-pressed="${activeTab === 'saw'}">${t.ch03_tab_saw}</button>
+            <button type="button" class="eng-obj-tab ${activeTab === 'polish' ? 'is-active' : ''}" data-tab="polish" aria-pressed="${activeTab === 'polish'}">${t.ch03_tab_polish}</button>
           </div>
           ${controlsHtml}
         </div>
@@ -373,19 +374,19 @@ export function renderIngotWaferObject(container, lang = 'zh') {
         <div class="eng-obj-dashboard">
           ${dashboardHtml}
           <div class="eng-obj-metric-card">
-            <div class="eng-obj-metric-label">${lang === 'en' ? 'Wafer Substrate Clauses' : '晶圓基板全譜系條例 (Substrate Clauses)'}</div>
+            <div class="eng-obj-metric-label">${lang === 'en' ? 'Wafer Substrate Overview' : '晶圓基板概覽'}</div>
             <div class="eng-obj-metric-value" style="font-size: 13.5px; color: var(--semi-teal);">${lang === 'en' ? 'CZ/Epi · SOI · SiC/GaN · Carrier' : 'CZ/Epi · SOI · SiC/GaN · 3D載片'}</div>
             <div class="eng-obj-metric-note">${lang === 'en' ? '11N CZ/FZ Si, FD/RF/SiPh SOI, 4H-SiC/GaN WBG & 3D LTHC carrier wafers' : '11N CZ/FZ 單晶矽、FD/RF/SiPh SOI、4H-SiC/GaN 寬能隙與 3D 暫時鍵合載片'}</div>
           </div>
           <div class="eng-obj-metric-card">
-            <div class="eng-obj-metric-label">${lang === 'en' ? 'Voronkov & Flatness Quantitative Law' : 'Voronkov 與偏析平坦定律 (Crystal Law)'}</div>
+            <div class="eng-obj-metric-label">${lang === 'en' ? 'Crystal-Growth Models' : '晶體生長模型'}</div>
             <div class="eng-obj-metric-value" style="font-size: 13.5px; color: #0284c7;">${lang === 'en' ? 'V/G ≈ 0.134 · Cs = k0·C0(1-fs)^(k0-1)' : 'V/G ≈ 0.134 · Cs = k0·C0(1-fs)^(k0-1)'}</div>
-            <div class="eng-obj-metric-note">${lang === 'en' ? 'Defect-free V/G ratio, Scheil segregation & 3D TTV < 1 µm' : '零原生點缺陷臨界比、Scheil 偏析與 3D 薄化 TTV < 1 µm'}</div>
+            <div class="eng-obj-metric-note">${lang === 'en' ? 'Illustrative V/G setting, Scheil assumptions and application-specific TTV targets' : 'V/G 示例設定、Scheil 假設與依用途訂定的 TTV 目標'}</div>
           </div>
                   <div class="eng-obj-metric-card">
             <div class="eng-obj-metric-label">${lang === 'en' ? 'Failure Diagnostics & OCAP' : '現場異常診斷與防呆 (Failure & OCAP)'}</div>
             <div class="eng-obj-metric-value" style="font-size: 13.5px; color: #d97706;">${lang === 'en' ? 'COP GOI · Slip Line · Backgrind SSD' : 'COP GOI · Slip Line · Backgrind SSD'}</div>
-            <div class="eng-obj-metric-note">${lang === 'en' ? 'Intercepts COP oxide breakdown, thermal slip lines & 3D backgrind cracks' : '攔截原生 COP 空洞擊穿、高溫滑移差排線與 3D 超薄背磨次表面微裂'}</div>
+            <div class="eng-obj-metric-note">${lang === 'en' ? 'Investigates COP oxide damage, thermal slip and backgrind cracks; mitigation requires qualification' : '調查 COP 氧化層損傷、熱滑移及背磨裂紋；改善措施須經製程驗證'}</div>
           </div>
         </div>
 

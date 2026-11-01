@@ -66,7 +66,8 @@ for (const [file, expected] of Object.entries(sourceHashes)) {
   assert.equal(createHash('sha256').update(source).digest('hex'), expected, `${file} 必須保留基準來源內容`);
 }
 const chapterDigest = createHash('sha256').update(CHAPTERS_DATA.map(c => JSON.stringify([c.id, c.contentHtml, c.contentHtmlEn])).join('\n')).digest('hex');
-assert.equal(chapterDigest, 'e963c32b4fe4989de823194b2ca5bd9b5736606a25dd143c56c33adfbbed5f72', '章節正文必須與拆檔前一致');
+// 2.12.0：已核可 B7–B10、授權剩餘章節來源校勘及 Claude 局部審查修正基準；保留正文逐字差異證據，非回復拆檔前錯誤。
+assert.equal(chapterDigest, '4f4008f8174861ee1201cd118e9cc1f1e3300775de3e1ca7199b933983adaa70', '章節正文必須與 2.12.0 來源校勘基準一致');
 const SEARCH_INDEX = await loadSearchIndex();
 const searchDigest = createHash('sha256').update(SEARCH_INDEX.map(e => JSON.stringify([e.chId, e.keywords, e.title, e.titleEn])).join('\n')).digest('hex');
 assert.equal(searchDigest, '4d3f6b417bb57306634dbf3438d2884a7a1db70c3dbf58c146a9b0f9ba43f07e', '檢索全文必須與拆檔前一致');

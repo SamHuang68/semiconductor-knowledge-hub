@@ -50,8 +50,8 @@ export function renderMemoryTechObject(container, lang = 'zh') {
           </div>
           <div style="margin-left: auto; display: flex; align-items: center; gap: 8px;">
             <span style="font-size: 11px; color: #94a3b8; font-family: monospace;">${t.ch13_cap_val}: <strong style="color: #38bdf8; font-size: 13px;">${cCell.toFixed(1)} fF</strong></span>
-            <span style="font-size: 11px; padding: 2px 7px; border-radius: 4px; background: rgba(15,23,42,0.6); border: 1px solid var(--border-subtle); color: ${tRet < refreshWindowMs ? '#ef4444' : '#10b981'}; font-weight: 700;">
-              ${t.ch13_tret_val}: ${tRet.toFixed(0)} ms (${retMargin}× 裕度)
+            <span class="ch13-status-badge" data-low="${tRet < refreshWindowMs}" style="font-size: 11px; padding: 2px 7px; border-radius: 4px; background: rgba(15,23,42,0.6); border: 1px solid var(--border-subtle); color: ${tRet < refreshWindowMs ? '#ef4444' : '#10b981'}; font-weight: 700;">
+              ${t.ch13_tret_val}: ${tRet.toFixed(0)} ms (${lang === 'en' ? `${retMargin}× margin` : `${retMargin}× 裕度`})
             </span>
           </div>
         </div>
@@ -76,7 +76,7 @@ export function renderMemoryTechObject(container, lang = 'zh') {
           <!-- 上方超高深寬比圓柱電容陣列 (動態深寬比) -->
           <g transform="translate(50, 25)">
             <rect x="0" y="0" width="470" height="285" fill="#0f172a" stroke="#0ea5e9" stroke-width="1.5" rx="6"/>
-            <text x="235" y="24" text-anchor="middle" fill="#38bdf8" font-size="12" font-weight="750">DRAM 圓柱立體電容 (Aspect Ratio ${dramAR}:1 · C = ${cCell.toFixed(1)} fF)</text>
+            <text x="235" y="24" text-anchor="middle" fill="#38bdf8" font-size="12" font-weight="750">${lang === 'en' ? `DRAM cylinder capacitors (AR ${dramAR}:1 · C = ${cCell.toFixed(1)} fF)` : `DRAM 圓柱立體電容 (Aspect Ratio ${dramAR}:1 · C = ${cCell.toFixed(1)} fF)`}</text>
 
             <!-- 垂直圓柱電容結構 (動態視覺高度) -->
             ${[45, 115, 185, 255, 325, 395].map((x, idx) => `
@@ -92,13 +92,13 @@ export function renderMemoryTechObject(container, lang = 'zh') {
                 <text x="0" y="${capVisH + 14}" text-anchor="middle" fill="#38bdf8" font-size="9">C${idx + 1}</text>
               </g>
             `).join('')}
-            <text x="235" y="268" text-anchor="middle" fill="#94a3b8" font-size="10">TiN 電極 + 2nm ZrO₂/Al₂O₃/ZrO₂ 高介電質 · 漏電 ${iLeak.toFixed(1)} fA @ ${dramTemp}°C</text>
+            <text x="235" y="268" text-anchor="middle" fill="#94a3b8" font-size="10">${lang === 'en' ? `TiN + 2nm ZrO₂/Al₂O₃/ZrO₂ high-k · Leakage ${iLeak.toFixed(1)} fA @ ${dramTemp}°C` : `TiN 電極 + 2nm ZrO₂/Al₂O₃/ZrO₂ 高介電質 · 漏電 ${iLeak.toFixed(1)} fA @ ${dramTemp}°C`}</text>
           </g>
 
           <!-- 右側：電容電荷漏電動力學示波器 (Charge Retention Decay) -->
           <g transform="translate(540, 25)">
             <rect x="0" y="0" width="210" height="235" fill="#0b1329" stroke="#334155" stroke-width="1.5" rx="6"/>
-            <text x="105" y="22" text-anchor="middle" fill="#fbbf24" font-size="11" font-weight="750">固定漏電放電曲線 V(t)</text>
+            <text x="105" y="22" text-anchor="middle" fill="#fbbf24" font-size="11" font-weight="750">${lang === 'en' ? `Constant-leakage V(t)` : `固定漏電放電曲線 V(t)`}</text>
             <text x="105" y="36" text-anchor="middle" fill="#94a3b8" font-size="9">t_ret = ${tRet.toFixed(0)} ms · tREFW = ${refreshWindowMs} ms</text>
 
             <!-- 示波器座標系 (X: 0~128ms, Y: 0~1.2V) -->
@@ -116,7 +116,7 @@ export function renderMemoryTechObject(container, lang = 'zh') {
             </g>
 
             <text x="105" y="210" text-anchor="middle" fill="${retMargin >= 2.0 ? '#34d399' : '#ef4444'}" font-size="10" font-weight="700">
-              ${retMargin >= 2.0 ? '模型保持時間大於參考刷新視窗' : '模型裕度較低，須查核實際記憶體規格'}
+              ${retMargin >= 2.0 ? (lang === 'en' ? svgTextLines('Model retention exceeds\nreference window', 105, 204, 14) : '模型保持時間大於參考刷新視窗') : (lang === 'en' ? svgTextLines('Low model margin;\ncheck device specs', 105, 204, 14) : '模型裕度較低，須查核實際記憶體規格')}
             </text>
           </g>
 
@@ -125,11 +125,11 @@ export function renderMemoryTechObject(container, lang = 'zh') {
             <rect x="0" y="0" width="700" height="115" fill="#1e293b" stroke="#334155" stroke-width="1.5" rx="6"/>
             <!-- 埋入式字元線 (bWL) -->
             <rect x="50" y="40" width="270" height="32" rx="3" fill="#475569" stroke="#f59e0b" stroke-width="1.5"/>
-            <text x="185" y="61" text-anchor="middle" fill="#fbbf24" font-size="11" font-weight="700">埋入式字元線 (Buried Word-Line bWL)</text>
+            <text x="185" y="61" text-anchor="middle" fill="#fbbf24" font-size="11" font-weight="700">${lang === 'en' ? `Buried word-line (bWL)` : `埋入式字元線 (Buried Word-Line bWL)`}</text>
             <!-- 位元線 (Bit-Line BL) -->
             <rect x="380" y="40" width="270" height="32" rx="3" fill="#475569" stroke="#10b981" stroke-width="1.5"/>
-            <text x="515" y="61" text-anchor="middle" fill="#34d399" font-size="11" font-weight="700">垂直位元線 (Bit-Line BL)</text>
-            <text x="350" y="98" text-anchor="middle" fill="#94a3b8" font-size="10.5">1T1C 電晶體閘極開啟導通字元線，感測放大器 (Sense Amp) 差分讀取位元線電荷</text>
+            <text x="515" y="61" text-anchor="middle" fill="#34d399" font-size="11" font-weight="700">${lang === 'en' ? `Vertical bit-line (BL)` : `垂直位元線 (Bit-Line BL)`}</text>
+            <text x="350" y="98" text-anchor="middle" fill="#94a3b8" font-size="10.5">${lang === 'en' ? svgTextLines('The word-line controls the access transistor, connecting the cell capacitor to the bit-line.\nThe sense amplifier reads the small voltage difference.', 350, 90, 13) : svgTextLines('字元線控制存取電晶體，使儲存電容與位元線連接。\n感測放大器讀取微小電壓差。', 350, 90, 13)}</text>
           </g>
           <g class="eng-kinetic-wave" pointer-events="none"><circle cx="400" cy="205" r="72" fill="none" stroke="#38bdf8" stroke-width="1.4" class="anim-pulse-ring" opacity="0.45"/><path d="M 130,65 Q 400,35 670,65" fill="none" stroke="#34d399" stroke-width="1.5" class="anim-field-glow" opacity="0.5"/></g><g class="eng-kinetic-overlay" pointer-events="none"><path d="M 150,200 L 650,200" fill="none" stroke="#38bdf8" stroke-width="2" stroke-dasharray="8 6" class="anim-data-flow" opacity="0.6"/><path d="M 400,70 L 400,340" fill="none" stroke="#fbbf24" stroke-width="2" stroke-dasharray="6 6" class="anim-beam" opacity="0.65"/></g>
         </svg>
@@ -139,34 +139,34 @@ export function renderMemoryTechObject(container, lang = 'zh') {
         <div class="eng-obj-metric-card">
           <div class="eng-obj-metric-label">${t.ch13_metric_dram_ar}</div>
           <div class="eng-obj-metric-value" style="color: var(--semi-blue-dark);">${dramAR}:1 (${cCell.toFixed(1)} fF)</div>
-          <div class="eng-obj-metric-note">ZAZ 高介電常數 k ~ 36 · 儲存電荷 ${(cCell * 1.1).toFixed(1)} fC</div>
+          <div class="eng-obj-metric-note">${lang === 'en' ? `ZAZ high-k ~ 36 · Stored charge ${(cCell * 1.1).toFixed(1)} fC` : `ZAZ 高介電常數 k ~ 36 · 儲存電荷 ${(cCell * 1.1).toFixed(1)} fC`}</div>
         </div>
         <div class="eng-obj-metric-card">
           <div class="eng-obj-metric-label">${t.ch13_metric_retention}</div>
-          <div class="eng-obj-metric-value" style="color: ${dramTemp > 85 ? '#f59e0b' : '#38bdf8'};">${refreshWindowMs} ms ${dramTemp > 85 ? '(2× 雙頻)' : ''}</div>
-          <div class="eng-obj-metric-note">固定漏電 ${iLeak.toFixed(1)} fA · 保持時間 ${tRet.toFixed(0)} ms</div>
+          <div class="eng-obj-metric-value" style="color: ${dramTemp > 85 ? '#f59e0b' : '#38bdf8'};">${refreshWindowMs} ms ${dramTemp > 85 ? (lang === 'en' ? '(2× refresh rate)' : '(2× 雙頻)') : ''}</div>
+          <div class="eng-obj-metric-note">${lang === 'en' ? `Constant leakage ${iLeak.toFixed(1)} fA · Retention ${tRet.toFixed(0)} ms` : `固定漏電 ${iLeak.toFixed(1)} fA · 保持時間 ${tRet.toFixed(0)} ms`}</div>
         </div>
         <div class="eng-obj-metric-card">
-          <div class="eng-obj-metric-label">保持安全裕度</div>
+          <div class="eng-obj-metric-label">${lang === 'en' ? 'Model retention margin' : '模型保持裕度'}</div>
           <div class="eng-obj-metric-value" style="color: ${retMargin >= 2.0 ? 'var(--semi-teal)' : '#ef4444'};">${retMargin}× Margin</div>
-          <div class="eng-obj-metric-note">${retMargin >= 2.0 ? '電容足以抗衡漏電，資料完好' : '⚠️ 高溫漏電過劇，資料翻轉風險！'}</div>
+          <div class="eng-obj-metric-note">${retMargin >= 2.0 ? (lang === 'en' ? 'Higher model margin; not a data-reliability guarantee' : '較高模型裕度；不代表資料可靠度保證') : (lang === 'en' ? 'Lower model margin; check the actual device conditions' : '較低模型裕度；須查核實際料號條件')}</div>
         </div>
       `;
 
       footerNote = t.ch13_dram_desc;
-      footerNote += ' 本例以 64/32 ms 刷新視窗比較保持時間；tREFI 則是刷新命令的平均間隔，兩者不同。實際刷新條件依記憶體料號與溫度規格。<a href="https://assets.micron.com/adobe/assets/urn:aaid:aem:5ea148c8-e3fe-489e-8489-99b1b9cdcd3c/renditions/original/as/ddr5-new-features-white-paper.pdf" target="_blank" rel="noopener noreferrer">刷新命令與 tREFI 定義（Micron，第 2 頁）</a>。';
+      footerNote += lang === 'en' ? ' This example compares retention with 64/32 ms refresh windows. tREFI is the average interval between refresh commands and is a different quantity. Actual refresh conditions depend on the memory part and temperature specification. <a href="https://assets.micron.com/adobe/assets/urn:aaid:aem:5ea148c8-e3fe-489e-8489-99b1b9cdcd3c/renditions/original/as/ddr5-new-features-white-paper.pdf" target="_blank" rel="noopener noreferrer">Refresh commands and tREFI definition (Micron, p. 2)</a>.' : ' 本例以 64/32 ms 刷新視窗比較保持時間；tREFI 則是刷新命令的平均間隔，兩者不同。實際刷新條件依記憶體料號與溫度規格。<a href="https://assets.micron.com/adobe/assets/urn:aaid:aem:5ea148c8-e3fe-489e-8489-99b1b9cdcd3c/renditions/original/as/ddr5-new-features-white-paper.pdf" target="_blank" rel="noopener noreferrer">刷新命令與 tREFI 定義（Micron，第 2 頁）</a>。';
     } else if (activeTab === 'nand') {
       controlsHtml = `
         <div class="eng-obj-slider-panel">
           <div class="eng-obj-slider-item">
             <label for="ch13NandSlider">${t.ch13_layers_slider}</label>
             <input type="range" class="eng-obj-range-input" id="ch13NandSlider" min="128" max="320" step="8" value="${nandLayers}">
-            <span class="eng-obj-slider-val">${nandLayers} 層</span>
+            <span class="eng-obj-slider-val">${nandLayers} ${lang === 'en' ? 'layers' : '層'}</span>
           </div>
           <div style="margin-left: auto; display: flex; align-items: center; gap: 8px;">
-            <span style="font-size: 11px; color: #94a3b8; font-family: monospace;">總堆疊厚度: <strong style="color: #38bdf8; font-size: 13px;">${stackH} µm</strong></span>
-            <span style="font-size: 11px; padding: 2px 7px; border-radius: 4px; background: rgba(15,23,42,0.6); border: 1px solid var(--border-subtle); color: #fbbf24; font-weight: 700;">
-              HAR 孔深寬比: ${harAR}:1 (${decks} Deck${decks > 1 ? 's' : ''})
+            <span style="font-size: 11px; color: #94a3b8; font-family: monospace;">${lang === 'en' ? `Total stack height:` : `總堆疊厚度:`} <strong style="color: #38bdf8; font-size: 13px;">${stackH} µm</strong></span>
+            <span class="ch13-status-badge" style="font-size: 11px; padding: 2px 7px; border-radius: 4px; background: rgba(15,23,42,0.6); border: 1px solid var(--border-subtle); color: #fbbf24; font-weight: 700;">
+              ${lang === 'en' ? `HAR hole aspect ratio:` : `HAR 孔深寬比:`} ${harAR}:1 (${decks} Deck${decks > 1 ? 's' : ''})
             </span>
           </div>
         </div>
@@ -182,7 +182,7 @@ export function renderMemoryTechObject(container, lang = 'zh') {
           <!-- 左側：交替疊層與垂直通道孔 (Alternating Stack & HAR Etch) -->
           <g transform="translate(50, 25)">
             <rect x="0" y="0" width="350" height="360" fill="#0f172a" stroke="#0ea5e9" stroke-width="1.5" rx="6"/>
-            <text x="175" y="24" text-anchor="middle" fill="#38bdf8" font-size="12" font-weight="750">${nandLayers} 層交替堆疊 · 總厚度 ${stackH} µm</text>
+            <text x="175" y="24" text-anchor="middle" fill="#38bdf8" font-size="12" font-weight="750">${lang === 'en' ? `${nandLayers} alternating tiers · ${stackH} µm total` : `${nandLayers} 層交替堆疊 · 總厚度 ${stackH} µm`}</text>
 
             <!-- 多層交替氧化層與鎢閘極 (SiO2 / W pairs) -->
             ${Array.from({ length: visualTiers }, (_, i) => `
@@ -193,21 +193,21 @@ export function renderMemoryTechObject(container, lang = 'zh') {
             ${decks > 1 ? `
               <!-- Deck 雙疊對準接合面 (Deck Joint Seam) -->
               <line x1="15" y1="${deckSeamY}" x2="335" y2="${deckSeamY}" stroke="#fbbf24" stroke-width="2" stroke-dasharray="4 2"/>
-              <text x="335" y="${deckSeamY - 4}" text-anchor="end" fill="#fbbf24" font-size="9" font-weight="700" data-ink="halo">Deck 拼接介面 (${decks}-Stack)</text>
+              <text x="335" y="${deckSeamY - 4}" text-anchor="end" fill="#fbbf24" font-size="9" font-weight="700" data-ink="halo">${lang === 'en' ? `Deck joint (${decks}-Stack)` : `Deck 拼接介面 (${decks}-Stack)`}</text>
             ` : ''}
 
             <!-- 貫穿垂直深孔通道 (HAR Etch Channel Holes) -->
             ${[90, 175, 260].map(x => `
               <rect x="${x - 6}" y="35" width="12" height="290" rx="3" fill="#38bdf8" stroke="#ffffff" stroke-width="1"/>
             `).join('')}
-            <text x="175" y="340" text-anchor="middle" fill="#38bdf8" font-size="10.5" font-weight="700">HAR 垂直通道孔 (深寬比 ${harAR}:1 · 直徑 95nm)</text>
-            <text x="175" y="353" text-anchor="middle" fill="#94a3b8" font-size="9">電荷陷阱層 (CTF: ONO) + 多晶矽中空通道</text>
+            <text x="175" y="340" text-anchor="middle" fill="#38bdf8" font-size="10.5" font-weight="700">${lang === 'en' ? `HAR channel holes (AR ${harAR}:1 · diameter 95nm)` : `HAR 垂直通道孔 (深寬比 ${harAR}:1 · 直徑 95nm)`}</text>
+            <text x="175" y="353" text-anchor="middle" fill="#94a3b8" font-size="9">${lang === 'en' ? `Charge-trap layer (CTF: ONO) + hollow poly-Si channel` : `電荷陷阱層 (CTF: ONO) + 多晶矽中空通道`}</text>
           </g>
 
           <!-- 右側：金字塔階梯狀接點引出 (Word-Line Staircase Contact Pads) -->
           <g transform="translate(420, 25)">
             <rect x="0" y="0" width="330" height="360" fill="#0f172a" stroke="#f59e0b" stroke-width="1.5" rx="6"/>
-            <text x="165" y="24" text-anchor="middle" fill="#fbbf24" font-size="12" font-weight="750">字元線階梯狀引出 (${nandLayers} Tiers Staircase)</text>
+            <text x="165" y="24" text-anchor="middle" fill="#fbbf24" font-size="12" font-weight="750">${lang === 'en' ? `Word-line staircase (${nandLayers} tiers)` : `字元線階梯狀引出 (${nandLayers} Tiers Staircase)`}</text>
 
             <!-- 階梯幾何形狀 (逐層向後退縮) -->
             ${Array.from({ length: 8 }, (_, i) => `
@@ -216,8 +216,8 @@ export function renderMemoryTechObject(container, lang = 'zh') {
               <line x1="${270 - i * 29 + 15}" y1="35" x2="${270 - i * 29 + 15}" y2="${i * 32 + 45}" stroke="#cbd5e1" stroke-width="2.5"/>
               <circle cx="${270 - i * 29 + 15}" cy="${i * 32 + 45}" r="3" fill="#ffffff"/>
             `).join('')}
-            <text x="165" y="338" text-anchor="middle" fill="#fbbf24" font-size="10.5" font-weight="750">微影「修切 (Trim)」工藝製成微型階梯</text>
-            <text x="165" y="352" text-anchor="middle" fill="#94a3b8" font-size="9">單顆晶粒 TLC 裸晶容量: ${(dieCapacity / 1000).toFixed(2)} Tb (${dieCapacity} Gb)</text>
+            <text x="165" y="338" text-anchor="middle" fill="#fbbf24" font-size="10.5" font-weight="750">${lang === 'en' ? `Lithographic trimming forms the staircase` : `微影「修切 (Trim)」工藝製成微型階梯`}</text>
+            <text x="165" y="352" text-anchor="middle" fill="#94a3b8" font-size="9">${lang === 'en' ? `TLC die capacity: ${(dieCapacity / 1000).toFixed(2)} Tb (${dieCapacity} Gb)` : `單顆晶粒 TLC 裸晶容量: ${(dieCapacity / 1000).toFixed(2)} Tb (${dieCapacity} Gb)`}</text>
           </g>
           <g class="eng-kinetic-overlay" pointer-events="none"><path d="M 150,200 L 650,200" fill="none" stroke="#38bdf8" stroke-width="2" stroke-dasharray="8 6" class="anim-data-flow" opacity="0.6"/><path d="M 400,70 L 400,340" fill="none" stroke="#fbbf24" stroke-width="2" stroke-dasharray="6 6" class="anim-beam" opacity="0.65"/></g>
           <g class="eng-kinetic-wave" pointer-events="none"><circle cx="400" cy="200" r="68" fill="none" stroke="#38bdf8" stroke-width="1.4" class="anim-pulse-ring" opacity="0.45"/><path d="M 140,60 Q 400,32 660,60" fill="none" stroke="#34d399" stroke-width="1.5" class="anim-field-glow" opacity="0.5"/></g>
@@ -227,18 +227,18 @@ export function renderMemoryTechObject(container, lang = 'zh') {
       dashboardHtml = `
         <div class="eng-obj-metric-card">
           <div class="eng-obj-metric-label">${t.ch13_metric_nand_layers}</div>
-          <div class="eng-obj-metric-value" style="color: var(--semi-blue-dark);">${nandLayers} 層 (${stackH} µm)</div>
-          <div class="eng-obj-metric-note">${decks} 層多階對準堆疊 (${decks} Decks Architecture)</div>
+          <div class="eng-obj-metric-value" style="color: var(--semi-blue-dark);">${lang === 'en' ? `${nandLayers} layers (${stackH} µm)` : `${nandLayers} 層 (${stackH} µm)`}</div>
+          <div class="eng-obj-metric-note">${lang === 'en' ? `${decks}-deck aligned stack (${decks} decks)` : `${decks} 層多階對準堆疊 (${decks} Decks Architecture)`}</div>
         </div>
         <div class="eng-obj-metric-card">
-          <div class="eng-obj-metric-label">HAR 深孔高寬比</div>
+          <div class="eng-obj-metric-label">${lang === 'en' ? `HAR hole aspect ratio` : `HAR 深孔高寬比`}</div>
           <div class="eng-obj-metric-value" style="color: #fbbf24;">${harAR}:1 Aspect Ratio</div>
-          <div class="eng-obj-metric-note">低溫電漿極速穿透多微米交替介電層</div>
+          <div class="eng-obj-metric-note">${lang === 'en' ? `Low-temperature plasma rapidly etches through micrometers of alternating dielectrics` : `低溫電漿極速穿透多微米交替介電層`}</div>
         </div>
         <div class="eng-obj-metric-card">
-          <div class="eng-obj-metric-label">單顆裸晶儲存容量</div>
+          <div class="eng-obj-metric-label">${lang === 'en' ? `Storage capacity per die` : `單顆裸晶儲存容量`}</div>
           <div class="eng-obj-metric-value" style="color: var(--semi-teal);">${(dieCapacity / 1000).toFixed(2)} Tb / Die</div>
-          <div class="eng-obj-metric-note">TLC (3-bit/cell) 8階電壓臨界量化儲存</div>
+          <div class="eng-obj-metric-note">${lang === 'en' ? `TLC (3-bit/cell) stores data in 8 threshold-voltage levels` : `TLC (3-bit/cell) 8階電壓臨界量化儲存`}</div>
         </div>
       `;
 
@@ -249,8 +249,8 @@ export function renderMemoryTechObject(container, lang = 'zh') {
           <!-- 底層邏輯控制基底 (Base Die) -->
           <g transform="translate(150, 310)">
             <rect x="0" y="0" width="500" height="64" rx="4" fill="#0f172a" stroke="#0ea5e9" stroke-width="2"/>
-            <text x="250" y="30" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="750">底層邏輯控制晶粒 (Base Logic Die / Buffer Die)</text>
-            <text x="250" y="54" text-anchor="middle" fill="#38bdf8" font-size="10">內建 BIST 自我檢測、修復電路與 1024-bit PHY 介面</text>
+            <text x="250" y="30" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="750">${lang === 'en' ? `Base logic die / buffer die` : `底層邏輯控制晶粒 (Base Logic Die / Buffer Die)`}</text>
+            <text x="250" y="54" text-anchor="middle" fill="#38bdf8" font-size="10">${lang === 'en' ? `BIST self-test, repair circuits and 1024-bit PHY` : `內建 BIST 自我檢測、修復電路與 1024-bit PHY 介面`}</text>
           </g>
 
           <!-- 垂直堆疊 4 層 DRAM Core Dies (以 TSV 貫穿) -->
@@ -258,7 +258,7 @@ export function renderMemoryTechObject(container, lang = 'zh') {
             <g transform="translate(180, ${260 - idx * 55})">
               <!-- DRAM Die -->
               <rect x="0" y="0" width="440" height="42" rx="3" fill="#1e293b" stroke="#f59e0b" stroke-width="1.5"/>
-              <text x="220" y="24" text-anchor="middle" fill="#ffffff" font-size="11.5" font-weight="700">DRAM Core Die #${5 - layer} (~30 µm 超薄削磨)</text>
+              <text x="220" y="24" text-anchor="middle" fill="#ffffff" font-size="11.5" font-weight="700">${lang === 'en' ? `DRAM core die #${5 - layer} (~30 µm thinning)` : `DRAM Core Die #${5 - layer} (~30 µm 超薄削磨)`}</text>
               <!-- 貫穿 TSV 柱與微凸塊 -->
               ${[40, 100, 160, 220, 280, 340, 400].map(tx => `
                 <line x1="${tx}" y1="0" x2="${tx}" y2="42" stroke="#38bdf8" stroke-width="2.5"/>
@@ -271,7 +271,7 @@ export function renderMemoryTechObject(container, lang = 'zh') {
           <g transform="translate(640, 100)">
             <path d="M 10,20 L 40,20 L 40,220 L 10,220" fill="none" stroke="#38bdf8" stroke-width="2"/>
             <text x="50" y="120" fill="#38bdf8" font-size="11.5" font-weight="700">1024-bit</text>
-            <text x="50" y="136" fill="#38bdf8" font-size="10">超寬並行總線</text>
+            <text x="50" y="136" fill="#38bdf8" font-size="10">${lang === 'en' ? `Ultra-wide parallel bus` : `超寬並行總線`}</text>
             <text x="50" y="152" fill="#34d399" font-size="11" font-weight="700">&gt; 1.2 TB/s</text>
           </g>
           <g class="eng-kinetic-overlay" pointer-events="none"><path d="M 150,200 L 650,200" fill="none" stroke="#38bdf8" stroke-width="2" stroke-dasharray="8 6" class="anim-data-flow" opacity="0.6"/><path d="M 400,70 L 400,340" fill="none" stroke="#fbbf24" stroke-width="2" stroke-dasharray="6 6" class="anim-beam" opacity="0.65"/></g>
@@ -283,17 +283,17 @@ export function renderMemoryTechObject(container, lang = 'zh') {
         <div class="eng-obj-metric-card">
           <div class="eng-obj-metric-label">${t.ch13_metric_hbm_bw}</div>
           <div class="eng-obj-metric-value" style="color: var(--semi-blue-dark);">&gt; 1.2 TB/s</div>
-          <div class="eng-obj-metric-note">HBM3e 提供 AI GPU 充足記憶體頻寬</div>
+          <div class="eng-obj-metric-note">${lang === 'en' ? `HBM3e provides high memory bandwidth for AI GPUs` : `HBM3e 提供 AI GPU 充足記憶體頻寬`}</div>
         </div>
         <div class="eng-obj-metric-card">
-          <div class="eng-obj-metric-label">匯流排位元寬度 (Bus Width)</div>
+          <div class="eng-obj-metric-label">${lang === 'en' ? `Bus width` : `匯流排位元寬度 (Bus Width)`}</div>
           <div class="eng-obj-metric-value">1024-bit</div>
-          <div class="eng-obj-metric-note">傳統 DDR5 (32-bit/ch) 難以企及之平行度</div>
+          <div class="eng-obj-metric-note">${lang === 'en' ? `Greater parallelism than conventional DDR5 (32-bit/ch)` : `傳統 DDR5 (32-bit/ch) 難以企及之平行度`}</div>
         </div>
         <div class="eng-obj-metric-card">
-          <div class="eng-obj-metric-label">裸晶厚度 (Die Thinning)</div>
+          <div class="eng-obj-metric-label">${lang === 'en' ? `Die thickness (thinning)` : `裸晶厚度 (Die Thinning)`}</div>
           <div class="eng-obj-metric-value">~ 30 µm</div>
-          <div class="eng-obj-metric-note">精密背磨與微凸塊熱壓鍵合 (TCB)</div>
+          <div class="eng-obj-metric-note">${lang === 'en' ? `Precision back-grinding and micro-bump thermocompression bonding (TCB)` : `精密背磨與微凸塊熱壓鍵合 (TCB)`}</div>
         </div>
       `;
 
@@ -337,9 +337,9 @@ export function renderMemoryTechObject(container, lang = 'zh') {
             <div class="eng-obj-metric-note">${lang === 'en' ? 'DRAM 50:1 capacitor, 3D NAND F-N tunneling & HBM4 2048-bit BW' : 'DRAM 50:1 高深寬比電容、3D NAND F-N 穿隧與 HBM4 2048-bit 頻寬'}</div>
           </div>
                   <div class="eng-obj-metric-card">
-            <div class="eng-obj-metric-label">${lang === 'en' ? 'Failure Diagnostics & OCAP' : '現場異常診斷與防呆 (Failure & OCAP)'}</div>
+            <div class="eng-obj-metric-label">${lang === 'en' ? 'Failure & OCAP Teaching Topics' : '失效與 OCAP 教學議題'}</div>
             <div class="eng-obj-metric-value" style="font-size: 13.5px; color: #d97706;">${lang === 'en' ? 'DRAM VRT · WL Mo Void · HBM MR-MUF' : 'DRAM VRT · WL Mo Void · HBM MR-MUF'}</div>
-            <div class="eng-obj-metric-note">${lang === 'en' ? 'Mitigates DRAM VRT tail bits, 3D NAND wordline voids & HBM bump bridges' : '以 On-Die ECC 克服 DRAM VRT、無氟鉬填滿 3D NAND 字元線與 MR-MUF 防橋接'}</div>
+            <div class="eng-obj-metric-note">${lang === 'en' ? 'Topics: DRAM VRT and On-Die ECC; word-line fill and fluorine-free Mo; HBM bridges and MR-MUF. No claim of eliminating failures.' : '議題：DRAM VRT 與 On-Die ECC、字元線填孔與無氟鉬、HBM 橋接與 MR-MUF；不宣稱能消除失效。'}</div>
           </div>
         </div>
 

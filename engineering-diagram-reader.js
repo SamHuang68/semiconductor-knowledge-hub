@@ -46,7 +46,7 @@ function ensureSharedSvgDefs(svgs, doc) {
 }
 
 export function prepareDiagramReading(next, previous, state, lang = 'zh') {
-  const isEn = lang === 'en' && ['engObjCh04Title', 'engObjCh05Title', 'engObjCh06Title', 'engObjCh07Title', 'engObjCh08Title', 'engObjCh09Title', 'engObjCh10Title', 'engObjCh11Title', 'engObjCh12Title', 'engObjCh19Title', 'engObjCh20Title', 'engObjCh21Title'].includes(next.getAttribute('aria-labelledby'));
+  const isEn = lang === 'en' && ['engObjCh00Title', 'engObjCh01Title', 'engObjCh02Title', 'engObjCh03Title', 'engObjCh04Title', 'engObjCh05Title', 'engObjCh06Title', 'engObjCh07Title', 'engObjCh08Title', 'engObjCh09Title', 'engObjCh10Title', 'engObjCh11Title', 'engObjCh12Title', 'engObjCh13Title', 'engObjCh14Title', 'engObjCh15Title', 'engObjCh16Title', 'engObjCh17Title', 'engObjCh18Title', 'engObjCh19Title', 'engObjCh20Title', 'engObjCh21Title', 'engObjCh22Title', 'engObjCh23Title', 'engObjCh24Title', 'engObjGlossaryTitle', 'engObjJargonTitle', 'engObjReadingTitle'].includes(next.getAttribute('aria-labelledby'));
   const reading = readingState(state);
   const oldReader = previous?.querySelector('.eng-diagram-reader');
   if (oldReader) reading.open = oldReader.open;

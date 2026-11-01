@@ -462,7 +462,7 @@ export function openPhysicsCalculator(chId, lang, doc) {
   const calc = PHYSICS_CALCULATORS[chId];
   if (!calc) return;
   const dialog = doc.createElement('dialog');
-  dialog.className = chId === 'ch21' ? 'physics-calc-modal ch21-physics-calc-modal' : ['ch05', 'ch06'].includes(chId) ? 'physics-calc-modal b3-physics-calc-modal' : ['ch08', 'ch09'].includes(chId) ? 'physics-calc-modal b4-physics-calc-modal' : ['ch07', 'ch10'].includes(chId) ? 'physics-calc-modal b5-physics-calc-modal' : ['ch11', 'ch12'].includes(chId) ? 'physics-calc-modal b6-physics-calc-modal' : 'physics-calc-modal';
+  dialog.className = chId === 'ch21' ? 'physics-calc-modal ch21-physics-calc-modal' : ['ch05', 'ch06'].includes(chId) ? 'physics-calc-modal b3-physics-calc-modal' : ['ch08', 'ch09'].includes(chId) ? 'physics-calc-modal b4-physics-calc-modal' : ['ch07', 'ch10'].includes(chId) ? 'physics-calc-modal b5-physics-calc-modal' : ['ch11', 'ch12'].includes(chId) ? 'physics-calc-modal b6-physics-calc-modal' : ['ch13', 'ch14'].includes(chId) ? 'physics-calc-modal b7-physics-calc-modal' : ['ch15', 'ch16'].includes(chId) ? 'physics-calc-modal b8-physics-calc-modal' : ['ch17', 'ch18'].includes(chId) ? 'physics-calc-modal b9-physics-calc-modal' : ['ch00', 'ch01'].includes(chId) ? 'physics-calc-modal b10-physics-calc-modal' : ['ch02', 'ch03', 'ch22', 'ch23', 'ch24'].includes(chId) ? 'physics-calc-modal finish-physics-calc-modal' : 'physics-calc-modal';
   dialog.setAttribute('aria-modal', 'true');
   dialog.setAttribute('aria-label', lang === 'en' ? calc.titleEn : calc.titleZh);
 
@@ -531,12 +531,13 @@ export function openPhysicsCalculator(chId, lang, doc) {
                 ${outputs.map(out => {
                   const outLabel = lang === 'en' ? out.labelEn : out.labelZh;
                   const outNote = lang === 'en' ? out.noteEn : out.noteZh;
+                  const outUnit = chId === 'ch14' && lang === 'en' && out.unit === 'x (原有面積)' ? 'x (original area)' : chId === 'ch01' && lang === 'en' && out.unit === '次/hr' ? 'changes/hr' : out.unit;
                   return `
                     <div class="calc-output-card ${out.highlight ? 'is-highlight' : ''}">
                       <div class="output-label">${escapeHtml(outLabel)}</div>
                       <div class="output-value-row">
                         <span class="output-num">${escapeHtml(out.value)}</span>
-                        ${out.unit ? `<span class="output-unit">${escapeHtml(out.unit)}</span>` : ''}
+                        ${out.unit ? `<span class="output-unit">${escapeHtml(outUnit)}</span>` : ''}
                       </div>
                       ${outNote ? `<div class="output-note">${escapeHtml(outNote)}</div>` : ''}
                     </div>
@@ -827,7 +828,7 @@ export function renderEngineeringCard(container, markup, labels) {
   // 偵測章節識別與中英雙語語系，查詢實體照片資料庫
   const chId = detectChId(container, next);
   const lang = container.getAttribute?.('data-lang') || (doc.documentElement?.lang === 'en' ? 'en' : 'zh');
-  state.isScopedEnglish = lang === 'en' && ['ch04', 'ch05', 'ch06', 'ch07', 'ch08', 'ch09', 'ch10', 'ch11', 'ch12', 'ch19', 'ch20', 'ch21'].includes(chId);
+  state.isScopedEnglish = lang === 'en' && ['ch00', 'ch01', 'ch02', 'ch03', 'ch04', 'ch05', 'ch06', 'ch07', 'ch08', 'ch09', 'ch10', 'ch11', 'ch12', 'ch13', 'ch14', 'ch15', 'ch16', 'ch17', 'ch18', 'ch19', 'ch20', 'ch21', 'ch22', 'ch23', 'ch24', 'app-glossary', 'app-jargon', 'app-reading'].includes(chId);
   const photo = chId ? REAL_PHOTOS_DATA[chId] : null;
 
   if (photo) {
@@ -907,12 +908,12 @@ export function renderEngineeringCard(container, markup, labels) {
                   <span class="hotspot-dot">${idx + 1}</span>
                 </button>
               `).join('')}
-              ${photo.reference || chId === 'ch12' ? '' : '<div class="photo-hotspot-tooltip" hidden></div>'}
+              ${photo.reference || ['ch00', 'ch01', 'ch02', 'ch03', 'ch12', 'ch13', 'ch14', 'ch15', 'ch16', 'ch17', 'ch18', 'ch22', 'ch23', 'ch24'].includes(chId) ? '' : '<div class="photo-hotspot-tooltip" hidden></div>'}
             </div>
           ` : ''}
         </div>
 
-        ${photo.reference || chId === 'ch12' ? '<div class="photo-hotspot-tooltip" role="status" hidden></div>' : ''}
+        ${photo.reference || ['ch00', 'ch01', 'ch02', 'ch03', 'ch12', 'ch13', 'ch14', 'ch15', 'ch16', 'ch17', 'ch18', 'ch22', 'ch23', 'ch24'].includes(chId) ? '<div class="photo-hotspot-tooltip" role="status" hidden></div>' : ''}
         <div class="photo-overlay-caption">
           <div class="photo-title">${escapeHtml(title)}</div>
           <div class="photo-caption">${escapeHtml(caption)}</div>
@@ -1108,9 +1109,13 @@ export function renderEngineeringCard(container, markup, labels) {
     });
 
     if (imgWrap) {
-      bindEngineeringEvent(imgWrap, 'mouseleave', () => {
-        tooltip.hidden = true;
-      });
+      // B10: these chapters place the explanation below the image. Keep it
+      // open while the pointer moves there; clicking the image background closes it.
+      if (!['ch00', 'ch01', 'ch02', 'ch03', 'ch22', 'ch23', 'ch24'].includes(chId)) {
+        bindEngineeringEvent(imgWrap, 'mouseleave', () => {
+          tooltip.hidden = true;
+        });
+      }
       bindEngineeringEvent(imgWrap, 'click', e => {
         if (!e.target.closest('.photo-hotspot-pin') && !e.target.closest('.photo-hotspot-tooltip')) {
           tooltip.hidden = true;

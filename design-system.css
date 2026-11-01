@@ -1082,7 +1082,7 @@ body.is-chapter-sample .article-body > .semi-ul,
 body.is-chapter-sample .article-body > .semi-ol { max-width: 72ch; }
 body.is-chapter-sample .article-body .engineering-object-mount { max-width: 80rem; }
 @media (min-width: 981px) {
-  .eng-obj-card:is([aria-labelledby="engObjCh04Title"], [aria-labelledby="engObjCh05Title"], [aria-labelledby="engObjCh06Title"], [aria-labelledby="engObjCh07Title"], [aria-labelledby="engObjCh08Title"], [aria-labelledby="engObjCh09Title"], [aria-labelledby="engObjCh10Title"], [aria-labelledby="engObjCh11Title"], [aria-labelledby="engObjCh12Title"], [aria-labelledby="engObjCh19Title"], [aria-labelledby="engObjCh20Title"], [aria-labelledby="engObjCh21Title"]) .eng-obj-stage.is-view-split { grid-template-columns: minmax(0, 1.6fr) minmax(280px, .7fr); }
+  .eng-obj-card:is([aria-labelledby="engObjCh00Title"], [aria-labelledby="engObjCh01Title"], [aria-labelledby="engObjCh02Title"], [aria-labelledby="engObjCh03Title"], [aria-labelledby="engObjCh04Title"], [aria-labelledby="engObjCh05Title"], [aria-labelledby="engObjCh06Title"], [aria-labelledby="engObjCh07Title"], [aria-labelledby="engObjCh08Title"], [aria-labelledby="engObjCh09Title"], [aria-labelledby="engObjCh10Title"], [aria-labelledby="engObjCh11Title"], [aria-labelledby="engObjCh12Title"], [aria-labelledby="engObjCh13Title"], [aria-labelledby="engObjCh14Title"], [aria-labelledby="engObjCh15Title"], [aria-labelledby="engObjCh16Title"], [aria-labelledby="engObjCh17Title"], [aria-labelledby="engObjCh18Title"], [aria-labelledby="engObjCh19Title"], [aria-labelledby="engObjCh20Title"], [aria-labelledby="engObjCh21Title"], [aria-labelledby="engObjCh22Title"], [aria-labelledby="engObjCh23Title"], [aria-labelledby="engObjCh24Title"]) .eng-obj-stage.is-view-split { grid-template-columns: minmax(0, 1.6fr) minmax(280px, .7fr); }
 }
 @media (max-width: 1100px) {
   body.is-home .home-hero { display: block; }
@@ -1193,7 +1193,15 @@ body.is-chapter-sample .eng-obj-card[aria-labelledby="engObjCh20Title"] .ch20-mo
 .eng-obj-card[aria-labelledby="engObjCh12Title"] .ch12-geometry-controls > div > div:last-child { font-size: 11px !important; flex-wrap: wrap; gap: 4px 8px; }
 
 /* B6: keep CH12 photo hotspot descriptions below the image and clear of all pins. */
-.eng-obj-card[aria-labelledby="engObjCh12Title"] .eng-obj-photo-panel > .photo-hotspot-tooltip {
+.eng-obj-card[aria-labelledby="engObjCh12Title"] .eng-obj-photo-panel > .photo-hotspot-tooltip,
+.eng-obj-card[aria-labelledby="engObjCh13Title"] .eng-obj-photo-panel > .photo-hotspot-tooltip,
+.eng-obj-card[aria-labelledby="engObjCh14Title"] .eng-obj-photo-panel > .photo-hotspot-tooltip,
+.eng-obj-card[aria-labelledby="engObjCh15Title"] .eng-obj-photo-panel > .photo-hotspot-tooltip,
+.eng-obj-card[aria-labelledby="engObjCh16Title"] .eng-obj-photo-panel > .photo-hotspot-tooltip,
+.eng-obj-card[aria-labelledby="engObjCh17Title"] .eng-obj-photo-panel > .photo-hotspot-tooltip,
+.eng-obj-card[aria-labelledby="engObjCh18Title"] .eng-obj-photo-panel > .photo-hotspot-tooltip,
+.eng-obj-card[aria-labelledby="engObjCh00Title"] .eng-obj-photo-panel > .photo-hotspot-tooltip,
+.eng-obj-card[aria-labelledby="engObjCh01Title"] .eng-obj-photo-panel > .photo-hotspot-tooltip {
   position: static;
   width: auto;
   max-width: none;
@@ -1201,3 +1209,85 @@ body.is-chapter-sample .eng-obj-card[aria-labelledby="engObjCh20Title"] .ch20-mo
   margin: 12px 16px 0;
   box-shadow: none;
 }
+
+
+/* B7: scoped calculator contrast and visible keyboard focus for node selection. */
+.b7-physics-calc-modal .calc-title { color: #0f172a; }
+.b7-physics-calc-modal .calc-badge { color: #0f766e; background: #ecfdf5; border-color: #99f6e4; }
+.eng-obj-card[aria-labelledby="engObjCh14Title"] .node-btn:focus-visible > rect { stroke: #0f766e; stroke-width: 3px; }
+
+
+/* B7: retain the two memory-state badges on a readable light surface. */
+.eng-obj-card[aria-labelledby="engObjCh13Title"] .ch13-status-badge { background: #ffffff !important; color: #075985 !important; }
+.eng-obj-card[aria-labelledby="engObjCh13Title"] .ch13-status-badge[data-low="true"] { color: #b91c1c !important; }
+
+
+/* B8：只改善兩章計算器標題對比及圖案選擇的鍵盤焦點。 */
+.b8-physics-calc-modal .calc-title { color: #0f172a; }
+.b8-physics-calc-modal .calc-badge { color: #0f766e; background: #ecfdf5; border-color: #99f6e4; }
+.eng-obj-card[aria-labelledby="engObjCh16Title"] [data-pattern]:focus-visible { stroke: #0f766e; stroke-width: 3px; outline: none; }
+/* 保留兩張原圖的比例，讓並列／照片模式的座標圖釘對準原始影像。 */
+.eng-obj-card:is([aria-labelledby="engObjCh15Title"], [aria-labelledby="engObjCh16Title"]) .eng-obj-stage.is-view-split { align-items: start; }
+.eng-obj-card:is([aria-labelledby="engObjCh15Title"], [aria-labelledby="engObjCh16Title"]) .eng-obj-stage:is(.is-view-split, .is-view-photo) .photo-img-wrap { flex: none; min-height: 0; }
+.eng-obj-card:is([aria-labelledby="engObjCh15Title"], [aria-labelledby="engObjCh16Title"]) .eng-obj-stage:is(.is-view-split, .is-view-photo) .eng-real-photo { height: auto; max-height: none; }
+.eng-obj-card:is([aria-labelledby="engObjCh15Title"], [aria-labelledby="engObjCh16Title"]) .eng-obj-stage:is(.is-view-split, .is-view-photo) .photo-img-wrap:hover .eng-real-photo { transform: none; }
+
+
+/* B9：兩章限定閱讀比例、計算器對比與等價鍵盤控制。 */
+.b9-physics-calc-modal .calc-title { color: #0f172a; }
+.b9-physics-calc-modal .calc-badge { color: #0f766e; background: #ecfdf5; border-color: #99f6e4; }
+.eng-obj-card[aria-labelledby="engObjCh17Title"] [data-spc-mode]:focus-visible,
+.eng-obj-card[aria-labelledby="engObjCh18Title"] [data-sim]:focus-visible { stroke: #0f766e; stroke-width: 3px; outline: none; }
+.eng-obj-card[aria-labelledby="engObjCh18Title"] .ocap-sim-btn + text { pointer-events: none; }
+.eng-obj-card:is([aria-labelledby="engObjCh17Title"], [aria-labelledby="engObjCh18Title"]) .eng-obj-stage.is-view-split { align-items: start; }
+.eng-obj-card:is([aria-labelledby="engObjCh17Title"], [aria-labelledby="engObjCh18Title"]) .eng-obj-stage:is(.is-view-split, .is-view-photo) .photo-img-wrap { flex: none; min-height: 0; }
+.eng-obj-card:is([aria-labelledby="engObjCh17Title"], [aria-labelledby="engObjCh18Title"]) .eng-obj-stage:is(.is-view-split, .is-view-photo) .eng-real-photo { height: auto; max-height: none; }
+.eng-obj-card:is([aria-labelledby="engObjCh17Title"], [aria-labelledby="engObjCh18Title"]) .eng-obj-stage:is(.is-view-split, .is-view-photo) .photo-img-wrap:hover .eng-real-photo { transform: none; }
+
+
+/* B10：只調整製造全景與晶圓廠運作的既有元件。 */
+.b10-physics-calc-modal .calc-title { color: #0f172a; }
+.b10-physics-calc-modal .calc-badge { color: #0f766e; background: #ecfdf5; border-color: #99f6e4; }
+.eng-obj-card[aria-labelledby="engObjCh00Title"] .journey-node:focus-visible { outline: 2px solid #0f766e; outline-offset: 3px; }
+/* B10: explanations below photos can be pointed to and text-selected. */
+.eng-obj-card[aria-labelledby="engObjCh00Title"] .eng-obj-photo-panel > .photo-hotspot-tooltip,
+.eng-obj-card[aria-labelledby="engObjCh01Title"] .eng-obj-photo-panel > .photo-hotspot-tooltip { pointer-events: auto; }
+
+.eng-obj-card[aria-labelledby="engObjCh01Title"] .ch01-model-controls { background: #ffffff !important; }
+.eng-obj-card[aria-labelledby="engObjCh01Title"] .ch01-model-controls span { color: #334155 !important; }
+.eng-obj-card:is([aria-labelledby="engObjCh00Title"], [aria-labelledby="engObjCh01Title"]) .eng-obj-stage.is-view-split { align-items: start; }
+.eng-obj-card:is([aria-labelledby="engObjCh00Title"], [aria-labelledby="engObjCh01Title"]) .eng-obj-stage:is(.is-view-split, .is-view-photo) .photo-img-wrap { flex: none; min-height: 0; }
+.eng-obj-card:is([aria-labelledby="engObjCh00Title"], [aria-labelledby="engObjCh01Title"]) .eng-obj-stage:is(.is-view-split, .is-view-photo) .eng-real-photo { height: auto; max-height: none; }
+.eng-obj-card:is([aria-labelledby="engObjCh00Title"], [aria-labelledby="engObjCh01Title"]) .eng-obj-stage:is(.is-view-split, .is-view-photo) .photo-img-wrap:hover .eng-real-photo { transform: none; }
+
+/* B10 CH01指定正文：手機保留水平閱讀，避免固定首欄遮住敘述。
+   以本章特有標題限定範圍；異常段落包含既有插入的流程圖。 */
+@media (max-width: 600px) {
+  .article-body:has(#cleanroom-amhs-and-facility-clauses, #無塵室amhs與廠務條例總覽) :is(#cleanroom-amhs-and-facility-clauses, #quantitative-governing-laws-and-3d-process-windows, #failure-signatures-and-root-cause-diagnostics, #無塵室amhs與廠務條例總覽, #定量物理定律與3d製程視窗, #現場異常徵兆與跨站根因排查) + p + .table-container .semi-table,
+  .article-body:has(#cleanroom-amhs-and-facility-clauses, #無塵室amhs與廠務條例總覽) :is(#failure-signatures-and-root-cause-diagnostics, #現場異常徵兆與跨站根因排查) + .chapter-figure + p + .table-container .semi-table { min-width: 960px; }
+  .article-body:has(#cleanroom-amhs-and-facility-clauses, #無塵室amhs與廠務條例總覽) :is(#cleanroom-amhs-and-facility-clauses, #quantitative-governing-laws-and-3d-process-windows, #failure-signatures-and-root-cause-diagnostics, #無塵室amhs與廠務條例總覽, #定量物理定律與3d製程視窗, #現場異常徵兆與跨站根因排查) + p + .table-container .semi-table :is(th, td),
+  .article-body:has(#cleanroom-amhs-and-facility-clauses, #無塵室amhs與廠務條例總覽) :is(#failure-signatures-and-root-cause-diagnostics, #現場異常徵兆與跨站根因排查) + .chapter-figure + p + .table-container .semi-table :is(th, td) { min-width: 210px; }
+  .article-body:has(#cleanroom-amhs-and-facility-clauses, #無塵室amhs與廠務條例總覽) :is(#cleanroom-amhs-and-facility-clauses, #quantitative-governing-laws-and-3d-process-windows, #failure-signatures-and-root-cause-diagnostics, #無塵室amhs與廠務條例總覽, #定量物理定律與3d製程視窗, #現場異常徵兆與跨站根因排查) + p + .table-container .semi-table :is(th, td):first-child,
+  .article-body:has(#cleanroom-amhs-and-facility-clauses, #無塵室amhs與廠務條例總覽) :is(#failure-signatures-and-root-cause-diagnostics, #現場異常徵兆與跨站根因排查) + .chapter-figure + p + .table-container .semi-table :is(th, td):first-child { position: static; box-shadow: none; }
+}
+
+/* Remaining chapters: retain the accepted light calculator title and badge. */
+.finish-physics-calc-modal .calc-title { color: #0f172a; }
+.finish-physics-calc-modal .calc-badge { color: #0f766e; background: #ecfdf5; border-color: #99f6e4; }
+
+/* Remaining chapters: preserve full reference-photo geometry and keep explanations below pins. */
+.eng-obj-card:is([aria-labelledby="engObjCh02Title"], [aria-labelledby="engObjCh03Title"], [aria-labelledby="engObjCh22Title"], [aria-labelledby="engObjCh23Title"], [aria-labelledby="engObjCh24Title"]) .eng-obj-stage.is-view-split { align-items: start; }
+.eng-obj-card:is([aria-labelledby="engObjCh02Title"], [aria-labelledby="engObjCh03Title"], [aria-labelledby="engObjCh22Title"], [aria-labelledby="engObjCh23Title"], [aria-labelledby="engObjCh24Title"]) .eng-obj-stage:is(.is-view-split, .is-view-photo) .photo-img-wrap { flex: none; min-height: 0; }
+.eng-obj-card:is([aria-labelledby="engObjCh02Title"], [aria-labelledby="engObjCh03Title"], [aria-labelledby="engObjCh22Title"], [aria-labelledby="engObjCh23Title"], [aria-labelledby="engObjCh24Title"]) .eng-obj-stage:is(.is-view-split, .is-view-photo) .eng-real-photo { height: auto; max-height: none; }
+.eng-obj-card:is([aria-labelledby="engObjCh02Title"], [aria-labelledby="engObjCh03Title"], [aria-labelledby="engObjCh22Title"], [aria-labelledby="engObjCh23Title"], [aria-labelledby="engObjCh24Title"]) .eng-obj-stage:is(.is-view-split, .is-view-photo) .photo-img-wrap:hover .eng-real-photo { transform: none; }
+.eng-obj-card:is([aria-labelledby="engObjCh02Title"], [aria-labelledby="engObjCh03Title"], [aria-labelledby="engObjCh22Title"], [aria-labelledby="engObjCh23Title"], [aria-labelledby="engObjCh24Title"]) .eng-obj-photo-panel > .photo-hotspot-tooltip { position: static; width: auto; max-width: none; transform: none; margin: 12px 16px 0; box-shadow: none; pointer-events: auto; }
+
+/* Existing appendices: readable columns with keyboard-scrollable tables on narrow screens. */
+@media (max-width: 600px) {
+  .article-body:has(#engObjGlossaryTitle, #engObjJargonTitle, #engObjReadingTitle) > .table-container .semi-table { min-width: 720px; }
+  .article-body:has(#engObjGlossaryTitle, #engObjJargonTitle, #engObjReadingTitle) > .table-container .semi-table :is(th, td) { min-width: 180px; }
+  .article-body:has(#engObjGlossaryTitle, #engObjJargonTitle, #engObjReadingTitle) > .table-container .semi-table :is(th, td):first-child { position: static; box-shadow: none; }
+}
+
+/* Remaining chapters: remove nonsemantic decoration that crosses labels; retain all model graphics and controls. */
+.eng-obj-card:is([aria-labelledby="engObjCh02Title"], [aria-labelledby="engObjCh03Title"], [aria-labelledby="engObjCh22Title"], [aria-labelledby="engObjCh23Title"], [aria-labelledby="engObjCh24Title"], [aria-labelledby="engObjGlossaryTitle"], [aria-labelledby="engObjJargonTitle"], [aria-labelledby="engObjReadingTitle"]) :is(.eng-kinetic-overlay, .eng-kinetic-wave) { display: none; }

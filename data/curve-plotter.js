@@ -34,6 +34,25 @@ export function relativeEmLifetime(currentJ, tempC) {
     * Math.exp((0.9 / kB) * (1 / temperature - 1 / referenceT));
 }
 
+/** CH17: normal-distribution teaching estimate, not calibrated defect data.
+ * erfc approximation evaluates the small tail directly to avoid 1-CDF cancellation.
+ * Independent reference cases cover central, offset and six-sigma tails.
+ */
+function normalTail(z) {
+  if (z === 0) return 0.5;
+  const x = Math.abs(z) / Math.SQRT2;
+  const t = 1 / (1 + 0.5 * x);
+  const erfc = t * Math.exp(-x * x - 1.26551223 + t * (1.00002368 + t * (0.37409196 + t * (0.09678418 + t * (-0.18628806 + t * (0.27886807 + t * (-1.13520398 + t * (1.48851587 + t * (-0.82215223 + t * 0.17087277)))))))));
+  return z > 0 ? 0.5 * erfc : 1 - 0.5 * erfc;
+}
+
+export function normalDefectPpm(p) {
+  if (![p.usl, p.lsl, p.mean, p.sigma].every(Number.isFinite) || p.sigma <= 0 || p.usl <= p.lsl) return NaN;
+  const below = normalTail((p.mean - p.lsl) / p.sigma);
+  const above = normalTail((p.usl - p.mean) / p.sigma);
+  return Math.max(0, Math.min(1, below + above)) * 1e6;
+}
+
 export const SENSITIVITY_CURVE_MODELS = {
   // Ch 04: Rayleigh 光學微影焦深 (DOF vs NA)
   ch04: {
@@ -128,53 +147,55 @@ export const SENSITIVITY_CURVE_MODELS = {
     getCurrentX: p => p.currentJ ?? 2.0
   },
 
-  // Ch 14: RC 互連線延遲 (Delay vs Wire Length)
+  // Ch 14: Relative dynamic power density teaching model, matching the calculator.
+  // x = voltage ratio; kappa and fScale remain the current dimension/frequency ratios.
+  // Uncalibrated: excludes leakage and does not predict TDP or cooling limits.
   ch14: {
-    xLabelZh: '導線長度 L (µm)',
-    xLabelEn: 'Interconnect Length L (µm)',
-    yLabelZh: 'RC 延遲 τ (ps)',
-    yLabelEn: 'RC Delay τ (ps)',
-    xMin: 10,
-    xMax: 1000,
+    xLabelZh: '電壓比例 (V/Vref)',
+    xLabelEn: 'Voltage ratio (V/Vref)',
+    yLabelZh: '相對動態功耗密度',
+    yLabelEn: 'Relative dynamic power density',
+    xMin: 0.70,
+    xMax: 1.0,
     compute: (x, p) => {
-      const r = p.resPerUm || 0.15; // ohm/um
-      const c = p.capPerUm || 0.2; // fF/um
-      return 0.5 * r * c * x * x * 0.001; // ps
+      const kappa = p.kappa ?? 0.70;
+      // Same evaluation order as calculate(), including two-decimal boundary rounding.
+      const powerDyn = kappa * (x * x) * (p.fScale ?? 1.15);
+      return powerDyn / (kappa * kappa);
     },
-    getCurrentX: p => p.wireLength || 250
+    getCurrentX: p => p.vScale ?? 0.95
   },
 
-  // Ch 16: 負二項良率模型 (Yield vs Defect Density)
+  // Ch 16: Uncalibrated negative-binomial teaching curve; same inputs as the calculator.
   ch16: {
     xLabelZh: '缺陷密度 D (defects/cm²)',
     xLabelEn: 'Defect Density D (defects/cm²)',
-    yLabelZh: '晶圓良率 Yield (%)',
-    yLabelEn: 'Wafer Yield (%)',
-    xMin: 0.05,
-    xMax: 1.5,
+    yLabelZh: '負二項模型良率 (%)',
+    yLabelEn: 'Negative-binomial model yield (%)',
+    xMin: 0.01,
+    xMax: 0.50,
     compute: (x, p) => {
-      const area = p.dieArea || 1.2; // cm2
-      const alpha = p.alpha || 2.0;
-      return 100 * Math.pow(1 + (x * area) / alpha, -alpha);
+      const area = (p.area ?? 100) / 100; // mm² to cm², matching calculate().
+      const alpha = p.clusterAlpha ?? 2.0;
+      return Math.pow(1 + (x * area) / alpha, -alpha) * 100;
     },
-    getCurrentX: p => p.defectDensity || 0.25
+    getCurrentX: p => p.d0 ?? 0.08
   },
 
-  // Ch 17: SPC 常態分佈鐘形曲線與 Cpk (Normal Density)
+  // Ch17: process-value normal density using the calculator's mean/sigma.
   ch17: {
-    xLabelZh: '統計偏差 (Z-Score σ)',
-    xLabelEn: 'Process Deviation (Z-Score σ)',
-    yLabelZh: '常態機率密度 f(z)',
-    yLabelEn: 'Normal Probability Density',
-    xMin: -4,
-    xMax: 4,
-    compute: x => {
-      return (1 / Math.sqrt(2 * Math.PI)) * Math.exp(-0.5 * x * x);
+    xLabelZh: '製程量測值 x (nm)',
+    xLabelEn: 'Process Measurement x (nm)',
+    yLabelZh: '常態密度 f(x) (1/nm)',
+    yLabelEn: 'Normal Density f(x) (1/nm)',
+    getRange: p => {
+      const low = Math.min(p.lsl, p.mean - 4 * p.sigma);
+      const high = Math.max(p.usl, p.mean + 4 * p.sigma);
+      const padding = (high - low) * 0.05;
+      return { xMin: low - padding, xMax: high + padding };
     },
-    getCurrentX: p => {
-      const cpk = p.cpk || 1.33;
-      return (1.67 - cpk) * 2; // 操作點偏移
-    }
+    compute: (x, p) => Math.exp(-0.5 * ((x - p.mean) / p.sigma) ** 2) / (p.sigma * Math.sqrt(2 * Math.PI)),
+    getCurrentX: p => p.mean
   },
 
   // Ch 21: 先進封裝 3D 互連密度 (Density vs Pitch)
@@ -193,10 +214,10 @@ export const SENSITIVITY_CURVE_MODELS = {
 
   // Ch 22: Weibull 浴缸故障率曲線 (Hazard Rate vs Lifetime)
   ch22: {
-    xLabelZh: '工作時間 t (相對小時)',
-    xLabelEn: 'Operating Time t (Normalized Hours)',
-    yLabelZh: '瞬間故障率 λ(t)',
-    yLabelEn: 'Hazard Rate λ(t)',
+    xLabelZh: '時間 t（任意尺度）',
+    xLabelEn: 'Time t (Arbitrary Scale)',
+    yLabelZh: '失效強度（任意尺度）',
+    yLabelEn: 'Hazard (Arbitrary Scale)',
     xMin: 0.1,
     xMax: 10,
     compute: x => {
@@ -219,6 +240,7 @@ export const SENSITIVITY_CURVE_MODELS = {
 export function renderSensitivityPlot(chId, params = {}, lang = 'zh', width = 520, height = 210) {
   const model = SENSITIVITY_CURVE_MODELS[chId];
   if (!model) return '';
+  if (chId === 'ch17' && !Number.isFinite(normalDefectPpm(params))) return `<p class="sensitivity-plot-invalid" role="status">${lang === 'en' ? 'Invalid example: require USL > LSL and positive standard deviation.' : '示例無效：須 USL > LSL 且標準差為正。'}</p>`;
 
   const padLeft = 65;
   const padRight = 30;
@@ -227,12 +249,13 @@ export function renderSensitivityPlot(chId, params = {}, lang = 'zh', width = 52
   const plotW = width - padLeft - padRight;
   const plotH = height - padTop - padBottom;
 
-  const { xMin, xMax, compute, getCurrentX } = model;
+  const { compute, getCurrentX } = model;
+  const { xMin, xMax } = chId === 'ch17' ? model.getRange(params) : model;
   const xLabel = lang === 'en' ? model.xLabelEn : model.xLabelZh;
   const yLabel = lang === 'en' ? model.yLabelEn : model.yLabelZh;
 
   // 取樣 50 個點計算 Y 範圍
-  const steps = 50;
+  const steps = chId === 'ch17' ? Math.min(2400, Math.max(100, Math.ceil((xMax - xMin) / (params.sigma / 8)))) : 50;
   const pts = [];
   let yMin = Infinity;
   let yMax = -Infinity;
@@ -247,6 +270,12 @@ export function renderSensitivityPlot(chId, params = {}, lang = 'zh', width = 52
     }
   }
 
+  if (chId === 'ch17') {
+    const peak = { x: params.mean, y: compute(params.mean, params) };
+    pts.push(peak);
+    pts.sort((a, b) => a.x - b.x);
+    yMax = Math.max(yMax, peak.y);
+  }
   if (pts.length < 2) return '';
 
   // 防止 yMin == yMax
@@ -268,6 +297,12 @@ export function renderSensitivityPlot(chId, params = {}, lang = 'zh', width = 52
   const curY = compute(curX, params);
   const curSvgX = toSvgX(curX);
   const curSvgY = toSvgY(curY);
+
+  // CH17 only: specification boundaries; the orange marker is the current mean.
+  const specLines = chId === 'ch17' ? ['lsl', 'usl'].map(id => {
+    const x = toSvgX(params[id]).toFixed(1);
+    return `<line data-spec-limit="${id}" x1="${x}" x2="${x}" y1="${padTop}" y2="${padTop + plotH}" stroke="#0f766e" stroke-width="1.5" stroke-dasharray="5,3"/><text x="${x}" y="${padTop - 8}" text-anchor="${id === 'lsl' ? 'end' : 'start'}" font-size="10" fill="#0f766e">${id.toUpperCase()} ${params[id]}</text>`;
+  }).join('') : '';
 
   // 網格線 (4 條橫線)
   const gridLines = [];
@@ -295,13 +330,13 @@ export function renderSensitivityPlot(chId, params = {}, lang = 'zh', width = 52
 
   return `
     <div class="sensitivity-plot-container" style="margin: 16px 0; background: #ffffff; border: 1px solid #cbd5e1; border-radius: 8px; padding: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; padding: 0 4px;">
+      <div style="display: flex; ${chId === 'ch17' ? 'flex-wrap: wrap; gap: 8px;' : ''} justify-content: space-between; align-items: center; margin-bottom: 6px; padding: 0 4px;">
         <span style="font-size: 11px; font-weight: 700; color: #0369a1; text-transform: uppercase; letter-spacing: 0.05em; display: inline-flex; align-items: center; gap: 4px;">
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-          ${lang === 'en' ? 'Live Sensitivity Curve & Operating Point' : '即時參數敏感度曲線與工作點'}
+          ${chId === 'ch17' ? (lang === 'en' ? 'Normal Distribution Teaching Model' : '常態分布教學模型') : (chId === 'ch22' ? (lang === 'en' ? 'Independent Bathtub Illustration' : '獨立浴缸曲線示意') : (lang === 'en' ? 'Live Sensitivity Curve & Operating Point' : '即時參數敏感度曲線與工作點'))}
         </span>
         <span style="font-size: 11px; color: #64748b; font-family: monospace;">
-          ${lang === 'en' ? 'Current Op Point:' : '目前工作點：'} 
+          ${chId === 'ch17' ? (lang === 'en' ? 'Mean / Density:' : '均值／密度：') : (chId === 'ch22' ? (lang === 'en' ? 'Example Marker:' : '示例標記：') : (lang === 'en' ? 'Current Op Point:' : '目前工作點：'))}
           <strong style="color: #c2410c;">X=${curX.toFixed(2)}, Y=${curY >= 1000 ? (curY / 1000).toFixed(1) + 'k' : curY.toFixed(2)}</strong>
         </span>
       </div>
@@ -317,6 +352,7 @@ export function renderSensitivityPlot(chId, params = {}, lang = 'zh', width = 52
         <line x1="${padLeft}" y1="${padTop + plotH}" x2="${width - padRight}" y2="${padTop + plotH}" stroke="#94a3b8" stroke-width="1.5" />
         <line x1="${padLeft}" y1="${padTop}" x2="${padLeft}" y2="${padTop + plotH}" stroke="#94a3b8" stroke-width="1.5" />
 
+        ${specLines}
         <!-- 曲線繪製 -->
         <path d="${pathD}" fill="none" stroke="#0284c7" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
 
@@ -325,13 +361,14 @@ export function renderSensitivityPlot(chId, params = {}, lang = 'zh', width = 52
         <line x1="${curSvgX.toFixed(1)}" y1="${padTop + plotH}" x2="${curSvgX.toFixed(1)}" y2="${curSvgY.toFixed(1)}" stroke="#ea580c" stroke-width="1" stroke-dasharray="2,2" opacity="0.8" />
 
         <!-- 當前工作點圓點 -->
-        <circle cx="${curSvgX.toFixed(1)}" cy="${curSvgY.toFixed(1)}" r="5.5" fill="#ea580c" stroke="#ffffff" stroke-width="2" />
+        <circle ${chId === 'ch17' ? 'data-mean-marker="true"' : ''} cx="${curSvgX.toFixed(1)}" cy="${curSvgY.toFixed(1)}" r="5.5" fill="#ea580c" stroke="#ffffff" stroke-width="2" />
         <circle cx="${curSvgX.toFixed(1)}" cy="${curSvgY.toFixed(1)}" r="9" fill="none" stroke="#ea580c" stroke-width="1.5" opacity="0.4" />
 
         <!-- 軸標籤 -->
         <text x="${(padLeft + plotW / 2).toFixed(1)}" y="${height - 6}" text-anchor="middle" font-size="11" font-weight="600" fill="#334155">${escapeXml(xLabel)}</text>
         <text x="16" y="${(padTop + plotH / 2).toFixed(1)}" text-anchor="middle" font-size="11" font-weight="600" fill="#334155" transform="rotate(-90 16 ${(padTop + plotH / 2).toFixed(1)})">${escapeXml(yLabel)}</text>
       </svg>
+      ${chId === 'ch22' ? `<p class="sensitivity-plot-note" style="font-size:12px;color:#475569;margin:8px 0 0;">${lang === 'en' ? 'Uncalibrated shape only. The marker is illustrative; neither axis is measured hours or FIT. This plot is independent of the AF calculator sliders.' : '僅示意未校準的形狀。標記為示例，兩軸不是實測小時或 FIT；此圖獨立於 AF 計算器滑桿。'}</p>` : ''}
     </div>
   `;
 }

@@ -7,188 +7,200 @@ export const REAL_PHOTOS_DATA = {
   "ch00": {
     "id": "ch00",
     "src": "assets/photos/ch00-wafer-300mm.jpg",
-    "categoryZh": "晶圓成品實拍",
-    "categoryEn": "Finished Wafer Macro Photo",
-    "titleZh": "300mm 矽光子與邏輯微處理器晶圓實體",
-    "titleEn": "300mm Patterned Silicon Photonics & Logic Wafer",
-    "scaleZh": "直徑 300 mm (12 吋) · 數百顆晶粒陣列",
-    "scaleEn": "300 mm (12-inch) Diameter · Hundreds of Die Array",
-    "captionZh": "實體 300mm 晶圓表面密集排列著微縮晶粒（Die），在潔淨室光源下呈現微影光柵繞射的彩虹色彩。邊緣可見晶圓缺口（Notch）與劃線區（Scribe Line）。",
-    "captionEn": "Real 300mm patterned silicon wafer showing hundreds of microchips reflecting rainbow diffraction under cleanroom lighting, complete with wafer notch and scribe lines.",
-    "matchZh": "對應左側晶片一生全景旅程：由砂石提煉、切片、微影蝕刻數百道循環後之最終晶圓實體。",
-    "matchEn": "Corresponds to the Life of a Chip journey: the physical culmination of hundreds of litho/etch/thin-film loops.",
+    "categoryZh": "圖樣晶圓參考照片",
+    "categoryEn": "Patterned Wafer Reference",
+    "titleZh": "重複矩形圖樣與彩色反光",
+    "titleEn": "Repeated Rectangular Patterns and Colored Reflections",
+    "scaleZh": "照片無尺標；直徑與製程規格未確認",
+    "scaleEn": "No visible scale; diameter and process specifications unverified",
+    "captionZh": "可見圓形樣品、重複矩形圖樣與彩色反光。原始來源、授權、材質、用途及實際尺寸未確認；照片不能證明晶向、WAT或矽光子結構。",
+    "captionEn": "A circular sample with repeated rectangular patterns and colored reflections is visible. Original source, license, material, purpose and dimensions are unverified; the photo does not establish crystal orientation, WAT or silicon-photonics structures.",
+    "matchZh": "輔助觀察晶圓與重複晶粒版圖概念；照片不驗證左側示意的製程節點、步數或性能。",
+    "matchEn": "A visual reference for wafer and repeated-die-layout concepts; it does not validate the process node, step count or performance in the schematic.",
     "metrology": {
-      "voltage": "Optical (Visible)",
-      "mag": "Macro 1:1",
-      "fov": "300 mm",
-      "techniqueZh": "無塵室超廣角遠心光學微距攝影",
-      "techniqueEn": "Cleanroom Telecentric Macro Photography"
+      "voltage": "Imaging conditions unverified",
+      "voltageZh": "成像條件未確認",
+      "mag": "Unverified",
+      "magZh": "未確認",
+      "fov": "Unverified",
+      "fovZh": "未確認",
+      "techniqueZh": "攝影方式與設備規格未確認",
+      "techniqueEn": "Imaging technique and equipment specifications unverified"
     },
     "hotspots": [
       {
         "x": 48,
         "y": 35,
-        "labelZh": "微處理器晶粒陣列 (Die Grid)",
-        "labelEn": "Logic Die Array",
-        "detailZh": "數百顆經過微影沉積蝕刻完成的矽光子與邏輯晶粒，在光線下呈現繞射光澤。",
-        "detailEn": "Hundreds of fully processed logic dies exhibiting diffraction spectra under lighting."
+        "labelZh": "重複矩形圖樣",
+        "labelEn": "Repeated Rectangular Patterns",
+        "detailZh": "可見多個重複矩形區塊及反光差異，無法由照片確認其電路用途或製程節點。",
+        "detailEn": "Repeated rectangular regions and varying reflections are visible; circuit function and process node cannot be confirmed from this photo."
       },
       {
         "x": 50,
         "y": 92,
-        "labelZh": "晶圓缺口 (Wafer Notch)",
-        "labelEn": "Wafer Notch",
-        "detailZh": "300mm 標準定位缺口，用於黃光曝光機台與 AMHS 天車精確對準晶向 [110]。",
-        "detailEn": "300mm standard alignment notch orienting the [110] crystal plane."
+        "labelZh": "下方圓形邊緣",
+        "labelEn": "Lower Circular Edge",
+        "detailZh": "圖釘落在樣品下緣；此處不足以確認定位缺口、晶向或實際直徑。",
+        "detailEn": "The pin marks the lower edge of the sample; it does not establish an alignment notch, crystal orientation or actual diameter."
       },
       {
         "x": 62,
         "y": 48,
-        "labelZh": "切割劃線區 (Scribe Line)",
-        "labelEn": "Scribe Line",
-        "detailZh": "晶粒之間的間隙，內含 WAT 電性測試鍵與微影光學對位標記。",
-        "detailEn": "Inter-die lanes containing WAT parametric test structures and alignment marks."
+        "labelZh": "圖樣區域邊界",
+        "labelEn": "Patterned-Region Boundaries",
+        "detailZh": "可見相鄰圖樣區塊的邊界；是否為切割道、WAT或對位結構尚未確認。",
+        "detailEn": "Boundaries between patterned regions are visible; scribe lanes, WAT and alignment structures remain unconfirmed."
       }
     ]
   },
   "ch01": {
     "id": "ch01",
     "src": "assets/photos/ch01-cleanroom-amhs.jpg",
-    "categoryZh": "晶圓廠無塵室實景",
-    "categoryEn": "Fab Cleanroom Environment",
-    "titleZh": "晶圓廠無塵室黃光與微影作業區實景",
-    "titleEn": "Semiconductor Cleanroom Photolithography Bay",
-    "scaleZh": "ISO 14644-1 Class 1 ~ Class 1000 潔淨標準",
-    "scaleEn": "ISO 14644-1 Class 1 to Class 1000 Cleanliness",
-    "captionZh": "現代晶圓廠無塵室內部實拍，工程師穿著全套抗靜電無塵衣（Bunny Suit），天花板上方配置全自動物料搬送系統 (AMHS) 天車高架軌道網。",
-    "captionEn": "State-of-the-art semiconductor cleanroom interior with bunny-suited operators and overhead automated material handling system (AMHS) track networks.",
-    "matchZh": "對應左側無塵室與天車 AMHS 模型：實證正壓氣流、FFU 濾網與 FOUP 自動化吊運。",
-    "matchEn": "Direct match with the cleanroom & OHT model: demonstrates positive airflow, FFU filtration, and automated transport.",
+    "categoryZh": "作業環境參考照片",
+    "categoryEn": "Work-Area Reference Photo",
+    "titleZh": "黃光房間中的人員、工作檯與設備",
+    "titleEn": "People, Workbenches and Equipment in a Yellow-Lit Room",
+    "scaleZh": "潔淨分級、設備與成像規格未確認",
+    "scaleEn": "Cleanliness class, equipment and imaging specifications unverified",
+    "captionZh": "可見偏黃照明、穿連身防護衣的人員、工作桌及設備。原始來源與授權未確認；照片不能證明潔淨分級、壓差、FFU或AMHS配置。",
+    "captionEn": "Yellow-tinted lighting, people in coveralls, worktables and equipment are visible. Original source and license are unverified; the photo does not establish cleanliness class, pressure difference, FFU or AMHS configuration.",
+    "matchZh": "輔助理解受控作業環境的外觀；不是左側氣流、過濾或自動搬運模型的量測證據。",
+    "matchEn": "A visual reference for a controlled work area; it is not measurement evidence for the airflow, filtration or automated transport models.",
     "metrology": {
-      "voltage": "Optical (Ambient)",
-      "mag": "Wide Angle 24mm",
-      "fov": "15 m Bay",
-      "techniqueZh": "ISO 14644-1 Class 1000 無塵室作業實拍",
-      "techniqueEn": "ISO Class 1000 Photolithography Cleanroom Bay"
+      "voltage": "Imaging conditions unverified",
+      "voltageZh": "成像條件未確認",
+      "mag": "Unverified",
+      "magZh": "未確認",
+      "fov": "Unverified",
+      "fovZh": "未確認",
+      "techniqueZh": "攝影方式與設備規格未確認",
+      "techniqueEn": "Imaging technique and equipment specifications unverified"
     },
     "hotspots": [
       {
         "x": 50,
         "y": 15,
-        "labelZh": "天車高架軌道 (AMHS Track)",
-        "labelEn": "OHT AMHS Track",
-        "detailZh": "無塵室天花板頂部全自動物料搬送系統，負責懸掛 FOUP 晶圓盒在百台機台間極速穿梭。",
-        "detailEn": "Automated material handling track transporting FOUPs across fab bays."
+        "labelZh": "天花板區域",
+        "labelEn": "Ceiling Area",
+        "detailZh": "圖釘位於可見天花板板件附近；此處未確認有OHT軌道，亦不能判定過濾效率。",
+        "detailEn": "The pin is near visible ceiling panels; an OHT track is not confirmed here, and filtration efficiency cannot be inferred."
       },
       {
         "x": 40,
         "y": 65,
-        "labelZh": "無塵衣工程師 (Bunny Suit)",
-        "labelEn": "Operator in Bunny Suit",
-        "detailZh": "全套防靜電連身無塵衣、高效防護面罩與導電靴，防止人體毛屑與鈉鉀離子污染晶圓。",
-        "detailEn": "Full static-dissipative cleanroom garment preventing human particle shedding."
+        "labelZh": "工作桌與紙張區域",
+        "labelEn": "Worktable and Papers",
+        "detailZh": "圖釘落在工作桌與紙張附近，並非人員位置；設備功能與現場程序未確認。",
+        "detailEn": "The pin marks the worktable and papers rather than a person; equipment functions and local procedures are unverified."
       },
       {
         "x": 18,
         "y": 45,
-        "labelZh": "黃光防爆照明 (Yellow Safe Light)",
-        "labelEn": "Amber Safety Lighting",
-        "detailZh": "微影曝光區域嚴格採用 500nm 以上黃光濾波照明，防止化學增幅光阻劑非預期感光。",
-        "detailEn": "Filtered yellow lighting above 500nm preventing accidental photoresist exposure."
+        "labelZh": "左側工作檯與手部區域",
+        "labelEn": "Left Workbench and Hand Area",
+        "detailZh": "可見左側人員的手部及工作檯附近區域；照明光譜、防護等級與製程用途未確認。",
+        "detailEn": "The area near a person’s hand and the left workbench is visible; lighting spectrum, protection rating and process purpose are unverified."
       }
     ]
   },
   "ch02": {
     "id": "ch02",
     "src": "assets/photos/ch02-mosfet-sem.jpg",
-    "categoryZh": "電子顯微鏡 (SEM)",
-    "categoryEn": "Scanning Electron Microscope (SEM)",
-    "titleZh": "電子顯微鏡下微處理器奈米電晶體截面",
-    "titleEn": "Processor Nanoscale Transistors under SEM",
-    "scaleZh": "8K 超高解析電顯 · 奈米級閘極線寬",
-    "scaleEn": "8K SEM Resolution · Nanometer Gate Dimensions",
-    "captionZh": "掃描式電子顯微鏡 (SEM) 拍攝之實體微處理器截面，清晰展示金屬閘極堆疊、源極/汲極擴散區、隔離氧化層與接觸窗鎢插塞（W-Plug）互連。",
-    "captionEn": "Scanning Electron Microscope (SEM) cross-section showing metal gate stacks, source/drain junctions, isolation oxides, and tungsten contact plugs.",
-    "matchZh": "對應左側 MOSFET 閘極控制能帶模型：實體驗證閘極電壓反轉通道與源/汲極歐姆接觸。",
-    "matchEn": "Validates theoretical MOSFET band diagrams with real cross-sectional physical gate stacks and channel junctions.",
+    "categoryZh": "平面電路影像",
+    "categoryEn": "Plan-View Circuit Image",
+    "titleZh": "帶有 50 µm 尺標的重複電路圖樣",
+    "titleEn": "Repeated Circuit Patterns with a 50 µm Scale Bar",
+    "scaleZh": "影像標示 50 µm；成像方式與製程節點未確認",
+    "scaleEn": "Image scale bar: 50 µm; imaging method and process node unverified",
+    "captionZh": "可見平面重複矩形圖樣、水平線帶與 50 µm 尺標。原始來源、授權及成像條件未確認；此圖無法辨識閘極截面、介電材料或源汲極摻雜。",
+    "captionEn": "Repeated rectangular patterns, horizontal bands and a 50 µm scale bar are visible in plan view. Original source, license and imaging conditions are unverified; gate cross-sections, dielectric material and source/drain doping cannot be identified here.",
+    "matchZh": "作為電路圖樣的外觀參考，不是能帶、反轉層或接面物理的量測證據。",
+    "matchEn": "A visual reference for circuit patterns, not measurement evidence for band diagrams, inversion layers or junction physics.",
     "metrology": {
-      "voltage": "5.0 kV",
-      "mag": "85,000×",
-      "fov": "1.2 µm",
-      "techniqueZh": "場發射穿透式電子顯微鏡 (FE-TEM)",
-      "techniqueEn": "Field Emission TEM Cross-Section"
+      "voltage": "Imaging conditions unverified",
+      "voltageZh": "成像條件未確認",
+      "mag": "Unverified",
+      "magZh": "未確認",
+      "fov": "Unverified",
+      "fovZh": "未確認",
+      "techniqueZh": "成像方式與設備規格未確認",
+      "techniqueEn": "Imaging method and equipment specifications unverified"
     },
     "hotspots": [
       {
         "x": 50,
         "y": 28,
-        "labelZh": "多晶矽/金屬閘極 (Gate)",
-        "labelEn": "Metal Gate Electrode",
-        "detailZh": "電晶體控制端，施加閘極電壓以在下方矽通道感應出電子反轉層導電通道。",
-        "detailEn": "Control electrode modulating channel inversion layer carrier density."
+        "labelZh": "中央水平線帶",
+        "labelEn": "Central Horizontal Bands",
+        "detailZh": "圖釘位於水平平行線帶；無法據此確認金屬閘極。",
+        "detailEn": "The pin lies on horizontal parallel bands; a metal gate cannot be identified from this view."
       },
       {
         "x": 50,
         "y": 46,
-        "labelZh": "閘極介電層 (Gate Dielectric)",
-        "labelEn": "High-k Dielectric Layer",
-        "detailZh": "亞奈米級絕緣層，具備超高介電常數以抑制量子穿隧漏電流。",
-        "detailEn": "Sub-nanometer insulating layer with high-k material suppressing tunneling leakage."
+        "labelZh": "中央重複矩形區",
+        "labelEn": "Central Repeated Rectangles",
+        "detailZh": "可見重複矩形邊界；介電層材料與厚度未確認。",
+        "detailEn": "Repeated rectangular boundaries are visible; dielectric material and thickness are unverified."
       },
       {
         "x": 30,
         "y": 70,
-        "labelZh": "源極/汲極擴散區 (Source/Drain)",
-        "labelEn": "Source/Drain Junction",
-        "detailZh": "高濃度摻雜之載子發射與收集端，經離子佈植與毫秒高溫退火活化而成。",
-        "detailEn": "Heavily doped regions formed by ion implantation and millisecond laser annealing."
+        "labelZh": "下方密集圖樣區",
+        "labelEn": "Lower Dense Pattern Region",
+        "detailZh": "可見密集電路圖樣；源汲極位置、摻雜與退火條件未確認。",
+        "detailEn": "Dense circuit patterns are visible; source/drain locations, doping and anneal conditions are unverified."
       }
     ]
   },
   "ch03": {
     "id": "ch03",
     "src": "assets/photos/ch03-silicon-boule.jpg",
-    "categoryZh": "長晶晶棒實體",
-    "categoryEn": "Single-Crystal Ingot Artifact",
-    "titleZh": "柴式提拉法單晶矽晶棒實體 (Silicon Boule)",
-    "titleEn": "Czochralski Monocrystalline Silicon Boule Ingot",
-    "scaleZh": "長度 > 1.5 公尺 · 重量 > 100 公斤 · 99.9999999% 純度",
-    "scaleEn": "Length > 1.5 m · Weight > 100 kg · 9N+ Purity",
-    "captionZh": "柴可拉斯基法 (Czochralski) 自矽熔融液提拉結晶之高純度單晶矽晶棒，表面具有特定晶體生長稜線，經過外徑研磨（Grinding）即可滾圓成標準直徑。",
-    "captionEn": "Monocrystalline silicon boule ingot pulled from molten quartz crucible via Czochralski crystal growth, showing distinctive crystal habit lines before OD grinding.",
-    "matchZh": "對應左側柴氏長晶生長模型：晶種自旋提拉與圓柱切片拋光之真實宏觀實體。",
-    "matchEn": "Physical counterpart to the CZ crystal puller simulation, illustrating seed rotation and boule geometry.",
+    "categoryZh": "展示品參考照片",
+    "categoryEn": "Exhibit Reference Photo",
+    "titleZh": "展示櫃中的反光晶棒與相鄰樣品",
+    "titleEn": "Reflective Boule and Adjacent Samples in a Display Case",
+    "scaleZh": "實際尺寸、重量、純度與生長條件未確認",
+    "scaleEn": "Dimensions, mass, purity and growth conditions unverified",
+    "captionZh": "可見具窄頸、寬肩與反光主體的展示品，以及周圍標牌和其他樣品。原始來源與授權未確認；照片不能證明純度、無差排或長晶爐操作條件。",
+    "captionEn": "An exhibit with a narrow neck, broad shoulder and reflective body is visible, with placards and adjacent samples. Original source and license are unverified; purity, absence of dislocations and crystal-puller operating conditions are not established by the photo.",
+    "matchZh": "輔助觀察晶棒外形；照片是展示情境，並非熔湯、旋轉或提拉過程的紀錄。",
+    "matchEn": "A reference for boule shape; this is a display setting, not a record of molten silicon, rotation or pulling.",
     "metrology": {
-      "voltage": "Optical (Macro)",
-      "mag": "Macro 1:1",
-      "fov": "1.5 m Ingot",
-      "techniqueZh": "柴氏提拉長晶爐拉晶實景",
-      "techniqueEn": "Czochralski (CZ) Ingot Pulling Environment"
+      "voltage": "Imaging conditions unverified",
+      "voltageZh": "成像條件未確認",
+      "mag": "Unverified",
+      "magZh": "未確認",
+      "fov": "Unverified",
+      "fovZh": "未確認",
+      "techniqueZh": "成像方式與設備規格未確認",
+      "techniqueEn": "Imaging method and equipment specifications unverified"
     },
     "hotspots": [
       {
         "x": 50,
         "y": 15,
-        "labelZh": "引晶細頸 (Seed Neck)",
-        "labelEn": "Dash Neck",
-        "detailZh": "長晶初期直徑僅數毫米的 Dash 細頸，藉由熱震誘導排除所有差排缺陷。",
-        "detailEn": "Narrow neck eliminating dislocations via Dash technique during initial seeding."
+        "labelZh": "上方窄頸與肩部",
+        "labelEn": "Upper Neck and Shoulder",
+        "detailZh": "可見狹窄頂部向寬肩過渡，不能由外觀判定差排是否消除。",
+        "detailEn": "A narrow top transitions into a wider shoulder; removal of dislocations cannot be inferred from appearance."
       },
       {
         "x": 50,
         "y": 55,
-        "labelZh": "單晶矽棒晶體主體 (Single Crystal Body)",
-        "labelEn": "Single Crystal Ingot",
-        "detailZh": "純度達 99.999999999% (11N) 之高純度單晶矽棒，具有極致完美的金剛石晶體結構。",
-        "detailEn": "Electronic-grade silicon ingot with 11N purity and defect-free diamond cubic lattice."
+        "labelZh": "反光展示品主體",
+        "labelEn": "Reflective Exhibit Body",
+        "detailZh": "可見表面反光與環狀紋理；純度、晶向及缺陷密度未確認。",
+        "detailEn": "Reflections and ring-like surface texture are visible; purity, crystal orientation and defect density are unverified."
       },
       {
         "x": 50,
         "y": 88,
-        "labelZh": "矽熔湯液面 (Molten Silicon Meniscus)",
-        "labelEn": "Molten Silicon Surface",
-        "detailZh": "1420°C 高溫石英坩堝熔融矽液面，以毫米/小時速度緩慢旋轉提拉。",
-        "detailEn": "Liquid silicon at 1420°C in quartz crucible rotated and pulled under argon."
+        "labelZh": "下方展示標牌區",
+        "labelEn": "Lower Display Placard Area",
+        "detailZh": "圖釘位於展示標牌附近，不是熔融矽液面；圖片不提供可驗證的熔湯溫度。",
+        "detailEn": "The pin lies near a display placard, not a molten-silicon surface; the image provides no verifiable melt temperature."
       }
     ]
   },
@@ -647,282 +659,300 @@ export const REAL_PHOTOS_DATA = {
   "ch13": {
     "id": "ch13",
     "src": "assets/photos/ch13-nand-flash-die.jpg",
-    "categoryZh": "記憶體晶粒實拍",
-    "categoryEn": "Memory Die Micrograph",
-    "titleZh": "快閃記憶體內部密集存儲單元晶粒實物微觀",
-    "titleEn": "Decapped NAND Flash Memory Silicon Die Photo",
-    "scaleZh": "晶粒尺寸 ~80 mm² · 密集立體存儲單元",
-    "scaleEn": "Die Area ~80 mm² · Dense 3D Storage Array",
-    "captionZh": "快閃記憶體晶片開蓋微觀實拍，展現密集記憶體陣列區（Memory Array）、字元線解碼電路（Row Decoder）、感測放大器（Sense Amp）與周邊邏輯電路。",
-    "captionEn": "Decapped optical macro photo of a NAND Flash memory chip showing dense memory arrays, wordline decoders, and sense amplifier circuits.",
-    "matchZh": "對應左側 DRAM/3D NAND 結構模型：立體垂直通道孔與記憶胞高密度排布之真實晶片。",
-    "matchEn": "Physical reality behind 3D NAND vertical memory strings and DRAM charge-storage arrays.",
+    "categoryZh": "晶片圖樣參考照片",
+    "categoryEn": "Chip-Pattern Reference Photo",
+    "titleZh": "晶片圖樣照片（結構與規格未確認）",
+    "titleEn": "Chip-Pattern Photo (Structure and Specifications Unverified)",
+    "scaleZh": "尺寸與倍率未確認 · 不作為立體結構證據",
+    "scaleEn": "Dimensions and magnification unverified · Not evidence of 3D structure",
+    "captionZh": "照片可見彩色線條、密集重複圖樣及方形區域。本輪未核實原始來源、晶片種類或成像規格；不能從此圖判定 DRAM／NAND、堆疊層數、材料或晶粒面積。",
+    "captionEn": "Colored lines, dense repeated patterns and square regions are visible. Original provenance, chip type and imaging specifications are unverified in this review; the image does not establish DRAM/NAND identity, stack count, materials or die area.",
+    "matchZh": "此圖提供晶片外觀參考。旁側 DRAM／3D NAND／HBM 為獨立教學示意；三個圖釘只標示可見區域，不代表已辨識的記憶胞、階梯接觸或陣列下邏輯。",
+    "matchEn": "This photo provides chip-pattern context. The adjacent DRAM/3D NAND/HBM diagrams are separate teaching schematics; the three markers identify visible regions, not verified memory cells, staircase contacts or logic beneath an array.",
     "metrology": {
-      "voltage": "Optical Macro",
-      "mag": "Macro 5:1",
-      "fov": "12×15 mm Die",
-      "techniqueZh": "3D NAND Flash 裸晶開蓋金相顯微全覽",
-      "techniqueEn": "Decapped 3D NAND Flash Die Macro Photo"
+      "voltage": "Unverified",
+      "mag": "Unverified",
+      "fov": "Unverified",
+      "techniqueZh": "未確認（僅描述可見外觀）",
+      "techniqueEn": "Unverified (visible features only)",
+      "voltageZh": "未確認",
+      "magZh": "未確認",
+      "fovZh": "未確認"
     },
     "hotspots": [
       {
         "x": 50,
         "y": 40,
-        "labelZh": "記憶胞陣列層 (Memory Cell Array)",
-        "labelEn": "3D NAND Cell Array Core",
-        "detailZh": "超過 200 層垂直堆疊之 Charge Trap 浮閘記憶體單元，實現超大容量固態儲存。",
-        "detailEn": "Over 200 vertically stacked charge trap layers maximizing storage density."
+        "labelZh": "中央縱向圖樣",
+        "labelEn": "Central Vertical Pattern",
+        "detailZh": "圖釘附近可見縱向線條與相鄰色帶。此照片不能確認其記憶胞種類或堆疊層數。",
+        "detailEn": "Vertical lines and adjacent colored bands are visible near the marker. The photo does not establish memory-cell type or stack count."
       },
       {
         "x": 82,
         "y": 40,
-        "labelZh": "字元線階梯接觸區 (Staircase Contact Pad)",
-        "labelEn": "Word-Line Staircase Region",
-        "detailZh": "微影階梯蝕刻而成之梯級結構，垂直貫穿的導電接觸孔在此精準連接每層字元線。",
-        "detailEn": "Terraced staircase contact pads enabling vertical via routing to each deck."
+        "labelZh": "右側密集圖樣區",
+        "labelEn": "Right-Hand Patterned Region",
+        "detailZh": "圖釘附近可見密集線條與重複圖樣。無法由此確認階梯接觸結構或字元線連接。",
+        "detailEn": "Dense lines and repeated patterns are visible near the marker. Staircase contacts or word-line connections cannot be confirmed here."
       },
       {
         "x": 50,
         "y": 88,
-        "labelZh": "周邊電路基底 (CuA / CMOS under Array)",
-        "labelEn": "CMOS Under Array Logic",
-        "detailZh": "將感測放大器與解碼驅動電路藏於記憶胞陣列正下方，極大化矽晶粒面積利用率。",
-        "detailEn": "Peripheral read/write logic integrated directly beneath memory array stack."
+        "labelZh": "下方中央區域",
+        "labelEn": "Lower Central Region",
+        "detailZh": "圖釘標示照片下方中央的圖樣區域。此平面外觀不能證明陣列下方有 CMOS 邏輯。",
+        "detailEn": "The marker identifies a patterned area near the lower center. This surface view does not establish CMOS logic beneath an array."
       }
     ]
   },
   "ch14": {
     "id": "ch14",
     "src": "assets/photos/ch14-node-pitch-scaling.jpg",
-    "categoryZh": "先進投影曝光機",
-    "categoryEn": "Advanced Projection Stepper",
-    "titleZh": "先進微縮節點精密投影曝光與晶圓步進對位機",
-    "titleEn": "Advanced Node Projection Stepper & Multi-Patterning Alignment",
-    "scaleZh": "次微米重疊對準精度 Overlay < 2 nm",
-    "scaleEn": "Sub-micron Overlay Alignment Accuracy < 2 nm",
-    "captionZh": "晶圓廠無塵室高階步進曝光機台，具備雙干涉儀晶圓載台與超低熱膨脹光學反射鏡組，支撐 10nm/7nm/5nm 多重曝光與自對準節距微縮（SADP/SAQP）。",
-    "captionEn": "Advanced projection stepper featuring dual interferometer wafer stages and ultra-low thermal drift mirrors supporting tight overlay tolerances.",
-    "matchZh": "對應左側製程節點微縮尺規：多重曝光節距分割之真實對準曝光機具。",
-    "matchEn": "Hardware driver behind pitch division scaling and multi-patterning overlay requirements.",
+    "categoryZh": "設備環境參考照片",
+    "categoryEn": "Equipment Reference Photo",
+    "titleZh": "黃光環境設備照片（機型與規格未確認）",
+    "titleEn": "Equipment in Yellow Lighting (Model and Specifications Unverified)",
+    "scaleZh": "機型、尺寸與對位精度未確認",
+    "scaleEn": "Equipment model, dimensions and alignment accuracy unverified",
+    "captionZh": "照片可見黃光環境中的設備外殼、中央平台與螢幕。本輪未核實原始來源、機型或規格；無法由畫面確認曝光方式、干涉儀配置、支援節點或奈米級對位精度。",
+    "captionEn": "Equipment housings, a central platform and screens are visible under yellow lighting. Original provenance, equipment model and specifications are unverified in this review; the photo does not establish exposure method, interferometer configuration, supported nodes or nanometer alignment accuracy.",
+    "matchZh": "此圖提供設備環境參考。旁側 CPP／M1 節距與標準單元軌道圖是獨立教學示意；照片及圖釘不是這些尺寸的量測證據。",
+    "matchEn": "This photo provides equipment context. The adjacent CPP/M1 pitch and standard-cell track diagrams are separate teaching schematics; the photo and markers are not measurements of those dimensions.",
     "metrology": {
-      "voltage": "Optical Scale",
-      "mag": "Scaling Chart",
-      "fov": "1 µm to 2 nm",
-      "techniqueZh": "半導體製程節點微縮步階圖譜實例",
-      "techniqueEn": "Semiconductor Process Node Scaling Ruler"
+      "voltage": "Unverified",
+      "mag": "Unverified",
+      "fov": "Unverified",
+      "techniqueZh": "未確認（僅描述可見外觀）",
+      "techniqueEn": "Unverified (visible features only)",
+      "voltageZh": "未確認",
+      "magZh": "未確認",
+      "fovZh": "未確認"
     },
     "hotspots": [
       {
         "x": 30,
         "y": 40,
-        "labelZh": "接觸多晶矽節距 (CPP Gate Pitch)",
-        "labelEn": "Contacted Poly Pitch (CPP)",
-        "detailZh": "量測電晶體閘極間隔的關鍵物理尺度，從微米級一路微縮至當前 45nm 以下。",
-        "detailEn": "Fundamental metric defining distance between adjacent transistor gates."
+        "labelZh": "左側設備外殼",
+        "labelEn": "Left-Hand Equipment Housing",
+        "detailZh": "圖釘附近可見淺色設備外殼。此區域不是電晶體閘極節距的量測圖。",
+        "detailEn": "A light-colored equipment housing is visible near the marker. This region is not a measurement of transistor gate pitch."
       },
       {
         "x": 50,
         "y": 65,
-        "labelZh": "金屬導線節距 (Metal Pitch M1)",
-        "labelEn": "Minimum Metal Pitch (M1)",
-        "detailZh": "最底層金屬導線之最小間距，決定標準邏輯單元的佈局密度極限。",
-        "detailEn": "Tightest interconnect pitch determining standard cell height and routing."
+        "labelZh": "中央平台區域",
+        "labelEn": "Central Platform Area",
+        "detailZh": "圖釘標示中央平台附近的外觀。無法據此確認載台機構或金屬導線節距。",
+        "detailEn": "The marker identifies the area around the central platform. Stage mechanisms or metal-line pitch cannot be established from this view."
       },
       {
         "x": 75,
         "y": 35,
-        "labelZh": "標準單元軌道高度 (Track Height)",
-        "labelEn": "Cell Track Height",
-        "detailZh": "由 9T、7.5T 微縮至 6T 與 5T 超微縮邏輯單元，大幅削減晶片功耗與面積。",
-        "detailEn": "Scaling from 9T to 5T standard cell architectures reducing active silicon area."
+        "labelZh": "後方設備外殼區域",
+        "labelEn": "Rear Housing Area",
+        "detailZh": "圖釘附近可見後方設備外殼。此照片不能確認標準單元軌道高度、功耗或面積效益。",
+        "detailEn": "Rear equipment housing is visible near the marker. The photo does not establish standard-cell track height, power consumption or area benefits."
       }
     ]
   },
   "ch15": {
     "id": "ch15",
     "src": "assets/photos/ch15-metrology-profilometer.jpg",
-    "categoryZh": "量測儀器實景",
-    "categoryEn": "Metrology & Profilometry Tool",
-    "titleZh": "無塵室精密表面輪廓量測儀 (Contact Profilometer)",
-    "titleEn": "Cleanroom Precision Stylus Surface Profilometer",
-    "scaleZh": "垂直解析度 < 0.1 nm · 掃描長度 50 mm",
-    "scaleEn": "Vertical Resolution < 0.1 nm · 50 mm Scan Length",
-    "captionZh": "線上薄膜輪廓儀實體機台，探針以精確微牛頓接觸力掃描晶圓表面，繪製次埃米級步階高度、CMP 平坦化殘留應力與薄膜翹曲度（Warpage）。",
-    "captionEn": "Cleanroom stylus profilometer measuring sub-angstrom step heights, CMP post-polish dishing, and wafer warpage non-destructively.",
-    "matchZh": "對應左側 CD-SEM 與光學量測模型：非破壞線上量測晶圓物理尺寸之真實機具。",
-    "matchEn": "Direct physical tool corresponding to CD metrology and surface topography verification.",
+    "categoryZh": "桌面設備參考照片",
+    "categoryEn": "Desktop Equipment Reference Photo",
+    "titleZh": "桌面儀器與顯示器（機型與規格未確認）",
+    "titleEn": "Desktop Instrument and Display (Model and Specifications Unverified)",
+    "scaleZh": "探測方式、精度與掃描範圍未確認",
+    "scaleEn": "Probe method, precision and scan range unverified",
+    "captionZh": "照片可見上方顯示器、設備前窗內的圓形台、外殼、鍵盤與右側電腦。本輪未核實原始來源、機型或規格；不能據此確認接觸式探針、干涉量測方式或奈米級能力。",
+    "captionEn": "The photo shows an upper display, a circular platform behind the front window, housing, a keyboard and a computer on the right. Original provenance, model and specifications are unverified; the photo does not establish a contact probe, interferometry or nanometer capability.",
+    "matchZh": "此照片只提供設備外觀參考。旁側 CD-SEM、明暗場與橢偏圖為獨立教學示意，不能將其結構或性能直接對應到這台設備。",
+    "matchEn": "This photo provides equipment appearance only. The adjacent CD-SEM, bright/dark-field and ellipsometry diagrams are independent teaching schematics; their structures and performance cannot be assigned to this instrument.",
     "metrology": {
-      "voltage": "White Light / Laser",
-      "mag": "Interferometer",
-      "fov": "10 mm Scan",
-      "techniqueZh": "非接觸式光學表面輪廓量測儀 (Optical Profilometer)",
-      "techniqueEn": "Non-Contact Optical Surface Profilometer"
+      "voltage": "Unverified",
+      "voltageZh": "未確認",
+      "mag": "Unverified",
+      "magZh": "未確認",
+      "fov": "Unverified",
+      "fovZh": "未確認",
+      "techniqueZh": "未確認（僅描述可見外觀）",
+      "techniqueEn": "Unverified (visible features only)"
     },
     "hotspots": [
       {
         "x": 50,
         "y": 25,
-        "labelZh": "白光干涉物鏡頭 (Interferometric Objective)",
-        "labelEn": "Mirau Interferometer Lens",
-        "detailZh": "精密光學干涉鏡頭，利用光程差產生納米級等高干涉條紋，量測晶圓表面粗糙度。",
-        "detailEn": "Optical lens generating nanometer-scale interference fringes for topography."
+        "labelZh": "上方顯示器",
+        "labelEn": "Upper Display",
+        "detailZh": "圖釘位於上方顯示器，畫面可見曲線。曲線的量測對象與單位未確認；此位置不是已辨識的干涉物鏡。",
+        "detailEn": "The marker lies on the upper display, where curves are visible. Their measured quantity and units are unverified; this is not an identified interferometric objective."
       },
       {
         "x": 50,
         "y": 65,
-        "labelZh": "壓電式微動掃描台 (Piezoelectric Z-Stage)",
-        "labelEn": "Piezoelectric Scanner",
-        "detailZh": "皮米級步進壓電致動器，驅動鏡頭垂直微步掃描，建構三維立體高程圖形。",
-        "detailEn": "Picometer-resolution actuator providing vertical scanning for 3D mapping."
+        "labelZh": "下方前側外殼",
+        "labelEn": "Lower Front Housing",
+        "detailZh": "圖釘位於前側外殼下緣、鍵盤上方。畫面無法確認壓電掃描台或致動器精度。",
+        "detailEn": "The marker lies on the lower front housing above the keyboard. The image does not establish a piezoelectric scanner or actuator precision."
       },
       {
         "x": 80,
         "y": 55,
-        "labelZh": "即時視覺定位鏡頭 (High-Res Alignment Camera)",
-        "labelEn": "Pattern Recognition Vision",
-        "detailZh": "同軸光學輔助相機，自動比對晶圓圖案座標並自動導航至量測目標特徵。",
-        "detailEn": "Machine vision camera recognizing die patterns for automated navigation."
+        "labelZh": "右側電腦機殼",
+        "labelEn": "Right Computer Enclosure",
+        "detailZh": "圖釘位於右側電腦的前面板附近，可見通風開口。此處不是已確認的視覺定位鏡頭。",
+        "detailEn": "The marker lies near the right computer front panel, where ventilation openings are visible. It is not an identified alignment camera."
       }
     ]
   },
   "ch16": {
     "id": "ch16",
     "src": "assets/photos/ch16-defect-inspection-him.jpg",
-    "categoryZh": "缺陷檢測顯微儀",
-    "categoryEn": "Defect Inspection Microscope",
-    "titleZh": "氦離子顯微鏡與高解析奈米缺陷分析儀 (HIM / SEM)",
-    "titleEn": "Helium Ion & Scanning Electron Defect Inspection System",
-    "scaleZh": "亞奈米束流聚焦 · 次表面奈米缺陷定位",
-    "scaleEn": "Sub-Nanometer Spot Size · Subsurface Defect Isolation",
-    "captionZh": "先進半導體故障分析顯微儀器，具備高對比離子與電子成像模式，可穿透氧化層精確定位奈米顆粒微裂紋、金屬空洞（Void）與電晶體短路位置。",
-    "captionEn": "Advanced helium ion microscope providing sub-nanometer imaging to isolate particle shorts, electromigration voids, and lattice dislocations.",
-    "matchZh": "對應左側晶圓缺陷圖譜與 FIB 切片模型：尋找良率殺手之尖端分析顯微機台。",
-    "matchEn": "Physical tool behind FIB cross-sectioning and physical defect failure analysis.",
+    "categoryZh": "灰階影像參考圖",
+    "categoryEn": "Grayscale Reference Images",
+    "titleZh": "雙幅球狀紋理影像（材料與成像規格未確認）",
+    "titleEn": "Two Images of Spherical Textures (Material and Imaging Specifications Unverified)",
+    "scaleZh": "未見尺標 · 尺寸、倍率與成像方式未確認",
+    "scaleEn": "No visible scale bar · Dimensions, magnification and imaging method unverified",
+    "captionZh": "圖中左右兩幅灰階影像呈現多個球狀外觀與表面紋理，中間以白色直帶分隔。原始來源、材料、尺寸及成像方式未確認；不能據此指認氦離子設備、晶圓缺陷或次表面金屬空洞。",
+    "captionEn": "Two grayscale panels show spherical forms and surface textures separated by a white vertical band. Original provenance, material, dimensions and imaging method are unverified; these images do not identify helium-ion equipment, wafer defects or subsurface metal voids.",
+    "matchZh": "此圖僅示範可見影像區域。旁側晶圓圖譜、FIB 與 TEM 為獨立教學示意；照片與圖釘不是半導體缺陷、設備性能或失效機制的證據。",
+    "matchEn": "These images provide visible-image context only. The adjacent wafer-map, FIB and TEM diagrams are independent teaching schematics; the images and markers are not evidence of semiconductor defects, equipment performance or a failure mechanism.",
     "metrology": {
-      "voltage": "He+ 30 kV",
-      "mag": "500,000×",
-      "fov": "500 nm",
-      "techniqueZh": "氦離子顯微鏡 (Helium Ion Microscope HIM)",
-      "techniqueEn": "Sub-Nanometer Helium Ion Defect Inspection"
+      "voltage": "Unverified",
+      "voltageZh": "未確認",
+      "mag": "Unverified",
+      "magZh": "未確認",
+      "fov": "Unverified",
+      "fovZh": "未確認",
+      "techniqueZh": "未確認（僅描述可見外觀）",
+      "techniqueEn": "Unverified (visible features only)"
     },
     "hotspots": [
       {
         "x": 45,
         "y": 40,
-        "labelZh": "次奈米聚焦氦離子束斑 (Helium Ion Spot)",
-        "labelEn": "Sub-nm He+ Beam Spot",
-        "detailZh": "單原子尖端場發射源產生之 0.25nm 極微束斑，具備超大景深與無荷電效應優勢。",
-        "detailEn": "Gas field ion source producing 0.25nm spot for high-contrast defect inspection."
+        "labelZh": "左幅紋理區域",
+        "labelEn": "Left-Panel Texture Region",
+        "detailZh": "圖釘附近可見左幅影像中的球狀外觀與細部紋理。材料、尺寸及成像束斑未確認。",
+        "detailEn": "Spherical forms and fine textures are visible near this marker in the left panel. Material, dimensions and imaging spot size are unverified."
       },
       {
         "x": 55,
         "y": 50,
-        "labelZh": "微小開路缺陷空洞 (Sub-surface Void Defect)",
-        "labelEn": "Sub-surface Void Flaw",
-        "detailZh": "後段金屬介層孔沉積不完全形成的微小空泡，導致金屬互連電阻劇增與良率折損。",
-        "detailEn": "Microscopic void in via fill causing resistance anomalies and killer defects."
+        "labelZh": "中央白色分隔帶",
+        "labelEn": "Central White Divider",
+        "detailZh": "圖釘位於兩幅影像之間的白色分隔帶附近，不能將此區域解讀為金屬介層孔中的空洞。",
+        "detailEn": "The marker lies near the white divider between the panels. This region cannot be interpreted as a void in a metal via."
       },
       {
         "x": 80,
         "y": 35,
-        "labelZh": "背向散射離子偵測器 (Everhart-Thornley Detector)",
-        "labelEn": "Backscatter Ion Collector",
-        "detailZh": "超靈敏離子偵測陣列，精確接收晶圓表面逸出之二次電子與反散射離子信號。",
-        "detailEn": "High-gain secondary electron and ion detector mapping surface material topography."
+        "labelZh": "右幅紋理區域",
+        "labelEn": "Right-Panel Texture Region",
+        "detailZh": "圖釘附近可見右幅影像的球狀表面與紋理。畫面未顯示已辨識的偵測器或設備構件。",
+        "detailEn": "Spherical surfaces and textures are visible near this marker in the right panel. The image does not show an identified detector or equipment component."
       }
     ]
   },
   "ch17": {
     "id": "ch17",
     "src": "assets/photos/ch17-parametric-test-spc.jpg",
-    "categoryZh": "電性測試機台",
-    "categoryEn": "Parametric Test & SPC Station",
-    "titleZh": "晶圓參數測試工作站與 SPC 即時監控平台",
-    "titleEn": "Wafer Parametric Characterization Bench & SPC Interface",
-    "scaleZh": "百萬級量測數據吞吐 · 即時 Cpk 演算",
-    "scaleEn": "Million-Data-Point Throughput · Real-Time Cpk Engine",
-    "captionZh": "無塵室晶圓參數電性測試站，整合半導體參數分析儀、自動針測治具與 SPC 監控軟體，即時監控薄膜電阻、電容與漏電流的分佈離散度。",
-    "captionEn": "Cleanroom parametric characterization station integrating automated probe fixtures and SPC analytics to track sheet resistance and leakage drift.",
-    "matchZh": "對應左側 SPC 管制圖與判異規則：蒐集實機物理電性訊號並計算管制界限之來源工作站。",
-    "matchEn": "Hardware source feeding data into Shewhart SPC charts and Western Electric anomaly detection.",
+    "categoryZh": "實驗室工作區參考圖",
+    "categoryEn": "Laboratory Work Area Reference",
+    "titleZh": "顯微鏡與桌面設備工作區",
+    "titleEn": "Microscopes and Bench Equipment",
+    "scaleZh": "機型、量測功能與效能未確認",
+    "scaleEn": "Instrument Models, Functions and Performance Unverified",
+    "captionZh": "畫面可見多組顯微鏡、螢幕、桌面設備與線材。不能由此辨認自動參數測試、SPC 軟體或量測精度；原始來源與授權資訊尚未確認。",
+    "captionEn": "Several microscopes, monitors, bench instruments and cables are visible. Automated parametric testing, SPC software and measurement accuracy cannot be established from this image. Original source and licensing information remain unverified.",
+    "matchZh": "僅作數據蒐集工作環境的概念參考，不是特定 SPC 系統整合或效能證據。",
+    "matchEn": "Concept reference for a data-collection work area, not evidence of a specific SPC integration or performance.",
     "metrology": {
-      "voltage": "Parametric Multi-Pin",
-      "mag": "Tester View",
-      "fov": "Full Wafer",
-      "techniqueZh": "晶圓廠全自動參數電性量測機台 (Parametric Tester)",
-      "techniqueEn": "Automated In-Line Parametric & SPC Workstation"
+      "voltage": "Not verified",
+      "voltageZh": "未確認",
+      "mag": "Not verified",
+      "magZh": "未確認",
+      "fov": "Not verified",
+      "fovZh": "未確認",
+      "techniqueZh": "外觀參考；設備規格未確認",
+      "techniqueEn": "Visual Reference; Instrument Specifications Unverified"
     },
     "hotspots": [
       {
         "x": 48,
         "y": 30,
-        "labelZh": "低漏電針測矩陣開關 (Low-Leakage Matrix Switch)",
-        "labelEn": "Sub-fA Switching Matrix",
-        "detailZh": "飛安培 (fA) 級超低漏電矩陣開關，在數微秒內切換不同測試針腳量測 Ion 與 Vth。",
-        "detailEn": "High-speed matrix switch routing picoamp signals to SMU test instruments."
+        "labelZh": "工作桌旁線材",
+        "labelEn": "Cables Beside a Workbench",
+        "detailZh": "圖釘附近可見工作桌旁的線材；無法確認低漏電矩陣、切換速度或電流解析度。",
+        "detailEn": "Cables are visible near the workbench. A low-leakage matrix, switching speed and current resolution are not identifiable."
       },
       {
         "x": 50,
         "y": 60,
-        "labelZh": "開爾文四線式探針 (Kelvin 4-Wire Probes)",
-        "labelEn": "Kelvin 4-Wire Contact",
-        "detailZh": "分離式激勵電流線與電壓量測線，徹底消除接觸阻抗與導線電阻對量測結果的干擾。",
-        "detailEn": "Separate force and sense leads eliminating cable and contact resistance."
+        "labelZh": "桌架與下層設備區",
+        "labelEn": "Bench Frame and Lower Shelf",
+        "detailZh": "圖釘落在桌架與下層設備一帶，不能由此認定四線式探針或接觸電阻補償功能。",
+        "detailEn": "The pin is near the bench frame and lower shelf; it does not identify four-wire probes or contact-resistance compensation."
       },
       {
         "x": 75,
         "y": 70,
-        "labelZh": "即時 SPC 管制圖儀表 (Live SPC Control Dashboard)",
-        "labelEn": "Real-time SPC Control Chart",
-        "detailZh": "即時計算 Cpk 數值與 Western Electric 判異規則，超標立即觸發產線自動閉鎖。",
-        "detailEn": "Automated SPC console calculating Cpk and triggering interlocks on out-of-spec runs."
+        "labelZh": "椅腳與地面區",
+        "labelEn": "Stool Base and Floor",
+        "detailZh": "此處是椅腳與地面區，並非可辨識的 SPC 螢幕；未確認任何 Cpk 或閉鎖功能。",
+        "detailEn": "This is a stool-base and floor area, not an identifiable SPC display. No Cpk calculation or interlock function is established."
       }
     ]
   },
   "ch18": {
     "id": "ch18",
     "src": "assets/photos/ch18-foup-wafer-carrier.jpg",
-    "categoryZh": "FOUP 晶圓載具實體",
-    "categoryEn": "FOUP Transport Carrier Artifact",
-    "titleZh": "300mm 前開式晶圓傳送盒實體 (300mm FOUP Pod)",
-    "titleEn": "300mm Front Opening Unified Pod (FOUP) Carrier",
-    "scaleZh": "容納 25 片 300mm 晶圓 · 氣密氮氣填充充氣閥",
-    "scaleEn": "Holds 25x 300mm Wafers · Hermetic N₂ Purge Port",
-    "captionZh": "晶圓廠實體 300mm FOUP 傳送盒正面視圖，具備精密封閉門片、晶圓支撐齒軌與頂部天車機械手夾爪，當站點觸發 OCAP 時由系統自動閉鎖隔離。",
-    "captionEn": "Front view of an authentic 300mm FOUP showing robotic hoist flange, hermetic door seal, and wafer teeth holding 25 production wafers safely.",
-    "matchZh": "對應左側異常處理 OCAP 與 Hold 站點互鎖：晶圓廠物理搬運與受控隔離之核心容器。",
-    "matchEn": "Physical container governed by MES Hold interlocks and automated OHT routing during excursions.",
+    "categoryZh": "透明載具參考圖",
+    "categoryEn": "Transparent Carrier Reference",
+    "titleZh": "透明載具與槽形支撐結構",
+    "titleEn": "Transparent Carrier and Slotted Supports",
+    "scaleZh": "尺寸、容量、密封與吹氣規格未確認",
+    "scaleEn": "Dimensions, Capacity, Sealing and Purge Specifications Unverified",
+    "captionZh": "畫面可見透明外盒、堆疊片狀物邊緣與兩側支撐槽。無法據此確認 FOUP 型式、300mm、25片容量、氮氣吹氣或潔淨等級；原始來源與授權資訊尚未確認。",
+    "captionEn": "A transparent enclosure, stacked disc edges and slotted supports are visible. FOUP type, 300mm size, 25-wafer capacity, nitrogen purge and cleanliness class are not established by this image. Original source and licensing information remain unverified.",
+    "matchZh": "僅作晶圓載運／隔離的概念參考；照片本身不能證明 MES Hold、OHT 搬運或自動互鎖。",
+    "matchEn": "Concept reference for wafer transport and containment; the photo does not establish MES Hold, OHT transport or automated interlocks.",
     "metrology": {
-      "voltage": "Cleanliness Class 1",
-      "mag": "Carrier Macro",
-      "fov": "300 mm Carrier",
-      "techniqueZh": "300mm 晶圓密閉傳輸盒 (FOUP) 實體實拍",
-      "techniqueEn": "300mm Front Opening Unified Pod (FOUP)"
+      "voltage": "Not verified",
+      "voltageZh": "未確認",
+      "mag": "Not verified",
+      "magZh": "未確認",
+      "fov": "Not verified",
+      "fovZh": "未確認",
+      "techniqueZh": "外觀參考；載具規格未確認",
+      "techniqueEn": "Visual Reference; Carrier Specifications Unverified"
     },
     "hotspots": [
       {
         "x": 48,
         "y": 35,
-        "labelZh": "氣密前門密封圈 (Hermetic Door Gasket)",
-        "labelEn": "Front Door Hermetic Seal",
-        "detailZh": "耐磨高分子彈性體密封條，在天車運送過程中隔絕無塵室外在環境微粒與有機氣態分子。",
-        "detailEn": "Elastomer seal keeping internal environment Class 0.1 during transit."
+        "labelZh": "上方片狀物區域",
+        "labelEn": "Upper Stacked-Disc Area",
+        "detailZh": "圖釘靠近載具內上方片狀物；不能由此辨識氣密門封或其材料與潔淨能力。",
+        "detailEn": "The pin is near the upper stacked discs; a hermetic door gasket, its material and cleanliness performance are not identifiable."
       },
       {
         "x": 50,
         "y": 65,
-        "labelZh": "高純氮氣破真空吹氣閥 (N2 Purge Breathing Port)",
-        "labelEn": "N2 Purge Purifier Valve",
-        "detailZh": "底部四點定位吹氣閥，在機台 Loadport 自動注入超純乾燥氮氣，抑制晶圓表面銅氧化。",
-        "detailEn": "Bottom check valves purging nitrogen to suppress humidity and copper oxidation."
+        "labelZh": "下方片緣與槽位",
+        "labelEn": "Lower Disc Edges and Slots",
+        "detailZh": "可見下方片狀物邊緣與槽位；未顯示可確認的氮氣吹氣閥或氧化防護功能。",
+        "detailEn": "Lower disc edges and slots are visible; no identifiable nitrogen-purge valve or oxidation-protection function is shown."
       },
       {
         "x": 25,
         "y": 75,
-        "labelZh": "機械手定位定位錐孔 (Kinematic Coupling Pins)",
-        "labelEn": "Kinematic Coupling V-Grooves",
-        "detailZh": "底座精密三點 V 型導引凹槽，確保 FOUP 與機台裝載口對接重複定位精度在微米以內。",
-        "detailEn": "Three kinematic grooves ensuring sub-micron docking repeatability at load ports."
+        "labelZh": "左側槽形支撐",
+        "labelEn": "Left Slotted Support",
+        "detailZh": "可見左側槽形支撐結構；此位置不能確認底部三點 V 溝或對接精度。",
+        "detailEn": "A slotted support is visible on the left; this location does not establish bottom three-point V-grooves or docking precision."
       }
     ]
   },
@@ -1092,141 +1122,150 @@ export const REAL_PHOTOS_DATA = {
   "ch22": {
     "id": "ch22",
     "src": "assets/photos/ch22-reliability-leak-test.jpg",
-    "categoryZh": "可靠度機台實景",
-    "categoryEn": "Reliability Test Tool",
-    "titleZh": "半導體封裝氣密檢漏與可靠度環境測試機台",
-    "titleEn": "Packaging Hermetic Seal Leak Detection & Stress Station",
-    "scaleZh": "氦氣質譜檢漏靈敏度 10⁻¹⁰ mbar·L/s",
-    "scaleEn": "Helium Leak Sensitivity 10⁻¹⁰ mbar·L/s",
-    "captionZh": "晶片封裝可靠度檢漏設備，利用氦氣加壓滲透與質譜分析，嚴格檢驗封裝膠體與陶瓷管殼的微觀縫隙，防止濕氣侵入引發電化學腐蝕。",
-    "captionEn": "Helium mass spectrometer leak detector inspecting packaged semiconductor hermeticity against moisture penetration and corrosion.",
-    "matchZh": "對應左側浴缸曲線與失效分析模型：早期失效率篩檢與環境加速老化測試機具。",
-    "matchEn": "Hardware station executing infant mortality screening and hermetic seal qualification.",
+    "categoryZh": "實驗作業參考照片",
+    "categoryEn": "Laboratory Work Reference Photo",
+    "titleZh": "人員操作開啟圓蓋的實驗設備",
+    "titleEn": "Operator Using Laboratory Equipment with an Open Circular Lid",
+    "scaleZh": "設備型號、測試方法與靈敏度未確認",
+    "scaleEn": "Equipment model, test method and sensitivity unverified",
+    "captionZh": "可見穿白色工作衣的人員、開啟的圓蓋及圓形槽體。原始來源與授權未確認；照片不能確認氦氣檢漏、質譜分析、真空等級或偵測下限。",
+    "captionEn": "An operator in a white coat, an open circular lid and a round vessel are visible. Original source and license are unverified; helium leak testing, mass spectrometry, vacuum level and detection limits cannot be established from the image.",
+    "matchZh": "僅供觀察實驗設備操作情境；不是浴缸曲線、加速因子或失效率的量測證據。",
+    "matchEn": "A reference for a laboratory operating context, not measurement evidence for the bathtub curve, acceleration factor or failure rate.",
     "metrology": {
-      "voltage": "High Vacuum 10⁻⁵ Torr",
-      "mag": "Chamber View",
-      "fov": "1.2 m Station",
-      "techniqueZh": "封裝氣密性檢漏與氦質譜儀真空分析機台",
-      "techniqueEn": "Helium Mass Spectrometer Hermetic Leak Tester"
+      "voltage": "Imaging conditions unverified",
+      "voltageZh": "成像條件未確認",
+      "mag": "Unverified",
+      "magZh": "未確認",
+      "fov": "Unverified",
+      "fovZh": "未確認",
+      "techniqueZh": "成像方式與設備規格未確認",
+      "techniqueEn": "Imaging method and equipment specifications unverified"
     },
     "hotspots": [
       {
         "x": 50,
         "y": 35,
-        "labelZh": "加壓充氦加壓室 (Helium Bombing Chamber)",
-        "labelEn": "Pressurized Helium Bombing Tank",
-        "detailZh": "將被測密封晶片浸置於數個大氣壓之高純氦氣腔體中，迫使氣體經微裂紋滲透至封裝內部。",
-        "detailEn": "Chamber forcing tracer helium gas into micro-leaks under multi-bar pressure."
+        "labelZh": "背景座椅與工作區",
+        "labelEn": "Background Chair and Work Area",
+        "detailZh": "圖釘位於背景座椅附近；不能標定為氦氣加壓室。",
+        "detailEn": "The pin is near a background chair; this location cannot be identified as a helium bombing chamber."
       },
       {
         "x": 50,
         "y": 65,
-        "labelZh": "磁偏轉質譜分析室 (Helium Mass Spectrometer)",
-        "labelEn": "Mass Spectrometer Cell",
-        "detailZh": "調諧至質量數 4 (He+) 的超靈敏質譜檢測計，偵測下限可達 10⁻¹² atm·cc/s 航太級氣密標準。",
-        "detailEn": "Magnetic sector cell detecting trace helium down to 10⁻¹² atm-cc/sec."
+        "labelZh": "槽內圓形支架",
+        "labelEn": "Circular Holder in the Vessel",
+        "detailZh": "可見槽內圓形支架；內部質譜元件與分析方法未確認。",
+        "detailEn": "A circular holder is visible inside the vessel; mass-spectrometer components and the analytical method are unverified."
       },
       {
         "x": 20,
         "y": 55,
-        "labelZh": "快速抽真空旁通閥 (Quick Vacuum Bypass)",
-        "labelEn": "High-Vacuum Turbo Bypass",
-        "detailZh": "多級乾式羅茨泵與渦輪分子泵，在數秒內將檢測腔抽至高真空以進行快速批次判定。",
-        "detailEn": "Fast roughing and turbomolecular pumping sequence for high-throughput testing."
+        "labelZh": "圓槽左側邊緣",
+        "labelEn": "Left Edge of the Circular Vessel",
+        "detailZh": "可見槽體邊緣與附近結構；此處無法確認旁通閥或幫浦型式。",
+        "detailEn": "The vessel edge and nearby structure are visible; a bypass valve or pump type cannot be identified here."
       }
     ]
   },
   "ch23": {
     "id": "ch23",
     "src": "assets/photos/ch23-cim-fab-automation.jpg",
-    "categoryZh": "智慧製造自動化",
-    "categoryEn": "Smart CIM Automation",
-    "titleZh": "300mm 智慧製造全自動無塵室走廊 (GigaFab Cleanroom)",
-    "titleEn": "Automated 300mm GigaFab Bay & Overhead OHT Highway",
-    "scaleZh": "天車車速 > 5 m/s · 千台天車同步調度 · 零微粒污染",
-    "scaleEn": "OHT Speed > 5 m/s · Fleet Dispatching · Zero Contamination",
-    "captionZh": "現代 300mm 晶圓廠 Class 1 超潔淨作業區，全廠由電腦整合製造系統（CIM）集中調度，天車在天花板鋼軌上以每秒 5 公尺高速運送 FOUP 晶圓盒。",
-    "captionEn": "Modern 300mm Class-1 cleanroom bay orchestrated by Computer Integrated Manufacturing (CIM), with overhead OHT vehicles speeding on ceiling tracks.",
-    "matchZh": "對應左側 Q-Time 與智慧防呆模型：CIM 派工、物料自動搬送與防呆互鎖之宏觀實景。",
-    "matchEn": "Macro-scale view of SECS/GEM and OHT fleet scheduling eliminating human handling error.",
+    "categoryZh": "潔淨作業參考照片",
+    "categoryEn": "Clean Work-Area Reference Photo",
+    "titleZh": "防護衣人員與金屬組件裝配工作區",
+    "titleEn": "Personnel in Coveralls and a Metal-Assembly Work Area",
+    "scaleZh": "潔淨分級、自動化程度與設備用途未確認",
+    "scaleEn": "Cleanliness class, automation level and equipment purpose unverified",
+    "captionZh": "可見穿連身防護衣的人員、工具、金屬組件與工作平台。原始來源與授權未確認；照片不證明為 300mm 晶圓廠，也未顯示可辨識的 OHT 調度或 MES 介面。",
+    "captionEn": "Personnel in coveralls, hand tools, metal components and work platforms are visible. Original source and license are unverified; the image does not establish a 300mm fab or show identifiable OHT dispatching or MES interfaces.",
+    "matchZh": "輔助觀察受控環境中的作業情境；不是 Q-Time、防呆互鎖或 OEE 效能的驗證。",
+    "matchEn": "A visual reference for work in a controlled environment, not validation of Q-Time controls, interlocks or OEE performance.",
     "metrology": {
-      "voltage": "Smart Fab 24/7",
-      "mag": "Cleanroom Panoramic",
-      "fov": "30 m Bay",
-      "techniqueZh": "全自動現代化晶圓代工廠智慧製造無塵室全景",
-      "techniqueEn": "Automated 300mm Smart Foundry Cleanroom"
+      "voltage": "Imaging conditions unverified",
+      "voltageZh": "成像條件未確認",
+      "mag": "Unverified",
+      "magZh": "未確認",
+      "fov": "Unverified",
+      "fovZh": "未確認",
+      "techniqueZh": "成像方式與設備規格未確認",
+      "techniqueEn": "Imaging method and equipment specifications unverified"
     },
     "hotspots": [
       {
         "x": 50,
         "y": 15,
-        "labelZh": "OHT 智慧調度天車軌道 (Overhead Hoist Track)",
-        "labelEn": "Smart OHT Rail Grid",
-        "detailZh": "全天候無人運作的立體軌道網絡，由 AI 演算法即時調度天車車流避免交通節點擁塞。",
-        "detailEn": "Continuous 3D track network dynamically balanced by dispatch AI algorithms."
+        "labelZh": "後方窗面與結構",
+        "labelEn": "Rear Window and Structure",
+        "detailZh": "圖釘落在後方窗面及結構附近，不能確認為 OHT 軌道。",
+        "detailEn": "The pin is near a rear window and structural members; an OHT track is not confirmed."
       },
       {
         "x": 50,
         "y": 55,
-        "labelZh": "百萬級設備叢集陣列 (Tool Cluster Bays)",
-        "labelEn": "Standard Tool Bay Array",
-        "detailZh": "標準化機台工作站排列，各腔體具備 SECS/GEM 與 APC 進階製程即時閉迴路控制。",
-        "detailEn": "Equipments equipped with SECS/GEM interface and advanced process control (APC)."
+        "labelZh": "前方人員手部與工具",
+        "labelEn": "Foreground Hands and Tool",
+        "detailZh": "可見人員使用工具；不能由照片確認 SECS/GEM 或 APC 介面。",
+        "detailEn": "An operator is using a tool; SECS/GEM or APC interfaces cannot be established from the photo."
       },
       {
         "x": 80,
         "y": 70,
-        "labelZh": "氣鎖物料緩衝站 (Stocker Buffer Station)",
-        "labelEn": "Automated Wafer Stocker",
-        "detailZh": "具備微正壓高純氮氣環境的大型晶圓自動儲存倉，為產線動態平衡提供即時晶圓暫存。",
-        "detailEn": "Nitrogen-purged automated high-bay warehouse buffering FOUPs between steps."
+        "labelZh": "前方金屬組件與支架",
+        "labelEn": "Foreground Metal Assembly and Supports",
+        "detailZh": "可見金屬組件及支架；不能確認為氮氣晶圓儲存倉。",
+        "detailEn": "Metal components and supports are visible; a nitrogen-purged wafer stocker cannot be identified here."
       }
     ]
   },
   "ch24": {
     "id": "ch24",
     "src": "assets/photos/ch24-decapped-cpu-die.jpg",
-    "categoryZh": "矽晶粒微觀實拍",
-    "categoryEn": "Decapped Silicon Die Photo",
-    "titleZh": "微處理器開蓋矽晶粒電路全景實拍 (Decapped CPU Die)",
-    "titleEn": "Decapped Microprocessor Silicon Die Architecture",
-    "scaleZh": "百萬電晶體電路巨集 · 算術單元與匯流排總線",
-    "scaleEn": "Million-Transistor Macro · ALU & Bus Architecture",
-    "captionZh": "實體矽晶粒開蓋顯微全景照片，清晰呈現內部指令快取記憶體、暫存器陣列、算術邏輯單元（ALU）與時脈分配樹，揭示軟體指令底層運行的物理實體。",
-    "captionEn": "Optical macro photograph of a decapped microprocessor die revealing on-chip memory banks, execution units, and clock distribution trees.",
-    "matchZh": "對應左側軟韌體視角硬體真相：Row Hammer、IR Drop 與記憶單元干擾之物理電路本體。",
-    "matchEn": "The real physical silicon underlying software abstractions, Rowhammer disturbance, and voltage drops.",
+    "categoryZh": "晶粒平面參考照片",
+    "categoryEn": "Plan-View Die Reference Photo",
+    "titleZh": "矩形電路圖樣與周邊導線",
+    "titleEn": "Rectangular Circuit Patterns and Peripheral Wires",
+    "scaleZh": "實際尺寸、電晶體數及功能區域未確認",
+    "scaleEn": "Dimensions, transistor count and functional regions unverified",
+    "captionZh": "可見多個規則矩形圖樣、不規則線路區及周邊導線。原始來源與授權未確認；沒有電路配置圖，不能將圖釘直接標為 CPU 核心、L3 快取或去耦電容。",
+    "captionEn": "Regular rectangular patterns, irregular routing regions and peripheral wires are visible. Original source and license are unverified; without a floorplan, the pins cannot be assigned to CPU cores, L3 cache or decoupling capacitors.",
+    "matchZh": "輔助理解實體晶片具有複雜佈局；照片不能驗證 RowHammer、壓降或時序性能。",
+    "matchEn": "A reference for the complexity of physical chip layouts; the photo does not validate RowHammer behavior, voltage drop or timing performance.",
     "metrology": {
-      "voltage": "Optical Die Panoramic",
-      "mag": "Macro 10:1",
-      "fov": "14×20 mm Die",
-      "techniqueZh": "去封裝開蓋處理器晶粒微架構全覽 (Decapped Die)",
-      "techniqueEn": "Decapped Microprocessor Silicon Die Architecture"
+      "voltage": "Imaging conditions unverified",
+      "voltageZh": "成像條件未確認",
+      "mag": "Unverified",
+      "magZh": "未確認",
+      "fov": "Unverified",
+      "fovZh": "未確認",
+      "techniqueZh": "成像方式與設備規格未確認",
+      "techniqueEn": "Imaging method and equipment specifications unverified"
     },
     "hotspots": [
       {
         "x": 45,
         "y": 30,
-        "labelZh": "超純運算核心區 (Compute Core Array)",
-        "labelEn": "CPU Execution Cores",
-        "detailZh": "包含算術邏輯單元 (ALU)、向量暫存器與分枝預測單元，由數億顆奈米電晶體緊密聚合。",
-        "detailEn": "Dense computational logic executing instructions clocked at multi-GHz frequencies."
+        "labelZh": "上方密集線路區",
+        "labelEn": "Upper Dense Routing Region",
+        "detailZh": "可見密集線路與區塊邊界，執行單元與工作頻率未確認。",
+        "detailEn": "Dense routing and block boundaries are visible; execution units and operating frequency are unverified."
       },
       {
         "x": 55,
         "y": 55,
-        "labelZh": "三級共用高速快取 (Shared L3 SRAM Cache)",
-        "labelEn": "Shared L3 SRAM Array",
-        "detailZh": "超高密度的 6T-SRAM 靜態隨機存取單元，負責抵禦記憶體讀寫延遲並緩衝頻寬衝擊。",
-        "detailEn": "High-density 6T-SRAM blocks cushioning CPU pipelines against DRAM memory latency."
+        "labelZh": "中央規則圖樣區",
+        "labelEn": "Central Regular Pattern Region",
+        "detailZh": "可見規則重複圖樣；無法確認記憶體層級、容量或單元電路。",
+        "detailEn": "Regular repeated patterns are visible; memory level, capacity and cell circuit cannot be confirmed."
       },
       {
         "x": 20,
         "y": 75,
-        "labelZh": "晶片週邊去耦電容網 (Decoupling Capacitor Grid)",
-        "labelEn": "On-Die Decoupling Caps",
-        "detailZh": "分佈於核心周圍的溝槽電容陣列，即時穩定奈米瞬態大電流並壓制 IR Drop 電源噪聲。",
-        "detailEn": "Integrated trench capacitors buffering fast transient currents to prevent IR drop."
+        "labelZh": "左下矩形陣列",
+        "labelEn": "Lower-Left Rectangular Array",
+        "detailZh": "可見矩形重複陣列；不能確認其為去耦電容或推論電源穩定效果。",
+        "detailEn": "A repeated rectangular array is visible; it cannot be identified as decoupling capacitors or used to infer power-stability performance."
       }
     ]
   },
