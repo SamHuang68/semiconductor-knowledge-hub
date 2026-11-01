@@ -11,10 +11,10 @@ export const REAL_PHOTOS_DATA = {
     "categoryEn": "Patterned Wafer Reference",
     "titleZh": "重複矩形圖樣與彩色反光",
     "titleEn": "Repeated Rectangular Patterns and Colored Reflections",
-    "scaleZh": "照片無尺標；直徑與製程規格未確認",
-    "scaleEn": "No visible scale; diameter and process specifications unverified",
-    "captionZh": "可見圓形樣品、重複矩形圖樣與彩色反光。原始來源、授權、材質、用途及實際尺寸未確認；照片不能證明晶向、WAT或矽光子結構。",
-    "captionEn": "A circular sample with repeated rectangular patterns and colored reflections is visible. Original source, license, material, purpose and dimensions are unverified; the photo does not establish crystal orientation, WAT or silicon-photonics structures.",
+    "scaleZh": "照片無尺標；來源標示為 300mm，製程規格未確認",
+    "scaleEn": "No visible scale; the source labels it 300mm; process specifications unverified",
+    "captionZh": "來源標示為矽光子 300mm 晶圓（Silicon Photonics 300mm wafer）。可見圓形晶圓、重複矩形圖樣與彩色反光；照片不能辨識晶向、WAT 測試結構或個別元件。",
+    "captionEn": "The source labels this a silicon-photonics 300mm wafer. A circular wafer with repeated rectangular patterns and colored reflections is visible; the photo does not identify crystal orientation, WAT test structures or individual devices.",
     "matchZh": "輔助觀察晶圓與重複晶粒版圖概念；照片不驗證左側示意的製程節點、步數或性能。",
     "matchEn": "A visual reference for wafer and repeated-die-layout concepts; it does not validate the process node, step count or performance in the schematic.",
     "metrology": {
@@ -52,7 +52,16 @@ export const REAL_PHOTOS_DATA = {
         "detailZh": "可見相鄰圖樣區塊的邊界；是否為切割道、WAT或對位結構尚未確認。",
         "detailEn": "Boundaries between patterned regions are visible; scribe lanes, WAT and alignment structures remain unconfirmed."
       }
-    ]
+    ],
+    "reference": {
+      "sourceTitle": "Wikimedia Commons",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Silicon_Photonics_300mm_wafer.JPG",
+      "author": "Ehsanshahoseini",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "noteZh": "沿用現有照片並縮小尺寸；本站另加熱點與圖說。",
+      "noteEn": "Existing local photo retained at reduced size; markers and captions added by this site."
+    }
   },
   "ch01": {
     "id": "ch01",
@@ -63,8 +72,8 @@ export const REAL_PHOTOS_DATA = {
     "titleEn": "People, Workbenches and Equipment in a Yellow-Lit Room",
     "scaleZh": "潔淨分級、設備與成像規格未確認",
     "scaleEn": "Cleanliness class, equipment and imaging specifications unverified",
-    "captionZh": "可見偏黃照明、穿連身防護衣的人員、工作桌及設備。原始來源與授權未確認；照片不能證明潔淨分級、壓差、FFU或AMHS配置。",
-    "captionEn": "Yellow-tinted lighting, people in coveralls, worktables and equipment are visible. Original source and license are unverified; the photo does not establish cleanliness class, pressure difference, FFU or AMHS configuration.",
+    "captionZh": "來源為 NASA Glenn 研究中心微製造實驗室的無塵室。可見偏黃照明、穿連身防護衣的人員、工作桌及設備；照片不能證明潔淨分級、壓差、FFU 或 AMHS 配置。",
+    "captionEn": "The source is a clean room in the NASA Glenn Research Center microfabrication laboratory. Yellow-tinted lighting, people in coveralls, worktables and equipment are visible; the photo does not establish cleanliness class, pressure difference, FFU or AMHS configuration.",
     "matchZh": "輔助理解受控作業環境的外觀；不是左側氣流、過濾或自動搬運模型的量測證據。",
     "matchEn": "A visual reference for a controlled work area; it is not measurement evidence for the airflow, filtration or automated transport models.",
     "metrology": {
@@ -102,7 +111,16 @@ export const REAL_PHOTOS_DATA = {
         "detailZh": "可見左側人員的手部及工作檯附近區域；照明光譜、防護等級與製程用途未確認。",
         "detailEn": "The area near a person’s hand and the left workbench is visible; lighting spectrum, protection rating and process purpose are unverified."
       }
-    ]
+    ],
+    "reference": {
+      "sourceTitle": "Wikimedia Commons",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Clean_room.jpg",
+      "author": "NASA Glenn Research Center",
+      "license": "Public domain (PD-USGov-NASA)",
+      "licenseUrl": "https://commons.wikimedia.org/wiki/Template:PD-USGov-NASA",
+      "noteZh": "沿用現有照片並縮小尺寸；本站另加熱點與圖說。原始出處為 NASA Glenn 研究中心微製造實驗室（GRC-1998-C-01261）。",
+      "noteEn": "Existing local photo retained at reduced size; markers and captions added by this site. Originally from the NASA Glenn Research Center microfabrication laboratory (GRC-1998-C-01261)."
+    }
   },
   "ch02": {
     "id": "ch02",
@@ -163,8 +181,8 @@ export const REAL_PHOTOS_DATA = {
     "titleEn": "Reflective Boule and Adjacent Samples in a Display Case",
     "scaleZh": "實際尺寸、重量、純度與生長條件未確認",
     "scaleEn": "Dimensions, mass, purity and growth conditions unverified",
-    "captionZh": "可見具窄頸、寬肩與反光主體的展示品，以及周圍標牌和其他樣品。原始來源與授權未確認；照片不能證明純度、無差排或長晶爐操作條件。",
-    "captionEn": "An exhibit with a narrow neck, broad shoulder and reflective body is visible, with placards and adjacent samples. Original source and license are unverified; purity, absence of dislocations and crystal-puller operating conditions are not established by the photo.",
+    "captionZh": "來源說明這是德國柏林自然史博物館展出的單晶矽晶棒。可見窄頸、寬肩與反光主體，以及周圍標牌和其他樣品；照片不能證明純度、無差排或長晶爐操作條件。",
+    "captionEn": "The source identifies this as a single-crystal silicon boule on display at the Museum für Naturkunde, Berlin. A narrow neck, broad shoulder and reflective body are visible, with placards and adjacent samples; purity, absence of dislocations and crystal-puller operating conditions are not established by the photo.",
     "matchZh": "輔助觀察晶棒外形；照片是展示情境，並非熔湯、旋轉或提拉過程的紀錄。",
     "matchEn": "A reference for boule shape; this is a display setting, not a record of molten silicon, rotation or pulling.",
     "metrology": {
@@ -202,7 +220,16 @@ export const REAL_PHOTOS_DATA = {
         "detailZh": "圖釘位於展示標牌附近，不是熔融矽液面；圖片不提供可驗證的熔湯溫度。",
         "detailEn": "The pin lies near a display placard, not a molten-silicon surface; the image provides no verifiable melt temperature."
       }
-    ]
+    ],
+    "reference": {
+      "sourceTitle": "Wikimedia Commons",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Single-crystal_silicon_boule.jpg",
+      "author": "Sebastian Wallroth",
+      "license": "Public domain (PD-self)",
+      "licenseUrl": "https://commons.wikimedia.org/wiki/Template:PD-self",
+      "noteZh": "沿用現有照片並縮小尺寸；本站另加熱點與圖說。攝於德國柏林自然史博物館。",
+      "noteEn": "Existing local photo retained at reduced size; markers and captions added by this site. Photographed at the Museum für Naturkunde, Berlin."
+    }
   },
   "ch04": {
     "id": "ch04",
@@ -322,7 +349,16 @@ export const REAL_PHOTOS_DATA = {
         "detailZh": "中央傳輸腔內的雙臂機械手，在高真空環境下無縫接駁不同製程腔體。",
         "detailEn": "Dual-blade robotic arm shuttling wafers under continuous high vacuum."
       }
-    ]
+    ],
+    "reference": {
+      "sourceTitle": "Wikimedia Commons",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:STS_multiplex_PECVD_machine_at_LAAS_0495.jpg",
+      "author": "Guillaume Paumier",
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "noteZh": "沿用現有照片並縮小尺寸；本站另加熱點與圖說。",
+      "noteEn": "Existing local photo retained at reduced size; markers and captions added by this site."
+    }
   },
   "ch06": {
     "id": "ch06",
@@ -369,54 +405,75 @@ export const REAL_PHOTOS_DATA = {
         "detailZh": "高速伺服蝶閥搭配磁浮渦輪分子泵，在毫秒級反應速度內精確維持腔體毫托爾級氣壓。",
         "detailEn": "Fast-response throttle valve regulating mTorr chamber pressure with turbopump."
       }
-    ]
+    ],
+    "reference": {
+      "sourceTitle": "Wikimedia Commons",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Reactive-ion_etching_system_back_end_at_LAAS_0503.jpg",
+      "author": "Guillaume Paumier",
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "noteZh": "沿用現有照片並縮小尺寸；本站另加熱點與圖說。",
+      "noteEn": "Existing local photo retained at reduced size; markers and captions added by this site."
+    }
   },
   "ch07": {
     "id": "ch07",
     "src": "assets/photos/ch07-ion-implanter.jpg",
     "categoryZh": "離子佈植機",
     "categoryEn": "Ion Implantation Equipment",
-    "titleZh": "大電流離子佈植機高能束流管線 (Ion Implanter Beamline)",
-    "titleEn": "High-Current Ion Implantation Beamline System",
-    "scaleZh": "加速能量 10 keV ~ 500 keV · 電磁偏轉磁鐵",
-    "scaleEn": "Acceleration Energy 10-500 keV · Mass Analyzer Magnet",
-    "captionZh": "實體離子佈植機台束流分析區，包含高壓電離室、90 度勞侖茲力質量分析磁鐵、狹縫過濾器與晶圓真空終端靶室（Endstation）。",
-    "captionEn": "Ion implanter beamline section showing plasma ionization source, 90° Lorentz mass analyzer magnet, and vacuum endstation wafer chuck.",
-    "matchZh": "對應左側 90° 偏轉磁鐵與 LSS 理論：荷質比篩選摻雜離子之真實機台管線。",
-    "matchEn": "Physical embodiment of Lorentz force mass filtering and beamline electrostatic deflection.",
+    "titleZh": "LAAS-CNRS 的離子佈植機前端",
+    "titleEn": "Ion Implantation Machine Front End at LAAS-CNRS",
+    "scaleZh": "設備外觀參考 · 無校準比例",
+    "scaleEn": "Equipment reference · no calibrated scale",
+    "captionZh": "來源說明這是 LAAS-CNRS 技術平台的離子佈植機前端。照片可見機櫃、控制面板與透明門機櫃；外觀照片看不到離子源、質量分析磁鐵、狹縫或終端靶室，也不能確認加速能量。",
+    "captionEn": "The source identifies this as the front end of an ion implantation machine at the LAAS-CNRS technology facility. Cabinets, a control panel and a glass-door cabinet are visible; this exterior view does not show the ion source, analyzing magnet, slits or end station, and does not establish the acceleration energy.",
+    "matchZh": "與本章共同說明離子佈植設備的使用情境；左側 90° 偏轉磁鐵與 LSS 理論是教學模型，不是這台機台的內部結構。",
+    "matchEn": "A reference for ion implantation equipment in use; the adjacent 90° analyzing magnet and LSS theory are a teaching model, not the internal structure of this machine.",
     "metrology": {
-      "voltage": "Extraction 80 kV",
-      "mag": "Beamline Macro",
-      "fov": "4 m Beamline",
-      "techniqueZh": "大束流高能量離子佈植機 (High-Current Implanter)",
-      "techniqueEn": "High-Current Ion Implantation Beamline"
+      "voltage": "Not reported by source",
+      "voltageZh": "來源未提供",
+      "mag": "Not reported by source",
+      "magZh": "來源未提供",
+      "fov": "Not reported by source",
+      "fovZh": "來源未提供",
+      "techniqueZh": "可見光設備照片",
+      "techniqueEn": "Visible-light equipment photograph"
     },
     "hotspots": [
       {
         "x": 18,
         "y": 40,
-        "labelZh": "離子源產生室 (Arc Discharge Source)",
-        "labelEn": "Freeman Ion Source",
-        "detailZh": "利用燈絲弧光放電將三氟化硼或磷化氫氣體離子化，產生帶正電之高密度電漿束。",
-        "detailEn": "Arc discharge chamber ionizing BF3 or PH3 gas into dense ion plasma."
+        "labelZh": "左側機櫃開口",
+        "labelEn": "Left cabinet opening",
+        "detailZh": "標記指向左側機櫃的開口。照片無法確認內部是否為離子源；離子源通常以弧光放電把 BF₃ 或 PH₃ 等氣體離子化，這張外觀照看不到。",
+        "detailEn": "The marker points to an opening in the left cabinet. The photo does not show whether an ion source is inside; ion sources typically ionize gases such as BF3 or PH3 by arc discharge, which this exterior view cannot show."
       },
       {
         "x": 45,
         "y": 42,
-        "labelZh": "分析磁鐵偏轉器 (Mass Analyzer Magnet)",
-        "labelEn": "Mass Analyzing Magnet",
-        "detailZh": "強磁場將具有特定質荷比（例如 B-11 或 P-31）的目標離子彎折 90 度，濾除同位素雜質。",
-        "detailEn": "Dipole magnet selecting precise charge-to-mass ratio while filtering impurities."
+        "labelZh": "中央控制面板與螢幕",
+        "labelEn": "Central control panel and screen",
+        "detailZh": "可見控制面板與螢幕。質量分析磁鐵依荷質比篩選離子（例如 B-11、P-31），但照片無法看出磁鐵的位置或偏轉角度。",
+        "detailEn": "A control panel and screen are visible. An analyzing magnet selects ions by charge-to-mass ratio (for example B-11 or P-31), but the photo does not show where a magnet sits or its deflection angle."
       },
       {
         "x": 82,
         "y": 45,
-        "labelZh": "靜電聚焦與掃描管 (Electrostatic Scanner)",
-        "labelEn": "Electrostatic Beam Scanner",
-        "detailZh": "高壓靜電掃描板驅動離子束在高速自轉晶圓上進行二維光柵式均勻掃描。",
-        "detailEn": "High-voltage deflection plates rastering the ion beam uniformly across wafer."
+        "labelZh": "右側透明門機櫃",
+        "labelEn": "Glass-door cabinet on the right",
+        "detailZh": "可見透明門後的機櫃內部構件。照片無法確認是否為束流掃描或終端靶室；掃描系統負責讓離子束均勻掃過晶圓。",
+        "detailEn": "Components behind a glass door are visible. The photo cannot confirm a beam scanner or end station; a scanning system is what sweeps the ion beam uniformly across the wafer."
       }
-    ]
+    ],
+    "reference": {
+      "sourceTitle": "Wikimedia Commons",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ion_implantation_machine_at_LAAS_0521.jpg",
+      "author": "Guillaume Paumier",
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "noteZh": "沿用現有照片並縮小尺寸；本站另加熱點與圖說。",
+      "noteEn": "Existing local photo retained at reduced size; markers and captions added by this site."
+    }
   },
   "ch08": {
     "id": "ch08",
@@ -463,101 +520,134 @@ export const REAL_PHOTOS_DATA = {
         "detailZh": "蠕動泵以精密毫升級流速將化學腐蝕劑與研磨顆粒混合液均勻輸送至研磨墊中心。",
         "detailEn": "Precision peristaltic arm delivering tailored chemical-abrasive mixture."
       }
-    ]
+    ],
+    "reference": {
+      "sourceTitle": "Wikimedia Commons",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Chemical-mechanical_polishing_(CMP-108,_conditioner).jpg",
+      "author": "cpxmn",
+      "license": "CC BY-SA 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
+      "noteZh": "沿用現有照片並縮小尺寸；本站另加熱點與圖說。",
+      "noteEn": "Existing local photo retained at reduced size; markers and captions added by this site."
+    }
   },
   "ch09": {
     "id": "ch09",
     "src": "assets/photos/ch09-wet-bench-clean.jpg",
     "categoryZh": "晶圓清洗機台",
     "categoryEn": "Wafer Wet Bench Tool",
-    "titleZh": "無塵室全自動濕式酸槽清洗機台 (Wet Chemical Bench)",
-    "titleEn": "Cleanroom Automated Wet Chemical Cleaning Bench",
-    "scaleZh": "配置 6 吋/8 吋/12 吋晶圓批次槽 · 耐強酸強鹼石英槽",
-    "scaleEn": "Quartz Tanks for 6/8/12-inch Wafers · PFA Acid Resistant",
-    "captionZh": "晶圓清洗區自動酸槽設備，採用耐酸鹼石英與聚四氟乙烯槽體，搭載高純度 SC-1/SC-2 RCA 藥液、兆聲波振動器與馬蘭哥尼（Marangoni）IPA 快速乾燥模組。",
-    "captionEn": "Automated wet bench cleaning system featuring quartz tanks, circulating RCA chemistry, megasonic transducers, and Marangoni IPA dryers.",
-    "matchZh": "對應左側 RCA 清洗化學動力學：去除金屬離子、有機物與微粒之真實潔淨酸槽。",
-    "matchEn": "Direct physical counterpart to SC-1/SC-2 chemical baths and megasonic boundary-layer cleaning.",
+    "titleZh": "LAAS-CNRS 的 6 吋濕式蝕刻酸槽",
+    "titleEn": "6-inch Wet Etching Tanks at LAAS-CNRS",
+    "scaleZh": "來源標示用於 6 吋晶圓批次 · 無校準比例",
+    "scaleEn": "Source states 6-inch wafer batches · no calibrated scale",
+    "captionZh": "來源說明這組酸槽在 LAAS-CNRS 用於 6 吋晶圓批次的 Piranha、氫氟酸（HF）或 RCA 清洗。照片可見通風罩下的槽體、前方面板與下方櫃體；不能確認自動化程度、槽體材質，或是否配備兆聲波與 Marangoni IPA 乾燥。",
+    "captionEn": "The source states these tanks are used for Piranha, hydrofluoric acid (HF) or RCA cleans on 6-inch wafer batches at LAAS-CNRS. Tanks under a ventilated hood, a front panel and lower cabinets are visible; the degree of automation, tank materials, and whether megasonics or Marangoni IPA drying are fitted cannot be established.",
+    "matchZh": "與本章 RCA 清洗化學共同說明濕式清洗情境；來源支持此機台用於 RCA 清洗，但 SC-1／SC-2 的配比、溫度與兆聲波條件是教學內容，不是這台機台的規格。",
+    "matchEn": "A reference for wet cleaning alongside the chapter's RCA chemistry; the source supports RCA cleans on this bench, but SC-1/SC-2 ratios, temperatures and megasonic conditions are teaching content, not this bench's specifications.",
     "metrology": {
-      "voltage": "Megasonic 1.0 MHz",
-      "mag": "Bench View",
-      "fov": "2.5 m Bench",
-      "techniqueZh": "全自動全氟石英槽晶圓濕式清洗機台 (Wet Bench)",
-      "techniqueEn": "Automated Quartz Wet Chemical Cleaning Station"
+      "voltage": "Not reported by source",
+      "voltageZh": "來源未提供",
+      "mag": "Not reported by source",
+      "magZh": "來源未提供",
+      "fov": "Not reported by source",
+      "fovZh": "來源未提供",
+      "techniqueZh": "可見光設備照片",
+      "techniqueEn": "Visible-light equipment photograph"
     },
     "hotspots": [
       {
         "x": 45,
         "y": 40,
-        "labelZh": "RCA-1 / SC-1 化學槽 (SC-1 Quartz Bath)",
-        "labelEn": "SC-1 Standard Clean Bath",
-        "detailZh": "加熱至 70°C 的 NH4OH + H2O2 + H2O 混合液，溶解表面顆粒並生長保護性均勻氧化層。",
-        "detailEn": "Ammonium hydroxide and peroxide bath removing organic particles and micro-contaminants."
+        "labelZh": "通風罩下的槽體區",
+        "labelEn": "Tank area under the hood",
+        "detailZh": "來源說明這些槽用於 Piranha、HF 或 RCA 清洗。照片看不出哪一槽裝哪種藥液；RCA 的 SC-1 通常是加熱的 NH₄OH、H₂O₂ 與水混合液。",
+        "detailEn": "The source states these tanks are used for Piranha, HF or RCA cleans. The photo does not show which tank holds which chemistry; RCA SC-1 is typically a heated mixture of NH4OH, H2O2 and water."
       },
       {
         "x": 45,
         "y": 70,
-        "labelZh": "兆聲波壓電換能器 (Megasonic Transducer)",
-        "labelEn": "Megasonic Array",
-        "detailZh": "百萬赫茲高頻聲波產生微空化氣泡破裂微射流，克服微米次微米微粒之凡得瓦吸引力。",
-        "detailEn": "MHz-frequency acoustic transducer generating controlled cavitations."
+        "labelZh": "前方面板與下方櫃體",
+        "labelEn": "Front panel and lower cabinets",
+        "detailZh": "可見前方操作面板、管線與下方櫃門。照片不能確認是否裝有兆聲波換能器；兆聲波清洗以 MHz 聲波協助移除微粒。",
+        "detailEn": "The front control panel, hoses and lower cabinet doors are visible. The photo cannot confirm megasonic transducers; megasonic cleaning uses MHz sound to help remove particles."
       },
       {
         "x": 80,
         "y": 35,
-        "labelZh": "馬蘭哥尼 IPA 乾燥腔 (Marangoni Dryer)",
-        "labelEn": "Marangoni Vapor Dryer",
-        "detailZh": "利用異丙醇蒸氣降低液膜表面張力梯度，晶圓緩慢提拉時達成無水痕完美乾燥。",
-        "detailEn": "IPA vapor gradient drying chamber preventing water-mark residue."
+        "labelZh": "右側相鄰設備",
+        "labelEn": "Adjacent equipment on the right",
+        "detailZh": "標記落在右側相鄰的設備與層架附近。照片不能確認是否有 Marangoni IPA 乾燥腔；這類乾燥以 IPA 蒸氣降低表面張力，減少水痕。",
+        "detailEn": "The marker sits near adjacent equipment and shelving on the right. The photo cannot confirm a Marangoni IPA dryer; such dryers use IPA vapor to lower surface tension and reduce water marks."
       }
-    ]
+    ],
+    "reference": {
+      "sourceTitle": "Wikimedia Commons",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Wet_etching_tanks_at_LAAS_(6_inches)_0468.jpg",
+      "author": "Guillaume Paumier",
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "noteZh": "沿用現有照片並縮小尺寸；本站另加熱點與圖說。",
+      "noteEn": "Existing local photo retained at reduced size; markers and captions added by this site."
+    }
   },
   "ch10": {
     "id": "ch10",
     "src": "assets/photos/ch10-metal-deposition.jpg",
     "categoryZh": "金屬化設備",
-    "categoryEn": "BEOL Metallization Tool",
-    "titleZh": "高真空電子束蒸發與金屬導線沉積設備",
-    "titleEn": "High-Vacuum Metal Thin-Film Deposition Tool",
-    "scaleZh": "超高真空 10⁻⁷ Torr · 奈米金屬阻擋層",
-    "scaleEn": "Ultra-High Vacuum 10⁻⁷ Torr · Barrier Layer Deposition",
-    "captionZh": "後段金屬化製程沉積機台，用於沉積鉭/氮化鉭 (Ta/TaN) 擴散阻擋層、銅晶種層（Cu Seed）與雙鑲嵌導線互連結構，防止銅原子擴散造成漏電。",
-    "captionEn": "BEOL metallization chamber depositing barrier/seed layers (Ta/TaN/Cu) before electroplating to prevent copper migration.",
-    "matchZh": "對應左側雙鑲嵌銅導線與接觸窗結構：實際物理沉積 Ta/TaN 阻擋層與 Cu Seed 晶種層之高真空機台腔體。",
-    "matchEn": "Physical counterpart to the Dual Damascene interconnect model: chamber depositing barrier and seed layers before Cu plating.",
+    "categoryEn": "Metallization Equipment",
+    "titleZh": "LAAS-CNRS 的金屬化蒸鍍機",
+    "titleEn": "Metallization Evaporator at LAAS-CNRS",
+    "scaleZh": "設備外觀參考 · 無校準比例",
+    "scaleEn": "Equipment reference · no calibrated scale",
+    "captionZh": "來源說明這是 LAAS-CNRS 技術平台用於金屬化的蒸鍍機。照片可見真空腔體、觀察窗、側邊管路與控制機櫃；來源沒有說明蒸鍍方式（電子束或熱蒸鍍）或鍍膜材料。先進製程的 Ta/TaN 阻擋層與銅晶種層通常以濺鍍（PVD）沉積，不是用這類蒸鍍機製作。",
+    "captionEn": "The source identifies this as an evaporation machine used for metallization at the LAAS-CNRS technology facility. The vacuum chamber, a viewport, side piping and a control cabinet are visible; the source does not state the evaporation method (electron-beam or thermal) or the deposited materials. In advanced processes, Ta/TaN barriers and Cu seed layers are usually deposited by sputtering (PVD), not by this kind of evaporator.",
+    "matchZh": "與本章共同說明金屬薄膜沉積設備；左側雙鑲嵌銅導線是教學模型，此機台不是用來沉積其 Ta/TaN 阻擋層或銅晶種層的設備。",
+    "matchEn": "A reference for metal thin-film deposition equipment; the adjacent dual-damascene copper interconnect is a teaching model, and this machine is not the tool that deposits its Ta/TaN barrier or Cu seed layers.",
     "metrology": {
-      "voltage": "10 kV E-Beam",
-      "mag": "Chamber View",
-      "fov": "1 m Chamber",
-      "techniqueZh": "後段金屬化雙鑲嵌導線高真空沉積系統",
-      "techniqueEn": "BEOL Dual Damascene Metallization Chamber"
+      "voltage": "Not reported by source",
+      "voltageZh": "來源未提供",
+      "mag": "Not reported by source",
+      "magZh": "來源未提供",
+      "fov": "Not reported by source",
+      "fovZh": "來源未提供",
+      "techniqueZh": "可見光設備照片",
+      "techniqueEn": "Visible-light equipment photograph"
     },
     "hotspots": [
       {
         "x": 48,
         "y": 25,
-        "labelZh": "Ta/TaN 擴散阻擋層 (Barrier Layer)",
-        "labelEn": "Ta/TaN Barrier Layer",
-        "detailZh": "物理氣相沉積超薄氮化鉭/鉭層，緊密包覆介電質孔洞，杜絕銅原子熱擴散進入矽晶體。",
-        "detailEn": "PVD Ta/TaN thin film preventing copper electromigration and dielectric poisoning."
+        "labelZh": "腔體頂部",
+        "labelEn": "Top of the chamber",
+        "detailZh": "標記指向真空腔體頂部與上方元件。照片不能確認腔體內的蒸鍍源配置或真空度。",
+        "detailEn": "The marker points to the top of the vacuum chamber and the parts above it. The photo does not establish the evaporation-source arrangement or vacuum level inside."
       },
       {
         "x": 48,
         "y": 48,
-        "labelZh": "銅晶種層 (Cu Seed Layer)",
-        "labelEn": "Cu Seed Layer",
-        "detailZh": "連續且均勻的奈米銅晶種導電薄膜，為後續電化學電鍍填充提供低阻抗導電迴路。",
-        "detailEn": "Continuous thin Cu film providing low-resistance path for electrochemical plating."
+        "labelZh": "腔體觀察窗",
+        "labelEn": "Chamber viewport",
+        "detailZh": "可見腔體側面的圓形觀察窗。照片看不到腔內的基板或坩堝，也不能確認是否使用電子束加熱。",
+        "detailEn": "A round viewport on the chamber side is visible. Substrates and crucibles inside are not visible, and electron-beam heating cannot be confirmed."
       },
       {
-        "x": 75,
-        "y": 65,
-        "labelZh": "電子束蒸鍍靶座 (Electron Beam Crucible)",
-        "labelEn": "E-Beam Water-Cooled Hearth",
-        "detailZh": "磁場彎折高能電子束聚焦熔化高熔點難熔金屬靶材，實現高純度金屬化鍍膜。",
-        "detailEn": "Water-cooled copper hearth focusing 270-degree bent e-beam on metal target."
+        "x": 66,
+        "y": 60,
+        "labelZh": "側邊管路",
+        "labelEn": "Side piping",
+        "detailZh": "可見腔體右側的管路與閥件。照片不能確認這些管路用於抽氣、冷卻或供氣。",
+        "detailEn": "Piping and valves on the right of the chamber are visible. The photo does not establish whether they serve pumping, cooling or gas supply."
       }
-    ]
+    ],
+    "reference": {
+      "sourceTitle": "Wikimedia Commons",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Coating_deposition_machine_by_evaporation_at_LAAS_0475.jpg",
+      "author": "Guillaume Paumier",
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "noteZh": "沿用現有照片並縮小尺寸；本站另加熱點與圖說。",
+      "noteEn": "Existing local photo retained at reduced size; markers and captions added by this site."
+    }
   },
   "ch11": {
     "id": "ch11",
@@ -604,7 +694,16 @@ export const REAL_PHOTOS_DATA = {
         "detailZh": "微電腦伺服控制多溫區加熱線圈，整支爐管平坦區溫度均勻度達到 ±0.2°C 極致標準。",
         "detailEn": "Microprocessor-controlled coils achieving ±0.2°C flat-zone uniformity."
       }
-    ]
+    ],
+    "reference": {
+      "sourceTitle": "Wikimedia Commons",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Centrotherm_diffusion_furnaces_at_LAAS_0481.jpg",
+      "author": "Guillaume Paumier",
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "noteZh": "沿用現有照片並縮小尺寸；本站另加熱點與圖說。",
+      "noteEn": "Existing local photo retained at reduced size; markers and captions added by this site."
+    }
   },
   "ch12": {
     "id": "ch12",
@@ -711,23 +810,23 @@ export const REAL_PHOTOS_DATA = {
     "src": "assets/photos/ch14-node-pitch-scaling.jpg",
     "categoryZh": "設備環境參考照片",
     "categoryEn": "Equipment Reference Photo",
-    "titleZh": "黃光環境設備照片（機型與規格未確認）",
-    "titleEn": "Equipment in Yellow Lighting (Model and Specifications Unverified)",
-    "scaleZh": "機型、尺寸與對位精度未確認",
-    "scaleEn": "Equipment model, dimensions and alignment accuracy unverified",
-    "captionZh": "照片可見黃光環境中的設備外殼、中央平台與螢幕。本輪未核實原始來源、機型或規格；無法由畫面確認曝光方式、干涉儀配置、支援節點或奈米級對位精度。",
-    "captionEn": "Equipment housings, a central platform and screens are visible under yellow lighting. Original provenance, equipment model and specifications are unverified in this review; the photo does not establish exposure method, interferometer configuration, supported nodes or nanometer alignment accuracy.",
+    "titleZh": "LAAS-CNRS 黃光區的 MA-150 設備",
+    "titleEn": "MA-150 Equipment in the Yellow-Light Area at LAAS-CNRS",
+    "scaleZh": "設備外觀參考 · 無校準比例",
+    "scaleEn": "Equipment reference · no calibrated scale",
+    "captionZh": "來源辨識為 LAAS-CNRS 不感光照明下的 MA-150（來源稱為 stepper）。照片可見設備外殼、中央平台與螢幕；無法由畫面確認曝光方式、干涉儀配置、支援節點或奈米級對位精度。",
+    "captionEn": "The source identifies this as an MA-150 (described there as a stepper) under inactinic light at LAAS-CNRS. Equipment housings, a central platform and screens are visible; the photo does not establish exposure method, interferometer configuration, supported nodes or nanometer alignment accuracy.",
     "matchZh": "此圖提供設備環境參考。旁側 CPP／M1 節距與標準單元軌道圖是獨立教學示意；照片及圖釘不是這些尺寸的量測證據。",
     "matchEn": "This photo provides equipment context. The adjacent CPP/M1 pitch and standard-cell track diagrams are separate teaching schematics; the photo and markers are not measurements of those dimensions.",
     "metrology": {
-      "voltage": "Unverified",
-      "mag": "Unverified",
-      "fov": "Unverified",
-      "techniqueZh": "未確認（僅描述可見外觀）",
-      "techniqueEn": "Unverified (visible features only)",
-      "voltageZh": "未確認",
-      "magZh": "未確認",
-      "fovZh": "未確認"
+      "voltage": "Not reported by source",
+      "voltageZh": "來源未提供",
+      "mag": "Not reported by source",
+      "magZh": "來源未提供",
+      "fov": "Not reported by source",
+      "fovZh": "來源未提供",
+      "techniqueZh": "可見光設備照片",
+      "techniqueEn": "Visible-light equipment photograph"
     },
     "hotspots": [
       {
@@ -754,30 +853,39 @@ export const REAL_PHOTOS_DATA = {
         "detailZh": "圖釘附近可見後方設備外殼。此照片不能確認標準單元軌道高度、功耗或面積效益。",
         "detailEn": "Rear equipment housing is visible near the marker. The photo does not establish standard-cell track height, power consumption or area benefits."
       }
-    ]
+    ],
+    "reference": {
+      "sourceTitle": "Wikimedia Commons",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:MA-150_steppers_at_LAAS_(FDLS_2007)_0441.jpg",
+      "author": "Guillaume Paumier",
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "noteZh": "沿用現有照片並縮小尺寸；本站另加熱點與圖說。",
+      "noteEn": "Existing local photo retained at reduced size; markers and captions added by this site."
+    }
   },
   "ch15": {
     "id": "ch15",
     "src": "assets/photos/ch15-metrology-profilometer.jpg",
     "categoryZh": "桌面設備參考照片",
     "categoryEn": "Desktop Equipment Reference Photo",
-    "titleZh": "桌面儀器與顯示器（機型與規格未確認）",
-    "titleEn": "Desktop Instrument and Display (Model and Specifications Unverified)",
+    "titleZh": "LAAS-CNRS 的接觸式輪廓儀",
+    "titleEn": "Contact Profilometer at LAAS-CNRS",
     "scaleZh": "探測方式、精度與掃描範圍未確認",
     "scaleEn": "Probe method, precision and scan range unverified",
-    "captionZh": "照片可見上方顯示器、設備前窗內的圓形台、外殼、鍵盤與右側電腦。本輪未核實原始來源、機型或規格；不能據此確認接觸式探針、干涉量測方式或奈米級能力。",
-    "captionEn": "The photo shows an upper display, a circular platform behind the front window, housing, a keyboard and a computer on the right. Original provenance, model and specifications are unverified; the photo does not establish a contact probe, interferometry or nanometer capability.",
+    "captionZh": "來源辨識為 LAAS-CNRS 無塵室中的接觸式輪廓儀。照片可見上方顯示器、前窗內的圓形台、外殼、鍵盤與右側電腦；不能據此確認探針規格、量測精度或奈米級能力。",
+    "captionEn": "The source identifies this as a contact profilometer in the LAAS-CNRS clean room. An upper display, a circular stage behind the front window, the housing, a keyboard and a computer on the right are visible; probe specifications, measurement precision and nanometer capability are not established by the photo.",
     "matchZh": "此照片只提供設備外觀參考。旁側 CD-SEM、明暗場與橢偏圖為獨立教學示意，不能將其結構或性能直接對應到這台設備。",
     "matchEn": "This photo provides equipment appearance only. The adjacent CD-SEM, bright/dark-field and ellipsometry diagrams are independent teaching schematics; their structures and performance cannot be assigned to this instrument.",
     "metrology": {
-      "voltage": "Unverified",
-      "voltageZh": "未確認",
-      "mag": "Unverified",
-      "magZh": "未確認",
-      "fov": "Unverified",
-      "fovZh": "未確認",
-      "techniqueZh": "未確認（僅描述可見外觀）",
-      "techniqueEn": "Unverified (visible features only)"
+      "voltage": "Not reported by source",
+      "voltageZh": "來源未提供",
+      "mag": "Not reported by source",
+      "magZh": "來源未提供",
+      "fov": "Not reported by source",
+      "fovZh": "來源未提供",
+      "techniqueZh": "可見光設備照片",
+      "techniqueEn": "Visible-light equipment photograph"
     },
     "hotspots": [
       {
@@ -804,7 +912,16 @@ export const REAL_PHOTOS_DATA = {
         "detailZh": "圖釘位於右側電腦的前面板附近，可見通風開口。此處不是已確認的視覺定位鏡頭。",
         "detailEn": "The marker lies near the right computer front panel, where ventilation openings are visible. It is not an identified alignment camera."
       }
-    ]
+    ],
+    "reference": {
+      "sourceTitle": "Wikimedia Commons",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Contact_profilometer_at_LAAS_0419.jpg",
+      "author": "Guillaume Paumier",
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "noteZh": "沿用現有照片並縮小尺寸；本站另加熱點與圖說。",
+      "noteEn": "Existing local photo retained at reduced size; markers and captions added by this site."
+    }
   },
   "ch16": {
     "id": "ch16",
@@ -861,23 +978,23 @@ export const REAL_PHOTOS_DATA = {
     "src": "assets/photos/ch17-parametric-test-spc.jpg",
     "categoryZh": "實驗室工作區參考圖",
     "categoryEn": "Laboratory Work Area Reference",
-    "titleZh": "顯微鏡與桌面設備工作區",
-    "titleEn": "Microscopes and Bench Equipment",
+    "titleZh": "LAAS-CNRS 的量測工作台",
+    "titleEn": "Characterization Bench at LAAS-CNRS",
     "scaleZh": "機型、量測功能與效能未確認",
     "scaleEn": "Instrument Models, Functions and Performance Unverified",
-    "captionZh": "畫面可見多組顯微鏡、螢幕、桌面設備與線材。不能由此辨認自動參數測試、SPC 軟體或量測精度；原始來源與授權資訊尚未確認。",
-    "captionEn": "Several microscopes, monitors, bench instruments and cables are visible. Automated parametric testing, SPC software and measurement accuracy cannot be established from this image. Original source and licensing information remain unverified.",
+    "captionZh": "來源說明這是 LAAS-CNRS 的量測工作台，包含顯微鏡、橢偏儀、接觸式與光學輪廓儀。畫面可見多組顯微鏡、螢幕、桌面設備與線材；不能由此辨認自動參數測試、SPC 軟體或量測精度。",
+    "captionEn": "The source describes this as a characterization bench at LAAS-CNRS with microscopes, an ellipsometer and contact and optical profilometers. Several microscopes, monitors, bench instruments and cables are visible; automated parametric testing, SPC software and measurement accuracy cannot be established from this image.",
     "matchZh": "僅作數據蒐集工作環境的概念參考，不是特定 SPC 系統整合或效能證據。",
     "matchEn": "Concept reference for a data-collection work area, not evidence of a specific SPC integration or performance.",
     "metrology": {
-      "voltage": "Not verified",
-      "voltageZh": "未確認",
-      "mag": "Not verified",
-      "magZh": "未確認",
-      "fov": "Not verified",
-      "fovZh": "未確認",
-      "techniqueZh": "外觀參考；設備規格未確認",
-      "techniqueEn": "Visual Reference; Instrument Specifications Unverified"
+      "voltage": "Not reported by source",
+      "voltageZh": "來源未提供",
+      "mag": "Not reported by source",
+      "magZh": "來源未提供",
+      "fov": "Not reported by source",
+      "fovZh": "來源未提供",
+      "techniqueZh": "可見光設備照片",
+      "techniqueEn": "Visible-light equipment photograph"
     },
     "hotspots": [
       {
@@ -904,7 +1021,16 @@ export const REAL_PHOTOS_DATA = {
         "detailZh": "此處是椅腳與地面區，並非可辨識的 SPC 螢幕；未確認任何 Cpk 或閉鎖功能。",
         "detailEn": "This is a stool-base and floor area, not an identifiable SPC display. No Cpk calculation or interlock function is established."
       }
-    ]
+    ],
+    "reference": {
+      "sourceTitle": "Wikimedia Commons",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Characterization_bench_at_LAAS_0479.jpg",
+      "author": "Guillaume Paumier",
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "noteZh": "沿用現有照片並縮小尺寸；本站另加熱點與圖說。",
+      "noteEn": "Existing local photo retained at reduced size; markers and captions added by this site."
+    }
   },
   "ch18": {
     "id": "ch18",
@@ -1001,52 +1127,64 @@ export const REAL_PHOTOS_DATA = {
         "detailZh": "探針卡邊緣的高反射率雷射十字標記，供自動機台光學鏡頭即時校正角度與共面性。",
         "detailEn": "Precision fiducials guiding high-speed automated theta/Z planarization."
       }
-    ]
+    ],
+    "reference": {
+      "sourceTitle": "Wikimedia Commons",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Probe_card.JPG",
+      "author": "Ajoones",
+      "license": "CC BY 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0/",
+      "noteZh": "沿用現有照片並縮小尺寸；本站另加熱點與圖說。",
+      "noteEn": "Existing local photo retained at reduced size; markers and captions added by this site."
+    }
   },
   "ch20": {
     "id": "ch20",
     "src": "assets/photos/ch20-wire-bonding-micro.jpg",
-    "categoryZh": "打線微觀顯微實拍",
-    "categoryEn": "Wire Bonding Micrograph",
-    "titleZh": "晶片打線封裝金線球焊微觀實拍 (Gold Wire Bonding)",
-    "titleEn": "Gold Ball-Wedge Wire Bonding Micrograph",
-    "scaleZh": "金線直徑 15 ~ 25 µm · 超音波熱壓焊點",
-    "scaleEn": "Wire Diameter 15-25 µm · Thermosonic Ball Bond",
-    "captionZh": "高倍率光學顯微鏡下拍攝之實體晶片打線照片，金線透過超音波熱壓在晶片鋁焊墊上形成球形焊接（Ball Bond），弧形延伸至導線架引腳形成楔形焊點。",
-    "captionEn": "High-magnification micrograph of gold thermosonic wire bonding showing gold ball bonds on aluminum die pads arching to leadframe fingers.",
-    "matchZh": "對應左側傳統封裝與覆晶模型：第一代晶片電性對外互連之實體金線微觀照片。",
-    "matchEn": "Microscopic proof of wire bonding geometry vs. modern area-array flip-chip bumps.",
+    "categoryZh": "打線參考照片",
+    "categoryEn": "Wire-Bonding Reference Photo",
+    "titleZh": "金色導線打線照片（來源與規格未確認）",
+    "titleEn": "Gold-Colored Wire Bonds (Source and Specifications Unverified)",
+    "scaleZh": "照片無尺標；線徑與焊點規格未確認",
+    "scaleEn": "No visible scale; wire diameter and bond specifications unverified",
+    "captionZh": "可見左側晶片上的焊點，多條金色導線以弧形延伸到右側大面積的金色焊墊。原始來源與授權未確認；照片不能確認導線與焊墊的材質、超音波熱壓條件或放大倍率。",
+    "captionEn": "Bond points on the chip at left are visible, with several gold-colored wires arching to large gold-colored pads on the right. Original source and license are unverified; the photo does not establish wire or pad materials, thermosonic bonding conditions or magnification.",
+    "matchZh": "輔助觀察打線的導線弧形與兩端焊點；左側傳統封裝與覆晶模型是教學示意，照片不是其尺寸或製程條件的證據。",
+    "matchEn": "A visual reference for wire loops and the bonds at each end; the adjacent wire-bond and flip-chip models are teaching schematics, and the photo is not evidence of their dimensions or process conditions.",
     "metrology": {
-      "voltage": "Optical Stereo Zoom",
-      "mag": "40× Stereo",
-      "fov": "5 mm Field",
-      "techniqueZh": "超音波熱壓金線球焊顯微特寫 (Wire Bonding)",
-      "techniqueEn": "Thermosonic Gold Ball Wire Bonding Micrograph"
+      "voltage": "Imaging conditions unverified",
+      "voltageZh": "成像條件未確認",
+      "mag": "Unverified",
+      "magZh": "未確認",
+      "fov": "Unverified",
+      "fovZh": "未確認",
+      "techniqueZh": "成像方式與設備規格未確認",
+      "techniqueEn": "Imaging method and equipment specifications unverified"
     },
     "hotspots": [
       {
         "x": 48,
         "y": 25,
-        "labelZh": "超音波金球焊接頸 (Ball Bond Neck)",
-        "labelEn": "Melted Gold Ball Neck",
-        "detailZh": "高壓放電在金線末端熔成真球度極佳的自由空氣球，在超音波震動與加熱下與晶粒焊墊共晶結合。",
-        "detailEn": "Free air ball bonded thermosonically to die pad forming Au-Al intermetallic."
+        "labelZh": "導線弧段",
+        "labelEn": "Wire loop",
+        "detailZh": "可見導線從左側焊點拉起後的弧段。打線時會控制線弧形狀，避免封膠時導線被沖倒（wire sweep），但照片不能確認這條線弧的控制方式。",
+        "detailEn": "The arc of a wire rising from a bond at left is visible. Loop shape is controlled during bonding to avoid wire sweep during molding, but the photo does not show how this loop was controlled."
       },
       {
         "x": 55,
         "y": 50,
-        "labelZh": "金線弧形跨距 (Wire Loop Trajectory)",
-        "labelEn": "Controlled Wire Loop Profile",
-        "detailZh": "精密微電腦焊頭控制金線提拉與彎折軌跡，確保金線在封膠模壓時不致因樹脂流速而倒線短路。",
-        "detailEn": "Algorithmically controlled loop arc preventing wire sweep during transfer molding."
+        "labelZh": "導線末端與右側焊墊",
+        "labelEn": "Wire end and right-side pad",
+        "detailZh": "導線延伸到右側較大的金色焊墊。照片不能確認焊點是楔形焊或其他形式，也不能確認焊墊屬於導線架或基板。",
+        "detailEn": "The wire runs to a larger gold-colored pad on the right. The photo does not establish whether the bond is a wedge bond or whether the pad belongs to a lead frame or a substrate."
       },
       {
         "x": 25,
         "y": 75,
-        "labelZh": "導線架引腳鍵合點 (Lead Frame Wedge Bond)",
-        "labelEn": "Lead Frame Finger Bond",
-        "detailZh": "金線尾端在銅合金鍍銀導線架上進行楔形壓接，引出晶片電氣輸入輸出引腳。",
-        "detailEn": "Wedge bond stitching gold wire to silver-plated leadframe fingers."
+        "labelZh": "導線下方的金色區域",
+        "labelEn": "Gold-colored area beneath the wires",
+        "detailZh": "可見大面積金色表面。照片不能確認是鍍金或其他金屬，左側晶片邊緣的球形焊點也無法量測尺寸。",
+        "detailEn": "A large gold-colored surface is visible. The photo does not establish whether it is gold plating or another metal, and the ball bonds at the chip edge cannot be measured."
       }
     ]
   },
@@ -1176,10 +1314,10 @@ export const REAL_PHOTOS_DATA = {
     "categoryEn": "Clean Work-Area Reference Photo",
     "titleZh": "防護衣人員與金屬組件裝配工作區",
     "titleEn": "Personnel in Coveralls and a Metal-Assembly Work Area",
-    "scaleZh": "潔淨分級、自動化程度與設備用途未確認",
-    "scaleEn": "Cleanliness class, automation level and equipment purpose unverified",
-    "captionZh": "可見穿連身防護衣的人員、工具、金屬組件與工作平台。原始來源與授權未確認；照片不證明為 300mm 晶圓廠，也未顯示可辨識的 OHT 調度或 MES 介面。",
-    "captionEn": "Personnel in coveralls, hand tools, metal components and work platforms are visible. Original source and license are unverified; the image does not establish a 300mm fab or show identifiable OHT dispatching or MES interfaces.",
+    "scaleZh": "潔淨分級未確認；來源為粒子加速器元件的無塵室",
+    "scaleEn": "Cleanliness class unverified; the source is a particle-accelerator component clean room",
+    "captionZh": "來源說明這是 Jefferson Lab 超導射頻（SRF）測試實驗室的主無塵室，技術人員正在組裝鈮製腔體；這不是半導體晶圓廠。本章借用它呈現受控環境中的作業情境，照片不顯示 OHT 調度或 MES 介面。",
+    "captionEn": "The source describes the main clean room of the Jefferson Lab SRF Test Lab, where a technician is assembling a niobium cavity; this is not a semiconductor fab. The chapter uses it to show work in a controlled environment; the photo does not show OHT dispatching or MES interfaces.",
     "matchZh": "輔助觀察受控環境中的作業情境；不是 Q-Time、防呆互鎖或 OEE 效能的驗證。",
     "matchEn": "A visual reference for work in a controlled environment, not validation of Q-Time controls, interlocks or OEE performance.",
     "metrology": {
@@ -1217,7 +1355,16 @@ export const REAL_PHOTOS_DATA = {
         "detailZh": "可見金屬組件及支架；不能確認為氮氣晶圓儲存倉。",
         "detailEn": "Metal components and supports are visible; a nitrogen-purged wafer stocker cannot be identified here."
       }
-    ]
+    ],
+    "reference": {
+      "sourceTitle": "Wikimedia Commons",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Semiconductor_clean_room.jpg",
+      "author": "Aileen Devlin / Jefferson Lab",
+      "license": "Public domain (Public Domain Mark)",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "noteZh": "沿用現有照片並縮小尺寸；本站另加熱點與圖說。原始出處為 Jefferson Lab 的 Flickr 相簿；畫面是粒子加速器元件的無塵室，不是半導體晶圓廠。",
+      "noteEn": "Existing local photo retained at reduced size; markers and captions added by this site. Originally from Jefferson Lab on Flickr; the scene is a particle-accelerator component clean room, not a semiconductor fab."
+    }
   },
   "ch24": {
     "id": "ch24",
@@ -1314,7 +1461,16 @@ export const REAL_PHOTOS_DATA = {
         "detailZh": "高平坦度樣品吸附台，具備傾角自動微調補償，消除晶圓微小翹曲對光程分析之干擾。",
         "detailEn": "Flat vacuum stage with automated tilt leveling correcting for wafer warpage."
       }
-    ]
+    ],
+    "reference": {
+      "sourceTitle": "Wikimedia Commons",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ellipsometer_at_LAAS.jpg",
+      "author": "Guillaume Paumier",
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "noteZh": "沿用現有照片並縮小尺寸；本站另加熱點與圖說。",
+      "noteEn": "Existing local photo retained at reduced size; markers and captions added by this site."
+    }
   },
   "app-jargon": {
     "id": "app-jargon",
@@ -1361,7 +1517,16 @@ export const REAL_PHOTOS_DATA = {
         "detailZh": "模組化反應腔體，各司其職完成特定化學反應，支援個別腔體離線維護不影響整體運轉。",
         "detailEn": "Modular chambers running isolated recipes allowing hot-swappable maintenance."
       }
-    ]
+    ],
+    "reference": {
+      "sourceTitle": "Wikimedia Commons",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:EVG_120_resist_coater-developer_at_LAAS_0434.jpg",
+      "author": "Guillaume Paumier",
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "noteZh": "沿用現有照片並縮小尺寸；本站另加熱點與圖說。",
+      "noteEn": "Existing local photo retained at reduced size; markers and captions added by this site."
+    }
   },
   "app-reading": {
     "id": "app-reading",
@@ -1408,6 +1573,15 @@ export const REAL_PHOTOS_DATA = {
         "detailZh": "精密雷射切割定位缺口，標定晶體晶向並引導自動化設備實現全方位旋轉同軸對稱。",
         "detailEn": "Standard mechanical datum notch defining crystallographic orientation for litho stages."
       }
-    ]
+    ],
+    "reference": {
+      "sourceTitle": "Wikimedia Commons",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Silicon_Photonics_300mm_wafer.JPG",
+      "author": "Ehsanshahoseini",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "noteZh": "沿用現有照片並縮小尺寸；本站另加熱點與圖說。與第 00 章為同一張照片。",
+      "noteEn": "Existing local photo retained at reduced size; markers and captions added by this site. Same photo as Chapter 00."
+    }
   }
 };
