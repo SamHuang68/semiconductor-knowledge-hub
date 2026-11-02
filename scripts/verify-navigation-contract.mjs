@@ -67,7 +67,8 @@ for (const [file, expected] of Object.entries(sourceHashes)) {
 }
 const chapterDigest = createHash('sha256').update(CHAPTERS_DATA.map(c => JSON.stringify([c.id, c.contentHtml, c.contentHtmlEn])).join('\n')).digest('hex');
 // 2.12.0：已核可 B7–B10、授權剩餘章節來源校勘及 Claude 局部審查修正基準；保留正文逐字差異證據，非回復拆檔前錯誤。
-assert.equal(chapterDigest, '4f4008f8174861ee1201cd118e9cc1f1e3300775de3e1ca7199b933983adaa70', '章節正文必須與 2.12.0 來源校勘基準一致');
+// 2.13.1：Sam 於 2026-11-02 核可 7 處中文正文錯字修正（ch07、ch08、ch10、ch18、ch21、ch22、app-jargon 各一處），基準由 4f4008f8… 更新；英文正文未動。
+assert.equal(chapterDigest, '814a3c5f2b74d58c748a31ebd31cb35d304f7dedddbc18ca2768d84bcfb9d402', '章節正文必須與 2.13.1 來源校勘基準一致');
 const SEARCH_INDEX = await loadSearchIndex();
 const searchDigest = createHash('sha256').update(SEARCH_INDEX.map(e => JSON.stringify([e.chId, e.keywords, e.title, e.titleEn])).join('\n')).digest('hex');
 assert.equal(searchDigest, '4d3f6b417bb57306634dbf3438d2884a7a1db70c3dbf58c146a9b0f9ba43f07e', '檢索全文必須與拆檔前一致');
