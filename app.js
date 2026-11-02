@@ -683,11 +683,12 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
     const returnNodeTitle = returnContext ? (isEn ? (returnContext.node.titleEn || returnContext.node.title) : returnContext.node.title) : '';
     const scenarioTitle = relatedScenario ? (isEn ? (relatedScenario.titleEn || relatedScenario.title) : relatedScenario.title) : '';
 
-    const [{ replaceFigureComments }, { linkGlossaryTerms }, { insertSourcedCharts }, { insertSectionDiagrams }] = await Promise.all([
+    const [{ replaceFigureComments }, { linkGlossaryTerms }, { insertSourcedCharts }, { insertSectionDiagrams }, { cardify }] = await Promise.all([
       import('./chapter-figures.js'),
       import('./glossary-links.js'),
       import('./sourced-charts.js'),
-      import('./section-diagrams.js')
+      import('./section-diagrams.js'),
+      import('./content-cards.js')
     ]);
     if (token !== chapterLoadToken) return;
     const routeDynamicEl = document.getElementById('route-dynamic');
@@ -716,7 +717,7 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
         <h1 class="article-headline">${escapeHtml(chapter.fullTitle)}</h1>
       </header>
       <div class="article-body">
-        ${insertSectionDiagrams(insertSourcedCharts(replaceFigureComments(chapter.contentHtml, chapter.id), chapter.id, currentLang), chapter.id, currentLang)}
+        ${cardify(insertSectionDiagrams(insertSourcedCharts(replaceFigureComments(chapter.contentHtml, chapter.id), chapter.id, currentLang), chapter.id, currentLang), chapter.id)}
       </div>
       ${paginationHtml}
     `;

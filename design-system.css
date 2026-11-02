@@ -831,6 +831,50 @@ body { background: var(--chrome-page, var(--bg-app)); }
 .section-fold[open] > summary { border-bottom: 1px solid var(--border-subtle); margin-bottom: 12px; }
 .section-fold > :not(summary) { margin-inline: 14px; }
 .section-fold > .table-container { margin: 12px 14px 14px; }
+
+/* 第 1 階段樣板：說明框與粗體標籤條列改成圖示卡片（content-cards.js）。顏色用 --semi-* token，黃光主題自動跟著換 */
+.ui-icon { width: 20px; height: 20px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
+.callout.is-carded .callout-badge .ui-icon { width: 15px; height: 15px; stroke-width: 2; margin-right: 6px; vertical-align: -3px; }
+.callout.is-carded .card + .card { margin-top: 16px; }
+.callout.is-carded .card-title { display: flex; align-items: center; gap: 8px; margin: 0 0 10px; }
+.callout.is-carded .card-title .ui-icon { width: 22px; height: 22px; }
+.card-term .card-title .ui-icon { color: var(--semi-blue); }
+.card-knowhow .card-title .ui-icon { color: var(--semi-amber); }
+.card-tiles { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; max-width: none; }
+.card-tiles.grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.card-tiles.chain { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.card-tiles > li { position: relative; display: flex; gap: 10px; align-items: flex-start; margin: 0; padding: 10px 12px; border: 1px solid var(--border-subtle); border-radius: 8px; background: rgba(255, 255, 255, 0.75); line-height: 1.65; }
+.card-tiles .tile-body > strong { display: block; }
+.icon-list .li-body > strong { margin-right: 0.4em; }
+.card-tiles .ui-icon { margin-top: 2px; }
+.card-tiles [data-label="definition"] .ui-icon, .card-tiles [data-label="situation"] .ui-icon { color: var(--semi-blue); }
+.card-tiles [data-label="usage"] .ui-icon, .card-tiles [data-label="practice"] .ui-icon { color: var(--semi-teal); }
+.card-tiles [data-label="terms"] .ui-icon, .card-tiles [data-label="why"] .ui-icon { color: var(--semi-amber); }
+.card-tiles [data-label="confusion"] .ui-icon, .card-tiles [data-label="risk"] .ui-icon { color: #9a3412; }
+/* 情境 → 做法 → 為什麼 → 沒做會怎樣：格間箭頭表示先後；相關章節獨占最後一列 */
+.card-tiles.chain > li:nth-child(-n+3)::after { content: ''; position: absolute; right: -7px; top: 50%; width: 6px; height: 6px; border-top: 2px solid #94a3b8; border-right: 2px solid #94a3b8; transform: translateY(-50%) rotate(45deg); }
+.card-tiles > li[data-label="related"] { grid-column: 1 / -1; align-items: center; padding: 2px 4px; border: 0; background: transparent; }
+.card-tiles > li[data-label="related"] .ui-icon { width: 16px; height: 16px; margin: 0; color: #64748b; }
+.card-tiles > li[data-label="related"] .tile-body > strong { display: inline; margin-right: 6px; }
+/* 正文條列 → 圖示卡格 */
+.article-body .icon-list { list-style: none; padding: 0; margin: 16px 0 20px; display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 10px; max-width: min(100%, 60rem); }
+.icon-list > li { display: flex; gap: 10px; align-items: flex-start; margin: 0; padding: 8px 12px; border: 1px solid var(--border-subtle); border-radius: 10px; background: #ffffff; line-height: 1.65; }
+.icon-list .ui-icon, .icon-list .li-num { width: 28px; height: 28px; padding: 5px; border-radius: 8px; color: var(--semi-teal); background: var(--semi-teal-light); }
+.icon-list .li-num { display: inline-flex; align-items: center; justify-content: center; flex: none; padding: 0; font-weight: 700; }
+/* 晶圓位置 → 前一站、本章、下一站 */
+.track-steps > li { display: flex; gap: 8px; align-items: flex-start; }
+.track-steps .ui-icon { width: 26px; height: 26px; padding: 4px; border-radius: 50%; color: #64748b; background: #f1f5f9; }
+.track-steps > li.is-current .ui-icon { color: #ffffff; background: var(--semi-teal); }
+@media (max-width: 640px) {
+  /* 手機：卡片改成左側圖示一欄的緊湊列，不畫格框，高度接近原本的條列 */
+  .card-tiles.grid, .card-tiles.chain { grid-template-columns: 1fr; gap: 6px; }
+  .card-tiles > li { padding: 2px 0; border: 0; background: transparent; }
+  .card-tiles .tile-body > strong { display: inline; margin-right: 0.4em; }
+  .card-tiles.chain > li:nth-child(-n+3)::after { display: none; }
+  .article-body .icon-list { grid-template-columns: 1fr; gap: 6px; }
+  .icon-list > li { padding: 2px 0; border: 0; background: transparent; }
+  .icon-list .ui-icon, .icon-list .li-num { width: 24px; height: 24px; padding: 4px; }
+}
 .sourced-badge {
   display: inline-block;
   margin-bottom: 8px;
@@ -1099,6 +1143,9 @@ body.is-chapter-sample .callout-wafer-pos li { margin: 0; }
 body.is-chapter-sample .article-body > .semi-p,
 body.is-chapter-sample .article-body > .semi-ul,
 body.is-chapter-sample .article-body > .semi-ol { max-width: 72ch; }
+/* 卡片與圖示條列不受正文行寬限制，用滿內容區（與圖同寬），才能排成多欄而不被擠高 */
+body.is-chapter-sample .article-body > .semi-ul.icon-list { max-width: min(100%, 60rem); }
+.article-body .callout .semi-ul.card-tiles { max-width: none; }
 body.is-chapter-sample .article-body .engineering-object-mount { max-width: 80rem; }
 @media (min-width: 981px) {
   .eng-obj-card:is([aria-labelledby="engObjCh00Title"], [aria-labelledby="engObjCh01Title"], [aria-labelledby="engObjCh02Title"], [aria-labelledby="engObjCh03Title"], [aria-labelledby="engObjCh04Title"], [aria-labelledby="engObjCh05Title"], [aria-labelledby="engObjCh06Title"], [aria-labelledby="engObjCh07Title"], [aria-labelledby="engObjCh08Title"], [aria-labelledby="engObjCh09Title"], [aria-labelledby="engObjCh10Title"], [aria-labelledby="engObjCh11Title"], [aria-labelledby="engObjCh12Title"], [aria-labelledby="engObjCh13Title"], [aria-labelledby="engObjCh14Title"], [aria-labelledby="engObjCh15Title"], [aria-labelledby="engObjCh16Title"], [aria-labelledby="engObjCh17Title"], [aria-labelledby="engObjCh18Title"], [aria-labelledby="engObjCh19Title"], [aria-labelledby="engObjCh20Title"], [aria-labelledby="engObjCh21Title"], [aria-labelledby="engObjCh22Title"], [aria-labelledby="engObjCh23Title"], [aria-labelledby="engObjCh24Title"]) .eng-obj-stage.is-view-split { grid-template-columns: minmax(0, 1.6fr) minmax(280px, .7fr); }
