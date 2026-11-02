@@ -5293,8 +5293,8 @@ export const SECTION_DIAGRAMS = [
       {
         "zh": "Q-Time 超過",
         "en": "Q-time expired",
-        "leafZh": "不能繼續",
-        "leafEn": "Cannot continue"
+        "leafZh": "或晶圓被 Hold，不能繼續",
+        "leafEn": "Or lot on hold: cannot continue"
       },
       {
         "zh": "接觸過銅的晶圓盒",

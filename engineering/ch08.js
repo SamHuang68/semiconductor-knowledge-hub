@@ -293,7 +293,7 @@ export function renderCMPObject(container, lang = 'zh') {
 
 /**
  * ══════════════════════════════════════════════════════════════════════════════
- * 7. Ch 10 金屬化雙載子鑲嵌與電遷移模型 (BEOL Dual Damascene & EM)
+ * 7. Ch 10 金屬化雙鑲嵌與電遷移模型 (BEOL Dual Damascene & EM)
  * ══════════════════════════════════════════════════════════════════════════════
  */
 export { renderCMPObject as render };

@@ -147,13 +147,15 @@ console.log('[PASS] Ch 08 CMP 平坦化模型正常');
 console.log('--- 測試 7: Ch 10 金屬化雙鑲嵌單步前進 ---');
 const c10 = new MockElement();
 await mountEngineeringObject('ch10', c10, 'zh');
-assert.ok(c10.innerHTML.includes('雙載子鑲嵌'), '預設應展示雙載子鑲嵌');
+// 2.14.0：Dual Damascene 原誤譯為「雙載子鑲嵌」（雙載子是 bipolar 的譯名），Sam 核可改為正文用的「雙鑲嵌」
+assert.ok(c10.innerHTML.includes('雙鑲嵌'), '預設應展示雙鑲嵌');
+assert.ok(!c10.innerHTML.includes('雙載子鑲嵌'), '不得再出現誤譯「雙載子鑲嵌」');
 const damaNext = c10.querySelector('#damaNextBtn');
 if (damaNext) {
   damaNext.dispatchEvent({ type: 'click' });
   assert.ok(c10.innerHTML.includes('2 / 6'), '單步前進後應顯示步驟 2');
 }
-console.log('[PASS] Ch 10 金屬化雙載子鑲嵌模型正常');
+console.log('[PASS] Ch 10 金屬化雙鑲嵌模型正常');
 
 console.log('--- 測試 8: Ch 21 先進封裝 CoWoS 與 SoIC 切換 ---');
 const c21 = new MockElement();

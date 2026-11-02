@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
-import { replaceFigureComments } from '../chapter-figures.js';
+import { readdirSync } from 'node:fs';
+import { dieHits, replaceFigureComments } from '../chapter-figures.js';
 import { chapter as ch04 } from '../data/chapters/ch04.js';
 import { chapter as ch18 } from '../data/chapters/ch18.js';
 import { chapter as ch23 } from '../data/chapters/ch23.js';
@@ -35,4 +36,20 @@ assert.equal((litho.match(/異常之後/g) || []).length, 0, '已有圖的章節
 const plain = replaceFigureComments('<p class="semi-p">沒有圖。</p>', 'ch18');
 assert.ok(plain.includes('class="chapter-figure"'), '沒有標題時補圖仍要出現');
 
-console.log('[PASS] 第 18、23、24 章補上無數字的結構圖，圖說與既有章節圖一致');
+// 2.14.0：圖說比對順序曾讓含「晶粒」的中文圖說全被畫成「晶圓→晶粒→晶片」。
+// 同一章中英文圖說描述同一張圖，畫出的圖種必須一致；並抽查幾張圖要畫成對的圖。
+const keys = html => [...html.matchAll(/<figure class="chapter-figure" data-figure="(\w+)"/g)].map(m => m[1]);
+const expected = { ch00: ['life', 'waferDieChip'], ch15: ['inspect'], ch16: ['yieldMap'], ch17: ['spc'], ch19: ['cp'], ch20: ['wirebond', 'flipchip'] };
+for (const file of readdirSync(new URL('../data/chapters/', import.meta.url)).filter(f => f.endsWith('.js'))) {
+  const { chapter } = await import(new URL(`../data/chapters/${file}`, import.meta.url));
+  const zh = keys(replaceFigureComments(chapter.contentHtml, chapter.id));
+  const en = keys(replaceFigureComments(chapter.contentHtmlEn, chapter.id));
+  assert.deepEqual(zh, en, `${chapter.id} 中英文章節圖的圖種要一致`);
+  if (expected[chapter.id]) assert.deepEqual(zh, expected[chapter.id], `${chapter.id} 章節圖要畫成 ${expected[chapter.id].join('、')}`);
+}
+
+// 同一組缺陷點下，大晶粒被打中的比例要明顯高於小晶粒（正文：大晶粒的良率會比小晶粒低很多）
+const ratio = dies => dies.filter(d => d.hit).length / dies.length;
+assert.ok(ratio(dieHits(40)) > 2 * ratio(dieHits(20)), '良率圖：大晶粒被打中的比例要明顯較高');
+
+console.log('[PASS] 第 18、23、24 章補上無數字的結構圖，圖說與既有章節圖一致；中英圖種一致，良率圖比例正確');

@@ -195,10 +195,10 @@ export const TEXTS = {
     ch08_micro_desc: '化學氧化劑（如雙氧水）在金屬表面反應生成一層數奈米厚的疏鬆水合氧化薄膜（化學軟化）；突出高點承受磨粒強烈摩擦被刮除，低窪處則受鈍化膜保護免於腐蝕，實現「只磨高處、不磨低處」的平坦化。',
     ch08_defects_desc: '寬銅導線可能產生碟化，密集導線區可能產生侵蝕。虛設金屬填補可協助平衡圖形密度；填補方式與密度限制須依製程、層別及設計規則決定。本圖為示意，不保證平坦度。',
 
-    // Ch 10 金屬化與雙載子鑲嵌
-    ch10_title: '銅導線雙載子鑲嵌 (Dual Damascene) 與電遷移 (EM) 微觀模型',
+    // Ch 10 金屬化與雙鑲嵌
+    ch10_title: '銅導線雙鑲嵌 (Dual Damascene) 與電遷移 (EM) 微觀模型',
     ch10_sub: '探索 10+ 層金屬互連線雙鑲嵌自底向上電鍍超填 (Superfilling)、Low-k 介電層與電子風推擠效應',
-    ch10_tab_damascene: '雙載子鑲嵌流程 (Dual Damascene Flow)',
+    ch10_tab_damascene: '雙鑲嵌流程 (Dual Damascene Flow)',
     ch10_tab_superfill: '電鍍銅由底向上超填 (ECD Superfill)',
     ch10_tab_em: '電遷移可靠度機制 (Electromigration EM)',
     ch10_step_dama_1: '1. 沉積 Low-k 介電層 (SiCOH, k~2.5)',
@@ -269,7 +269,7 @@ export const TEXTS = {
     // Ch 09 清洗與微污染
     ch09_title: 'RCA 濕式清洗化學反應、兆聲波音流與 Marangoni 乾燥模型',
     ch09_sub: '微觀解析 SC-1 表面蝕刻與 Zeta 電位排斥、SC-2 金屬錯離子清除、1MHz 兆聲波邊界層空化微流與表面張力梯度無水痕乾燥',
-    ch09_tab_rca: '經典 RCA 雙步驟清洗 (SC-1 / DHF / SC-2)',
+    ch09_tab_rca: '經典 RCA 清洗 (SC-1 / DHF / SC-2)',
     ch09_tab_megasonic: '兆聲波音流除微粒 (Megasonic Streaming)',
     ch09_tab_marangoni: 'Marangoni 表面張力差乾燥 (Marangoni Drying)',
     ch09_metric_pre: '微粒去除率 (PRE > 20nm)',

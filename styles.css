@@ -1085,9 +1085,25 @@ hr.semi-hr::after {
   overflow-x: auto;
 }
 
+/* 容器是置中的 flex，不給寬度時 SVG 會退回預設 300px 寬、字只剩約 5px（2.14.0 修正） */
+.mermaid-rendered {
+  width: 100%;
+}
+
 .mermaid-rendered svg {
   max-width: 100%;
   height: auto;
+}
+
+/* 窄螢幕：時序圖維持可讀寬度，圖框左右滑動；靠左排，才捲得到圖的開頭 */
+@media screen and (max-width: 640px) {
+  .mermaid-diagram {
+    justify-content: flex-start;
+    padding: 16px;
+  }
+  .mermaid-rendered {
+    min-width: 820px;
+  }
 }
 
 .inline-code {

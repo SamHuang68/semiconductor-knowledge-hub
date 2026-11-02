@@ -73,7 +73,8 @@ export function linkGlossaryTerms(root, lang) {
   const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
     acceptNode(node) {
       const parent = node.parentElement;
-      if (!parent || parent.closest('a, code, pre, script, style, svg, button, h1, h2, h3, textarea')) return NodeFilter.FILTER_REJECT;
+      // 說明框標頭與圖說不加術語連結：標頭不該變成連結，圖說的來源行也不該搶走正文的第一個連結（2.14.0）
+      if (!parent || parent.closest('a, code, pre, script, style, svg, button, h1, h2, h3, textarea, .callout-badge, figcaption')) return NodeFilter.FILTER_REJECT;
       return NodeFilter.FILTER_ACCEPT;
     }
   });

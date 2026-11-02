@@ -76,7 +76,7 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
       explore_open: '開啟互動情境 ↗',
       no_matching_chapters: '查無相符章節',
       footer_attribution: `本專案基於開源教材 <a href="https://github.com/chenwei810/Semiconductor_Manufacturing_Introduction" target="_blank" rel="noopener">chenwei810/Semiconductor_Manufacturing_Introduction</a> （採 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hant" target="_blank" rel="noopener">CC BY-NC-SA 4.0 創用 CC 姓名標示-非商業性-相同方式分享</a> 授權）重製與架構升級。`,
-      footer_desc: '涵蓋 25 章從沙子到晶片的完整晶圓製造旅程 · 28 大模組實體電顯與機台照片並列對照 · 245 筆核心術語與現場實務行話 · 中英雙語無縫支援 · 純前端極速架構 · 零中系依賴 · 版本 2.13.2',
+      footer_desc: '涵蓋 25 章從沙子到晶片的完整晶圓製造旅程 · 28 大模組實體電顯與機台照片並列對照 · 245 筆核心術語與現場實務行話 · 中英雙語無縫支援 · 純前端極速架構 · 零中系依賴 · 版本 2.14.0',
       atlas_title: '晶圓廠 12 大核心製程全景圖譜 (Fab Flow Atlas)',
       btn_close: '關閉 (Esc)',
       jargon_title: '晶圓廠現場行話與術語字典',
@@ -198,7 +198,7 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
       explore_open: 'Open Scenario ↗',
       no_matching_chapters: 'No matching chapters found',
       footer_attribution: `Adapted from the open-source book <a href="https://github.com/chenwei810/Semiconductor_Manufacturing_Introduction" target="_blank" rel="noopener">chenwei810/Semiconductor_Manufacturing_Introduction</a> licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a>.`,
-      footer_desc: 'Comprehensive 25-chapter wafer fabrication guide from sand to chip · 28-module authentic SEM & tool photo side-by-side view · 245 core terms & 43 fab jargon · Native bilingual support · Zero Chinese-origin dependencies · v2.13.2',
+      footer_desc: 'Comprehensive 25-chapter wafer fabrication guide from sand to chip · 28-module authentic SEM & tool photo side-by-side view · 245 core terms & 43 fab jargon · Native bilingual support · Zero Chinese-origin dependencies · v2.14.0',
       theme_light_title: 'Light Precision Mode',
       theme_dark_title: 'Dark High-Contrast Mode',
       theme_amber_title: 'Cleanroom 500nm Litho Amber Mode',
@@ -1517,7 +1517,7 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
     } else if (chId === 'ch02') {
       targetEl = articleBody.querySelector('h2[id*="半導體可以控制的導體"], h2[id*="semiconductors-conductors-you-can-control"], h2[id*="mosfet晶片裡的開關"], h2[id*="the-mosfet-the-switch-inside-a-chip"]');
     } else if (chId === 'ch03') {
-      targetEl = articleBody.querySelector('h2[id*="長晶拉出一根完美的單晶"], h2[id*="growing-the-crystal"], h2[id*="從晶棒到晶圓"], h2[id*="from-ingot-to-wafer"]');
+      targetEl = articleBody.querySelector('h2[id*="長晶拉出一根完美的單晶"], h2[id*="crystal-growth-pulling-a-perfect-single-crystal"], h2[id*="從晶棒到晶圓"], h2[id*="from-ingot-to-wafer"]');
     } else if (chId === 'ch04') {
       targetEl = articleBody.querySelector('h2[id*="微影的三個主角"], h2[id*="the-three-key-players"], h2[id*="微影的流程"], h2[id*="the-lithography-flow"]');
     } else if (chId === 'ch05') {
@@ -1529,27 +1529,27 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
     } else if (chId === 'ch08') {
       targetEl = articleBody.querySelector('h2[id*="cmp-怎麼運作"], h2[id*="how-cmp-works"], h2[id*="為什麼要磨平"], h2[id*="why-the-wafer-must-be-flat"]');
     } else if (chId === 'ch09') {
-      targetEl = articleBody.querySelector('h2[id*="怎麼洗"], h2[id*="how-cleaning-is-done"], h2[id*="污染有哪幾種"], h2[id*="types-of-contamination"]');
+      targetEl = articleBody.querySelector('h2[id*="怎麼洗"], h2[id*="how-wafers-are-cleaned"], h2[id*="污染有哪幾種"], h2[id*="kinds-of-contamination"]');
     } else if (chId === 'ch10') {
       targetEl = articleBody.querySelector('h2[id*="大馬士革製程"], h2[id*="the-damascene-process"], h2[id*="從鋁到銅"], h2[id*="from-aluminum-to-copper"]');
     } else if (chId === 'ch11') {
-      targetEl = articleBody.querySelector('h2[id*="一個反覆出現的循環"], h2[id*="a-repeating-cycle"], h2[id*="第一段feol做出電晶體"], h2[id*="stage-1-feol"]');
+      targetEl = articleBody.querySelector('h2[id*="一個反覆出現的循環"], h2[id*="a-loop-that-keeps-repeating"], h2[id*="第一段feol做出電晶體"], h2[id*="stage-1-feol"]');
     } else if (chId === 'ch12') {
       targetEl = articleBody.querySelector('h2[id*="finfet讓通道站起來"], h2[id*="finfet-making-the-channel-stand-up"], h2[id*="結構演進一覽"], h2[id*="the-evolution-at-a-glance"]');
     } else if (chId === 'ch13') {
-      targetEl = articleBody.querySelector('h2[id*="dram一個電晶體加一個電容"], h2[id*="dram-one-transistor-one-capacitor"], h2[id*="3d-nand往上蓋大樓"], h2[id*="3d-nand-building-upward"]');
+      targetEl = articleBody.querySelector('h2[id*="dram一個電晶體加一個電容"], h2[id*="dram-one-transistor-and-one-capacitor"], h2[id*="3d-nand往上蓋大樓"], h2[id*="3d-nand-building-upward"]');
     } else if (chId === 'ch14') {
       targetEl = articleBody.querySelector('h2[id*="真正該看的尺寸"], h2[id*="the-dimensions-that-actually-matter"], h2[id*="3-奈米裡沒有-3-奈米"], h2[id*="there-is-nothing-3-nm-in-3-nm"]');
     } else if (chId === 'ch15') {
-      targetEl = articleBody.querySelector('h2[id*="量測與檢測不一樣"], h2[id*="metrology-and-inspection-are-different"], h2[id*="常見的量測"], h2[id*="common-metrology-methods"]');
+      targetEl = articleBody.querySelector('h2[id*="量測與檢測不一樣"], h2[id*="metrology-and-inspection-are-not-the-same"], h2[id*="常見的量測"], h2[id*="common-measurements"]');
     } else if (chId === 'ch16') {
-      targetEl = articleBody.querySelector('h2[id*="從晶圓圖看出線索"], h2[id*="reading-clues-from-the-wafer-map"], h2[id*="故障分析找到兇手"], h2[id*="failure-analysis-finding-the-culprit"]');
+      targetEl = articleBody.querySelector('h2[id*="從晶圓圖看出線索"], h2[id*="clues-from-the-wafer-map"], h2[id*="故障分析找到兇手"], h2[id*="failure-analysis-finding-the-culprit"]');
     } else if (chId === 'ch17') {
-      targetEl = articleBody.querySelector('h2[id*="spc把數據畫成管制圖"], h2[id*="spc-turning-data-into-control-charts"], h2[id*="製程能力cpk"], h2[id*="process-capability-cpk"]');
+      targetEl = articleBody.querySelector('h2[id*="spc把數據畫成管制圖"], h2[id*="spc-drawing-the-data-as-control-charts"], h2[id*="製程能力cpk"], h2[id*="process-capability-cpk"]');
     } else if (chId === 'ch18') {
       targetEl = articleBody.querySelector('h2[id*="ocap事先寫好的應變步驟"], h2[id*="ocap-response-steps-written-in-advance"], h2[id*="hold先擋下來"], h2[id*="hold-stop-it-first"]');
     } else if (chId === 'ch19') {
-      targetEl = articleBody.querySelector('h2[id*="wat製程的成績單"], h2[id*="wat-the-process-report-card"], h2[id*="cp一顆一顆測"], h2[id*="cp-testing-die-by-die"]');
+      targetEl = articleBody.querySelector('h2[id*="wat製程的成績單"], h2[id*="wat-the-report-card-of-the-process"], h2[id*="cp一顆一顆測"], h2[id*="cp-testing-die-by-die"]');
     } else if (chId === 'ch20') {
       targetEl = articleBody.querySelector('h2[id*="傳統封裝的流程"], h2[id*="the-traditional-packaging-flow"], h2[id*="覆晶把晶片翻過來"], h2[id*="flip-chip-turning-the-die-over"]');
     } else if (chId === 'ch21') {
