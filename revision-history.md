@@ -84,7 +84,16 @@
   - 審查的可選建議未做的項目：
     - ch04 註明「以照光處溶掉為例」與「省略鏡頭」；
     - ch08 虛線圖例。
-- 提交／發布狀態：本機已提交於分支 `fix/phase0-figures`（push=false、deploy=false，發布授權：無）。完整 SHA 記在後續發布紀錄。
+- 提交／發布狀態：已推送、已部署。提交 `40ab7f79cf32c7256e55a8f1f5d86d403102f4a2`，main 由 `c3e7ba8` 快轉；GitHub Pages run `41478166630` 的 `verify` 與 `deploy` 都成功。
+- 發布後線上驗證（2026-11-03）：
+  - 以下 9 個網站檔案與提交內容逐位元組相同，加不加快取參數都一樣：`index.html`、`app.js`、`chapter-figures.js`、`data/section-diagrams.js`、`engineering/ch08.js`、`engineering/ch14.js`、`engineering/shared.js`、`glossary-links.js`、`styles.css`。
+  - 頁尾為 2.14.0；`revision-history.md`、`package.json`、`scripts/` 回應 404。
+  - 用同一套頁面檢查直接跑線上網站：
+    - 章節圖：14 章中英 × 1440、6 章中英 × 390，文字重疊與超框為 0；中英圖種一致；良率圖為 10／12 對 10／45。
+    - 時序圖：ch23 在 390 寬時寬 820px、字高 10–12px。
+    - 術語連結：ch01、ch05、ch23 的標頭與圖說沒有術語連結。
+    - 工程物件：8 章中英版掛在同一段。
+    - 以上頁面沒有頁面錯誤，也沒有水平溢位。
 
 ## 2.13.2 · 2026-11-02 · 還原數學式 TeX 反斜線；查核 ch04「四大」定律
 
