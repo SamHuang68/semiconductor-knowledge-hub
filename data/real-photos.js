@@ -129,21 +129,21 @@ export const REAL_PHOTOS_DATA = {
     "categoryEn": "Plan-View Circuit Image",
     "titleZh": "帶有 50 µm 尺標的重複電路圖樣",
     "titleEn": "Repeated Circuit Patterns with a 50 µm Scale Bar",
-    "scaleZh": "影像標示 50 µm；成像方式與製程節點未確認",
-    "scaleEn": "Image scale bar: 50 µm; imaging method and process node unverified",
-    "captionZh": "可見平面重複矩形圖樣、水平線帶與 50 µm 尺標。原始來源、授權及成像條件未確認；此圖無法辨識閘極截面、介電材料或源汲極摻雜。",
-    "captionEn": "Repeated rectangular patterns, horizontal bands and a 50 µm scale bar are visible in plan view. Original source, license and imaging conditions are unverified; gate cross-sections, dielectric material and source/drain doping cannot be identified here.",
+    "scaleZh": "影像標示 50 µm；來源說明為 SEM 影像，未說明製程節點",
+    "scaleEn": "Image scale bar: 50 µm; the source describes an SEM image; process node not stated",
+    "captionZh": "來源說明這是 Intel Celeron D 320 處理器在掃描式電子顯微鏡（SEM）下的影像，可看到微影圖樣。畫面可見平面重複矩形圖樣、水平線帶與 50 µm 尺標；這是晶片表面的平面影像，不能辨識閘極截面、介電材料或源汲極摻雜。",
+    "captionEn": "The source describes this as an Intel Celeron D 320 processor imaged in a scanning electron microscope (SEM), showing its lithographic patterns. Repeated rectangular patterns, horizontal bands and a 50 µm scale bar are visible in plan view; this is a surface view of the chip, and gate cross-sections, dielectric material and source/drain doping cannot be identified here.",
     "matchZh": "作為電路圖樣的外觀參考，不是能帶、反轉層或接面物理的量測證據。",
     "matchEn": "A visual reference for circuit patterns, not measurement evidence for band diagrams, inversion layers or junction physics.",
     "metrology": {
-      "voltage": "Imaging conditions unverified",
-      "voltageZh": "成像條件未確認",
-      "mag": "Unverified",
-      "magZh": "未確認",
-      "fov": "Unverified",
-      "fovZh": "未確認",
-      "techniqueZh": "成像方式與設備規格未確認",
-      "techniqueEn": "Imaging method and equipment specifications unverified"
+      "voltage": "Not reported by source",
+      "voltageZh": "來源未提供",
+      "mag": "Not reported by source",
+      "magZh": "來源未提供",
+      "fov": "Not reported by source",
+      "fovZh": "來源未提供",
+      "techniqueZh": "SEM（依來源說明）",
+      "techniqueEn": "SEM (per source)"
     },
     "hotspots": [
       {
@@ -170,7 +170,16 @@ export const REAL_PHOTOS_DATA = {
         "detailZh": "可見密集電路圖樣；源汲極位置、摻雜與退火條件未確認。",
         "detailEn": "Dense circuit patterns are visible; source/drain locations, doping and anneal conditions are unverified."
       }
-    ]
+    ],
+    "reference": {
+      "sourceTitle": "Wikimedia Commons",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Intel_Celeron_D320_in_scanning_electron_microscope_8k.png",
+      "author": "Piotr Krzemiński",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "noteZh": "沿用現有照片並縮小尺寸；本站另加熱點與圖說。",
+      "noteEn": "Existing local photo retained at reduced size; markers and captions added by this site."
+    }
   },
   "ch03": {
     "id": "ch03",
@@ -710,23 +719,23 @@ export const REAL_PHOTOS_DATA = {
     "src": "assets/photos/ch12-transistor-micrograph.jpg",
     "categoryZh": "晶片區塊參考圖",
     "categoryEn": "Chip-Region Reference Image",
-    "titleZh": "晶片區塊影像（成像規格未確認）",
-    "titleEn": "Chip-Region Image (Imaging Specifications Unverified)",
+    "titleZh": "Intel Celeron D 320 晶片區塊的 SEM 影像",
+    "titleEn": "SEM Image of Chip Regions on an Intel Celeron D 320",
     "scaleZh": "可見尺標 50 µm · 非電晶體截面證據",
     "scaleEn": "Visible scale bar: 50 µm · Not evidence of a transistor cross-section",
-    "captionZh": "可見重複長方形區塊、橫向平行帶狀圖樣與右下的 50 µm 尺標。本輪未核實原始來源、成像方式或量測規格；不能據此辨識奈米片、HfO₂ 介電層或 SiGe 材料。",
-    "captionEn": "Repeated rectangular blocks, horizontal bands and a 50 µm scale bar at the lower right are visible. Original provenance, imaging method and measurement settings are unverified in this review; the image does not identify nanosheets, HfO₂ dielectric or SiGe material.",
+    "captionZh": "來源說明這是 Intel Celeron D 320 處理器的掃描式電子顯微鏡（SEM）影像，與第 02 章為同一張照片。可見重複長方形區塊、橫向平行帶狀圖樣與右下的 50 µm 尺標；這是晶片表面的平面影像，不能據此辨識奈米片、HfO₂ 介電層或 SiGe 材料。",
+    "captionEn": "The source describes this as a scanning electron microscope (SEM) image of an Intel Celeron D 320 processor; it is the same photo as Chapter 02. Repeated rectangular blocks, horizontal bands and a 50 µm scale bar at the lower right are visible; this is a surface view of the chip and does not identify nanosheets, HfO₂ dielectric or SiGe material.",
     "matchZh": "此圖提供晶片區塊層級的參考。旁側 Planar／FinFET／GAA 是獨立原理示意；三個熱點不代表電晶體截面，也不是漏電或遷移率的量測證據。",
     "matchEn": "This image provides chip-region context. The adjacent Planar/FinFET/GAA diagrams are separate teaching schematics; the three markers do not identify transistor cross-sections or establish leakage or mobility measurements.",
     "metrology": {
-      "voltage": "Unverified",
-      "voltageZh": "未確認",
-      "mag": "Unverified",
-      "magZh": "未確認",
-      "fov": "Unverified",
-      "fovZh": "未確認",
-      "techniqueZh": "未確認（僅描述可見圖樣）",
-      "techniqueEn": "Unverified (visible features only)"
+      "voltage": "Not reported by source",
+      "voltageZh": "來源未提供",
+      "mag": "Not reported by source",
+      "magZh": "來源未提供",
+      "fov": "Not reported by source",
+      "fovZh": "來源未提供",
+      "techniqueZh": "SEM（依來源說明）",
+      "techniqueEn": "SEM (per source)"
     },
     "hotspots": [
       {
@@ -753,57 +762,75 @@ export const REAL_PHOTOS_DATA = {
         "detailZh": "標記附近可見密集且形狀多樣的圖樣。此影像不能辨識 SiGe 應變源，也不能證明遷移率增益。",
         "detailEn": "Dense patterns with varied shapes are visible near the marker. This image does not identify a SiGe stressor or demonstrate a mobility gain."
       }
-    ]
+    ],
+    "reference": {
+      "sourceTitle": "Wikimedia Commons",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Intel_Celeron_D320_in_scanning_electron_microscope_8k.png",
+      "author": "Piotr Krzemiński",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "noteZh": "沿用現有照片並縮小尺寸；本站另加熱點與圖說。與第 02 章為同一張照片。",
+      "noteEn": "Existing local photo retained at reduced size; markers and captions added by this site. Same photo as Chapter 02."
+    }
   },
   "ch13": {
     "id": "ch13",
     "src": "assets/photos/ch13-nand-flash-die.jpg",
-    "categoryZh": "晶片圖樣參考照片",
-    "categoryEn": "Chip-Pattern Reference Photo",
-    "titleZh": "晶片圖樣照片（結構與規格未確認）",
-    "titleEn": "Chip-Pattern Photo (Structure and Specifications Unverified)",
-    "scaleZh": "尺寸與倍率未確認 · 不作為立體結構證據",
-    "scaleEn": "Dimensions and magnification unverified · Not evidence of 3D structure",
-    "captionZh": "照片可見彩色線條、密集重複圖樣及方形區域。本輪未核實原始來源、晶片種類或成像規格；不能從此圖判定 DRAM／NAND、堆疊層數、材料或晶粒面積。",
-    "captionEn": "Colored lines, dense repeated patterns and square regions are visible. Original provenance, chip type and imaging specifications are unverified in this review; the image does not establish DRAM/NAND identity, stack count, materials or die area.",
-    "matchZh": "此圖提供晶片外觀參考。旁側 DRAM／3D NAND／HBM 為獨立教學示意；三個圖釘只標示可見區域，不代表已辨識的記憶胞、階梯接觸或陣列下邏輯。",
-    "matchEn": "This photo provides chip-pattern context. The adjacent DRAM/3D NAND/HBM diagrams are separate teaching schematics; the three markers identify visible regions, not verified memory cells, staircase contacts or logic beneath an array.",
+    "categoryZh": "邏輯閘晶片照片",
+    "categoryEn": "Logic-Gate Chip Photo",
+    "titleZh": "4 輸入 TTL NAND 邏輯閘晶片（不是 NAND 快閃記憶體）",
+    "titleEn": "4-Input TTL NAND Logic-Gate Chip (Not NAND Flash Memory)",
+    "scaleZh": "來源標示最小線寬 20 µm · 照片無尺標",
+    "scaleEn": "Source states a 20 µm minimum feature size · No visible scale bar",
+    "captionZh": "來源說明這是電晶體－電晶體邏輯（TTL）的 4 輸入 NAND 邏輯閘晶片，晶片上有 7 個電晶體，最小線寬 20 µm。它是邏輯電路，不是 NAND 快閃記憶體：兩者都以 NAND 邏輯命名，但快閃記憶體是由大量記憶胞串接成的陣列。照片可見彩色區域、淺色線路與方形焊墊。",
+    "captionEn": "The source describes this as a 4-input NAND logic-gate chip in transistor-transistor logic (TTL), with 7 transistors on the chip and a 20 µm minimum feature size. It is a logic circuit, not NAND flash memory: both are named after NAND logic, but flash memory is an array of many memory cells connected in strings. Colored regions, pale traces and square pads are visible.",
+    "matchZh": "這張是邏輯閘晶片，不是記憶體晶片；本章保留它作為晶片表面圖樣的參考。旁側 DRAM／3D NAND／HBM 為獨立教學示意，照片中沒有記憶胞、堆疊層、階梯接觸或陣列下邏輯。",
+    "matchEn": "This is a logic-gate chip, not a memory chip; the chapter keeps it as a reference for chip surface patterns. The adjacent DRAM/3D NAND/HBM diagrams are separate teaching schematics, and the photo contains no memory cells, stacked layers, staircase contacts or logic beneath an array.",
     "metrology": {
-      "voltage": "Unverified",
-      "mag": "Unverified",
-      "fov": "Unverified",
-      "techniqueZh": "未確認（僅描述可見外觀）",
-      "techniqueEn": "Unverified (visible features only)",
-      "voltageZh": "未確認",
-      "magZh": "未確認",
-      "fovZh": "未確認"
+      "voltage": "Not reported by source",
+      "voltageZh": "來源未提供",
+      "mag": "Not reported by source",
+      "magZh": "來源未提供",
+      "fov": "Not reported by source",
+      "fovZh": "來源未提供",
+      "techniqueZh": "來源未說明成像方式",
+      "techniqueEn": "Imaging method not stated by source"
     },
     "hotspots": [
       {
         "x": 50,
         "y": 40,
-        "labelZh": "中央縱向圖樣",
-        "labelEn": "Central Vertical Pattern",
-        "detailZh": "圖釘附近可見縱向線條與相鄰色帶。此照片不能確認其記憶胞種類或堆疊層數。",
-        "detailEn": "Vertical lines and adjacent colored bands are visible near the marker. The photo does not establish memory-cell type or stack count."
+        "labelZh": "中央縱向線路",
+        "labelEn": "Central Vertical Trace",
+        "detailZh": "圖釘位於中央的淺色縱向線路，連接上下的電路區塊。這是邏輯閘晶片的連線，不是記憶胞或堆疊層。",
+        "detailEn": "The marker sits on the pale central vertical trace that links the upper and lower circuit blocks. It is wiring on a logic-gate chip, not a memory cell or a stacked layer."
       },
       {
         "x": 82,
         "y": 40,
-        "labelZh": "右側密集圖樣區",
-        "labelEn": "Right-Hand Patterned Region",
-        "detailZh": "圖釘附近可見密集線條與重複圖樣。無法由此確認階梯接觸結構或字元線連接。",
-        "detailEn": "Dense lines and repeated patterns are visible near the marker. Staircase contacts or word-line connections cannot be confirmed here."
+        "labelZh": "右側條狀圖樣與方塊",
+        "labelEn": "Right-Hand Stripes and Block",
+        "detailZh": "圖釘附近可見並排的長條圖樣與右側較大的淺色方塊。來源沒有逐一標示元件位置；這裡沒有階梯接觸或字元線。",
+        "detailEn": "Side-by-side stripes and a larger pale block on the right are visible near the marker. The source does not label individual devices; there are no staircase contacts or word lines here."
       },
       {
         "x": 50,
         "y": 88,
-        "labelZh": "下方中央區域",
-        "labelEn": "Lower Central Region",
-        "detailZh": "圖釘標示照片下方中央的圖樣區域。此平面外觀不能證明陣列下方有 CMOS 邏輯。",
-        "detailEn": "The marker identifies a patterned area near the lower center. This surface view does not establish CMOS logic beneath an array."
+        "labelZh": "下方中央線路",
+        "labelEn": "Lower Central Trace",
+        "detailZh": "圖釘位於下方中央的淺色線路附近。TTL 是平面的雙極電晶體邏輯電路，沒有陣列下方的 CMOS 邏輯。",
+        "detailEn": "The marker sits near a pale trace at the lower center. TTL is a planar bipolar-transistor logic circuit, with no CMOS logic beneath an array."
       }
-    ]
+    ],
+    "reference": {
+      "sourceTitle": "Wikimedia Commons",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:4-fach-NAND-C10.JPG",
+      "author": "Dgarte",
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "noteZh": "沿用現有照片並縮小尺寸；本站另加熱點與圖說。",
+      "noteEn": "Existing local photo retained at reduced size; markers and captions added by this site."
+    }
   },
   "ch14": {
     "id": "ch14",
@@ -926,52 +953,61 @@ export const REAL_PHOTOS_DATA = {
   "ch16": {
     "id": "ch16",
     "src": "assets/photos/ch16-defect-inspection-him.jpg",
-    "categoryZh": "灰階影像參考圖",
-    "categoryEn": "Grayscale Reference Images",
-    "titleZh": "雙幅球狀紋理影像（材料與成像規格未確認）",
-    "titleEn": "Two Images of Spherical Textures (Material and Imaging Specifications Unverified)",
-    "scaleZh": "未見尺標 · 尺寸、倍率與成像方式未確認",
-    "scaleEn": "No visible scale bar · Dimensions, magnification and imaging method unverified",
-    "captionZh": "圖中左右兩幅灰階影像呈現多個球狀外觀與表面紋理，中間以白色直帶分隔。原始來源、材料、尺寸及成像方式未確認；不能據此指認氦離子設備、晶圓缺陷或次表面金屬空洞。",
-    "captionEn": "Two grayscale panels show spherical forms and surface textures separated by a white vertical band. Original provenance, material, dimensions and imaging method are unverified; these images do not identify helium-ion equipment, wafer defects or subsurface metal voids.",
-    "matchZh": "此圖僅示範可見影像區域。旁側晶圓圖譜、FIB 與 TEM 為獨立教學示意；照片與圖釘不是半導體缺陷、設備性能或失效機制的證據。",
-    "matchEn": "These images provide visible-image context only. The adjacent wafer-map, FIB and TEM diagrams are independent teaching schematics; the images and markers are not evidence of semiconductor defects, equipment performance or a failure mechanism.",
+    "categoryZh": "顯微影像對照",
+    "categoryEn": "Microscope Image Comparison",
+    "titleZh": "SEM 與氦離子顯微鏡的影像對照（NIST）",
+    "titleEn": "SEM vs. Helium Ion Microscope Images (NIST)",
+    "scaleZh": "未見尺標 · 樣品是錫上的金，不是晶圓",
+    "scaleEn": "No visible scale bar · The sample is gold on tin, not a wafer",
+    "captionZh": "來源為美國國家標準與技術研究院（NIST）：左幅是掃描式電子顯微鏡（SEM）拍攝錫上金原子的影像，景深較淺，只有部分清楚；右幅是氦離子顯微鏡影像，整張都清楚。NIST 研究氦離子顯微鏡，是為了改善半導體與奈米製造需要的奈米級量測。樣品不是晶圓，照片也不顯示缺陷或次表面空洞。",
+    "captionEn": "The source is the US National Institute of Standards and Technology (NIST): the left panel is a scanning electron microscope (SEM) image of gold atoms on tin with shallow depth of field, so only parts are sharp; the right panel is a helium ion microscope image that is sharp throughout. NIST studies helium ion microscopes to improve the nanoscale measurements needed in semiconductor and nanomanufacturing. The sample is not a wafer, and the images show no defects or subsurface voids.",
+    "matchZh": "此圖說明不同顯微成像方式的景深差異。旁側晶圓圖譜、FIB 與 TEM 為獨立教學示意；照片與圖釘不是半導體缺陷、設備性能或失效機制的證據。",
+    "matchEn": "These images show how depth of field differs between imaging methods. The adjacent wafer-map, FIB and TEM diagrams are independent teaching schematics; the images and markers are not evidence of semiconductor defects, equipment performance or a failure mechanism.",
     "metrology": {
-      "voltage": "Unverified",
-      "voltageZh": "未確認",
-      "mag": "Unverified",
-      "magZh": "未確認",
-      "fov": "Unverified",
-      "fovZh": "未確認",
-      "techniqueZh": "未確認（僅描述可見外觀）",
-      "techniqueEn": "Unverified (visible features only)"
+      "voltage": "Not reported by source",
+      "voltageZh": "來源未提供",
+      "mag": "Not reported by source",
+      "magZh": "來源未提供",
+      "fov": "Not reported by source",
+      "fovZh": "來源未提供",
+      "techniqueZh": "SEM（左）與氦離子顯微鏡（右），依來源說明",
+      "techniqueEn": "SEM (left) and helium ion microscope (right), per source"
     },
     "hotspots": [
       {
         "x": 45,
         "y": 40,
-        "labelZh": "左幅紋理區域",
-        "labelEn": "Left-Panel Texture Region",
-        "detailZh": "圖釘附近可見左幅影像中的球狀外觀與細部紋理。材料、尺寸及成像束斑未確認。",
-        "detailEn": "Spherical forms and fine textures are visible near this marker in the left panel. Material, dimensions and imaging spot size are unverified."
+        "labelZh": "左幅 SEM 影像",
+        "labelEn": "Left Panel: SEM Image",
+        "detailZh": "來源說明左幅為 SEM 影像，景深較淺，只有部分區域清楚對焦。樣品是錫上的金，不是晶圓缺陷。",
+        "detailEn": "Per the source, the left panel is an SEM image with shallow depth of field, so only parts are in sharp focus. The sample is gold on tin, not a wafer defect."
       },
       {
         "x": 55,
         "y": 50,
         "labelZh": "中央白色分隔帶",
         "labelEn": "Central White Divider",
-        "detailZh": "圖釘位於兩幅影像之間的白色分隔帶附近，不能將此區域解讀為金屬介層孔中的空洞。",
-        "detailEn": "The marker lies near the white divider between the panels. This region cannot be interpreted as a void in a metal via."
+        "detailZh": "圖釘位於兩幅影像之間的白色分隔帶，這不是樣品的一部分，也不能解讀為金屬介層孔中的空洞。",
+        "detailEn": "The marker lies on the white divider between the panels. It is not part of the sample and cannot be interpreted as a void in a metal via."
       },
       {
         "x": 80,
         "y": 35,
-        "labelZh": "右幅紋理區域",
-        "labelEn": "Right-Panel Texture Region",
-        "detailZh": "圖釘附近可見右幅影像的球狀表面與紋理。畫面未顯示已辨識的偵測器或設備構件。",
-        "detailEn": "Spherical surfaces and textures are visible near this marker in the right panel. The image does not show an identified detector or equipment component."
+        "labelZh": "右幅氦離子顯微鏡影像",
+        "labelEn": "Right Panel: Helium Ion Microscope Image",
+        "detailZh": "來源說明右幅為氦離子顯微鏡影像，整張都清楚對焦。畫面未顯示設備構件或偵測器。",
+        "detailEn": "Per the source, the right panel is a helium ion microscope image that is in sharp focus throughout. No equipment components or detectors are shown."
       }
-    ]
+    ],
+    "reference": {
+      "sourceTitle": "Wikimedia Commons",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Helium_Ion_Microscope_(5887833384).jpg",
+      "author": "National Institute of Standards and Technology (NIST)",
+      "license": "Public domain (PD-USGov-NIST)",
+      "licenseUrl": "https://commons.wikimedia.org/wiki/Template:PD-USGov-NIST",
+      "noteZh": "沿用現有照片並縮小尺寸；本站另加熱點與圖說。",
+      "noteEn": "Existing local photo retained at reduced size; markers and captions added by this site."
+    }
   },
   "ch17": {
     "id": "ch17",
@@ -1035,42 +1071,42 @@ export const REAL_PHOTOS_DATA = {
   "ch18": {
     "id": "ch18",
     "src": "assets/photos/ch18-foup-wafer-carrier.jpg",
-    "categoryZh": "透明載具參考圖",
-    "categoryEn": "Transparent Carrier Reference",
-    "titleZh": "透明載具與槽形支撐結構",
-    "titleEn": "Transparent Carrier and Slotted Supports",
-    "scaleZh": "尺寸、容量、密封與吹氣規格未確認",
-    "scaleEn": "Dimensions, Capacity, Sealing and Purge Specifications Unverified",
-    "captionZh": "畫面可見透明外盒、堆疊片狀物邊緣與兩側支撐槽。無法據此確認 FOUP 型式、300mm、25片容量、氮氣吹氣或潔淨等級；原始來源與授權資訊尚未確認。",
-    "captionEn": "A transparent enclosure, stacked disc edges and slotted supports are visible. FOUP type, 300mm size, 25-wafer capacity, nitrogen purge and cleanliness class are not established by this image. Original source and licensing information remain unverified.",
-    "matchZh": "僅作晶圓載運／隔離的概念參考；照片本身不能證明 MES Hold、OHT 搬運或自動互鎖。",
-    "matchEn": "Concept reference for wafer transport and containment; the photo does not establish MES Hold, OHT transport or automated interlocks.",
+    "categoryZh": "晶圓出貨盒照片",
+    "categoryEn": "Wafer Shipping Box Photo",
+    "titleZh": "前開式晶圓出貨盒（FOSB）",
+    "titleEn": "Front Opening Shipping Box (FOSB)",
+    "scaleZh": "來源標示可放 25 片 300mm 晶圓 · 照片無尺標",
+    "scaleEn": "Source states capacity for 25 × 300mm wafers · No visible scale",
+    "captionZh": "來源說明這是前開式出貨盒（FOSB）的正面，最多可放 25 片 300mm 晶圓，拍攝時放了 8 片不同的矽晶圓。FOSB 用於晶圓出貨運送；晶圓廠內在機台之間搬運通常使用 FOUP，兩者外觀相似但用途不同。照片不能確認氮氣吹氣、密封或潔淨等級。",
+    "captionEn": "The source describes this as the front of a front opening shipping box (FOSB) that holds up to 25 300mm wafers, with 8 different silicon wafers loaded. FOSBs are used to ship wafers; transport between tools inside a fab normally uses FOUPs, which look similar but serve a different purpose. Nitrogen purge, sealing and cleanliness class are not established by this photo.",
+    "matchZh": "作為晶圓載具的外觀參考；照片是出貨盒，不是廠內 FOUP，也不能證明 MES Hold、OHT 搬運或自動互鎖。",
+    "matchEn": "A visual reference for wafer carriers; the photo shows a shipping box, not an in-fab FOUP, and does not establish MES Hold, OHT transport or automated interlocks.",
     "metrology": {
-      "voltage": "Not verified",
-      "voltageZh": "未確認",
-      "mag": "Not verified",
-      "magZh": "未確認",
-      "fov": "Not verified",
-      "fovZh": "未確認",
-      "techniqueZh": "外觀參考；載具規格未確認",
-      "techniqueEn": "Visual Reference; Carrier Specifications Unverified"
+      "voltage": "Not reported by source",
+      "voltageZh": "來源未提供",
+      "mag": "Not reported by source",
+      "magZh": "來源未提供",
+      "fov": "Not reported by source",
+      "fovZh": "來源未提供",
+      "techniqueZh": "可見光照片（外觀參考）",
+      "techniqueEn": "Visible-light photograph (visual reference)"
     },
     "hotspots": [
       {
         "x": 48,
         "y": 35,
-        "labelZh": "上方片狀物區域",
-        "labelEn": "Upper Stacked-Disc Area",
-        "detailZh": "圖釘靠近載具內上方片狀物；不能由此辨識氣密門封或其材料與潔淨能力。",
-        "detailEn": "The pin is near the upper stacked discs; a hermetic door gasket, its material and cleanliness performance are not identifiable."
+        "labelZh": "上方晶圓",
+        "labelEn": "Upper Wafers",
+        "detailZh": "圖釘靠近盒內上方的晶圓。這是出貨盒，照片不能辨識門封材質或潔淨能力。",
+        "detailEn": "The marker is near the upper wafers in the box. This is a shipping box, and the photo does not identify the door seal material or cleanliness performance."
       },
       {
         "x": 50,
         "y": 65,
-        "labelZh": "下方片緣與槽位",
-        "labelEn": "Lower Disc Edges and Slots",
-        "detailZh": "可見下方片狀物邊緣與槽位；未顯示可確認的氮氣吹氣閥或氧化防護功能。",
-        "detailEn": "Lower disc edges and slots are visible; no identifiable nitrogen-purge valve or oxidation-protection function is shown."
+        "labelZh": "晶圓邊緣與槽位",
+        "labelEn": "Wafer Edges and Slots",
+        "detailZh": "可見晶圓邊緣與一格格的槽位；來源說明最多可放 25 片。照片未顯示氮氣吹氣閥或氧化防護功能。",
+        "detailEn": "Wafer edges and individual slots are visible; the source states the box holds up to 25 wafers. No nitrogen-purge valve or oxidation-protection function is shown."
       },
       {
         "x": 25,
@@ -1080,7 +1116,16 @@ export const REAL_PHOTOS_DATA = {
         "detailZh": "可見左側槽形支撐結構；此位置不能確認底部三點 V 溝或對接精度。",
         "detailEn": "A slotted support is visible on the left; this location does not establish bottom three-point V-grooves or docking precision."
       }
-    ]
+    ],
+    "reference": {
+      "sourceTitle": "Wikimedia Commons",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Front_opening_shipping_box_(front_side).jpg",
+      "author": "Cepheiden",
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "noteZh": "沿用現有照片並縮小尺寸；本站另加熱點與圖說。",
+      "noteEn": "Existing local photo retained at reduced size; markers and captions added by this site."
+    }
   },
   "ch19": {
     "id": "ch19",
@@ -1143,23 +1188,23 @@ export const REAL_PHOTOS_DATA = {
     "src": "assets/photos/ch20-wire-bonding-micro.jpg",
     "categoryZh": "打線參考照片",
     "categoryEn": "Wire-Bonding Reference Photo",
-    "titleZh": "金色導線打線照片（來源與規格未確認）",
-    "titleEn": "Gold-Colored Wire Bonds (Source and Specifications Unverified)",
-    "scaleZh": "照片無尺標；線徑與焊點規格未確認",
-    "scaleEn": "No visible scale; wire diameter and bond specifications unverified",
-    "captionZh": "可見左側晶片上的焊點，多條金色導線以弧形延伸到右側大面積的金色焊墊。原始來源與授權未確認；照片不能確認導線與焊墊的材質、超音波熱壓條件或放大倍率。",
-    "captionEn": "Bond points on the chip at left are visible, with several gold-colored wires arching to large gold-colored pads on the right. Original source and license are unverified; the photo does not establish wire or pad materials, thermosonic bonding conditions or magnification.",
+    "titleZh": "07R01 積體電路的球楔打線",
+    "titleEn": "Ball-Wedge Wire Bonds on a 07R01 IC",
+    "scaleZh": "照片無尺標；來源未說明線徑與焊點規格",
+    "scaleEn": "No visible scale; wire diameter and bond specifications not stated by source",
+    "captionZh": "來源說明這是 Motorola GM350 無線電收發機中 07R01 中頻放大／解調積體電路的局部，檔名標示為球楔打線（ball-wedge bonding）。可見左側晶片上的焊點，多條金色導線以弧形延伸到右側大面積的金色焊墊；來源沒有說明導線與焊墊材質、打線條件或放大倍率。",
+    "captionEn": "The source describes this as part of the 07R01 IF amplifier/demodulator IC in a Motorola GM350 transceiver, and the file name labels it ball-wedge bonding. Bond points on the chip at left are visible, with several gold-colored wires arching to large gold-colored pads on the right; the source does not state wire or pad materials, bonding conditions or magnification.",
     "matchZh": "輔助觀察打線的導線弧形與兩端焊點；左側傳統封裝與覆晶模型是教學示意，照片不是其尺寸或製程條件的證據。",
     "matchEn": "A visual reference for wire loops and the bonds at each end; the adjacent wire-bond and flip-chip models are teaching schematics, and the photo is not evidence of their dimensions or process conditions.",
     "metrology": {
-      "voltage": "Imaging conditions unverified",
-      "voltageZh": "成像條件未確認",
-      "mag": "Unverified",
-      "magZh": "未確認",
-      "fov": "Unverified",
-      "fovZh": "未確認",
-      "techniqueZh": "成像方式與設備規格未確認",
-      "techniqueEn": "Imaging method and equipment specifications unverified"
+      "voltage": "Not reported by source",
+      "voltageZh": "來源未提供",
+      "mag": "Not reported by source",
+      "magZh": "來源未提供",
+      "fov": "Not reported by source",
+      "fovZh": "來源未提供",
+      "techniqueZh": "來源未說明成像方式",
+      "techniqueEn": "Imaging method not stated by source"
     },
     "hotspots": [
       {
@@ -1175,18 +1220,27 @@ export const REAL_PHOTOS_DATA = {
         "y": 50,
         "labelZh": "導線末端與右側焊墊",
         "labelEn": "Wire end and right-side pad",
-        "detailZh": "導線延伸到右側較大的金色焊墊。照片不能確認焊點是楔形焊或其他形式，也不能確認焊墊屬於導線架或基板。",
-        "detailEn": "The wire runs to a larger gold-colored pad on the right. The photo does not establish whether the bond is a wedge bond or whether the pad belongs to a lead frame or a substrate."
+        "detailZh": "導線延伸到右側較大的金色焊墊。依來源檔名，這是球楔打線：晶片端為球形焊點，另一端為楔形焊點；照片不能確認焊墊屬於導線架或基板。",
+        "detailEn": "The wire runs to a larger gold-colored pad on the right. Per the source file name this is ball-wedge bonding, with a ball bond on the chip and a wedge bond at the other end; the photo does not establish whether the pad belongs to a lead frame or a substrate."
       },
       {
         "x": 25,
         "y": 75,
         "labelZh": "導線下方的金色區域",
         "labelEn": "Gold-colored area beneath the wires",
-        "detailZh": "可見大面積金色表面。照片不能確認是鍍金或其他金屬，左側晶片邊緣的球形焊點也無法量測尺寸。",
-        "detailEn": "A large gold-colored surface is visible. The photo does not establish whether it is gold plating or another metal, and the ball bonds at the chip edge cannot be measured."
+        "detailZh": "可見大面積金色表面。來源沒有說明是鍍金或其他金屬，左側晶片邊緣的球形焊點也無法量測尺寸。",
+        "detailEn": "A large gold-colored surface is visible. The source does not state whether it is gold plating or another metal, and the ball bonds at the chip edge cannot be measured."
       }
-    ]
+    ],
+    "reference": {
+      "sourceTitle": "Wikimedia Commons",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:07R01_(cropped_ball-wedge_bonding).jpg",
+      "author": "Mister rf",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "noteZh": "沿用現有照片並縮小尺寸；本站另加熱點與圖說。",
+      "noteEn": "Existing local photo retained at reduced size; markers and captions added by this site."
+    }
   },
   "ch21": {
     "id": "ch21",
@@ -1260,25 +1314,25 @@ export const REAL_PHOTOS_DATA = {
   "ch22": {
     "id": "ch22",
     "src": "assets/photos/ch22-reliability-leak-test.jpg",
-    "categoryZh": "實驗作業參考照片",
-    "categoryEn": "Laboratory Work Reference Photo",
-    "titleZh": "人員操作開啟圓蓋的實驗設備",
-    "titleEn": "Operator Using Laboratory Equipment with an Open Circular Lid",
-    "scaleZh": "設備型號、測試方法與靈敏度未確認",
-    "scaleEn": "Equipment model, test method and sensitivity unverified",
-    "captionZh": "可見穿白色工作衣的人員、開啟的圓蓋及圓形槽體。原始來源與授權未確認；照片不能確認氦氣檢漏、質譜分析、真空等級或偵測下限。",
-    "captionEn": "An operator in a white coat, an open circular lid and a round vessel are visible. Original source and license are unverified; helium leak testing, mass spectrometry, vacuum level and detection limits cannot be established from the image.",
-    "matchZh": "僅供觀察實驗設備操作情境；不是浴缸曲線、加速因子或失效率的量測證據。",
-    "matchEn": "A reference for a laboratory operating context, not measurement evidence for the bathtub curve, acceleration factor or failure rate.",
+    "categoryZh": "早期晶圓廠作業照片",
+    "categoryEn": "Early Fab Operation Photo",
+    "titleZh": "早期 Intel 晶圓廠的 Veeco 檢漏機",
+    "titleEn": "Veeco Leak Detector in an Early Intel Fab",
+    "scaleZh": "設備外觀參考 · 來源未說明檢漏靈敏度",
+    "scaleEn": "Equipment reference · leak sensitivity not stated by source",
+    "captionZh": "來源為 Intel Free Press 的早期照片：穿 Intel 工作服的晶圓廠技術員正在操作當時稱為 Veeco Leak Detector 的檢漏機。來源說明的做法是把半導體元件放進水中再抽真空，封裝有漏洞的元件會進水損壞，在測試時被判為不良品。這是浸水抽真空的方法，不是氦氣質譜檢漏；照片也不能確認真空等級或偵測下限。",
+    "captionEn": "The source is an early Intel Free Press photo: a fab technician in an Intel smock operates what was then called a Veeco Leak Detector. Per the source, semiconductors were placed in water and a vacuum was drawn; a leaky package let water in, destroying the circuit so it failed at testing. This is a water-immersion vacuum method, not helium mass-spectrometer leak testing; vacuum level and detection limits cannot be established from the photo.",
+    "matchZh": "呈現早期封裝檢漏的作業情境；不是浴缸曲線、加速因子或失效率的量測證據。",
+    "matchEn": "A reference for early package leak testing in practice, not measurement evidence for the bathtub curve, acceleration factor or failure rate.",
     "metrology": {
-      "voltage": "Imaging conditions unverified",
-      "voltageZh": "成像條件未確認",
-      "mag": "Unverified",
-      "magZh": "未確認",
-      "fov": "Unverified",
-      "fovZh": "未確認",
-      "techniqueZh": "成像方式與設備規格未確認",
-      "techniqueEn": "Imaging method and equipment specifications unverified"
+      "voltage": "Not reported by source",
+      "voltageZh": "來源未提供",
+      "mag": "Not reported by source",
+      "magZh": "來源未提供",
+      "fov": "Not reported by source",
+      "fovZh": "來源未提供",
+      "techniqueZh": "可見光照片（早期檔案照片）",
+      "techniqueEn": "Visible-light photograph (archival)"
     },
     "hotspots": [
       {
@@ -1286,26 +1340,35 @@ export const REAL_PHOTOS_DATA = {
         "y": 35,
         "labelZh": "背景座椅與工作區",
         "labelEn": "Background Chair and Work Area",
-        "detailZh": "圖釘位於背景座椅附近；不能標定為氦氣加壓室。",
-        "detailEn": "The pin is near a background chair; this location cannot be identified as a helium bombing chamber."
+        "detailZh": "圖釘位於背景座椅附近。來源描述的檢漏方式是浸水抽真空，這裡不是氦氣加壓室。",
+        "detailEn": "The pin is near a background chair. The source describes water-immersion vacuum testing, so this is not a helium bombing chamber."
       },
       {
         "x": 50,
         "y": 65,
         "labelZh": "槽內圓形支架",
         "labelEn": "Circular Holder in the Vessel",
-        "detailZh": "可見槽內圓形支架；內部質譜元件與分析方法未確認。",
-        "detailEn": "A circular holder is visible inside the vessel; mass-spectrometer components and the analytical method are unverified."
+        "detailZh": "可見槽內圓形支架。來源說明元件放在水中後抽真空，但沒有說明這個支架的用途。",
+        "detailEn": "A circular holder is visible inside the vessel. The source says parts were placed in water under vacuum but does not describe this holder."
       },
       {
         "x": 20,
         "y": 55,
         "labelZh": "圓槽左側邊緣",
         "labelEn": "Left Edge of the Circular Vessel",
-        "detailZh": "可見槽體邊緣與附近結構；此處無法確認旁通閥或幫浦型式。",
-        "detailEn": "The vessel edge and nearby structure are visible; a bypass valve or pump type cannot be identified here."
+        "detailZh": "可見槽體邊緣與附近結構；來源沒有說明幫浦或閥件的型式。",
+        "detailEn": "The vessel edge and nearby structure are visible; the source does not describe the pump or valve type."
       }
-    ]
+    ],
+    "reference": {
+      "sourceTitle": "Wikimedia Commons",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Leak_Detection_Machine.jpg",
+      "author": "Intel Free Press",
+      "license": "CC BY 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
+      "noteZh": "沿用現有照片並縮小尺寸；本站另加熱點與圖說。原始出處為 Intel Free Press 的 Flickr 相簿。",
+      "noteEn": "Existing local photo retained at reduced size; markers and captions added by this site. Originally published by Intel Free Press on Flickr."
+    }
   },
   "ch23": {
     "id": "ch23",
@@ -1371,23 +1434,23 @@ export const REAL_PHOTOS_DATA = {
     "src": "assets/photos/ch24-decapped-cpu-die.jpg",
     "categoryZh": "晶粒平面參考照片",
     "categoryEn": "Plan-View Die Reference Photo",
-    "titleZh": "矩形電路圖樣與周邊導線",
-    "titleEn": "Rectangular Circuit Patterns and Peripheral Wires",
-    "scaleZh": "實際尺寸、電晶體數及功能區域未確認",
-    "scaleEn": "Dimensions, transistor count and functional regions unverified",
-    "captionZh": "可見多個規則矩形圖樣、不規則線路區及周邊導線。原始來源與授權未確認；沒有電路配置圖，不能將圖釘直接標為 CPU 核心、L3 快取或去耦電容。",
-    "captionEn": "Regular rectangular patterns, irregular routing regions and peripheral wires are visible. Original source and license are unverified; without a floorplan, the pins cannot be assigned to CPU cores, L3 cache or decoupling capacitors.",
+    "titleZh": "Intel 80286 處理器晶粒",
+    "titleEn": "Intel 80286 Processor Die",
+    "scaleZh": "來源未說明實際尺寸；圖釘只標示可見區域",
+    "scaleEn": "Dimensions not stated by source; markers show visible regions only",
+    "captionZh": "來源說明這是 Intel 80286 微處理器（8 MHz 版）的晶粒照片。可見多個規則矩形圖樣、不規則線路區及周邊導線；來源沒有附電路配置圖，因此圖釘不標示功能單元。80286 是 1980 年代初期的處理器，晶片上沒有快取記憶體，這張照片不能用來說明現代 CPU 的 L3 快取或去耦電容。",
+    "captionEn": "The source describes this as a die photo of the Intel 80286 microprocessor (8 MHz version). Regular rectangular patterns, irregular routing regions and peripheral wires are visible; the source provides no floorplan, so the pins do not label functional units. The 80286 is an early-1980s processor with no on-chip cache, so this photo cannot illustrate a modern CPU's L3 cache or decoupling capacitors.",
     "matchZh": "輔助理解實體晶片具有複雜佈局；照片不能驗證 RowHammer、壓降或時序性能。",
     "matchEn": "A reference for the complexity of physical chip layouts; the photo does not validate RowHammer behavior, voltage drop or timing performance.",
     "metrology": {
-      "voltage": "Imaging conditions unverified",
-      "voltageZh": "成像條件未確認",
-      "mag": "Unverified",
-      "magZh": "未確認",
-      "fov": "Unverified",
-      "fovZh": "未確認",
-      "techniqueZh": "成像方式與設備規格未確認",
-      "techniqueEn": "Imaging method and equipment specifications unverified"
+      "voltage": "Not reported by source",
+      "voltageZh": "來源未提供",
+      "mag": "Not reported by source",
+      "magZh": "來源未提供",
+      "fov": "Not reported by source",
+      "fovZh": "來源未提供",
+      "techniqueZh": "晶粒照片（來源未說明成像條件）",
+      "techniqueEn": "Die photograph (imaging conditions not stated)"
     },
     "hotspots": [
       {
@@ -1403,18 +1466,27 @@ export const REAL_PHOTOS_DATA = {
         "y": 55,
         "labelZh": "中央規則圖樣區",
         "labelEn": "Central Regular Pattern Region",
-        "detailZh": "可見規則重複圖樣；無法確認記憶體層級、容量或單元電路。",
-        "detailEn": "Regular repeated patterns are visible; memory level, capacity and cell circuit cannot be confirmed."
+        "detailZh": "可見規則重複圖樣；來源沒有標示這是哪個功能單元，80286 晶片上也沒有快取記憶體。",
+        "detailEn": "Regular repeated patterns are visible; the source does not say which functional unit this is, and the 80286 has no on-chip cache."
       },
       {
         "x": 20,
         "y": 75,
         "labelZh": "左下矩形陣列",
         "labelEn": "Lower-Left Rectangular Array",
-        "detailZh": "可見矩形重複陣列；不能確認其為去耦電容或推論電源穩定效果。",
-        "detailEn": "A repeated rectangular array is visible; it cannot be identified as decoupling capacitors or used to infer power-stability performance."
+        "detailZh": "可見矩形重複陣列；來源沒有標示其功能，不能認定為去耦電容或推論電源穩定效果。",
+        "detailEn": "A repeated rectangular array is visible; the source does not label its function, so it cannot be identified as decoupling capacitors or used to infer power-stability performance."
       }
-    ]
+    ],
+    "reference": {
+      "sourceTitle": "Wikimedia Commons",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Intel_80286_die.JPG",
+      "author": "Pauli Rautakorpi",
+      "license": "CC BY 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0/",
+      "noteZh": "沿用現有照片並縮小尺寸；本站另加熱點與圖說。",
+      "noteEn": "Existing local photo retained at reduced size; markers and captions added by this site."
+    }
   },
   "app-glossary": {
     "id": "app-glossary",
