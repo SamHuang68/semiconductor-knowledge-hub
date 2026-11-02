@@ -100,12 +100,22 @@ for (const [chapterId, chapter] of Object.entries(chapters)) {
   for (const [html, lang] of [[chapter.contentHtml, 'zh'], [chapter.contentHtmlEn, 'en']]) {
     const out = insertSectionDiagrams(html, chapterId, lang);
     assert.equal((out.match(/class="chapter-figure"/g) || []).length - (html.match(/class="chapter-figure"/g) || []).length, specs.length, `${chapterId} ${lang} 插入圖數須等於規格數`);
-    // 收合只加 details 外框：拿掉圖與外框後須與原文相同，表格一字不少
-    const unfold = s => s.replace(/<figure class="chapter-figure">[\s\S]*?<\/figure>/g, '').replace(/<details class="table-fold"><summary>[^<]*<\/summary>([\s\S]*?<\/table><\/div>)<\/details>/g, '$1');
+    // 收合只加 details 外框：拿掉圖與外框後須與原文相同，表格與文字一字不少
+    const unfold = s => s.replace(/<figure class="chapter-figure">[\s\S]*?<\/figure>/g, '')
+      .replace(/<details class="table-fold"><summary>[^<]*<\/summary>([\s\S]*?<\/table><\/div>)<\/details>/g, '$1')
+      .replace(/<details class="section-fold"><summary>[^<]*<\/summary>([\s\S]*?)<\/details>/g, '$1');
     assert.equal(unfold(out), unfold(html), `${chapterId} ${lang} 加圖後正文須一字不變`);
-    const folds = specs.reduce((sum, s) => sum + (s.foldTables === true ? 1 : s.foldTables ? s.foldTables.length : 0), 0);
+    // 整段收合的規格不再另外收合表格
+    const folds = specs.filter(s => !s.foldSection).reduce((sum, s) => sum + (s.foldTables === true ? 1 : s.foldTables ? s.foldTables.length : 0), 0);
     assert.equal((out.match(/<details class="table-fold">/g) || []).length, folds, `${chapterId} ${lang} 收合表格數須等於規格指定數`);
     for (const m of out.matchAll(/<details class="table-fold"><summary>([^<]*)<\/summary>/g)) assert.match(m[1], lang === 'en' ? /^Show full table \(\d+ rows × \d+ columns\)$/ : /^展開完整表格（\d+ 列 × \d+ 欄）$/, `${chapterId} ${lang} 收合標籤格式`);
+    assert.equal((out.match(/<details class="section-fold">/g) || []).length, specs.filter(s => s.foldSection).length, `${chapterId} ${lang} 整段收合數須等於規格指定數`);
+    for (const m of out.matchAll(/<details class="section-fold"><summary>([^<]*)<\/summary>/g)) assert.match(m[1], lang === 'en' ? /^Show full section \(\d+ (paragraph|list|table)s?(, \d+ (paragraph|list|table)s?)*\)$/ : /^展開本段全文（\d+ (段文字|組條列|張表格)(、\d+ (段文字|組條列|張表格))*）$/, `${chapterId} ${lang} 整段收合標籤格式`);
+    // 只收合範本段落（h2 id 保留舊名：條例總覽、定量物理定律、現場異常徵兆），一般正文不得預設收合
+    if (lang === 'zh') for (const spec of specs.filter(s => s.foldSection)) {
+      const id = html.match(new RegExp(`<h2 id="([^"]+)"[^>]*>(?:(?!</h2>)[\\s\\S])*?${headingPattern(spec.headingZh)}`))?.[1] || '';
+      assert.match(id, /條例總覽|定量物理定律|定量模型|現場異常徵兆/, `${chapterId}「${spec.headingZh}」不是範本段落，不可整段收合`);
+    }
     for (const spec of specs) {
       const heading = headingPattern(lang === 'en' ? spec.headingEn : spec.headingZh);
       const at = out.search(new RegExp(`<h2\\b[^>]*>(?:(?!</h2>)[\\s\\S])*?${heading}(?:(?!</h2>)[\\s\\S])*?</h2><figure class="chapter-figure">`));

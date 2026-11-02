@@ -283,6 +283,21 @@ export function foldTables(section, which, en) {
   });
 }
 
+// 範本段落（條例總覽、定量物理定律、現場異常徵兆）整段收進「展開本段全文」：段首圖照常顯示，
+// 文字與表格一字不變，只外加 details 外框；段尾的分隔線留在外面。整段收合時不再另外收合表格，點一次就全部展開
+// （2.15.0，Sam 2026-11-03 核可「把範本段落預設收合」）
+export function foldSection(body, en) {
+  const tail = body.match(/\s*(?:<hr\b[^>]*>\s*)?$/)[0];
+  const inner = body.slice(0, body.length - tail.length);
+  if (!inner.trim()) return body;
+  const count = re => (inner.match(re) || []).length;
+  const parts = [[count(/<p\b/g), '段文字', 'paragraph'], [count(/<(?:ul|ol)\b/g), '組條列', 'list'], [count(/<table\b/g), '張表格', 'table']].filter(([n]) => n);
+  const label = en
+    ? `Show full section (${parts.map(([n, , w]) => `${n} ${w}${n > 1 ? 's' : ''}`).join(', ')})`
+    : `展開本段全文（${parts.map(([n, w]) => `${n} ${w}`).join('、')}）`;
+  return `<details class="section-fold"><summary>${label}</summary>${inner}</details>${tail}`;
+}
+
 // 以函式型 replacer 插入，避免輸出內容中的 `$&`、`$1` 被當成替換樣式（見 8D 陷阱 0028）
 export function insertSectionDiagrams(html, chapterId, lang, specs = SECTION_DIAGRAMS) {
   let next = String(html);
@@ -292,7 +307,8 @@ export function insertSectionDiagrams(html, chapterId, lang, specs = SECTION_DIA
     const heading = headingPattern(en ? spec.headingEn : spec.headingZh);
     // 限定在單一 h2 內比對，避免標題文字先出現在正文時跨段插錯位置；第二組為該段正文（到下一個 h2 為止）
     const pattern = new RegExp(`(<h2\\b[^>]*>(?:(?!</h2>)[\\s\\S])*?${heading}(?:(?!</h2>)[\\s\\S])*?</h2>)((?:(?!<h2\\b)[\\s\\S])*)`);
-    next = next.replace(pattern, (match, h2, body) => h2 + renderSectionDiagram(spec, lang) + (spec.foldTables ? foldTables(body, spec.foldTables, en) : body));
+    const fold = body => (spec.foldSection ? foldSection(body, en) : spec.foldTables ? foldTables(body, spec.foldTables, en) : body);
+    next = next.replace(pattern, (match, h2, body) => h2 + renderSectionDiagram(spec, lang) + fold(body));
   }
   return next;
 }

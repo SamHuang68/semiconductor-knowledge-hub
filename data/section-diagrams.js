@@ -94,6 +94,7 @@ export const SECTION_DIAGRAMS = [
     "headingEn": "Quantitative Governing Laws & 3D Process Windows",
     "foldTables": true,
     "type": "flow",
+    "foldSection": true,
     "captionZh": "晶粒面積、良率與成本如何推向小晶片與堆疊前篩選。",
     "captionEn": "How die area, yield and cost lead to chiplets and pre-bond KGD screening.",
     "steps": [
@@ -135,6 +136,7 @@ export const SECTION_DIAGRAMS = [
     "headingEn": "Value Chain & Foundry 2.0 Clauses",
     "foldTables": true,
     "type": "compare",
+    "foldSection": true,
     "captionZh": "Foundry 2.0 生態系六類分工與各自的演進。",
     "captionEn": "The six Foundry 2.0 ecosystem roles and how each is evolving.",
     "columns": [
@@ -200,6 +202,7 @@ export const SECTION_DIAGRAMS = [
     "headingEn": "Fab Failure Signatures & Root-Cause Diagnostics",
     "foldTables": true,
     "type": "branch",
+    "foldSection": true,
     "captionZh": "全旅程三大跨站失效徵兆與防堵對策。",
     "captionEn": "Three cross-value-chain failure signatures and their containment.",
     "root": {
@@ -313,6 +316,7 @@ export const SECTION_DIAGRAMS = [
     "headingEn": "Fab Failure Signatures & Root-Cause Diagnostics",
     "foldTables": true,
     "type": "branch",
+    "foldSection": true,
     "captionZh": "潔淨室與廠務三類異常及各自的防堵對策。",
     "captionEn": "Three cleanroom and facility excursions and the containment for each.",
     "root": {
@@ -346,6 +350,7 @@ export const SECTION_DIAGRAMS = [
     "headingEn": "Cleanroom, AMHS & Facility Overview",
     "foldTables": true,
     "type": "compare",
+    "foldSection": true,
     "captionZh": "無塵室、自動搬運與四類廠務系統的組成。",
     "captionEn": "What makes up the cleanroom, automated handling and four utility groups.",
     "columns": [
@@ -423,6 +428,7 @@ export const SECTION_DIAGRAMS = [
     "headingEn": "Facility Relationships & 3D Process Conditions",
     "foldTables": true,
     "type": "branch",
+    "foldSection": true,
     "captionZh": "三項潔淨室與廠務關係式及其製程用途。",
     "captionEn": "Three cleanroom and facility relationships and what each is used for.",
     "root": {
@@ -638,6 +644,7 @@ export const SECTION_DIAGRAMS = [
     "headingEn": "Quantitative Governing Laws & 3D Process Windows",
     "foldTables": true,
     "type": "branch",
+    "foldSection": true,
     "captionZh": "三大元件物理定律各自推動的製程演進。",
     "captionEn": "How each device physics law drove a change in process technology.",
     "root": {
@@ -671,6 +678,7 @@ export const SECTION_DIAGRAMS = [
     "headingEn": "Bandgap, Multi-Vt & Power Overview",
     "foldTables": true,
     "type": "compare",
+    "foldSection": true,
     "captionZh": "能隙、多重臨界電壓與 CMOS 功耗三類主題重點。",
     "captionEn": "Bandgap, Multi-Vt and CMOS power: key points of the three topics.",
     "columns": [
@@ -752,6 +760,7 @@ export const SECTION_DIAGRAMS = [
     "headingEn": "Fab Failure Signatures & Root-Cause Diagnostics",
     "foldTables": true,
     "type": "branch",
+    "foldSection": true,
     "captionZh": "三類元件物理失效與對應的防堵對策。",
     "captionEn": "Three device-physics failure scenarios and their countermeasures.",
     "root": {
@@ -919,6 +928,7 @@ export const SECTION_DIAGRAMS = [
     "headingEn": "Fab Failure Signatures & Root-Cause Diagnostics",
     "foldTables": true,
     "type": "branch",
+    "foldSection": true,
     "captionZh": "三類基板異常與對應的永久防呆對策",
     "captionEn": "Three substrate failure signatures and their permanent countermeasures",
     "root": {
@@ -952,6 +962,7 @@ export const SECTION_DIAGRAMS = [
     "headingEn": "Wafer Substrate Types and Applications",
     "foldTables": true,
     "type": "branch",
+    "foldSection": true,
     "captionZh": "五類晶圓基板與各自的代表應用。",
     "captionEn": "Five wafer substrate categories and their representative applications.",
     "root": {
@@ -997,6 +1008,7 @@ export const SECTION_DIAGRAMS = [
     "headingEn": "Quantitative Governing Laws & 3D Process Windows",
     "foldTables": true,
     "type": "branch",
+    "foldSection": true,
     "captionZh": "三大長晶與基板定律及其製程意義。",
     "captionEn": "Three crystal and substrate laws and what each means for the process.",
     "root": {
@@ -1132,6 +1144,7 @@ export const SECTION_DIAGRAMS = [
     "headingEn": "Fab Failure Signatures & Root-Cause Diagnostics",
     "foldTables": true,
     "type": "branch",
+    "foldSection": true,
     "captionZh": "微影三大核心異常與對應的防堵對策",
     "captionEn": "The three core lithography failure modes and their containment actions",
     "root": {
@@ -1165,6 +1178,7 @@ export const SECTION_DIAGRAMS = [
     "headingEn": "Lithography & High-NA EUV Clauses",
     "foldTables": true,
     "type": "flow",
+    "foldSection": true,
     "captionZh": "各世代微影依解析度由粗到細排列，並附主要用途。",
     "captionEn": "Lithography generations from coarse to fine resolution, with their main uses.",
     "steps": [
@@ -1206,6 +1220,7 @@ export const SECTION_DIAGRAMS = [
     "headingEn": "Quantitative Governing Laws & 3D Process Windows",
     "foldTables": true,
     "type": "branch",
+    "foldSection": true,
     "captionZh": "微影光學與統計定律各自推動的製程對策。",
     "captionEn": "How each lithography optical and stochastic law drives a process response.",
     "root": {
@@ -1369,6 +1384,7 @@ export const SECTION_DIAGRAMS = [
     "headingEn": "Fab Failure Signatures & Root-Cause Diagnostics",
     "foldTables": true,
     "type": "branch",
+    "foldSection": true,
     "captionZh": "薄膜三大核心異常與對應的永久防呆對策",
     "captionEn": "Three core thin-film failures and the countermeasure for each",
     "root": {
@@ -1402,6 +1418,7 @@ export const SECTION_DIAGRAMS = [
     "headingEn": "Thin-Film & ECD Superfill Clauses",
     "foldTables": true,
     "type": "compare",
+    "foldSection": true,
     "captionZh": "六大長膜條例依生長方式分三組，並附代表應用。",
     "captionEn": "The six film-growth clauses grouped by growth route, with key applications.",
     "columns": [
@@ -1479,6 +1496,7 @@ export const SECTION_DIAGRAMS = [
     "headingEn": "Quantitative Governing Laws & 3D Process Windows",
     "foldTables": true,
     "type": "branch",
+    "foldSection": true,
     "captionZh": "三大薄膜與電鍍定律各自決定的製程控制。",
     "captionEn": "What each thin-film and electroplating law governs in the process.",
     "root": {
@@ -1632,6 +1650,7 @@ export const SECTION_DIAGRAMS = [
     "headingEn": "Fab Failure Signatures & Root-Cause Diagnostics",
     "foldTables": true,
     "type": "branch",
+    "foldSection": true,
     "captionZh": "乾蝕刻三大致命異常與對應的永久防呆對策",
     "captionEn": "Three critical dry-etch failures and their permanent countermeasures",
     "root": {
@@ -1665,6 +1684,7 @@ export const SECTION_DIAGRAMS = [
     "headingEn": "Plasma Etch, Cryo-HAR & Bosch TSV Clauses",
     "foldTables": true,
     "type": "branch",
+    "foldSection": true,
     "captionZh": "四類蝕刻條例與各自的代表應用。",
     "captionEn": "Four etch clause categories and their representative applications.",
     "root": {
@@ -1704,6 +1724,7 @@ export const SECTION_DIAGRAMS = [
     "headingEn": "Quantitative Governing Laws & 3D Process Windows",
     "foldTables": true,
     "type": "branch",
+    "foldSection": true,
     "captionZh": "三大蝕刻定律各自對應的深孔與奈米片對策。",
     "captionEn": "How each etch law shapes deep-hole and nanosheet process control.",
     "root": {
@@ -1842,6 +1863,7 @@ export const SECTION_DIAGRAMS = [
     "headingZh": "定量物理定律與 3D 製程視窗",
     "headingEn": "Quantitative Governing Laws & 3D Process Windows",
     "type": "flow",
+    "foldSection": true,
     "captionZh": "退火技術朝高溫、極短時間演進以壓低擴散",
     "captionEn": "Annealing moved to high temperature and ultra-short time to curb diffusion.",
     "steps": [
@@ -1869,6 +1891,7 @@ export const SECTION_DIAGRAMS = [
     "headingEn": "Ion Implant & Ultra-Fast Anneal Clauses",
     "foldTables": true,
     "type": "compare",
+    "foldSection": true,
     "captionZh": "佈植與退火兩類條例的方法與代表應用。",
     "captionEn": "Implant and anneal clauses: the methods in each and their key uses.",
     "columns": [
@@ -1916,6 +1939,7 @@ export const SECTION_DIAGRAMS = [
     "headingEn": "Fab Failure Signatures & Root-Cause Diagnostics",
     "foldTables": true,
     "type": "branch",
+    "foldSection": true,
     "captionZh": "佈植與退火三大異常與對應的永久防呆對策",
     "captionEn": "Three implant and anneal failures and their permanent countermeasures",
     "root": {
@@ -2036,6 +2060,7 @@ export const SECTION_DIAGRAMS = [
     "headingZh": "定量物理定律與 3D 製程視窗",
     "headingEn": "Quantitative Governing Laws & 3D Process Windows",
     "type": "branch",
+    "foldSection": true,
     "captionZh": "混合鍵合中銅墊太凸、受控內凹或凹陷太深的結果",
     "captionEn": "Outcomes of Cu pad recess in hybrid bonding: protruding, controlled, too deep.",
     "root": {
@@ -2069,6 +2094,7 @@ export const SECTION_DIAGRAMS = [
     "headingEn": "CMP & 3D Hybrid Bonding Clauses",
     "foldTables": true,
     "type": "flow",
+    "foldSection": true,
     "captionZh": "CMP 條例從前段、中段、後段延伸到混合鍵合",
     "captionEn": "CMP clauses run from FEOL, MOL and BEOL through to hybrid bonding.",
     "steps": [
@@ -2104,6 +2130,7 @@ export const SECTION_DIAGRAMS = [
     "headingEn": "Fab Failure Signatures & Root-Cause Diagnostics",
     "foldTables": true,
     "type": "branch",
+    "foldSection": true,
     "captionZh": "CMP 三大關鍵異常與對應的永久防呆對策",
     "captionEn": "Three critical CMP failure signatures and the countermeasure for each.",
     "root": {
@@ -2200,6 +2227,7 @@ export const SECTION_DIAGRAMS = [
     "headingZh": "定量物理定律與 3D 製程視窗",
     "headingEn": "Quantitative Governing Laws & 3D Process Windows",
     "type": "branch",
+    "foldSection": true,
     "captionZh": "為何超臨界二氧化碳乾燥能避免圖案倒塌",
     "captionEn": "Why supercritical carbon dioxide drying prevents pattern collapse.",
     "root": {
@@ -2229,6 +2257,7 @@ export const SECTION_DIAGRAMS = [
     "headingEn": "Wet/Dry Clean & Supercritical CO₂ Clauses",
     "foldTables": true,
     "type": "branch",
+    "foldSection": true,
     "captionZh": "四類清洗與乾燥條例及各自的核心機制",
     "captionEn": "Four cleaning and drying clauses and the core mechanism of each.",
     "root": {
@@ -2270,6 +2299,7 @@ export const SECTION_DIAGRAMS = [
     "headingEn": "Fab Failure Signatures & Root-Cause Diagnostics",
     "foldTables": true,
     "type": "branch",
+    "foldSection": true,
     "captionZh": "濕式清洗三大致命異常與對應的永久防呆對策",
     "captionEn": "Three critical wet-clean failure mechanisms and the countermeasure for each.",
     "root": {
@@ -2396,6 +2426,7 @@ export const SECTION_DIAGRAMS = [
     "headingZh": "定量物理定律與 3D 製程視窗",
     "headingEn": "Quantitative Governing Laws & 3D Process Windows",
     "type": "branch",
+    "foldSection": true,
     "captionZh": "降低互連延遲的兩條路：降介電常數與縮短導線",
     "captionEn": "Two levers on interconnect RC delay: lower k and shorter wires.",
     "root": {
@@ -2425,6 +2456,7 @@ export const SECTION_DIAGRAMS = [
     "headingEn": "Fab Failure Signatures & Root-Cause Diagnostics",
     "foldTables": true,
     "type": "branch",
+    "foldSection": true,
     "captionZh": "後段導線三大核心異常與對應的永久防呆對策",
     "captionEn": "Three critical BEOL failure modes and the countermeasure for each.",
     "root": {
@@ -2563,6 +2595,7 @@ export const SECTION_DIAGRAMS = [
     "headingZh": "CMOS 跨層整合與背面供電條例總覽",
     "headingEn": "Cross-Tier CMOS & BSPDN Clauses",
     "type": "flow",
+    "foldSection": true,
     "captionZh": "跨層整合中，越往後段熱預算越低",
     "captionEn": "Each later integration tier works under a lower thermal budget.",
     "steps": [
@@ -2598,6 +2631,7 @@ export const SECTION_DIAGRAMS = [
     "headingEn": "Quantitative Governing Laws & 3D Process Windows",
     "foldTables": true,
     "type": "branch",
+    "foldSection": true,
     "captionZh": "三大跨層整合定律及其對整合順序的意義",
     "captionEn": "Three cross-tier integration laws and what each means for integration.",
     "root": {
@@ -2631,6 +2665,7 @@ export const SECTION_DIAGRAMS = [
     "headingEn": "Fab Failure Signatures & Root-Cause Diagnostics",
     "foldTables": true,
     "type": "branch",
+    "foldSection": true,
     "captionZh": "跨層整合三大異常與對應的永久防呆對策",
     "captionEn": "Three classic integration failures and the countermeasure for each.",
     "root": {
@@ -2814,6 +2849,7 @@ export const SECTION_DIAGRAMS = [
     "headingEn": "Quantitative Governing Laws & 3D Process Windows",
     "foldTables": true,
     "type": "branch",
+    "foldSection": true,
     "captionZh": "三大微縮定律及其對電晶體架構的意義",
     "captionEn": "Three transistor scaling laws and what each means for device design.",
     "root": {
@@ -2847,6 +2883,7 @@ export const SECTION_DIAGRAMS = [
     "headingEn": "Fab Failure Signatures & Root-Cause Diagnostics",
     "foldTables": true,
     "type": "branch",
+    "foldSection": true,
     "captionZh": "前段三大核心異常與對應的永久防呆對策",
     "captionEn": "Three critical FEOL failure modes and the countermeasure for each.",
     "root": {
@@ -2912,6 +2949,7 @@ export const SECTION_DIAGRAMS = [
     "headingEn": "Fab Failure Signatures & Root-Cause Diagnostics",
     "foldTables": true,
     "type": "branch",
+    "foldSection": true,
     "captionZh": "記憶體三大致命異常與表中列出的一項對策",
     "captionEn": "Three critical memory failure modes and one listed countermeasure for each.",
     "root": {
@@ -2945,6 +2983,7 @@ export const SECTION_DIAGRAMS = [
     "headingEn": "3D Memory & Emerging NVM Clauses",
     "foldTables": true,
     "type": "branch",
+    "foldSection": true,
     "captionZh": "DRAM 微縮演進與各類嵌入式非揮發性記憶體的儲存機制",
     "captionEn": "The DRAM scaling roadmap and the storage physics of each embedded NVM family.",
     "root": {
@@ -2990,6 +3029,7 @@ export const SECTION_DIAGRAMS = [
     "headingEn": "Quantitative Governing Laws & 3D Process Windows",
     "foldTables": true,
     "type": "branch",
+    "foldSection": true,
     "captionZh": "記憶體三大定量定律與各自的工程意義",
     "captionEn": "Three memory physics and bandwidth laws and the engineering impact of each.",
     "root": {
@@ -3137,6 +3177,7 @@ export const SECTION_DIAGRAMS = [
     "headingEn": "Fab Failure Signatures & Root-Cause Diagnostics",
     "foldTables": true,
     "type": "branch",
+    "foldSection": true,
     "captionZh": "三大 DTCO 瓶頸與表中列出的一項對策",
     "captionEn": "Three primary DTCO failure modes and one listed countermeasure for each.",
     "root": {
@@ -3170,6 +3211,7 @@ export const SECTION_DIAGRAMS = [
     "headingEn": "True Scaling Metrics & DTCO/STCO Clauses",
     "foldTables": true,
     "type": "compare",
+    "foldSection": true,
     "captionZh": "三項真實微縮標尺與兩種協同最佳化",
     "captionEn": "Three true scaling metrics and two co-optimization strategies.",
     "columns": [
@@ -3233,6 +3275,7 @@ export const SECTION_DIAGRAMS = [
     "headingEn": "Quantitative Governing Laws & 3D Process Windows",
     "foldTables": true,
     "type": "branch",
+    "foldSection": true,
     "captionZh": "製程微縮三大定律與對節點對標、小晶片拆解的意義",
     "captionEn": "Three scaling laws and what they mean for node benchmarking and chiplets.",
     "root": {
@@ -3354,6 +3397,7 @@ export const SECTION_DIAGRAMS = [
     "headingEn": "In-Line Metrology & 3D NDT Inspection Clauses",
     "foldTables": true,
     "type": "compare",
+    "foldSection": true,
     "captionZh": "從晶圓廠在線量測、檢測延伸到先進封裝無損檢測",
     "captionEn": "Fab metrology and inspection, extended to non-destructive package inspection.",
     "columns": [
@@ -3407,6 +3451,7 @@ export const SECTION_DIAGRAMS = [
     "headingEn": "Quantitative Governing Laws & 3D Process Windows",
     "foldTables": true,
     "type": "branch",
+    "foldSection": true,
     "captionZh": "量測與無損檢測三大定律及其工程意義",
     "captionEn": "Three metrology and NDT laws and the engineering impact of each.",
     "root": {
@@ -3440,6 +3485,7 @@ export const SECTION_DIAGRAMS = [
     "headingEn": "Fab Failure Signatures & Root-Cause Diagnostics",
     "foldTables": true,
     "type": "branch",
+    "foldSection": true,
     "captionZh": "量測機台三類自身異常與表中列出的對策",
     "captionEn": "Three metrology-tool failure modes and the listed countermeasures.",
     "root": {
@@ -3599,6 +3645,7 @@ export const SECTION_DIAGRAMS = [
     "headingEn": "Yield Models & EFA/PFA Failure Analysis Clauses",
     "foldTables": true,
     "type": "compare",
+    "foldSection": true,
     "captionZh": "良率模型、非破壞電性定位與破壞性物理分析對照",
     "captionEn": "Yield models, non-destructive EFA and destructive PFA side by side.",
     "columns": [
@@ -3684,6 +3731,7 @@ export const SECTION_DIAGRAMS = [
     "headingEn": "Quantitative Governing Laws & 3D Process Windows",
     "foldTables": true,
     "type": "branch",
+    "foldSection": true,
     "captionZh": "良率與故障分析三大定律及其工程意義",
     "captionEn": "Three yield and failure-analysis laws and the engineering impact of each.",
     "root": {
@@ -3717,6 +3765,7 @@ export const SECTION_DIAGRAMS = [
     "headingEn": "Fab Failure Signatures & Root-Cause Diagnostics",
     "foldTables": true,
     "type": "branch",
+    "foldSection": true,
     "captionZh": "良率與故障分析三類異常與表中列出的對策",
     "captionEn": "Three yield and FA failure modes and the listed countermeasures.",
     "root": {
@@ -3894,6 +3943,7 @@ export const SECTION_DIAGRAMS = [
     "headingEn": "Fab Failure Signatures & Root-Cause Diagnostics",
     "foldTables": true,
     "type": "branch",
+    "foldSection": true,
     "captionZh": "常見控制失效與各自的永久對策",
     "captionEn": "The classic control failures and the countermeasure for each.",
     "root": {
@@ -3927,6 +3977,7 @@ export const SECTION_DIAGRAMS = [
     "headingEn": "SPC Rules, Cpk & APC 4-Pillar Clauses",
     "foldTables": true,
     "type": "compare",
+    "foldSection": true,
     "captionZh": "SPC 判異、製程能力與 APC 四大支柱三大條例對照",
     "captionEn": "SPC rules, process capability and the four APC pillars side by side.",
     "columns": [
@@ -4016,6 +4067,7 @@ export const SECTION_DIAGRAMS = [
     "headingEn": "Quantitative Governing Laws & 3D Process Windows",
     "foldTables": true,
     "type": "branch",
+    "foldSection": true,
     "captionZh": "三大控制定律各自帶來的製程穩定效果",
     "captionEn": "What each of the three control laws does for fab stability.",
     "root": {
@@ -4191,6 +4243,7 @@ export const SECTION_DIAGRAMS = [
     "headingEn": "OCAP, MRB/PAT, 8D & PCN Governance Clauses",
     "foldTables": true,
     "type": "branch",
+    "foldSection": true,
     "captionZh": "異常與變更管理四大條例各自的核心準則",
     "captionEn": "The four excursion and change clauses and the core rule of each.",
     "root": {
@@ -4232,6 +4285,7 @@ export const SECTION_DIAGRAMS = [
     "headingEn": "Quantitative Governing Laws & 3D Process Windows",
     "foldTables": true,
     "type": "branch",
+    "foldSection": true,
     "captionZh": "三大統計定律在異常防堵與零缺陷篩選中的作用",
     "captionEn": "How three statistical laws drive containment and zero-defect screening.",
     "root": {
@@ -4265,6 +4319,7 @@ export const SECTION_DIAGRAMS = [
     "headingEn": "Fab Failure Signatures & Root-Cause Diagnostics",
     "foldTables": true,
     "type": "branch",
+    "foldSection": true,
     "captionZh": "三類異常防堵與變更失效及對應對策",
     "captionEn": "Three containment and change-control failures and their countermeasures.",
     "root": {
@@ -4432,6 +4487,7 @@ export const SECTION_DIAGRAMS = [
     "headingEn": "Fab Failure Signatures & Root-Cause Diagnostics",
     "foldTables": true,
     "type": "branch",
+    "foldSection": true,
     "captionZh": "晶圓針測的異常來源及其造成的後果",
     "captionEn": "The probe test failure modes and what each one causes.",
     "root": {
@@ -4465,6 +4521,7 @@ export const SECTION_DIAGRAMS = [
     "headingEn": "Quantitative Governing Laws & 3D Process Windows",
     "foldTables": true,
     "type": "branch",
+    "foldSection": true,
     "captionZh": "晶圓測試三大定量定律與對應的工程意義",
     "captionEn": "Three wafer-test laws and what each means for probing and KGD.",
     "root": {
@@ -4612,6 +4669,7 @@ export const SECTION_DIAGRAMS = [
     "headingEn": "Fab Failure Signatures & Root-Cause Diagnostics",
     "foldTables": true,
     "type": "branch",
+    "foldSection": true,
     "captionZh": "傳統封裝的失效來源及其造成的結果",
     "captionEn": "Traditional packaging failure modes and what each one leads to.",
     "root": {
@@ -4645,6 +4703,7 @@ export const SECTION_DIAGRAMS = [
     "headingEn": "Quantitative Governing Laws & 3D Process Windows",
     "foldTables": true,
     "type": "branch",
+    "foldSection": true,
     "captionZh": "封裝三大熱機械與流體定律各自推動的設計改變",
     "captionEn": "How three thermomechanical and fluid laws reshaped package design.",
     "root": {
@@ -4898,6 +4957,7 @@ export const SECTION_DIAGRAMS = [
     "headingEn": "2.5D, Fan-Out & 3D/3.5D Packaging Clauses",
     "foldTables": true,
     "type": "compare",
+    "foldSection": true,
     "captionZh": "2.5D 與 3D 封裝三大挑戰的瓶頸與對策",
     "captionEn": "Three 2.5D/3D packaging challenges: bottleneck and countermeasure.",
     "columns": [
@@ -4963,6 +5023,7 @@ export const SECTION_DIAGRAMS = [
     "headingEn": "Quantitative Governing Laws & 3D Process Windows",
     "foldTables": true,
     "type": "branch",
+    "foldSection": true,
     "captionZh": "三大異質整合定律各自推動的封裝演進",
     "captionEn": "How three heterogeneous-integration laws drive packaging changes.",
     "root": {
@@ -4996,6 +5057,7 @@ export const SECTION_DIAGRAMS = [
     "headingEn": "Fab Failure Signatures & Root-Cause Diagnostics",
     "foldTables": true,
     "type": "branch",
+    "foldSection": true,
     "captionZh": "先進封裝三大核心異常與對應的防呆對策",
     "captionEn": "Three critical advanced-packaging failures and their countermeasures.",
     "root": {
@@ -5149,6 +5211,7 @@ export const SECTION_DIAGRAMS = [
     "headingEn": "JEDEC & AEC-Q100 Qualification Topics",
     "foldTables": true,
     "type": "branch",
+    "foldSection": true,
     "captionZh": "五類可靠度驗證主題與各自攔截的失效模式",
     "captionEn": "Five qualification topics and the failure modes each one targets.",
     "root": {
@@ -5196,6 +5259,7 @@ export const SECTION_DIAGRAMS = [
     "headingEn": "Quantitative Governing Laws & 3D Process Windows",
     "foldTables": true,
     "type": "branch",
+    "foldSection": true,
     "captionZh": "三條可靠度定律與各自的用途或限制",
     "captionEn": "Three reliability laws and the use or limit of each.",
     "root": {
@@ -5231,6 +5295,7 @@ export const SECTION_DIAGRAMS = [
     "headingEn": "Fab Failure Signatures & Root-Cause Diagnostics",
     "foldTables": true,
     "type": "branch",
+    "foldSection": true,
     "captionZh": "早期缺陷、老化與靜電損傷的異常與防堵對策",
     "captionEn": "Early-defect, aging and ESD failures and the countermeasure for each.",
     "root": {
@@ -5384,6 +5449,7 @@ export const SECTION_DIAGRAMS = [
     "headingEn": "Fab Failure Signatures & Root-Cause Diagnostics",
     "foldTables": true,
     "type": "branch",
+    "foldSection": true,
     "captionZh": "工廠系統異常與對應的防堵對策",
     "captionEn": "Fab-system failure modes and their containment countermeasures",
     "root": {
@@ -5417,6 +5483,7 @@ export const SECTION_DIAGRAMS = [
     "headingEn": "Smart Fab CIM & Related SEMI Standards",
     "foldTables": true,
     "type": "branch",
+    "foldSection": true,
     "captionZh": "CIM 各系統與 SEMI 標準各自負責的工作",
     "captionEn": "Each CIM system and SEMI standard, and what it is responsible for.",
     "root": {
@@ -5458,6 +5525,7 @@ export const SECTION_DIAGRAMS = [
     "headingEn": "Quantitative Models, Assumptions & Conditions",
     "foldTables": true,
     "type": "compare",
+    "foldSection": true,
     "captionZh": "三條營運定律的核心關係、假設與工程意義",
     "captionEn": "Three operations-research laws: core relation, assumptions and implication.",
     "columns": [
@@ -5687,6 +5755,7 @@ export const SECTION_DIAGRAMS = [
     "headingEn": "Fab Failure Signatures & Root-Cause Diagnostics",
     "foldTables": true,
     "type": "branch",
+    "foldSection": true,
     "captionZh": "製程物理與軟韌體失配的異常與防堵對策",
     "captionEn": "Silicon-firmware mismatch failures and their countermeasures",
     "root": {
@@ -5720,6 +5789,7 @@ export const SECTION_DIAGRAMS = [
     "headingEn": "Hardware–Firmware Design Topics",
     "foldTables": true,
     "type": "compare",
+    "foldSection": true,
     "captionZh": "六個軟硬體協同設計主題，依記憶體、電壓時序與堆疊熱分組",
     "captionEn": "Six hardware–firmware topics grouped by memory, voltage/timing and stack heat.",
     "columns": [
@@ -5785,6 +5855,7 @@ export const SECTION_DIAGRAMS = [
     "headingEn": "Quantitative Models, Assumptions & Conditions",
     "foldTables": true,
     "type": "compare",
+    "foldSection": true,
     "captionZh": "壓降、功耗熱與 ECC 三種模型的關係、假設與意義",
     "captionEn": "Droop, power/thermal and ECC models: core relation, assumptions, implication.",
     "columns": [
