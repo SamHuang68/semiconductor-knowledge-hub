@@ -55,10 +55,19 @@ async function verify() {
           if (ids.includes(m[1])) fail(`h2#${m[1]} 重複`);
           ids.push(m[1]);
         }
+        // TeX 反斜線防呆：寫入 JSON 字串時只打一個反斜線，`\text`、`\beta` 會變成 Tab、Backspace，
+        // `\lambda` 等不合法跳脫則被吞掉反斜線（2.13.2 修正）。正文字串請寫成 `\\text`。
+        const ctrl = html.match(/[\x00-\x08\x0b\x0c\x0e-\x1f]|\t|\r(?!\n)/);
+        if (ctrl) fail(`含控制字元 U+${ctrl[0].charCodeAt(0).toString(16).padStart(4, '0')}（位置 ${ctrl.index}，多為 TeX 反斜線被當成跳脫字元）`);
+        // 數學式不跨標籤，依標籤切段後段內依序配對 $（式內可能有 `$>40\%$` 這類原始 < >）
+        for (const m of html.split(/<[a-zA-Z/!][^>]*>/).flatMap(text => [...text.matchAll(/\$([^$]+)\$/g)])) {
+          const bare = m[1].match(/(?<![\\a-zA-Z{])(alpha|beta|gamma|delta|Delta|epsilon|zeta|eta|theta|kappa|lambda|mu|nu|rho|sigma|tau|phi|omega|propto|approx|ge|le)(?![a-zA-Z])/);
+          if (bare) fail(`數學式缺反斜線：${bare[1]}（${m[0].slice(0, 60)}）`);
+        }
       }
     });
     errors += structureIssues;
-    if (!structureIssues) console.log('[PASS] 28 章中英正文結構完整（無表格內標題、無錨點殘留、分隔線獨立成行）');
+    if (!structureIssues) console.log('[PASS] 28 章中英正文結構完整（無表格內標題、無錨點殘留、分隔線獨立成行、TeX 反斜線完整）');
 
     const { FAB_FLOW_NODES } = await import(`file://${ROOT_DIR}/data/fab-flow.js`);
     console.log(`[PASS] FAB_FLOW_NODES 成功載入，共有 ${FAB_FLOW_NODES.length} 個節點`);
