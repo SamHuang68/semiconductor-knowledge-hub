@@ -92,6 +92,7 @@ export const SECTION_DIAGRAMS = [
     "chapterId": "ch00",
     "headingZh": "定量物理定律與 3D 製程視窗",
     "headingEn": "Quantitative Governing Laws & 3D Process Windows",
+    "foldTables": true,
     "type": "flow",
     "captionZh": "晶粒面積、良率與成本如何推向小晶片與堆疊前篩選。",
     "captionEn": "How die area, yield and cost lead to chiplets and pre-bond KGD screening.",
@@ -125,6 +126,104 @@ export const SECTION_DIAGRAMS = [
         "en": "Pre-bond KGD screening",
         "noteZh": "單次鍵合良率也須極高",
         "noteEn": "Per-tier bonding yield must be very high"
+      }
+    ]
+  },
+  {
+    "chapterId": "ch00",
+    "headingZh": "價值鏈與 Foundry 2.0 條例總覽",
+    "headingEn": "Value Chain & Foundry 2.0 Clauses",
+    "foldTables": true,
+    "type": "compare",
+    "captionZh": "Foundry 2.0 生態系六類分工與各自的演進。",
+    "captionEn": "The six Foundry 2.0 ecosystem roles and how each is evolving.",
+    "columns": [
+      {
+        "titleZh": "設計與矽智財",
+        "titleEn": "Design & IP",
+        "items": [
+          {
+            "zh": "EDA 與矽智財供應商",
+            "en": "EDA & silicon IP vendors",
+            "noteZh": "導入 AI 輔助佈局",
+            "noteEn": "AI-driven physical design"
+          },
+          {
+            "zh": "無廠 IC 設計與雲端業者",
+            "en": "Fabless design houses & hyperscalers",
+            "noteZh": "轉向多晶粒拆分",
+            "noteEn": "Shift to chiplet disaggregation"
+          }
+        ]
+      },
+      {
+        "titleZh": "晶圓製造",
+        "titleEn": "Wafer fabrication",
+        "items": [
+          {
+            "zh": "純晶圓代工整合平台",
+            "en": "Pure-play foundry platforms",
+            "noteZh": "前段與先進封裝在廠內合一",
+            "noteEn": "Front end and packaging converge in-house"
+          },
+          {
+            "zh": "整合元件製造廠 IDM",
+            "en": "Integrated device manufacturers (IDM)",
+            "noteZh": "記憶體廠主導 HBM 堆疊",
+            "noteEn": "Memory IDMs lead HBM stacking"
+          }
+        ]
+      },
+      {
+        "titleZh": "封測與供應鏈",
+        "titleEn": "Assembly, test & supply chain",
+        "items": [
+          {
+            "zh": "委外封裝測試廠 OSAT",
+            "en": "Outsourced assembly & test (OSAT)",
+            "noteZh": "升級至中道製程",
+            "noteEn": "Moves into middle-end processing"
+          },
+          {
+            "zh": "設備、材料與特氣供應商",
+            "en": "Equipment & materials suppliers",
+            "noteZh": "晶圓廠與封裝廠的物理基石",
+            "noteEn": "Physical foundation of fabs and packaging"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "chapterId": "ch00",
+    "headingZh": "現場異常徵兆與跨站根因排查",
+    "headingEn": "Fab Failure Signatures & Root-Cause Diagnostics",
+    "foldTables": true,
+    "type": "branch",
+    "captionZh": "全旅程三大跨站失效徵兆與防堵對策。",
+    "captionEn": "Three cross-value-chain failure signatures and their containment.",
+    "root": {
+      "zh": "全旅程跨站失效",
+      "en": "Cross-value-chain failures"
+    },
+    "branches": [
+      {
+        "zh": "良率驟跌與光罩拼接斷路",
+        "en": "Yield crash and stitch-line opens",
+        "leafZh": "拆解為小晶片，拼接區重疊曝光",
+        "leafEn": "Chiplet partitioning; stitch overlap zones"
+      },
+      {
+        "zh": "漏網壞晶使堆疊模組報廢",
+        "en": "KGD escape scraps whole module",
+        "leafZh": "PAT 離群篩選與通道備援修復",
+        "leafEn": "PAT outlier screening and lane repair"
+      },
+      {
+        "zh": "跨廠交接焊墊氧化與受潮",
+        "en": "Handover pad oxidation, moisture",
+        "leafZh": "充氮 FOUP 運送並電漿預清洗",
+        "leafEn": "Nitrogen-purged FOUPs, plasma pre-clean"
       }
     ]
   },
@@ -212,6 +311,7 @@ export const SECTION_DIAGRAMS = [
     "chapterId": "ch01",
     "headingZh": "現場異常徵兆與跨站根因排查",
     "headingEn": "Fab Failure Signatures & Root-Cause Diagnostics",
+    "foldTables": true,
     "type": "branch",
     "captionZh": "潔淨室與廠務三類異常及各自的防堵對策。",
     "captionEn": "Three cleanroom and facility excursions and the containment for each.",
@@ -237,6 +337,118 @@ export const SECTION_DIAGRAMS = [
         "en": "Sub-fab pump micro-vibration",
         "leafZh": "獨立防振基座加磁浮減振",
         "leafEn": "Isolated pedestals plus magnetic levitation"
+      }
+    ]
+  },
+  {
+    "chapterId": "ch01",
+    "headingZh": "無塵室、AMHS 與廠務概覽",
+    "headingEn": "Cleanroom, AMHS & Facility Overview",
+    "foldTables": true,
+    "type": "compare",
+    "captionZh": "無塵室、自動搬運與四類廠務系統的組成。",
+    "captionEn": "What makes up the cleanroom, automated handling and four utility groups.",
+    "columns": [
+      {
+        "titleZh": "無塵室與迷你環境",
+        "titleEn": "Cleanroom & mini-environments",
+        "items": [
+          {
+            "zh": "FFU 加 ULPA 濾網",
+            "en": "FFUs with ULPA filters"
+          },
+          {
+            "zh": "垂直單向層流壓向高架地板",
+            "en": "Vertical laminar downflow to raised floor"
+          },
+          {
+            "zh": "混合鍵合區微粒可致局部未鍵合",
+            "en": "Hybrid-bond particles can leave unbonded areas"
+          },
+          {
+            "zh": "FOUP 與 EFEM 內部更潔淨",
+            "en": "FOUP and EFEM interiors kept cleaner"
+          }
+        ]
+      },
+      {
+        "titleZh": "自動物料搬運 AMHS",
+        "titleEn": "Automated material handling (AMHS)",
+        "items": [
+          {
+            "zh": "空中單軌天車 OHT",
+            "en": "Overhead hoist transport (OHT)"
+          },
+          {
+            "zh": "跨樓層升降機與充氮倉儲",
+            "en": "Lifters and nitrogen-purge stockers"
+          },
+          {
+            "zh": "軌道側緩衝架與機台裝卸埠",
+            "en": "Overhead buffers and tool load ports"
+          },
+          {
+            "zh": "全程零人工接觸",
+            "en": "Zero human handling"
+          }
+        ]
+      },
+      {
+        "titleZh": "四類廠務系統",
+        "titleEn": "Four groups of fab utilities",
+        "items": [
+          {
+            "zh": "超純水",
+            "en": "Ultrapure water (UPW)"
+          },
+          {
+            "zh": "氣體與化學品、研磨液供應",
+            "en": "Gases plus chemical and slurry delivery"
+          },
+          {
+            "zh": "雙迴路供電與不斷電",
+            "en": "Dual-feed power with UPS"
+          },
+          {
+            "zh": "機台端局部尾氣處理",
+            "en": "Point-of-use local scrubbers"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "chapterId": "ch01",
+    "headingZh": "廠務關係式與 3D 製程條件",
+    "headingEn": "Facility Relationships & 3D Process Conditions",
+    "foldTables": true,
+    "type": "branch",
+    "captionZh": "三項潔淨室與廠務關係式及其製程用途。",
+    "captionEn": "Three cleanroom and facility relationships and what each is used for.",
+    "root": {
+      "zh": "潔淨室與廠務關係式",
+      "en": "Cleanroom & facility relationships",
+      "noteZh": "須依適用條件解讀",
+      "noteEn": "Read within applicable conditions"
+    },
+    "branches": [
+      {
+        "zh": "ISO 微粒濃度冪次定律",
+        "en": "ISO particle power law",
+        "leafZh": "界面微粒可能造成未鍵合",
+        "leafEn": "Interface particles may leave unbonded areas"
+      },
+      {
+        "zh": "超純水理論電阻率極限",
+        "en": "UPW intrinsic resistivity limit",
+        "leafZh": "防止浸潤微影擾動與清洗水痕",
+        "leafEn": "Prevents immersion aberration and watermarks"
+      },
+      {
+        "zh": "FOUP 吹掃與等待時間",
+        "en": "FOUP purge and queue time",
+        "leafZh": "降低水氣與氧氣暴露",
+        "leafEn": "Lowers moisture and oxygen exposure"
       }
     ]
   },
@@ -424,6 +636,7 @@ export const SECTION_DIAGRAMS = [
     "chapterId": "ch02",
     "headingZh": "定量物理定律與 3D 製程視窗",
     "headingEn": "Quantitative Governing Laws & 3D Process Windows",
+    "foldTables": true,
     "type": "branch",
     "captionZh": "三大元件物理定律各自推動的製程演進。",
     "captionEn": "How each device physics law drove a change in process technology.",
@@ -449,6 +662,120 @@ export const SECTION_DIAGRAMS = [
         "en": "Quantum tunneling gate leakage",
         "leafZh": "改用高介電材料",
         "leafEn": "Switch to high-k dielectric"
+      }
+    ]
+  },
+  {
+    "chapterId": "ch02",
+    "headingZh": "半導體能隙、Multi-Vt 與功耗概覽",
+    "headingEn": "Bandgap, Multi-Vt & Power Overview",
+    "foldTables": true,
+    "type": "compare",
+    "captionZh": "能隙、多重臨界電壓與 CMOS 功耗三類主題重點。",
+    "captionEn": "Bandgap, Multi-Vt and CMOS power: key points of the three topics.",
+    "columns": [
+      {
+        "titleZh": "能隙與載子遷移率",
+        "titleEn": "Bandgap & carrier mobility",
+        "items": [
+          {
+            "zh": "能隙決定耐溫與耐壓極限",
+            "en": "Bandgap sets heat and voltage limits"
+          },
+          {
+            "zh": "遷移率決定導通速度",
+            "en": "Mobility sets conduction speed"
+          },
+          {
+            "zh": "矽主導主流數位 CMOS",
+            "en": "Silicon powers mainstream CMOS"
+          },
+          {
+            "zh": "SiC、GaN 用於電源轉換",
+            "en": "SiC and GaN for power conversion"
+          }
+        ]
+      },
+      {
+        "titleZh": "多重臨界電壓與次臨界擺幅",
+        "titleEn": "Multi-Vt & subthreshold swing",
+        "items": [
+          {
+            "zh": "ULVT、LVT、SVT、HVT",
+            "en": "ULVT, LVT, SVT, HVT flavors"
+          },
+          {
+            "zh": "擺幅有室溫熱離子發射極限",
+            "en": "Swing has a room-temperature thermionic limit"
+          },
+          {
+            "zh": "降低 Vt 提速，但漏電暴增",
+            "en": "Lower Vt: faster, but leakage soars"
+          },
+          {
+            "zh": "改用功函數金屬與偶極調 Vt",
+            "en": "Tune Vt with work-function metal and dipoles"
+          }
+        ]
+      },
+      {
+        "titleZh": "CMOS 功耗分量與對策",
+        "titleEn": "CMOS power terms & countermeasures",
+        "items": [
+          {
+            "zh": "動態切換功耗",
+            "en": "Dynamic switching power",
+            "noteZh": "與電壓平方成正比",
+            "noteEn": "Scales with supply voltage squared"
+          },
+          {
+            "zh": "瞬間短路功耗",
+            "en": "Short-circuit power"
+          },
+          {
+            "zh": "靜態漏電功耗",
+            "en": "Static leakage power",
+            "noteZh": "次臨界、閘極與接面漏電",
+            "noteEn": "Subthreshold, gate and junction leakage"
+          },
+          {
+            "zh": "HKMG 與 GAA 壓制漏電",
+            "en": "HKMG and GAA suppress leakage"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "chapterId": "ch02",
+    "headingZh": "現場異常徵兆與跨站根因排查",
+    "headingEn": "Fab Failure Signatures & Root-Cause Diagnostics",
+    "foldTables": true,
+    "type": "branch",
+    "captionZh": "三類元件物理失效與對應的防堵對策。",
+    "captionEn": "Three device-physics failure scenarios and their countermeasures.",
+    "root": {
+      "zh": "元件物理三類失效",
+      "en": "Device-physics failure scenarios"
+    },
+    "branches": [
+      {
+        "zh": "DIBL 與關態漏電失控",
+        "en": "DIBL and off-state leakage spikes",
+        "leafZh": "轉向 FinFET 或 GAA",
+        "leafEn": "Move to FinFET or GAA nanosheets"
+      },
+      {
+        "zh": "SRAM 失配讀寫失效",
+        "en": "SRAM bitcell flips from mismatch",
+        "leafZh": "無摻雜通道與細晶粒功函數金屬",
+        "leafEn": "Undoped channels, fine-grain metal gates"
+      },
+      {
+        "zh": "GIDL 與寄生閂鎖燒毀",
+        "en": "GIDL and latch-up burnout",
+        "leafZh": "緩解邊緣電場並加保護環",
+        "leafEn": "Relax peak fields, add guard rings"
       }
     ]
   },
@@ -590,6 +917,7 @@ export const SECTION_DIAGRAMS = [
     "chapterId": "ch03",
     "headingZh": "現場異常徵兆與跨站根因排查",
     "headingEn": "Fab Failure Signatures & Root-Cause Diagnostics",
+    "foldTables": true,
     "type": "branch",
     "captionZh": "三類基板異常與對應的永久防呆對策",
     "captionEn": "Three substrate failure signatures and their permanent countermeasures",
@@ -615,6 +943,84 @@ export const SECTION_DIAGRAMS = [
         "en": "Backgrind subsurface micro-cracks",
         "leafZh": "應力釋放拋光並貼附載片",
         "leafEn": "Stress-relief CMP on a temporary carrier"
+      }
+    ]
+  },
+  {
+    "chapterId": "ch03",
+    "headingZh": "晶圓基板種類與應用概覽",
+    "headingEn": "Wafer Substrate Types and Applications",
+    "foldTables": true,
+    "type": "branch",
+    "captionZh": "五類晶圓基板與各自的代表應用。",
+    "captionEn": "Five wafer substrate categories and their representative applications.",
+    "root": {
+      "zh": "晶圓基板種類",
+      "en": "Wafer substrate types"
+    },
+    "branches": [
+      {
+        "zh": "柴氏單晶矽與磊晶矽",
+        "en": "CZ/MCZ bulk & epitaxial Si",
+        "leafZh": "先進邏輯與記憶體主力基板",
+        "leafEn": "Main substrate for advanced logic and memory"
+      },
+      {
+        "zh": "浮區法高阻值矽",
+        "en": "Float-zone high-resistivity Si",
+        "leafZh": "高壓功率元件與毫米波射頻",
+        "leafEn": "High-voltage power devices and mmWave RF"
+      },
+      {
+        "zh": "絕緣層上覆矽 SOI",
+        "en": "Silicon-on-insulator (SOI)",
+        "leafZh": "低功耗晶片、射頻開關與矽光子",
+        "leafEn": "Low-power chips, RF switches and photonics"
+      },
+      {
+        "zh": "寬能隙與三五族基板",
+        "en": "Wide-bandgap & III-V substrates",
+        "leafZh": "電動車逆變器、氮化鎵電源、光通訊",
+        "leafEn": "EV inverters, GaN power, optical links"
+      },
+      {
+        "zh": "堆疊與背面供電載片",
+        "en": "Stacking & backside-power carriers",
+        "leafZh": "HBM、CoWoS 與背面供電",
+        "leafEn": "HBM stacking, CoWoS and backside power"
+      }
+    ]
+  },
+  {
+    "chapterId": "ch03",
+    "headingZh": "定量物理定律與 3D 製程視窗",
+    "headingEn": "Quantitative Governing Laws & 3D Process Windows",
+    "foldTables": true,
+    "type": "branch",
+    "captionZh": "三大長晶與基板定律及其製程意義。",
+    "captionEn": "Three crystal and substrate laws and what each means for the process.",
+    "root": {
+      "zh": "長晶與基板定量定律",
+      "en": "Crystal & substrate laws"
+    },
+    "branches": [
+      {
+        "zh": "Voronkov 準則",
+        "en": "Voronkov point-defect criterion",
+        "leafZh": "評估原生點缺陷風險",
+        "leafEn": "Assesses grown-in point-defect risk"
+      },
+      {
+        "zh": "Scheil 摻質偏析",
+        "en": "Scheil dopant segregation",
+        "leafZh": "摻硼 P 型晶圓成邏輯主流",
+        "leafEn": "Boron-doped P-type wafers dominate logic"
+      },
+      {
+        "zh": "SFQR 與薄化 TTV",
+        "en": "SFQR & thinning TTV",
+        "leafZh": "超規致 EUV 失焦、鍵合氣泡",
+        "leafEn": "Excess causes EUV defocus and bonding voids"
       }
     ]
   },
@@ -724,6 +1130,7 @@ export const SECTION_DIAGRAMS = [
     "chapterId": "ch04",
     "headingZh": "現場異常徵兆與跨站根因排查",
     "headingEn": "Fab Failure Signatures & Root-Cause Diagnostics",
+    "foldTables": true,
     "type": "branch",
     "captionZh": "微影三大核心異常與對應的防堵對策",
     "captionEn": "The three core lithography failure modes and their containment actions",
@@ -749,6 +1156,80 @@ export const SECTION_DIAGRAMS = [
         "en": "High-order overlay out of spec",
         "leafZh": "逐曝光區修正，超規重工",
         "leafEn": "Per-exposure correction; rework if over spec"
+      }
+    ]
+  },
+  {
+    "chapterId": "ch04",
+    "headingZh": "微影曝光世代與 High-NA 條例總覽",
+    "headingEn": "Lithography & High-NA EUV Clauses",
+    "foldTables": true,
+    "type": "flow",
+    "captionZh": "各世代微影依解析度由粗到細排列，並附主要用途。",
+    "captionEn": "Lithography generations from coarse to fine resolution, with their main uses.",
+    "steps": [
+      {
+        "zh": "紫外光 g／i-line",
+        "en": "UV g-line / i-line",
+        "noteZh": "焊墊、重佈線層與凸塊",
+        "noteEn": "Pads, packaging RDL and micro-bumps"
+      },
+      {
+        "zh": "深紫外光 KrF／ArF",
+        "en": "DUV KrF / ArF",
+        "noteZh": "上層金屬線與佈植遮罩",
+        "noteEn": "Upper BEOL and ion implant masks"
+      },
+      {
+        "zh": "浸潤式與多重圖形化",
+        "en": "ArF immersion + multi-patterning",
+        "noteZh": "DRAM 與 FinFET 鰭片",
+        "noteEn": "DRAM and FinFET fins"
+      },
+      {
+        "zh": "標準 NA 極紫外光",
+        "en": "Low-NA EUV",
+        "noteZh": "減少多重曝光光罩層數",
+        "noteEn": "Fewer multi-patterning mask layers"
+      },
+      {
+        "zh": "High-NA 極紫外光",
+        "en": "High-NA EUV",
+        "noteZh": "單次曝光取代雙重曝光",
+        "noteEn": "Single exposure replaces double patterning"
+      }
+    ]
+  },
+  {
+    "chapterId": "ch04",
+    "headingZh": "定量物理定律與 3D 製程視窗",
+    "headingEn": "Quantitative Governing Laws & 3D Process Windows",
+    "foldTables": true,
+    "type": "branch",
+    "captionZh": "微影光學與統計定律各自推動的製程對策。",
+    "captionEn": "How each lithography optical and stochastic law drives a process response.",
+    "root": {
+      "zh": "微影光學與統計定律",
+      "en": "Litho optical & stochastic laws"
+    },
+    "branches": [
+      {
+        "zh": "瑞利解析度與焦深",
+        "en": "Rayleigh resolution & DOF",
+        "leafZh": "需極平坦 CMP 與超薄光阻",
+        "leafEn": "Demands atomic-flat CMP and ultra-thin resist"
+      },
+      {
+        "zh": "EUV 光子散粒雜訊",
+        "en": "EUV photon shot noise",
+        "leafZh": "導入金屬氧化物光阻",
+        "leafEn": "Drives metal oxide resist (MOR) adoption"
+      },
+      {
+        "zh": "邊緣放置誤差 EPE",
+        "en": "Edge placement error (EPE)",
+        "leafZh": "催生自對準接觸孔與通孔",
+        "leafEn": "Drives self-aligned contacts and vias"
       }
     ]
   },
@@ -886,6 +1367,7 @@ export const SECTION_DIAGRAMS = [
     "chapterId": "ch05",
     "headingZh": "現場異常徵兆與跨站根因排查",
     "headingEn": "Fab Failure Signatures & Root-Cause Diagnostics",
+    "foldTables": true,
     "type": "branch",
     "captionZh": "薄膜三大核心異常與對應的永久防呆對策",
     "captionEn": "Three core thin-film failures and the countermeasure for each",
@@ -911,6 +1393,116 @@ export const SECTION_DIAGRAMS = [
         "en": "Electroplated copper bottom voids",
         "leafZh": "釕／鈷襯墊並即時補液",
         "leafEn": "Ru/Co liners and real-time additive dosing"
+      }
+    ]
+  },
+  {
+    "chapterId": "ch05",
+    "headingZh": "六大薄膜沉積與電鍍超填條例總覽",
+    "headingEn": "Thin-Film & ECD Superfill Clauses",
+    "foldTables": true,
+    "type": "compare",
+    "captionZh": "六大長膜條例依生長方式分三組，並附代表應用。",
+    "captionEn": "The six film-growth clauses grouped by growth route, with key applications.",
+    "columns": [
+      {
+        "titleZh": "從矽晶長出",
+        "titleEn": "Grown from the Si crystal",
+        "items": [
+          {
+            "keyZh": "熱氧化",
+            "keyEn": "Thermal oxide",
+            "zh": "消耗矽基板自體生成",
+            "en": "Grows by consuming the Si substrate",
+            "noteZh": "I/O 閘極與溝槽內襯氧化層",
+            "noteEn": "I/O gate oxides and STI liner oxide"
+          },
+          {
+            "keyZh": "磊晶",
+            "keyEn": "Epitaxy",
+            "zh": "延續單晶晶格，可選擇性生長",
+            "en": "Extends the crystal lattice, can be selective",
+            "noteZh": "源汲極應變磊晶與超晶格",
+            "noteEn": "Strained S/D epi and Si/SiGe superlattices"
+          }
+        ]
+      },
+      {
+        "titleZh": "氣相沉積",
+        "titleEn": "Vapor-phase deposition",
+        "items": [
+          {
+            "keyZh": "CVD 家族",
+            "keyEn": "CVD family",
+            "zh": "低壓保形、電漿低溫、流動填孔",
+            "en": "LPCVD conformal, PECVD low-temp, FCVD gap-fill",
+            "noteZh": "ONO 堆疊與溝槽填充",
+            "noteEn": "ONO stacks and STI gap-fill"
+          },
+          {
+            "keyZh": "ALD",
+            "keyEn": "ALD",
+            "zh": "自限性循環，原子級保形覆蓋",
+            "en": "Self-limiting cycles, atomic-level conformality",
+            "noteZh": "高介電閘極、GAA 與電容",
+            "noteEn": "High-k gates, GAA and capacitors"
+          },
+          {
+            "keyZh": "PVD",
+            "keyEn": "PVD",
+            "zh": "視線傳播，iPVD 改善深孔覆蓋",
+            "en": "Line of sight; iPVD improves deep-via coverage",
+            "noteZh": "阻擋層、銅晶種層與鋁墊",
+            "noteEn": "Barriers, Cu seed layers and Al pads"
+          }
+        ]
+      },
+      {
+        "titleZh": "液相電鍍",
+        "titleEn": "Liquid-phase plating",
+        "items": [
+          {
+            "keyZh": "電鍍超填",
+            "keyEn": "ECD superfill",
+            "zh": "添加劑驅動由孔底往上填銅",
+            "en": "Additives drive bottom-up Cu fill",
+            "noteZh": "銅導線、穿矽孔與重佈線層",
+            "noteEn": "Cu wires, TSV fill and RDL routing"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "chapterId": "ch05",
+    "headingZh": "定量物理定律與 3D 製程視窗",
+    "headingEn": "Quantitative Governing Laws & 3D Process Windows",
+    "foldTables": true,
+    "type": "branch",
+    "captionZh": "三大薄膜與電鍍定律各自決定的製程控制。",
+    "captionEn": "What each thin-film and electroplating law governs in the process.",
+    "root": {
+      "zh": "薄膜與電鍍動力學定律",
+      "en": "Thin-film & ECD kinetic laws"
+    },
+    "branches": [
+      {
+        "zh": "線性－拋物線氧化模型",
+        "en": "Deal-Grove linear-parabolic law",
+        "leafZh": "預測氧化層厚度與矽消耗",
+        "leafEn": "Predicts oxide thickness and Si consumed"
+      },
+      {
+        "zh": "ALD 深孔飽和時間",
+        "en": "ALD deep-hole saturation time",
+        "leafZh": "決定深孔 ALD 最低脈衝時間",
+        "leafEn": "Sets minimum ALD pulse time in deep holes"
+      },
+      {
+        "zh": "法拉第與曲率加速超填",
+        "en": "Faraday & curvature-enhanced fill",
+        "leafZh": "孔底長得比孔口快、無空洞",
+        "leafEn": "Bottom outgrows the mouth: void-free fill"
       }
     ]
   },
@@ -1038,6 +1630,7 @@ export const SECTION_DIAGRAMS = [
     "chapterId": "ch06",
     "headingZh": "現場異常徵兆與跨站根因排查",
     "headingEn": "Fab Failure Signatures & Root-Cause Diagnostics",
+    "foldTables": true,
     "type": "branch",
     "captionZh": "乾蝕刻三大致命異常與對應的永久防呆對策",
     "captionEn": "Three critical dry-etch failures and their permanent countermeasures",
@@ -1063,6 +1656,78 @@ export const SECTION_DIAGRAMS = [
         "en": "Dense narrow vias not opened",
         "leafZh": "虛設圖形與蝕刻停止層",
         "leafEn": "Dummy fill and an etch stop layer"
+      }
+    ]
+  },
+  {
+    "chapterId": "ch06",
+    "headingZh": "電漿蝕刻、Cryo-HAR 與 Bosch TSV 條例總覽",
+    "headingEn": "Plasma Etch, Cryo-HAR & Bosch TSV Clauses",
+    "foldTables": true,
+    "type": "branch",
+    "captionZh": "四類蝕刻條例與各自的代表應用。",
+    "captionEn": "Four etch clause categories and their representative applications.",
+    "root": {
+      "zh": "電漿與原子層蝕刻條例",
+      "en": "Plasma & atomic layer etch clauses"
+    },
+    "branches": [
+      {
+        "zh": "電容／感應耦合 RIE",
+        "en": "CCP vs. ICP reactive ion etch",
+        "leafZh": "鰭片、溝槽、接觸孔與雙鑲嵌",
+        "leafEn": "Fins, STI, contacts and dual damascene"
+      },
+      {
+        "zh": "極低溫高深寬比蝕刻",
+        "en": "Cryogenic high-AR (Cryo-HAR) etch",
+        "leafZh": "NAND 通道孔、DRAM 電容",
+        "leafEn": "NAND channel holes and DRAM capacitors"
+      },
+      {
+        "zh": "波希法深矽蝕刻",
+        "en": "Bosch deep RIE (DRIE)",
+        "leafZh": "中介層與晶粒穿矽孔、MEMS",
+        "leafEn": "Interposer and die TSVs, and MEMS"
+      },
+      {
+        "zh": "原子層蝕刻與選擇性釋放",
+        "en": "ALE & selective isotropic release",
+        "leafZh": "GAA 通道釋放與內間隔壁",
+        "leafEn": "GAA channel release and inner spacers"
+      }
+    ]
+  },
+  {
+    "chapterId": "ch06",
+    "headingZh": "定量物理定律與 3D 製程視窗",
+    "headingEn": "Quantitative Governing Laws & 3D Process Windows",
+    "foldTables": true,
+    "type": "branch",
+    "captionZh": "三大蝕刻定律各自對應的深孔與奈米片對策。",
+    "captionEn": "How each etch law shapes deep-hole and nanosheet process control.",
+    "root": {
+      "zh": "電漿與原子層蝕刻定律",
+      "en": "Plasma & ALE quantitative laws"
+    },
+    "branches": [
+      {
+        "zh": "鞘層與離子入射角定律",
+        "en": "Sheath & ion angular spread law",
+        "leafZh": "高偏壓讓離子直射深孔底",
+        "leafEn": "High bias drives ions straight to hole bottoms"
+      },
+      {
+        "zh": "深寬比相依蝕刻 ARDE",
+        "en": "Aspect-ratio dependent etch (ARDE)",
+        "leafZh": "需高選擇比蝕刻停止層",
+        "leafEn": "Requires high-selectivity etch stop layers"
+      },
+      {
+        "zh": "原子層蝕刻協同因子",
+        "en": "ALE synergy factor law",
+        "leafZh": "消除 RIE Lag 與晶格損傷",
+        "leafEn": "Removes RIE lag and lattice damage"
       }
     ]
   },
@@ -1199,6 +1864,86 @@ export const SECTION_DIAGRAMS = [
     ]
   },
   {
+    "chapterId": "ch07",
+    "headingZh": "離子佈植與毫秒／奈秒退火條例總覽",
+    "headingEn": "Ion Implant & Ultra-Fast Anneal Clauses",
+    "foldTables": true,
+    "type": "compare",
+    "captionZh": "佈植與退火兩類條例的方法與代表應用。",
+    "captionEn": "Implant and anneal clauses: the methods in each and their key uses.",
+    "columns": [
+      {
+        "titleZh": "離子佈植",
+        "titleEn": "Ion implantation",
+        "items": [
+          {
+            "zh": "中電流、大電流與高能佈植",
+            "en": "Medium-current, high-current & MeV implant",
+            "noteZh": "逆行井、Vt 微調、源汲極延伸",
+            "noteEn": "Retrograde wells, Vt tuning, S/D extensions"
+          },
+          {
+            "zh": "低溫佈植與電漿共形摻雜",
+            "en": "Cryo-implant & plasma doping (PLAD)",
+            "noteZh": "鰭片側壁與頂部均勻摻雜",
+            "noteEn": "Uniform doping of fin sidewalls and tops"
+          }
+        ]
+      },
+      {
+        "titleZh": "退火熱處理",
+        "titleEn": "Thermal annealing",
+        "items": [
+          {
+            "zh": "爐管與尖峰快速熱退火",
+            "en": "Furnace & spike RTA",
+            "noteZh": "修復晶格、活化源汲極",
+            "noteEn": "Heals the lattice, activates S/D"
+          },
+          {
+            "zh": "毫秒閃光與奈秒雷射退火",
+            "en": "Millisecond flash & nanosecond laser anneal",
+            "noteZh": "零擴散活化、背面局部退火",
+            "noteEn": "Zero-diffusion activation, backside anneal"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "chapterId": "ch07",
+    "headingZh": "現場異常徵兆與跨站根因排查",
+    "headingEn": "Fab Failure Signatures & Root-Cause Diagnostics",
+    "foldTables": true,
+    "type": "branch",
+    "captionZh": "佈植與退火三大異常與對應的永久防呆對策",
+    "captionEn": "Three implant and anneal failures and their permanent countermeasures",
+    "root": {
+      "zh": "佈植退火三大異常",
+      "en": "Three implant & anneal failures"
+    },
+    "branches": [
+      {
+        "zh": "通道效應長尾穿通",
+        "en": "Channeling tail punch-through",
+        "leafZh": "傾角旋轉防呆或預非晶化",
+        "leafEn": "Tilt/twist interlocks or Ge PAI"
+      },
+      {
+        "zh": "瞬態增強擴散與硼叢集",
+        "en": "TED and boron clustering",
+        "leafZh": "碳共佈植並以尖峰加雷射退火",
+        "leafEn": "Carbon co-implant plus spike RTA and LSA"
+      },
+      {
+        "zh": "光阻爆裂與雷射退火條紋",
+        "en": "Resist popping & LSA stripes",
+        "leafZh": "分步冷卻、兩段灰化、吸收層",
+        "leafEn": "ESC He cooling, two-step strip, absorber cap"
+      }
+    ]
+  },
+  {
     "chapterId": "ch08",
     "headingZh": "磨到哪裡該停",
     "headingEn": "Knowing when to stop",
@@ -1319,6 +2064,74 @@ export const SECTION_DIAGRAMS = [
     ]
   },
   {
+    "chapterId": "ch08",
+    "headingZh": "CMP 平坦化與 3D 混合鍵合條例總覽",
+    "headingEn": "CMP & 3D Hybrid Bonding Clauses",
+    "foldTables": true,
+    "type": "flow",
+    "captionZh": "CMP 條例從前段、中段、後段延伸到混合鍵合",
+    "captionEn": "CMP clauses run from FEOL, MOL and BEOL through to hybrid bonding.",
+    "steps": [
+      {
+        "zh": "前段淺溝槽隔離 CMP",
+        "en": "FEOL STI oxide CMP",
+        "noteZh": "停在氮化矽並建立平坦基準",
+        "noteEn": "Stops on nitride; sets a flat focal plane"
+      },
+      {
+        "zh": "中段閘極與接觸孔 CMP",
+        "en": "MOL gate and contact plug CMP",
+        "noteZh": "閘極高度決定 Vt 一致性",
+        "noteEn": "Gate height governs Vt uniformity"
+      },
+      {
+        "zh": "後段銅雙鑲嵌三步研磨",
+        "en": "BEOL three-step Cu damascene CMP",
+        "noteZh": "假金屬填充壓低碟化與侵蝕",
+        "noteEn": "Dummy metal fill bounds dishing and erosion"
+      },
+      {
+        "zh": "TSV 露出與混合鍵合",
+        "en": "TSV reveal and hybrid bonding CMP",
+        "noteZh": "銅墊精準內凹，退火時頂合",
+        "noteEn": "Cu pads recessed to fuse on anneal"
+      }
+    ]
+  },
+  {
+    "chapterId": "ch08",
+    "headingZh": "現場異常徵兆與跨站根因排查",
+    "headingEn": "Fab Failure Signatures & Root-Cause Diagnostics",
+    "foldTables": true,
+    "type": "branch",
+    "captionZh": "CMP 三大關鍵異常與對應的永久防呆對策",
+    "captionEn": "Three critical CMP failure signatures and the countermeasure for each.",
+    "root": {
+      "zh": "CMP 三大關鍵異常",
+      "en": "Three critical CMP failures"
+    },
+    "branches": [
+      {
+        "zh": "寬銅線碟化與介電質侵蝕",
+        "en": "Cu dishing and oxide erosion",
+        "leafZh": "虛設金屬填充加低壓軟拋光液",
+        "leafEn": "Dummy metal fill, low-downforce slurry"
+      },
+      {
+        "zh": "研磨液團簇弧形刮痕",
+        "en": "Slurry-cluster chatter scratches",
+        "leafZh": "使用點過濾器與大顆粒計數器",
+        "leafEn": "POU filters and large particle counters"
+      },
+      {
+        "zh": "混合鍵合銅凹陷超規",
+        "en": "Hybrid-bond Cu recess out of spec",
+        "leafZh": "多區氣囊拋光頭加終點偵測",
+        "leafEn": "Multi-zone membrane head with endpointing"
+      }
+    ]
+  },
+  {
     "chapterId": "ch09",
     "headingZh": "Q-Time：清洗的效果會過期",
     "headingEn": "Q-time: a clean surface has an expiration date",
@@ -1407,6 +2220,80 @@ export const SECTION_DIAGRAMS = [
         "en": "Supercritical carbon dioxide",
         "leafZh": "無氣液界面，毛細力歸零",
         "leafEn": "No meniscus; zero capillary force"
+      }
+    ]
+  },
+  {
+    "chapterId": "ch09",
+    "headingZh": "濕／乾式清洗與超臨界 CO₂ 乾燥條例總覽",
+    "headingEn": "Wet/Dry Clean & Supercritical CO₂ Clauses",
+    "foldTables": true,
+    "type": "branch",
+    "captionZh": "四類清洗與乾燥條例及各自的核心機制",
+    "captionEn": "Four cleaning and drying clauses and the core mechanism of each.",
+    "root": {
+      "zh": "清洗與乾燥條例",
+      "en": "Cleaning and drying clauses",
+      "noteZh": "零微粒、零金屬並防倒塌",
+      "noteEn": "Zero particles, zero metals, no collapse"
+    },
+    "branches": [
+      {
+        "zh": "經典 RCA 濕式清洗",
+        "en": "Classic RCA wet clean",
+        "leafZh": "去有機物、氧化層、微粒與金屬",
+        "leafEn": "Removes organics, oxide, particles, metals"
+      },
+      {
+        "zh": "單片旋轉與臭氧水清洗",
+        "en": "Single-wafer spin and ozonated UPW",
+        "leafZh": "單片噴新鮮藥液，杜絕交叉污染",
+        "leafEn": "Fresh dispense, no cross-contamination"
+      },
+      {
+        "zh": "乾式氣相化學清潔",
+        "en": "Dry vapor chemical clean",
+        "leafZh": "氧化層轉成鹽類後昇華抽走",
+        "leafEn": "Oxide turned to salt, then sublimed away"
+      },
+      {
+        "zh": "馬蘭哥尼與超臨界乾燥",
+        "en": "Marangoni and supercritical drying",
+        "leafZh": "IPA 降張力，超臨界無氣液界面",
+        "leafEn": "IPA lowers tension; supercritical: no meniscus"
+      }
+    ]
+  },
+  {
+    "chapterId": "ch09",
+    "headingZh": "現場異常徵兆與跨站根因排查",
+    "headingEn": "Fab Failure Signatures & Root-Cause Diagnostics",
+    "foldTables": true,
+    "type": "branch",
+    "captionZh": "濕式清洗三大致命異常與對應的永久防呆對策",
+    "captionEn": "Three critical wet-clean failure mechanisms and the countermeasure for each.",
+    "root": {
+      "zh": "濕式清洗三大致命異常",
+      "en": "Three critical wet-clean failures"
+    },
+    "branches": [
+      {
+        "zh": "高深寬比結構乾燥倒塌",
+        "en": "High-AR pattern collapse on drying",
+        "leafZh": "改用馬蘭哥尼或超臨界乾燥",
+        "leafEn": "Switch to Marangoni or supercritical drying"
+      },
+      {
+        "zh": "疏水矽表面水痕",
+        "en": "Evaporative silica watermarks",
+        "leafZh": "濕進濕出並用除氧超純水",
+        "leafEn": "Wet-to-wet transfer and degassed UPW"
+      },
+      {
+        "zh": "雙金屬電偶腐蝕",
+        "en": "Bimetallic galvanic corrosion",
+        "leafZh": "添加唑類緩蝕劑並控溶氧",
+        "leafEn": "Azole inhibitors; purge dissolved oxygen"
       }
     ]
   },
@@ -1529,6 +2416,39 @@ export const SECTION_DIAGRAMS = [
         "en": "Shorten the wire length",
         "leafZh": "垂直堆疊使延遲功耗驟降",
         "leafEn": "Vertical stacks slash delay, power"
+      }
+    ]
+  },
+  {
+    "chapterId": "ch10",
+    "headingZh": "現場異常徵兆與跨站根因排查",
+    "headingEn": "Fab Failure Signatures & Root-Cause Diagnostics",
+    "foldTables": true,
+    "type": "branch",
+    "captionZh": "後段導線三大核心異常與對應的永久防呆對策",
+    "captionEn": "Three critical BEOL failure modes and the countermeasure for each.",
+    "root": {
+      "zh": "後段導線三大核心異常",
+      "en": "Three critical BEOL failure modes"
+    },
+    "branches": [
+      {
+        "zh": "雙鑲嵌通孔底部開路",
+        "en": "Dual-damascene via bottom open",
+        "leafZh": "無阻障層由下而上金屬填孔",
+        "leafEn": "Barrierless bottom-up metal via fill"
+      },
+      {
+        "zh": "超低介電質電漿損傷擊穿",
+        "en": "ULK plasma damage and TDDB",
+        "leafZh": "還原電漿去光阻並修補孔隙",
+        "leafEn": "Reducing-plasma ash plus pore sealing"
+      },
+      {
+        "zh": "電遷移空洞與擠出短路",
+        "en": "Electromigration void and hillock",
+        "leafZh": "鈷蓋層加 Blech 長度規則",
+        "leafEn": "Cobalt cap plus Blech length limits"
       }
     ]
   },
@@ -1669,6 +2589,72 @@ export const SECTION_DIAGRAMS = [
         "en": "Backside & packaging interface",
         "noteZh": "超低溫製程",
         "noteEn": "Ultra-low thermal budget"
+      }
+    ]
+  },
+  {
+    "chapterId": "ch11",
+    "headingZh": "定量物理定律與 3D 製程視窗",
+    "headingEn": "Quantitative Governing Laws & 3D Process Windows",
+    "foldTables": true,
+    "type": "branch",
+    "captionZh": "三大跨層整合定律及其對整合順序的意義",
+    "captionEn": "Three cross-tier integration laws and what each means for integration.",
+    "root": {
+      "zh": "跨層整合定量定律",
+      "en": "Cross-tier integration laws"
+    },
+    "branches": [
+      {
+        "zh": "遞減熱預算定律",
+        "en": "Decreasing thermal budget law",
+        "leafZh": "改採 RMG 後閘極整合",
+        "leafEn": "Requires RMG gate-last integration"
+      },
+      {
+        "zh": "中段接觸電阻傳輸線模型",
+        "en": "MOL contact resistance TLM law",
+        "leafZh": "奈秒雷射退火壓低接觸電阻率",
+        "leafEn": "Nanosecond laser anneal lowers resistivity"
+      },
+      {
+        "zh": "閘延遲與背面供電壓降定律",
+        "en": "RO delay and BSPDN IR-drop law",
+        "leafZh": "確立背面供電為標準架構",
+        "leafEn": "Establishes backside power as the standard"
+      }
+    ]
+  },
+  {
+    "chapterId": "ch11",
+    "headingZh": "現場異常徵兆與跨站根因排查",
+    "headingEn": "Fab Failure Signatures & Root-Cause Diagnostics",
+    "foldTables": true,
+    "type": "branch",
+    "captionZh": "跨層整合三大異常與對應的永久防呆對策",
+    "captionEn": "Three classic integration failures and the countermeasure for each.",
+    "root": {
+      "zh": "跨層整合三大異常",
+      "en": "Three classic integration failures"
+    },
+    "branches": [
+      {
+        "zh": "超溫矽化物團聚",
+        "en": "Overheated silicide agglomeration",
+        "leafZh": "熱預算金字塔並由 MES 攔截",
+        "leafEn": "Thermal budget hierarchy interlocked in MES"
+      },
+      {
+        "zh": "中段接觸孔空洞與短路",
+        "en": "MOL contact void and SAC short",
+        "leafZh": "低介電側壁加無氟鈷／鉬填孔",
+        "leafEn": "Low-k spacers and F-free Co/Mo plugs"
+      },
+      {
+        "zh": "STI 凹陷與漏電駝峰",
+        "en": "STI corner divot and leakage hump",
+        "leafZh": "轉角圓滑化氧化並控氧化層損耗",
+        "leafEn": "Corner-rounding oxidation, oxide-loss budget"
       }
     ]
   },
@@ -1823,6 +2809,72 @@ export const SECTION_DIAGRAMS = [
     ]
   },
   {
+    "chapterId": "ch12",
+    "headingZh": "定量物理定律與 3D 製程視窗",
+    "headingEn": "Quantitative Governing Laws & 3D Process Windows",
+    "foldTables": true,
+    "type": "branch",
+    "captionZh": "三大微縮定律及其對電晶體架構的意義",
+    "captionEn": "Three transistor scaling laws and what each means for device design.",
+    "root": {
+      "zh": "電晶體微縮定量定律",
+      "en": "Transistor scaling laws"
+    },
+    "branches": [
+      {
+        "zh": "靜電特徵長度定律",
+        "en": "Electrostatic scaling length law",
+        "leafZh": "極短閘長下僅 GAA 守住靜電",
+        "leafEn": "At the shortest gates only GAA keeps control"
+      },
+      {
+        "zh": "立體有效通道寬度定律",
+        "en": "Effective channel width law",
+        "leafZh": "奈米片寬連續可調、電流更高",
+        "leafEn": "Tunable sheet width, higher drive current"
+      },
+      {
+        "zh": "汲極誘發能障降低定律",
+        "en": "DIBL exponential law",
+        "leafZh": "超低電壓下仍保有開關比",
+        "leafEn": "Keeps on/off ratio at ultra-low voltage"
+      }
+    ]
+  },
+  {
+    "chapterId": "ch12",
+    "headingZh": "現場異常徵兆與跨站根因排查",
+    "headingEn": "Fab Failure Signatures & Root-Cause Diagnostics",
+    "foldTables": true,
+    "type": "branch",
+    "captionZh": "前段三大核心異常與對應的永久防呆對策",
+    "captionEn": "Three critical FEOL failure modes and the countermeasure for each.",
+    "root": {
+      "zh": "前段三大核心異常",
+      "en": "Three critical FEOL failure modes"
+    },
+    "branches": [
+      {
+        "zh": "奈米片沾黏與內間隔層掏空",
+        "en": "Nanosheet stiction, spacer short",
+        "leafZh": "乾式氣相釋放並以原子層蝕刻控深",
+        "leafEn": "Dry vapor release plus ALE recess control"
+      },
+      {
+        "zh": "底部寄生漏電與磊晶空洞",
+        "en": "Sub-fin leakage, epi merge voids",
+        "leafZh": "底部介電隔離加循環沉積回蝕",
+        "leafEn": "BDI layer plus cyclic dep-etch epitaxy"
+      },
+      {
+        "zh": "背面接觸孔疊對偏移",
+        "en": "Backside contact overlay shift",
+        "leafZh": "自對準背面接觸加高階畸變補償",
+        "leafEn": "Self-aligned backside contact plus CPE"
+      }
+    ]
+  },
+  {
     "chapterId": "ch13",
     "headingZh": "HBM：把 DRAM 疊起來",
     "headingEn": "HBM: stacking DRAM",
@@ -1858,6 +2910,7 @@ export const SECTION_DIAGRAMS = [
     "chapterId": "ch13",
     "headingZh": "現場異常徵兆與跨站根因排查",
     "headingEn": "Fab Failure Signatures & Root-Cause Diagnostics",
+    "foldTables": true,
     "type": "branch",
     "captionZh": "記憶體三大致命異常與表中列出的一項對策",
     "captionEn": "Three critical memory failure modes and one listed countermeasure for each.",
@@ -1883,6 +2936,84 @@ export const SECTION_DIAGRAMS = [
         "en": "HBM micro-bump solder bridging",
         "leafZh": "無凸塊銅對銅混合鍵合",
         "leafEn": "Bumpless Cu-Cu hybrid bonding"
+      }
+    ]
+  },
+  {
+    "chapterId": "ch13",
+    "headingZh": "3D 記憶體與新興 NVM 條例總覽",
+    "headingEn": "3D Memory & Emerging NVM Clauses",
+    "foldTables": true,
+    "type": "branch",
+    "captionZh": "DRAM 微縮演進與各類嵌入式非揮發性記憶體的儲存機制",
+    "captionEn": "The DRAM scaling roadmap and the storage physics of each embedded NVM family.",
+    "root": {
+      "zh": "記憶體架構與新興 NVM",
+      "en": "Memory roadmap & emerging NVM"
+    },
+    "branches": [
+      {
+        "zh": "DRAM 微縮與立體化",
+        "en": "DRAM scaling & stacking roadmap",
+        "leafZh": "垂直通道、無電容與水平疊層",
+        "leafEn": "Vertical channel, capacitorless, stacked DRAM"
+      },
+      {
+        "zh": "嵌入式快閃記憶體",
+        "en": "Embedded flash (eFlash)",
+        "leafZh": "分閘式浮閘或氮化矽電荷捕捉",
+        "leafEn": "Split-gate floating gate or SONOS charge trap"
+      },
+      {
+        "zh": "自旋磁阻記憶體 MRAM",
+        "en": "Spin-torque MRAM (STT / SOT)",
+        "leafZh": "後段金屬層間的磁性穿隧接面",
+        "leafEn": "Magnetic tunnel junction inside BEOL metals"
+      },
+      {
+        "zh": "電阻式與相變化記憶體",
+        "en": "Resistive & phase-change memory",
+        "leafZh": "氧空位導電細絲或硫族相變",
+        "leafEn": "Oxygen-vacancy filaments or GST phase change"
+      },
+      {
+        "zh": "氧化鉿基鐵電記憶體",
+        "en": "Hafnia-based ferroelectric memory",
+        "leafZh": "氧化鉿鋯自發極化雙穩態",
+        "leafEn": "Bistable polarization in doped HZO"
+      }
+    ]
+  },
+  {
+    "chapterId": "ch13",
+    "headingZh": "定量物理定律與 3D 製程視窗",
+    "headingEn": "Quantitative Governing Laws & 3D Process Windows",
+    "foldTables": true,
+    "type": "branch",
+    "captionZh": "記憶體三大定量定律與各自的工程意義",
+    "captionEn": "Three memory physics and bandwidth laws and the engineering impact of each.",
+    "root": {
+      "zh": "記憶體物理與頻寬定律",
+      "en": "Memory physics & bandwidth laws"
+    },
+    "branches": [
+      {
+        "zh": "DRAM 電容分壓定律",
+        "en": "DRAM capacitor charge-sharing law",
+        "leafZh": "催生垂直通道與水平堆疊 DRAM",
+        "leafEn": "Drives vertical-channel and stacked DRAM"
+      },
+      {
+        "zh": "NAND 穿隧與多態視窗",
+        "en": "NAND F-N tunneling & Vt window",
+        "leafZh": "QLC 需 CBA 與 LDPC",
+        "leafEn": "QLC needs CBA and LDPC"
+      },
+      {
+        "zh": "HBM 超寬匯流排頻寬",
+        "en": "HBM wide-I/O bandwidth law",
+        "leafZh": "打破記憶體頻寬牆",
+        "leafEn": "Breaks the memory wall"
       }
     ]
   },
@@ -2004,6 +3135,7 @@ export const SECTION_DIAGRAMS = [
     "chapterId": "ch14",
     "headingZh": "現場異常徵兆與跨站根因排查",
     "headingEn": "Fab Failure Signatures & Root-Cause Diagnostics",
+    "foldTables": true,
     "type": "branch",
     "captionZh": "三大 DTCO 瓶頸與表中列出的一項對策",
     "captionEn": "Three primary DTCO failure modes and one listed countermeasure for each.",
@@ -2029,6 +3161,102 @@ export const SECTION_DIAGRAMS = [
         "en": "MEEF runaway",
         "leafZh": "High-NA EUV",
         "leafEn": "High-NA EUV"
+      }
+    ]
+  },
+  {
+    "chapterId": "ch14",
+    "headingZh": "真實微縮標尺與 DTCO／STCO 條例總覽",
+    "headingEn": "True Scaling Metrics & DTCO/STCO Clauses",
+    "foldTables": true,
+    "type": "compare",
+    "captionZh": "三項真實微縮標尺與兩種協同最佳化",
+    "captionEn": "Three true scaling metrics and two co-optimization strategies.",
+    "columns": [
+      {
+        "titleZh": "真實微縮標尺",
+        "titleEn": "True scaling metrics",
+        "items": [
+          {
+            "keyZh": "CPP",
+            "keyEn": "CPP",
+            "zh": "相鄰閘極中心距，決定 X 軸密度",
+            "en": "Gate-to-gate pitch; sets X-axis density",
+            "noteZh": "最誠實的前段微縮尺規",
+            "noteEn": "Ground-truth metric for FEOL scaling"
+          },
+          {
+            "keyZh": "金屬節距",
+            "keyEn": "Metal pitch",
+            "zh": "最底層金屬節距，決定 Y 軸佈線密度",
+            "en": "Lowest-level metal pitch; sets Y-axis routing",
+            "noteZh": "反映 EUV 解析度與後段微縮",
+            "noteEn": "Reflects EUV resolution and BEOL scaling"
+          },
+          {
+            "keyZh": "軌道高度",
+            "keyEn": "Track height",
+            "zh": "單元高度等於軌道數乘金屬節距",
+            "en": "Cell height is tracks times metal pitch",
+            "noteZh": "減少軌道數仍可縮小邏輯面積",
+            "noteEn": "Fewer tracks still shrink logic area"
+          }
+        ]
+      },
+      {
+        "titleZh": "DTCO 與 STCO",
+        "titleEn": "DTCO & STCO",
+        "items": [
+          {
+            "keyZh": "DTCO",
+            "keyEn": "DTCO",
+            "zh": "單擴散斷開、埋入電源軌與背面供電",
+            "en": "SDB, buried power rails, backside power",
+            "noteZh": "靠單元結構重組延續摩爾定律",
+            "noteEn": "Extends Moore's Law via cell restructuring"
+          },
+          {
+            "keyZh": "STCO",
+            "keyEn": "STCO",
+            "zh": "SoC 拆成按功能最佳化的小晶片",
+            "en": "SoC split into node-optimized chiplets",
+            "noteZh": "以立體整合突破曝光視場極限",
+            "noteEn": "Stacking breaks the reticle limit"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "chapterId": "ch14",
+    "headingZh": "定量物理定律與 3D 製程視窗",
+    "headingEn": "Quantitative Governing Laws & 3D Process Windows",
+    "foldTables": true,
+    "type": "branch",
+    "captionZh": "製程微縮三大定律與對節點對標、小晶片拆解的意義",
+    "captionEn": "Three scaling laws and what they mean for node benchmarking and chiplets.",
+    "root": {
+      "zh": "製程微縮與小晶片定律",
+      "en": "Node scaling & chiplet laws"
+    },
+    "branches": [
+      {
+        "zh": "單元面積與電晶體密度",
+        "en": "Cell area & transistor density law",
+        "leafZh": "跨越商業命名的客觀密度換算",
+        "leafEn": "Objective density yardstick beyond node names"
+      },
+      {
+        "zh": "Dennard 微縮崩潰",
+        "en": "Post-Dennard power density law",
+        "leafZh": "轉向多核心、AI 加速器與液冷",
+        "leafEn": "Turn to multicore, AI cores, liquid cooling"
+      },
+      {
+        "zh": "異質小晶片混搭成本",
+        "en": "Heterogeneous chiplet cost law",
+        "leafZh": "運算用先進，I/O 留成熟節點",
+        "leafEn": "Compute on advanced nodes, I/O on mature"
       }
     ]
   },
@@ -2117,6 +3345,125 @@ export const SECTION_DIAGRAMS = [
             "en": "For stable processes"
           }
         ]
+      }
+    ]
+  },
+  {
+    "chapterId": "ch15",
+    "headingZh": "在線量測與 3D 封裝無損檢測條例總覽",
+    "headingEn": "In-Line Metrology & 3D NDT Inspection Clauses",
+    "foldTables": true,
+    "type": "compare",
+    "captionZh": "從晶圓廠在線量測、檢測延伸到先進封裝無損檢測",
+    "captionEn": "Fab metrology and inspection, extended to non-destructive package inspection.",
+    "columns": [
+      {
+        "titleZh": "晶圓廠在線量測與檢測",
+        "titleEn": "Fab in-line metrology & inspection",
+        "items": [
+          {
+            "zh": "臨界尺寸與結構幾何量測",
+            "en": "CD & profile metrology",
+            "noteZh": "CD-SEM 與光學散射儀",
+            "noteEn": "CD-SEM and OCD scatterometry"
+          },
+          {
+            "zh": "薄膜厚度、成分與疊對量測",
+            "en": "Film, composition & overlay metrology",
+            "noteZh": "橢偏儀、XRF 與疊對靶標",
+            "noteEn": "Ellipsometry, XRF and overlay targets"
+          },
+          {
+            "zh": "光學明暗場與電子束缺陷檢測",
+            "en": "Optical bright/dark-field & e-beam inspection",
+            "noteZh": "電壓對比抓底部接觸孔開路",
+            "noteEn": "Voltage contrast finds buried contact opens"
+          }
+        ]
+      },
+      {
+        "titleZh": "先進封裝無損檢測",
+        "titleEn": "Advanced packaging NDT",
+        "items": [
+          {
+            "zh": "超音波掃描與 X 光斷層掃描",
+            "en": "Acoustic microscopy & X-ray CT",
+            "noteZh": "抓鍵合空洞、裂紋與脫層",
+            "noteEn": "Flags bonding voids, cracks, delamination"
+          },
+          {
+            "zh": "紅外線對準與翹曲光學量測",
+            "en": "IR alignment & warpage metrology",
+            "noteZh": "穿透矽對準、迴焊動態翹曲",
+            "noteEn": "Through-silicon alignment, reflow warpage"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "chapterId": "ch15",
+    "headingZh": "定量物理定律與 3D 製程視窗",
+    "headingEn": "Quantitative Governing Laws & 3D Process Windows",
+    "foldTables": true,
+    "type": "branch",
+    "captionZh": "量測與無損檢測三大定律及其工程意義",
+    "captionEn": "Three metrology and NDT laws and the engineering impact of each.",
+    "root": {
+      "zh": "量測與無損檢測定律",
+      "en": "Metrology & NDT laws"
+    },
+    "branches": [
+      {
+        "zh": "橢偏與 OCD 逆散射",
+        "en": "Ellipsometry & OCD inverse law",
+        "leafZh": "線上形貌直接作為 APC 輸入",
+        "leafEn": "Inline geometry feeds APC run-to-run loops"
+      },
+      {
+        "zh": "瑞利散射與聲阻抗反射",
+        "en": "Rayleigh & acoustic reflection law",
+        "leafZh": "暗場抓微粒，超音波照鍵合空洞",
+        "leafEn": "Dark-field finds particles; C-SAM finds voids"
+      },
+      {
+        "zh": "量測重複性與公差比",
+        "en": "Gauge R&R P/T ratio law",
+        "leafZh": "量測雜訊不吃掉製程視窗",
+        "leafEn": "Gauge noise must not eat the process window"
+      }
+    ]
+  },
+  {
+    "chapterId": "ch15",
+    "headingZh": "現場異常徵兆與跨站根因排查",
+    "headingEn": "Fab Failure Signatures & Root-Cause Diagnostics",
+    "foldTables": true,
+    "type": "branch",
+    "captionZh": "量測機台三類自身異常與表中列出的對策",
+    "captionEn": "Three metrology-tool failure modes and the listed countermeasures.",
+    "root": {
+      "zh": "量測機台自身異常",
+      "en": "Metrology tool failure modes"
+    },
+    "branches": [
+      {
+        "zh": "電子束光阻萎縮與充電",
+        "en": "E-beam resist shrinkage & charging",
+        "leafZh": "低著陸能量並扣除萎縮補償",
+        "leafEn": "Low landing energy; subtract shrink offset"
+      },
+      {
+        "zh": "OCD 參數耦合失真",
+        "en": "OCD parameter cross-correlation",
+        "leafZh": "混合量測前饋鎖定底層膜厚",
+        "leafEn": "Hybrid metrology: feed forward film thickness"
+      },
+      {
+        "zh": "暗場假警報與音波邊緣盲區",
+        "en": "Nuisance flood & C-SAM edge shadow",
+        "leafZh": "偏振濾波、自適應閾值並補紅外線",
+        "leafEn": "Polarized filters, adaptive threshold, IR edge"
       }
     ]
   },
@@ -2243,6 +3590,157 @@ export const SECTION_DIAGRAMS = [
         "en": "Observation and analysis",
         "noteZh": "確認短路、斷路、空洞或污染",
         "noteEn": "Confirm a short, open, void or contamination"
+      }
+    ]
+  },
+  {
+    "chapterId": "ch16",
+    "headingZh": "良率數學模型與 EFA／PFA 故障分析條例總覽",
+    "headingEn": "Yield Models & EFA/PFA Failure Analysis Clauses",
+    "foldTables": true,
+    "type": "compare",
+    "captionZh": "良率模型、非破壞電性定位與破壞性物理分析對照",
+    "captionEn": "Yield models, non-destructive EFA and destructive PFA side by side.",
+    "columns": [
+      {
+        "titleZh": "良率預測模型",
+        "titleEn": "Yield models",
+        "items": [
+          {
+            "keyZh": "方法",
+            "keyEn": "Methods",
+            "zh": "卜瓦松、莫菲與負二項式",
+            "en": "Poisson, Murphy, negative binomial"
+          },
+          {
+            "keyZh": "能力",
+            "keyEn": "Capability",
+            "zh": "量化大晶片的缺陷群聚衝擊",
+            "en": "Quantifies defect clustering on large dies"
+          },
+          {
+            "keyZh": "用途",
+            "keyEn": "Target",
+            "zh": "預測良率學習、評估小晶片拆分",
+            "en": "Yield-learning forecasts, chiplet split ROI"
+          }
+        ]
+      },
+      {
+        "titleZh": "電性故障定位 EFA",
+        "titleEn": "Electrical fault isolation (EFA)",
+        "items": [
+          {
+            "keyZh": "方法",
+            "keyEn": "Methods",
+            "zh": "掃描鏈、PEM、OBIRCH、熱成像",
+            "en": "Scan chain, PEM, OBIRCH, lock-in thermography"
+          },
+          {
+            "keyZh": "能力",
+            "keyEn": "Capability",
+            "zh": "熱波相位算出熱點所在層深",
+            "en": "Thermal phase pinpoints the die tier in a stack"
+          },
+          {
+            "keyZh": "用途",
+            "keyEn": "Target",
+            "zh": "不拆封裝鎖定失效層與凸塊",
+            "en": "Finds the leaking tier or bump, package intact"
+          }
+        ]
+      },
+      {
+        "titleZh": "物理故障分析 PFA",
+        "titleEn": "Physical failure analysis (PFA)",
+        "items": [
+          {
+            "keyZh": "方法",
+            "keyEn": "Methods",
+            "zh": "FIB、STEM、能譜與原子探針",
+            "en": "FIB, STEM, EELS/EDX and atom probe"
+          },
+          {
+            "keyZh": "能力",
+            "keyEn": "Capability",
+            "zh": "單原子級晶格與化學價態解析",
+            "en": "Atomic lattice and chemical-state resolution",
+            "noteZh": "電漿 FIB 一次切開整排凸塊",
+            "noteEn": "Plasma FIB cuts whole bump arrays at once"
+          },
+          {
+            "keyZh": "用途",
+            "keyEn": "Target",
+            "zh": "拍下閘極針孔、鍵合空洞鐵證",
+            "en": "Definitive proof of pinholes and bond voids"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "chapterId": "ch16",
+    "headingZh": "定量物理定律與 3D 製程視窗",
+    "headingEn": "Quantitative Governing Laws & 3D Process Windows",
+    "foldTables": true,
+    "type": "branch",
+    "captionZh": "良率與故障分析三大定律及其工程意義",
+    "captionEn": "Three yield and failure-analysis laws and the engineering impact of each.",
+    "root": {
+      "zh": "良率與故障分析定律",
+      "en": "Yield & failure analysis laws"
+    },
+    "branches": [
+      {
+        "zh": "良率統計模型與叢集度",
+        "en": "Yield models & defect clustering",
+        "leafZh": "報價、學習曲線與拆分評估",
+        "leafEn": "Pricing, learning curves, chiplet split ROI"
+      },
+      {
+        "zh": "缺陷粒徑與關鍵面積",
+        "en": "Defect size & critical area law",
+        "leafZh": "拉寬線距並加雙重通孔",
+        "leafEn": "Wire spreading and via doubling"
+      },
+      {
+        "zh": "鎖相熱成像相位深度",
+        "en": "Lock-in thermography phase depth",
+        "leafZh": "不開蓋算出漏電層，指引下刀",
+        "leafEn": "Finds the shorted tier before FIB milling"
+      }
+    ]
+  },
+  {
+    "chapterId": "ch16",
+    "headingZh": "現場異常徵兆與跨站根因排查",
+    "headingEn": "Fab Failure Signatures & Root-Cause Diagnostics",
+    "foldTables": true,
+    "type": "branch",
+    "captionZh": "良率與故障分析三類異常與表中列出的對策",
+    "captionEn": "Three yield and FA failure modes and the listed countermeasures.",
+    "root": {
+      "zh": "良率與故障分析異常",
+      "en": "Yield and FA failure modes"
+    },
+    "branches": [
+      {
+        "zh": "晶圓圖空間圖騰",
+        "en": "Spatial wafer-map signatures",
+        "leafZh": "AI 分類晶圓圖並鎖住嫌疑腔體",
+        "leafEn": "AI map classification holds suspect chambers"
+      },
+      {
+        "zh": "單一腔體異常被平均掩蓋",
+        "en": "Single-chamber excursion masked",
+        "leafZh": "腔體槽位級追蹤並自動鎖腔",
+        "leafEn": "Chamber/slot genealogy auto-locks the chamber"
+      },
+      {
+        "zh": "盲目劈開樣品毀掉證據",
+        "en": "Blind FIB cut destroys evidence",
+        "leafZh": "先非破壞定位，才准去層切割",
+        "leafEn": "Localize non-destructively before any FIB cut"
       }
     ]
   },
@@ -2394,6 +3892,7 @@ export const SECTION_DIAGRAMS = [
     "chapterId": "ch17",
     "headingZh": "現場異常徵兆與跨站根因排查",
     "headingEn": "Fab Failure Signatures & Root-Cause Diagnostics",
+    "foldTables": true,
     "type": "branch",
     "captionZh": "常見控制失效與各自的永久對策",
     "captionEn": "The classic control failures and the countermeasure for each.",
@@ -2419,6 +3918,128 @@ export const SECTION_DIAGRAMS = [
         "en": "Post-PM FDC baseline shift",
         "leafZh": "保養驗證後重設基準",
         "leafEn": "Re-center baseline after PM"
+      }
+    ]
+  },
+  {
+    "chapterId": "ch17",
+    "headingZh": "SPC 判異規則、Cpk 與 APC 四大支柱條例總覽",
+    "headingEn": "SPC Rules, Cpk & APC 4-Pillar Clauses",
+    "foldTables": true,
+    "type": "compare",
+    "captionZh": "SPC 判異、製程能力與 APC 四大支柱三大條例對照",
+    "captionEn": "SPC rules, process capability and the four APC pillars side by side.",
+    "columns": [
+      {
+        "titleZh": "SPC 判異規則",
+        "titleEn": "SPC out-of-control rules",
+        "items": [
+          {
+            "keyZh": "界限",
+            "keyEn": "Limits",
+            "zh": "管制界限不是規格界限",
+            "en": "Control limits are not spec limits"
+          },
+          {
+            "keyZh": "目的",
+            "keyEn": "Purpose",
+            "zh": "超規前先抓非隨機偏移",
+            "en": "Catch non-random drift before out-of-spec"
+          },
+          {
+            "keyZh": "攔截",
+            "keyEn": "Interlock",
+            "zh": "觸發即自動扣留批與腔體",
+            "en": "Any rule hit auto-holds lot and chamber"
+          }
+        ]
+      },
+      {
+        "titleZh": "製程能力 Cp／Cpk",
+        "titleEn": "Process capability Cp vs. Cpk",
+        "items": [
+          {
+            "keyZh": "定義",
+            "keyEn": "Definition",
+            "zh": "Cp 看潛在、Cpk 計入偏移",
+            "en": "Cp is potential; Cpk accounts for centering"
+          },
+          {
+            "keyZh": "門檻",
+            "keyEn": "Threshold",
+            "zh": "四標準差為量產最低門檻",
+            "en": "Four sigma is the minimum production baseline"
+          },
+          {
+            "keyZh": "要求",
+            "keyEn": "Mandate",
+            "zh": "車用與多晶粒堆疊要求更高 Cpk",
+            "en": "Automotive, multi-die stacks require higher Cpk"
+          }
+        ]
+      },
+      {
+        "titleZh": "APC 四大支柱",
+        "titleEn": "Four pillars of APC",
+        "items": [
+          {
+            "keyZh": "批次間控制",
+            "keyEn": "Run-to-run",
+            "zh": "逐批自動微調配方",
+            "en": "Trims recipes lot by lot"
+          },
+          {
+            "keyZh": "FDC",
+            "keyEn": "FDC",
+            "zh": "加工中即抓電弧等異常",
+            "en": "Catches plasma arcing mid-wafer"
+          },
+          {
+            "keyZh": "VM",
+            "keyEn": "VM",
+            "zh": "以感測數據預測每片晶圓",
+            "en": "Predicts every wafer from FDC traces"
+          },
+          {
+            "keyZh": "PdM",
+            "keyEn": "PdM",
+            "zh": "預測性維護",
+            "en": "Predictive maintenance"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "chapterId": "ch17",
+    "headingZh": "定量物理定律與 3D 製程視窗",
+    "headingEn": "Quantitative Governing Laws & 3D Process Windows",
+    "foldTables": true,
+    "type": "branch",
+    "captionZh": "三大控制定律各自帶來的製程穩定效果",
+    "captionEn": "What each of the three control laws does for fab stability.",
+    "root": {
+      "zh": "SPC／APC 控制定律",
+      "en": "SPC and APC control laws"
+    },
+    "branches": [
+      {
+        "zh": "休哈特管制界限與 Cpk",
+        "en": "Shewhart limits and Cpk",
+        "leafZh": "區分管制線與規格線",
+        "leafEn": "Separates control limits from spec limits"
+      },
+      {
+        "zh": "EWMA 批次間回饋控制",
+        "en": "EWMA run-to-run feedback",
+        "leafZh": "隨耗材磨耗逐批微調配方",
+        "leafEn": "Trims recipes lot by lot as pads, liners age"
+      },
+      {
+        "zh": "多變量 FDC 與 VM",
+        "en": "Multivariate FDC and VM",
+        "leafZh": "毫秒攔截微弧並預測每片晶圓",
+        "leafEn": "Catches micro-arcing; predicts every wafer"
       }
     ]
   },
@@ -2565,6 +4186,113 @@ export const SECTION_DIAGRAMS = [
     ]
   },
   {
+    "chapterId": "ch18",
+    "headingZh": "OCAP 防堵、MRB／PAT、8D 與 PCN 條例總覽",
+    "headingEn": "OCAP, MRB/PAT, 8D & PCN Governance Clauses",
+    "foldTables": true,
+    "type": "branch",
+    "captionZh": "異常與變更管理四大條例各自的核心準則",
+    "captionEn": "The four excursion and change clauses and the core rule of each.",
+    "root": {
+      "zh": "異常與變更管理條例",
+      "en": "Excursion and change clauses",
+      "noteZh": "不放過受損晶圓、不擅改配方",
+      "noteEn": "No defect escapes, no unauthorized changes"
+    },
+    "branches": [
+      {
+        "zh": "OCAP 與章魚防堵",
+        "en": "OCAP and octopus containment",
+        "leafZh": "先止血防堵，再分析原因",
+        "leafEn": "Contain first, debug second"
+      },
+      {
+        "zh": "MRB 物料審查",
+        "en": "Material review board (MRB)",
+        "leafZh": "四種處置；PAT 剔除離群晶粒",
+        "leafEn": "Four dispositions; PAT scraps outlier dies"
+      },
+      {
+        "zh": "八步法根因改善",
+        "en": "Eight-discipline root cause",
+        "leafZh": "再教育不算對策，須自動互鎖",
+        "leafEn": "Retraining is not a fix; interlocks required"
+      },
+      {
+        "zh": "ECN／PCN 變更管理",
+        "en": "ECN/PCN change control",
+        "leafZh": "重大變更須提前通知客戶",
+        "leafEn": "Major changes need advance customer notice"
+      }
+    ]
+  },
+  {
+    "chapterId": "ch18",
+    "headingZh": "定量物理定律與 3D 製程視窗",
+    "headingEn": "Quantitative Governing Laws & 3D Process Windows",
+    "foldTables": true,
+    "type": "branch",
+    "captionZh": "三大統計定律在異常防堵與零缺陷篩選中的作用",
+    "captionEn": "How three statistical laws drive containment and zero-defect screening.",
+    "root": {
+      "zh": "防堵與篩選統計定律",
+      "en": "Containment and screening laws"
+    },
+    "branches": [
+      {
+        "zh": "機台共性超幾何檢定",
+        "en": "Hypergeometric tool commonality",
+        "leafZh": "鎖定問題腔體並追回姊妹批",
+        "leafEn": "Inhibits the chamber, recalls sister lots"
+      },
+      {
+        "zh": "穩健四分位距動態 PAT",
+        "en": "Robust IQR dynamic PAT",
+        "leafZh": "剔除偏離同晶圓群體的晶粒",
+        "leafEn": "Scraps dies abnormal within their own wafer"
+      },
+      {
+        "zh": "空間鄰近篩選與 SBL",
+        "en": "Spatial neighborhood PAT and SBL",
+        "leafZh": "攔截叢集缺陷旁的半傷晶粒",
+        "leafEn": "Catches walking-wounded dies near clusters"
+      }
+    ]
+  },
+  {
+    "chapterId": "ch18",
+    "headingZh": "現場異常徵兆與跨站根因排查",
+    "headingEn": "Fab Failure Signatures & Root-Cause Diagnostics",
+    "foldTables": true,
+    "type": "branch",
+    "captionZh": "三類異常防堵與變更失效及對應對策",
+    "captionEn": "Three containment and change-control failures and their countermeasures.",
+    "root": {
+      "zh": "異常防堵與變更三大失效",
+      "en": "Containment and change failures"
+    },
+    "branches": [
+      {
+        "zh": "姊妹批漏網出貨",
+        "en": "Sister lots escape containment",
+        "leafZh": "章魚防堵，自最後正常點追鎖",
+        "leafEn": "Octopus hold back to the last known good"
+      },
+      {
+        "zh": "邊際離群晶粒流出",
+        "en": "Marginal maverick die escape",
+        "leafZh": "動態 PAT 與 GDBN 剔除",
+        "leafEn": "Dynamic PAT and GDBN ink-out"
+      },
+      {
+        "zh": "配方變更引發下游良率崩跌",
+        "en": "ECN crashes downstream yield",
+        "leafZh": "重大變更須三批全流程驗證",
+        "leafEn": "Major changes need three full-flow qual lots"
+      }
+    ]
+  },
+  {
     "chapterId": "ch19",
     "headingZh": "兩種晶圓測試",
     "headingEn": "Two kinds of wafer test",
@@ -2702,6 +4430,7 @@ export const SECTION_DIAGRAMS = [
     "chapterId": "ch19",
     "headingZh": "現場異常徵兆與跨站根因排查",
     "headingEn": "Fab Failure Signatures & Root-Cause Diagnostics",
+    "foldTables": true,
     "type": "branch",
     "captionZh": "晶圓針測的異常來源及其造成的後果",
     "captionEn": "The probe test failure modes and what each one causes.",
@@ -2727,6 +4456,39 @@ export const SECTION_DIAGRAMS = [
         "en": "Multi-site parallel testing",
         "leafZh": "電源塌陷與時序誤殺",
         "leafEn": "Power droop, at-speed false fails"
+      }
+    ]
+  },
+  {
+    "chapterId": "ch19",
+    "headingZh": "定量物理定律與 3D 製程視窗",
+    "headingEn": "Quantitative Governing Laws & 3D Process Windows",
+    "foldTables": true,
+    "type": "branch",
+    "captionZh": "晶圓測試三大定量定律與對應的工程意義",
+    "captionEn": "Three wafer-test laws and what each means for probing and KGD.",
+    "root": {
+      "zh": "晶圓測試與 KGD 定律",
+      "en": "Wafer test and KGD laws"
+    },
+    "branches": [
+      {
+        "zh": "開爾文四線量測",
+        "en": "Kelvin four-wire measurement",
+        "leafZh": "消除線纜與探針接觸電阻",
+        "leafEn": "Cancels cable and probe contact resistance"
+      },
+      {
+        "zh": "Holm 接觸與過壓行程",
+        "en": "Holm contact and probe overdrive",
+        "leafZh": "太小假性開路，太大打裂低介電質",
+        "leafEn": "Low OD false-fails; high OD cracks low-k"
+      },
+      {
+        "zh": "測試逃逸率與 KGD",
+        "en": "Test escape and KGD break-even",
+        "leafZh": "提高覆蓋率，免整組模組報廢",
+        "leafEn": "Higher coverage avoids scrapping the module"
       }
     ]
   },
@@ -2848,6 +4610,7 @@ export const SECTION_DIAGRAMS = [
     "chapterId": "ch20",
     "headingZh": "現場異常徵兆與跨站根因排查",
     "headingEn": "Fab Failure Signatures & Root-Cause Diagnostics",
+    "foldTables": true,
     "type": "branch",
     "captionZh": "傳統封裝的失效來源及其造成的結果",
     "captionEn": "Traditional packaging failure modes and what each one leads to.",
@@ -2873,6 +4636,39 @@ export const SECTION_DIAGRAMS = [
         "en": "Wire-bond metal interdiffusion",
         "leafZh": "柯肯達爾空洞、焊球脫落",
         "leafEn": "Kirkendall voids, ball lift-off"
+      }
+    ]
+  },
+  {
+    "chapterId": "ch20",
+    "headingZh": "定量物理定律與 3D 製程視窗",
+    "headingEn": "Quantitative Governing Laws & 3D Process Windows",
+    "foldTables": true,
+    "type": "branch",
+    "captionZh": "封裝三大熱機械與流體定律各自推動的設計改變",
+    "captionEn": "How three thermomechanical and fluid laws reshaped package design.",
+    "root": {
+      "zh": "封裝熱機械與流體定律",
+      "en": "Thermomechanical and fluid laws"
+    },
+    "branches": [
+      {
+        "zh": "焊球熱疲勞定律",
+        "en": "Coffin-Manson solder fatigue",
+        "leafZh": "邊角焊球先裂，填膠延長壽命",
+        "leafEn": "Corner bumps fail first; underfill adds life"
+      },
+      {
+        "zh": "毛細底部填充流動",
+        "en": "Washburn capillary underfill flow",
+        "leafZh": "間隙縮小改採先貼膜或模壓底填",
+        "leafEn": "Narrow gaps shift to TC-NCF or MR-MUF"
+      },
+      {
+        "zh": "封裝熱阻網路",
+        "en": "Package thermal resistance network",
+        "leafZh": "改採裸晶直露加銦片或均溫板",
+        "leafEn": "Exposed die with indium TIM or vapor chamber"
       }
     ]
   },
@@ -2964,6 +4760,7 @@ export const SECTION_DIAGRAMS = [
     "chapterId": "ch21",
     "headingZh": "小晶片（Chiplet）",
     "headingEn": "Chiplets",
+    "foldTables": true,
     "type": "compare",
     "captionZh": "小晶片之間互連介面的主要類別對照",
     "captionEn": "The main kinds of chiplet interconnect compared side by side.",
@@ -3051,6 +4848,178 @@ export const SECTION_DIAGRAMS = [
         "en": "Multiplied yield",
         "leafZh": "任一失敗，整個封裝受影響",
         "leafEn": "Any failure affects the package"
+      }
+    ]
+  },
+  {
+    "chapterId": "ch21",
+    "headingZh": "2.5D：並排放在中介層上",
+    "headingEn": "2.5D: side by side on an interposer",
+    "foldTables": true,
+    "type": "branch",
+    "captionZh": "依中介層材質與互連結構，2.5D 封裝分為四類",
+    "captionEn": "2.5D packaging falls into four classes by interposer material and topology.",
+    "root": {
+      "zh": "中介層材質與互連結構",
+      "en": "Interposer material and topology",
+      "noteZh": "晶片並排放在中介層上",
+      "noteEn": "Chips placed side by side on an interposer"
+    },
+    "branches": [
+      {
+        "zh": "矽中介層",
+        "en": "Silicon interposer",
+        "leafZh": "整片矽，可曝光拼接放大",
+        "leafEn": "Full silicon, reticle-stitched to grow larger"
+      },
+      {
+        "zh": "有機重佈線中介層",
+        "en": "Organic RDL interposer",
+        "leafZh": "多層有機 RDL 取代整片矽",
+        "leafEn": "Organic RDL layers replace the silicon"
+      },
+      {
+        "zh": "局部矽橋",
+        "en": "Local silicon bridge",
+        "leafZh": "只在需要高密度互連處嵌入矽橋",
+        "leafEn": "Bridges only where dense die links are needed"
+      },
+      {
+        "zh": "複合載板",
+        "en": "Hybrid substrate",
+        "leafZh": "ABF 與 HDI 基板上下疊合",
+        "leafEn": "Fine-pitch ABF tier stacked over HDI"
+      }
+    ]
+  },
+  {
+    "chapterId": "ch21",
+    "headingZh": "2.5D、扇出型與 3D／3.5D 封裝條例總覽",
+    "headingEn": "2.5D, Fan-Out & 3D/3.5D Packaging Clauses",
+    "foldTables": true,
+    "type": "compare",
+    "captionZh": "2.5D 與 3D 封裝三大挑戰的瓶頸與對策",
+    "captionEn": "Three 2.5D/3D packaging challenges: bottleneck and countermeasure.",
+    "columns": [
+      {
+        "titleZh": "跨層熱阻與熱點耦合",
+        "titleEn": "Cross-tier thermal coupling",
+        "items": [
+          {
+            "keyZh": "瓶頸",
+            "keyEn": "Bottleneck",
+            "zh": "底層熱量被上方晶片阻擋",
+            "en": "Bottom-die heat trapped under upper tiers"
+          },
+          {
+            "keyZh": "對策",
+            "keyEn": "Countermeasure",
+            "zh": "結構矽、混合鍵合與液冷",
+            "en": "Structural Si, hybrid bonding, liquid cooling"
+          }
+        ]
+      },
+      {
+        "titleZh": "大面積翹曲與晶片封裝交互",
+        "titleEn": "Large-area warpage and CPI",
+        "items": [
+          {
+            "keyZh": "瓶頸",
+            "keyEn": "Bottleneck",
+            "zh": "矽、銅與載板熱膨脹落差",
+            "en": "CTE mismatch of silicon, copper, substrate"
+          },
+          {
+            "keyZh": "對策",
+            "keyEn": "Countermeasure",
+            "zh": "補強環、模塑底填與玻璃基板",
+            "en": "Stiffener rings, MR-MUF, glass core substrates"
+          }
+        ]
+      },
+      {
+        "titleZh": "堆疊內部可測性與修復",
+        "titleEn": "Stack test access and repair",
+        "items": [
+          {
+            "keyZh": "瓶頸",
+            "keyEn": "Bottleneck",
+            "zh": "疊合後探針碰不到中間層",
+            "en": "Middle dies cannot be probed once bonded"
+          },
+          {
+            "keyZh": "對策",
+            "keyEn": "Countermeasure",
+            "zh": "堆疊測試標準與備援通道修復",
+            "en": "Stack DfT standard and redundant lane repair"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "chapterId": "ch21",
+    "headingZh": "定量物理定律與 3D 製程視窗",
+    "headingEn": "Quantitative Governing Laws & 3D Process Windows",
+    "foldTables": true,
+    "type": "branch",
+    "captionZh": "三大異質整合定律各自推動的封裝演進",
+    "captionEn": "How three heterogeneous-integration laws drive packaging changes.",
+    "root": {
+      "zh": "異質整合定量定律",
+      "en": "Heterogeneous integration laws"
+    },
+    "branches": [
+      {
+        "zh": "節距平方反比密度律",
+        "en": "Inverse-square pitch density law",
+        "leafZh": "節距縮小，互連密度暴增",
+        "leafEn": "Finer pitch multiplies I/O density"
+      },
+      {
+        "zh": "立體堆疊熱阻耦合",
+        "en": "Stacked-die thermal coupling",
+        "leafZh": "高功耗層移近頂部散熱",
+        "leafEn": "Put high-power logic nearest the heatsink"
+      },
+      {
+        "zh": "Stoney 翹曲縮放律",
+        "en": "Stoney warpage scaling law",
+        "leafZh": "大封裝改用玻璃核心基板",
+        "leafEn": "Large packages move to glass core substrates"
+      }
+    ]
+  },
+  {
+    "chapterId": "ch21",
+    "headingZh": "現場異常徵兆與跨站根因排查",
+    "headingEn": "Fab Failure Signatures & Root-Cause Diagnostics",
+    "foldTables": true,
+    "type": "branch",
+    "captionZh": "先進封裝三大核心異常與對應的防呆對策",
+    "captionEn": "Three critical advanced-packaging failures and their countermeasures.",
+    "root": {
+      "zh": "先進封裝三大核心異常",
+      "en": "Three critical packaging failures"
+    },
+    "branches": [
+      {
+        "zh": "哭笑臉翹曲反轉",
+        "en": "Smile/cry warpage inversion",
+        "leafZh": "補強環並導入玻璃核心基板",
+        "leafEn": "Stiffener rings and glass core substrates"
+      },
+      {
+        "zh": "混合鍵合微粒空洞",
+        "en": "Hybrid-bond particle blister voids",
+        "leafZh": "貼合前於機台內刷洗並活化",
+        "leafEn": "In-situ scrub and activation before contact"
+      },
+      {
+        "zh": "垂直熱耦合降頻",
+        "en": "Vertical thermal cross-heating",
+        "leafZh": "結構矽、導熱矽穿孔與銦片導熱",
+        "leafEn": "Structural silicon, thermal TSVs, indium TIM"
       }
     ]
   },
@@ -3171,6 +5140,121 @@ export const SECTION_DIAGRAMS = [
         "en": "Bias temperature instability (BTI)",
         "leafZh": "Vt 隨時間漂移",
         "leafEn": "Vt drifts over time"
+      }
+    ]
+  },
+  {
+    "chapterId": "ch22",
+    "headingZh": "JEDEC／AEC-Q100 可靠度驗證主題",
+    "headingEn": "JEDEC & AEC-Q100 Qualification Topics",
+    "foldTables": true,
+    "type": "branch",
+    "captionZh": "五類可靠度驗證主題與各自攔截的失效模式",
+    "captionEn": "Five qualification topics and the failure modes each one targets.",
+    "root": {
+      "zh": "可靠度驗證主題",
+      "en": "Qualification topics",
+      "noteZh": "教學應力例，非標準條文",
+      "noteEn": "Teaching examples, not standard clauses"
+    },
+    "branches": [
+      {
+        "zh": "高溫工作壽命與預燒",
+        "en": "High-temp operating life, burn-in",
+        "leafZh": "逼出早夭期閘極氧化層針孔",
+        "leafEn": "Screens infant-mortality gate oxide pinholes"
+      },
+      {
+        "zh": "溫度循環與熱衝擊",
+        "en": "Temp. cycling and thermal shock",
+        "leafZh": "焊球與微凸塊熱疲勞裂紋",
+        "leafEn": "Solder and micro-bump fatigue cracks"
+      },
+      {
+        "zh": "高加速溫濕度應力",
+        "en": "Accelerated temp & humidity stress",
+        "leafZh": "焊墊腐蝕與樹枝狀結晶短路",
+        "leafEn": "Pad corrosion and dendritic shorts"
+      },
+      {
+        "zh": "濕氣敏感度與迴焊爆米花",
+        "en": "Moisture sensitivity and reflow",
+        "leafZh": "氣爆脫層與翹曲風險",
+        "leafEn": "Popcorning and warpage risk"
+      },
+      {
+        "zh": "晶圓級本質可靠度",
+        "en": "Wafer-level intrinsic reliability",
+        "leafZh": "電晶體漂移與互連空洞風險",
+        "leafEn": "Transistor drift and voiding risk"
+      }
+    ]
+  },
+  {
+    "chapterId": "ch22",
+    "headingZh": "定量物理定律與 3D 製程視窗",
+    "headingEn": "Quantitative Governing Laws & 3D Process Windows",
+    "foldTables": true,
+    "type": "branch",
+    "captionZh": "三條可靠度定律與各自的用途或限制",
+    "captionEn": "Three reliability laws and the use or limit of each.",
+    "root": {
+      "zh": "可靠度加速壽命定律",
+      "en": "Reliability and acceleration laws",
+      "noteZh": "參數須依材料與資料擬合",
+      "noteEn": "Parameters must be fitted to data"
+    },
+    "branches": [
+      {
+        "zh": "韋伯分佈與浴缸曲線",
+        "en": "Weibull and the bathtub curve",
+        "leafZh": "形狀參數區分早夭、隨機、磨損",
+        "leafEn": "Shape parameter: infant, random, wear-out"
+      },
+      {
+        "zh": "溫濕加速與 FIT 上限",
+        "en": "Arrhenius-Peck AF and FIT bound",
+        "leafZh": "各試驗不可共用未驗證加速因子",
+        "leafEn": "Tests can't share unvalidated AFs"
+      },
+      {
+        "zh": "電晶體本質老化定律",
+        "en": "Transistor aging laws (BTI, TDDB)",
+        "leafZh": "PDK 老化模型預留時序裕度",
+        "leafEn": "PDK aging models for EOL timing margin"
+      }
+    ]
+  },
+  {
+    "chapterId": "ch22",
+    "headingZh": "現場異常徵兆與跨站根因排查",
+    "headingEn": "Fab Failure Signatures & Root-Cause Diagnostics",
+    "foldTables": true,
+    "type": "branch",
+    "captionZh": "早期缺陷、老化與靜電損傷的異常與防堵對策",
+    "captionEn": "Early-defect, aging and ESD failures and the countermeasure for each.",
+    "root": {
+      "zh": "可靠度與測試異常",
+      "en": "Reliability and test failures"
+    },
+    "branches": [
+      {
+        "zh": "早夭期缺陷逃逸",
+        "en": "Infant-mortality escape",
+        "leafZh": "依核可計畫評估預燒與 SLT",
+        "leafEn": "Evaluate burn-in and SLT per qualified plan"
+      },
+      {
+        "zh": "老化時序違例當機",
+        "en": "Aging timing-violation crash",
+        "leafZh": "評估氘氣退火、老化監測與 AVS",
+        "leafEn": "Evaluate deuterium anneal, monitors, AVS"
+      },
+      {
+        "zh": "搬運靜電潛在損傷",
+        "en": "Handler ESD latent damage",
+        "leafZh": "接地、離子風機與 ESD 防護",
+        "leafEn": "Grounding, ionizers and ESD clamps"
       }
     ]
   },
@@ -3298,6 +5382,7 @@ export const SECTION_DIAGRAMS = [
     "chapterId": "ch23",
     "headingZh": "現場異常徵兆與跨站根因排查",
     "headingEn": "Fab Failure Signatures & Root-Cause Diagnostics",
+    "foldTables": true,
     "type": "branch",
     "captionZh": "工廠系統異常與對應的防堵對策",
     "captionEn": "Fab-system failure modes and their containment countermeasures",
@@ -3323,6 +5408,130 @@ export const SECTION_DIAGRAMS = [
         "en": "Book-to-physical mismatch",
         "leafZh": "EAP 鎖死機械手臂",
         "leafEn": "EAP hard-locks the robot"
+      }
+    ]
+  },
+  {
+    "chapterId": "ch23",
+    "headingZh": "智慧製造 CIM 與相關 SEMI 通訊標準",
+    "headingEn": "Smart Fab CIM & Related SEMI Standards",
+    "foldTables": true,
+    "type": "branch",
+    "captionZh": "CIM 各系統與 SEMI 標準各自負責的工作",
+    "captionEn": "Each CIM system and SEMI standard, and what it is responsible for.",
+    "root": {
+      "zh": "CIM 系統",
+      "en": "CIM systems",
+      "noteZh": "協調機台、在製品與搬運",
+      "noteEn": "Coordinates tools, WIP and transport"
+    },
+    "branches": [
+      {
+        "zh": "製造執行系統（MES）",
+        "en": "Manufacturing execution (MES)",
+        "leafZh": "途程、進出站與晶圓履歷",
+        "leafEn": "Routes, track-in/out, wafer genealogy"
+      },
+      {
+        "zh": "EAP 與配方管理",
+        "en": "EAP and recipe management",
+        "leafZh": "連接機台與 MES，校驗配方",
+        "leafEn": "Bridges tools and MES; verifies recipes"
+      },
+      {
+        "zh": "SEMI 機台通訊標準",
+        "en": "SEMI tool communication standards",
+        "leafZh": "SECS／GEM 訊息與狀態機",
+        "leafEn": "SECS/GEM messages and state machines"
+      },
+      {
+        "zh": "即時派工與良率管理",
+        "en": "Dispatching and yield management",
+        "leafZh": "派工指揮搬運、良率數據關聯分析",
+        "leafEn": "Dispatches transport; correlates yield data"
+      }
+    ]
+  },
+  {
+    "chapterId": "ch23",
+    "headingZh": "定量模型、假設與使用條件",
+    "headingEn": "Quantitative Models, Assumptions & Conditions",
+    "foldTables": true,
+    "type": "compare",
+    "captionZh": "三條營運定律的核心關係、假設與工程意義",
+    "captionEn": "Three operations-research laws: core relation, assumptions and implication.",
+    "columns": [
+      {
+        "titleZh": "利特爾法則與週期倍數",
+        "titleEn": "Little's Law and X-Factor",
+        "items": [
+          {
+            "keyZh": "核心關係",
+            "keyEn": "Core relation",
+            "zh": "WIP 等於產出乘週期時間",
+            "en": "WIP = throughput × cycle time"
+          },
+          {
+            "keyZh": "假設",
+            "keyEn": "Assumes",
+            "zh": "長期平均量且系統邊界一致",
+            "en": "Long-run averages, consistent boundaries"
+          },
+          {
+            "keyZh": "工程意義",
+            "keyEn": "Implication",
+            "zh": "產出不變時 WIP 增則週期拉長",
+            "en": "More WIP, same throughput: longer cycle time"
+          }
+        ]
+      },
+      {
+        "titleZh": "多機台排隊與利用率",
+        "titleEn": "Multi-server queue and utilization",
+        "items": [
+          {
+            "keyZh": "核心關係",
+            "keyEn": "Core relation",
+            "zh": "利用率接近滿載時等待放大",
+            "en": "Waiting grows as utilization nears full"
+          },
+          {
+            "keyZh": "假設",
+            "keyEn": "Assumes",
+            "zh": "到站與服務變異、同質機台",
+            "en": "Arrival/service variability, homogeneous tools"
+          },
+          {
+            "keyZh": "工程意義",
+            "keyEn": "Implication",
+            "zh": "降低到站變異或共用合格機台",
+            "en": "Smoother arrivals or qualified tool pooling"
+          }
+        ]
+      },
+      {
+        "titleZh": "OEE 教學分解",
+        "titleEn": "OEE teaching decomposition",
+        "items": [
+          {
+            "keyZh": "核心關係",
+            "keyEn": "Core relation",
+            "zh": "可用率×表現效率×良率",
+            "en": "Availability × performance × quality"
+          },
+          {
+            "keyZh": "假設",
+            "keyEn": "Assumes",
+            "zh": "時間與良品定義須一致",
+            "en": "Consistent time and good-unit definitions"
+          },
+          {
+            "keyZh": "工程意義",
+            "keyEn": "Implication",
+            "zh": "預先配置 FOUP 與預測性維護",
+            "en": "FOUP pre-positioning, predictive maintenance"
+          }
+        ]
       }
     ]
   },
@@ -3476,6 +5685,7 @@ export const SECTION_DIAGRAMS = [
     "chapterId": "ch24",
     "headingZh": "現場異常徵兆與跨站根因排查",
     "headingEn": "Fab Failure Signatures & Root-Cause Diagnostics",
+    "foldTables": true,
     "type": "branch",
     "captionZh": "製程物理與軟韌體失配的異常與防堵對策",
     "captionEn": "Silicon-firmware mismatch failures and their countermeasures",
@@ -3487,7 +5697,7 @@ export const SECTION_DIAGRAMS = [
       {
         "zh": "瞬間壓降當機",
         "en": "Transient voltage-droop crash",
-        "leafZh": "自適應時脈展頻",
+        "leafZh": "自適應時脈週期延長",
         "leafEn": "Adaptive clock stretching"
       },
       {
@@ -3501,6 +5711,154 @@ export const SECTION_DIAGRAMS = [
         "en": "Read-disturb data loss",
         "leafZh": "背景搬移至新區塊",
         "leafEn": "Background data relocation"
+      }
+    ]
+  },
+  {
+    "chapterId": "ch24",
+    "headingZh": "硬體與韌體協同設計主題",
+    "headingEn": "Hardware–Firmware Design Topics",
+    "foldTables": true,
+    "type": "compare",
+    "captionZh": "六個軟硬體協同設計主題，依記憶體、電壓時序與堆疊熱分組",
+    "captionEn": "Six hardware–firmware topics grouped by memory, voltage/timing and stack heat.",
+    "columns": [
+      {
+        "titleZh": "記憶體資料完整性",
+        "titleEn": "Memory data integrity",
+        "items": [
+          {
+            "zh": "DRAM 溫度相依刷新與錘擊防護",
+            "en": "Temperature-dependent DRAM refresh, Row Hammer",
+            "noteZh": "依料號設定刷新、TRR／PRAC",
+            "noteEn": "Part-specific refresh; TRR / PRAC"
+          },
+          {
+            "zh": "軟錯誤與多層錯誤更正碼",
+            "en": "Soft errors and multi-tier ECC",
+            "noteZh": "多層 ECC 與記憶體巡檢",
+            "noteEn": "Layered ECC plus memory scrubbing"
+          },
+          {
+            "zh": "NAND 快閃轉換層與壽命管理",
+            "en": "NAND flash translation layer (FTL)",
+            "noteZh": "耗損平均、讀取重試與 LDPC",
+            "noteEn": "Wear leveling, read retry, LDPC"
+          }
+        ]
+      },
+      {
+        "titleZh": "電壓與時序",
+        "titleEn": "Voltage and timing",
+        "items": [
+          {
+            "zh": "製程角、自適應電壓與老化補償",
+            "en": "PVT corners, AVS/DVFS, aging guardband",
+            "noteZh": "eFuse 校準與關鍵路徑監測",
+            "noteEn": "eFuse calibration, critical-path monitors"
+          },
+          {
+            "zh": "瞬態壓降與時脈週期延長",
+            "en": "Transient droop and clock stretching",
+            "noteZh": "壓降偵測、延長時脈與分批喚醒",
+            "noteEn": "Detect droop, extend clock, stage ramp-up"
+          }
+        ]
+      },
+      {
+        "titleZh": "立體堆疊熱與排程",
+        "titleEn": "Stack thermal and scheduling",
+        "items": [
+          {
+            "zh": "立體堆疊熱耦合與小晶片排程",
+            "en": "Stack thermal coupling, chiplet NUMA scheduling",
+            "noteZh": "拓撲感知排程與分層降頻",
+            "noteEn": "Topology-aware scheduling, tier throttling"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "chapterId": "ch24",
+    "headingZh": "定量模型、假設與使用條件",
+    "headingEn": "Quantitative Models, Assumptions & Conditions",
+    "foldTables": true,
+    "type": "compare",
+    "captionZh": "壓降、功耗熱與 ECC 三種模型的關係、假設與意義",
+    "captionEn": "Droop, power/thermal and ECC models: core relation, assumptions, implication.",
+    "columns": [
+      {
+        "titleZh": "電源分配網路壓降模型",
+        "titleEn": "PDN voltage droop model",
+        "items": [
+          {
+            "keyZh": "核心關係",
+            "keyEn": "Core relation",
+            "zh": "壓降為電阻項加電感項",
+            "en": "Droop = resistive + inductive terms"
+          },
+          {
+            "keyZh": "限制",
+            "keyEn": "Limit",
+            "zh": "不能只由電流斜率決定壓降",
+            "en": "Current slew alone doesn't set droop"
+          },
+          {
+            "keyZh": "工程意義",
+            "keyEn": "Implication",
+            "zh": "評估供電佈局、去耦與漸進啟動",
+            "en": "Power routing, decoupling, staged ramp-up"
+          }
+        ]
+      },
+      {
+        "titleZh": "動態電壓頻率功耗與熱失控",
+        "titleEn": "DVFS power and thermal runaway",
+        "items": [
+          {
+            "keyZh": "核心關係",
+            "keyEn": "Core relation",
+            "zh": "動態功耗與電壓平方乘頻率成正比",
+            "en": "Dynamic power ∝ voltage squared × frequency"
+          },
+          {
+            "keyZh": "假設",
+            "keyEn": "Assumes",
+            "zh": "立方近似須電壓正比於頻率",
+            "en": "Cubic law needs voltage proportional to f"
+          },
+          {
+            "keyZh": "工程意義",
+            "keyEn": "Implication",
+            "zh": "依感測器與迴路延遲設計降頻",
+            "en": "Design DVFS around sensors, loop latency"
+          }
+        ]
+      },
+      {
+        "titleZh": "ECC 界限與錯誤尾",
+        "titleEn": "ECC bound and error tail",
+        "items": [
+          {
+            "keyZh": "核心關係",
+            "keyEn": "Core relation",
+            "zh": "Hamming 界限給出最少檢查位元",
+            "en": "Hamming bound gives minimum check bits"
+          },
+          {
+            "keyZh": "假設",
+            "keyEn": "Assumes",
+            "zh": "位元錯誤獨立同分佈",
+            "en": "Independent, identically distributed errors"
+          },
+          {
+            "keyZh": "工程意義",
+            "keyEn": "Implication",
+            "zh": "依錯誤型態評估 ECC 與巡檢",
+            "en": "Match ECC and scrubbing to the fault model"
+          }
+        ]
       }
     ]
   },
@@ -3571,6 +5929,264 @@ export const SECTION_DIAGRAMS = [
         "en": "CP edge-ring failing dies",
         "leafZh": "嫌疑腔體切 Down",
         "leafEn": "Take the offending chamber down"
+      }
+    ]
+  },
+  {
+    "chapterId": "app-glossary",
+    "headingZh": "八大工程領域核心術語與物理量綱條例總覽",
+    "headingEn": "8-Domain Core Terminology & Physical Dimension Clauses",
+    "foldTables": true,
+    "type": "compare",
+    "captionZh": "八大工程領域及其核心代表縮寫，依領域分三組。",
+    "captionEn": "The eight engineering domains and their core abbreviations, grouped by area.",
+    "columns": [
+      {
+        "titleZh": "基板、元件與前段製程",
+        "titleEn": "Substrate, device & front end",
+        "items": [
+          {
+            "zh": "晶圓基板與元件物理",
+            "en": "Wafer substrates & device physics",
+            "noteZh": "CZ、SOI、GAA、CFET",
+            "noteEn": "CZ, SOI, GAA, CFET"
+          },
+          {
+            "zh": "前段圖形化與長膜模組",
+            "en": "FEOL lithography & thin-film modules",
+            "noteZh": "EUV、SAQP、ALD、ECD",
+            "noteEn": "EUV, SAQP, ALD, ECD"
+          },
+          {
+            "zh": "蝕刻、佈植退火、平坦化與清洗",
+            "en": "Etch, implant/anneal, CMP & clean",
+            "noteZh": "RIE、ALE、RTA、CMP",
+            "noteEn": "RIE, ALE, RTA, CMP"
+          }
+        ]
+      },
+      {
+        "titleZh": "互連、記憶體與封裝",
+        "titleEn": "Interconnect, memory & packaging",
+        "items": [
+          {
+            "zh": "中後段互連與背面供電",
+            "en": "MOL, BEOL & backside power delivery",
+            "noteZh": "雙鑲嵌銅、ULK、BSPDN",
+            "noteEn": "Dual-damascene Cu, ULK, BSPDN"
+          },
+          {
+            "zh": "先進記憶體與新興 NVM",
+            "en": "Advanced memory & emerging NVM",
+            "noteZh": "DRAM、NAND、HBM",
+            "noteEn": "DRAM, NAND, HBM"
+          },
+          {
+            "zh": "傳統與異質整合封裝及智慧製造",
+            "en": "Packaging & smart fab CIM",
+            "noteZh": "CoWoS、UCIe、MES",
+            "noteEn": "CoWoS, UCIe, MES"
+          }
+        ]
+      },
+      {
+        "titleZh": "量測、控制與可靠度",
+        "titleEn": "Metrology, control & reliability",
+        "items": [
+          {
+            "zh": "在線量測、無損檢測與故障分析",
+            "en": "In-line metrology, inspection & FA",
+            "noteZh": "OCD、C-SAM、STEM",
+            "noteEn": "OCD, C-SAM, STEM"
+          },
+          {
+            "zh": "製程控制、異常防堵與可靠度測試",
+            "en": "Process control, excursion & reliability",
+            "noteZh": "APC、OCAP、HTOL",
+            "noteEn": "APC, OCAP, HTOL"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "chapterId": "app-glossary",
+    "headingZh": "定量物理定律與跨章節異常診斷速查",
+    "headingEn": "Quantitative Laws & Cross-Chapter Failure Lookup",
+    "foldTables": true,
+    "type": "compare",
+    "captionZh": "六大工程維度的統御方程與代表現場異常。",
+    "captionEn": "Governing equations and signature failure modes across six engineering domains.",
+    "columns": [
+      {
+        "titleZh": "工程領域與統御方程",
+        "titleEn": "Domain & governing equations",
+        "items": [
+          {
+            "zh": "光學微影與圖形化",
+            "en": "Lithography & patterning",
+            "noteZh": "CD、DOF 與 EPE 視窗",
+            "noteEn": "CD, DOF and EPE windows"
+          },
+          {
+            "zh": "薄膜、蝕刻與平坦化",
+            "en": "Deposition, etch & planarization",
+            "noteZh": "深孔傳導、Preston 磨耗律",
+            "noteEn": "Knudsen transport, Preston's law"
+          },
+          {
+            "zh": "電晶體物理與 CMOS 整合",
+            "en": "Device physics & CMOS integration",
+            "noteZh": "擺幅極限、Pelgrom 失配",
+            "noteEn": "Swing limit, Pelgrom mismatch"
+          },
+          {
+            "zh": "先進記憶體與先進封裝",
+            "en": "Memory & advanced packaging",
+            "noteZh": "電容保持、翹曲與熱阻",
+            "noteEn": "Retention, warpage, thermal resistance"
+          },
+          {
+            "zh": "量測、良率與 SPC／APC",
+            "en": "Metrology, yield & SPC/APC",
+            "noteZh": "負二項良率與 EWMA 回饋",
+            "noteEn": "Negative-binomial yield, EWMA feedback"
+          },
+          {
+            "zh": "測試、可靠度、智慧工廠與韌體",
+            "en": "Test, reliability, CIM & firmware",
+            "noteZh": "電遷移、浴缸曲線、利特爾法則",
+            "noteEn": "EM law, Weibull bathtub, Little's Law"
+          }
+        ]
+      },
+      {
+        "titleZh": "代表現場異常",
+        "titleEn": "Signature failure modes",
+        "items": [
+          {
+            "zh": "EUV 隨機微橋接、失焦熱點",
+            "en": "EUV stochastic micro-bridges, focus hotspots"
+          },
+          {
+            "zh": "懸垂空洞、底部切角、碟形凹陷",
+            "en": "Keyhole seams, foot-notching, CMP dishing"
+          },
+          {
+            "zh": "DIBL 穿通、奈米片釋放沾黏",
+            "en": "DIBL punch-through, sheet release stiction"
+          },
+          {
+            "zh": "DRAM 變異保持時間、哭笑臉翹曲",
+            "en": "DRAM VRT tail bits, Smile/Cry warpage"
+          },
+          {
+            "zh": "晶圓圖指紋、過度調機",
+            "en": "Wafer-map rings, tampering"
+          },
+          {
+            "zh": "早夭漏放、Q-Time 鎖批",
+            "en": "Infant-mortality escapes, Q-Time gridlock"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "chapterId": "app-reading",
+    "headingZh": "國際半導體標準組織與頂尖技術會議權威條例",
+    "headingEn": "International Semiconductor Standards & Premier Conferences Clauses",
+    "foldTables": true,
+    "type": "compare",
+    "captionZh": "國際標準聯盟與頂尖技術會議各自涵蓋的範圍。",
+    "captionEn": "International standards bodies and premier conferences, and what each covers.",
+    "columns": [
+      {
+        "titleZh": "國際標準聯盟",
+        "titleEn": "International standards bodies",
+        "items": [
+          {
+            "zh": "SEMI 國際標準",
+            "en": "SEMI international standards",
+            "noteZh": "晶圓、FOUP 介面與自動化通訊",
+            "noteEn": "Wafer, FOUP and fab automation protocols"
+          },
+          {
+            "zh": "JEDEC 與車規 AEC",
+            "en": "JEDEC & automotive AEC",
+            "noteZh": "記憶體介面與可靠度驗證",
+            "noteEn": "Memory interfaces, reliability qualification"
+          },
+          {
+            "zh": "UCIe、OCP 與 IEEE 聯盟",
+            "en": "UCIe, OCP & IEEE consortia",
+            "noteZh": "小晶片互連與堆疊測試架構",
+            "noteEn": "Die-to-die links and stacked-die test access"
+          }
+        ]
+      },
+      {
+        "titleZh": "頂尖技術會議",
+        "titleEn": "Premier technical conferences",
+        "items": [
+          {
+            "zh": "IEDM 與 VLSI 研討會",
+            "en": "IEDM & VLSI Symposium",
+            "noteZh": "次世代製程節點首度公開",
+            "noteEn": "Where next-gen process nodes debut"
+          },
+          {
+            "zh": "ISSCC、ITC 與 IRPS",
+            "en": "ISSCC, ITC & IRPS",
+            "noteZh": "晶片設計、測試與可靠度物理",
+            "noteEn": "Chip design, test and reliability physics"
+          },
+          {
+            "zh": "ECTC 與 SPIE 微影會議",
+            "en": "ECTC & SPIE Advanced Lithography",
+            "noteZh": "先進封裝與微影量測藍圖",
+            "noteEn": "Advanced packaging, lithography, metrology"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "chapterId": "app-reading",
+    "headingZh": "跨領域進階研讀路線圖與標準規範對照",
+    "headingEn": "Cross-Domain Study Roadmaps & Standards Matrix",
+    "foldTables": true,
+    "type": "branch",
+    "captionZh": "四條職能研讀路線與各自的代表會議、標準。",
+    "captionEn": "Four career-track study roadmaps with their key conferences and standards.",
+    "root": {
+      "zh": "工程職能研讀路線",
+      "en": "Engineering career tracks"
+    },
+    "branches": [
+      {
+        "zh": "前段製程整合與元件研發",
+        "en": "FEOL integration & device R&D",
+        "leafZh": "IEDM、VLSI 與 IRDS",
+        "leafEn": "IEDM, VLSI Symposium, IRDS Roadmap"
+      },
+      {
+        "zh": "四大模組與在線量測控制",
+        "en": "Unit modules, metrology & APC",
+        "leafZh": "SPIE 與 SEMI 標準",
+        "leafEn": "SPIE Advanced Lithography, SEMI standards"
+      },
+      {
+        "zh": "先進封裝與失效分析",
+        "en": "Advanced packaging & physical FA",
+        "leafZh": "ECTC、ISTFA、UCIe",
+        "leafEn": "ECTC, ISTFA, UCIe"
+      },
+      {
+        "zh": "測試、可靠度與智慧製造",
+        "en": "Test, reliability & smart fab CIM",
+        "leafZh": "IRPS、ITC 與 JEDEC",
+        "leafEn": "IRPS, ITC and JEDEC"
       }
     ]
   }

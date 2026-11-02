@@ -100,7 +100,12 @@ for (const [chapterId, chapter] of Object.entries(chapters)) {
   for (const [html, lang] of [[chapter.contentHtml, 'zh'], [chapter.contentHtmlEn, 'en']]) {
     const out = insertSectionDiagrams(html, chapterId, lang);
     assert.equal((out.match(/class="chapter-figure"/g) || []).length - (html.match(/class="chapter-figure"/g) || []).length, specs.length, `${chapterId} ${lang} 插入圖數須等於規格數`);
-    assert.equal(out.replace(/<figure class="chapter-figure">[\s\S]*?<\/figure>/g, ''), html.replace(/<figure class="chapter-figure">[\s\S]*?<\/figure>/g, ''), `${chapterId} ${lang} 加圖後正文須一字不變`);
+    // 收合只加 details 外框：拿掉圖與外框後須與原文相同，表格一字不少
+    const unfold = s => s.replace(/<figure class="chapter-figure">[\s\S]*?<\/figure>/g, '').replace(/<details class="table-fold"><summary>[^<]*<\/summary>([\s\S]*?<\/table><\/div>)<\/details>/g, '$1');
+    assert.equal(unfold(out), unfold(html), `${chapterId} ${lang} 加圖後正文須一字不變`);
+    const folds = specs.reduce((sum, s) => sum + (s.foldTables === true ? 1 : s.foldTables ? s.foldTables.length : 0), 0);
+    assert.equal((out.match(/<details class="table-fold">/g) || []).length, folds, `${chapterId} ${lang} 收合表格數須等於規格指定數`);
+    for (const m of out.matchAll(/<details class="table-fold"><summary>([^<]*)<\/summary>/g)) assert.match(m[1], lang === 'en' ? /^Show full table \(\d+ rows × \d+ columns\)$/ : /^展開完整表格（\d+ 列 × \d+ 欄）$/, `${chapterId} ${lang} 收合標籤格式`);
     for (const spec of specs) {
       const heading = headingPattern(lang === 'en' ? spec.headingEn : spec.headingZh);
       const at = out.search(new RegExp(`<h2\\b[^>]*>(?:(?!</h2>)[\\s\\S])*?${heading}(?:(?!</h2>)[\\s\\S])*?</h2><figure class="chapter-figure">`));

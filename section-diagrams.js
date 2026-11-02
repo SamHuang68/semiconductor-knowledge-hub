@@ -268,6 +268,21 @@ const escapeRegExp = text => String(text).replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
 // 規格的標題存一般文字；正文 HTML 的 & < > 有的寫成實體、有的是字面字元，兩種都接受
 export const headingPattern = text => escapeRegExp(text).replace(/&/g, '(?:&amp;|&)').replace(/</g, '(?:&lt;|<)').replace(/>/g, '(?:&gt;|>)');
 
+// 圖已涵蓋的長表格收進「展開完整表格」：表格本身一字不變，只外加 details 外框
+// foldTables 為 true 時收合該段所有表格；為陣列時只收合段內第幾張（由 0 起算），短表照舊顯示
+const TABLE = /<div class="table-container"><table\b[\s\S]*?<\/table><\/div>/g;
+export function foldTables(section, which, en) {
+  let n = -1;
+  return section.replace(TABLE, table => {
+    n += 1;
+    if (which !== true && !which.includes(n)) return table;
+    const rows = (table.match(/<tbody>[\s\S]*<\/tbody>/)?.[0].match(/<tr\b/g) || []).length;
+    const cols = (table.match(/<thead>[\s\S]*?<\/thead>/)?.[0].match(/<th\b/g) || []).length;
+    const label = en ? `Show full table (${rows} rows × ${cols} columns)` : `展開完整表格（${rows} 列 × ${cols} 欄）`;
+    return `<details class="table-fold"><summary>${label}</summary>${table}</details>`;
+  });
+}
+
 // 以函式型 replacer 插入，避免輸出內容中的 `$&`、`$1` 被當成替換樣式（見 8D 陷阱 0028）
 export function insertSectionDiagrams(html, chapterId, lang, specs = SECTION_DIAGRAMS) {
   let next = String(html);
@@ -275,9 +290,9 @@ export function insertSectionDiagrams(html, chapterId, lang, specs = SECTION_DIA
   for (const spec of specs) {
     if (spec.chapterId !== chapterId) continue;
     const heading = headingPattern(en ? spec.headingEn : spec.headingZh);
-    // 限定在單一 h2 內比對，避免標題文字先出現在正文時跨段插錯位置
-    const pattern = new RegExp(`<h2\\b[^>]*>(?:(?!</h2>)[\\s\\S])*?${heading}(?:(?!</h2>)[\\s\\S])*?</h2>`);
-    next = next.replace(pattern, match => match + renderSectionDiagram(spec, lang));
+    // 限定在單一 h2 內比對，避免標題文字先出現在正文時跨段插錯位置；第二組為該段正文（到下一個 h2 為止）
+    const pattern = new RegExp(`(<h2\\b[^>]*>(?:(?!</h2>)[\\s\\S])*?${heading}(?:(?!</h2>)[\\s\\S])*?</h2>)((?:(?!<h2\\b)[\\s\\S])*)`);
+    next = next.replace(pattern, (match, h2, body) => h2 + renderSectionDiagram(spec, lang) + (spec.foldTables ? foldTables(body, spec.foldTables, en) : body));
   }
   return next;
 }

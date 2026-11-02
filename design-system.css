@@ -814,6 +814,14 @@ body { background: var(--chrome-page, var(--bg-app)); }
   overflow-wrap: anywhere;
 }
 .sourced-chart .table-container { max-width: 100%; }
+
+/* 圖已涵蓋的長表格：收進「展開完整表格」，點開後內容與原表相同（section-diagrams.js foldTables） */
+.table-fold { margin: 16px 0 24px; border: 1px solid var(--border-subtle); border-radius: var(--radius-md); background: #ffffff; }
+.table-fold > summary { cursor: pointer; padding: 10px 14px; color: #0f766e; font-weight: 600; line-height: 1.6; }
+.table-fold > summary:hover { background: #f0fdfa; }
+.table-fold > summary:focus-visible { outline: 3px solid #0284c7; outline-offset: -3px; }
+.table-fold[open] > summary { border-bottom: 1px solid var(--border-subtle); }
+.table-fold > .table-container { margin: 0; border: 0; border-radius: 0 0 var(--radius-md) var(--radius-md); box-shadow: none; }
 .sourced-badge {
   display: inline-block;
   margin-bottom: 8px;
@@ -891,6 +899,7 @@ body { background: var(--chrome-page, var(--bg-app)); }
 }
 
 .article-body .table-container,
+.article-body .table-fold,
 .article-body .chapter-figure,
 .article-body .sourced-chart,
 .article-body .engineering-object-mount,
@@ -1263,12 +1272,12 @@ body.is-chapter-sample .eng-obj-card[aria-labelledby="engObjCh20Title"] .ch20-mo
 /* B10 CH01指定正文：手機保留水平閱讀，避免固定首欄遮住敘述。
    以本章特有標題限定範圍；異常段落包含既有插入的流程圖。 */
 @media (max-width: 600px) {
-  .article-body:has(#cleanroom-amhs-and-facility-clauses, #無塵室amhs與廠務條例總覽) :is(#cleanroom-amhs-and-facility-clauses, #quantitative-governing-laws-and-3d-process-windows, #failure-signatures-and-root-cause-diagnostics, #無塵室amhs與廠務條例總覽, #定量物理定律與3d製程視窗, #現場異常徵兆與跨站根因排查) + p + .table-container .semi-table,
-  .article-body:has(#cleanroom-amhs-and-facility-clauses, #無塵室amhs與廠務條例總覽) :is(#failure-signatures-and-root-cause-diagnostics, #現場異常徵兆與跨站根因排查) + .chapter-figure + p + .table-container .semi-table { min-width: 960px; }
-  .article-body:has(#cleanroom-amhs-and-facility-clauses, #無塵室amhs與廠務條例總覽) :is(#cleanroom-amhs-and-facility-clauses, #quantitative-governing-laws-and-3d-process-windows, #failure-signatures-and-root-cause-diagnostics, #無塵室amhs與廠務條例總覽, #定量物理定律與3d製程視窗, #現場異常徵兆與跨站根因排查) + p + .table-container .semi-table :is(th, td),
-  .article-body:has(#cleanroom-amhs-and-facility-clauses, #無塵室amhs與廠務條例總覽) :is(#failure-signatures-and-root-cause-diagnostics, #現場異常徵兆與跨站根因排查) + .chapter-figure + p + .table-container .semi-table :is(th, td) { min-width: 210px; }
-  .article-body:has(#cleanroom-amhs-and-facility-clauses, #無塵室amhs與廠務條例總覽) :is(#cleanroom-amhs-and-facility-clauses, #quantitative-governing-laws-and-3d-process-windows, #failure-signatures-and-root-cause-diagnostics, #無塵室amhs與廠務條例總覽, #定量物理定律與3d製程視窗, #現場異常徵兆與跨站根因排查) + p + .table-container .semi-table :is(th, td):first-child,
-  .article-body:has(#cleanroom-amhs-and-facility-clauses, #無塵室amhs與廠務條例總覽) :is(#failure-signatures-and-root-cause-diagnostics, #現場異常徵兆與跨站根因排查) + .chapter-figure + p + .table-container .semi-table :is(th, td):first-child { position: static; box-shadow: none; }
+  .article-body:has(#cleanroom-amhs-and-facility-clauses, #無塵室amhs與廠務條例總覽) :is(#cleanroom-amhs-and-facility-clauses, #quantitative-governing-laws-and-3d-process-windows, #failure-signatures-and-root-cause-diagnostics, #無塵室amhs與廠務條例總覽, #定量物理定律與3d製程視窗, #現場異常徵兆與跨站根因排查) + .chapter-figure + p + .table-fold > .table-container .semi-table,
+  .article-body:has(#cleanroom-amhs-and-facility-clauses, #無塵室amhs與廠務條例總覽) :is(#failure-signatures-and-root-cause-diagnostics, #現場異常徵兆與跨站根因排查) + .chapter-figure + p + .table-fold > .table-container .semi-table { min-width: 960px; }
+  .article-body:has(#cleanroom-amhs-and-facility-clauses, #無塵室amhs與廠務條例總覽) :is(#cleanroom-amhs-and-facility-clauses, #quantitative-governing-laws-and-3d-process-windows, #failure-signatures-and-root-cause-diagnostics, #無塵室amhs與廠務條例總覽, #定量物理定律與3d製程視窗, #現場異常徵兆與跨站根因排查) + .chapter-figure + p + .table-fold > .table-container .semi-table :is(th, td),
+  .article-body:has(#cleanroom-amhs-and-facility-clauses, #無塵室amhs與廠務條例總覽) :is(#failure-signatures-and-root-cause-diagnostics, #現場異常徵兆與跨站根因排查) + .chapter-figure + p + .table-fold > .table-container .semi-table :is(th, td) { min-width: 210px; }
+  .article-body:has(#cleanroom-amhs-and-facility-clauses, #無塵室amhs與廠務條例總覽) :is(#cleanroom-amhs-and-facility-clauses, #quantitative-governing-laws-and-3d-process-windows, #failure-signatures-and-root-cause-diagnostics, #無塵室amhs與廠務條例總覽, #定量物理定律與3d製程視窗, #現場異常徵兆與跨站根因排查) + .chapter-figure + p + .table-fold > .table-container .semi-table :is(th, td):first-child,
+  .article-body:has(#cleanroom-amhs-and-facility-clauses, #無塵室amhs與廠務條例總覽) :is(#failure-signatures-and-root-cause-diagnostics, #現場異常徵兆與跨站根因排查) + .chapter-figure + p + .table-fold > .table-container .semi-table :is(th, td):first-child { position: static; box-shadow: none; }
 }
 
 /* Remaining chapters: retain the accepted light calculator title and badge. */
@@ -1284,9 +1293,9 @@ body.is-chapter-sample .eng-obj-card[aria-labelledby="engObjCh20Title"] .ch20-mo
 
 /* Existing appendices: readable columns with keyboard-scrollable tables on narrow screens. */
 @media (max-width: 600px) {
-  .article-body:has(#engObjGlossaryTitle, #engObjJargonTitle, #engObjReadingTitle) > .table-container .semi-table { min-width: 720px; }
-  .article-body:has(#engObjGlossaryTitle, #engObjJargonTitle, #engObjReadingTitle) > .table-container .semi-table :is(th, td) { min-width: 180px; }
-  .article-body:has(#engObjGlossaryTitle, #engObjJargonTitle, #engObjReadingTitle) > .table-container .semi-table :is(th, td):first-child { position: static; box-shadow: none; }
+  .article-body:has(#engObjGlossaryTitle, #engObjJargonTitle, #engObjReadingTitle) > .table-container .semi-table, .article-body:has(#engObjGlossaryTitle, #engObjJargonTitle, #engObjReadingTitle) > .table-fold > .table-container .semi-table { min-width: 720px; }
+  .article-body:has(#engObjGlossaryTitle, #engObjJargonTitle, #engObjReadingTitle) > .table-container .semi-table :is(th, td), .article-body:has(#engObjGlossaryTitle, #engObjJargonTitle, #engObjReadingTitle) > .table-fold > .table-container .semi-table :is(th, td) { min-width: 180px; }
+  .article-body:has(#engObjGlossaryTitle, #engObjJargonTitle, #engObjReadingTitle) > .table-container .semi-table :is(th, td):first-child, .article-body:has(#engObjGlossaryTitle, #engObjJargonTitle, #engObjReadingTitle) > .table-fold > .table-container .semi-table :is(th, td):first-child { position: static; box-shadow: none; }
 }
 
 /* Remaining chapters: remove nonsemantic decoration that crosses labels; retain all model graphics and controls. */
