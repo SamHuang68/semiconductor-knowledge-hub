@@ -64,6 +64,11 @@ async function verify() {
           const bare = m[1].match(/(?<![\\a-zA-Z{])(alpha|beta|gamma|delta|Delta|epsilon|zeta|eta|theta|kappa|lambda|mu|nu|rho|sigma|tau|phi|omega|propto|approx|ge|le)(?![a-zA-Z])/);
           if (bare) fail(`數學式缺反斜線：${bare[1]}（${m[0].slice(0, 60)}）`);
         }
+        // GitHub 提示語法殘留：轉換時沒處理到的 [!NOTE] 等會原樣顯示，名詞卡也會被包進別的說明框（2.15.1 修正）
+        const alert = html.match(/\[!(NOTE|TIP|IMPORTANT|WARNING|CAUTION)\]/);
+        if (alert) fail(`含未轉換的提示語法 ${alert[0]}（位置 ${alert.index}）`);
+        // 空標題：h2 後面直接接分隔線或下一個 h2，代表內容被放在上一段（2.15.1 修正 ch12、ch20）
+        for (const m of html.matchAll(/<h2 id="([^"]*)"[^>]*>(?:(?!<\/h2>)[\s\S])*<\/h2>\s*(?=<hr\b|<h2\b)/g)) fail(`h2#${m[1]} 底下沒有內容`);
       }
     });
     errors += structureIssues;

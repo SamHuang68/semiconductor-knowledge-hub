@@ -69,7 +69,8 @@ const chapterDigest = createHash('sha256').update(CHAPTERS_DATA.map(c => JSON.st
 // 2.12.0：已核可 B7–B10、授權剩餘章節來源校勘及 Claude 局部審查修正基準；保留正文逐字差異證據，非回復拆檔前錯誤。
 // 2.13.1：Sam 於 2026-11-02 核可 7 處中文正文錯字修正（ch07、ch08、ch10、ch18、ch21、ch22、app-jargon 各一處），基準由 4f4008f8… 更新；英文正文未動。
 // 2.13.2：Sam 於 2026-11-02 核可還原數學式 TeX 反斜線（ch00、ch01、ch04、ch09、ch14、ch20、ch22 共 35 處，只補反斜線、Tab／Backspace 改回指令），基準由 814a3c5f… 更新。
-assert.equal(chapterDigest, '2c5879f8f50def94f0fb0b386a6a5e8bde612f1047b667a43ea8f093d8fe721a', '章節正文必須與 2.13.2 來源校勘基準一致');
+// 2.15.1：Sam 於 2026-11-03 核可正文校勘 13 項：[!NOTE] 殘留中英各 6 處（名詞卡拆回獨立名詞卡框）、ch12 與 ch20 空標題移回內容、5 處錯字（ch05、ch07、ch08、ch20 兩處、ch22），基準由 2c5879f8… 更新。
+assert.equal(chapterDigest, '52fcef2e4d11fc02eed24d3436ac74a69e0898a4498c98b597707288b8fe0d3e', '章節正文必須與 2.15.1 來源校勘基準一致');
 const SEARCH_INDEX = await loadSearchIndex();
 const searchDigest = createHash('sha256').update(SEARCH_INDEX.map(e => JSON.stringify([e.chId, e.keywords, e.title, e.titleEn])).join('\n')).digest('hex');
 assert.equal(searchDigest, '4d3f6b417bb57306634dbf3438d2884a7a1db70c3dbf58c146a9b0f9ba43f07e', '檢索全文必須與拆檔前一致');
