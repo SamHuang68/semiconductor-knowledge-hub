@@ -29,7 +29,10 @@
   - ch05、ch06、ch08、ch11、ch19 與三篇附錄的圖說仍只補署名，沒有逐句對照來源審查；app-reading 的「數百億電晶體」未處理。
   - 6 張 AI 生成圖的生成工具與條款仍沒有記錄。
   - 本機定向檢查不是完整瀏覽器測試套件。
-- 提交／發布狀態：本機提交於分支 `photo-attribution-2.12.2`，未推送、未部署。
+- 提交／發布狀態：已推送、已部署。提交 `ec04eada44720981b42b28b79373957cbecdff07`，main 由 `935e8d4` 快轉；GitHub Pages run `41387859521` 的 `verify` 與 `deploy` 都成功。
+- 發布後線上驗證（2026-11-02）：
+  - `data/real-photos.js`、`engineering-object-controls.js`、`index.html`、`app.js` 與提交內容逐位元組相同；頁尾為 2.12.2；`revision-history.md` 回應 404。
+  - 同一套定向檢查在線上跑 36 頁、108 個熱點，0 項失敗。
 
 ## 2.12.1 · 2026-11-02 · 照片來源署名，並修正與來源不符的照片圖說
 
