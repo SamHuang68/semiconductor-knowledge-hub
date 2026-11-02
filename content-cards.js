@@ -1,11 +1,9 @@
 // 說明框與「粗體標籤：說明」條列改成有圖示的卡片（視覺升級第 1 階段）。
 // 字串層轉換，接在 insertSectionDiagrams 之後：只加 class、圖示與包裝用的 span，文字一字不改；
-// emoji 與標籤後的冒號包進 .visually-hidden，仍留在 DOM（讀屏、搜尋、複製照舊）。Sam 2026-11-03 核可。
+// emoji 與標籤後的冒號包進 .visually-hidden，仍留在 DOM（讀屏、搜尋、複製照舊）。
+// Sam 2026-11-03 核可樣式，先以 ch05、ch13、ch21 做樣板，驗收後於 2.16.0 擴到全站。
 import { icon } from './icons.js';
 import { LABEL_ICONS } from './data/icon-map.js';
-
-// 第 1 階段樣板章：Sam 驗收後才擴到全站
-export const CARD_CHAPTERS = new Set(['ch05', 'ch13', 'ch21']);
 
 const hidden = text => `<span class="visually-hidden">${text}</span>`;
 const EMOJI = /^(📖|🔧|📍)\s*/u;
@@ -53,8 +51,7 @@ function iconList(ul) {
   return `<ul class="semi-ul icon-list">${lis}</ul>`;
 }
 
-export function cardify(html, chapterId) {
-  if (!CARD_CHAPTERS.has(chapterId)) return html;
+export function cardify(html) {
   return String(html)
     .replace(/<div class="callout (callout-glossary|callout-knowhow|callout-wafer-pos)"><div class="callout-badge">([\s\S]*?)<\/div><div class="callout-body">([\s\S]*?)<\/div><\/div>/g, (m, kind, badge, body) => callout(kind, badge, body))
     .replace(/<ul class="semi-ul">[\s\S]*?<\/ul>/g, ul => iconList(ul));

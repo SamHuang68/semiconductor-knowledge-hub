@@ -30,5 +30,78 @@ export const LABEL_ICONS = {
   '晶粒不能無限大': 'reticle', 'A die cannot grow without limit': 'reticle',
   '大晶粒良率低': 'defect', 'Large dies have low yield': 'defect',
   '不同功能適合不同製程': 'chiplets', 'Different functions suit different processes': 'chiplets',
-  '頻寬需求暴增': 'bandwidth', 'Bandwidth demand has exploded': 'bandwidth'
+  '頻寬需求暴增': 'bandwidth', 'Bandwidth demand has exploded': 'bandwidth',
+  // ch00
+  '前段': 'fab', 'Front end': 'fab',
+  '後段': 'package', 'Back end': 'package',
+  // ch01 樓層、ch10 金屬層：同樣叫上層／中層／下層，用不指定內容的層級圖示
+  '上層': 'level-top', 'Top level': 'level-top', 'Upper layers': 'level-top',
+  '中層': 'level-mid', 'Middle level': 'level-mid', 'Middle layers': 'level-mid',
+  '下層': 'level-bottom', 'Bottom level': 'level-bottom', 'Lower layers': 'level-bottom',
+  '天車（OHT）': 'oht', 'Overhead hoist transport (OHT)': 'oht',
+  '倉儲（Stocker）': 'stocker', 'Stocker': 'stocker',
+  'Load Port': 'loadport', 'Load port': 'loadport',
+  '單片式': 'single-wafer', 'Single-wafer tools': 'single-wafer', '單片式清洗機': 'single-wafer', 'Single-wafer cleaners': 'single-wafer',
+  '批次式': 'batch', 'Batch tools': 'batch', '批次式濕式清洗槽': 'batch', 'Batch wet benches': 'batch',
+  '超純水': 'drop', 'Ultrapure water': 'drop',
+  '特殊氣體與化學品': 'gas-cylinder', 'Specialty gases and chemicals': 'gas-cylinder',
+  '電力': 'conductor', 'Electric power': 'conductor',
+  '排氣與廢水處理': 'exhaust', 'Exhaust and wastewater treatment': 'exhaust',
+  '溫濕度與振動控制': 'thermometer', 'Temperature, humidity and vibration control': 'thermometer',
+  '生產週期（Cycle Time）': 'clock', 'Cycle time': 'clock',
+  '良率（Yield）': 'yield', 'Yield': 'yield',
+  '產出（Output）': 'output', 'Output': 'output',
+  // ch02
+  '源極（Source）': 'mos-source', 'Source': 'mos-source',
+  '汲極（Drain）': 'mos-drain', 'Drain': 'mos-drain',
+  '閘極（Gate）': 'mos-gate', 'Gate': 'mos-gate',
+  '閘極氧化層': 'mos-oxide', 'Gate oxide': 'mos-oxide',
+  '通道（Channel）': 'mos-channel', 'Channel': 'mos-channel',
+  'NMOS': 'nmos', 'PMOS': 'pmos',
+  // ch04
+  '浸潤式微影': 'immersion', 'Immersion lithography': 'immersion',
+  'OPC': 'opc',
+  '多重曝光': 'multi-pattern', 'Multiple patterning': 'multi-pattern',
+  // ch06
+  '蝕刻率': 'rate', 'Etch rate': 'rate',
+  '選擇比': 'selectivity', 'Selectivity': 'selectivity',
+  '輪廓': 'profile', 'Profile': 'profile',
+  'CD 變化': 'cd', 'CD change': 'cd',
+  // ch07（英文版是條列，中文版不是）
+  'Dose': 'dose', 'Energy': 'depth',
+  // ch08
+  '微影對不準焦': 'focus', 'Lithography cannot focus': 'focus',
+  '多餘的材料去不掉': 'excess', 'Excess material cannot be removed': 'excess',
+  'Polishing pad': 'pad', 'Slurry': 'drop', 'Polishing head': 'polish-head', 'Conditioner': 'conditioner',
+  // ch10
+  '電阻變高': 'resistance', 'Higher resistance': 'resistance',
+  '電遷移': 'electromigration', 'Electromigration': 'electromigration',
+  // ch12
+  '應變矽': 'strain', 'Strained silicon': 'strain',
+  'HKMG': 'hkmg',
+  // ch16
+  '隨機性': 'random', 'Random': 'random',
+  '系統性': 'systematic', 'Systematic': 'systematic',
+  'Line yield': 'line-yield', 'Die yield': 'array', 'Final test yield': 'tester',
+  // ch17
+  '規格界限': 'spec-limit', 'Specification limits': 'spec-limit',
+  '管制界限': 'control-limit', 'Control limits': 'control-limit',
+  // ch19
+  '探針卡': 'probe-card', 'Probe card': 'probe-card',
+  '針測機': 'prober', 'Prober': 'prober',
+  '測試機': 'tester', 'Tester': 'tester',
+  // ch20
+  '保護': 'insulator', 'Protection': 'insulator',
+  '連接': 'related', 'Connection': 'related',
+  '散熱': 'heat', 'Heat dissipation': 'heat',
+  '支撐': 'support', 'Support': 'support',
+  // ch22 浴缸曲線三段
+  '早期失效期': 'early', 'Early failure period': 'early',
+  '穩定期': 'stable', 'Stable period': 'stable',
+  '老化期': 'wearout', 'Wear-out period': 'wearout',
+  // ch23
+  '預測性保養': 'maintenance', 'Predictive maintenance': 'maintenance',
+  '虛擬量測': 'virtual-metrology', 'Virtual metrology': 'virtual-metrology',
+  '人工智慧分析': 'ai', 'AI analysis': 'ai',
+  '自動化派工': 'dispatch', 'Automated dispatching': 'dispatch'
 };
