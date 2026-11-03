@@ -26,8 +26,10 @@ const textWidth = (text, size) => [...text].reduce((w, ch) => w + charWidth(ch),
 
 // 斷行單位：每個中文字一單位；連續的英文字母、數字與連字號視為一個字，不從中間拆開；
 // 逗號、頓號等標點黏在前一個單位上，不出現在行首；直式雙引號跟著緊鄰的字，例如 "consuming" 不拆成三段（2.19.0）
+// 左括號與左引號黏在後一個單位上，不留在行尾，例如 "(CPO)" 不拆成 "(" 與 "CPO)"（2.21.0）
 const tokens = text => (String(text).match(/"?[A-Za-z0-9][A-Za-z0-9.\-/+%'’"]*|\s+|./gu) || []).reduce((units, unit) => {
   if (units.length && /^[、，。；：！？）」』,.;:!?)]$/.test(unit)) units[units.length - 1] += unit;
+  else if (units.length && /^[（「『(]$/.test(units[units.length - 1]) && !/^\s+$/.test(unit)) units[units.length - 1] += unit;
   else units.push(unit);
   return units;
 }, []);

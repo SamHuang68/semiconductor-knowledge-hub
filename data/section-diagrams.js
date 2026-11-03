@@ -5450,59 +5450,110 @@ export const SECTION_DIAGRAMS = [
     "chapterId": "ch15",
     "headingZh": "抽樣：不是每片都量",
     "headingEn": "Sampling: not every wafer is measured",
-    "type": "compare",
-    "captionZh": "抽樣比例是在風險與成本之間取捨",
-    "captionEn": "Sampling rate is a trade-off between risk and cost.",
-    "columns": [
+    "type": "pictorial",
+    "draw": "samplingLevels",
+    "captionZh": "只量部分批次、晶圓與位置（數量示意）；比例依風險與成本取捨",
+    "captionEn": "Sampling some lots, wafers and sites (counts schematic) trades risk against cost",
+    "labels": [
       {
-        "titleZh": "量得多",
-        "titleEn": "Measure more",
-        "items": [
-          {
-            "zh": "越能及早發現問題",
-            "en": "Catches problems earlier"
-          },
-          {
-            "zh": "量測要花時間和機台產能",
-            "en": "Costs time and tool capacity"
-          },
-          {
-            "zh": "量太多會拖慢整座工廠",
-            "en": "Too much slows down the whole fab"
-          },
-          {
-            "zh": "適用新產品、剛保養完的機台",
-            "en": "For new products, tools fresh from maintenance",
-            "noteZh": "以及最近出過問題的製程",
-            "noteEn": "and processes that recently had problems"
-          }
-        ],
-        "icon": "microscope"
+        "key": "someLots",
+        "zh": "部分批次",
+        "en": "Some lots"
       },
       {
-        "titleZh": "量得少",
-        "titleEn": "Measure less",
-        "items": [
-          {
-            "zh": "產出越快",
-            "en": "Speeds up output"
-          },
-          {
-            "zh": "風險越高",
-            "en": "Raises the risk"
-          },
-          {
-            "zh": "異常晶圓可能流到後面才被發現",
-            "en": "Abnormal wafers may flow far down the line",
-            "noteZh": "影響的批數也更多",
-            "noteEn": "and more lots are affected"
-          },
-          {
-            "zh": "適用穩定的製程",
-            "en": "For stable processes"
-          }
-        ],
-        "icon": "output"
+        "key": "someWafers",
+        "zh": "每批中的部分晶圓",
+        "en": "Some wafers in each lot"
+      },
+      {
+        "key": "someSites",
+        "zh": "每片晶圓上的部分位置",
+        "en": "Some sites on each wafer"
+      },
+      {
+        "key": "rates",
+        "zh": "抽樣比例",
+        "en": "Sampling rates"
+      },
+      {
+        "key": "lower",
+        "zh": "降低抽樣比例",
+        "en": "Lower sampling rates"
+      },
+      {
+        "key": "stable",
+        "zh": "穩定的製程",
+        "en": "Stable processes"
+      },
+      {
+        "key": "higher",
+        "zh": "提高抽樣比例",
+        "en": "Higher sampling rates"
+      },
+      {
+        "key": "newProducts",
+        "zh": "新產品",
+        "en": "New products"
+      },
+      {
+        "key": "freshTools",
+        "zh": "剛保養完的機台",
+        "en": "tools fresh from maintenance"
+      },
+      {
+        "key": "recentProblems",
+        "zh": "最近出過問題的製程",
+        "en": "processes that recently had problems"
+      },
+      {
+        "key": "tradeOff",
+        "zh": "抽樣是在風險和成本之間取捨",
+        "en": "Sampling is a trade-off between risk and cost"
+      },
+      {
+        "key": "lessName",
+        "zh": "量得越少",
+        "en": "Measuring less"
+      },
+      {
+        "key": "lessFast",
+        "zh": "產出越快",
+        "en": "Speeds up output"
+      },
+      {
+        "key": "lessRisk",
+        "zh": "風險越高",
+        "en": "Raises the risk"
+      },
+      {
+        "key": "lessLate",
+        "zh": "可能讓異常的晶圓一路流到後面才被發現",
+        "en": "Lets abnormal wafers flow far down the line before anyone notices"
+      },
+      {
+        "key": "lessLots",
+        "zh": "影響的批數也更多",
+        "en": "More lots are affected"
+      },
+      {
+        "key": "moreName",
+        "zh": "量得越多",
+        "en": "Measuring more"
+      },
+      {
+        "key": "moreEarly",
+        "zh": "越能及早發現問題",
+        "en": "Catches problems earlier"
+      },
+      {
+        "key": "moreCost",
+        "zh": "量測要花時間和機台產能",
+        "en": "Metrology takes time and tool capacity"
+      },
+      {
+        "key": "moreSlow",
+        "zh": "量太多會拖慢整座工廠",
+        "en": "Measuring too much slows down the whole fab"
       }
     ]
   },
@@ -5625,6 +5676,229 @@ export const SECTION_DIAGRAMS = [
         "en": "Nuisance flood & C-SAM edge shadow",
         "leafZh": "偏振濾波、自適應閾值並補紅外線",
         "leafEn": "Polarized filters, adaptive threshold, IR edge"
+      }
+    ]
+  },
+  {
+    "chapterId": "ch15",
+    "headingZh": "量測與檢測不一樣",
+    "headingEn": "Metrology and inspection are not the same",
+    "type": "pictorial",
+    "draw": "metrologyVsInspection",
+    "captionZh": "量測得到一組數字，檢測得到標出缺陷位置的分佈圖",
+    "captionEn": "Metrology gives a set of numbers; inspection gives a map of defect locations",
+    "labels": [
+      {
+        "key": "metrology",
+        "zh": "量測",
+        "en": "Metrology"
+      },
+      {
+        "key": "inspection",
+        "zh": "檢測",
+        "en": "Inspection"
+      },
+      {
+        "key": "measures",
+        "zh": "測量具體的數值",
+        "en": "Measures specific values"
+      },
+      {
+        "key": "searches",
+        "zh": "在晶圓上尋找缺陷",
+        "en": "Searches the wafer for defects"
+      },
+      {
+        "key": "thickness",
+        "zh": "膜厚",
+        "en": "Film thickness"
+      },
+      {
+        "key": "lineWidth",
+        "zh": "線寬",
+        "en": "Line width"
+      },
+      {
+        "key": "particles",
+        "zh": "微粒",
+        "en": "Particles"
+      },
+      {
+        "key": "scratches",
+        "zh": "刮傷",
+        "en": "Scratches"
+      },
+      {
+        "key": "pattern",
+        "zh": "圖形異常",
+        "en": "Pattern problems"
+      },
+      {
+        "key": "numbers",
+        "zh": "量測的結果是一組數字",
+        "en": "Metrology produces a set of numbers"
+      },
+      {
+        "key": "map",
+        "zh": "檢測的結果是一張標出缺陷位置的分佈圖",
+        "en": "Inspection produces a map of defect locations"
+      },
+      {
+        "key": "loosely",
+        "zh": "現場常把兩者都籠統地叫",
+        "en": "People on the floor often loosely call both"
+      },
+      {
+        "key": "callBoth",
+        "zh": "「量測」",
+        "en": "\"metrology\" or \"measurement.\""
+      }
+    ]
+  },
+  {
+    "chapterId": "ch15",
+    "headingZh": "常見的量測",
+    "headingEn": "Common measurements",
+    "type": "pictorial",
+    "draw": "fiveMeasurements",
+    "captionZh": "五種常見量測：量什麼、怎麼量、什麼時候量",
+    "captionEn": "Five common measurements: what is measured, how, and when",
+    "labels": [
+      {
+        "key": "thickness",
+        "zh": "膜厚",
+        "en": "Film thickness"
+      },
+      {
+        "key": "thickHow",
+        "zh": "用光照射薄膜，分析反射光的變化",
+        "en": "Shine light on the film and analyze the reflected light"
+      },
+      {
+        "key": "thickWhen",
+        "zh": "薄膜沉積、CMP 之後",
+        "en": "After deposition and CMP"
+      },
+      {
+        "key": "cd",
+        "zh": "線寬（CD）",
+        "en": "Line width (CD)"
+      },
+      {
+        "key": "cdHow",
+        "zh": "用電子顯微鏡從上方量測",
+        "en": "Measure from above with an electron microscope"
+      },
+      {
+        "key": "cdSem",
+        "zh": "CD-SEM",
+        "en": "CD-SEM"
+      },
+      {
+        "key": "cdWhen",
+        "zh": "微影、蝕刻之後",
+        "en": "After lithography and etching"
+      },
+      {
+        "key": "profile",
+        "zh": "立體輪廓",
+        "en": "Profile"
+      },
+      {
+        "key": "ocdHow",
+        "zh": "分析光的散射，搭配模型推算形狀",
+        "en": "Analyze scattered light and fit it with a model"
+      },
+      {
+        "key": "ocd",
+        "zh": "OCD",
+        "en": "OCD"
+      },
+      {
+        "key": "ocdWhen",
+        "zh": "先進結構的關鍵步驟",
+        "en": "Key steps for advanced structures"
+      },
+      {
+        "key": "overlay",
+        "zh": "對準（Overlay）",
+        "en": "Overlay"
+      },
+      {
+        "key": "ovlHow",
+        "zh": "量測上下兩層的對準記號",
+        "en": "Measure the alignment marks of two layers"
+      },
+      {
+        "key": "ovlWhen",
+        "zh": "微影之後",
+        "en": "After lithography"
+      },
+      {
+        "key": "sheet",
+        "zh": "片電阻",
+        "en": "Sheet resistance"
+      },
+      {
+        "key": "sheetHow",
+        "zh": "用四根探針接觸表面量測",
+        "en": "Touch the surface with four probes"
+      },
+      {
+        "key": "sheetWhen",
+        "zh": "佈植、退火、金屬沉積之後",
+        "en": "After implantation, anneal and metal deposition"
+      },
+      {
+        "key": "timing",
+        "zh": "常見時機",
+        "en": "Typical timing"
+      }
+    ]
+  },
+  {
+    "chapterId": "ch15",
+    "headingZh": "破壞性分析",
+    "headingEn": "Destructive analysis",
+    "type": "pictorial",
+    "draw": "crossSectionAnalysis",
+    "captionZh": "切開晶圓，用電子顯微鏡看剖面；這種分析會破壞晶圓",
+    "captionEn": "Cut the wafer open and examine the cross-section; the wafer is destroyed",
+    "labels": [
+      {
+        "key": "cutOpen",
+        "zh": "把晶圓切開",
+        "en": "Cutting the wafer open"
+      },
+      {
+        "key": "examined",
+        "zh": "用電子顯微鏡觀察剖面",
+        "en": "Examined with an electron microscope"
+      },
+      {
+        "key": "eachLayer",
+        "zh": "每一層的厚度和形狀",
+        "en": "The thickness and shape of each layer"
+      },
+      {
+        "key": "destroys",
+        "zh": "這種分析會破壞晶圓",
+        "en": "This kind of analysis destroys the wafer"
+      },
+      {
+        "key": "mainly",
+        "zh": "所以主要用在",
+        "en": "So it is used mainly in"
+      },
+      {
+        "key": "dev",
+        "zh": "製程開發",
+        "en": "Process development"
+      },
+      {
+        "key": "fa",
+        "zh": "故障分析",
+        "en": "Failure analysis"
       }
     ]
   },
@@ -5998,57 +6272,140 @@ export const SECTION_DIAGRAMS = [
     "chapterId": "ch17",
     "headingZh": "自動控制：R2R 與 FDC",
     "headingEn": "Automatic control: R2R and FDC",
-    "type": "compare",
-    "captionZh": "R2R 與 FDC 同屬先進製程控制，但時機與依據不同",
-    "captionEn": "R2R and FDC are both part of APC, but act at different times on different data.",
-    "columns": [
+    "type": "pictorial",
+    "draw": "r2rFdc",
+    "captionZh": "R2R 批間調整、FDC 即時監控；自動補償可能藏住問題",
+    "captionEn": "R2R adjusts between runs and FDC watches each run; compensation can hide drift",
+    "labels": [
       {
-        "titleZh": "Run-to-Run",
-        "titleEn": "Run-to-run",
-        "items": [
-          {
-            "zh": "批與批之間的調整",
-            "en": "Adjusts between runs"
-          },
-          {
-            "zh": "根據前幾批的量測結果",
-            "en": "Based on previous lots' measurements"
-          },
-          {
-            "zh": "自動微調下一批的 Recipe",
-            "en": "Fine-tunes the next lot's recipe",
-            "noteZh": "例如線寬偏大就調曝光能量",
-            "noteEn": "e.g. line width large: adjust exposure dose"
-          },
-          {
-            "zh": "像洗澡時把熱水轉大",
-            "en": "Like turning up hot water in a cold shower"
-          }
-        ]
+        "key": "r2r",
+        "zh": "Run-to-Run",
+        "en": "Run-to-run"
       },
       {
-        "titleZh": "FDC",
-        "titleEn": "FDC",
-        "items": [
-          {
-            "zh": "製程進行中的監控",
-            "en": "Monitors during the run"
-          },
-          {
-            "zh": "根據機台感測器數據",
-            "en": "Based on tool sensor data",
-            "noteZh": "壓力、溫度、功率、氣體流量",
-            "noteEn": "Pressure, temperature, power, gas flow"
-          },
-          {
-            "zh": "曲線不正常就立刻警報",
-            "en": "Alarms as soon as a trace looks abnormal"
-          },
-          {
-            "zh": "像汽車儀表板上的警示燈",
-            "en": "Like the warning lights on a dashboard"
-          }
-        ]
+        "key": "between",
+        "zh": "批與批之間",
+        "en": "Between runs"
+      },
+      {
+        "key": "basedOn",
+        "zh": "根據前幾批的量測結果",
+        "en": "Based on the measurements of the previous lots"
+      },
+      {
+        "key": "tune",
+        "zh": "自動微調下一批的 Recipe",
+        "en": "Automatically fine-tunes the recipe of the next lot"
+      },
+      {
+        "key": "exIf",
+        "zh": "例如線寬偏大",
+        "en": "For example, if the line width is running large"
+      },
+      {
+        "key": "exThen",
+        "zh": "就自動調整下一批的曝光能量",
+        "en": "the exposure dose of the next lot is adjusted"
+      },
+      {
+        "key": "shower",
+        "zh": "就像洗澡時感覺水溫偏冷，就把熱水轉大一點",
+        "en": "It is like turning up the hot water when the shower feels a little cold"
+      },
+      {
+        "key": "fdc",
+        "zh": "FDC",
+        "en": "FDC"
+      },
+      {
+        "key": "during",
+        "zh": "製程進行中",
+        "en": "During the run"
+      },
+      {
+        "key": "sensorData",
+        "zh": "即時監看機台感測器的數據",
+        "en": "Watches the tool's sensor data in real time during processing"
+      },
+      {
+        "key": "sensors",
+        "zh": "例如壓力、溫度、功率、氣體流量",
+        "en": "Such as pressure, temperature, power and gas flow"
+      },
+      {
+        "key": "alarm",
+        "zh": "一旦曲線不正常，就立刻發出警報",
+        "en": "As soon as a trace looks abnormal, it raises an alarm"
+      },
+      {
+        "key": "dashboard",
+        "zh": "就像汽車儀表板上的警示燈",
+        "en": "It is like the warning lights on a car's dashboard"
+      },
+      {
+        "key": "apc",
+        "zh": "兩者都屬於先進製程控制（APC）",
+        "en": "Both are part of advanced process control (APC)"
+      },
+      {
+        "key": "hide",
+        "zh": "自動補償會把問題藏起來",
+        "en": "Automatic compensation can hide problems"
+      },
+      {
+        "key": "measurements",
+        "zh": "量測結果",
+        "en": "Measurements"
+      },
+      {
+        "key": "nearTarget",
+        "zh": "一直維持在目標附近",
+        "en": "Keeps the measurements near the target"
+      },
+      {
+        "key": "looksNormal",
+        "zh": "看起來一切正常",
+        "en": "everything looks normal"
+      },
+      {
+        "key": "burst",
+        "zh": "補不回來時，問題才一次爆發",
+        "en": "The problem surfaces all at once"
+      },
+      {
+        "key": "adjustments",
+        "zh": "調整量",
+        "en": "Adjustments"
+      },
+      {
+        "key": "doseA",
+        "zh": "例如曝光能量",
+        "en": "whether the exposure dose"
+      },
+      {
+        "key": "doseB",
+        "zh": "是不是被越調越多",
+        "en": "keeps being pushed further and further"
+      },
+      {
+        "key": "worse",
+        "zh": "機台可能正在持續惡化",
+        "en": "The tool may be steadily getting worse"
+      },
+      {
+        "key": "runsOut",
+        "zh": "調整量用盡",
+        "en": "The adjustment range runs out"
+      },
+      {
+        "key": "watch1",
+        "zh": "除了看量測結果，也要監控",
+        "en": "Besides the measurements, also watch the size of the"
+      },
+      {
+        "key": "watch2",
+        "zh": "「調整量」本身",
+        "en": "adjustments themselves"
       }
     ]
   },
@@ -6211,6 +6568,75 @@ export const SECTION_DIAGRAMS = [
     ]
   },
   {
+    "chapterId": "ch17",
+    "headingZh": "製程能力：Cpk",
+    "headingEn": "Process capability: Cpk",
+    "type": "pictorial",
+    "draw": "cpkParking",
+    "sourcedNumbers": true,
+    "sourceZh": "1.33 出自本段正文；停車格與車寬只是比喻，三格下方的 Cpk 長條只比較高低，不代表數值。",
+    "sourceEn": "1.33 comes from this section. The parking space and the car are an analogy; the Cpk bars under the three spaces only compare high and low.",
+    "captionZh": "用停車理解 Cpk：車越窄、停得越置中，Cpk 越高",
+    "captionEn": "Cpk as parking: a narrower, better-centered car means a higher Cpk",
+    "labels": [
+      {
+        "key": "specSpace",
+        "zh": "規格是停車格",
+        "en": "The specifications are the parking space"
+      },
+      {
+        "key": "carWidth",
+        "zh": "製程的變化範圍是車子的寬度",
+        "en": "The spread of the process is the width of the car"
+      },
+      {
+        "key": "cpk",
+        "zh": "Cpk",
+        "en": "Cpk"
+      },
+      {
+        "key": "narrow",
+        "zh": "車子越窄、停得越置中",
+        "en": "The narrower the car and the more centered it is"
+      },
+      {
+        "key": "far",
+        "zh": "離兩邊的線越遠",
+        "en": "the farther it is from the lines on both sides"
+      },
+      {
+        "key": "higher",
+        "zh": "Cpk 就越高",
+        "en": "the higher the Cpk"
+      },
+      {
+        "key": "shift",
+        "zh": "就算製程稍微偏移，也不容易超出規格",
+        "en": "Even if the process shifts a little, it is unlikely to go out of spec"
+      },
+      {
+        "key": "value",
+        "zh": "1.33",
+        "en": "1.33"
+      },
+      {
+        "key": "req",
+        "zh": "業界常見的要求是 Cpk 至少 1.33",
+        "en": "A common industry requirement is a Cpk of at least 1.33"
+      },
+      {
+        "key": "stricter",
+        "zh": "車用等要求更高的產品",
+        "en": "Products with stricter requirements"
+      },
+      {
+        "key": "auto",
+        "zh": "標準會更嚴格",
+        "en": "such as automotive chips, have even higher standards"
+      }
+    ]
+  },
+  {
     "chapterId": "ch18",
     "headingZh": "異常一定會發生",
     "headingEn": "Abnormalities will happen",
@@ -6300,31 +6726,65 @@ export const SECTION_DIAGRAMS = [
     "chapterId": "ch18",
     "headingZh": "找出影響範圍",
     "headingEn": "Finding the scope",
-    "type": "flow",
-    "captionZh": "影響範圍從上一次確認正常的時間點開始往後追查",
-    "captionEn": "The suspect scope starts from the last point the tool was confirmed normal.",
-    "steps": [
+    "type": "pictorial",
+    "draw": "suspectScope",
+    "captionZh": "可疑範圍從最後一次確認正常的時間點開始算",
+    "captionEn": "The suspect scope starts from the last time the tool was confirmed normal",
+    "labels": [
       {
-        "zh": "發現機台異常",
-        "en": "A tool is found abnormal"
+        "key": "lastGood",
+        "zh": "最後一次確認正常的時間點",
+        "en": "The last time the tool was confirmed to be normal"
       },
       {
-        "zh": "找最後確認正常的時間點",
-        "en": "Find the last known good point",
-        "noteZh": "例如上次控片量測合格",
-        "noteEn": "e.g. the last time a monitor wafer passed"
+        "key": "found",
+        "zh": "今天下午被發現異常",
+        "en": "Found to be abnormal this afternoon"
       },
       {
-        "zh": "查出之後經過機台的晶圓",
-        "en": "Find wafers run on the tool since",
-        "noteZh": "靠系統記錄的履歷",
-        "noteEn": "Using the history the factory systems record"
+        "key": "earlier",
+        "zh": "異常可能早在被發現之前就開始了",
+        "en": "The problem may have started long before anyone noticed it"
       },
       {
-        "zh": "全部列入可疑範圍",
-        "en": "Treat them all as suspect",
-        "noteZh": "檢查越頻繁，範圍越小",
-        "noteEn": "More frequent checks mean a smaller scope"
+        "key": "monitor",
+        "zh": "控片量測合格",
+        "en": "A monitor wafer passed"
+      },
+      {
+        "key": "missA",
+        "zh": "只擋發現當下的晶圓",
+        "en": "Holding only the wafers found at the moment of detection"
+      },
+      {
+        "key": "missB",
+        "zh": "會漏掉更早受影響的晶圓",
+        "en": "misses the ones affected earlier"
+      },
+      {
+        "key": "after",
+        "zh": "從那之後經過這台機台的所有晶圓",
+        "en": "Every wafer that went through the tool after that point"
+      },
+      {
+        "key": "suspect",
+        "zh": "都列入可疑範圍",
+        "en": "treated as suspect"
+      },
+      {
+        "key": "frequent",
+        "zh": "檢查越頻繁，可疑的範圍就越小",
+        "en": "The more often they are checked, the smaller the suspect scope"
+      },
+      {
+        "key": "history",
+        "zh": "工廠系統記錄的履歷",
+        "en": "The history recorded by the factory systems"
+      },
+      {
+        "key": "which",
+        "zh": "有哪些晶圓經過這台機台、這個腔體",
+        "en": "which wafers went through this tool, or this chamber"
       }
     ]
   },
@@ -6469,6 +6929,117 @@ export const SECTION_DIAGRAMS = [
         "en": "ECN crashes downstream yield",
         "leafZh": "重大變更須三批全流程驗證",
         "leafEn": "Major changes need three full-flow qual lots"
+      }
+    ]
+  },
+  {
+    "chapterId": "ch18",
+    "headingZh": "判定：放行、重工或報廢",
+    "headingEn": "Disposition: release, rework or scrap",
+    "type": "pictorial",
+    "draw": "dispositions",
+    "captionZh": "四種處置，以及影響較大或不確定時召開的 MRB",
+    "captionEn": "Four dispositions, and the MRB that meets when the impact is large or uncertain",
+    "labels": [
+      {
+        "key": "release",
+        "zh": "放行（Release）",
+        "en": "Release"
+      },
+      {
+        "key": "releaseMeans",
+        "zh": "確認沒有影響，繼續生產",
+        "en": "No impact confirmed; production continues"
+      },
+      {
+        "key": "releaseWhen",
+        "zh": "異常不影響產品品質",
+        "en": "The abnormality does not affect product quality"
+      },
+      {
+        "key": "rework",
+        "zh": "重工（Rework）",
+        "en": "Rework"
+      },
+      {
+        "key": "reworkMeans",
+        "zh": "去除部分結果，重新做一次",
+        "en": "Remove part of the result and do it again"
+      },
+      {
+        "key": "reworkWhen",
+        "zh": "可以重做的步驟，主要是微影",
+        "en": "Steps that can be redone, mainly lithography"
+      },
+      {
+        "key": "scrap",
+        "zh": "報廢（Scrap）",
+        "en": "Scrap"
+      },
+      {
+        "key": "scrapMeans",
+        "zh": "晶圓不再繼續生產",
+        "en": "The wafers are taken out of production"
+      },
+      {
+        "key": "scrapWhen",
+        "zh": "損壞無法挽回，或繼續做的風險太高",
+        "en": "The damage cannot be undone, or continuing is too risky"
+      },
+      {
+        "key": "cond",
+        "zh": "有條件放行",
+        "en": "Conditional release"
+      },
+      {
+        "key": "condMeans",
+        "zh": "繼續生產，但加強後續檢查或特別標記",
+        "en": "Production continues with extra checks later or special marking"
+      },
+      {
+        "key": "condWhen",
+        "zh": "影響還不確定，需要更多數據",
+        "en": "The impact is still uncertain and more data is needed"
+      },
+      {
+        "key": "mrb",
+        "zh": "MRB",
+        "en": "MRB"
+      },
+      {
+        "key": "mrbWhen",
+        "zh": "影響較大或不確定的情況",
+        "en": "When the impact is large or uncertain"
+      },
+      {
+        "key": "mrbMeets",
+        "zh": "會召開物料審查會議",
+        "en": "a material review board (MRB) meets"
+      },
+      {
+        "key": "mrbWho",
+        "zh": "由製程、整合、品保等部門共同決定",
+        "en": "the process, integration, quality and other departments decide together"
+      },
+      {
+        "key": "mrbCustomer",
+        "zh": "必要時也會通知客戶",
+        "en": "The customer is notified when necessary"
+      },
+      {
+        "key": "after",
+        "zh": "決定處置之後，還要找出根本原因",
+        "en": "After the disposition, the root cause must still be found"
+      },
+      {
+        "key": "fix",
+        "zh": "執行改善對策",
+        "en": "corrective actions put in place"
+      },
+      {
+        "key": "confirm",
+        "zh": "並確認同樣的問題不會再發生",
+        "en": "it must be confirmed that the same problem will not happen again"
       }
     ]
   },
@@ -6677,6 +7248,202 @@ export const SECTION_DIAGRAMS = [
     ]
   },
   {
+    "chapterId": "ch19",
+    "headingZh": "測試也是成本",
+    "headingEn": "Testing costs money too",
+    "type": "pictorial",
+    "draw": "watVsCp",
+    "captionZh": "WAT 全部合格，CP 良率卻可能很差：兩者要一起看",
+    "captionEn": "WAT can pass while CP yield is poor, so look at both together",
+    "labels": [
+      {
+        "key": "passAll",
+        "zh": "WAT 全部合格",
+        "en": "Passes every WAT item"
+      },
+      {
+        "key": "cpPoor",
+        "zh": "CP 良率卻很差",
+        "en": "Its CP yield is poor"
+      },
+      {
+        "key": "fewKeys",
+        "zh": "只量切割道上少數幾個位置的測試鍵",
+        "en": "Measures test keys at only a few places in the scribe lines"
+      },
+      {
+        "key": "random",
+        "zh": "隨機分佈的缺陷就不一定會被測到",
+        "en": "Randomly scattered defects, for example, may not be caught at all"
+      },
+      {
+        "key": "health",
+        "zh": "把 WAT 當成製程的健康檢查",
+        "en": "a health check of the process"
+      },
+      {
+        "key": "exam",
+        "zh": "把 CP 當成產品的實際體檢",
+        "en": "the real physical exam of the product"
+      },
+      {
+        "key": "wat",
+        "zh": "WAT",
+        "en": "WAT"
+      },
+      {
+        "key": "cp",
+        "zh": "CP",
+        "en": "CP"
+      },
+      {
+        "key": "both",
+        "zh": "兩者一起看",
+        "en": "Look at both together"
+      }
+    ]
+  },
+  {
+    "chapterId": "ch19",
+    "headingZh": "晶圓測試、探針卡與 3D KGD 條例總覽",
+    "headingEn": "Wafer Test, Probe Card & 3D KGD Clauses",
+    "type": "pictorial",
+    "draw": "probeCards",
+    "foldSection": true,
+    "sourcedNumbers": true,
+    "sourceZh": "節距與針數出自本段表格；探針疏密只是定性示意。懸臂式的適用節距（≥ 80–150 µm）尚待查證，圖中不標。",
+    "sourceEn": "Pitches and pin counts come from the table in this section; probe density is qualitative only. The cantilever pitch (≥ 80–150 µm) is not shown until it is verified.",
+    "captionZh": "五種晶圓測試與探針卡做法（探針疏密只是定性示意）",
+    "captionEn": "Five wafer-test and probe-card approaches (probe density is qualitative only)",
+    "labels": [
+      {
+        "key": "watCard",
+        "zh": "晶圓允收測試探針卡",
+        "en": "WAT Parametric Probe Card"
+      },
+      {
+        "key": "kelvin",
+        "zh": "Kelvin 四線量測",
+        "en": "Kelvin 4-wire"
+      },
+      {
+        "key": "pcm",
+        "zh": "切割道 PCM 測試鍵",
+        "en": "Scribe-line PCM test keys"
+      },
+      {
+        "key": "pinsW",
+        "zh": "24–48 pins",
+        "en": "24–48 pins"
+      },
+      {
+        "key": "cantilever",
+        "zh": "懸臂式探針卡",
+        "en": "Cantilever Probe Card"
+      },
+      {
+        "key": "scrub",
+        "zh": "針跡（Scrub Mark）較大",
+        "en": "Larger scrub marks"
+      },
+      {
+        "key": "wbPad",
+        "zh": "傳統打線焊墊（Wire-Bond Pad）",
+        "en": "Perimeter wire-bond pads"
+      },
+      {
+        "key": "pinsC",
+        "zh": "數百至數千針",
+        "en": "Hundreds to a few thousand pins"
+      },
+      {
+        "key": "vertName",
+        "zh": "垂直式與彈簧針探針卡",
+        "en": "Vertical"
+      },
+      {
+        "key": "pogo",
+        "zh": "彈簧針探針卡",
+        "en": "Pogo-Pin Probe Card"
+      },
+      {
+        "key": "buckled",
+        "zh": "垂直微屈曲探針",
+        "en": "Vertically buckled needles"
+      },
+      {
+        "key": "flipBump",
+        "zh": "C4 覆晶凸塊",
+        "en": "C4 solder bumps"
+      },
+      {
+        "key": "pitchV",
+        "zh": "70–150 µm",
+        "en": "70–150 µm"
+      },
+      {
+        "key": "pinsV",
+        "zh": "5,000–30,000+ pins",
+        "en": "5,000–30,000+ pins"
+      },
+      {
+        "key": "memsName",
+        "zh": "MEMS 微機電薄膜探針卡",
+        "en": "Fine-Pitch MEMS Probe Card"
+      },
+      {
+        "key": "memsNeedle",
+        "zh": "微影電鑄微機電探針",
+        "en": "MEMS micro-needles"
+      },
+      {
+        "key": "ubump",
+        "zh": "微凸塊針測",
+        "en": "Micro-bump KGD probing"
+      },
+      {
+        "key": "pitchM",
+        "zh": "20–55 µm",
+        "en": "20–55 µm"
+      },
+      {
+        "key": "pinsM",
+        "zh": "30,000–100,000+ pins",
+        "en": "30,000–100,000+ pins"
+      },
+      {
+        "key": "preBond",
+        "zh": "混合鍵合前 KGD 測試",
+        "en": "Pre-Bond KGD"
+      },
+      {
+        "key": "bondPad",
+        "zh": "< 10 µm 混合鍵合銅墊",
+        "en": "< 10 µm Cu hybrid bond pads"
+      },
+      {
+        "key": "noProbe",
+        "zh": "直接下針刮傷",
+        "en": "Direct needle probing"
+      },
+      {
+        "key": "prohibited",
+        "zh": "禁止",
+        "en": "strictly prohibited"
+      },
+      {
+        "key": "sacrificial",
+        "zh": "專用犧牲測試墊",
+        "en": "Dedicated sacrificial probe pads"
+      },
+      {
+        "key": "bist",
+        "zh": "內建自我測試",
+        "en": "MBIST / LBIST"
+      }
+    ]
+  },
+  {
     "chapterId": "ch20",
     "headingZh": "常見的封裝形式",
     "headingEn": "Common package types",
@@ -6750,43 +7517,70 @@ export const SECTION_DIAGRAMS = [
     "chapterId": "ch20",
     "headingZh": "常見異常",
     "headingEn": "Common problems",
-    "type": "branch",
-    "captionZh": "封裝常見異常與各自造成的結果",
-    "captionEn": "Common packaging problems and the result each one leads to.",
-    "root": {
-      "zh": "封裝常見異常",
-      "en": "Common packaging problems"
-    },
-    "branches": [
+    "type": "pictorial",
+    "draw": "packageDefects",
+    "captionZh": "五種封裝異常發生在哪裡，以及各自的結果",
+    "captionEn": "Where five packaging problems occur, and what each leads to",
+    "labels": [
       {
+        "key": "chipping",
         "zh": "崩邊",
-        "en": "Chipping",
-        "leafZh": "邊緣破損，可能成裂痕",
-        "leafEn": "Damaged edges may grow into cracks"
+        "en": "Chipping"
       },
       {
+        "key": "chipRes",
+        "zh": "晶粒邊緣破損，可能延伸成裂痕",
+        "en": "Damaged die edges that may grow into cracks"
+      },
+      {
+        "key": "nonStick",
         "zh": "打線黏不上",
-        "en": "Non-stick on wire bond",
-        "leafZh": "斷路",
-        "leafEn": "Open circuits"
+        "en": "Non-stick on wire bond"
       },
       {
+        "key": "open",
+        "zh": "斷路",
+        "en": "Open circuits"
+      },
+      {
+        "key": "sweep",
         "zh": "沖線",
-        "en": "Wire sweep",
-        "leafZh": "相鄰導線短路",
-        "leafEn": "Shorts between neighboring wires"
+        "en": "Wire sweep"
       },
       {
+        "key": "short",
+        "zh": "相鄰導線短路",
+        "en": "Shorts between neighboring wires"
+      },
+      {
+        "key": "sweepCause",
+        "zh": "封膠時的流動把細線推彎",
+        "en": "Mold compound flow pushes the thin wires sideways"
+      },
+      {
+        "key": "delam",
         "zh": "脫層",
-        "en": "Delamination",
-        "leafZh": "可靠度問題",
-        "leafEn": "Reliability problems"
+        "en": "Delamination"
       },
       {
+        "key": "reliab",
+        "zh": "可靠度問題",
+        "en": "Reliability problems"
+      },
+      {
+        "key": "voids",
         "zh": "空洞",
-        "en": "Voids",
-        "leafZh": "散熱變差",
-        "leafEn": "Poorer heat dissipation"
+        "en": "Voids"
+      },
+      {
+        "key": "voidRes",
+        "zh": "散熱變差、可靠度問題",
+        "en": "Poorer heat dissipation, reliability problems"
+      },
+      {
+        "key": "voidCause",
+        "zh": "封膠或底部填充沒有填滿",
+        "en": "Mold compound or underfill does not fill completely"
       }
     ]
   },
@@ -6859,6 +7653,401 @@ export const SECTION_DIAGRAMS = [
     ]
   },
   {
+    "chapterId": "ch20",
+    "headingZh": "傳統封裝的流程",
+    "headingEn": "The traditional packaging flow",
+    "type": "pictorial",
+    "draw": "packagingFlow",
+    "captionZh": "傳統封裝九步：從晶背研磨到檢查",
+    "captionEn": "Traditional packaging in nine steps, from backgrinding to inspection",
+    "labels": [
+      {
+        "key": "backgrind",
+        "zh": "晶背研磨",
+        "en": "Backgrind"
+      },
+      {
+        "key": "backgrindHow",
+        "zh": "從背面把晶圓磨薄",
+        "en": "Grind the wafer thinner from the back"
+      },
+      {
+        "key": "dicing",
+        "zh": "切割",
+        "en": "Dicing"
+      },
+      {
+        "key": "dicingHow",
+        "zh": "沿著切割道用鑽石刀或雷射切開",
+        "en": "Cut along the scribe lines with a diamond blade or a laser"
+      },
+      {
+        "key": "stealth",
+        "zh": "隱形切割",
+        "en": "Stealth dicing"
+      },
+      {
+        "key": "stealthHow",
+        "zh": "用雷射在晶圓內部打出一層改質層",
+        "en": "Uses a laser to create a modified layer inside the wafer"
+      },
+      {
+        "key": "stealthSplit",
+        "zh": "再把膠膜撐開，讓晶粒沿著改質層分開",
+        "en": "Then stretches the tape so the dies separate along that layer"
+      },
+      {
+        "key": "attach",
+        "zh": "黏晶",
+        "en": "Die attach"
+      },
+      {
+        "key": "attachHow",
+        "zh": "依照晶圓圖，只挑出好的晶粒",
+        "en": "Following the wafer map, pick only the good dies"
+      },
+      {
+        "key": "wire",
+        "zh": "打線",
+        "en": "Wire bonding"
+      },
+      {
+        "key": "wireHow",
+        "zh": "把晶粒的焊墊連到導線架或基板上",
+        "en": "Connect the pads on the die to the lead frame or substrate"
+      },
+      {
+        "key": "mold",
+        "zh": "封膠",
+        "en": "Molding"
+      },
+      {
+        "key": "moldHow",
+        "zh": "用環氧樹脂等材料把晶粒和導線包起來",
+        "en": "Encapsulate the die and wires in a material such as epoxy resin"
+      },
+      {
+        "key": "mark",
+        "zh": "印字",
+        "en": "Marking"
+      },
+      {
+        "key": "markHow",
+        "zh": "用雷射在表面印上產品型號和批號",
+        "en": "Laser-mark the product name and lot number on the surface"
+      },
+      {
+        "key": "ball",
+        "zh": "植球或電鍍接腳",
+        "en": "Ball mount or lead plating"
+      },
+      {
+        "key": "ballHow",
+        "zh": "在底部植上錫球，或在接腳表面電鍍",
+        "en": "Attach solder balls to the bottom, or plate the surface of the leads"
+      },
+      {
+        "key": "sing",
+        "zh": "切單",
+        "en": "Singulation"
+      },
+      {
+        "key": "singHow",
+        "zh": "把一整條基板上的封裝切成一顆顆獨立的晶片",
+        "en": "Cut the packages on a strip of substrate into individual chips"
+      },
+      {
+        "key": "inspect",
+        "zh": "檢查",
+        "en": "Inspection"
+      }
+    ]
+  },
+  {
+    "chapterId": "ch20",
+    "headingZh": "覆晶：把晶片翻過來",
+    "headingEn": "Flip chip: turning the die over",
+    "type": "pictorial",
+    "draw": "flipChipBumps",
+    "sourcedNumbers": true,
+    "sourceZh": "間距範圍出自本段表格，間距尺為對數刻度；凸塊大小只示意排序。微凸塊下方畫的是中介層或下層晶粒，不是有機基板。",
+    "sourceEn": "Pitch ranges come from the table in this section, on a log scale. Bump sizes only show the order. Below the micro-bump is an interposer or a lower die, not an organic substrate.",
+    "captionZh": "打線與覆晶的連接路徑，以及三種覆晶凸塊與接點間距",
+    "captionEn": "Wire bonding vs. flip chip, and three flip-chip bump types with their pitch",
+    "labels": [
+      {
+        "key": "wb",
+        "zh": "打線",
+        "en": "Wire bonding"
+      },
+      {
+        "key": "fc",
+        "zh": "覆晶",
+        "en": "Flip chip"
+      },
+      {
+        "key": "shorter",
+        "zh": "覆晶的連接路徑更短",
+        "en": "Flip chip has shorter connections"
+      },
+      {
+        "key": "area",
+        "zh": "可以在晶粒整個表面布滿接點",
+        "en": "Can place contacts across the whole surface of the die"
+      },
+      {
+        "key": "faceDown",
+        "zh": "正面朝下",
+        "en": "Face down"
+      },
+      {
+        "key": "bumps",
+        "zh": "凸塊",
+        "en": "Bumps"
+      },
+      {
+        "key": "bumpsDo",
+        "zh": "連接晶粒和基板",
+        "en": "connect the die to the substrate"
+      },
+      {
+        "key": "balls",
+        "zh": "錫球",
+        "en": "Solder balls"
+      },
+      {
+        "key": "ballsDo",
+        "zh": "連接封裝和電路板",
+        "en": "connect the package to the circuit board"
+      },
+      {
+        "key": "underfill",
+        "zh": "底部填充",
+        "en": "Underfill"
+      },
+      {
+        "key": "substrate",
+        "zh": "基板",
+        "en": "Substrate"
+      },
+      {
+        "key": "board",
+        "zh": "電路板",
+        "en": "Circuit board"
+      },
+      {
+        "key": "c4",
+        "zh": "可控塌陷晶片連接錫球（C4 Bump）",
+        "en": "Controlled Collapse Chip Connection (C4 Bump)"
+      },
+      {
+        "key": "selfAlign",
+        "zh": "表面張力自對準",
+        "en": "Surface tension self-alignment"
+      },
+      {
+        "key": "pillar",
+        "zh": "銅柱凸塊（Copper Pillar Bump）",
+        "en": "Copper Pillar Bump (Cu Pillar)"
+      },
+      {
+        "key": "noCollapse",
+        "zh": "回焊時銅柱不塌陷",
+        "en": "Non-collapsing vertical copper columns"
+      },
+      {
+        "key": "cap",
+        "zh": "焊帽（Solder Cap）",
+        "en": "SnAg Solder Cap"
+      },
+      {
+        "key": "micro",
+        "zh": "微凸塊與熱壓接合（Micro-Bump & TCB）",
+        "en": "Micro-Bump & Thermo-Compression Bonding"
+      },
+      {
+        "key": "tcb",
+        "zh": "熱壓鍵合頭精準控制高度與平整度",
+        "en": "Bonded under precise heat and pressure (TCB)"
+      },
+      {
+        "key": "cu",
+        "zh": "Cu",
+        "en": "Cu"
+      },
+      {
+        "key": "ni",
+        "zh": "Ni",
+        "en": "Ni"
+      },
+      {
+        "key": "snag",
+        "zh": "SnAg",
+        "en": "SnAg"
+      },
+      {
+        "key": "pitch",
+        "zh": "接點間距（Pitch）",
+        "en": "Contact Pitch"
+      },
+      {
+        "key": "r1",
+        "zh": "130 µm ～ 200 µm",
+        "en": "130 µm – 200 µm"
+      },
+      {
+        "key": "r2",
+        "zh": "40 µm ～ 100 µm",
+        "en": "40 µm – 100 µm"
+      },
+      {
+        "key": "r3",
+        "zh": "10 µm ～ 55 µm",
+        "en": "10 µm – 55 µm"
+      },
+      {
+        "key": "t10",
+        "zh": "10 µm",
+        "en": "10 µm"
+      },
+      {
+        "key": "t100",
+        "zh": "100 µm",
+        "en": "100 µm"
+      },
+      {
+        "key": "barC4",
+        "zh": "C4",
+        "en": "C4"
+      },
+      {
+        "key": "barPillar",
+        "zh": "銅柱凸塊",
+        "en": "Cu Pillar"
+      },
+      {
+        "key": "barMicro",
+        "zh": "微凸塊",
+        "en": "Micro-Bump"
+      }
+    ]
+  },
+  {
+    "chapterId": "ch20",
+    "headingZh": "傳統與晶圓級封裝六大條例總覽",
+    "headingEn": "Legacy & Wafer-Level Packaging Clauses",
+    "type": "pictorial",
+    "draw": "packageFamilies",
+    "foldSection": true,
+    "sourcedNumbers": true,
+    "sourceZh": "1:1 出自本段表格（扇入型晶圓級封裝的面積與晶粒相同）；六格的大小與比例都只是示意。",
+    "sourceEn": "1:1 comes from the table in this section (a fan-in WLCSP is the same size as the die). Sizes and proportions in all six cells are schematic.",
+    "captionZh": "六大封裝家族的側剖面對照",
+    "captionEn": "Six package families in side view",
+    "labels": [
+      {
+        "key": "leaded",
+        "zh": "導線架有引腳封裝",
+        "en": "Leaded Leadframe Packages"
+      },
+      {
+        "key": "gullWing",
+        "zh": "鷗翼形（Gull-Wing）",
+        "en": "Gull-wing"
+      },
+      {
+        "key": "throughHole",
+        "zh": "穿孔插針（Through-Hole）",
+        "en": "Through-hole pins"
+      },
+      {
+        "key": "leadless",
+        "zh": "導線架無引腳封裝",
+        "en": "Leadless Leadframe Packages"
+      },
+      {
+        "key": "thermalPad",
+        "zh": "大型散熱墊（Exposed Thermal Pad）",
+        "en": "Exposed bottom thermal pad"
+      },
+      {
+        "key": "lands",
+        "zh": "底部直接裸露金屬焊墊",
+        "en": "Flush perimeter lands"
+      },
+      {
+        "key": "array",
+        "zh": "球柵與觸點陣列基板封裝",
+        "en": "Substrate Array Packages"
+      },
+      {
+        "key": "bga",
+        "zh": "球柵陣列（BGA）",
+        "en": "Bottom solder ball arrays (BGA)"
+      },
+      {
+        "key": "lga",
+        "zh": "平面金屬觸點陣列（LGA）",
+        "en": "Land pads (LGA)"
+      },
+      {
+        "key": "wlcsp",
+        "zh": "扇入型晶圓級晶片尺寸封裝",
+        "en": "Fan-In Wafer-Level Packaging"
+      },
+      {
+        "key": "rdl",
+        "zh": "RDL 重佈線",
+        "en": "RDL"
+      },
+      {
+        "key": "ubm",
+        "zh": "UBM 凸塊下金屬層",
+        "en": "UBM"
+      },
+      {
+        "key": "oneToOne",
+        "zh": "封裝面積與裸晶粒完全 1:1 相等",
+        "en": "A true 1:1 die-sized package"
+      },
+      {
+        "key": "stacking",
+        "zh": "打線與封裝體 3D 垂直堆疊",
+        "en": "3D Multi-Die Wire-Bond & Package Stacking"
+      },
+      {
+        "key": "daf",
+        "zh": "間隔膠膜（Spacer / Die-Attach Film）",
+        "en": "Die-Attach Film (DAF) spacers"
+      },
+      {
+        "key": "pop",
+        "zh": "PoP（Package-on-Package）",
+        "en": "PoP (Package-on-Package)"
+      },
+      {
+        "key": "sip",
+        "zh": "系統級封裝與基板內埋",
+        "en": "System-in-Package & Embedded Die"
+      },
+      {
+        "key": "shield",
+        "zh": "共形電磁屏蔽",
+        "en": "Conformal EMI shielding"
+      },
+      {
+        "key": "antenna",
+        "zh": "天線（AiP）",
+        "en": "Antennas-in-package (AiP)"
+      },
+      {
+        "key": "bothSides",
+        "zh": "正反兩面",
+        "en": "Both sides"
+      }
+    ]
+  },
+  {
     "chapterId": "ch21",
     "headingZh": "扇出型封裝",
     "headingEn": "Fan-out packaging",
@@ -6892,53 +8081,213 @@ export const SECTION_DIAGRAMS = [
     "chapterId": "ch21",
     "headingZh": "3D 堆疊：往上疊",
     "headingEn": "3D stacking: building upward",
-    "type": "compare",
-    "captionZh": "晶圓對晶圓與晶粒對晶圓兩種鍵合方式的取捨",
-    "captionEn": "Trade-offs between wafer-to-wafer and die-to-wafer bonding.",
-    "columns": [
+    "type": "pictorial",
+    "draw": "bondingPitch",
+    "sourcedNumbers": true,
+    "sourceZh": "間距出自本段兩張表格，橫軸為對數刻度；虛線空心色條是通孔節距（TGV、層間通孔），不是晶片之間的接點；箭頭端表示範圍沒有下限或上限。覆晶凸塊的細分範圍見第 20 章。",
+    "sourceEn": "Pitches come from the two tables in this section, on a log scale. Hollow dashed bars are via pitches (TGV and inter-tier vias), not die-to-die contacts. Arrow ends mark open-ended ranges. Chapter 20 breaks down flip-chip bump pitches.",
+    "captionZh": "接點間距的對數尺，以及四種鍵合方向與粒度",
+    "captionEn": "Contact pitch on a log scale, and four bonding orientations and granularities",
+    "labels": [
       {
-        "titleZh": "晶圓對晶圓鍵合",
-        "titleEn": "Wafer-to-wafer bonding",
-        "items": [
-          {
-            "zh": "兩片完整晶圓整片對準鍵合",
-            "en": "Two full wafers aligned and bonded at once"
-          },
-          {
-            "zh": "吞吐量極高",
-            "en": "Highest throughput"
-          },
-          {
-            "zh": "上下晶粒面積須完全相同",
-            "en": "Requires identical die sizes"
-          },
-          {
-            "zh": "無法預先剔除壞晶粒",
-            "en": "Cannot pre-screen bad dies"
-          }
-        ]
+        "key": "denser",
+        "zh": "接點間距越小，同樣面積內的連接點越多",
+        "en": "The smaller the contact pitch, the more connections fit in the same area"
       },
       {
-        "titleZh": "晶粒對晶圓鍵合",
-        "titleEn": "Die-to-wafer bonding",
-        "items": [
-          {
-            "zh": "先測試篩出已知良好晶粒",
-            "en": "Pre-tested known good dies are picked"
-          },
-          {
-            "zh": "逐顆或群組貼合至底層晶圓",
-            "en": "Bonded individually or in groups onto a wafer"
-          },
-          {
-            "zh": "可用不同尺寸與製程節點",
-            "en": "Allows different die sizes and process nodes"
-          },
-          {
-            "zh": "只把好晶粒疊上去保全良率",
-            "en": "Stacks only good dies, avoiding yield loss"
-          }
-        ]
+        "key": "t100nm",
+        "zh": "100 nm",
+        "en": "100 nm"
+      },
+      {
+        "key": "t1",
+        "zh": "1 µm",
+        "en": "1 µm"
+      },
+      {
+        "key": "t10",
+        "zh": "10 µm",
+        "en": "10 µm"
+      },
+      {
+        "key": "t100",
+        "zh": "100 µm",
+        "en": "100 µm"
+      },
+      {
+        "key": "fc",
+        "zh": "覆晶凸塊",
+        "en": "Flip-chip bumps"
+      },
+      {
+        "key": "fcPitch",
+        "zh": "一百微米以上",
+        "en": "A hundred micrometers or more"
+      },
+      {
+        "key": "mb",
+        "zh": "微凸塊",
+        "en": "Micro bumps"
+      },
+      {
+        "key": "mbPitch",
+        "zh": "數十微米",
+        "en": "Tens of micrometers"
+      },
+      {
+        "key": "hb",
+        "zh": "混合鍵合",
+        "en": "Hybrid bonding"
+      },
+      {
+        "key": "hbPitch",
+        "zh": "十微米以下",
+        "en": "Below ten micrometers"
+      },
+      {
+        "key": "c3a",
+        "zh": "條例 3A：無凸塊銅對銅混合鍵合",
+        "en": "Clause 3A: Bumpless Cu-Cu Hybrid Bonding"
+      },
+      {
+        "key": "c3b",
+        "zh": "條例 3B：微凸塊與 TSV 垂直 3D 堆疊",
+        "en": "Clause 3B: Micro-Bump & TSV Vertical 3D IC"
+      },
+      {
+        "key": "c3c",
+        "zh": "條例 3C：3D 記憶體垂直堆疊",
+        "en": "Clause 3C: 3D Memory Vertical Stacking"
+      },
+      {
+        "key": "c3d",
+        "zh": "條例 3D：3.5D 複合異質整合",
+        "en": "Clause 3D: 3.5D Hybrid Integration (3D + 2.5D)"
+      },
+      {
+        "key": "c3e",
+        "zh": "條例 3E：3D 光電共封裝與玻璃核心基板",
+        "en": "Clause 3E: 3D Co-Packaged Optics (CPO) & Glass Core Substrate (TGV)"
+      },
+      {
+        "key": "c3f",
+        "zh": "條例 3F：單石 3D 積體電路與雙面 3D 晶圓整合",
+        "en": "Clause 3F: Monolithic 3D IC & Wafer-Backside 3D Integration"
+      },
+      {
+        "key": "v3a",
+        "zh": "< 10 µm 至 < 1 µm",
+        "en": "< 10 µm down to < 1 µm"
+      },
+      {
+        "key": "v3b",
+        "zh": "10 µm ～ 55 µm",
+        "en": "10 µm – 55 µm"
+      },
+      {
+        "key": "v3c1",
+        "zh": "15 µm ～ 55 µm（微凸塊）",
+        "en": "15 µm – 55 µm (Micro-bump)"
+      },
+      {
+        "key": "v3c2",
+        "zh": "< 10 µm（混合鍵合 HBM4+）",
+        "en": "< 10 µm (Hybrid Bonding HBM4+)"
+      },
+      {
+        "key": "v3d1",
+        "zh": "垂直 < 1～9 µm（3D）",
+        "en": "Vertical < 1–9 µm (3D)"
+      },
+      {
+        "key": "v3d2",
+        "zh": "水平 25～40 µm（2.5D）",
+        "en": "Lateral 25–40 µm (2.5D)"
+      },
+      {
+        "key": "v3e1",
+        "zh": "垂直 < 10 µm Cu-Cu 鍵合",
+        "en": "Vertical < 10 µm Cu-Cu Bonding"
+      },
+      {
+        "key": "v3e2",
+        "zh": "TGV 玻璃通孔（Pitch 40～100 µm）",
+        "en": "Through-Glass Vias (TGV, 40–100 µm pitch)"
+      },
+      {
+        "key": "v3f",
+        "zh": "< 100 nm 層間通孔",
+        "en": "< 100 nm Monolithic Inter-tier Vias"
+      },
+      {
+        "key": "f2f",
+        "zh": "面對面鍵合（F2F，Face-to-Face）",
+        "en": "Face-to-Face (F2F) Bonding"
+      },
+      {
+        "key": "shortest",
+        "zh": "訊號路徑最短",
+        "en": "Shortest possible signal path"
+      },
+      {
+        "key": "f2b",
+        "zh": "面對背鍵合（F2B，Face-to-Back）",
+        "en": "Face-to-Back (F2B)"
+      },
+      {
+        "key": "viaTsv",
+        "zh": "下層晶粒內部的 TSV",
+        "en": "TSVs inside the lower die"
+      },
+      {
+        "key": "w2w",
+        "zh": "晶圓對晶圓鍵合（W2W，Wafer-to-Wafer）",
+        "en": "Wafer-to-Wafer (W2W / WoW) Bonding"
+      },
+      {
+        "key": "w2wHow",
+        "zh": "直接整片對準與混合鍵合",
+        "en": "Aligned and hybrid-bonded at once"
+      },
+      {
+        "key": "throughput",
+        "zh": "吞吐量極高",
+        "en": "Highest throughput"
+      },
+      {
+        "key": "same",
+        "zh": "上下晶粒面積必須完全相同",
+        "en": "Requires identical die sizes"
+      },
+      {
+        "key": "noScreen",
+        "zh": "無法預先剔除壞晶粒",
+        "en": "Cannot pre-screen bad dies"
+      },
+      {
+        "key": "d2w",
+        "zh": "晶粒對晶圓鍵合",
+        "en": "Die-to-Wafer (D2W / CoW)"
+      },
+      {
+        "key": "kgd",
+        "zh": "已知良好晶粒（KGD）",
+        "en": "Known Good Dies (KGD)"
+      },
+      {
+        "key": "carrier",
+        "zh": "逐顆或以載板群組方式貼合",
+        "en": "Individually or via collective carrier transfer"
+      },
+      {
+        "key": "mix",
+        "zh": "不同尺寸、不同製程節點",
+        "en": "Different die sizes and process nodes"
+      },
+      {
+        "key": "keepYield",
+        "zh": "只把好晶粒疊上去以保全總良率",
+        "en": "Avoiding compound yield loss from bad dies"
       }
     ]
   },
@@ -7046,40 +8395,121 @@ export const SECTION_DIAGRAMS = [
     "chapterId": "ch21",
     "headingZh": "2.5D：並排放在中介層上",
     "headingEn": "2.5D: side by side on an interposer",
+    "type": "pictorial",
+    "draw": "interposerTypes",
     "foldTables": true,
-    "type": "branch",
-    "captionZh": "依中介層材質與互連結構，2.5D 封裝分為四類",
-    "captionEn": "2.5D packaging falls into four classes by interposer material and topology.",
-    "root": {
-      "zh": "中介層材質與互連結構",
-      "en": "Interposer material and topology",
-      "noteZh": "晶片並排放在中介層上",
-      "noteEn": "Chips placed side by side on an interposer"
-    },
-    "branches": [
+    "captionZh": "四種 2.5D 中介層結構：變化在中介層或基板",
+    "captionEn": "Four 2.5D interposer structures: the interposer or the substrate changes",
+    "labels": [
       {
+        "key": "sideBySide",
+        "zh": "把好幾顆晶片並排放在一片中介層上",
+        "en": "Places several chips side by side on an interposer"
+      },
+      {
+        "key": "notAlways",
+        "zh": "中介層不一定是矽",
+        "en": "An interposer is not always silicon"
+      },
+      {
+        "key": "basis",
+        "zh": "中介層材質與互連結構",
+        "en": "Interposer material and bridge topology"
+      },
+      {
+        "key": "processor",
+        "zh": "處理器",
+        "en": "Processor"
+      },
+      {
+        "key": "hbm",
+        "zh": "HBM",
+        "en": "HBM"
+      },
+      {
+        "key": "pkgSub",
+        "zh": "封裝基板",
+        "en": "Package substrate"
+      },
+      {
+        "key": "interposer",
+        "zh": "中介層",
+        "en": "Interposer"
+      },
+      {
+        "key": "siName",
         "zh": "矽中介層",
-        "en": "Silicon interposer",
-        "leafZh": "整片矽，可曝光拼接放大",
-        "leafEn": "Full silicon, reticle-stitched to grow larger"
+        "en": "Monolithic Silicon Interposer"
       },
       {
+        "key": "siFull",
+        "zh": "整片單晶矽中介層",
+        "en": "Full silicon interposer"
+      },
+      {
+        "key": "stitch",
+        "zh": "曝光拼接（Stitching）",
+        "en": "Reticle-stitched"
+      },
+      {
+        "key": "larger",
+        "zh": "做得比單次曝光的範圍還大",
+        "en": "made larger than a single exposure field"
+      },
+      {
+        "key": "tsv",
+        "zh": "TSV 矽穿孔",
+        "en": "TSVs"
+      },
+      {
+        "key": "rdlName",
         "zh": "有機重佈線中介層",
-        "en": "Organic RDL interposer",
-        "leafZh": "多層有機 RDL 取代整片矽",
-        "leafEn": "Organic RDL layers replace the silicon"
+        "en": "Organic RDL Interposer"
       },
       {
-        "zh": "局部矽橋",
-        "en": "Local silicon bridge",
-        "leafZh": "只在需要高密度互連處嵌入矽橋",
-        "leafEn": "Bridges only where dense die links are needed"
+        "key": "rdlWith",
+        "zh": "以多層有機高分子重佈線層（RDL）",
+        "en": "multi-layer organic polymer redistribution layers"
       },
       {
+        "key": "rdlReplace",
+        "zh": "取代整片矽中介層",
+        "en": "Replaces the silicon interposer with"
+      },
+      {
+        "key": "bridgeName",
+        "zh": "局部矽橋與重組中介層",
+        "en": "Local Silicon Bridge & Reconstituted Interposer"
+      },
+      {
+        "key": "bridgeWhere",
+        "zh": "僅在相鄰晶片邊緣下方",
+        "en": "only where die-to-die high-density links are needed"
+      },
+      {
+        "key": "bridgeEmbed",
+        "zh": "嵌入微型矽橋",
+        "en": "Embeds tiny silicon bridges"
+      },
+      {
+        "key": "hybridName",
         "zh": "複合載板",
-        "en": "Hybrid substrate",
-        "leafZh": "ABF 與 HDI 基板上下疊合",
-        "leafEn": "Fine-pitch ABF tier stacked over HDI"
+        "en": "Hybrid-Substrate"
+      },
+      {
+        "key": "abf",
+        "zh": "ABF 載板",
+        "en": "ABF upper tier"
+      },
+      {
+        "key": "hdi",
+        "zh": "HDI 基板",
+        "en": "HDI lower tier"
+      },
+      {
+        "key": "hybridStack",
+        "zh": "將精細線距 ABF 載板與高密度 HDI 基板上下疊合",
+        "en": "A fine-pitch ABF upper tier and an HDI lower tier"
       }
     ]
   },
@@ -7214,6 +8644,90 @@ export const SECTION_DIAGRAMS = [
         "en": "Vertical thermal cross-heating",
         "leafZh": "結構矽、導熱矽穿孔與銦片導熱",
         "leafEn": "Structural silicon, thermal TSVs, indium TIM"
+      }
+    ]
+  },
+  {
+    "chapterId": "ch21",
+    "headingZh": "為什麼需要先進封裝",
+    "headingEn": "Why advanced packaging is needed",
+    "type": "pictorial",
+    "draw": "splitChip",
+    "sourcedNumbers": true,
+    "sourceZh": "26 mm × 33 mm 出自本段正文，虛線框依這個長寬比畫；缺陷點、晶粒與小晶片的大小都只是示意。",
+    "sourceEn": "26 mm × 33 mm comes from this section, and the dashed box uses that aspect ratio. Defects and the sizes of the die and chiplets are schematic.",
+    "captionZh": "大晶粒受曝光範圍與良率所限，拆成小晶片再整合",
+    "captionEn": "Exposure field and yield limit large dies, so they are split into chiplets",
+    "labels": [
+      {
+        "key": "reticle",
+        "zh": "曝光機一次能曝光的範圍",
+        "en": "The area a scanner can expose at once"
+      },
+      {
+        "key": "size",
+        "zh": "大約 26 mm × 33 mm",
+        "en": "About 26 mm × 33 mm"
+      },
+      {
+        "key": "bigHit",
+        "zh": "晶粒越大，越容易被缺陷打中",
+        "en": "The bigger the die, the more likely it is to be hit by a defect"
+      },
+      {
+        "key": "split",
+        "zh": "把一顆大晶片拆成幾顆小晶片",
+        "en": "Splitting one large chip into several smaller chips"
+      },
+      {
+        "key": "compute",
+        "zh": "運算核心",
+        "en": "Compute cores"
+      },
+      {
+        "key": "advanced",
+        "zh": "最先進的製程",
+        "en": "The most advanced process"
+      },
+      {
+        "key": "analog",
+        "zh": "類比和輸入輸出電路",
+        "en": "Analog and I/O circuits"
+      },
+      {
+        "key": "mature",
+        "zh": "成熟製程",
+        "en": "Mature processes"
+      },
+      {
+        "key": "memory",
+        "zh": "記憶體",
+        "en": "Memory"
+      },
+      {
+        "key": "dedicated",
+        "zh": "專門的製程",
+        "en": "Its own dedicated process"
+      },
+      {
+        "key": "data",
+        "zh": "在處理器和記憶體之間搬運大量資料",
+        "en": "Move huge amounts of data between processors and memory"
+      },
+      {
+        "key": "best",
+        "zh": "各自用最適合的製程製造",
+        "en": "Making each with the process that suits it best"
+      },
+      {
+        "key": "tight",
+        "zh": "再用先進封裝把它們緊密地整合在一起",
+        "en": "Integrating them tightly with advanced packaging"
+      },
+      {
+        "key": "single",
+        "zh": "讓它們像一顆晶片一樣運作",
+        "en": "So they work like a single chip"
       }
     ]
   },
