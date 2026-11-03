@@ -135,7 +135,18 @@
   - 手機上沿用網站既有做法：圖框維持 600px 寬、可左右滑動。後段金屬層級在 390 寬時，右側的層名與數值要滑動才看得到，沒有另做窄版排法。
   - ch10 雙大馬士革的圖說取自正文的圖註，只寫 5 步（挖洞 → 阻障層 → 電鍍 → CMP → 覆蓋層）；圖已畫成正文的 7 步。圖說要改就得改正文，屬 §3.3 正文校勘，需另外同意。
 - 前後對照：`C:\Users\Sam\AI-Workspace\docs\semiconductor-knowledge-hub\visual-upgrade-plan-2026-11-02\batchB-2.19.0-before-after.png`（被取代的 10 張）、`batchB-2.19.0-new.png`（新增的 11 張）。
-- 提交／發布狀態：本機提交，尚未推送、尚未部署，等 Sam 看過對照圖再決定。
+- 提交／發布狀態：已推送、已部署。
+  - 2026-11-03 Sam 看過對照圖後回覆「合併並部署」。
+  - 提交 `74da1855d760c58a2c37e05bb4776253cc88fe32`，main 由 `3f900ba` 快轉。
+  - 快轉後在 main 上重跑 `npm run verify` 與 `scripts/build-site.mjs`，都通過。
+  - GitHub Pages run `41625827405` 的 `verify` 與 `deploy` 都成功。
+- 發布後線上驗證（2026-11-03）：
+  - 本次改到的 6 個網站檔案與提交內容逐位元組相同，加不加快取參數都一樣：`index.html`、`app.js`、`chapter-figures.js`、`data/section-diagrams.js`、`pictorials.js`、`section-diagrams.js`。
+  - 頁尾為 2.19.0；`revision-history.md`、`package.json`、`scripts/` 回應 404。
+  - 瀏覽器檢查直接跑線上網站：ch04–ch10 × 中英 × 1440／390，共 28 頁，與 main `3f900ba` 快照比較。
+    - 沒有頁面錯誤、主控台錯誤、水平溢位；列印前收合區全部展開。
+    - 圖數、收合區與頁高都與本機最終掃描一致，只有 ch06 中文 1440 的頁高第一次量到 13259，本機是 13400。
+    - 改成在 0.3、1.2、4.2 秒各量一次：線上與本機都是 13400。差異來自掃描當下線上還沒排好版，網站本身沒有差異。
 
 ## 2.18.0 · 2026-11-03 · A 批實物示意圖（ch00–ch03，第 2 階段試行）
 
