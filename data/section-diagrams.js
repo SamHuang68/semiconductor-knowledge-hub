@@ -4,6 +4,92 @@
 export const SECTION_DIAGRAMS = [
   {
     "chapterId": "ch00",
+    "headingZh": "誰負責什麼：半導體產業的分工",
+    "headingEn": "Who does what: how the industry divides the work",
+    "type": "pictorial",
+    "draw": "industryMap",
+    "captionZh": "晶片分工地圖：設計、製造、封裝測試各由誰負責。",
+    "captionEn": "Who does which part: design, manufacturing, assembly and test.",
+    "labels": [
+      {
+        "key": "idm",
+        "zh": "整合元件製造廠（IDM）",
+        "en": "Integrated device manufacturer (IDM)"
+      },
+      {
+        "key": "idmDoes",
+        "zh": "從設計、製造到銷售都自己來",
+        "en": "Designs, manufactures and sells its own chips"
+      },
+      {
+        "key": "zoneDesign",
+        "zh": "設計",
+        "en": "Design"
+      },
+      {
+        "key": "zoneMake",
+        "zh": "製造",
+        "en": "Manufacturing"
+      },
+      {
+        "key": "zoneTest",
+        "zh": "封裝測試",
+        "en": "Assembly and test"
+      },
+      {
+        "key": "fabless",
+        "zh": "IC 設計公司（Fabless）",
+        "en": "Fabless IC design company"
+      },
+      {
+        "key": "fablessDoes",
+        "zh": "設計晶片的電路，但沒有自己的工廠",
+        "en": "Designs the circuits of the chip but owns no factory"
+      },
+      {
+        "key": "foundry",
+        "zh": "晶圓代工廠（Foundry）",
+        "en": "Foundry"
+      },
+      {
+        "key": "foundryDoes",
+        "zh": "接受設計公司委託",
+        "en": "for its design customers"
+      },
+      {
+        "key": "idmShort",
+        "zh": "IDM",
+        "en": "IDM"
+      },
+      {
+        "key": "idmMakes",
+        "zh": "主要製造自己設計的產品",
+        "en": "mainly makes its own products"
+      },
+      {
+        "key": "osat",
+        "zh": "封裝測試廠（OSAT）",
+        "en": "Outsourced semiconductor assembly and test (OSAT)"
+      },
+      {
+        "key": "osatDoes",
+        "zh": "把晶圓切成一顆顆晶片、封裝並測試",
+        "en": "Cuts wafers into individual chips, packages them and tests them"
+      },
+      {
+        "key": "suppliers",
+        "zh": "設備與材料供應商",
+        "en": "Equipment and materials suppliers"
+      },
+      {
+        "key": "supplies",
+        "zh": "機台、化學品、氣體、晶圓",
+        "en": "tools, chemicals, gases and wafers"
+      }
+    ]
+  },
+  {
+    "chapterId": "ch00",
     "headingZh": "前段與後段",
     "headingEn": "Front end and back end",
     "type": "compare",
@@ -243,6 +329,197 @@ export const SECTION_DIAGRAMS = [
   },
   {
     "chapterId": "ch01",
+    "headingZh": "誰在晶圓廠裡工作",
+    "headingEn": "Who works in a fab",
+    "type": "pictorial",
+    "draw": "fabRoles",
+    "captionZh": "八種常見職務各自負責生產線上的哪一塊。",
+    "captionEn": "What each of the eight common roles looks after along the line.",
+    "labels": [
+      {
+        "key": "pe",
+        "zh": "製程工程師（PE）",
+        "en": "Process engineer (PE)"
+      },
+      {
+        "key": "ee",
+        "zh": "設備工程師（EE）",
+        "en": "Equipment engineer (EE)"
+      },
+      {
+        "key": "pie",
+        "zh": "製程整合工程師（PIE）",
+        "en": "Process integration engineer (PIE)"
+      },
+      {
+        "key": "ye",
+        "zh": "良率工程師（YE）",
+        "en": "Yield engineer (YE)"
+      },
+      {
+        "key": "mfg",
+        "zh": "製造部（MFG）",
+        "en": "Manufacturing (MFG)"
+      },
+      {
+        "key": "facilities",
+        "zh": "廠務工程師",
+        "en": "Facilities engineer"
+      },
+      {
+        "key": "qa",
+        "zh": "品保工程師（QA）",
+        "en": "Quality engineer (QA)"
+      },
+      {
+        "key": "cim",
+        "zh": "CIM 工程師",
+        "en": "CIM engineer"
+      },
+      {
+        "key": "allYear",
+        "zh": "全年無休",
+        "en": "Every day of the year"
+      }
+    ]
+  },
+  {
+    "chapterId": "ch01",
+    "headingZh": "機台：工廠的主角",
+    "headingEn": "Tools: the stars of the fab",
+    "type": "pictorial",
+    "draw": "toolTypes",
+    "captionZh": "單片式與批次式機台：一次處理一片，或一次處理很多片。",
+    "captionEn": "Single-wafer and batch tools: one wafer at a time, or many at once.",
+    "labels": [
+      {
+        "key": "single",
+        "zh": "單片式",
+        "en": "Single-wafer tools"
+      },
+      {
+        "key": "oneAtATime",
+        "zh": "一次處理一片晶圓",
+        "en": "Process one wafer at a time"
+      },
+      {
+        "key": "singleExamples",
+        "zh": "曝光機、大部分的蝕刻機",
+        "en": "scanners and most etch tools"
+      },
+      {
+        "key": "batch",
+        "zh": "批次式",
+        "en": "Batch tools"
+      },
+      {
+        "key": "manyAtOnce",
+        "zh": "一次處理很多片晶圓",
+        "en": "Process many wafers at once"
+      },
+      {
+        "key": "furnace",
+        "zh": "爐管",
+        "en": "furnaces"
+      },
+      {
+        "key": "hundred",
+        "zh": "一次可以放進上百片",
+        "en": "can hold more than a hundred wafers"
+      }
+    ]
+  },
+  {
+    "chapterId": "ch01",
+    "headingZh": "無塵室：比手術室還乾淨",
+    "headingEn": "The cleanroom: cleaner than an operating room",
+    "type": "pictorial",
+    "draw": "cleanroom",
+    "sourcedNumbers": true,
+    "sourceZh": "數值出自本段正文；立方體裡的點數與機台構造都是示意。",
+    "sourceEn": "Values come from this section. Dot counts and the tool layout are schematic.",
+    "captionZh": "無塵室要多乾淨，以及為什麼只要晶圓經過的地方最乾淨。",
+    "captionEn": "How clean a cleanroom must be, and why only the wafer path must be cleanest.",
+    "labels": [
+      {
+        "key": "cubicFoot",
+        "zh": "每立方英尺",
+        "en": "in every cubic foot of air"
+      },
+      {
+        "key": "halfMicron",
+        "zh": "0.5 微米以上的微粒",
+        "en": "Particles of 0.5 micrometers or larger"
+      },
+      {
+        "key": "office",
+        "zh": "一般辦公室",
+        "en": "A typical office"
+      },
+      {
+        "key": "officeCount",
+        "zh": "數十萬到上百萬顆",
+        "en": "Hundreds of thousands to millions of particles"
+      },
+      {
+        "key": "criticalArea",
+        "zh": "無塵室的關鍵區域",
+        "en": "Critical areas of a cleanroom"
+      },
+      {
+        "key": "roomCount",
+        "zh": "個位數以下",
+        "en": "Below single digits"
+      },
+      {
+        "key": "classes",
+        "zh": "「Class 1」「Class 10」",
+        "en": "\"Class 1\" and \"Class 10\""
+      },
+      {
+        "key": "smallerCleaner",
+        "zh": "數字越小越乾淨",
+        "en": "the smaller the number, the cleaner the room"
+      },
+      {
+        "key": "miniEnv",
+        "zh": "迷你環境",
+        "en": "Mini-environment"
+      },
+      {
+        "key": "carrier",
+        "zh": "密封的晶圓盒",
+        "en": "Sealed wafer carriers"
+      },
+      {
+        "key": "opened",
+        "zh": "只有在機台內部才會打開",
+        "en": "Only opened inside the tools"
+      },
+      {
+        "key": "toolFront",
+        "zh": "機台前端",
+        "en": "Front end of each tool"
+      },
+      {
+        "key": "smallSpace",
+        "zh": "小型的超潔淨空間",
+        "en": "A small ultra-clean space"
+      },
+      {
+        "key": "wholeBuilding",
+        "zh": "不需要讓整個廠房都達到最高等級",
+        "en": "The whole building does not need the highest cleanliness class"
+      },
+      {
+        "key": "passThrough",
+        "zh": "只要晶圓「經過的地方」夠乾淨就好",
+        "en": "Only the places the wafers pass through have to be that clean"
+      }
+    ]
+  },
+  {
+    "chapterId": "ch01",
     "headingZh": "工廠的血液：廠務系統",
     "headingEn": "The lifeblood of the fab: facilities",
     "type": "branch",
@@ -476,63 +753,98 @@ export const SECTION_DIAGRAMS = [
     "chapterId": "ch02",
     "headingZh": "摻雜：N 型與 P 型",
     "headingEn": "Doping: N-type and P-type",
-    "type": "compare",
-    "captionZh": "純矽與 N 型、P 型矽在摻雜與外層電子上的差別。",
-    "captionEn": "How pure, N-type and P-type silicon differ in dopant and outer electrons.",
-    "columns": [
+    "type": "pictorial",
+    "draw": "dopingLattice",
+    "captionZh": "平面鍵結簡化示意，實際晶格是立體的；雜質比例未按實際。",
+    "captionEn": "Simplified flat bond sketch; dopant ratio not to scale.",
+    "labels": [
       {
-        "titleZh": "純矽",
-        "titleEn": "Pure silicon",
-        "items": [
-          {
-            "zh": "未加入其他元素",
-            "en": "No other element added"
-          },
-          {
-            "zh": "矽原子最外層有四個電子",
-            "en": "Silicon atom has four outer electrons"
-          },
-          {
-            "zh": "導電能力很差",
-            "en": "Conducts poorly"
-          }
-        ]
+        "key": "atomSi",
+        "zh": "矽",
+        "en": "Si"
       },
       {
-        "titleZh": "N 型",
-        "titleEn": "N-type",
-        "items": [
-          {
-            "zh": "加入磷或砷",
-            "en": "Phosphorus or arsenic added"
-          },
-          {
-            "zh": "雜質最外層有五個電子",
-            "en": "Impurity has five outer electrons"
-          },
-          {
-            "zh": "多出可自由移動的電子",
-            "en": "One extra electron moves freely"
-          }
-        ]
+        "key": "atomP",
+        "zh": "磷",
+        "en": "P"
       },
       {
-        "titleZh": "P 型",
-        "titleEn": "P-type",
-        "items": [
-          {
-            "zh": "加入硼",
-            "en": "Boron added"
-          },
-          {
-            "zh": "雜質最外層有三個電子",
-            "en": "Impurity has three outer electrons"
-          },
-          {
-            "zh": "少一個電子，留下電洞",
-            "en": "One electron missing leaves a hole"
-          }
-        ]
+        "key": "atomB",
+        "zh": "硼",
+        "en": "B"
+      },
+      {
+        "key": "hole",
+        "zh": "電洞",
+        "en": "hole"
+      },
+      {
+        "key": "pure",
+        "zh": "純矽",
+        "en": "Pure silicon"
+      },
+      {
+        "key": "pureNone",
+        "zh": "未加入其他元素",
+        "en": "No other element added",
+        "from": "figure"
+      },
+      {
+        "key": "pureFour",
+        "zh": "矽原子最外層有四個電子",
+        "en": "Silicon atom has four outer electrons",
+        "from": "figure"
+      },
+      {
+        "key": "purePoor",
+        "zh": "導電能力很差",
+        "en": "Conducts poorly"
+      },
+      {
+        "key": "nType",
+        "zh": "N 型",
+        "en": "N-type"
+      },
+      {
+        "key": "nAdd",
+        "zh": "加入磷或砷",
+        "en": "Phosphorus or arsenic added",
+        "from": "figure"
+      },
+      {
+        "key": "nFive",
+        "zh": "雜質最外層有五個電子",
+        "en": "Impurity has five outer electrons",
+        "from": "figure"
+      },
+      {
+        "key": "nFree",
+        "zh": "多出可自由移動的電子",
+        "en": "One extra electron moves freely",
+        "from": "figure"
+      },
+      {
+        "key": "pType",
+        "zh": "P 型",
+        "en": "P-type"
+      },
+      {
+        "key": "pAdd",
+        "zh": "加入硼",
+        "en": "Boron added",
+        "from": "figure"
+      },
+      {
+        "key": "pThree",
+        "zh": "雜質最外層有三個電子",
+        "en": "Impurity has three outer electrons",
+        "from": "figure"
+      },
+      {
+        "key": "pHole",
+        "zh": "少一個電子，留下電洞",
+        "en": "One electron missing leaves a hole",
+        "from": "figure"
       }
     ]
   },
@@ -540,45 +852,81 @@ export const SECTION_DIAGRAMS = [
     "chapterId": "ch02",
     "headingZh": "NMOS、PMOS 與 CMOS",
     "headingEn": "NMOS, PMOS and CMOS",
-    "type": "compare",
-    "captionZh": "CMOS 中成對使用的 NMOS 與 PMOS 對照。",
-    "captionEn": "NMOS and PMOS, the pair used together in CMOS, side by side.",
-    "columns": [
+    "type": "pictorial",
+    "draw": "cmosWells",
+    "captionZh": "同一片晶圓上的 P 井與 N 井，以及輪流遮蔽、分區佈植。",
+    "captionEn": "P-wells and N-wells on one wafer, and how masking lets each region be implanted.",
+    "labels": [
       {
-        "titleZh": "NMOS",
-        "titleEn": "NMOS",
-        "items": [
-          {
-            "zh": "靠電子導電",
-            "en": "Conducts with electrons"
-          },
-          {
-            "zh": "閘極加高電壓時打開",
-            "en": "Turns on at high gate voltage"
-          },
-          {
-            "zh": "做在 P 型區域（P 井）",
-            "en": "Built in P-type regions (P-wells)"
-          }
-        ]
+        "key": "sameWafer",
+        "zh": "同一片晶圓",
+        "en": "On the same wafer"
       },
       {
-        "titleZh": "PMOS",
-        "titleEn": "PMOS",
-        "items": [
-          {
-            "zh": "靠電洞導電",
-            "en": "Conducts with holes"
-          },
-          {
-            "zh": "閘極加低電壓時打開",
-            "en": "Turns on at low gate voltage"
-          },
-          {
-            "zh": "做在 N 型區域（N 井）",
-            "en": "Built in N-type regions (N-wells)"
-          }
-        ]
+        "key": "nmos",
+        "zh": "NMOS",
+        "en": "NMOS"
+      },
+      {
+        "key": "pmos",
+        "zh": "PMOS",
+        "en": "PMOS"
+      },
+      {
+        "key": "pWell",
+        "zh": "P 型區域（P 井）",
+        "en": "P-type regions (P-wells)"
+      },
+      {
+        "key": "nWell",
+        "zh": "N 型區域（N 井）",
+        "en": "N-type regions (N-wells)"
+      },
+      {
+        "key": "nType",
+        "zh": "N 型",
+        "en": "N-type"
+      },
+      {
+        "key": "pType",
+        "zh": "P 型",
+        "en": "P-type"
+      },
+      {
+        "key": "nmosCarrier",
+        "zh": "靠電子導電",
+        "en": "Conducts with electrons"
+      },
+      {
+        "key": "nmosOn",
+        "zh": "閘極加高電壓時打開",
+        "en": "turns on when the gate voltage is high"
+      },
+      {
+        "key": "pmosCarrier",
+        "zh": "靠電洞導電",
+        "en": "Conducts with holes"
+      },
+      {
+        "key": "pmosOn",
+        "zh": "閘極加低電壓時打開",
+        "en": "turns on when the gate voltage is low"
+      },
+      {
+        "key": "resist",
+        "zh": "光阻",
+        "en": "Resist",
+        "from": "figure"
+      },
+      {
+        "key": "repeat",
+        "zh": "多次的微影和離子佈植",
+        "en": "Several rounds of lithography and ion implantation"
+      },
+      {
+        "key": "separately",
+        "zh": "分別處理不同區域",
+        "en": "to treat each region separately"
       }
     ]
   },
@@ -807,47 +1155,169 @@ export const SECTION_DIAGRAMS = [
   },
   {
     "chapterId": "ch03",
+    "headingZh": "晶圓尺寸",
+    "headingEn": "Wafer sizes",
+    "type": "pictorial",
+    "draw": "waferSizes",
+    "sourcedNumbers": true,
+    "sourceZh": "四個圓的直徑依本段正文的數值，按同一比例繪製。",
+    "sourceEn": "The four diameters use the values in this section, drawn to one scale.",
+    "captionZh": "150 到 450 mm 晶圓按直徑等比例並排。",
+    "captionEn": "Wafers from 150 mm to 450 mm side by side, diameters to scale.",
+    "labels": [
+      {
+        "key": "d150",
+        "zh": "150 mm",
+        "en": "150 mm"
+      },
+      {
+        "key": "n150",
+        "zh": "6 吋",
+        "en": "6-inch"
+      },
+      {
+        "key": "d200",
+        "zh": "200 mm",
+        "en": "200 mm"
+      },
+      {
+        "key": "n200",
+        "zh": "8 吋",
+        "en": "8-inch"
+      },
+      {
+        "key": "d300",
+        "zh": "300 mm",
+        "en": "300 mm"
+      },
+      {
+        "key": "n300",
+        "zh": "12 吋",
+        "en": "12-inch"
+      },
+      {
+        "key": "d450",
+        "zh": "450 mm",
+        "en": "450 mm"
+      },
+      {
+        "key": "area",
+        "zh": "300 mm 晶圓的面積是 200 mm 的 2.25 倍",
+        "en": "A 300 mm wafer has 2.25 times the area of a 200 mm wafer"
+      },
+      {
+        "key": "studied",
+        "zh": "產業也曾研究 450 mm 晶圓",
+        "en": "The industry also studied 450 mm wafers"
+      },
+      {
+        "key": "tooCostly",
+        "zh": "設備開發成本太高而沒有普及",
+        "en": "they never took off because developing the equipment was too expensive"
+      }
+    ]
+  },
+  {
+    "chapterId": "ch03",
     "headingZh": "從沙子到高純度多晶矽",
     "headingEn": "From sand to high-purity polysilicon",
-    "type": "flow",
-    "captionZh": "石英砂純化成電子級多晶矽、再進入長晶的順序",
-    "captionEn": "Purifying quartz sand into electronic-grade polysilicon before crystal growth",
-    "steps": [
+    "type": "pictorial",
+    "draw": "sandToPoly",
+    "captionZh": "石英砂純化成電子級多晶矽，再長成排列整齊的單晶矽。",
+    "captionEn": "Purifying quartz sand into polysilicon, then growing ordered single crystal.",
+    "labels": [
       {
+        "key": "metallurgical",
         "zh": "冶金級矽",
-        "en": "Metallurgical-grade silicon",
-        "noteZh": "石英砂與碳經電弧爐去氧",
-        "noteEn": "Sand + carbon in arc furnace, oxygen removed"
+        "en": "Metallurgical-grade silicon"
       },
       {
+        "key": "metallurgicalNote",
+        "zh": "石英砂與碳經電弧爐去氧",
+        "en": "Sand + carbon in arc furnace, oxygen removed",
+        "from": "figure"
+      },
+      {
+        "key": "hcl",
         "zh": "與氯化氫反應",
         "en": "React with hydrogen chloride",
-        "noteZh": "變成易揮發的含氯化合物",
-        "noteEn": "Forms a volatile chlorine compound"
+        "from": "figure"
       },
       {
+        "key": "hclNote",
+        "zh": "變成易揮發的含氯化合物",
+        "en": "Forms a volatile chlorine compound",
+        "from": "figure"
+      },
+      {
+        "key": "distill",
         "zh": "多次蒸餾",
         "en": "Distill many times",
-        "noteZh": "去除雜質",
-        "noteEn": "Removes impurities"
+        "from": "figure"
       },
       {
+        "key": "distillNote",
+        "zh": "去除雜質",
+        "en": "Removes impurities",
+        "from": "figure"
+      },
+      {
+        "key": "decompose",
         "zh": "高溫分解",
         "en": "Decompose at high temperature",
-        "noteZh": "沉積回固態的矽",
-        "noteEn": "Deposits solid silicon again"
+        "from": "figure"
       },
       {
+        "key": "decomposeNote",
+        "zh": "沉積回固態的矽",
+        "en": "Deposits solid silicon again",
+        "from": "figure"
+      },
+      {
+        "key": "eg",
         "zh": "電子級多晶矽",
-        "en": "Electronic-grade polysilicon",
-        "noteZh": "很純但原子排列雜亂",
-        "noteEn": "Very pure, but atoms point many ways"
+        "en": "Electronic-grade polysilicon"
       },
       {
+        "key": "egNote",
+        "zh": "雖然很純，但原子的排列方向是雜亂的一小塊一小塊",
+        "en": "Very pure, but its atoms are arranged in many small regions"
+      },
+      {
+        "key": "growth",
         "zh": "長晶",
-        "en": "Crystal growth",
-        "noteZh": "變成排列整齊的單晶矽",
-        "noteEn": "Becomes neatly ordered single crystal"
+        "en": "Crystal growth"
+      },
+      {
+        "key": "growthNote",
+        "zh": "變成排列整齊的單晶矽",
+        "en": "Becomes neatly ordered single crystal",
+        "from": "figure"
+      },
+      {
+        "key": "poly",
+        "zh": "多晶",
+        "en": "Polysilicon"
+      },
+      {
+        "key": "grains",
+        "zh": "排列方向不同的小晶粒",
+        "en": "small grains with different orientations"
+      },
+      {
+        "key": "single",
+        "zh": "單晶",
+        "en": "Single-crystal silicon"
+      },
+      {
+        "key": "aligned",
+        "zh": "同一個方向整齊排列",
+        "en": "arranged neatly in the same orientation"
+      },
+      {
+        "key": "waferSingle",
+        "zh": "晶圓本身是單晶矽",
+        "en": "The wafer itself is single-crystal silicon"
       }
     ]
   },
@@ -855,45 +1325,76 @@ export const SECTION_DIAGRAMS = [
     "chapterId": "ch03",
     "headingZh": "從晶棒到晶圓",
     "headingEn": "From ingot to wafer",
-    "type": "flow",
-    "captionZh": "晶棒依序加工成為可出貨晶圓的流程",
-    "captionEn": "The steps that turn an ingot into a wafer ready to ship",
-    "steps": [
+    "type": "pictorial",
+    "draw": "ingotToWafer",
+    "captionZh": "晶棒依序加工成為可出貨晶圓的六個動作。",
+    "captionEn": "The six operations that turn an ingot into a wafer ready to ship.",
+    "labels": [
       {
+        "key": "shape",
         "zh": "晶棒整形",
-        "en": "Shape the ingot",
-        "noteZh": "切頭尾、磨外徑、刻晶格方向記號",
-        "noteEn": "Cut ends, grind diameter, mark orientation"
+        "en": "Shape the ingot"
       },
       {
+        "key": "shapeNote",
+        "zh": "切頭尾、磨外徑、刻晶格方向記號",
+        "en": "Cut ends, grind diameter, mark orientation",
+        "from": "figure"
+      },
+      {
+        "key": "slice",
         "zh": "切片",
-        "en": "Slice",
-        "noteZh": "線鋸一次切成數百片",
-        "noteEn": "A wire saw cuts hundreds at once"
+        "en": "Slice"
       },
       {
+        "key": "sliceNote",
+        "zh": "線鋸一次切成數百片",
+        "en": "A wire saw cuts hundreds at once",
+        "from": "figure"
+      },
+      {
+        "key": "lap",
         "zh": "研磨與倒角",
-        "en": "Lap and edge-round",
-        "noteZh": "表面磨平、邊緣磨圓避免崩裂",
-        "noteEn": "Grind flat; round edges to avoid chipping"
+        "en": "Lap and edge-round"
       },
       {
+        "key": "lapNote",
+        "zh": "表面磨平、邊緣磨圓避免崩裂",
+        "en": "Grind flat; round edges to avoid chipping",
+        "from": "figure"
+      },
+      {
+        "key": "etch",
         "zh": "蝕刻",
-        "en": "Etch",
-        "noteZh": "化學去除表面損傷層",
-        "noteEn": "Chemicals remove the damaged surface layer"
+        "en": "Etch"
       },
       {
+        "key": "etchNote",
+        "zh": "化學去除表面損傷層",
+        "en": "Chemicals remove the damaged surface layer",
+        "from": "figure"
+      },
+      {
+        "key": "polish",
         "zh": "拋光",
-        "en": "Polish",
-        "noteZh": "表面像鏡子一樣平滑",
-        "noteEn": "Smooth as a mirror"
+        "en": "Polish"
       },
       {
+        "key": "polishNote",
+        "zh": "表面像鏡子一樣平滑",
+        "en": "Smooth as a mirror",
+        "from": "figure"
+      },
+      {
+        "key": "clean",
         "zh": "清洗與檢驗",
-        "en": "Clean and inspect",
-        "noteZh": "查平坦度、微粒與金屬污染",
-        "noteEn": "Flatness, particles, metal contamination"
+        "en": "Clean and inspect"
+      },
+      {
+        "key": "cleanNote",
+        "zh": "查平坦度、微粒與金屬污染",
+        "en": "Flatness, particles, metal contamination",
+        "from": "figure"
       }
     ]
   },
@@ -901,41 +1402,69 @@ export const SECTION_DIAGRAMS = [
     "chapterId": "ch03",
     "headingZh": "特殊晶圓",
     "headingEn": "Special wafers",
-    "type": "compare",
-    "captionZh": "兩種常見特殊晶圓的結構與用途對照",
-    "captionEn": "Structure and use of the two common special wafer types",
-    "columns": [
+    "type": "pictorial",
+    "draw": "specialWafers",
+    "captionZh": "一般拋光晶圓與兩種特殊晶圓的剖面，未按比例。",
+    "captionEn": "Cross-sections of a polished wafer and two special wafers, not to scale.",
+    "labels": [
       {
-        "titleZh": "磊晶晶圓",
-        "titleEn": "Epitaxial wafer",
-        "items": [
-          {
-            "zh": "拋光晶圓表面再長一層單晶矽",
-            "en": "Single-crystal silicon grown on a polished wafer"
-          },
-          {
-            "zh": "新長的單晶矽品質更好",
-            "en": "The added layer is higher quality"
-          }
-        ]
+        "key": "polished",
+        "zh": "拋光晶圓",
+        "en": "Polished wafers"
       },
       {
-        "titleZh": "SOI 晶圓",
-        "titleEn": "SOI wafer",
-        "items": [
-          {
-            "zh": "薄矽下面埋一層絕緣層",
-            "en": "Insulating layer buried under thin silicon"
-          },
-          {
-            "zh": "可以減少漏電",
-            "en": "Reduces leakage"
-          },
-          {
-            "zh": "常用在射頻等特殊產品",
-            "en": "Often used in special products such as RF"
-          }
-        ]
+        "key": "epi",
+        "zh": "磊晶晶圓",
+        "en": "Epitaxial wafers"
+      },
+      {
+        "key": "epiNote",
+        "zh": "拋光晶圓表面再長一層單晶矽",
+        "en": "Single-crystal silicon grown on a polished wafer",
+        "from": "figure"
+      },
+      {
+        "key": "epiLayer",
+        "zh": "品質更好的單晶矽",
+        "en": "higher-quality single-crystal silicon"
+      },
+      {
+        "key": "soi",
+        "zh": "SOI 晶圓（絕緣層上覆矽）",
+        "en": "SOI wafers (silicon on insulator)"
+      },
+      {
+        "key": "soiNote",
+        "zh": "薄矽下面埋一層絕緣層",
+        "en": "Insulating layer buried under thin silicon",
+        "from": "figure"
+      },
+      {
+        "key": "soiLeak",
+        "zh": "可以減少漏電",
+        "en": "Reduces leakage",
+        "from": "figure"
+      },
+      {
+        "key": "soiUse",
+        "zh": "常用在射頻等特殊產品",
+        "en": "Often used in special products such as RF",
+        "from": "figure"
+      },
+      {
+        "key": "thinSi",
+        "zh": "薄矽",
+        "en": "thin layer of silicon"
+      },
+      {
+        "key": "insulator",
+        "zh": "絕緣層",
+        "en": "insulating layer"
+      },
+      {
+        "key": "siBase",
+        "zh": "矽",
+        "en": "silicon"
       }
     ]
   },

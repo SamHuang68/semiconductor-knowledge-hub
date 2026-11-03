@@ -3,6 +3,7 @@ import { readdirSync } from 'node:fs';
 import { SECTION_DIAGRAMS } from '../data/section-diagrams.js';
 import { headingPattern, insertSectionDiagrams, renderSectionDiagram } from '../section-diagrams.js';
 import { ICON_NAMES } from '../icons.js';
+import { PICTORIALS } from '../pictorials.js';
 
 const chapters = {};
 for (const file of readdirSync(new URL('../data/chapters/', import.meta.url)).filter(f => f.endsWith('.js'))) {
@@ -10,15 +11,15 @@ for (const file of readdirSync(new URL('../data/chapters/', import.meta.url)).fi
   chapters[chapter.id] = chapter;
 }
 
-const LIMITS = { zh: { label: 12, note: 16, leaf: 16, item: 18, key: 6, layer: 14, layerNote: 18, caption: 30 }, en: { label: 34, note: 44, leaf: 46, item: 48, key: 16, layer: 30, layerNote: 40, caption: 80 } };
-const COUNTS = { flow: ['steps', 3, 8], cycle: ['steps', 3, 6], stack: ['layers', 3, 7], compare: ['columns', 2, 3], branch: ['branches', 2, 5] };
+const LIMITS = { zh: { label: 12, note: 16, leaf: 16, item: 18, key: 6, layer: 14, layerNote: 18, caption: 30, pic: 30 }, en: { label: 34, note: 44, leaf: 46, item: 48, key: 16, layer: 30, layerNote: 40, caption: 80, pic: 72 } };
+const COUNTS = { flow: ['steps', 3, 8], cycle: ['steps', 3, 6], stack: ['layers', 3, 7], compare: ['columns', 2, 3], branch: ['branches', 2, 5], pictorial: ['labels', 2, 40] };
 // 常見簡體字：出現即視為誤用（本站中文一律臺灣繁體）
 const SIMPLIFIED = /[这为们发会来时说对过进还从动点现质应产线业设计实关结图层压电热测体级]/; // zh-tw-guard:allow
 // h2 文字解碼後再比對；規格中的標題存一般文字
 const decode = text => text.replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&amp;/g, '&');
 const headings = html => [...html.matchAll(/<h2\b[^>]*>([\s\S]*?)<\/h2>/g)].map(m => decode(m[1].replace(/<[^>]+>/g, '').replace(/#$/, '').trim()));
 // 規格中該語言的所有文字欄位（zh／en 與 *Zh／*En），標題錨點與圖型除外
-const ANCHOR_KEYS = new Set(['chapterId', 'headingZh', 'headingEn', 'type']);
+const ANCHOR_KEYS = new Set(['chapterId', 'headingZh', 'headingEn', 'type', 'sourceZh', 'sourceEn']);
 const specTexts = (node, lang, out = []) => {
   for (const [key, value] of Object.entries(node)) {
     if (ANCHOR_KEYS.has(key)) continue;
@@ -35,6 +36,7 @@ const sectionText = (html, heading) => {
 };
 
 const seen = new Set();
+let pictorials = 0, fromFigure = 0;
 for (const spec of SECTION_DIAGRAMS) {
   const id = `${spec.chapterId}「${spec.headingZh}」`;
   const chapter = chapters[spec.chapterId];
@@ -61,18 +63,41 @@ for (const spec of SECTION_DIAGRAMS) {
   for (const b of spec.branches || []) { add(b.zh, b.en, 'label'); add(b.leafZh, b.leafEn, 'leaf'); }
   add(spec.centerZh, spec.centerEn, 'note');
   add(spec.topZh, spec.topEn, 'note');
+  for (const l of spec.labels || []) add(l.zh, l.en, 'pic');
+  // 只有 sourcedNumbers 的實物示意可以放數字，且每個數字都要出現在該段正文（Sam 2026-11-03 核可）
+  const digitsOk = (text, lang) => {
+    if (!/\d/.test(text)) return true;
+    if (!spec.sourcedNumbers) return false;
+    const body = decode(sectionText(lang === 'zh' ? chapter.contentHtml : chapter.contentHtmlEn, lang === 'zh' ? spec.headingZh : spec.headingEn));
+    return (text.match(/\d[\d.,]*/g) || []).every(token => body.includes(token));
+  };
   for (const [text, kind] of zhNodes) {
     assert.ok(text && text.trim(), `${id} 有空白中文標籤`);
-    assert.doesNotMatch(text, /\d/, `${id} 圖內文字不得帶數字：${text}`);
+    assert.ok(digitsOk(text, 'zh'), `${id} 圖內文字不得帶數字（或數字不在該段正文）：${text}`);
     assert.doesNotMatch(text, SIMPLIFIED, `${id} 圖內文字含簡體字：${text}`);
     assert.ok([...text].length <= LIMITS.zh[kind], `${id} 中文${kind}過長：${text}`);
   }
   for (const [text, kind] of enNodes) {
     assert.ok(text && text.trim(), `${id} 有空白英文標籤`);
-    assert.doesNotMatch(text, /\d/, `${id} 圖內文字不得帶數字：${text}`);
+    assert.ok(digitsOk(text, 'en'), `${id} 圖內文字不得帶數字（或數字不在該段正文）：${text}`);
     assert.ok(text.length <= LIMITS.en[kind], `${id} 英文${kind}過長：${text}`);
   }
   assert.equal(zhNodes.length, enNodes.length, `${id} 中英文標籤數須一致`);
+
+  // 實物示意的標籤：逐字出自該段正文（含說明框）；沿用被取代方框圖的標籤須標明 from: 'figure'
+  if (spec.type === 'pictorial') {
+    pictorials += 1;
+    assert.ok(PICTORIALS[spec.draw], `${id} 繪製函式 ${spec.draw} 不存在`);
+    assert.equal(new Set(spec.labels.map(l => l.key)).size, spec.labels.length, `${id} 標籤 key 重複`);
+    if (spec.sourcedNumbers) assert.ok(spec.sourceZh && spec.sourceEn, `${id} 有數字的圖須寫明數值出處`);
+    const zhBody = decode(sectionText(chapter.contentHtml, spec.headingZh)).replace(/\s+/g, '');
+    const enBody = decode(sectionText(chapter.contentHtmlEn, spec.headingEn)).replace(/\s+/g, ' ').toLowerCase();
+    for (const l of spec.labels) {
+      if (l.from === 'figure') { fromFigure += 1; continue; }
+      assert.ok(zhBody.includes(l.zh.replace(/\s+/g, '')), `${id} 中文標籤不在該段正文：${l.zh}`);
+      assert.ok(enBody.includes(l.en.replace(/\s+/g, ' ').toLowerCase()), `${id} 英文標籤不在該段正文：${l.en}`);
+    }
+  }
 
   // 節點圖示：名稱須在 icons.js 註冊表內
   const iconsOf = node => Object.entries(node).flatMap(([key, value]) => (key === 'icon' ? [value] : value && typeof value === 'object' ? iconsOf(value) : []));
@@ -88,7 +113,10 @@ for (const spec of SECTION_DIAGRAMS) {
 
   for (const lang of ['zh', 'en']) {
     const figure = renderSectionDiagram(spec, lang);
-    assert.ok(figure.includes(lang === 'zh' ? '示意 · 未按比例' : 'Schematic · not to scale'), `${id} 須標示示意、未按比例`);
+    if (spec.sourcedNumbers) {
+      assert.ok(figure.includes(lang === 'zh' ? '依正文數值繪製' : 'Drawn from values in the text'), `${id} 有數字的圖須用「依正文數值繪製」標章`);
+      assert.ok(figure.includes(lang === 'zh' ? spec.sourceZh : spec.sourceEn), `${id} 圖說須寫明數值出處`);
+    } else assert.ok(figure.includes(lang === 'zh' ? '示意 · 未按比例' : 'Schematic · not to scale'), `${id} 須標示示意、未按比例`);
     // 規格裡的每段文字都要畫進圖中：渲染器漏讀欄位或截字即失敗（2.10.0 曾漏畫 compare 與 cycle 的註記）
     // 圖內文字只在 SVG 內找、圖說只在 figcaption 內找，避免短標籤被圖說裡的同字誤判為已顯示
     // 節點圖示是巢狀 SVG（2.17.0），以最外層的 </svg> 切開圖與圖說
@@ -136,4 +164,4 @@ const probe = insertSectionDiagrams('<h2 id="x">T</h2><p>a</p>', 'probe', 'zh', 
 assert.ok(probe.includes('US$1 與 $&amp; 測試') && !probe.includes('US<h2'), '插入內容中的 $ 符號須原樣保留');
 
 const byType = SECTION_DIAGRAMS.reduce((m, s) => ({ ...m, [s.type]: (m[s.type] || 0) + 1 }), {});
-console.log(`[PASS] ${SECTION_DIAGRAMS.length} 張段落示意圖（${Object.entries(byType).map(([k, v]) => `${k} ${v}`).join('、') || '尚無'}）標題錨點、無數字標籤、長度、繁體與正文不變檢查通過`);
+console.log(`[PASS] ${SECTION_DIAGRAMS.length} 張段落示意圖（實物示意 ${pictorials} 張，其中 ${fromFigure} 個標籤沿用被取代的方框圖；${Object.entries(byType).map(([k, v]) => `${k} ${v}`).join('、') || '尚無'}）標題錨點、無數字標籤、長度、繁體與正文不變檢查通過`);

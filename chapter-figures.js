@@ -9,9 +9,10 @@ function arrow(x1, y1, x2, y2, color = '#0f766e', width = 1.5) {
   return `<path d="M${x1} ${y1} L${x2} ${y2}" stroke="${color}" stroke-width="${width}" fill="none"/><path d="M${x2} ${y2} L${p(0.45, 1)} L${p(0.45, -1)} Z" fill="${color}"/>`;
 }
 
-export function frame(caption, en, body, height = 232, key = '') {
-  const badge = L(en, '示意 · 未按比例', 'Schematic · not to scale');
-  const source = L(en, '沒有量測值。名稱取自本章，不另編數字。', 'No measured values. Names come from this chapter. No added numbers.');
+// sourced：圖內有出自正文的數字時（第 2 階段起，Sam 2026-11-03 核可），改用「依正文數值繪製」標章並寫明數值出處
+export function frame(caption, en, body, height = 232, key = '', sourced = null) {
+  const badge = sourced ? L(en, '依正文數值繪製', 'Drawn from values in the text') : L(en, '示意 · 未按比例', 'Schematic · not to scale');
+  const source = sourced ? (en ? sourced.en : sourced.zh) : L(en, '沒有量測值。名稱取自本章，不另編數字。', 'No measured values. Names come from this chapter. No added numbers.');
   return `<figure class="chapter-figure"${key ? ` data-figure="${key}"` : ''}><svg viewBox="0 0 640 ${height}" role="img" aria-label="${esc(`${caption}. ${badge}. ${source}`)}">${body}</svg><figcaption><span class="illus-badge">${esc(badge)}</span><span class="figure-caption">${esc(caption)}</span><span class="figure-source">${esc(source)}</span></figcaption></figure>`;
 }
 
@@ -35,12 +36,66 @@ function waferDieChip(en) {
   return `<circle cx="90" cy="100" r="62" fill="#e2e8f0" stroke="#334155"/><circle cx="90" cy="100" r="54" fill="#f8fafc" stroke="#64748b"/>${Array.from({ length: 16 }, (_, i) => `<rect x="${58 + (i % 4) * 16}" y="${68 + Math.floor(i / 4) * 16}" width="13" height="13" fill="#99f6e4" stroke="#0f766e"/>`).join('')}<text x="90" y="178" text-anchor="middle" fill="#0f172a" font-size="13">${L(en, '晶圓', 'Wafer')}</text><path d="M170 100 h36" stroke="#0f766e"/><rect x="220" y="62" width="76" height="76" fill="#57bdb3" stroke="#0f766e"/><text x="258" y="160" text-anchor="middle" fill="#0f172a" font-size="13">${L(en, '晶粒', 'Die')}</text><path d="M314 100 h36" stroke="#0f766e"/><rect x="364" y="78" width="150" height="44" fill="#a6bdcb" stroke="#334155"/><rect x="400" y="52" width="78" height="26" fill="#57bdb3" stroke="#0f766e"/><text x="439" y="150" text-anchor="middle" fill="#0f172a" font-size="13">${L(en, '封裝後的晶片', 'Packaged chip')}</text>`;
 }
 
+// 多行標籤：第一行是層名，其餘是說明（章節圖不帶斷行工具，各語言分行寫好）
+const lines = (x, y, rows, first = '#0f766e') => rows.map((row, i) => tx(x, y + i * 14, row, i === 0 ? 12.5 : 10.5, i === 0 ? first : '#334155', 'start')).join('');
+
+// 晶圓廠三層剖面（2.18.0 改畫，A 批）：上層風扇把空氣經天花板濾網送進中層無塵室，下層管線穿過有孔地板接到機台。
+// 「其他空間都在服務它」由上層與下層各一個箭頭指向中層，不用跨三層的括號（技術審查修正：括號會把無塵室也框進「其他空間」）
 function fabSection(en) {
-  return `<rect x="80" y="28" width="480" height="42" fill="#e0f2fe" stroke="#075985"/><text x="320" y="54" text-anchor="middle" fill="#0f172a" font-size="14">${L(en, '上層 · 空調與過濾', 'Top · air handling and filters')}</text><rect x="80" y="78" width="480" height="58" fill="#f0fdfa" stroke="#0f766e"/><text x="320" y="112" text-anchor="middle" fill="#0f172a" font-size="14">${L(en, '中層 · 無塵室', 'Middle · cleanroom')}</text><rect x="80" y="144" width="480" height="52" fill="#f8fafc" stroke="#64748b"/><text x="320" y="175" text-anchor="middle" fill="#0f172a" font-size="14">${L(en, '下層 · 管線與附屬設備', 'Bottom · piping and support')}</text>`;
+  const fan = (cx, cy) => `<circle cx="${cx}" cy="${cy}" r="13" fill="#ffffff" stroke="#075985" stroke-width="1.3"/><path d="M${cx} ${cy} q-2 -10 6 -10 M${cx} ${cy} q10 -2 10 6 M${cx} ${cy} q2 10 -6 10 M${cx} ${cy} q-10 2 -10 -6" fill="none" stroke="#075985" stroke-width="1.3"/>`;
+  const tool = x => `<rect x="${x}" y="130" width="52" height="54" rx="4" fill="#f8fafc" stroke="#334155" stroke-width="1.3"/><rect x="${x + 8}" y="138" width="22" height="14" rx="1" fill="#e0f2fe" stroke="#075985"/>`;
+  return `<rect x="20" y="16" width="460" height="246" rx="4" fill="#ffffff" stroke="#334155" stroke-width="1.6"/>`
+    // 上層：空調與過濾
+    + `<rect x="20" y="16" width="460" height="76" rx="4" fill="#e0f2fe" stroke="none"/>` + [230, 300, 370, 440].map(x => fan(x, 52)).join('')
+    + lines(32, 36, en ? ['Top level', 'Air-handling and', 'filtration system that', 'sends clean air downward'] : ['上層', '空調與過濾系統', '把乾淨的空氣送下來'])
+    // 天花板濾網
+    + `<rect x="20" y="92" width="460" height="8" fill="#ffffff" stroke="#0f766e"/>${Array.from({ length: 45 }, (_, i) => `<path d="M${26 + i * 10} 92 v8" stroke="#0f766e" stroke-width=".8"/>`).join('')}`
+    + tx(176, 89, L(en, '濾網', 'Filters'), 10, '#0f766e', 'start')
+    // 中層：無塵室，空氣一路往下吹
+    + `<rect x="20" y="100" width="460" height="84" fill="#f0fdfa" stroke="none"/>` + tool(214) + tool(294) + tool(374)
+    + `<rect x="268" y="166" width="26" height="4" fill="#cbd5e1" stroke="#334155"/><rect x="270" y="148" width="22" height="18" rx="2" fill="#99f6e4" stroke="#334155"/><path d="M291 150 v14" stroke="#0f766e" stroke-width="2"/>`
+    + [200, 280, 360, 440].map(x => arrow(x, 104, x, 124, '#5eead4', 1.4)).join('') + [230, 300, 370, 440].map(x => arrow(x, 66, x, 88, '#075985', 1.4)).join('')
+    + lines(32, 120, en ? ['Middle level', 'The cleanroom, where', 'the tools and wafers are'] : ['中層', '無塵室', '機台和晶圓都在這裡'])
+    // 有孔的地板
+    + `<path d="M20 187 H480" stroke="#64748b" stroke-width="6" stroke-dasharray="6 4"/>`
+    // 下層：管線、真空幫浦、化學品供應
+    + `<rect x="20" y="190" width="460" height="72" rx="4" fill="#f1f5f9" stroke="none"/>`
+    + `<path d="M190 212 H470 M190 224 H470" stroke="#92400e" stroke-width="3" stroke-linecap="round"/>` + [240, 320, 400].map(x => `<path d="M${x} 212 V184" stroke="#92400e" stroke-width="2.4"/>`).join('')
+    + `<circle cx="214" cy="244" r="11" fill="#ffffff" stroke="#334155" stroke-width="1.3"/><path d="M214 244 l7 -4 M214 244 l-7 -4 M214 244 v8" stroke="#334155" stroke-width="1.3"/><path d="M214 233 V224" stroke="#334155" stroke-width="1.6"/>`
+    + `<rect x="430" y="230" width="18" height="26" rx="4" fill="#fef3c7" stroke="#92400e"/><rect x="452" y="230" width="18" height="26" rx="4" fill="#fef3c7" stroke="#92400e"/><path d="M439 230 V224 M461 230 V224" stroke="#92400e" stroke-width="1.6"/>`
+    + lines(32, 208, en ? ['Bottom level', 'Piping, vacuum pumps and', 'chemical supply equipment', 'that support the tools above'] : ['下層', '管線、真空幫浦', '和化學品供應設備', '支援上面的機台'])
+    // 其他空間都在服務中層的無塵室
+    + `<path d="M484 54 C 520 54, 524 132, 488 138" fill="none" stroke="#9d174d" stroke-width="1.6"/><path d="M488 138 l7 -5 l1 8 z" fill="#9d174d"/>`
+    + `<path d="M484 226 C 520 226, 524 150, 488 146" fill="none" stroke="#9d174d" stroke-width="1.6"/><path d="M488 146 l8 -2 l-3 7 z" fill="#9d174d"/>`
+    + lines(526, 132, en ? ['Everything else', 'is there to serve it'] : ['其他空間', '都在「服務」它'], '#9d174d');
 }
 
+// 天車、倉儲與 Load Port 在同一張圖（2.18.0 改畫，A 批）：天車在天花板軌道上，把 FOUP 放到機台前方的 Load Port；
+// FOUP 內晶圓水平疊放，前門朝向機台；重量照正文寫成「裝滿的 FOUP」（技術審查修正）。
+// 圖內有正文的重量與片數，所以用「依正文數值繪製」標章（MATCHERS 第四欄）
 function oht(en) {
-  return `<path d="M40 36 h560" stroke="#334155" stroke-width="4"/><rect x="250" y="28" width="88" height="22" rx="3" fill="#bae6fd" stroke="#075985"/><path d="M294 50 v28" stroke="#334155" stroke-width="2"/><rect x="262" y="78" width="64" height="40" fill="#f8fafc" stroke="#334155"/><text x="294" y="102" text-anchor="middle" fill="#0f172a" font-size="12">FOUP</text><rect x="120" y="150" width="400" height="46" fill="#f1f5f9" stroke="#64748b"/><text x="320" y="178" text-anchor="middle" fill="#0f172a" font-size="13">${L(en, '機台 Load Port', 'Tool load port')}</text>`;
+  const foup = (x, y, door = true) => `<rect x="${x}" y="${y}" width="44" height="36" rx="4" fill="#f8fafc" stroke="#334155" stroke-width="1.4"/><path d="M${x + 12} ${y} v-5 h20 v5" fill="none" stroke="#334155" stroke-width="1.4"/>`
+    + [8, 15, 22, 29].map(dy => `<path d="M${x + 5} ${y + dy} h${door ? 31 : 34}" stroke="#0f766e" stroke-width="1.6"/>`).join('')
+    + (door ? `<path d="M${x + 42} ${y + 3} v30" stroke="#0f766e" stroke-width="3.5"/>` : '');
+  return `<path d="M60 34 H604" stroke="#334155" stroke-width="5" stroke-linecap="round"/>${[150, 300, 450, 590].map(x => `<path d="M${x} 16 V31" stroke="#94a3b8" stroke-width="1.5"/>`).join('')}`
+    // 倉儲：多格儲位，暫放等待中的 FOUP
+    + `<rect x="20" y="40" width="114" height="180" rx="4" fill="#f1f5f9" stroke="#334155" stroke-width="1.4"/>` + [84, 128, 172].map(y => `<path d="M24 ${y} H130" stroke="#94a3b8"/>`).join('') + `<path d="M77 44 V216" stroke="#94a3b8"/>`
+    + [[28, 46], [80, 90], [28, 134], [80, 178], [28, 178]].map(([x, y]) => foup(x, y, false)).join('')
+    + `<path d="M77 34 V40" stroke="#334155" stroke-width="2"/>`
+    + lines(20, 238, en ? ['Stocker', 'Temporarily stores', 'FOUPs that are waiting'] : ['倉儲（Stocker）', '暫時存放還在', '等待的 FOUP'])
+    // 天車在軌道上，吊帶把 FOUP 往下放到 Load Port
+    + `<rect x="396" y="36" width="64" height="24" rx="4" fill="#bae6fd" stroke="#075985" stroke-width="1.4"/><path d="M410 60 V92 M446 60 V92" stroke="#334155" stroke-width="1.2"/><rect x="404" y="90" width="48" height="6" rx="1" fill="#075985"/>`
+    + foup(406, 100) + arrow(468, 106, 468, 160, '#075985', 1.4)
+    + (en ? ['Overhead hoist', 'transport (OHT)'] : ['天車（OHT）']).map((row, i) => tx(476, 54 + i * 14, row, 12.5, '#0f766e', 'start')).join('')
+    + (en ? ['Vehicles that run on', 'rails in the ceiling'] : ['在天花板的軌道', '上行駛']).map((row, i) => tx(476, (en ? 84 : 70) + i * 14, row, 10.5, '#334155', 'start')).join('')
+    // 機台與 Load Port：FOUP 前門朝向機台
+    + `<rect x="486" y="118" width="134" height="104" rx="6" fill="#f8fafc" stroke="#334155" stroke-width="1.4"/><rect x="500" y="130" width="40" height="24" rx="2" fill="#e0f2fe" stroke="#075985"/><path d="M486 160 h-8" stroke="#334155"/>` + tx(553, 202, L(en, '機台', 'Tool'), 12, '#334155')
+    + `<rect x="396" y="172" width="90" height="8" rx="1" fill="#cbd5e1" stroke="#334155"/><path d="M402 180 V222 M478 180 V222" stroke="#334155" stroke-width="1.4"/>`
+    + `<rect x="406" y="136" width="44" height="36" rx="4" fill="none" stroke="#0f766e" stroke-width="1.2" stroke-dasharray="4 3"/>`
+    + lines(250, 196, en ? ['Load port', 'The platform at the', 'front of a tool'] : ['Load Port', '機台前方放 FOUP', '的平台'])
+    + `<path d="M330 192 L394 177" stroke="#94a3b8" stroke-dasharray="2 2"/>`
+    + (en ? ['A full FOUP weighs', 'about eight kilograms,', 'holding up to 25 wafers'] : ['裝滿的 FOUP', '大約有八公斤重，', '一盒最多 25 片']).map((row, i) => tx(326, 132 + i * 14, row, 10.5, '#334155', 'end')).join('')
+    + `<path d="M332 128 H402" stroke="#94a3b8" stroke-dasharray="2 2"/>`;
 }
 
 function mosfet(en) {
@@ -398,8 +453,8 @@ const SUPPLEMENTS = {
 // 所以 waferDieChip 放在最後，只在沒有更具體的規則命中時才使用（2.14.0 修正）。第三欄是圖高。
 const MATCHERS = [
   [/一生|life of a chip/i, life],
-  [/剖面示意|cross-section of a fab/i, fabSection],
-  [/天車|OHT|FOUP/i, oht],
+  [/剖面示意|cross-section of a fab/i, fabSection, 276],
+  [/天車|OHT|FOUP/i, oht, 282, { zh: '重量與片數出自本段正文；其餘為示意。', en: 'The weight and wafer count come from this section. Everything else is schematic.' }],
   [/MOSFET/i, mosfet, 250],
   [/CZ|長晶|crystal growth/i, cz],
   [/攝影|photography compared/i, photoVsLitho],
@@ -432,7 +487,7 @@ export function figureForCaption(caption) {
   const en = !/[\u4e00-\u9fff]/.test(caption);
   const draw = MATCHERS.find(([pattern]) => pattern.test(caption));
   const body = draw ? draw[1](en) : flow(caption.split(/→|->|、|，|,/).map(part => part.trim()).filter(Boolean).slice(0, 6));
-  return frame(caption, en, body, draw?.[2], draw ? draw[1].name : 'flow');
+  return frame(caption, en, body, draw?.[2], draw ? draw[1].name : 'flow', draw?.[3] || null);
 }
 
 export function replaceFigureComments(html, chapterId = '') {

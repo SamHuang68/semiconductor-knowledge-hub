@@ -3,6 +3,7 @@
 import { esc, frame } from './chapter-figures.js';
 import { SECTION_DIAGRAMS } from './data/section-diagrams.js';
 import { iconAt } from './icons.js';
+import { PICTORIALS } from './pictorials.js';
 
 const INK = '#0f172a';
 const INK_2 = '#334155';
@@ -271,12 +272,16 @@ function branch(spec, en) {
   return { svg, height };
 }
 
-const TEMPLATES = { flow, cycle, stack, compare, branch };
+// 實物示意（第 2 階段）：繪製函式在 pictorials.js，斷行與圖示工具由這裡傳入
+const pictorial = (spec, en) => PICTORIALS[spec.draw](spec, en, { wrap, esc, iconAt });
+
+const TEMPLATES = { flow, cycle, stack, compare, branch, pictorial };
 
 export function renderSectionDiagram(spec, lang) {
   const en = lang === 'en';
   const { svg, height } = TEMPLATES[spec.type](spec, en);
-  return frame(en ? spec.captionEn : spec.captionZh, en, svg, Math.ceil(height));
+  const sourced = spec.sourcedNumbers ? { zh: spec.sourceZh, en: spec.sourceEn } : null;
+  return frame(en ? spec.captionEn : spec.captionZh, en, svg, Math.ceil(height), '', sourced);
 }
 
 const escapeRegExp = text => String(text).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
