@@ -125,6 +125,8 @@ for (const spec of SECTION_DIAGRAMS) {
     const caption = lang === 'zh' ? spec.captionZh : spec.captionEn;
     assert.ok(shownText(captionPart).includes(caption.replace(/\s+/g, '')), `${id} ${lang} 圖說沒有出現在 figcaption`);
     const shown = shownText(svgPart);
+    // 直式雙引號不單獨落在行首或行尾（2.19.0 曾把 "consuming" 的閉引號斷到下一行）
+    assert.doesNotMatch(svgPart, /<text\b[^>]*>&quot;(?![A-Za-z0-9])|\s&quot;<\/text>/, `${id} ${lang} 雙引號被斷到行首或行尾`);
     for (const text of specTexts(spec, lang).filter(t => t !== caption)) assert.ok(shown.includes(text.replace(/\s+/g, '')), `${id} ${lang} 規格文字沒有出現在圖中：${text}`);
   }
 }

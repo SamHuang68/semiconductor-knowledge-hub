@@ -218,8 +218,58 @@ function metalStack(en) {
   return `<rect x="80" y="150" width="480" height="22" fill="#a6bdcb" stroke="#334155"/><path d="M110 150 v-16 M180 150 v-16 M250 150 v-16" stroke="#9a3412" stroke-width="3"/><path d="M120 134 h200 M360 134 h120" stroke="#9a3412" stroke-width="4"/><text x="200" y="124" fill="#92400e" font-size="12">${L(en, '下層細密', 'Lower, dense')}</text><path d="M160 118 v-18 M400 118 v-18" stroke="#9a3412" stroke-width="6"/><path d="M140 100 h300" stroke="#9a3412" stroke-width="10"/><text x="300" y="88" fill="#92400e" font-size="12">${L(en, '上層粗寬 · 導通孔相連', 'Upper, wide · vias')}</text>`;
 }
 
+// 雙大馬士革七步剖面（2.19.0 改畫，B 批）：每格底部都是下層銅導線與其上的薄覆蓋層；②的導通孔打穿覆蓋層、露出下層銅；
+// ③的阻障層與晶種層包覆孔與溝的側壁及底部；⑥之後阻障層只留在開口內，表面只剩絕緣層與銅。導通孔在下、溝槽在上（技術審查修正）
 function damascene(en) {
-  return flow([L(en, '挖洞', 'Etch'), L(en, '阻障層', 'Barrier'), L(en, '電鍍', 'Plate'), 'CMP', L(en, '覆蓋層', 'Cap')]);
+  const CU = '#d9ac73', CU_LINE = '#9a3412', DIEL = '#f0fdfa', DIEL_LINE = '#0f766e', CAP = '#bae6fd', CAP_LINE = '#075985', LINER = '#9d174d', SEED = '#b45309';
+  const steps = [
+    [L(en, '① 鋪絕緣層', '① Deposit'), L(en, '', 'dielectric')],
+    [L(en, '② 挖出導通孔', '② Etch vias'), L(en, '和溝槽', 'and trenches')],
+    [L(en, '③ 鋪阻障層', '③ Barrier and'), L(en, '與晶種層', 'seed layers')],
+    [L(en, '④ 電鍍銅', '④ Copper'), L(en, '', 'plating')],
+    [L(en, '⑤ 退火', '⑤ Anneal'), ''],
+    [L(en, '⑥ 銅 CMP', '⑥ Copper CMP'), ''],
+    [L(en, '⑦ 鋪覆蓋層', '⑦ Cap layer'), '']
+  ];
+  const w = 140, xs = [16, 172, 328, 484, 94, 250, 406];
+  // 剖面比標題低 8px，英文兩行標題才不會壓到 ④⑤ 表面多出來的銅
+  const panel = (i, x, top) => {
+    const y = top + 8;
+    // 開口：上面是寬的溝槽，下面是窄的導通孔，往下穿過覆蓋層接到下層銅
+    const hole = `M${x + 30} ${y + 34} V${y + 56} H${x + 60} V${y + 80} H${x + 80} V${y + 56} H${x + 110} V${y + 34}`;
+    let out = `<rect x="${x}" y="${top}" width="${w}" height="126" rx="6" fill="#ffffff" stroke="#cbd5e1"/>`
+      + tx(x + w / 2, top + 16, steps[i][0], 11) + (steps[i][1] ? tx(x + w / 2, top + 29, steps[i][1], 11) : '')
+      + `<rect x="${x + 10}" y="${y + 80}" width="120" height="28" fill="${DIEL}" stroke="${DIEL_LINE}"/><rect x="${x + 40}" y="${y + 80}" width="60" height="18" fill="${CU}" stroke="${CU_LINE}"/>`
+      + `<rect x="${x + 10}" y="${y + 76}" width="120" height="4" fill="${CAP}" stroke="${CAP_LINE}" stroke-width=".8"/>`
+      + `<rect x="${x + 10}" y="${y + 34}" width="120" height="42" fill="${DIEL}" stroke="${DIEL_LINE}"/>`;
+    if (i >= 1) out += `<path d="${hole} Z" fill="#ffffff"/><path d="${hole}" fill="none" stroke="${DIEL_LINE}"/>`;
+    if (i >= 3) out += `<path d="${hole} Z" fill="${CU}"/>`;
+    if (i === 3 || i === 4) out += `<rect x="${x + 10}" y="${y + 26}" width="120" height="8" fill="${CU}" stroke="${CU_LINE}"/>`;
+    // 阻障層與晶種層都長在開口內側：貼著絕緣層的是阻障層，再往內才是晶種層（審查意見：原本畫成阻障、晶種、阻障三明治）
+    // inside(d) 是與壁面平行、往開口內縮 d 的線；③～⑤ 連表面一起包住，⑥ 之後只留在開口內。晶種層電鍍後與銅融為一體，只在 ③ 畫出
+    const inside = (d, surface) => surface
+      ? `M${x + 10} ${y + 34 - d} H${x + 30 + d} V${y + 56 - d} H${x + 60 + d} V${y + 80 - d} H${x + 80 - d} V${y + 56 - d} H${x + 110 - d} V${y + 34 - d} H${x + 130}`
+      : `M${x + 30 + d} ${y + 34} V${y + 56 - d} H${x + 60 + d} V${y + 80 - d} H${x + 80 - d} V${y + 56 - d} H${x + 110 - d} V${y + 34}`;
+    if (i >= 2) out += `<path d="${inside(1.2, i <= 4)}" fill="none" stroke="${LINER}" stroke-width="2.4"/>`;
+    if (i === 2) out += `<path d="${inside(3.2, true)}" fill="none" stroke="${SEED}" stroke-width="1.6"/>`;
+    // 下層銅導線也有自己的阻障層（它是上一輪做好的同一種結構）
+    out += `<path d="M${x + 40} ${y + 80} V${y + 98} H${x + 100} V${y + 80}" fill="none" stroke="${LINER}" stroke-width="1.6"/>`;
+    if (i === 4) out += [18, 28, 112, 122].map(dx => `<path d="M${x + dx} ${y + 24} q-4 -4 0 -8 q4 -4 0 -8" fill="none" stroke="#92400e" stroke-width="1.3"/>`).join('');
+    if (i === 6) out += `<rect x="${x + 10}" y="${y + 30}" width="120" height="4" fill="${CAP}" stroke="${CAP_LINE}" stroke-width=".8"/>`;
+    if (i === 1) out += tx(x + 70, y + 49, L(en, '溝槽', 'Trench'), 9.5, '#334155') + tx(x + 101, y + 70, L(en, '導通孔', 'Via'), 9, '#334155') + `<path d="M${x + 88} ${y + 67} H${x + 82}" stroke="#64748b"/>`;
+    return out;
+  };
+  let svg = xs.map((x, i) => panel(i, x, i < 4 ? 12 : 154)).join('');
+  [0, 1, 2].forEach(i => { svg += arrow(xs[i] + w + 1, 78, xs[i + 1] - 1, 78); });
+  svg += `<path d="M554 140 V146 H164 V152" fill="none" stroke="#0f766e" stroke-width="1.5"/><path d="M164 153 l-4 -6 h8 z" fill="#0f766e"/>`;
+  [4, 5].forEach(i => { svg += arrow(xs[i] + w + 1, 220, xs[i + 1] - 1, 220); });
+  // ⑦ 做完回到 ①：每一層金屬都重複這個流程（審查意見：提案的循環箭頭）
+  svg += `<path d="M476 281 V290 H8 V75 H12" fill="none" stroke="#0f766e" stroke-width="1.5"/><path d="M15 75 l-6 -4 v8 z" fill="#0f766e"/>`
+    + tx(250, 304, L(en, '每一層金屬都重複這個流程', 'Every metal layer repeats this flow'), 10.5, '#0f766e');
+  const key = (x, fill, stroke, label) => `<rect x="${x}" y="314" width="12" height="12" fill="${fill}" stroke="${stroke}"/>` + tx(x + 16, 324, label, 10.5, '#334155', 'start');
+  const half = (x, label) => `<rect x="${x}" y="314" width="6" height="12" fill="${LINER}"/><rect x="${x + 6}" y="314" width="6" height="12" fill="${SEED}"/>` + tx(x + 16, 324, label, 10.5, '#334155', 'start');
+  return svg + key(40, CU, CU_LINE, L(en, '銅', 'Copper')) + key(130, DIEL, DIEL_LINE, L(en, '絕緣層', 'Dielectric'))
+    + half(240, L(en, '阻障層、晶種層', 'Barrier, seed')) + key(420, CAP, CAP_LINE, L(en, '覆蓋層', 'Cap layer'));
 }
 
 function feol(en) {
@@ -466,7 +516,7 @@ const MATCHERS = [
   [/CMP 機台|CMP tool/i, cmpTool],
   [/清洗|wet bench/i, clean, 220],
   [/多層金屬|multilevel metal/i, metalStack],
-  [/大馬士革|damascene/i, damascene],
+  [/大馬士革|damascene/i, damascene, 336],
   [/FEOL/i, feol],
   [/FinFET|GAA/i, devices],
   [/DRAM/i, dram, 256],

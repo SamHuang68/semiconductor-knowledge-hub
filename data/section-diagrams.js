@@ -1648,45 +1648,93 @@ export const SECTION_DIAGRAMS = [
     "chapterId": "ch04",
     "headingZh": "對準：每一層都要對得剛好",
     "headingEn": "Alignment: every layer must line up exactly",
-    "type": "compare",
+    "type": "pictorial",
+    "draw": "overlayCd",
+    "sourcedNumbers": true,
+    "sourceZh": "「CD 偏大 2 nm」是本段的現場用語；虛線輪廓與偏移量都誇大畫出。",
+    "sourceEn": "“CD is 2 nm large” is a floor phrase from this section. The dashed outline and the shifts are exaggerated.",
     "captionZh": "微影工程師最常講的兩個詞：CD 與 Overlay",
     "captionEn": "CD and overlay, the two terms lithography engineers use most",
-    "columns": [
+    "labels": [
       {
-        "titleZh": "CD 關鍵尺寸",
-        "titleEn": "CD (critical dimension)",
-        "items": [
-          {
-            "zh": "圖形最需要控制的尺寸",
-            "en": "The pattern dimension that most needs control"
-          },
-          {
-            "zh": "例如線寬",
-            "en": "For example, line width"
-          },
-          {
-            "zh": "不等於製程節點的奈米",
-            "en": "Not the nanometer in a node name"
-          }
-        ]
+        "key": "cdTitle",
+        "zh": "CD",
+        "en": "CD"
       },
       {
-        "titleZh": "Overlay 對準誤差",
-        "titleEn": "Overlay",
-        "items": [
-          {
-            "zh": "這一層與前一層的對準誤差",
-            "en": "Alignment error to the previous layer"
-          },
-          {
-            "zh": "先進製程只容許幾奈米",
-            "en": "Advanced processes allow only a few nanometers"
-          },
-          {
-            "zh": "偏掉會斷路或短路",
-            "en": "A shift can cause opens or shorts"
-          }
-        ]
+        "key": "cdName",
+        "zh": "關鍵尺寸",
+        "en": "Critical dimension"
+      },
+      {
+        "key": "cdLarge",
+        "zh": "CD 偏大 2 nm",
+        "en": "CD is 2 nm large"
+      },
+      {
+        "key": "lineWidth",
+        "zh": "例如線寬",
+        "en": "Such as a line width"
+      },
+      {
+        "key": "cdDef",
+        "zh": "圖形最需要控制的尺寸",
+        "en": "The dimension of a pattern that most needs to be controlled"
+      },
+      {
+        "key": "notNode",
+        "zh": "CD 不等於製程節點的「幾奈米」",
+        "en": "CD is not the \"nanometer\" in a process node name"
+      },
+      {
+        "key": "overlay",
+        "zh": "Overlay",
+        "en": "Overlay"
+      },
+      {
+        "key": "overlayDef",
+        "zh": "這一層和前一層的對準誤差",
+        "en": "The alignment error between the current layer and the previous one"
+      },
+      {
+        "key": "open",
+        "zh": "斷路",
+        "en": "Open"
+      },
+      {
+        "key": "short",
+        "zh": "短路",
+        "en": "Shorted"
+      },
+      {
+        "key": "shiftX",
+        "zh": "Overlay 往 X 方向偏",
+        "en": "Overlay is shifted in X"
+      },
+      {
+        "key": "contact",
+        "zh": "接觸點",
+        "en": "Contact"
+      },
+      {
+        "key": "metalLine",
+        "zh": "金屬線",
+        "en": "Metal line"
+      },
+      {
+        "key": "land",
+        "zh": "金屬線必須準確接到下面的接觸點",
+        "en": "A metal line must land exactly on the contact below it"
+      },
+      {
+        "key": "advanced",
+        "zh": "在先進製程中",
+        "en": "In advanced processes"
+      },
+      {
+        "key": "fewNm",
+        "zh": "層與層之間容許的對準誤差只有幾奈米",
+        "en": "the allowed misalignment between layers is only a few nanometers"
       }
     ]
   },
@@ -1801,50 +1849,154 @@ export const SECTION_DIAGRAMS = [
     ]
   },
   {
+    "chapterId": "ch04",
+    "headingZh": "常見異常",
+    "headingEn": "Common problems",
+    "type": "pictorial",
+    "draw": "lithoDefects",
+    "captionZh": "四種微影異常長什麼樣，以及各自的結果",
+    "captionEn": "Four lithography problems: what each looks like and what it causes",
+    "labels": [
+      {
+        "key": "cd",
+        "zh": "CD 偏大或偏小",
+        "en": "CD too large or too small"
+      },
+      {
+        "key": "cdResult",
+        "zh": "線寬不合格",
+        "en": "Line width out of spec"
+      },
+      {
+        "key": "defocus",
+        "zh": "局部失焦",
+        "en": "Local defocus"
+      },
+      {
+        "key": "defocusResult",
+        "zh": "局部圖形模糊",
+        "en": "Blurred pattern in one area"
+      },
+      {
+        "key": "overlay",
+        "zh": "Overlay 超規",
+        "en": "Overlay out of spec"
+      },
+      {
+        "key": "overlayResult",
+        "zh": "上下層接不上",
+        "en": "Layers do not connect"
+      },
+      {
+        "key": "resist",
+        "zh": "光阻缺陷",
+        "en": "Resist defects"
+      },
+      {
+        "key": "resistResult",
+        "zh": "圖形缺損",
+        "en": "Missing or damaged patterns"
+      },
+      {
+        "key": "particle",
+        "zh": "顆粒",
+        "en": "Particle"
+      }
+    ]
+  },
+  {
     "chapterId": "ch05",
     "headingZh": "熱氧化：讓矽自己長出氧化層",
     "headingEn": "Thermal oxidation: letting silicon grow its own oxide",
-    "type": "compare",
-    "captionZh": "乾式與濕式熱氧化的氣體、生長速度與特點對照",
-    "captionEn": "Dry and wet thermal oxidation compared by gas, growth speed and main traits",
-    "columns": [
+    "type": "pictorial",
+    "draw": "thermalOxidation",
+    "captionZh": "乾式與濕式熱氧化對照；虛線是原本的矽表面",
+    "captionEn": "Dry vs. wet thermal oxidation; the dashed line is the original silicon surface",
+    "labels": [
       {
-        "titleZh": "乾式氧化",
-        "titleEn": "Dry oxidation",
-        "items": [
-          {
-            "zh": "使用氧氣",
-            "en": "Uses oxygen"
-          },
-          {
-            "zh": "生長慢",
-            "en": "Grows slowly"
-          },
-          {
-            "zh": "品質非常好",
-            "en": "Excellent quality"
-          }
-        ],
-        "icon": "gas"
+        "key": "gasIn",
+        "zh": "通入氧氣或水蒸氣",
+        "en": "Oxygen or steam flows in"
       },
       {
-        "titleZh": "濕式氧化",
-        "titleEn": "Wet oxidation",
-        "items": [
-          {
-            "zh": "使用水蒸氣",
-            "en": "Uses steam"
-          },
-          {
-            "zh": "生長快",
-            "en": "Grows fast"
-          },
-          {
-            "zh": "適合需要較厚氧化層處",
-            "en": "Suits places that need thicker oxide"
-          }
-        ],
-        "icon": "drop"
+        "key": "furnace",
+        "zh": "爐管",
+        "en": "Furnace"
+      },
+      {
+        "key": "batchTool",
+        "zh": "批次式機台",
+        "en": "Batch tools"
+      },
+      {
+        "key": "hundred",
+        "zh": "一次可以處理上百片晶圓",
+        "en": "Can process more than a hundred wafers at once"
+      },
+      {
+        "key": "dry",
+        "zh": "乾式氧化",
+        "en": "Dry oxidation"
+      },
+      {
+        "key": "useO2",
+        "zh": "使用氧氣",
+        "en": "Uses oxygen"
+      },
+      {
+        "key": "slow",
+        "zh": "生長慢",
+        "en": "Grows slowly"
+      },
+      {
+        "key": "quality",
+        "zh": "品質非常好",
+        "en": "The quality is excellent"
+      },
+      {
+        "key": "wet",
+        "zh": "濕式氧化",
+        "en": "Wet oxidation"
+      },
+      {
+        "key": "useSteam",
+        "zh": "使用水蒸氣",
+        "en": "Uses steam"
+      },
+      {
+        "key": "fast",
+        "zh": "生長快",
+        "en": "Grows fast"
+      },
+      {
+        "key": "thicker",
+        "zh": "適合需要較厚氧化層的地方",
+        "en": "Suits places that need a thicker oxide"
+      },
+      {
+        "key": "silicon",
+        "zh": "矽",
+        "en": "Silicon"
+      },
+      {
+        "key": "sio2",
+        "zh": "二氧化矽",
+        "en": "Silicon dioxide"
+      },
+      {
+        "key": "consumed",
+        "zh": "「吃掉」一部分矽",
+        "en": "\"Consuming\" part of the silicon"
+      },
+      {
+        "key": "oxideLayer",
+        "zh": "氧化層",
+        "en": "the oxide"
+      },
+      {
+        "key": "interface",
+        "zh": "和矽之間的介面品質特別好",
+        "en": "The interface between the oxide and the silicon is especially good"
       }
     ]
   },
@@ -1917,25 +2069,75 @@ export const SECTION_DIAGRAMS = [
     "chapterId": "ch05",
     "headingZh": "薄膜要看哪些指標",
     "headingEn": "What to measure in a thin film",
-    "type": "branch",
-    "captionZh": "階梯覆蓋的常見混淆：填窄溝時兩種長法的結果",
-    "captionEn": "Step coverage pitfall: two ways to fill a narrow trench and their results",
-    "root": {
-      "zh": "填滿窄溝時",
-      "en": "Filling a narrow trench"
-    },
-    "branches": [
+    "type": "pictorial",
+    "draw": "filmMetrics",
+    "captionZh": "薄膜的五個指標，以及填窄溝時兩種長法的結果",
+    "captionEn": "Five film metrics, and two ways a narrow trench can fill",
+    "labels": [
       {
-        "zh": "側壁同時長厚",
-        "en": "Sidewalls thicken at the same rate",
-        "leafZh": "開口可能先封住而留下空洞",
-        "leafEn": "The opening may close first, leaving a void"
+        "key": "thickness",
+        "zh": "膜厚",
+        "en": "Thickness"
       },
       {
+        "key": "uniformity",
+        "zh": "均勻度",
+        "en": "Uniformity"
+      },
+      {
+        "key": "stepCoverage",
+        "zh": "階梯覆蓋",
+        "en": "Step coverage"
+      },
+      {
+        "key": "stress",
+        "zh": "應力",
+        "en": "Stress"
+      },
+      {
+        "key": "particles",
+        "zh": "微粒",
+        "en": "Particles"
+      },
+      {
+        "key": "fillTitle",
+        "zh": "要把窄溝填滿時",
+        "en": "When filling a narrow trench"
+      },
+      {
+        "key": "notAlwaysGood",
+        "zh": "覆蓋均勻不一定是好事",
+        "en": "Even coverage is not always good"
+      },
+      {
+        "key": "sidewalls",
+        "zh": "側壁同時長厚",
+        "en": "The sidewalls thicken at the same rate"
+      },
+      {
+        "key": "closeFirst",
+        "zh": "開口可能先被封住",
+        "en": "The opening may close first"
+      },
+      {
+        "key": "void",
+        "zh": "裡面就留下空洞",
+        "en": "leave a void inside"
+      },
+      {
+        "key": "voidShort",
+        "zh": "空洞",
+        "en": "Void"
+      },
+      {
+        "key": "bottomUp",
         "zh": "從底部往上長",
-        "en": "Grow from the bottom up",
-        "leafZh": "填溝時反而希望如此",
-        "leafEn": "What you actually want for gap fill"
+        "en": "Grow from the bottom up"
+      },
+      {
+        "key": "want",
+        "zh": "填溝時反而希望從底部往上長",
+        "en": "For gap fill, you actually want the film to grow from the bottom up"
       }
     ]
   },
@@ -2090,30 +2292,271 @@ export const SECTION_DIAGRAMS = [
     ]
   },
   {
+    "chapterId": "ch05",
+    "headingZh": "為什麼需要薄膜",
+    "headingEn": "Why thin films are needed",
+    "type": "pictorial",
+    "draw": "filmStack",
+    "captionZh": "晶片由一層層薄膜疊成，各層從幾個原子到幾微米厚（非特定製程）",
+    "captionEn": "A generic film stack: layers from a few atoms to a few micrometers thick",
+    "labels": [
+      {
+        "key": "metal",
+        "zh": "金屬",
+        "en": "Metals"
+      },
+      {
+        "key": "nitride",
+        "zh": "氮化矽",
+        "en": "Silicon nitride"
+      },
+      {
+        "key": "etchStop",
+        "zh": "蝕刻停止層",
+        "en": "Etch stop layers"
+      },
+      {
+        "key": "oxide",
+        "zh": "氧化矽",
+        "en": "Silicon oxide"
+      },
+      {
+        "key": "poly",
+        "zh": "多晶矽",
+        "en": "Polysilicon"
+      },
+      {
+        "key": "hardMask",
+        "zh": "硬遮罩",
+        "en": "Hard masks"
+      },
+      {
+        "key": "helpPrecise",
+        "zh": "幫助後續步驟做得更準",
+        "en": "Help later steps come out more precisely"
+      },
+      {
+        "key": "insulate",
+        "zh": "絕緣",
+        "en": "Insulation"
+      },
+      {
+        "key": "insulateDoes",
+        "zh": "把導線和元件隔開",
+        "en": "Separate wires and devices"
+      },
+      {
+        "key": "conduct",
+        "zh": "導電",
+        "en": "Conduction"
+      },
+      {
+        "key": "conductDoes",
+        "zh": "用來傳遞訊號",
+        "en": "Carry signals"
+      },
+      {
+        "key": "support",
+        "zh": "輔助製程",
+        "en": "Process support"
+      },
+      {
+        "key": "supportDoes",
+        "zh": "例如硬遮罩、蝕刻停止層",
+        "en": "For example, hard masks and etch stop layers"
+      }
+    ]
+  },
+  {
+    "chapterId": "ch05",
+    "headingZh": "CVD：用氣體「長」出薄膜",
+    "headingEn": "CVD: growing films from gases",
+    "type": "pictorial",
+    "draw": "cvdTypes",
+    "captionZh": "LPCVD 與 PECVD：反應能量從哪裡來",
+    "captionEn": "LPCVD and PECVD: where the reaction energy comes from",
+    "labels": [
+      {
+        "key": "gasesIn",
+        "zh": "把幾種氣體通進腔體",
+        "en": "Several gases flow into a chamber"
+      },
+      {
+        "key": "solidFilm",
+        "zh": "留下固態的薄膜",
+        "en": "Leaving behind a solid film"
+      },
+      {
+        "key": "exhaust",
+        "zh": "廢氣則被抽走",
+        "en": "The gaseous by-products are pumped away"
+      },
+      {
+        "key": "lpcvd",
+        "zh": "LPCVD",
+        "en": "LPCVD"
+      },
+      {
+        "key": "lpName",
+        "zh": "低壓 CVD",
+        "en": "low-pressure CVD"
+      },
+      {
+        "key": "lpEnergy",
+        "zh": "靠高溫提供能量",
+        "en": "Uses high temperature for energy"
+      },
+      {
+        "key": "lpGood",
+        "zh": "薄膜均勻、品質好",
+        "en": "The films are uniform and high quality"
+      },
+      {
+        "key": "lpHot",
+        "zh": "但溫度高",
+        "en": "But the temperature is high"
+      },
+      {
+        "key": "pecvd",
+        "zh": "PECVD",
+        "en": "PECVD"
+      },
+      {
+        "key": "peName",
+        "zh": "電漿輔助 CVD",
+        "en": "plasma-enhanced CVD"
+      },
+      {
+        "key": "peEnergy",
+        "zh": "用電漿提供能量",
+        "en": "Uses a plasma for energy"
+      },
+      {
+        "key": "peLow",
+        "zh": "可以在較低溫度下沉積",
+        "en": "Deposition can happen at lower temperatures"
+      },
+      {
+        "key": "plasma",
+        "zh": "電漿",
+        "en": "Plasma"
+      },
+      {
+        "key": "fitMetal",
+        "zh": "適合已經有金屬的晶圓",
+        "en": "It suits wafers that already have metal on them"
+      },
+      {
+        "key": "metalCant",
+        "zh": "金屬承受不了高溫",
+        "en": "The metal cannot survive high temperatures"
+      }
+    ]
+  },
+  {
+    "chapterId": "ch05",
+    "headingZh": "磊晶：長出延續晶格的單晶",
+    "headingEn": "Epitaxy: growing a crystal that continues the lattice",
+    "type": "pictorial",
+    "draw": "epitaxy",
+    "captionZh": "磊晶：新膜延續底下晶圓的原子排列",
+    "captionEn": "Epitaxy: the new film continues the atomic arrangement of the wafer below",
+    "labels": [
+      {
+        "key": "specialCvd",
+        "zh": "磊晶是一種特殊的 CVD",
+        "en": "Epitaxy is a special kind of CVD"
+      },
+      {
+        "key": "newFilm",
+        "zh": "新長出的薄膜",
+        "en": "The new film"
+      },
+      {
+        "key": "wafer",
+        "zh": "底下晶圓",
+        "en": "The wafer underneath"
+      },
+      {
+        "key": "continues",
+        "zh": "延續底下晶圓的原子排列",
+        "en": "Continues the atomic arrangement of the wafer underneath"
+      },
+      {
+        "key": "singleCrystal",
+        "zh": "成為單晶",
+        "en": "So the film is also a single crystal"
+      },
+      {
+        "key": "advanced",
+        "zh": "先進電晶體",
+        "en": "Advanced transistors"
+      },
+      {
+        "key": "stack",
+        "zh": "交替堆疊的矽與矽鍺層",
+        "en": "Alternating stacks of silicon and silicon germanium"
+      },
+      {
+        "key": "si",
+        "zh": "矽",
+        "en": "Silicon"
+      },
+      {
+        "key": "sige",
+        "zh": "矽鍺",
+        "en": "Silicon germanium"
+      }
+    ]
+  },
+  {
     "chapterId": "ch06",
     "headingZh": "蝕刻在做什麼",
     "headingEn": "What etching does",
-    "type": "branch",
+    "type": "pictorial",
+    "draw": "etchTransfer",
     "captionZh": "蝕刻時光阻蓋住與未蓋住區域的不同結果",
     "captionEn": "What happens to covered and uncovered areas when the pattern is etched",
-    "root": {
-      "zh": "蝕刻轉印光阻圖形",
-      "en": "Etch transfers the resist pattern",
-      "noteZh": "微影後圖形只在光阻上",
-      "noteEn": "Pattern exists only in the resist"
-    },
-    "branches": [
+    "labels": [
       {
-        "zh": "被光阻蓋住的地方",
-        "en": "Areas covered by resist",
-        "leafZh": "受到保護",
-        "leafEn": "Protected"
+        "key": "resist",
+        "zh": "光阻",
+        "en": "Photoresist"
       },
       {
-        "zh": "沒被光阻蓋住的地方",
-        "en": "Areas not covered",
-        "leafZh": "被去除",
-        "leafEn": "Removed"
+        "key": "onlyResist",
+        "zh": "微影完成後，電路圖形只存在於光阻上",
+        "en": "After lithography, the circuit pattern exists only in the photoresist"
+      },
+      {
+        "key": "covered",
+        "zh": "被光阻蓋住的地方",
+        "en": "Areas covered by resist"
+      },
+      {
+        "key": "protected",
+        "zh": "受到保護",
+        "en": "are protected"
+      },
+      {
+        "key": "uncovered",
+        "zh": "沒有被蓋住的地方",
+        "en": "Uncovered areas"
+      },
+      {
+        "key": "removed",
+        "zh": "被去除",
+        "en": "are removed"
+      },
+      {
+        "key": "transfer",
+        "zh": "把這個圖形「轉印」到底下的材料",
+        "en": "\"Transfer\" that pattern into the material underneath"
+      },
+      {
+        "key": "stencil",
+        "zh": "光阻就是那張貼紙",
+        "en": "The photoresist is that stencil"
       }
     ]
   },
@@ -2326,48 +2769,190 @@ export const SECTION_DIAGRAMS = [
     ]
   },
   {
+    "chapterId": "ch06",
+    "headingZh": "電漿：蝕刻的工具",
+    "headingEn": "Plasma: the etching tool",
+    "type": "pictorial",
+    "draw": "plasma",
+    "captionZh": "氣體變成電漿：離子、電子與活潑原子團各司其職",
+    "captionEn": "Gas turned into plasma: ions, electrons and reactive fragments each have a job",
+    "labels": [
+      {
+        "key": "plasmaIs",
+        "zh": "電漿是氣體被高能量激發後的狀態",
+        "en": "A plasma is a gas that has been excited by high energy"
+      },
+      {
+        "key": "fourth",
+        "zh": "物質的第四態",
+        "en": "The fourth state of matter"
+      },
+      {
+        "key": "gasIn",
+        "zh": "通入特定氣體",
+        "en": "Feeds specific gases"
+      },
+      {
+        "key": "vacuum",
+        "zh": "真空腔體",
+        "en": "A vacuum chamber"
+      },
+      {
+        "key": "rf",
+        "zh": "射頻電力",
+        "en": "Radio-frequency (RF) power"
+      },
+      {
+        "key": "glow",
+        "zh": "腔體裡會發出微弱的光",
+        "en": "The chamber gives off a faint glow"
+      },
+      {
+        "key": "ions",
+        "zh": "離子",
+        "en": "Ions"
+      },
+      {
+        "key": "electrons",
+        "zh": "電子",
+        "en": "Electrons"
+      },
+      {
+        "key": "radicals",
+        "zh": "非常活潑的原子團",
+        "en": "Highly reactive fragments of molecules"
+      },
+      {
+        "key": "fastPrecise",
+        "zh": "又快又準地往下挖",
+        "en": "Etch downward both fast and precisely"
+      },
+      {
+        "key": "ionsDirection",
+        "zh": "離子則負責提供方向",
+        "en": "The ions provide the direction"
+      },
+      {
+        "key": "radicalsReact",
+        "zh": "活潑原子團負責和材料發生化學反應",
+        "en": "The reactive fragments in the plasma react chemically with the material"
+      }
+    ]
+  },
+  {
+    "chapterId": "ch06",
+    "headingZh": "蝕刻要看哪些指標",
+    "headingEn": "What to measure in etching",
+    "type": "pictorial",
+    "draw": "etchMetrics",
+    "captionZh": "一個蝕刻溝槽上的五個指標",
+    "captionEn": "Five etch metrics on one etched trench",
+    "labels": [
+      {
+        "key": "afterLitho",
+        "zh": "微影後",
+        "en": "After lithography"
+      },
+      {
+        "key": "afterEtch",
+        "zh": "蝕刻後",
+        "en": "After etching"
+      },
+      {
+        "key": "targetMat",
+        "zh": "要挖的材料",
+        "en": "The target material"
+      },
+      {
+        "key": "notWanted",
+        "zh": "不想挖的材料",
+        "en": "The materials you do not want to etch"
+      },
+      {
+        "key": "selResist",
+        "zh": "對光阻的選擇比",
+        "en": "Selectivity to the photoresist"
+      },
+      {
+        "key": "selUnder",
+        "zh": "對下層材料的選擇比",
+        "en": "selectivity to the layer underneath"
+      },
+      {
+        "key": "rate",
+        "zh": "蝕刻率",
+        "en": "Etch rate"
+      },
+      {
+        "key": "uniformity",
+        "zh": "均勻度",
+        "en": "Uniformity"
+      },
+      {
+        "key": "selectivity",
+        "zh": "選擇比",
+        "en": "Selectivity"
+      },
+      {
+        "key": "profile",
+        "zh": "輪廓",
+        "en": "Profile"
+      },
+      {
+        "key": "cd",
+        "zh": "CD 變化",
+        "en": "CD change"
+      }
+    ]
+  },
+  {
     "chapterId": "ch07",
     "headingZh": "兩個最重要的參數",
     "headingEn": "The two most important parameters",
-    "type": "compare",
+    "type": "pictorial",
+    "draw": "doseEnergy",
     "captionZh": "劑量決定濃度，能量決定深度",
     "captionEn": "Dose sets the concentration; energy sets the depth.",
-    "columns": [
+    "labels": [
       {
-        "titleZh": "劑量",
-        "titleEn": "Dose",
-        "items": [
-          {
-            "zh": "每單位面積植入的原子數",
-            "en": "Atoms implanted per unit area"
-          },
-          {
-            "zh": "決定摻雜的濃度",
-            "en": "Sets the doping concentration"
-          },
-          {
-            "zh": "原子數量由劑量決定",
-            "en": "The number of atoms is set by dose"
-          }
-        ]
+        "key": "energy",
+        "zh": "能量",
+        "en": "Energy"
       },
       {
-        "titleZh": "能量",
-        "titleEn": "Energy",
-        "items": [
-          {
-            "zh": "離子的速度有多快",
-            "en": "How fast the ions travel"
-          },
-          {
-            "zh": "決定打得多深",
-            "en": "Sets how deep they go"
-          },
-          {
-            "zh": "越高越深，不是原子更多",
-            "en": "Higher means deeper, not more atoms"
-          }
-        ]
+        "key": "energyDef",
+        "zh": "離子的速度有多快",
+        "en": "How fast the ions travel"
+      },
+      {
+        "key": "energySets",
+        "zh": "決定打得多深",
+        "en": "It sets how deep they go"
+      },
+      {
+        "key": "dose",
+        "zh": "劑量",
+        "en": "Dose"
+      },
+      {
+        "key": "doseDef",
+        "zh": "每單位面積打進多少個原子",
+        "en": "How many atoms are implanted per unit area"
+      },
+      {
+        "key": "doseSets",
+        "zh": "決定摻雜的濃度",
+        "en": "It sets the doping concentration"
+      },
+      {
+        "key": "deeperNotMore",
+        "zh": "能量越高是打得越深，不是打進越多原子",
+        "en": "Higher energy means the ions go deeper, not that more atoms go in"
+      },
+      {
+        "key": "countByDose",
+        "zh": "原子的數量由劑量決定",
+        "en": "The number of atoms is set by the dose"
       }
     ]
   },
@@ -2409,29 +2994,50 @@ export const SECTION_DIAGRAMS = [
     "chapterId": "ch07",
     "headingZh": "熱預算：加熱是有額度的",
     "headingEn": "Thermal budget: heat comes with a limit",
-    "type": "flow",
+    "type": "pictorial",
+    "draw": "thermalBudget",
     "captionZh": "每次高溫都讓雜質再擴散，最終影響電性",
     "captionEn": "Every high-temperature step adds diffusion, leading to leakage and Vt shift.",
-    "steps": [
+    "labels": [
       {
+        "key": "everyHot",
         "zh": "每一次高溫步驟",
         "en": "Every high-temperature step"
       },
       {
-        "zh": "雜質再擴散一點",
-        "en": "Implanted impurities diffuse more",
-        "noteZh": "擴散會累積",
-        "noteEn": "Diffusion adds up"
+        "key": "diffuse",
+        "zh": "都會讓之前佈植的雜質再擴散一點",
+        "en": "makes the previously implanted impurities diffuse a bit more"
       },
       {
-        "zh": "先前的摻雜區變形",
-        "en": "Earlier doped regions distort",
-        "noteZh": "源汲極摻雜太深、太寬",
-        "noteEn": "Source/drain doping too deep and wide"
+        "key": "source",
+        "zh": "源極",
+        "en": "Source"
       },
       {
+        "key": "drain",
+        "zh": "汲極",
+        "en": "Drain"
+      },
+      {
+        "key": "adds",
+        "zh": "擴散會累積",
+        "en": "Diffusion adds up"
+      },
+      {
+        "key": "distort",
+        "zh": "前面做好的摻雜區域變形",
+        "en": "Distorts the doped regions built earlier"
+      },
+      {
+        "key": "tooDeep",
+        "zh": "源極和汲極的摻雜擴散得太深、太寬",
+        "en": "The source and drain doping spreads too deep and too wide"
+      },
+      {
+        "key": "leak",
         "zh": "漏電變大、Vt 偏移",
-        "en": "Leakage goes up, Vt shifts"
+        "en": "Leakage goes up and Vt shifts"
       }
     ]
   },
@@ -2608,27 +3214,65 @@ export const SECTION_DIAGRAMS = [
     "chapterId": "ch08",
     "headingZh": "假圖形：為了磨得平",
     "headingEn": "Dummy fill: patterns that exist only to polish flat",
-    "type": "branch",
-    "captionZh": "補不補假圖形，決定 CMP 能否磨平",
-    "captionEn": "Whether dummy fill is added decides whether CMP polishes flat.",
-    "root": {
-      "zh": "圖形太少的空曠區域",
-      "en": "Empty areas with few patterns",
-      "noteZh": "研磨速度與圖形密度有關",
-      "noteEn": "Polishing rate depends on pattern density"
-    },
-    "branches": [
+    "type": "pictorial",
+    "draw": "dummyFill",
+    "captionZh": "補不補假圖形，決定 CMP 能否磨平（以銅 CMP 為例）",
+    "captionEn": "Whether dummy fill is added decides whether CMP polishes flat (copper CMP shown)",
+    "labels": [
       {
-        "zh": "補上假圖形",
-        "en": "Dummy fill added",
-        "leafZh": "密度平均，磨得均勻",
-        "leafEn": "Even density, even polishing"
+        "key": "rateDensity",
+        "zh": "研磨速度和圖形密度有關",
+        "en": "The CMP polishing rate depends on pattern density"
       },
       {
-        "zh": "不補假圖形",
-        "en": "No dummy fill",
-        "leafZh": "表面不平，失焦或短路",
-        "leafEn": "Uneven surface: defocus or shorts"
+        "key": "emptyArea",
+        "zh": "圖形太少的空曠區域",
+        "en": "Empty areas of the chip with few patterns"
+      },
+      {
+        "key": "added",
+        "zh": "補上假圖形",
+        "en": "Adds dummy patterns to empty areas"
+      },
+      {
+        "key": "noCurrent",
+        "zh": "不通電的假圖形",
+        "en": "Dummy patterns that carry no current"
+      },
+      {
+        "key": "uneven",
+        "zh": "密度不均勻，就會磨得一邊高一邊低",
+        "en": "If the density is uneven, one side ends up higher than the other"
+      },
+      {
+        "key": "notFlat",
+        "zh": "表面不平",
+        "en": "The surface is not flat"
+      },
+      {
+        "key": "defocus",
+        "zh": "微影失焦",
+        "en": "lithography defocus"
+      },
+      {
+        "key": "thickness",
+        "zh": "導線厚度不一致",
+        "en": "uneven wire thickness"
+      },
+      {
+        "key": "shorts",
+        "zh": "金屬殘留造成短路",
+        "en": "leftover metal that shorts wires together"
+      },
+      {
+        "key": "evenDensity",
+        "zh": "圖形密度盡量平均",
+        "en": "The pattern density is as even as possible"
+      },
+      {
+        "key": "polishEven",
+        "zh": "磨得均勻",
+        "en": "Polish evenly"
       }
     ]
   },
@@ -2736,6 +3380,67 @@ export const SECTION_DIAGRAMS = [
     ]
   },
   {
+    "chapterId": "ch08",
+    "headingZh": "為什麼要磨平",
+    "headingEn": "Why the wafer must be flat",
+    "type": "pictorial",
+    "draw": "whyPlanarize",
+    "captionZh": "層層堆疊的起伏、兩個問題，以及用 CMP 磨平",
+    "captionEn": "Stacked layers turn into hills, two problems follow, and CMP flattens them",
+    "labels": [
+      {
+        "key": "follows",
+        "zh": "表面就會順著底下的圖形起伏",
+        "en": "The surface follows the shape of the patterns below"
+      },
+      {
+        "key": "hills",
+        "zh": "晶圓表面就像丘陵地一樣高低不平",
+        "en": "The wafer surface looks like rolling hills"
+      },
+      {
+        "key": "cmp",
+        "zh": "化學機械研磨",
+        "en": "Chemical mechanical planarization"
+      },
+      {
+        "key": "level",
+        "zh": "每一層樓板都要先抹平",
+        "en": "Every floor slab has to be leveled"
+      },
+      {
+        "key": "twoProblems",
+        "zh": "這會帶來兩個問題",
+        "en": "This causes two problems"
+      },
+      {
+        "key": "focus",
+        "zh": "微影對不準焦",
+        "en": "Lithography cannot focus"
+      },
+      {
+        "key": "focusRange",
+        "zh": "焦距範圍",
+        "en": "Range of focus"
+      },
+      {
+        "key": "focusNote",
+        "zh": "高處和低處無法同時清楚",
+        "en": "The high and low areas cannot both be in focus"
+      },
+      {
+        "key": "excess",
+        "zh": "多餘的材料去不掉",
+        "en": "Excess material cannot be removed"
+      },
+      {
+        "key": "excessNote",
+        "zh": "把溝槽外多餘的銅去掉",
+        "en": "Removing the copper outside the trenches"
+      }
+    ]
+  },
+  {
     "chapterId": "ch09",
     "headingZh": "Q-Time：清洗的效果會過期",
     "headingEn": "Q-time: a clean surface has an expiration date",
@@ -2773,33 +3478,100 @@ export const SECTION_DIAGRAMS = [
     "chapterId": "ch09",
     "headingZh": "交叉污染：有些東西不能混用",
     "headingEn": "Cross-contamination: some things must never mix",
-    "type": "flow",
-    "captionZh": "微量銅如何演變成大範圍良率損失",
-    "captionEn": "How a trace of copper in a front-end tool turns into widespread yield loss.",
-    "steps": [
+    "type": "pictorial",
+    "draw": "crossContamination",
+    "captionZh": "污染等級：晶圓盒與機台要對上，否則微量銅會擴大成良率損失",
+    "captionEn": "Contamination classes: carriers must match tools, or a trace of copper spreads",
+    "labels": [
       {
-        "zh": "微量銅帶進前段機台",
-        "en": "Copper carried into front-end tool",
-        "icon": "particle"
+        "key": "classes",
+        "zh": "污染等級",
+        "en": "Contamination classes"
       },
       {
-        "zh": "污染之後經過的所有晶圓",
-        "en": "Contaminates every later wafer",
-        "icon": "batch"
+        "key": "colorTag",
+        "zh": "常用顏色或標籤區分",
+        "en": "often marked by color or labels"
       },
       {
-        "zh": "銅跑進電晶體區域",
-        "en": "Copper reaches the transistor area",
-        "noteZh": "銅在矽中擴散極快",
-        "noteEn": "Copper diffuses very fast in silicon",
-        "icon": "transistor"
+        "key": "frontEnd",
+        "zh": "前段",
+        "en": "Front end"
       },
       {
-        "zh": "電晶體漏電、良率大降",
-        "en": "Transistors leak, yield drops",
-        "noteZh": "源頭很難追查",
-        "noteEn": "Source is very hard to trace",
-        "icon": "risk"
+        "key": "copperProc",
+        "zh": "銅製程",
+        "en": "Copper processes"
+      },
+      {
+        "key": "carrier",
+        "zh": "晶圓盒",
+        "en": "Wafer carriers"
+      },
+      {
+        "key": "tool",
+        "zh": "機台",
+        "en": "Tools"
+      },
+      {
+        "key": "check",
+        "zh": "系統也會檢查晶圓盒和機台的等級是否相符",
+        "en": "Checks whether the class of the carrier matches the class of the tool"
+      },
+      {
+        "key": "block",
+        "zh": "禁止進機台",
+        "en": "Blocks the wafer from entering the tool"
+      },
+      {
+        "key": "copperUse",
+        "zh": "銅製程使用的",
+        "en": "used for copper processes"
+      },
+      {
+        "key": "tweezers",
+        "zh": "機台、晶圓盒，甚至鑷子和手套",
+        "en": "The tools, wafer carriers, and even tweezers and gloves"
+      },
+      {
+        "key": "separate",
+        "zh": "都要和前段製程嚴格分開",
+        "en": "kept strictly separate from the front end"
+      },
+      {
+        "key": "trace",
+        "zh": "微量的銅",
+        "en": "A trace of copper"
+      },
+      {
+        "key": "carried",
+        "zh": "被帶進前段機台",
+        "en": "carried into a front-end tool"
+      },
+      {
+        "key": "everyWafer",
+        "zh": "污染之後經過那台機台的所有晶圓",
+        "en": "Contaminates every wafer that passes through that tool afterward"
+      },
+      {
+        "key": "diffuses",
+        "zh": "銅在矽中擴散得非常快",
+        "en": "Copper diffuses through silicon extremely fast"
+      },
+      {
+        "key": "reach",
+        "zh": "跑進電晶體所在的區域",
+        "en": "reaching the area where the transistors are"
+      },
+      {
+        "key": "leakYield",
+        "zh": "電晶體漏電，良率大幅下降",
+        "en": "Transistors leak, yield drops sharply"
+      },
+      {
+        "key": "hardTrace",
+        "zh": "很難追查源頭",
+        "en": "The source is very hard to trace"
       }
     ]
   },
@@ -2909,6 +3681,92 @@ export const SECTION_DIAGRAMS = [
     ]
   },
   {
+    "chapterId": "ch09",
+    "headingZh": "污染有哪幾種",
+    "headingEn": "Kinds of contamination",
+    "type": "pictorial",
+    "draw": "contaminants",
+    "captionZh": "晶圓表面上的四種污染與常見來源",
+    "captionEn": "Four kinds of contamination on a wafer surface and where they come from",
+    "labels": [
+      {
+        "key": "particle",
+        "zh": "微粒",
+        "en": "Particles"
+      },
+      {
+        "key": "particleSrc",
+        "zh": "機台、環境、人",
+        "en": "Tools, environment, people"
+      },
+      {
+        "key": "metal",
+        "zh": "金屬污染",
+        "en": "Metal contamination"
+      },
+      {
+        "key": "metalSrc",
+        "zh": "化學品、機台零件、人體",
+        "en": "Chemicals, tool parts, the human body"
+      },
+      {
+        "key": "organic",
+        "zh": "有機物",
+        "en": "Organics"
+      },
+      {
+        "key": "organicSrc",
+        "zh": "光阻殘留、人體油脂",
+        "en": "Photoresist residue, skin oils"
+      },
+      {
+        "key": "oxide",
+        "zh": "原生氧化層",
+        "en": "Native oxide"
+      },
+      {
+        "key": "oxideSrc",
+        "zh": "矽表面接觸空氣後自然長出",
+        "en": "Grows naturally once a silicon surface meets air"
+      },
+      {
+        "key": "trouble",
+        "zh": "金屬污染特別麻煩",
+        "en": "Metal contamination is especially troublesome"
+      },
+      {
+        "key": "sodium",
+        "zh": "汗水中的鈉離子",
+        "en": "Sodium ions from sweat"
+      },
+      {
+        "key": "gate",
+        "zh": "閘極",
+        "en": "Gate"
+      },
+      {
+        "key": "gateOxide",
+        "zh": "閘極氧化層",
+        "en": "Gate oxide"
+      },
+      {
+        "key": "si",
+        "zh": "矽",
+        "en": "Silicon"
+      },
+      {
+        "key": "moves",
+        "zh": "會到處移動",
+        "en": "Move around inside it"
+      },
+      {
+        "key": "drift",
+        "zh": "Vt 漂移",
+        "en": "Vt drift"
+      }
+    ]
+  },
+  {
     "chapterId": "ch10",
     "headingZh": "接觸窗與導通孔",
     "headingEn": "Contacts and vias",
@@ -2980,25 +3838,65 @@ export const SECTION_DIAGRAMS = [
     "chapterId": "ch10",
     "headingZh": "越來越細的挑戰",
     "headingEn": "The challenges of ever-thinner wires",
-    "type": "branch",
+    "type": "pictorial",
+    "draw": "thinWires",
     "captionZh": "導線變細帶來的兩大問題",
     "captionEn": "Two problems that grow as wires get thinner.",
-    "root": {
-      "zh": "導線越做越細",
-      "en": "Wires get thinner"
-    },
-    "branches": [
+    "labels": [
       {
-        "zh": "電阻變高",
-        "en": "Higher resistance",
-        "leafZh": "阻障層占比大、電子易散射",
-        "leafEn": "Barrier share up, more scattering"
+        "key": "thinner",
+        "zh": "導線越做越細",
+        "en": "As wires get thinner"
       },
       {
+        "key": "resistance",
+        "zh": "電阻變高",
+        "en": "Higher resistance"
+      },
+      {
+        "key": "barrier",
+        "zh": "阻障層",
+        "en": "Barrier layer"
+      },
+      {
+        "key": "cap",
+        "zh": "覆蓋層",
+        "en": "Cap layer"
+      },
+      {
+        "key": "barrierShare",
+        "zh": "阻障層占的比例變大",
+        "en": "The barrier layer takes up a larger share of the space"
+      },
+      {
+        "key": "scatter",
+        "zh": "電子也更容易被散射",
+        "en": "Electrons scatter more easily"
+      },
+      {
+        "key": "em",
         "zh": "電遷移",
-        "en": "Electromigration",
-        "leafZh": "原子被推走，形成空洞斷線",
-        "leafEn": "Atoms pushed out; voids break wire"
+        "en": "Electromigration"
+      },
+      {
+        "key": "longCurrent",
+        "zh": "電流長時間流過時",
+        "en": "Long-term current flow"
+      },
+      {
+        "key": "electrons",
+        "zh": "電子",
+        "en": "Electrons"
+      },
+      {
+        "key": "pushAtoms",
+        "zh": "把金屬原子一點一點推走",
+        "en": "Pushes metal atoms away bit by bit"
+      },
+      {
+        "key": "voids",
+        "zh": "形成空洞而斷線",
+        "en": "Forming voids that break the wire"
       }
     ]
   },
@@ -3068,6 +3966,238 @@ export const SECTION_DIAGRAMS = [
         "icon": "electromigration"
       }
     ]
+  },
+  {
+    "chapterId": "ch10",
+    "headingZh": "從鋁到銅",
+    "headingEn": "From aluminum to copper",
+    "type": "pictorial",
+    "draw": "alToCu",
+    "captionZh": "鋁先鋪再蝕刻；銅先挖溝、填銅再磨平（細節見下一段）",
+    "captionEn": "Al: deposit, then etch. Cu: trench, fill, polish (details in the next section)",
+    "labels": [
+      {
+        "key": "al",
+        "zh": "鋁",
+        "en": "Aluminum"
+      },
+      {
+        "key": "alStep1",
+        "zh": "先用 PVD 把鋁鋪滿整片晶圓",
+        "en": "Aluminum was deposited over the whole wafer with PVD"
+      },
+      {
+        "key": "alStep2",
+        "zh": "微影和蝕刻",
+        "en": "Lithography and etching"
+      },
+      {
+        "key": "alStep3",
+        "zh": "留下導線",
+        "en": "Leaving the wires behind"
+      },
+      {
+        "key": "cu",
+        "zh": "銅",
+        "en": "Copper"
+      },
+      {
+        "key": "cuLow",
+        "zh": "銅的電阻比鋁低",
+        "en": "Copper has lower resistance than aluminum"
+      },
+      {
+        "key": "hardEtch",
+        "zh": "銅有一個大問題：很難用乾蝕刻挖出圖形",
+        "en": "Copper has one big problem: it is very hard to pattern with dry etching"
+      },
+      {
+        "key": "opposite",
+        "zh": "完全相反的做法",
+        "en": "The opposite approach"
+      },
+      {
+        "key": "digFirst",
+        "zh": "先挖溝",
+        "en": "dig the trenches first"
+      },
+      {
+        "key": "fillCu",
+        "zh": "再填銅",
+        "en": "then fill them with copper"
+      }
+    ]
+  },
+  {
+    "chapterId": "ch10",
+    "headingZh": "常見異常",
+    "headingEn": "Common problems",
+    "type": "pictorial",
+    "draw": "metalDefects",
+    "captionZh": "五種金屬化異常的剖面縮圖",
+    "captionEn": "Five metallization problems in cross-section",
+    "labels": [
+      {
+        "key": "void",
+        "zh": "銅填充空洞",
+        "en": "Voids in copper fill"
+      },
+      {
+        "key": "voidResult",
+        "zh": "電阻變高、可靠度問題",
+        "en": "Higher resistance, reliability problems"
+      },
+      {
+        "key": "residue",
+        "zh": "銅殘留",
+        "en": "Copper residue"
+      },
+      {
+        "key": "residueResult",
+        "zh": "導線短路",
+        "en": "Shorts between wires"
+      },
+      {
+        "key": "openVia",
+        "zh": "導通孔不通",
+        "en": "Open vias"
+      },
+      {
+        "key": "openResult",
+        "zh": "斷路",
+        "en": "Open circuits"
+      },
+      {
+        "key": "barrier",
+        "zh": "阻障層失效",
+        "en": "Barrier failure"
+      },
+      {
+        "key": "barrierResult",
+        "zh": "銅擴散，造成漏電",
+        "en": "Copper diffuses and causes leakage"
+      },
+      {
+        "key": "lowk",
+        "zh": "低介電材料損傷",
+        "en": "Low-k damage"
+      },
+      {
+        "key": "lowkResult",
+        "zh": "漏電、結構剝離",
+        "en": "Leakage, delamination"
+      }
+    ]
+  },
+  {
+    "chapterId": "ch10",
+    "headingZh": "後段金屬互連與無阻障金屬條例總覽",
+    "headingEn": "BEOL Interconnect & Barrierless Metal Clauses",
+    "type": "pictorial",
+    "draw": "beolTiers",
+    "sourcedNumbers": true,
+    "sourceZh": "數值出自本段表格；局部層的三種材料依製程擇用；層號、節距與材料依節點及廠商而異，未按比例。",
+    "sourceEn": "Values come from the table in this section. Local-tier materials are chosen per process. Layer numbers, pitches and materials vary by node and vendor. Not to scale.",
+    "captionZh": "後段金屬層級：局部、中階、全域到封裝介面",
+    "captionEn": "BEOL metal tiers: local, intermediate, global and the package interface",
+    "labels": [
+      {
+        "key": "c4",
+        "zh": "C4 覆晶凸塊",
+        "en": "C4 flip-chip bumps"
+      },
+      {
+        "key": "cowos",
+        "zh": "CoWoS 微凸塊",
+        "en": "CoWoS micro-bumps"
+      },
+      {
+        "key": "alPad",
+        "zh": "頂層鋁墊",
+        "en": "Top Al Bond Pad"
+      },
+      {
+        "key": "globalTier",
+        "zh": "全域厚金屬與封裝介面層",
+        "en": "Global Top Metal, RDL & UBM Interface"
+      },
+      {
+        "key": "globalM",
+        "zh": "M10–M16+",
+        "en": "M10–M16+"
+      },
+      {
+        "key": "globalPitch",
+        "zh": "線寬／節距 0.5–10+ µm",
+        "en": "Pitch 0.5–10+ µm"
+      },
+      {
+        "key": "thickCu",
+        "zh": "超厚銅",
+        "en": "Ultra-Thick Cu"
+      },
+      {
+        "key": "midTier",
+        "zh": "中階與半全域互連層",
+        "en": "Intermediate & Semi-Global Tiers"
+      },
+      {
+        "key": "midM",
+        "zh": "M4–M9",
+        "en": "M4–M9"
+      },
+      {
+        "key": "midPitch",
+        "zh": "節距 36–160 nm",
+        "en": "Pitch 36–160 nm"
+      },
+      {
+        "key": "cuDD",
+        "zh": "雙鑲嵌電鍍銅",
+        "en": "Cu Dual-Damascene"
+      },
+      {
+        "key": "ulk",
+        "zh": "多孔超低介電質",
+        "en": "Porous Ultra-Low-k"
+      },
+      {
+        "key": "airGap",
+        "zh": "氣隙（Air-Gap, k ≈ 1.0）",
+        "en": "Air-Gap (k ≈ 1.0)"
+      },
+      {
+        "key": "localTier",
+        "zh": "局部互連層",
+        "en": "Local Interconnect Tiers"
+      },
+      {
+        "key": "localM",
+        "zh": "M0 / M1–M3",
+        "en": "M0 / M1–M3"
+      },
+      {
+        "key": "localPitch",
+        "zh": "節距 18–28 nm",
+        "en": "Pitch 18–28 nm"
+      },
+      {
+        "key": "tanCu",
+        "zh": "超薄 TaN + Cu Dual-Damascene",
+        "en": "Ultra-thin TaN + Cu Dual-Damascene"
+      },
+      {
+        "key": "co",
+        "zh": "CVD/ALD 鈷（Co）",
+        "en": "CVD/ALD Cobalt (Co)"
+      },
+      {
+        "key": "ru",
+        "zh": "釕（Ru）無阻障層填充",
+        "en": "Barrierless Ruthenium (Ru)"
+      }
+    ],
+    "foldSection": true
   },
   {
     "chapterId": "ch11",

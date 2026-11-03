@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import { readdirSync } from 'node:fs';
 import { dieHits, replaceFigureComments } from '../chapter-figures.js';
 import { chapter as ch04 } from '../data/chapters/ch04.js';
+import { chapter as ch10 } from '../data/chapters/ch10.js';
 import { chapter as ch18 } from '../data/chapters/ch18.js';
 import { chapter as ch23 } from '../data/chapters/ch23.js';
 import { chapter as ch24 } from '../data/chapters/ch24.js';
@@ -39,7 +40,7 @@ assert.ok(plain.includes('class="chapter-figure"'), '沒有標題時補圖仍要
 // 2.14.0：圖說比對順序曾讓含「晶粒」的中文圖說全被畫成「晶圓→晶粒→晶片」。
 // 同一章中英文圖說描述同一張圖，畫出的圖種必須一致；並抽查幾張圖要畫成對的圖。
 const keys = html => [...html.matchAll(/<figure class="chapter-figure" data-figure="(\w+)"/g)].map(m => m[1]);
-const expected = { ch00: ['life', 'waferDieChip'], ch15: ['inspect'], ch16: ['yieldMap'], ch17: ['spc'], ch19: ['cp'], ch20: ['wirebond', 'flipchip'] };
+const expected = { ch00: ['life', 'waferDieChip'], ch10: ['metalStack', 'damascene'], ch15: ['inspect'], ch16: ['yieldMap'], ch17: ['spc'], ch19: ['cp'], ch20: ['wirebond', 'flipchip'] };
 for (const file of readdirSync(new URL('../data/chapters/', import.meta.url)).filter(f => f.endsWith('.js'))) {
   const { chapter } = await import(new URL(`../data/chapters/${file}`, import.meta.url));
   const zh = keys(replaceFigureComments(chapter.contentHtml, chapter.id));
@@ -51,5 +52,12 @@ for (const file of readdirSync(new URL('../data/chapters/', import.meta.url)).fi
 // 同一組缺陷點下，大晶粒被打中的比例要明顯高於小晶粒（正文：大晶粒的良率會比小晶粒低很多）
 const ratio = dies => dies.filter(d => d.hit).length / dies.length;
 assert.ok(ratio(dieHits(40)) > 2 * ratio(dieHits(20)), '良率圖：大晶粒被打中的比例要明顯較高');
+
+// 2.19.0：雙大馬士革由五個方框改畫成七步剖面，步驟沿用正文的七個步驟，中英都要畫齊
+const damascene = html => texts(html.match(/<figure class="chapter-figure" data-figure="damascene">[\s\S]*?<\/figure>/)?.[0] || '').join('');
+const zhSteps = damascene(replaceFigureComments(ch10.contentHtml, 'ch10'));
+for (const step of ['鋪絕緣層', '挖出導通孔', '和溝槽', '鋪阻障層', '與晶種層', '電鍍銅', '退火', '銅 CMP', '鋪覆蓋層']) assert.ok(zhSteps.includes(step), `雙大馬士革中文圖缺少步驟：${step}`);
+const enSteps = damascene(replaceFigureComments(ch10.contentHtmlEn, 'ch10'));
+for (const step of ['Deposit', 'Etch vias', 'Barrier and', 'Copper', 'Anneal', 'Copper CMP', 'Cap layer']) assert.ok(enSteps.includes(step), `雙大馬士革英文圖缺少步驟：${step}`);
 
 console.log('[PASS] 第 18、23、24 章補上無數字的結構圖，圖說與既有章節圖一致；中英圖種一致，良率圖比例正確');

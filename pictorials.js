@@ -43,7 +43,15 @@ function tools(spec, en, kit) {
   };
   // 步驟或圖例用的圈字母（圖內不用阿拉伯數字當序號）
   const mark = (x, y, letter) => `<circle cx="${x}" cy="${y}" r="9" fill="#ffffff" stroke="${TEAL}"/><text x="${x}" y="${y + 3.6}" text-anchor="middle" fill="${TEAL}" font-size="10.5" font-weight="700">${letter}</text>`;
-  return { L, t, para, arrow, mark, icon: kit.iconAt };
+  // 尺寸線：兩端都有箭頭；引線：虛線
+  const dim = (x1, y1, x2, y2, color = INK_2) => arrow((x1 + x2) / 2, (y1 + y2) / 2, x1, y1, color, 1.1) + arrow((x1 + x2) / 2, (y1 + y2) / 2, x2, y2, color, 1.1);
+  const lead = (x1, y1, x2, y2) => `<path d="M${x1} ${y1} L${x2} ${y2}" stroke="${MUTED}" stroke-dasharray="2 2"/>`;
+  // 圈字母圖例排成一列，只放名稱：各指標的說明已在圖下方的條列卡片，圖內不再重複（B 批的指標圖共用）
+  const legend = (rows, y) => rows.map(([letter, name], i) => {
+    const x = 16 + i * (608 / rows.length);
+    return mark(x + 9, y - 4, letter) + t(x + 22, y, L(name), 12, INK, 'start', 700);
+  }).join('');
+  return { L, t, para, arrow, mark, dim, lead, legend, icon: kit.iconAt };
 }
 
 // 鋸齒屋頂的廠房
@@ -509,4 +517,836 @@ function specialWafers(spec, en, kit) {
   return { svg, height: Math.ceil(bottom + 8) };
 }
 
-export const PICTORIALS = { industryMap, cleanroom, toolTypes, fabRoles, dopingLattice, cmosWells, sandToPoly, ingotToWafer, waferSizes, specialWafers };
+// ── B 批（2.19.0，ch04–ch10 製程模組）──
+const COPPER = '#d9ac73';
+const AL = '#cbd5e1';
+const PLASMA = '#ede9fe';
+const VIOLET = '#5b21b6';
+const GREEN = '#15803d';
+// 和銅同框的圖，光阻畫成淺底加斜線，避免看成銅（審查意見：RESIST 與 COPPER 幾乎同色）
+const hatchedResist = (x, y, w, h) => {
+  let d = '';
+  // 斜線從底邊往右上畫，碰到右邊界就停，不超出方框
+  for (let s = 2; s < w; s += 7) { const e = Math.min(h, w - s); d += `M${x + s} ${y + h} l${e} ${-e} `; }
+  return `<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="${AMBER_XL}" stroke="${AMBER}"/><path d="${d.trim()}" stroke="${AMBER}" stroke-width=".8"/>`;
+};
+
+// ch04 對準：左邊俯視導線說明 CD（虛線是 CD 偏大時的輪廓，誇大畫出）；右邊三格俯視：對準、往 X 偏離開接觸點、偏到旁邊的接觸點
+// 導線沿 Y 方向，偏移沿 X 方向，與導線垂直，偏移後明顯離開接觸點（技術審查修正）
+function overlayCd(spec, en, kit) {
+  const { L, t, para, arrow, dim, lead, mark, icon } = tools(spec, en, kit);
+  let svg = t(156, 24, `${L('cdTitle')} · ${L('cdName')}`, 13, INK, 'middle', 700);
+  svg += `<rect x="30" y="46" width="170" height="100" rx="4" fill="${LIGHT}" stroke="${LINE}"/>`
+    + `<rect x="60" y="46" width="28" height="100" fill="${TEAL_L}" stroke="${TEAL}"/><rect x="128" y="46" width="28" height="100" fill="${TEAL_L}" stroke="${TEAL}"/>`
+    + `<rect x="120" y="46" width="44" height="100" fill="none" stroke="${RED}" stroke-width="1.3" stroke-dasharray="4 3"/>`;
+  svg += lead(164, 70, 210, 70) + para(214, 66, L('cdLarge'), 82, 10.5, RED, 'start', 600).svg;
+  svg += lead(128, 146, 128, 164) + lead(156, 146, 156, 164) + dim(128, 160, 156, 160, INK);
+  const width = para(142, 180, L('lineWidth'), 200, 10.5, INK_2);
+  let ly = 180 + width.height + 10;
+  const def = para(156, ly, L('cdDef'), 260, 11, INK);
+  const node = para(156, ly + def.height + 2, L('notNode'), 260, 10.5, MUTED);
+  svg += width.svg + def.svg + node.svg;
+  const leftBottom = ly + def.height + 2 + node.height;
+  // 右：Overlay
+  svg += t(472, 24, L('overlay'), 13, INK, 'middle', 700);
+  const odef = para(472, 42, L('overlayDef'), 290, 11, INK_2);
+  svg += odef.svg;
+  const my = 42 + odef.height + 34;
+  const contact = (cx, cy, stroke = BLUE) => `<rect x="${cx - 9}" y="${cy - 9}" width="18" height="18" fill="${BLUE_L}" stroke="${stroke}" stroke-width="${stroke === BLUE ? 1 : 1.8}"/>`;
+  const line = (cx, dashed) => dashed ? `<rect x="${cx - 7}" y="${my}" width="14" height="70" fill="none" stroke="${MUTED}" stroke-dasharray="3 2"/>` : `<rect x="${cx - 7}" y="${my}" width="14" height="70" fill="${TEAL_L}" fill-opacity=".9" stroke="${TEAL}"/>`;
+  // C：旁邊的接觸點靠得較近，偏移的導線同時壓到自己與旁邊的接觸點，兩個節點被接在一起（審查意見：原本整條移到旁邊，同時變成斷路）
+  const minis = [
+    { x: 326, own: 46, neighbor: null, shift: 0 },
+    { x: 426, own: 46, neighbor: null, shift: 20 },
+    { x: 526, own: 30, neighbor: 54, shift: 12 }
+  ];
+  minis.forEach((m, i) => {
+    svg += `<rect x="${m.x}" y="${my}" width="92" height="90" rx="4" fill="${LIGHT}" stroke="${LINE}"/>` + contact(m.x + m.own, my + 61);
+    if (m.neighbor) svg += contact(m.x + m.neighbor, my + 61, RED);
+    if (m.shift) svg += line(m.x + m.own, true);
+    svg += line(m.x + m.own + m.shift) + mark(m.x + 2, my + 2, 'ABC'[i]);
+  });
+  svg += icon('check', 362, my + 96, 20, GREEN);
+  svg += t(472, my + 112, L('open'), 11.5, RED, 'middle', 700) + t(572, my + 112, L('short'), 11.5, RED, 'middle', 700);
+  // 往 X 方向的偏移：B、C 兩格上方
+  svg += arrow(440, my - 10, 610, my - 10, RED, 1.5) + t(525, my - 16, L('shiftX'), 10.5, RED, 'middle', 600);
+  let ry = my + 136;
+  svg += `<rect x="330" y="${ry - 10}" width="12" height="12" fill="${BLUE_L}" stroke="${BLUE}"/>` + t(348, ry, L('contact'), 10.5, INK_2, 'start')
+    + `<rect x="470" y="${ry - 10}" width="12" height="12" fill="${TEAL_L}" stroke="${TEAL}"/>` + t(488, ry, L('metalLine'), 10.5, INK_2, 'start');
+  const land = para(472, ry + 20, L('land'), 290, 11, INK);
+  const few = para(472, ry + 22 + land.height, `${L('advanced')}${en ? ', ' : '，'}${L('fewNm')}`, 290, 11, INK_2);
+  svg += land.svg + few.svg;
+  return { svg, height: Math.ceil(Math.max(leftBottom, ry + 22 + land.height + few.height) + 6) };
+}
+
+// ch04 常見異常：四張卡片只放異常名稱、小圖與一句結果，可能原因留給表格（技術審查修正）
+function lithoDefects(spec, en, kit) {
+  const { L, t, para, lead } = tools(spec, en, kit);
+  const w = 146, gap = (608 - 4 * w) / 3;
+  const art = [
+    // CD 偏大或偏小：虛線是目標線寬，左邊偏窄、右邊偏寬
+    (x, y) => [[34, 8], [73, 12], [112, 18]].map(([dx, lw]) => `<rect x="${x + dx - lw / 2}" y="${y + 8}" width="${lw}" height="64" fill="${TEAL_L}" stroke="${TEAL}"/><rect x="${x + dx - 6}" y="${y + 8}" width="12" height="64" fill="none" stroke="${INK_2}" stroke-dasharray="3 2"/>`).join(''),
+    // 局部失焦：背面的顆粒把晶圓頂高，凸起處的圖形離開清楚成像的範圍（顆粒與頂高都誇大）
+    (x, y) => `<rect x="${x + 10}" y="${y + 48}" width="126" height="9" fill="${TEAL_XL}"/><path d="M${x + 10} ${y + 48} h126 M${x + 10} ${y + 57} h126" stroke="${TEAL}" stroke-dasharray="3 2"/>`
+      + `<rect x="${x + 10}" y="${y + 66}" width="126" height="10" rx="2" fill="#e2e8f0" stroke="${INK_2}"/><circle cx="${x + 73}" cy="${y + 61}" r="4.5" fill="${RED}"/>`
+      + `<path d="M${x + 10} ${y + 63} H${x + 52} C${x + 62} ${y + 63}, ${x + 64} ${y + 52}, ${x + 73} ${y + 52} S${x + 84} ${y + 63}, ${x + 94} ${y + 63} H${x + 136}" fill="none" stroke="#94a3b8" stroke-width="5"/>`
+      + [18, 30, 42, 104, 116, 128].map(dx => `<path d="M${x + dx} ${y + 52} v6" stroke="${TEAL}" stroke-width="2"/>`).join('')
+      + [64, 73, 82].map(dx => `<path d="M${x + dx} ${y + 40} v8" stroke="${TEAL}" stroke-width="4" stroke-opacity=".3"/>`).join('')
+      + lead(x + 78, y + 64, x + 104, y + 84) + t(x + 106, y + 88, L('particle'), 10, RED, 'start'),
+    // Overlay 超規：上層導線整排偏移，接不到下層的接觸點
+    (x, y) => [50, 96].map(dx => `<rect x="${x + dx - 8}" y="${y + 50}" width="16" height="16" fill="${BLUE_L}" stroke="${BLUE}"/><rect x="${x + dx - 6}" y="${y + 8}" width="12" height="62" fill="none" stroke="${MUTED}" stroke-dasharray="3 2"/><rect x="${x + dx + 12}" y="${y + 8}" width="12" height="62" fill="${TEAL_L}" fill-opacity=".9" stroke="${TEAL}"/>`).join(''),
+    // 光阻缺陷：顯影後的光阻線條，氣泡處缺一段、顆粒處變形
+    (x, y) => `<rect x="${x + 28}" y="${y + 8}" width="18" height="64" fill="${RESIST}" stroke="${AMBER}"/>`
+      + `<path d="M${x + 64} ${y + 8} h18 v24 h-18 z M${x + 64} ${y + 48} h18 v24 h-18 z" fill="${RESIST}" stroke="${AMBER}"/><circle cx="${x + 73}" cy="${y + 40}" r="7" fill="none" stroke="${MUTED}" stroke-dasharray="2 2"/>`
+      + `<path d="M${x + 100} ${y + 8} h18 v34 q10 6 0 14 v16 h-18 z" fill="${RESIST}" stroke="${AMBER}"/><circle cx="${x + 122}" cy="${y + 49}" r="4" fill="${RED}"/>`
+  ];
+  const cards = [['cd', 'cdResult'], ['defocus', 'defocusResult'], ['overlay', 'overlayResult'], ['resist', 'resistResult']];
+  const texts = cards.map(([a, b]) => [para(0, 0, L(a), w - 16, 12, INK, 'middle', 700), para(0, 0, L(b), w - 16, 10.5)]);
+  const cardH = 106 + Math.max(...texts.map(([a, b]) => a.height + b.height)) + 6;
+  let svg = '';
+  cards.forEach(([a, b], i) => {
+    const x = 16 + i * (w + gap);
+    svg += `<rect x="${x}" y="12" width="${w}" height="${cardH}" rx="8" fill="#ffffff" stroke="${LINE}"/>` + art[i](x, 16);
+    const head = para(x + w / 2, 118, L(a), w - 16, 12, INK, 'middle', 700);
+    svg += head.svg + para(x + w / 2, 118 + head.height, L(b), w - 16, 10.5, RED).svg;
+  });
+  return { svg, height: Math.ceil(12 + cardH + 8) };
+}
+
+// ch05 為什麼需要薄膜：主剖面只畫成品中仍存在的層；硬遮罩放在右上小圖（只在製程中使用），三色分組圖例（技術審查修正）
+function filmStack(spec, en, kit) {
+  const { L, t, para, lead } = tools(spec, en, kit);
+  const X0 = 136, X1 = 404;
+  let svg = `<rect x="${X0}" y="172" width="${X1 - X0}" height="28" fill="${SI}" stroke="${INK_2}"/>`
+    + `<rect x="${X0}" y="100" width="${X1 - X0}" height="72" fill="${TEAL_XL}" stroke="${TEAL}"/>`
+    // 氮化矽屬絕緣層，同時當蝕刻停止層：填色用絕緣色、外框用輔助製程的粉紅（審查意見）
+    + `<rect x="${X0}" y="92" width="${X1 - X0}" height="8" fill="${TEAL_L}" stroke="${PINK}" stroke-width="1.3"/>`
+    + `<rect x="${X0}" y="40" width="${X1 - X0}" height="52" fill="${TEAL_XL}" stroke="${TEAL}"/>`
+    // 多晶矽閘極與基板之間有一層很薄的閘極絕緣層（審查意見：原本直接貼在基板上）
+    + `<rect x="226" y="142" width="56" height="26" rx="2" fill="${AMBER_L}" stroke="${AMBER}"/><rect x="222" y="168" width="64" height="4" fill="${TEAL_L}" stroke="${TEAL}" stroke-width=".8"/>`
+    + [[150, 40], [214, 80], [316, 36], [364, 30]].map(([x, w]) => `<rect x="${x}" y="48" width="${w}" height="28" rx="2" fill="${COPPER}" stroke="${RED}"/>`).join('')
+    + `<rect x="247" y="76" width="14" height="66" fill="${COPPER}" stroke="${RED}"/>`;
+  // 左側標籤欄，以引線接到各層
+  const tag = (y, key, fill, toX, toY, weight = 600) => para(16, y, L(key), 112, 11, fill, 'start', weight).svg + lead(118, y - 4, toX, toY);
+  svg += tag(66, 'metal', RED, 150, 62) + tag(98, 'nitride', TEAL, X0, 96) + para(16, 112, L('etchStop'), 112, 10.5, PINK, 'start', 600).svg
+    + tag(140, 'oxide', TEAL, X0, 136) + tag(166, 'poly', AMBER, 226, 158);
+  // 右上：硬遮罩小圖，畫在待蝕刻層上、光阻下
+  // 標題與說明在上，小剖面在下（標題同為粉紅色，對應硬遮罩那一層）；光阻畫斜線，不和導電的銅色混淆（審查意見）
+  svg += `<rect x="424" y="22" width="200" height="114" rx="8" fill="#ffffff" stroke="${LINE}"/>`
+    + `<rect x="444" y="108" width="160" height="18" fill="${TEAL_XL}" stroke="${TEAL}"/>`
+    + [452, 512, 572].map(x => `<rect x="${x}" y="100" width="24" height="8" fill="${PINK_L}" stroke="${PINK}"/>` + hatchedResist(x, 84, 24, 16)).join('');
+  svg += t(524, 42, L('hardMask'), 12, PINK, 'middle', 700) + para(524, 58, L('helpPrecise'), 180, 10, INK_2).svg;
+  // 圖例：絕緣、導電、輔助製程
+  let y = 156;
+  [['insulate', 'insulateDoes', TEAL_XL, TEAL], ['conduct', 'conductDoes', COPPER, RED], ['support', 'supportDoes', PINK_L, PINK]].forEach(([name, note, fill, stroke]) => {
+    const head = para(446, y, L(name), 176, 11.5, INK, 'start', 700);
+    const body = para(446, y + head.height, L(note), 176, 10.5, INK_2, 'start');
+    // 導電一類有金屬與多晶矽兩種顏色，圖例方塊左右各半
+    svg += (name === 'conduct' ? `<rect x="426" y="${y - 10}" width="6" height="12" fill="${COPPER}" stroke="${RED}"/><rect x="432" y="${y - 10}" width="6" height="12" fill="${AMBER_L}" stroke="${AMBER}"/>` : `<rect x="426" y="${y - 10}" width="12" height="12" fill="${fill}" stroke="${stroke}"/>`) + head.svg + body.svg;
+    y += head.height + body.height + 6;
+  });
+  return { svg, height: Math.ceil(Math.max(212, y) + 4) };
+}
+
+// ch05 熱氧化：左邊直立爐管（晶圓水平疊放，氧氣或水蒸氣擇一通入）；右邊乾式、濕式剖面，虛線是原本的矽表面，
+// 氧化層虛線上方略厚於下方、新的矽介面低於原表面（技術審查修正；不標數字）
+function thermalOxidation(spec, en, kit) {
+  const { L, t, para, arrow } = tools(spec, en, kit);
+  let svg = para(108, 18, L('gasIn'), 184, 11, INK, 'middle', 600).svg;
+  svg += `<rect x="40" y="60" width="136" height="150" rx="10" fill="${AMBER_XL}" stroke="${AMBER}" stroke-width="1.3"/>`
+    + Array.from({ length: 11 }, (_, i) => `<path d="M48 ${72 + i * 12} q-6 6 0 12 M168 ${72 + i * 12} q6 6 0 12" fill="none" stroke="${AMBER}" stroke-width="1.3"/>`).join('')
+    + `<path d="M60 210 V96 a48 30 0 0 1 96 0 V210" fill="#ffffff" stroke="${MUTED}" stroke-width="1.4"/>`
+    + `<path d="M78 92 V204 M138 92 V204" stroke="${MUTED}" stroke-width="1.8"/>`
+    + Array.from({ length: 16 }, (_, i) => `<path d="M76 ${96 + i * 6.6} h64" stroke="${INK_2}" stroke-width="1.8"/>`).join('')
+    + `<path d="M108 40 V64" stroke="${TEAL}" stroke-width="2"/>` + arrow(108, 56, 108, 76, TEAL, 2)
+    + [[96, 84], [122, 86]].map(([x, y]) => `<circle cx="${x}" cy="${y}" r="2.6" fill="${RED}"/><circle cx="${x + 5}" cy="${y}" r="2.6" fill="${RED}"/>`).join('');
+  let y = 230;
+  const name = para(108, y, L('furnace'), 180, 12.5, INK, 'middle', 700); y += name.height;
+  const batch = para(108, y, L('batchTool'), 180, 11, INK_2); y += batch.height;
+  const hundred = para(108, y, L('hundred'), 180, 11, INK_2); y += hundred.height;
+  svg += name.svg + batch.svg + hundred.svg;
+  const leftBottom = y;
+  // 右：乾式與濕式的剖面
+  const panel = (x, title, gas, total, rate, trait, consumed) => {
+    const top = 130 - Math.round(total * 0.55), bottom = 130 + Math.round(total * 0.45);
+    let out = `<rect x="${x}" y="12" width="196" height="0" rx="8" fill="#ffffff" stroke="${LINE}"/>`;
+    out += t(x + 98, 32, L(title), 13, INK, 'middle', 700) + t(x + 98, 50, L(gas), 11, INK_2);
+    out += `<rect x="${x + 16}" y="${bottom}" width="100" height="${176 - bottom}" fill="${SI}" stroke="${INK_2}"/>`
+      + `<rect x="${x + 16}" y="${top}" width="100" height="${bottom - top}" fill="${TEAL_L}" stroke="${TEAL}"/>`
+      + `<path d="M${x + 10} 130 h112" stroke="${INK}" stroke-width="1.2" stroke-dasharray="5 3"/><path d="M${x + 16} ${bottom} h100" stroke="${TEAL}" stroke-width="2.4"/>`
+      + t(x + 66, 168, L('silicon'), 11, INK);
+    out += total > 30 ? t(x + 66, top + 16, L('sio2'), 10.5, TEAL, 'middle', 600) : '';
+    if (consumed) out += `<path d="M${x + 120} 130 h5 v${bottom - 130} h-5" fill="none" stroke="${TEAL}" stroke-width="1.4"/>` + para(x + 130, 136, L('consumed'), 64, 10, TEAL, 'start', 600).svg;
+    let ty = 196;
+    const r = para(x + 98, ty, L(rate), 180, 12, INK, 'middle', 700); ty += r.height;
+    const tr = para(x + 98, ty, L(trait), 176, 10.5, INK_2); ty += tr.height;
+    return { svg: out + r.svg + tr.svg, bottom: ty };
+  };
+  const dry = panel(220, 'dry', 'useO2', 16, 'slow', 'quality', false);
+  const wet = panel(428, 'wet', 'useSteam', 44, 'fast', 'thicker', true);
+  // 乾式太薄，「二氧化矽」用引線標在右側
+  const dryLabel = `<path d="M336 128 h18" stroke="${MUTED}" stroke-dasharray="2 2"/>` + t(358, 132, L('sio2'), 10.5, TEAL, 'start', 600);
+  const panelBottom = Math.max(dry.bottom, wet.bottom) + 6;
+  // 中文補上主詞「氧化層」；英文的介面句本身已有 the oxide
+  const iface = para(422, panelBottom + 18, en ? L('interface') : `${L('oxideLayer')}${L('interface')}`, 400, 11, TEAL, 'middle', 600);
+  svg += (dry.svg + wet.svg).replace(/height="0"/g, `height="${panelBottom - 12}"`) + dryLabel + iface.svg;
+  return { svg, height: Math.ceil(Math.max(leftBottom, panelBottom + 18 + iface.height) + 4) };
+}
+
+// ch05 CVD：左邊 LPCVD 畫成熱壁管（管內多片晶圓、外圍加熱器、一端進氣一端抽走）；右邊 PECVD 平行板單片腔，
+// 氣體從上電極（噴淋頭）進入，兩電極間有電漿光暈，晶圓剖面內有金屬線（技術審查修正；兩邊都不標溫度數字）
+function cvdTypes(spec, en, kit) {
+  const { L, t, para, arrow } = tools(spec, en, kit);
+  // 上方共同元素：氣體進、固態薄膜、廢氣抽走
+  const common = [['gasesIn', TEAL], ['solidFilm', BLUE], ['exhaust', MUTED]];
+  let svg = '', ch = 0;
+  common.forEach(([key, color], i) => {
+    const x = 16 + i * 208;
+    const p = para(x + 22, 26, L(key), 178, 11, INK, 'start', 600);
+    ch = Math.max(ch, p.height);
+    svg += (i === 1 ? `<rect x="${x}" y="17" width="14" height="10" fill="${TEAL_L}" stroke="${TEAL}"/>` : arrow(x, 22, x + 16, 22, color, 2)) + p.svg;
+  });
+  const top = 26 + ch + 14;
+  // 左：LPCVD 熱壁管
+  const ty = top + 20;
+  svg += `<rect x="44" y="${ty}" width="232" height="84" rx="8" fill="${AMBER_XL}" stroke="${AMBER}" stroke-width="1.3"/>`
+    + Array.from({ length: 10 }, (_, i) => `<path d="M${56 + i * 22} ${ty + 6} q6 -6 12 0 M${56 + i * 22} ${ty + 78} q6 6 12 0" fill="none" stroke="${AMBER}" stroke-width="1.3"/>`).join('')
+    + `<rect x="36" y="${ty + 14}" width="248" height="56" rx="26" fill="#ffffff" stroke="${MUTED}" stroke-width="1.4"/>`
+    + Array.from({ length: 14 }, (_, i) => `<path d="M${88 + i * 11} ${ty + 22} V${ty + 62}" stroke="${INK_2}" stroke-width="2"/>`).join('')
+    + `<path d="M82 ${ty + 64} H240" stroke="${MUTED}" stroke-width="2"/>`
+    + arrow(14, ty + 42, 34, ty + 42, TEAL, 2) + arrow(286, ty + 42, 308, ty + 42, MUTED, 2);
+  let ly = ty + 106;
+  const lp = [['lpcvdName', 12.5, INK, 700], ['lpEnergy', 11, AMBER, 600], ['lpGood', 11, INK_2, 400], ['lpHot', 11, INK_2, 400]].map(([key, size, fill, weight]) => {
+    const text = key === 'lpcvdName' ? (en ? `${L('lpcvd')} (${L('lpName')})` : `${L('lpcvd')}（${L('lpName')}）`) : L(key);
+    const p = para(160, ly, text, 280, size, fill, 'middle', weight); ly += p.height; return p.svg;
+  }).join('');
+  svg += lp;
+  // 右：PECVD 平行板單片腔
+  const px = 340;
+  svg += `<rect x="${px + 20}" y="${ty}" width="232" height="96" rx="8" fill="${LIGHT}" stroke="${INK_2}" stroke-width="1.3"/>`
+    + `<rect x="${px + 60}" y="${ty + 12}" width="152" height="10" fill="#cbd5e1" stroke="${INK_2}"/>` + Array.from({ length: 9 }, (_, i) => `<circle cx="${px + 72 + i * 16}" cy="${ty + 24}" r="1.4" fill="${INK_2}"/>`).join('')
+    + `<path d="M${px + 136} ${ty - 18} V${ty + 12}" stroke="${TEAL}" stroke-width="2"/>` + arrow(px + 136, ty - 10, px + 136, ty + 10, TEAL, 2)
+    + `<ellipse cx="${px + 136}" cy="${ty + 46}" rx="74" ry="16" fill="${PLASMA}" stroke="${VIOLET}" stroke-opacity=".5"/>`
+    + `<rect x="${px + 92}" y="${ty + 66}" width="88" height="5" fill="#e2e8f0" stroke="${INK_2}"/><rect x="${px + 60}" y="${ty + 71}" width="152" height="10" fill="#cbd5e1" stroke="${INK_2}"/>`
+    + arrow(px + 252, ty + 84, px + 276, ty + 84, MUTED, 2) + t(px + 136, ty + 50, L('plasma'), 10.5, VIOLET, 'middle', 600);
+  // 晶圓剖面小圖：已經有金屬線，薄膜蓋在上面
+  const zx = px + 28, zy = ty + 108;
+  svg += `<rect x="${zx}" y="${zy + 30}" width="96" height="14" fill="${SI}" stroke="${INK_2}"/>` + [zx + 12, zx + 52].map(x => `<rect x="${x}" y="${zy + 18}" width="28" height="12" fill="${COPPER}" stroke="${RED}"/>`).join('')
+    // 薄膜等厚貼住金屬線與基板（審查意見：原本和金屬之間留了白縫，像空洞）
+    + `<path d="M${zx} ${zy + 30} V${zy + 26} H${zx + 8} V${zy + 14} H${zx + 44} V${zy + 26} H${zx + 48} V${zy + 14} H${zx + 84} V${zy + 26} H${zx + 96} V${zy + 30} H${zx + 80} V${zy + 18} H${zx + 52} V${zy + 30} H${zx + 40} V${zy + 18} H${zx + 12} V${zy + 30} Z" fill="${TEAL_L}" stroke="${TEAL}"/>`
+    + `<path d="M${px + 96} ${ty + 71} L${zx + 48} ${zy + 8}" stroke="${MUTED}" stroke-dasharray="2 2"/>`;
+  const fit = para(zx + 108, zy + 18, L('fitMetal'), 140, 10.5, INK, 'start', 600);
+  const cant = para(zx + 108, zy + 18 + fit.height, L('metalCant'), 140, 10.5, RED, 'start');
+  svg += fit.svg + cant.svg;
+  let ry = Math.max(zy + 52, zy + 18 + fit.height + cant.height) + 14;
+  const pe = [['pecvdName', 12.5, INK, 700], ['peEnergy', 11, VIOLET, 600], ['peLow', 11, INK_2, 400]].map(([key, size, fill, weight]) => {
+    const text = key === 'pecvdName' ? (en ? `${L('pecvd')} (${L('peName')})` : `${L('pecvd')}（${L('peName')}）`) : L(key);
+    const p = para(px + 136, ry, text, 280, size, fill, 'middle', weight); ry += p.height; return p.svg;
+  }).join('');
+  svg += pe;
+  return { svg, height: Math.ceil(Math.max(ly, ry) + 6) };
+}
+
+// ch05 磊晶：左邊原子排列的剖面，新膜的原子落在底下晶圓同一組格線上；右邊是交替堆疊的矽與矽鍺層
+function epitaxy(spec, en, kit) {
+  const { L, t, para, lead } = tools(spec, en, kit);
+  let svg = para(180, 22, L('specialCvd'), 330, 12, INK, 'middle', 700).svg;
+  const x0 = 40, y0 = 52, s = 22, cols = 11;
+  svg += `<rect x="${x0 - 14}" y="${y0 - 14}" width="${(cols - 1) * s + 28}" height="${6 * s + 28}" rx="6" fill="#ffffff" stroke="${LINE}"/>`;
+  for (let i = 0; i < cols; i++) svg += `<path d="M${x0 + i * s} ${y0 - 10} V${y0 + 6 * s + 10}" stroke="${TEAL}" stroke-opacity=".35" stroke-dasharray="2 3"/>`;
+  for (let j = 0; j < 7; j++) for (let i = 0; i < cols; i++) {
+    const film = j < 3;
+    svg += `<circle cx="${x0 + i * s}" cy="${y0 + j * s}" r="6" fill="${film ? TEAL_L : '#e2e8f0'}" stroke="${film ? TEAL : INK_2}"/>`;
+  }
+  svg += `<path d="M${x0 - 14} ${y0 + 2.5 * s} h${(cols - 1) * s + 28}" stroke="${INK}" stroke-dasharray="5 3"/>`;
+  const right = x0 + (cols - 1) * s + 22;
+  svg += lead(right - 8, y0 + s, right + 4, y0 + s) + para(right + 8, y0 + s + 4, L('newFilm'), 100, 11, TEAL, 'start', 700).svg
+    + lead(right - 8, y0 + 4.5 * s, right + 4, y0 + 4.5 * s) + para(right + 8, y0 + 4.5 * s + 4, L('wafer'), 100, 11, INK_2, 'start', 700).svg;
+  const cont = para(180, y0 + 6 * s + 40, L('continues'), 330, 11, INK);
+  const single = para(180, y0 + 6 * s + 40 + cont.height, L('singleCrystal'), 330, 11, TEAL, 'middle', 600);
+  svg += cont.svg + single.svg;
+  const leftBottom = y0 + 6 * s + 40 + cont.height + single.height;
+  // 右：先進電晶體裡交替堆疊的矽與矽鍺
+  const rx = 470;
+  svg += para(rx + 60, 22, L('advanced'), 200, 12, INK, 'middle', 700).svg;
+  svg += `<rect x="${rx}" y="168" width="120" height="30" fill="#e2e8f0" stroke="${INK_2}"/>`
+    // 由下往上先長矽鍺，再與矽交替；矽不會直接疊在矽基板上（審查意見）
+    + Array.from({ length: 6 }, (_, i) => `<rect x="${rx}" y="${66 + i * 17}" width="120" height="17" fill="${i % 2 ? AMBER_L : '#e2e8f0'}" stroke="${i % 2 ? AMBER : INK_2}"/>`).join('');
+  const stack = para(rx + 60, 222, L('stack'), 200, 11, INK);
+  svg += stack.svg + `<rect x="${rx - 2}" y="${236 + stack.height - 18}" width="12" height="12" fill="#e2e8f0" stroke="${INK_2}"/>` + t(rx + 16, 236 + stack.height - 8, L('si'), 10.5, INK_2, 'start')
+    + `<rect x="${rx + 62}" y="${236 + stack.height - 18}" width="12" height="12" fill="${AMBER_L}" stroke="${AMBER}"/>` + t(rx + 80, 236 + stack.height - 8, L('sige'), 10.5, INK_2, 'start');
+  return { svg, height: Math.ceil(Math.max(leftBottom, 236 + stack.height) + 8) };
+}
+
+// ch05 薄膜要看哪些指標：上半一張剖面標出五個指標；下半是填窄溝的兩種長法
+// 上列溝槽中段略寬，薄膜各處等厚，開口先合攏、中段留下空洞；開口頂端不畫懸垂，避免和 PVD 的懸垂混淆（技術審查修正）
+function filmMetrics(spec, en, kit) {
+  const { L, t, para, dim, lead, mark, legend } = tools(spec, en, kit);
+  let svg = '';
+  // 主剖面：基板上有一個台階，薄膜蓋在上面；台階上方的薄膜裡夾著一顆微粒
+  svg += `<path d="M24 150 V112 H170 V72 H300 V150 Z" fill="${SI}" stroke="${INK_2}"/>`
+    + `<path d="M24 112 V100 H158 V60 H300 V72 H170 V112 Z" fill="${TEAL_L}" stroke="${TEAL}"/>`
+    + `<circle cx="244" cy="64" r="5" fill="${RED}"/>`;
+  // 階梯覆蓋：頂部、側壁、底部三處的厚度（審查意見：原本只有一條引線，看不出比的是哪三處）
+  svg += dim(60, 100, 60, 112, INK) + mark(78, 88, 'A') + mark(146, 80, 'C') + mark(262, 44, 'E')
+    + dim(210, 60, 210, 72, TEAL) + dim(158, 90, 170, 90, TEAL) + dim(132, 100, 132, 112, TEAL);
+  // 均勻度：同一片晶圓不同位置、不同晶圓之間
+  const wafer = (cx, cy, shade) => waferTop(cx, cy, 24, '#ffffff', INK_2) + [[0, 0], [-12, -8], [12, -8], [-12, 10], [12, 10]].map(([dx, dy]) => `<circle cx="${cx + dx}" cy="${cy + dy}" r="3.2" fill="${shade}"/>`).join('');
+  svg += wafer(366, 86, TEAL) + wafer(426, 86, TEAL) + mark(340, 56, 'B');
+  // 應力：晶圓翹曲，薄膜在右端剝落翹起（正文：翹曲或薄膜剝落）
+  svg += `<path d="M488 104 Q548 70 608 104" fill="none" stroke="${SI}" stroke-width="9"/><path d="M488 98 Q548 64 594 90" fill="none" stroke="${TEAL}" stroke-width="3"/>`
+    + `<path d="M594 90 q10 -2 16 -14" fill="none" stroke="${TEAL}" stroke-width="3"/>` + mark(500, 62, 'D');
+  svg += legend([['A', 'thickness'], ['B', 'uniformity'], ['C', 'stepCoverage'], ['D', 'stress'], ['E', 'particles']], 180);
+  // 下半：要把窄溝填滿時
+  let y = 202;
+  svg += `<path d="M16 ${y} H624" stroke="${LINE}"/>`;
+  y += 22;
+  svg += t(320, y, L('fillTitle'), 12.5, INK, 'middle', 700);
+  // 接回上方的階梯覆蓋：覆蓋均勻不一定是好事（舊圖說「常見混淆」的意思）
+  const notGood = para(320, y + 18, L('notAlwaysGood'), 500, 11, RED, 'middle', 600);
+  svg += notGood.svg;
+  const top = y + 18 + notGood.height + 6;
+  // 溝槽：開口略窄、中段略寬（實際蝕刻常見的微凸輪廓）
+  const trench = x => `<path d="M${x} ${top} H${x + 34} C${x + 30} ${top + 30}, ${x + 30} ${top + 50}, ${x + 36} ${top + 76} H${x + 64} C${x + 70} ${top + 50}, ${x + 70} ${top + 30}, ${x + 66} ${top} H${x + 100} V${top + 90} H${x} Z" fill="${SI}" stroke="${INK_2}"/>`;
+  // 填滿後的薄膜：表面一層加上整個溝槽（沿溝槽輪廓反向走一圈）
+  const film = (x, inner) => `<path d="M${x} ${top - 8} H${x + 100} V${top} H${x + 66} C${x + 70} ${top + 30}, ${x + 70} ${top + 50}, ${x + 64} ${top + 76} H${x + 36} C${x + 30} ${top + 50}, ${x + 30} ${top + 30}, ${x + 34} ${top} H${x} Z" fill="${TEAL_L}" stroke="${TEAL}"/>` + inner;
+  // 等厚生長：途中開口變窄；結果開口合攏、中段留下空洞
+  // 途中：薄膜沿側壁、底部與表面等厚，剩下的開口在頂端最窄
+  const confA = x => trench(x) + film(x, `<path d="M${x + 41} ${top - 8} C${x + 37} ${top + 30}, ${x + 37} ${top + 50}, ${x + 43} ${top + 68} H${x + 57} C${x + 63} ${top + 50}, ${x + 63} ${top + 30}, ${x + 59} ${top - 8} Z" fill="#ffffff" stroke="${TEAL}"/><path d="M${x + 41.5} ${top - 8} H${x + 58.5}" stroke="#ffffff" stroke-width="2"/>`);
+  const confB = x => trench(x) + film(x, `<path d="M${x + 50} ${top + 14} C${x + 44} ${top + 30}, ${x + 42} ${top + 52}, ${x + 46} ${top + 66} H${x + 54} C${x + 58} ${top + 52}, ${x + 56} ${top + 30}, ${x + 50} ${top + 14} Z" fill="#ffffff" stroke="${RED}"/>`);
+  const upA = x => trench(x) + `<path d="M${x + 33} ${top + 46} C${x + 33} ${top + 60}, ${x + 34} ${top + 70}, ${x + 36} ${top + 76} H${x + 64} C${x + 66} ${top + 70}, ${x + 67} ${top + 60}, ${x + 67} ${top + 46} Z" fill="${TEAL_L}" stroke="${TEAL}"/><rect x="${x}" y="${top - 4}" width="34" height="4" fill="${TEAL_L}" stroke="${TEAL}"/><rect x="${x + 66}" y="${top - 4}" width="34" height="4" fill="${TEAL_L}" stroke="${TEAL}"/>`;
+  const upB = x => trench(x) + film(x, '');
+  svg += confA(30) + `<path d="M138 ${top + 44} h20" stroke="${TEAL}" stroke-width="1.5"/><path d="M158 ${top + 44} l-6 -4 v8 z" fill="${TEAL}"/>` + confB(170);
+  svg += upA(344) + `<path d="M452 ${top + 44} h20" stroke="${TEAL}" stroke-width="1.5"/><path d="M472 ${top + 44} l-6 -4 v8 z" fill="${TEAL}"/>` + upB(484);
+  svg += lead(220, top + 40, 290, top + 40) + t(292, top + 44, L('voidShort'), 10.5, RED, 'start', 600);
+  let ly = top + 108;
+  const side = para(160, ly, L('sidewalls'), 290, 11.5, INK, 'middle', 700);
+  const close = para(160, ly + side.height, `${L('closeFirst')}${en ? ' and ' : '，'}${L('void')}`, 290, 10.5, RED);
+  const up = para(474, ly, L('bottomUp'), 290, 11.5, INK, 'middle', 700);
+  const want = para(474, ly + up.height, L('want'), 290, 10.5, TEAL, 'middle', 600);
+  svg += side.svg + close.svg + up.svg + want.svg;
+  return { svg, height: Math.ceil(ly + Math.max(side.height + close.height, up.height + want.height) + 6) };
+}
+
+// ch06 蝕刻在做什麼：三格剖面，光阻圖形經蝕刻轉印到底下的材料，最後拿掉光阻
+function etchTransfer(spec, en, kit) {
+  const { L, t, para, arrow, mark, lead } = tools(spec, en, kit);
+  const w = 184, xs = [16, 228, 440];
+  let svg = '';
+  const base = x => `<rect x="${x + 8}" y="120" width="168" height="24" fill="${SI}" stroke="${INK_2}"/>`;
+  const resist = x => `<rect x="${x + 8}" y="74" width="56" height="18" fill="${RESIST}" stroke="${AMBER}"/><rect x="${x + 120}" y="74" width="56" height="18" fill="${RESIST}" stroke="${AMBER}"/>`;
+  // A：微影後，圖形只在光阻上
+  let x = xs[0];
+  svg += base(x) + `<rect x="${x + 8}" y="92" width="168" height="28" fill="${TEAL_L}" stroke="${TEAL}"/>` + resist(x)
+    + lead(x + 36, 74, x + 36, 58) + t(x + 36, 52, L('resist'), 10.5, AMBER, 'middle', 600);
+  // B：蝕刻中，開口下方的材料被去除，光阻下方受到保護
+  x = xs[1];
+  svg += base(x) + `<rect x="${x + 8}" y="92" width="56" height="28" fill="${TEAL_L}" stroke="${TEAL}"/><rect x="${x + 120}" y="92" width="56" height="28" fill="${TEAL_L}" stroke="${TEAL}"/>`
+    + `<rect x="${x + 64}" y="92" width="56" height="28" fill="none" stroke="${RED}" stroke-dasharray="3 2"/>` + resist(x)
+    + [76, 92, 108].map(dx => arrow(x + dx, 34, x + dx, 112, VIOLET, 1.4)).join('') + [24, 48, 136, 160].map(dx => arrow(x + dx, 34, x + dx, 68, VIOLET, 1.4)).join('');
+  // C：拿掉光阻，圖形留在材料上
+  x = xs[2];
+  svg += base(x) + `<rect x="${x + 8}" y="92" width="56" height="28" fill="${TEAL_L}" stroke="${TEAL}"/><rect x="${x + 120}" y="92" width="56" height="28" fill="${TEAL_L}" stroke="${TEAL}"/>`;
+  svg += arrow(204, 106, 224, 106) + arrow(416, 106, 436, 106);
+  // 圖下文字
+  const a = para(xs[0] + w / 2, 166, L('onlyResist'), w - 12, 11, INK);
+  const covered = [para(xs[1] + 48, 166, L('covered'), 88, 10.5, INK, 'middle', 600), null];
+  covered[1] = para(xs[1] + 48, 166 + covered[0].height, L('protected'), 88, 10.5, TEAL, 'middle', 600);
+  const open = [para(xs[1] + 136, 166, L('uncovered'), 88, 10.5, INK, 'middle', 600), null];
+  open[1] = para(xs[1] + 136, 166 + open[0].height, L('removed'), 88, 10.5, RED, 'middle', 600);
+  const c = para(xs[2] + w / 2, 166, L('transfer'), w - 12, 11, INK);
+  svg += a.svg + covered.map(p => p.svg).join('') + open.map(p => p.svg).join('') + c.svg
+    // 引線終點落在受保護的材料與被去除的開口內，不指進基板（審查意見）
+    + lead(xs[1] + 36, 150, xs[1] + 36, 106) + lead(xs[1] + 92, 150, xs[1] + 92, 106);
+  const textBottom = 166 + Math.max(a.height, covered[0].height + covered[1].height, open[0].height + open[1].height, c.height);
+  xs.forEach((px, i) => { svg = `<rect x="${px}" y="16" width="${w}" height="${textBottom - 4}" rx="8" fill="#ffffff" stroke="${LINE}"/>` + svg + mark(px + 2, 18, 'ABC'[i]); });
+  const stencil = para(320, textBottom + 32, L('stencil'), 560, 11.5, AMBER, 'middle', 600);
+  return { svg: svg + stencil.svg, height: Math.ceil(textBottom + 32 + stencil.height) };
+}
+
+// ch06 電漿：左邊真空腔體裡的電漿（離子、電子、活潑原子團），右邊放大一個溝槽：原子團負責化學反應、離子提供方向
+function plasma(spec, en, kit) {
+  const { L, t, para, arrow, lead } = tools(spec, en, kit);
+  const ion = (x, y) => `<circle cx="${x}" cy="${y}" r="5.5" fill="${PINK_L}" stroke="${PINK}"/><path d="M${x - 3} ${y} h6 M${x} ${y - 3} v6" stroke="${PINK}" stroke-width="1.4"/>`;
+  const electron = (x, y) => `<circle cx="${x}" cy="${y}" r="2.6" fill="${BLUE}"/>`;
+  const radical = (x, y) => `<circle cx="${x}" cy="${y}" r="4.5" fill="${TEAL_L}" stroke="${TEAL}"/><circle cx="${x + 3.5}" cy="${y - 3.5}" r="1.3" fill="${TEAL}"/>`;
+  const head = para(184, 20, L('plasmaIs'), 340, 11.5, INK, 'middle', 700);
+  const fourth = para(184, 20 + head.height, L('fourth'), 340, 10.5, VIOLET, 'middle', 600);
+  let svg = head.svg + fourth.svg;
+  const top = 20 + head.height + fourth.height + 18;
+  // 真空腔體、上電極、電漿光暈、下電極與晶圓
+  svg += `<rect x="24" y="${top}" width="220" height="150" rx="10" fill="${LIGHT}" stroke="${INK_2}" stroke-width="1.4"/>`
+    + `<path d="M134 ${top - 16} V${top + 12}" stroke="${TEAL}" stroke-width="2"/>` + arrow(134, top - 10, 134, top + 10, TEAL, 2)
+    + `<rect x="54" y="${top + 12}" width="160" height="8" fill="#cbd5e1" stroke="${INK_2}"/>`
+    + `<rect x="50" y="${top + 26}" width="168" height="84" rx="30" fill="${PLASMA}" stroke="${VIOLET}" stroke-opacity=".4"/>`
+    + `<rect x="84" y="${top + 114}" width="100" height="6" fill="#e2e8f0" stroke="${INK_2}"/><rect x="54" y="${top + 120}" width="160" height="10" fill="#cbd5e1" stroke="${INK_2}"/>`
+    + [[72, 46], [118, 70], [168, 50], [194, 86], [98, 92]].map(([x, y]) => ion(x, top + y)).join('')
+    + [[86, 62], [140, 44], [182, 70], [120, 98], [204, 58], [66, 84]].map(([x, y]) => electron(x, top + y)).join('')
+    + [[100, 52], [152, 84], [174, 98], [130, 60], [80, 100], [196, 40], [62, 64], [146, 100]].map(([x, y]) => radical(x, top + y)).join('')
+    // 電漿裡大部分仍是沒有帶電的氣體分子（審查意見：不要畫成全是帶電粒子）
+    + [[88, 40], [160, 66], [112, 84], [184, 56], [70, 98], [206, 96], [138, 34]].map(([x, y]) => `<circle cx="${x}" cy="${top + y}" r="3.2" fill="#e2e8f0" stroke="${MUTED}"/><circle cx="${x + 5}" cy="${top + y}" r="3.2" fill="#e2e8f0" stroke="${MUTED}"/>`).join('');
+  svg += para(146, top - 8, L('gasIn'), 120, 10.5, TEAL, 'start', 600).svg;
+  // 射頻電力接到下電極
+  const rfY = top + 172;
+  svg += `<path d="M134 ${top + 130} V${rfY - 12}" stroke="${INK_2}" stroke-width="1.4"/><circle cx="134" cy="${rfY}" r="12" fill="#ffffff" stroke="${INK_2}" stroke-width="1.4"/><path d="M126 ${rfY} q4 -8 8 0 t8 0" fill="none" stroke="${INK_2}" stroke-width="1.4"/>`;
+  const rf = para(152, rfY + 4, L('rf'), 190, 10.5, INK_2, 'start', 600);
+  svg += rf.svg;
+  // 右側標籤欄：真空腔體、微弱的光
+  const vac = para(254, top + 14, L('vacuum'), 96, 10.5, INK_2, 'start', 600);
+  const glow = para(254, top + 60, L('glow'), 96, 10.5, VIOLET, 'start', 600);
+  svg += vac.svg + lead(244, top + 10, 252, top + 10) + glow.svg + lead(218, top + 56, 252, top + 56);
+  // 圖例
+  let ly = rfY + 4 + Math.max(rf.height, 20) + 12;
+  [[ion, 'ions'], [electron, 'electrons'], [radical, 'radicals']].forEach(([glyph, key]) => {
+    const p = para(48, ly, L(key), 290, 10.5, INK_2, 'start');
+    svg += glyph(34, ly - 4) + p.svg; ly += p.height + 6;
+  });
+  // 右：放大的溝槽
+  const zx = 366;
+  svg += `<rect x="${zx}" y="${top - 30}" width="258" height="196" rx="8" fill="#ffffff" stroke="${LINE}"/>` + lead(184, top + 116, zx, top + 70);
+  svg += para(zx + 129, top - 10, L('fastPrecise'), 230, 11.5, INK, 'middle', 700).svg;
+  const my = top + 70;
+  svg += `<path d="M${zx + 24} ${my} H${zx + 104} V${my + 56} H${zx + 152} V${my} H${zx + 232} V${my + 80} H${zx + 24} Z" fill="${TEAL_L}" stroke="${TEAL}"/>`
+    + `<rect x="${zx + 24}" y="${my - 16}" width="80" height="16" fill="${RESIST}" stroke="${AMBER}"/><rect x="${zx + 152}" y="${my - 16}" width="80" height="16" fill="${RESIST}" stroke="${AMBER}"/>`
+    + [116, 128, 140].map(dx => arrow(zx + dx, my - 40, zx + dx, my + 50, PINK, 1.4) + ion(zx + dx, my - 44)).join('')
+    // 原子團集中在溝槽底部，避免讀成側壁也被橫向蝕刻（審查意見）
+    + [[110, my + 50], [146, my + 46], [128, my + 52], [118, my + 44], [138, my + 50]].map(([dx, y]) => radical(zx + dx, y)).join('');
+  const ionsDir = para(zx + 16, my - 56, L('ionsDirection'), 88, 10.5, PINK, 'start', 600);
+  const react = para(zx + 129, my + 100, L('radicalsReact'), 230, 10.5, TEAL, 'middle', 600);
+  svg += ionsDir.svg + react.svg + lead(zx + 128, my + 58, zx + 128, my + 88);
+  // 放大框的高度包住底下的說明，框線不穿過文字（審查意見）
+  const boxBottom = my + 100 + react.height;
+  svg = svg.replace(`width="258" height="196"`, `width="258" height="${boxBottom - (top - 30)}"`);
+  return { svg, height: Math.ceil(Math.max(ly, boxBottom + 4, top + 166) + 6) };
+}
+
+// ch06 蝕刻要看哪些指標：一個蝕刻到停止層的溝槽標出指標；CD 變化畫成同一個特徵的光阻開口寬與蝕刻後溝槽寬；
+// 均勻度的小圖是蝕刻中途、還沒到停止層的兩個溝槽，深度不同（技術審查修正）
+function etchMetrics(spec, en, kit) {
+  const { L, t, para, dim, lead, mark, legend } = tools(spec, en, kit);
+  let svg = `<rect x="30" y="170" width="360" height="20" fill="${SI}" stroke="${INK_2}"/><rect x="30" y="160" width="360" height="10" fill="${BLUE_L}" stroke="${BLUE}"/>`
+    + `<path d="M30 100 H180 L192 160 H228 L240 100 H390 V160 H30 Z" fill="${TEAL_L}" stroke="${TEAL}"/>`
+    + `<rect x="30" y="84" width="150" height="16" fill="${RESIST}" stroke="${AMBER}"/><rect x="240" y="84" width="150" height="16" fill="${RESIST}" stroke="${AMBER}"/>`
+    // 光阻也被吃掉一些：虛線是蝕刻前的光阻厚度；停止層在溝底被吃掉一點（審查意見：原本像選擇比無限大）
+    + `<rect x="30" y="76" width="150" height="8" fill="none" stroke="${AMBER}" stroke-dasharray="3 2"/><rect x="240" y="76" width="150" height="8" fill="none" stroke="${AMBER}" stroke-dasharray="3 2"/>`
+    + `<path d="M192 160 V162.5 H228 V160" fill="#ffffff" stroke="${BLUE}"/>`
+    // 輪廓：右壁虛線往外凸、左壁虛線往內縮
+    + `<path d="M240 100 Q256 130 228 160" fill="none" stroke="${RED}" stroke-dasharray="3 2"/><path d="M180 100 Q202 128 192 160" fill="none" stroke="${RED}" stroke-dasharray="3 2"/>`;
+  // 蝕刻率：溝槽深度
+  svg += dim(166, 100, 166, 160, INK) + mark(150, 128, 'A');
+  // CD 變化：微影後的光阻開口寬、蝕刻後的溝槽底寬；「蝕刻後」放在溝底右側，英文才不會壓到側壁（審查意見）
+  svg += lead(180, 76, 180, 64) + lead(240, 76, 240, 64) + dim(180, 70, 240, 70, INK) + t(210, 62, L('afterLitho'), 10, INK_2)
+    + dim(192, 150, 228, 150, RED) + t(236, 154, L('afterEtch'), 9.5, RED, 'start', 600) + mark(282, 66, 'E');
+  // 選擇比：對光阻的選擇比與對下層材料的選擇比是兩個不同的數字
+  const selResist = para(30, 50, L('selResist'), 140, 10, AMBER, 'start', 600);
+  const target = para(342, 132, L('targetMat'), 84, 10.5, TEAL, 'middle', 600);
+  svg += selResist.svg + target.svg + mark(292, 128, 'C') + `<circle cx="110" cy="165" r="2" fill="${BLUE}"/>` + lead(110, 166, 110, 198)
+    + para(110, 212, `${L('notWanted')}${en ? ': ' : '：'}${L('selUnder')}`, 220, 10.5, BLUE, 'middle', 600).svg;
+  svg += mark(258, 124, 'D');
+  // 均勻度：晶圓中心與邊緣，蝕刻中途的深度不同
+  const bx = 430;
+  svg += `<rect x="${bx}" y="40" width="194" height="150" rx="8" fill="#ffffff" stroke="${LINE}"/>` + mark(bx + 2, 42, 'B')
+    + waferTop(bx + 46, 112, 30, '#ffffff', INK_2) + `<circle cx="${bx + 46}" cy="112" r="3.5" fill="${TEAL}"/><circle cx="${bx + 68}" cy="96" r="3.5" fill="${TEAL}"/>`;
+  const trench = (x, depth) => `<path d="M${x} 90 H${x + 14} V${90 + depth} H${x + 26} V90 H${x + 40} V146 H${x} Z" fill="${TEAL_L}" stroke="${TEAL}"/><rect x="${x}" y="146" width="40" height="8" fill="${BLUE_L}" stroke="${BLUE}"/><rect x="${x}" y="154" width="40" height="10" fill="${SI}" stroke="${INK_2}"/>`;
+  svg += trench(bx + 96, 40) + trench(bx + 146, 24) + lead(bx + 50, 112, bx + 96, 124) + lead(bx + 72, 96, bx + 146, 104);
+  return { svg: svg + legend([['A', 'rate'], ['B', 'uniformity'], ['C', 'selectivity'], ['D', 'profile'], ['E', 'cd']], 250), height: 262 };
+}
+
+// ch07 劑量與能量：2×2 剖面；往右能量越高、打得越深，往下劑量越高、原子越多（深度與數量互不影響）
+function doseEnergy(spec, en, kit) {
+  const { L, t, para, arrow } = tools(spec, en, kit);
+  const cx = [180, 400], cy = [86, 190], w = 200, h = 88;
+  let svg = t(390, 22, L('energy'), 13, INK, 'middle', 700) + arrow(200, 34, 580, 34, TEAL, 1.6);
+  const eDef = para(390, 52, `${L('energyDef')}${en ? '. ' : '，'}${L('energySets')}`, 380, 10.5, INK_2);
+  svg += eDef.svg;
+  svg += t(80, 92, L('dose'), 13, INK, 'middle', 700) + arrow(150, 86, 150, 270, TEAL, 1.6);
+  // 中文定義在「每單位面積」後換行，不把「打進」拆成兩行（審查意見）
+  const doseDef = L('doseDef');
+  const dDef = en ? para(80, 112, doseDef, 110, 10.5, INK_2) : { svg: t(80, 112, doseDef.slice(0, 5), 10.5, INK_2) + t(80, 125.65, doseDef.slice(5), 10.5, INK_2), height: 27.3 };
+  const dSets = para(80, 116 + dDef.height, L('doseSets'), 110, 10.5, INK_2);
+  svg += dDef.svg + dSets.svg;
+  // 每格：矽的剖面，點是打進去的原子；淺／深由能量決定，多／少由劑量決定；打得越深，分布也略寬
+  [0, 1].forEach(r => [0, 1].forEach(c => {
+    const x = cx[c], y = cy[r], n = r ? 26 : 8, depth = c ? 58 : 22, spread = c ? 4.5 : 3;
+    svg += `<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="#e2e8f0" stroke="${INK_2}"/><path d="M${x} ${y} h${w}" stroke="${INK}" stroke-width="2"/>`;
+    for (let k = 0; k < n; k++) svg += `<circle cx="${(x + 12 + (k + 0.5) * (176 / n)).toFixed(1)}" cy="${y + depth + ((k * 7) % 5) * spread - 2 * spread}" r="3" fill="${BLUE}"/>`;
+  }));
+  const deeper = para(390, 302, L('deeperNotMore'), 420, 11, PINK, 'middle', 600);
+  const count = para(390, 304 + deeper.height, L('countByDose'), 420, 10.5, INK_2);
+  svg += deeper.svg + count.svg;
+  return { svg, height: Math.ceil(304 + deeper.height + count.height + 4) };
+}
+
+// ch07 熱預算：同一顆電晶體經過三次高溫，源汲極一次比一次深、寬，最後在閘極下方靠近
+function thermalBudget(spec, en, kit) {
+  const { L, t, para, arrow, icon } = tools(spec, en, kit);
+  const head = para(320, 22, `${L('everyHot')}${en ? ' ' : '，'}${L('diffuse')}`, 560, 12, INK, 'middle', 700);
+  let svg = head.svg;
+  const top = 22 + head.height + 26;
+  const w = 168, xs = [16, 236, 456];
+  const stages = [[0, 16], [8, 28], [14, 42]];
+  stages.forEach(([g, d], i) => {
+    const x = xs[i], s = top + 24;
+    svg += `<rect x="${x}" y="${s}" width="${w}" height="74" fill="#e2e8f0" stroke="${INK_2}"/>`
+      + `<rect x="${x + 64}" y="${s - 4}" width="40" height="4" fill="${AMBER_XL}" stroke="${AMBER}" stroke-width=".8"/><rect x="${x + 64}" y="${s - 24}" width="40" height="20" rx="2" fill="${AMBER_L}" stroke="${AMBER}"/>`;
+    // 擴散往各方向都一樣：內外兩側外擴相同的量；虛線是前一格的輪廓（審查意見）
+    const region = (xa, xb, dd, dashed) => `<path d="M${xa} ${s} V${s + dd - 8} q0 8 8 8 H${xb - 8} q8 0 8 -8 V${s}${dashed ? '' : ' Z'}" fill="${dashed ? 'none' : BLUE_L}" stroke="${BLUE}"${dashed ? ' stroke-dasharray="3 2"' : ''}/>`;
+    const pair = (gg, dd, dashed) => region(x + 24 - gg, x + 66 + gg, dd, dashed) + region(x + 102 - gg, x + 144 + gg, dd, dashed);
+    svg += pair(g, d, false) + (i ? pair(stages[i - 1][0], stages[i - 1][1], true) : '');
+    if (i < 2) svg += arrow(x + w + 8, s + 37, xs[i + 1] - 8, s + 37, AMBER, 1.8) + icon('heat', x + w + 15, s + 4, 22, AMBER);
+  });
+  const s = top + 24;
+  svg += t(xs[0] + 45, s + 92, L('source'), 10.5, BLUE, 'middle', 600) + t(xs[0] + 123, s + 92, L('drain'), 10.5, BLUE, 'middle', 600);
+  const adds = para(xs[1] + w / 2, s + 92, L('adds'), w, 11, INK, 'middle', 600);
+  const distort = para(xs[1] + w / 2, s + 94 + adds.height, L('distort'), w, 10.5, INK_2);
+  const deep = para(xs[2] + w / 2, s + 92, L('tooDeep'), w, 11, INK, 'middle', 600);
+  const leak = para(xs[2] + w / 2, s + 94 + deep.height, L('leak'), w, 11, RED, 'middle', 700);
+  svg += adds.svg + distort.svg + deep.svg + leak.svg;
+  return { svg, height: Math.ceil(s + 94 + Math.max(adds.height + distort.height, deep.height + leak.height) + 6) };
+}
+
+// 起伏的表面：在幾個圖形位置疊加平滑的山丘，回傳折線點（ch08 共用）
+const hills = (x0, x1, base, height, centers, spread) => {
+  const pts = [];
+  for (let x = x0; x <= x1; x += 4) pts.push([x, base - height * Math.max(...centers.map(c => Math.exp(-(((x - c) / spread) ** 2))))]);
+  return pts;
+};
+const curve = pts => pts.map(([x, y], i) => `${i ? 'L' : 'M'}${x} ${y.toFixed(1)}`).join(' ');
+
+// ch08 為什麼要磨平：左上層層堆疊後表面像丘陵；左下 CMP 磨平；右邊兩個問題（對不準焦、溝槽外多餘的銅去不掉）
+function whyPlanarize(spec, en, kit) {
+  const { L, t, para, arrow, mark } = tools(spec, en, kit);
+  const head = para(160, 20, L('follows'), 290, 11.5, INK, 'middle', 700);
+  let svg = head.svg;
+  const top = 20 + head.height + 10;
+  const feats = [70, 150, 230];
+  // 由上往下畫：每層都從自己的表面一路填到基板，下一層再蓋上去；整片薄膜只會順著起伏，不會放大高低差（審查意見）
+  [[top + 24, 15, AMBER_XL, AMBER], [top + 40, 15, BLUE_XL, BLUE], [top + 56, 15, TEAL_XL, TEAL]].forEach(([base, h, fill, stroke]) => {
+    svg += `<path d="${curve(hills(30, 290, base, h, feats, 26))} L290 ${top + 96} L30 ${top + 96} Z" fill="${fill}" stroke="${stroke}"/>`;
+  });
+  svg += feats.map(c => `<rect x="${c - 18}" y="${top + 70}" width="36" height="12" fill="${COPPER}" stroke="${RED}"/>`).join('') + `<rect x="30" y="${top + 82}" width="260" height="20" fill="${SI}" stroke="${INK_2}"/>`;
+  const hilly = para(160, top + 122, L('hills'), 290, 11, INK_2);
+  svg += hilly.svg;
+  // 左下：CMP 磨平後
+  let y = top + 122 + hilly.height + 12;
+  svg += arrow(160, y - 4, 160, y + 18, TEAL, 1.6);
+  const cmp = para(176, y + 12, L('cmp'), 140, 11, TEAL, 'start', 700);
+  svg += cmp.svg;
+  y += Math.max(28, cmp.height + 14);
+  svg += `<rect x="30" y="${y}" width="260" height="34" fill="${TEAL_XL}" stroke="${TEAL}"/>` + feats.map(c => `<rect x="${c - 18}" y="${y + 22}" width="36" height="12" fill="${COPPER}" stroke="${RED}"/>`).join('')
+    + `<rect x="30" y="${y + 34}" width="260" height="18" fill="${SI}" stroke="${INK_2}"/>`;
+  const level = para(160, y + 70, L('level'), 290, 10.5, INK_2);
+  svg += level.svg;
+  const leftBottom = y + 70 + level.height;
+  // 右：兩個問題
+  const rx = 330;
+  svg += t(rx + 147, 20, L('twoProblems'), 12, INK, 'middle', 700);
+  svg += `<rect x="${rx}" y="34" width="294" height="0" rx="8" fill="#ffffff" stroke="${LINE}"/>` + mark(rx + 2, 36, 'A');
+  const fa = para(rx + 147, 56, L('focus'), 260, 12, INK, 'middle', 700);
+  svg += fa.svg;
+  const fy = 56 + fa.height + 16;
+  // 清楚成像的範圍很淺：高處在範圍內、低處在範圍外
+  svg += `<rect x="${rx + 20}" y="${fy + 6}" width="254" height="14" fill="${TEAL_XL}"/><path d="M${rx + 20} ${fy + 6} h254 M${rx + 20} ${fy + 20} h254" stroke="${TEAL}" stroke-dasharray="4 3"/>`
+    + `<path d="${curve(hills(rx + 20, rx + 274, fy + 46, 34, [rx + 90, rx + 210], 30))} L${rx + 274} ${fy + 64} L${rx + 20} ${fy + 64} Z" fill="${BLUE_XL}" stroke="${BLUE}"/>`
+    // 虛線帶就是能清楚成像的焦距範圍，標在兩座山丘之間（審查意見：原本沒有標示）
+    + t(rx + 150, fy + 17, L('focusRange'), 10, TEAL, 'middle', 600);
+  const fn = para(rx + 147, fy + 82, L('focusNote'), 260, 10.5, INK_2);
+  svg += fn.svg;
+  const by = fy + 82 + fn.height + 14;
+  svg += `<rect x="${rx}" y="${by}" width="294" height="0" rx="8" fill="#ffffff" stroke="${LINE}"/>` + mark(rx + 2, by + 2, 'B');
+  const eb = para(rx + 147, by + 22, L('excess'), 260, 12, INK, 'middle', 700);
+  svg += eb.svg;
+  const ey = by + 22 + eb.height + 10;
+  svg += `<rect x="${rx + 30}" y="${ey + 12}" width="234" height="34" fill="${TEAL_XL}" stroke="${TEAL}"/>`
+    + `<path d="M${rx + 30} ${ey} H${rx + 264} V${ey + 12} H${rx + 224} V${ey + 34} H${rx + 194} V${ey + 12} H${rx + 162} V${ey + 34} H${rx + 132} V${ey + 12} H${rx + 100} V${ey + 34} H${rx + 70} V${ey + 12} H${rx + 30} Z" fill="${COPPER}" stroke="${RED}"/>`
+    // 虛線是要磨到的位置：線以上就是溝槽外多餘的銅
+    + `<path d="M${rx + 20} ${ey + 12} H${rx + 274}" stroke="${INK}" stroke-dasharray="4 3"/>`;
+  const en2 = para(rx + 147, ey + 64, L('excessNote'), 260, 10.5, INK_2);
+  svg += en2.svg;
+  const rightBottom = ey + 64 + en2.height;
+  svg = svg.replace('height="0"', `height="${by - 8 - 34}"`).replace('height="0"', `height="${rightBottom + 4 - by}"`);
+  return { svg, height: Math.ceil(Math.max(leftBottom, rightBottom + 4) + 8) };
+}
+
+// ch08 假圖形：上排俯視，空曠區補上不通電的假圖形（小方塊不和導線相連）；下排剖面以銅 CMP 為例，
+// 沒補時密集導線區較低（導線較薄）、空曠區較高，補了之後平坦、導線厚度一致（技術審查修正）
+function dummyFill(spec, en, kit) {
+  const { L, t, para, lead } = tools(spec, en, kit);
+  const head = para(320, 20, L('rateDensity'), 560, 11.5, INK, 'middle', 700);
+  let svg = head.svg;
+  const top = 20 + head.height + 10;
+  const plan = (x, fill) => {
+    let out = `<rect x="${x}" y="${top}" width="288" height="96" rx="4" fill="${LIGHT}" stroke="${LINE}"/>`
+      + Array.from({ length: 9 }, (_, i) => `<rect x="${x + 12 + i * 13}" y="${top + 10}" width="7" height="76" fill="${COPPER}" stroke="${RED}" stroke-width=".8"/>`).join('');
+    if (fill) for (let i = 0; i < 7; i++) for (let j = 0; j < 4; j++) out += `<rect x="${x + 152 + i * 18}" y="${top + 12 + j * 20}" width="10" height="10" fill="${COPPER}" fill-opacity=".55" stroke="${RED}" stroke-width=".8"/>`;
+    return out;
+  };
+  svg += plan(16, false) + plan(336, true);
+  const empty = para(226, top + 50, L('emptyArea'), 120, 10.5, INK_2);
+  svg += empty.svg;
+  const added = para(480, top + 118, L('added'), 280, 11, INK, 'middle', 700);
+  const noCurrent = para(480, top + 118 + added.height, L('noCurrent'), 280, 10.5, INK_2);
+  svg += added.svg + noCurrent.svg + lead(530, top + 86, 530, top + 106);
+  // 下排：研磨後的剖面
+  const sy = top + 118 + added.height + noCurrent.height + 28;
+  const dense = x => Array.from({ length: 9 }, (_, i) => x + 12 + i * 13);
+  // 沒補：密集區表面較低，導線較薄；空曠區較高
+  svg += `<path d="M16 ${sy + 12} H130 C150 ${sy + 12}, 160 ${sy}, 180 ${sy} H304 V${sy + 46} H16 Z" fill="${TEAL_XL}" stroke="${TEAL}"/>`
+    + dense(16).map(x => `<rect x="${x}" y="${sy + 12}" width="7" height="22" fill="${COPPER}" stroke="${RED}" stroke-width=".8"/>`).join('')
+    + `<rect x="16" y="${sy + 46}" width="288" height="12" fill="${SI}" stroke="${INK_2}"/><path d="M16 ${sy} H304" stroke="${INK}" stroke-dasharray="4 3"/>`;
+  // 補了：整片平坦，導線與假圖形厚度一致
+  svg += `<rect x="336" y="${sy + 4}" width="288" height="42" fill="${TEAL_XL}" stroke="${TEAL}"/>`
+    + dense(336).map(x => `<rect x="${x}" y="${sy + 4}" width="7" height="30" fill="${COPPER}" stroke="${RED}" stroke-width=".8"/>`).join('')
+    + Array.from({ length: 7 }, (_, i) => `<rect x="${488 + i * 18}" y="${sy + 4}" width="10" height="30" fill="${COPPER}" fill-opacity=".55" stroke="${RED}" stroke-width=".8"/>`).join('')
+    + `<rect x="336" y="${sy + 58 - 12}" width="288" height="12" fill="${SI}" stroke="${INK_2}"/>`;
+  let ly = sy + 78;
+  const uneven = para(160, ly, L('uneven'), 280, 11, RED, 'middle', 700);
+  ly += uneven.height + 2;
+  const effects = para(160, ly, [L('notFlat'), L('defocus'), L('thickness'), L('shorts')].join(en ? ', ' : '、'), 280, 10.5, INK_2);
+  const even = para(480, sy + 78, L('evenDensity'), 280, 11, TEAL, 'middle', 700);
+  const polish = para(480, sy + 78 + even.height + 2, L('polishEven'), 280, 10.5, INK_2);
+  svg += uneven.svg + effects.svg + even.svg + polish.svg;
+  return { svg, height: Math.ceil(Math.max(ly + effects.height, sy + 80 + even.height + polish.height) + 6) };
+}
+
+// ch09 污染有哪幾種：晶圓表面上的四種污染，各配常見來源；下方是鈉離子在閘極氧化層內往矽介面方向移動，造成 Vt 漂移（技術審查修正）
+function contaminants(spec, en, kit) {
+  const { L, t, para, arrow, lead } = tools(spec, en, kit);
+  const zones = [['particle', 'particleSrc'], ['metal', 'metalSrc'], ['organic', 'organicSrc'], ['oxide', 'oxideSrc']];
+  const w = 152;
+  let svg = `<rect x="16" y="78" width="608" height="34" fill="${SI}" stroke="${INK_2}"/>`;
+  const art = [
+    x => `<circle cx="${x + 76}" cy="66" r="12" fill="#94a3b8" stroke="${INK_2}"/><circle cx="${x + 106}" cy="73" r="5" fill="#94a3b8" stroke="${INK_2}"/>`,
+    x => [[56, 76], [72, 80], [90, 75], [104, 82], [120, 77]].map(([dx, y]) => `<circle cx="${x + dx}" cy="${y}" r="3.6" fill="${AMBER_L}" stroke="${AMBER}"/>`).join(''),
+    x => `<path d="M${x + 40} 78 C${x + 44} 66, ${x + 66} 64, ${x + 78} 70 S${x + 108} 64, ${x + 114} 78 Z" fill="#d9f99d" stroke="#3f6212"/>`,
+    x => `<rect x="${x + 4}" y="73" width="${w - 8}" height="5" fill="${TEAL_L}" stroke="${TEAL}"/>`
+  ];
+  let bottom = 0;
+  zones.forEach(([name, src], i) => {
+    const x = 16 + i * w;
+    if (i) svg += `<path d="M${x} 24 V128" stroke="${LINE}" stroke-dasharray="3 3"/>`;
+    svg += art[i](x) + t(x + w / 2, 36, L(name), 12, INK, 'middle', 700);
+    const s = para(x + w / 2, 132, L(src), w - 16, 10.5, INK_2);
+    svg += s.svg; bottom = Math.max(bottom, 132 + s.height);
+  });
+  // 下方：鈉離子
+  const y = bottom + 30;
+  svg += `<path d="M16 ${y - 14} H624" stroke="${LINE}"/>` + t(320, y + 6, L('trouble'), 12, INK, 'middle', 700);
+  const gy = y + 24;
+  svg += `<rect x="150" y="${gy}" width="200" height="18" fill="${AMBER_L}" stroke="${AMBER}"/><rect x="110" y="${gy + 18}" width="280" height="30" fill="${TEAL_XL}" stroke="${TEAL}"/><rect x="110" y="${gy + 48}" width="280" height="28" fill="#e2e8f0" stroke="${INK_2}"/>`;
+  [[170, 26], [236, 36], [300, 24], [340, 34]].forEach(([x, dy]) => {
+    svg += `<circle cx="${x}" cy="${gy + dy}" r="5.5" fill="${AMBER_L}" stroke="${AMBER}"/><path d="M${x - 2.6} ${gy + dy} h5.2 M${x} ${gy + dy - 2.6} v5.2" stroke="${AMBER}" stroke-width="1.2"/>`
+      // 往下（往矽介面）的箭頭較長、往上的較短（審查意見：要看出往矽介面方向移動）
+      + arrow(x + 11, gy + dy, x + 11, gy + dy - 6, RED, 1.1) + arrow(x + 11, gy + dy, x + 11, gy + dy + 11, RED, 1.3);
+  });
+  svg += lead(400, gy + 10, 347, gy + 30);
+  svg += lead(150, gy + 9, 96, gy + 9) + t(92, gy + 13, L('gate'), 10.5, AMBER, 'end', 600)
+    + lead(110, gy + 33, 96, gy + 33) + t(92, gy + 37, L('gateOxide'), 10.5, TEAL, 'end', 600)
+    + lead(110, gy + 62, 96, gy + 62) + t(92, gy + 66, L('si'), 10.5, INK_2, 'end', 600);
+  const sodium = para(404, gy + 14, L('sodium'), 210, 11, AMBER, 'start', 700);
+  const moves = para(404, gy + 14 + sodium.height, L('moves'), 210, 10.5, INK_2, 'start');
+  const drift = para(404, gy + 18 + sodium.height + moves.height, L('drift'), 210, 11.5, RED, 'start', 700);
+  svg += sodium.svg + moves.svg + drift.svg;
+  return { svg, height: Math.ceil(Math.max(gy + 82, gy + 18 + sodium.height + moves.height + drift.height) + 6) };
+}
+
+// ch09 交叉污染：檢查畫在機台的 Load Port 上，晶圓盒放上去時系統比對等級，相符打綠勾、不符打紅叉；
+// 兩區之間不畫實體門（技術審查修正）。下排沿用原本的流程：微量銅如何擴大成良率損失
+function crossContamination(spec, en, kit) {
+  const { L, t, para, arrow, icon } = tools(spec, en, kit);
+  const head = para(320, 20, `${L('classes')}${en ? ', ' : '，'}${L('colorTag')}`, 560, 11.5, INK, 'middle', 700);
+  let svg = head.svg;
+  const top = 20 + head.height + 8;
+  const zone = (x, fill, stroke, key) => `<rect x="${x}" y="${top}" width="296" height="150" rx="8" fill="${fill}" stroke="${stroke}"/>` + t(x + 148, top + 20, L(key), 12, stroke, 'middle', 700);
+  svg += zone(16, TEAL_XL, TEAL, 'frontEnd') + zone(328, AMBER_XL, AMBER, 'copperProc');
+  // 機台、Load Port 與晶圓盒；晶圓盒上的色條代表污染等級
+  const tool = (x, tag) => `<rect x="${x}" y="${top + 46}" width="110" height="80" rx="6" fill="#ffffff" stroke="${INK_2}" stroke-width="1.3"/><rect x="${x + 10}" y="${top + 56}" width="40" height="8" rx="2" fill="${tag}"/>`
+    + `<rect x="${x - 40}" y="${top + 112}" width="40" height="5" fill="#cbd5e1" stroke="${INK_2}"/>`;
+  const carrier = (x, tag) => `<rect x="${x}" y="${top + 84}" width="34" height="28" rx="4" fill="#ffffff" stroke="${INK_2}" stroke-width="1.3"/><rect x="${x}" y="${top + 84}" width="34" height="7" rx="2" fill="${tag}"/>` + [98, 104].map(dy => `<path d="M${x + 5} ${top + dy} h24" stroke="${MUTED}"/>`).join('');
+  svg += tool(150, TEAL) + carrier(113, AMBER) + tool(462, AMBER) + carrier(425, AMBER);
+  // 比對結果：不符禁止進機台、相符打勾
+  svg += `<circle cx="130" cy="${top + 62}" r="12" fill="#ffffff" stroke="${RED}" stroke-width="1.6"/><path d="M124 ${top + 56} l12 12 M136 ${top + 56} l-12 12" stroke="${RED}" stroke-width="2"/>`
+    + `<circle cx="442" cy="${top + 62}" r="12" fill="#ffffff" stroke="${GREEN}" stroke-width="1.6"/>` + icon('check', 432, top + 52, 20, GREEN);
+  const block = para(84, top + 132, L('block'), 150, 10.5, RED, 'middle', 700);
+  svg += block.svg + t(205, top + 144, L('tool'), 10.5, INK_2) + t(442, top + 136, L('carrier'), 10.5, INK_2) + t(517, top + 144, L('tool'), 10.5, INK_2);
+  let y = top + 150 + 22;
+  svg += icon('network', 40, y - 14, 20, BLUE);
+  const check = para(68, y, L('check'), 540, 11, INK, 'start', 600);
+  // 補回原句的主語：銅製程使用的機台、晶圓盒，甚至鑷子和手套（審查意見）
+  const sep = para(68, y + check.height, en ? `${L('tweezers')} ${L('copperUse')} are ${L('separate')}` : `${L('copperUse')}${L('tweezers')}，${L('separate')}`, 540, 10.5, INK_2, 'start');
+  svg += check.svg + sep.svg;
+  y += check.height + sep.height + 22;
+  // 下排：微量銅如何擴大成良率損失
+  const steps = [`${L('trace')}${en ? ' ' : ''}${L('carried')}`, L('everyWafer'), `${L('diffuses')}${en ? ', ' : '，'}${L('reach')}`, L('leakYield')];
+  const bw = 140, gap = (608 - 4 * bw) / 3;
+  const ps = steps.map(text => para(0, 0, text, bw - 16, 10.5, INK).height);
+  const bh = Math.max(...ps) + 20;
+  steps.forEach((text, i) => {
+    const x = 16 + i * (bw + gap);
+    // 文字在方框內垂直置中
+    svg += `<rect x="${x}" y="${y}" width="${bw}" height="${bh}" rx="6" fill="${i === 3 ? '#fff1f2' : LIGHT}" stroke="${i === 3 ? RED : LINE}"/>` + para(x + bw / 2, y + (bh - ps[i]) / 2 + 10, text, bw - 16, 10.5, i === 3 ? RED : INK, 'middle', i === 3 ? 700 : 400).svg;
+    if (i < 3) svg += arrow(x + bw + 2, y + bh / 2, x + bw + gap - 2, y + bh / 2);
+  });
+  const hard = para(16 + 3 * (bw + gap) + bw / 2, y + bh + 16, L('hardTrace'), bw + 20, 10.5, MUTED);
+  return { svg: svg + hard.svg, height: Math.ceil(y + bh + 16 + hard.height) };
+}
+
+// ch10 從鋁到銅：鋁是先鋪再蝕刻，銅是先挖溝再填；打叉圖示放在兩列之間（技術審查修正）
+function alToCu(spec, en, kit) {
+  const { L, t, para, arrow } = tools(spec, en, kit);
+  const xs = [128, 296, 464], w = 150;
+  const diel = (x, y) => `<rect x="${x}" y="${y + 40}" width="${w}" height="26" fill="${TEAL_XL}" stroke="${TEAL}"/>`;
+  let svg = '';
+  // 鋁列
+  const ay = 16;
+  svg += t(60, ay + 46, L('al'), 16, INK, 'middle', 700);
+  svg += diel(xs[0], ay) + `<rect x="${xs[0]}" y="${ay + 28}" width="${w}" height="12" fill="${AL}" stroke="${INK_2}"/>`;
+  svg += diel(xs[1], ay) + `<rect x="${xs[1]}" y="${ay + 28}" width="${w}" height="12" fill="${AL}" stroke="${INK_2}"/>` + [24, 96].map(dx => hatchedResist(xs[1] + dx, ay + 18, 30, 10)).join('');
+  svg += diel(xs[2], ay) + [24, 96].map(dx => `<rect x="${xs[2] + dx}" y="${ay + 28}" width="30" height="12" fill="${AL}" stroke="${INK_2}"/>`).join('');
+  svg += arrow(xs[0] + w + 2, ay + 40, xs[1] - 2, ay + 40) + arrow(xs[1] + w + 2, ay + 40, xs[2] - 2, ay + 40);
+  const a1 = para(xs[0] + w / 2, ay + 84, L('alStep1'), w, 10.5, INK_2);
+  const a2 = para(xs[1] + w / 2, ay + 84, L('alStep2'), w, 10.5, INK_2);
+  const a3 = para(xs[2] + w / 2, ay + 84, L('alStep3'), w, 10.5, INK_2);
+  svg += a1.svg + a2.svg + a3.svg;
+  // 兩列之間：銅很難乾蝕刻，改成先挖溝再填
+  let y = ay + 84 + Math.max(a1.height, a2.height, a3.height) + 18;
+  svg += `<path d="M16 ${y} H624" stroke="${LINE}"/>`;
+  const hard = para(150, y + 24, L('hardEtch'), 460, 11, RED, 'start', 700);
+  const opp = para(150, y + 24 + hard.height, `${L('opposite')}${en ? ': ' : '：'}${L('digFirst')}${en ? ', ' : '，'}${L('fillCu')}`, 460, 11, TEAL, 'start', 700);
+  svg += `<circle cx="128" cy="${y + 28}" r="12" fill="#ffffff" stroke="${RED}" stroke-width="1.6"/><path d="M122 ${y + 22} l12 12 M134 ${y + 22} l-12 12" stroke="${RED}" stroke-width="2"/>` + hard.svg + opp.svg;
+  // 銅列
+  const cy = y + 24 + hard.height + opp.height + 6;
+  svg += t(60, cy + 46, L('cu'), 16, INK, 'middle', 700) + para(60, cy + 66, L('cuLow'), 100, 10.5, INK_2).svg;
+  const trench = (x, fill) => `<path d="M${x} ${cy + 28} H${x + 24} V${cy + 46} H${x + 54} V${cy + 28} H${x + 96} V${cy + 46} H${x + 126} V${cy + 28} H${x + w} V${cy + 66} H${x} Z" fill="${TEAL_XL}" stroke="${TEAL}"/>`
+    + (fill === 'over' ? `<path d="M${x} ${cy + 20} H${x + w} V${cy + 28} H${x + 126} V${cy + 46} H${x + 96} V${cy + 28} H${x + 54} V${cy + 46} H${x + 24} V${cy + 28} H${x} Z" fill="${COPPER}" stroke="${RED}"/>` : '')
+    + (fill === 'inlaid' ? [24, 96].map(dx => `<rect x="${x + dx}" y="${cy + 28}" width="30" height="18" fill="${COPPER}" stroke="${RED}"/>`).join('') : '');
+  // 第三格：磨掉溝外的銅，只留在溝內（審查意見：只畫到溢出的銅，像導線做到這裡就結束；磨平在下一段，所以不加標籤）
+  svg += trench(xs[0], '') + trench(xs[1], 'over') + trench(xs[2], 'inlaid') + arrow(xs[0] + w + 2, cy + 44, xs[1] - 2, cy + 44) + arrow(xs[1] + w + 2, cy + 44, xs[2] - 2, cy + 44);
+  const c1 = para(xs[0] + w / 2, cy + 84, L('digFirst'), w, 10.5, INK_2);
+  const c2 = para(xs[1] + w / 2, cy + 84, L('fillCu'), w, 10.5, INK_2);
+  svg += c1.svg + c2.svg;
+  return { svg, height: Math.ceil(cy + 84 + Math.max(c1.height, c2.height, 30) + 4) };
+}
+
+// ch10 越來越細的挑戰：左上寬、窄兩個截面，U 形阻障層同厚、頂部是另一色的覆蓋層；左下窄線裡電子較常撞到邊界；
+// 右邊電遷移只標電子流方向，空洞出現在電子流的上游端（技術審查修正）
+function thinWires(spec, en, kit) {
+  const { L, t, para, arrow, lead } = tools(spec, en, kit);
+  let svg = t(320, 20, L('thinner'), 13, INK, 'middle', 700);
+  svg += t(180, 46, L('resistance'), 12, INK, 'middle', 700);
+  const wire = (x, w) => `<rect x="${x}" y="62" width="${w}" height="56" fill="${PINK_L}" stroke="${PINK}"/><rect x="${x + 5}" y="62" width="${w - 10}" height="51" fill="${COPPER}"/><rect x="${x}" y="56" width="${w}" height="6" fill="${BLUE_L}" stroke="${BLUE}"/>`;
+  svg += `<rect x="40" y="56" width="280" height="70" fill="${TEAL_XL}"/>` + wire(56, 100) + wire(280, 30);
+  svg += lead(156, 100, 176, 100) + para(180, 104, L('barrier'), 92, 10, PINK, 'start', 600).svg + lead(156, 59, 176, 59) + para(180, 63, L('cap'), 92, 10, BLUE, 'start', 600).svg;
+  const share = para(180, 142, L('barrierShare'), 300, 10.5, INK_2);
+  svg += share.svg;
+  // 縱向導線：窄線中電子路徑較常撞到上下邊界
+  let y = 142 + share.height + 14;
+  const band = (yy, h, pts) => `<rect x="40" y="${yy}" width="280" height="${h}" fill="${COPPER}" stroke="${RED}"/><path d="M48 ${yy + h / 2} ${pts.map(([dx, dy]) => `L${48 + dx} ${yy + dy}`).join(' ')}" fill="none" stroke="${BLUE}" stroke-width="1.3"/>`;
+  svg += band(y, 40, [[60, 4], [130, 36], [200, 6], [264, 22]]) + band(y + 52, 16, [[20, 2], [44, 14], [68, 2], [92, 14], [116, 2], [140, 14], [164, 2], [188, 14], [212, 2], [236, 14], [264, 8]]);
+  const scatter = para(180, y + 90, L('scatter'), 300, 10.5, INK_2);
+  svg += scatter.svg;
+  const leftBottom = y + 90 + scatter.height;
+  // 右：電遷移
+  const rx = 360;
+  svg += t(rx + 132, 46, L('em'), 12, INK, 'middle', 700);
+  const flow = para(rx + 132, 66, L('longCurrent'), 240, 10.5, INK_2);
+  svg += flow.svg;
+  const wy = 66 + flow.height + 30;
+  svg += arrow(rx + 30, wy - 14, rx + 230, wy - 14, BLUE, 1.6) + t(rx + 26, wy - 10, L('electrons'), 10.5, BLUE, 'end', 600);
+  svg += `<path d="M${rx + 20} ${wy} H${rx + 40} C${rx + 46} ${wy + 8}, ${rx + 46} ${wy + 22}, ${rx + 40} ${wy + 30} H${rx + 20} Z" fill="${COPPER}" stroke="${RED}"/>`
+    + `<path d="M${rx + 62} ${wy} C${rx + 54} ${wy + 8}, ${rx + 54} ${wy + 22}, ${rx + 62} ${wy + 30} H${rx + 244} V${wy} H${rx + 226} C${rx + 222} ${wy - 10}, ${rx + 206} ${wy - 10}, ${rx + 202} ${wy} Z" fill="${COPPER}" stroke="${RED}"/>`
+    + [[90, 10], [124, 20], [158, 9], [190, 19]].map(([dx, dy]) => `<circle cx="${rx + dx}" cy="${wy + dy}" r="3" fill="#ffffff" stroke="${RED}"/>` + arrow(rx + dx + 5, wy + dy, rx + dx + 18, wy + dy, RED, 1)).join('');
+  // 空洞的標籤緊接在空洞下方，引線不穿過其他文字
+  const voids = para(rx + 20, wy + 52, L('voids'), 230, 11, RED, 'start', 700);
+  const push = para(rx + 20, wy + 54 + voids.height, L('pushAtoms'), 230, 10.5, INK_2, 'start');
+  svg += voids.svg + push.svg + lead(rx + 50, wy + 30, rx + 50, wy + 40);
+  return { svg, height: Math.ceil(Math.max(leftBottom, wy + 54 + voids.height + push.height) + 6) };
+}
+
+// ch10 常見異常：五種金屬化異常的剖面縮圖，卡片只放名稱與結果
+function metalDefects(spec, en, kit) {
+  const { L, para } = tools(spec, en, kit);
+  const w = 116, gap = (608 - 5 * w) / 4;
+  const box = (x, y) => `<rect x="${x + 8}" y="${y + 12}" width="${w - 16}" height="58" fill="${TEAL_XL}" stroke="${TEAL}"/>`;
+  const art = [
+    (x, y) => box(x, y) + `<rect x="${x + 38}" y="${y + 12}" width="40" height="46" fill="${COPPER}" stroke="${RED}"/><ellipse cx="${x + 58}" cy="${y + 38}" rx="5" ry="11" fill="#ffffff" stroke="${RED}"/>`,
+    (x, y) => box(x, y) + [24, 66].map(dx => `<rect x="${x + dx}" y="${y + 12}" width="26" height="34" fill="${COPPER}" stroke="${RED}"/>`).join('') + `<path d="M${x + 44} ${y + 12} q5 -5 11 -3 t10 -1 t8 4 z" fill="${COPPER}" stroke="${RED}"/>`,
+    (x, y) => box(x, y) + `<rect x="${x + 18}" y="${y + 52}" width="${w - 36}" height="14" fill="${COPPER}" stroke="${RED}"/><rect x="${x + 46}" y="${y + 12}" width="24" height="28" fill="${COPPER}" stroke="${RED}"/><rect x="${x + 46}" y="${y + 40}" width="24" height="7" fill="#94a3b8" stroke="${INK_2}"/>`,
+    (x, y) => box(x, y) + `<path d="M${x + 32} ${y + 12} V${y + 56} H${x + 84} V${y + 12}" fill="${COPPER}" stroke="${PINK}" stroke-width="3"/><path d="M${x + 84} ${y + 30} v10" stroke="${COPPER}" stroke-width="4"/>`
+      + [[92, 34], [98, 40], [94, 46], [102, 32]].map(([dx, dy]) => `<circle cx="${x + dx}" cy="${y + dy}" r="1.8" fill="${RED}"/>`).join(''),
+    (x, y) => `<rect x="${x + 8}" y="${y + 12}" width="${w - 16}" height="28" fill="${TEAL_XL}" stroke="${TEAL}"/><rect x="${x + 8}" y="${y + 44}" width="${w - 16}" height="26" fill="${TEAL_XL}" stroke="${TEAL}"/>`
+      + `<path d="M${x + 30} ${y + 12} l6 10 -4 8 5 10 M${x + 70} ${y + 40} l-4 -8 5 -8 -3 -12" fill="none" stroke="${RED}" stroke-width="1.3"/><path d="M${x + 40} ${y + 42} h40" stroke="${RED}" stroke-width="1.2" stroke-dasharray="3 2"/>`
+  ];
+  const cards = [['void', 'voidResult'], ['residue', 'residueResult'], ['openVia', 'openResult'], ['barrier', 'barrierResult'], ['lowk', 'lowkResult']];
+  const textH = Math.max(...cards.map(([a, b]) => para(0, 0, L(a), w - 12, 11.5, INK, 'middle', 700).height + para(0, 0, L(b), w - 12, 10.5).height));
+  let svg = '';
+  cards.forEach(([a, b], i) => {
+    const x = 16 + i * (w + gap);
+    svg += `<rect x="${x}" y="12" width="${w}" height="${92 + textH + 6}" rx="8" fill="#ffffff" stroke="${LINE}"/>` + art[i](x, 16);
+    const head = para(x + w / 2, 104, L(a), w - 12, 11.5, INK, 'middle', 700);
+    svg += head.svg + para(x + w / 2, 104 + head.height, L(b), w - 12, 10.5, RED).svg;
+  });
+  return { svg, height: Math.ceil(12 + 92 + textH + 6 + 8) };
+}
+
+// ch10 後段金屬互連條例總覽：由下往上是局部、中階、全域與封裝介面；局部層兩種材料依製程擇用（兩種填色並列），
+// 氣隙只畫在少數幾條線之間（技術審查修正）。數值都出自本段表格
+function beolTiers(spec, en, kit) {
+  const { L, para, lead } = tools(spec, en, kit);
+  const X0 = 24, X1 = 300, LX = 322, LW = 296;
+  const sep = en ? ', ' : '、';
+  const block = (yTop, rows) => {
+    let yy = yTop + 14, out = '';
+    const ys = [];
+    rows.forEach(([text, size, fill, weight, chip]) => {
+      const x = chip ? LX + 18 : LX;
+      const p = para(x, yy, text, LW - (chip ? 18 : 0), size, fill, 'start', weight);
+      if (chip) out += `<rect x="${LX}" y="${yy - 10}" width="12" height="12" fill="${chip[0]}" stroke="${chip[1]}"/>`;
+      ys.push(yy);
+      out += p.svg; yy += p.height + 2;
+    });
+    return { svg: out, h: yy - yTop, ys };
+  };
+  let svg = '';
+  // 封裝介面：凸塊與頂層鋁墊；正文寫「CoWoS 微凸塊或 C4 覆晶凸塊」，兩者擇一（審查意見）
+  const top = block(4, [[`${L('cowos')}${en ? ' or ' : ' 或 '}${L('c4')}`, 11, INK, 700], [L('alPad'), 10.5, INK_2, 400]]);
+  svg += top.svg;
+  const y0 = Math.max(70, top.h + 14);
+  svg += `<circle cx="162" cy="${y0 - 34}" r="16" fill="#e2e8f0" stroke="${INK_2}"/><rect x="140" y="${y0 - 18}" width="44" height="4" fill="${INK_2}"/><rect x="122" y="${y0 - 14}" width="80" height="14" fill="${AL}" stroke="${INK_2}"/>`
+    + lead(204, y0 - 7, LX - 6, 4 + 14 + 14);
+  // 三個層級：先算右側文字高度，再決定各層帶的高度
+  const g = block(y0, [[L('globalTier'), 11.5, INK, 700], [`${L('globalM')} · ${L('globalPitch')}`, 10.5, BLUE, 600], [L('thickCu'), 10.5, INK_2, 400]]);
+  const gH = Math.max(86, g.h + 8);
+  const mid = block(y0 + gH, [[L('midTier'), 11.5, INK, 700], [`${L('midM')} · ${L('midPitch')}`, 10.5, BLUE, 600], [`${L('cuDD')}${sep}${L('ulk')}`, 10.5, INK_2, 400], [L('airGap'), 10.5, TEAL, 600]]);
+  const mH = Math.max(90, mid.h + 8);
+  // 局部層三種材料各自一個圖例：只有釕標「無阻障層」（審查意見：鈷與釕共用一格會讀成兩者都無阻障）
+  const CO = '#94a3b8', RU = '#ddd6fe';
+  const loc = block(y0 + gH + mH, [[L('localTier'), 11.5, INK, 700], [`${L('localM')} · ${L('localPitch')}`, 10.5, BLUE, 600], [L('tanCu'), 10.5, INK_2, 400, [COPPER, PINK]], [L('co'), 10.5, INK_2, 400, [CO, INK_2]], [L('ru'), 10.5, INK_2, 400, [RU, VIOLET]]]);
+  const lH = Math.max(76, loc.h + 8);
+  svg += g.svg + mid.svg + loc.svg;
+  const yG = y0, yM = y0 + gH, yL = y0 + gH + mH, yD = yL + lH;
+  svg = `<rect x="${X0}" y="${yG}" width="${X1 - X0}" height="${gH}" fill="${LIGHT}" stroke="${LINE}"/><rect x="${X0}" y="${yM}" width="${X1 - X0}" height="${mH}" fill="${TEAL_XL}" stroke="${LINE}"/><rect x="${X0}" y="${yL}" width="${X1 - X0}" height="${lH}" fill="${LIGHT}" stroke="${LINE}"/>` + svg;
+  // 全域：兩層粗寬的厚銅，導通孔相連
+  [0.18, 0.6].forEach(f => [44, 126, 208].forEach(x => { svg += `<rect x="${x}" y="${yG + gH * f}" width="56" height="20" fill="${COPPER}" stroke="${RED}"/>`; }));
+  [66, 148, 230].forEach(x => { svg += `<rect x="${x}" y="${yG + gH * 0.18 + 20}" width="12" height="${gH * 0.42 - 20}" fill="${COPPER}" stroke="${RED}"/>`; });
+  // 中階：三層較細的銅線，中間一層少數幾條線之間是氣隙
+  [0.16, 0.44, 0.72].forEach((f, r) => { for (let i = 0; i < 9; i++) svg += `<rect x="${36 + i * 29}" y="${yM + mH * f}" width="13" height="11" fill="${COPPER}" stroke="${RED}" stroke-width=".8"/>`; });
+  const gapY = yM + mH * 0.44;
+  // 氣隙在第 3、4 條與第 6、7 條線之間（線寬 13、間距 29，線與線之間空 16）
+  [115, 202].forEach(c => { svg += `<rect x="${c - 6}" y="${gapY - 1}" width="12" height="13" rx="4" fill="#ffffff" stroke="${TEAL}" stroke-dasharray="2 1.5"/>`; });
+  // 引線從氣隙往上繞到兩排線之間再接到「氣隙」那一行，不穿過銅線（審查意見）
+  svg += `<path d="M202 ${gapY - 1} V${gapY - 8} H304 L${LX - 6} ${mid.ys[3] - 4}" fill="none" stroke="${MUTED}" stroke-dasharray="2 2"/>`;
+  // 局部：最細的三層，依製程擇用銅（超薄阻障層）、鈷或釕（無阻障層），三組之間用虛線分開，不是同一層混用
+  [0.2, 0.48, 0.76].forEach(f => { for (let i = 0; i < 21; i++) { const [fill, stroke] = i < 9 ? [COPPER, PINK] : i < 15 ? [CO, INK_2] : [RU, VIOLET]; svg += `<rect x="${32 + i * 12.6}" y="${yL + lH * f}" width="6" height="8" fill="${fill}" stroke="${stroke}" stroke-width=".8"/>`; } });
+  svg += [142, 218].map(x => `<path d="M${x} ${yL + 4} V${yL + lH - 4}" stroke="${MUTED}" stroke-dasharray="3 3"/>`).join('');
+  // 元件層
+  svg += `<rect x="${X0}" y="${yD}" width="${X1 - X0}" height="24" fill="${SI}" stroke="${INK_2}"/>` + Array.from({ length: 9 }, (_, i) => `<rect x="${38 + i * 29}" y="${yD - 5}" width="12" height="5" fill="${AMBER_L}" stroke="${AMBER}" stroke-width=".8"/>`).join('');
+  return { svg, height: Math.ceil(Math.max(yD + 24, yL + loc.h) + 8) };
+}
+
+export const PICTORIALS = {
+  industryMap, cleanroom, toolTypes, fabRoles, dopingLattice, cmosWells, sandToPoly, ingotToWafer, waferSizes, specialWafers,
+  overlayCd, lithoDefects, filmStack, thermalOxidation, cvdTypes, epitaxy, filmMetrics,
+  etchTransfer, plasma, etchMetrics, doseEnergy, thermalBudget,
+  whyPlanarize, dummyFill, contaminants, crossContamination, alToCu, thinWires, metalDefects, beolTiers
+};
