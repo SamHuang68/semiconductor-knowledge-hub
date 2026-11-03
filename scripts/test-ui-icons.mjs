@@ -24,6 +24,10 @@ for (const s of SCENARIOS) {
   for (const n of s.nodes) known(SCENARIO_NODE_ICONS[n.id] || CHAPTER_ICONS[n.chapter], `情境 ${s.id} 節點 ${n.id}`);
 }
 
+// 對應表漏了某章時只少一個圖示，不讓整個畫面無法渲染；名稱寫錯仍要丟錯，由上面的檢查攔下
+assert.equal(icon(undefined), '', '沒有對應的圖示時回傳空字串');
+assert.throws(() => icon('no-such-icon'), /沒有這個圖示/, '不存在的圖示名稱要丟錯');
+
 // 圖示一律單色 currentColor，不寫死顏色，黃光主題才會跟著換
 for (const name of ICON_NAMES) assert.doesNotMatch(icon(name), /#[0-9a-f]{3,6}\b/i, `${name} 寫死了顏色`);
 

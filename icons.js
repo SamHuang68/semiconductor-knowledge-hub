@@ -117,7 +117,7 @@ const PATHS = {
   puzzle: '<path d="M4 7h4a2 2 0 1 1 4 0h4v4a2 2 0 1 1 0 4v4h-4a2 2 0 1 0-4 0H4v-4a2 2 0 1 0 0-4z"/>',
   'shield-check': '<path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/>',
   box: '<path d="M3.5 7.5 12 3l8.5 4.5v9L12 21l-8.5-4.5z"/><path d="M3.5 7.5 12 12l8.5-4.5M12 12v9"/>',
-  door: '<path d="M13 3H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h7"/><path d="M10 12h10M17 9l3 3-3 3"/>',
+  beyond: '<rect x="8" y="8" width="8" height="8" rx="1.5"/><path d="M12 2.5V6M12 18v3.5M2.5 12H6M18 12h3.5"/><path d="M10.5 4 12 2.5 13.5 4M10.5 20 12 21.5l1.5-1.5M4 10.5 2.5 12 4 13.5M20 10.5l1.5 1.5-1.5 1.5"/>',
   appendix: '<path d="M6 3h12v18H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/><path d="M4 17a2 2 0 0 1 2-2h12"/><path d="M10 3v7l2-1.5 2 1.5V3"/>',
   // 側欄狀態與翻頁
   star: '<path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"/>',
@@ -133,7 +133,6 @@ const PATHS = {
   carrier: '<rect x="4" y="5.5" width="16" height="2.5" rx="1"/><path d="M5.5 10.3h1M9.5 10.3h1M13.5 10.3h1M17.5 10.3h1"/><rect x="3" y="12.5" width="18" height="6.5" rx="1"/>',
   sputter: '<rect x="3" y="3.5" width="18" height="4.5" rx="1"/><path d="M6 21 9 10.5M7.3 11.6 9 10.5l.9 1.9"/><circle cx="15" cy="12.5" r="2"/><path d="M15.8 15.2 17 19.5M15.7 18.4l1.3 1.1.9-1.5"/>',
   formula: '<path d="M4 3v17h17"/><path d="M6.5 17c3-1 5-4 6.5-7s3-5 6-6"/>',
-  flame: '<path d="M12 21c-4 0-6.5-2.7-6.5-6 0-3.5 3-5.5 3.5-9 2 1.2 3 3 3 4.5 1-1 1.5-2.2 1.5-3.5 2.5 2 4.5 4.8 4.5 8 0 3.3-2 6-6 6z"/>',
   plasma: '<path d="M3 12c2-3 4 3 6 0s4 3 6 0 4 3 6 0"/><path d="M8 5l1.2 2M12 4v2.5M16 5l-1.2 2M8 19l1.2-2M12 20v-2.5M16 19l-1.2-2"/>',
   snowflake: '<path d="M12 3v18M4.2 7.5l15.6 9M4.2 16.5l15.6-9"/><path d="M10 4.5 12 6l2-1.5M10 19.5l2-1.5 2 1.5"/>',
   'deep-hole': '<rect x="3" y="4" width="18" height="16" rx="1"/><path d="M10.5 4v12.5a1.5 1.5 0 0 0 3 0V4"/>',
@@ -150,11 +149,17 @@ const PATHS = {
   fuse: '<path d="M3 12h4M17 12h4"/><rect x="7" y="9" width="10" height="6" rx="1"/><path d="M9 12h2M13 12h2"/>',
   sliders: '<path d="M6 4v16M12 4v16M18 4v16"/><circle cx="6" cy="9" r="2"/><circle cx="12" cy="15" r="2"/><circle cx="18" cy="7" r="2"/>',
   lock: '<rect x="5" y="10.5" width="14" height="10" rx="2"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/>',
-  'edge-ring': '<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5.5" stroke-dasharray="2 2"/>'
+  'edge-ring': '<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5.5" stroke-dasharray="2 2"/>',
+  // 2.17.0 審查修正：沉積停在表面、由下往上填孔、名稱標籤、規則晶格，避免借用意思相反或同章另有用途的圖示
+  deposit: '<rect x="3" y="15.5" width="18" height="5" rx="1"/><path d="M3 13.5h18"/><path d="M7 3v7M12 3v7M17 3v7M5.5 8.5 7 10l1.5-1.5M10.5 8.5 12 10l1.5-1.5M15.5 8.5 17 10l1.5-1.5"/>',
+  'fill-up': '<path d="M3 6h6v13h6V6h6"/><path d="M9.8 18.2V14h4.4v4.2z" fill="currentColor" fill-opacity=".35"/><path d="M12 12V7.5M10.5 9 12 7.5 13.5 9"/>',
+  tag: '<path d="M3.5 12.5V4.5a1 1 0 0 1 1-1h8l8 8.5-9 9z"/><circle cx="8" cy="8" r="1.5"/>',
+  lattice: '<path d="M6 6h12M6 12h12M6 18h12M6 6v12M12 6v12M18 6v12" stroke-opacity=".45"/><circle cx="6" cy="6" r="1.8"/><circle cx="12" cy="6" r="1.8"/><circle cx="18" cy="6" r="1.8"/><circle cx="6" cy="12" r="1.8"/><circle cx="12" cy="12" r="2.2" fill="currentColor"/><circle cx="18" cy="12" r="1.8"/><circle cx="6" cy="18" r="1.8"/><circle cx="12" cy="18" r="1.8"/><circle cx="18" cy="18" r="1.8"/>'
 };
 
 // 裝飾用圖示一律 aria-hidden，文字意義由旁邊的文字承擔
 export function icon(name, cls = '') {
+  if (!name) return '';
   const paths = PATHS[name];
   if (!paths) throw new Error(`沒有這個圖示：${name}`);
   return `<svg class="ui-icon${cls ? ` ${cls}` : ''}" viewBox="0 0 24 24" aria-hidden="true" focusable="false">${paths}</svg>`;

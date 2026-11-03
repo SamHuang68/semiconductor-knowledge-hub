@@ -1342,7 +1342,7 @@ export const SECTION_DIAGRAMS = [
       {
         "zh": "飛到晶圓上",
         "en": "Atoms fly onto the wafer",
-        "icon": "depth"
+        "icon": "deposit"
       },
       {
         "zh": "堆積成薄膜",
@@ -1556,7 +1556,7 @@ export const SECTION_DIAGRAMS = [
         "en": "Faraday & curvature-enhanced fill",
         "leafZh": "孔底長得比孔口快、無空洞",
         "leafEn": "Bottom outgrows the mouth: void-free fill",
-        "icon": "step"
+        "icon": "fill-up"
       }
     ]
   },
@@ -1639,7 +1639,7 @@ export const SECTION_DIAGRAMS = [
         "en": "Ashing / strip",
         "noteZh": "氧電漿燒掉光阻",
         "noteEn": "Oxygen plasma burns off the resist",
-        "icon": "flame"
+        "icon": "plasma"
       },
       {
         "zh": "清洗",
@@ -1872,7 +1872,7 @@ export const SECTION_DIAGRAMS = [
         "en": "Lattice repairs; impurities settle",
         "noteZh": "開始導電，稱為活化",
         "noteEn": "They start conducting: activation",
-        "icon": "dose"
+        "icon": "lattice"
       }
     ]
   },
@@ -2749,7 +2749,7 @@ export const SECTION_DIAGRAMS = [
         "en": "STI corner divot and leakage hump",
         "leafZh": "轉角圓滑化氧化並控氧化層損耗",
         "leafEn": "Corner-rounding oxidation, oxide-loss budget",
-        "icon": "excess"
+        "icon": "profile"
       }
     ]
   },
@@ -3183,7 +3183,7 @@ export const SECTION_DIAGRAMS = [
         "en": "Same name",
         "leafZh": "密度可能差很多",
         "leafEn": "Density can differ a lot",
-        "icon": "confusion"
+        "icon": "tag"
       },
       {
         "zh": "名稱數字較大",

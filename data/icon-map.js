@@ -118,7 +118,7 @@ export const CHAPTER_ICONS = {
 
 export const PART_ICONS = {
   'part-0': 'map', 'part-1': 'atom', 'part-2': 'modules', 'part-3': 'puzzle',
-  'part-4': 'shield-check', 'part-5': 'box', 'part-6': 'door', 'part-app': 'appendix'
+  'part-4': 'shield-check', 'part-5': 'box', 'part-6': 'beyond', 'part-app': 'appendix'
 };
 
 // 首頁十二站依站號對應：熱氧化與薄膜沉積同在第 5 章，各用自己的圖示
@@ -134,7 +134,7 @@ export const SCENARIO_ICONS = { journey: 'wafer', pattern: 'litho', quality: 'co
 export const SCENARIO_NODE_ICONS = {
   wafer: 'wafer', transistor: 'transistor', wiring: 'interconnect', probe: 'probe-card', package: 'package',
   film: 'layers', resist: 'drop', expose: 'litho', etch: 'etch', clean: 'clean', measure: 'microscope',
-  signal: 'microscope', decision: 'why', monitor: 'control-limit', hold: 'risk', cause: 'defect', release: 'check',
+  signal: 'microscope', decision: 'why', monitor: 'control-limit', hold: 'stop', cause: 'defect', release: 'check',
   single: 'package', interposer: 'chiplets', stack: 'layers',
   route: 'network', dispatch: 'dispatch', transport: 'oht', recipe: 'practice', record: 'definition'
 };
