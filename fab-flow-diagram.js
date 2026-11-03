@@ -1,3 +1,6 @@
+import { icon } from './icons.js';
+import { STATION_ICONS } from './data/icon-map.js';
+
 function escapeHtml(value) {
   return String(value).replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[char]));
 }
@@ -16,7 +19,8 @@ export function mountFabFlow(container, nodes, isEn) {
   const buttons = nodes.map((node, index) => {
     const name = isEn ? node.nameEn : node.nameZh;
     return `<li><button type="button" class="fab-station" data-station="${index}" aria-pressed="${index === 0 ? 'true' : 'false'}" tabindex="${index === 0 ? '0' : '-1'}">
-      <svg viewBox="0 0 36 36" aria-hidden="true"><circle cx="18" cy="18" r="16"></circle><text x="18" y="22" text-anchor="middle">${escapeHtml(node.num)}</text></svg>
+      <svg class="station-num" viewBox="0 0 36 36" aria-hidden="true"><circle cx="18" cy="18" r="16"></circle><text x="18" y="22" text-anchor="middle">${escapeHtml(node.num)}</text></svg>
+      ${icon(STATION_ICONS[node.num], 'station-icon')}
       <span>${escapeHtml(name)}</span>
     </button></li>`;
   }).join('');
@@ -41,7 +45,7 @@ export function mountFabFlow(container, nodes, isEn) {
       button.setAttribute('aria-pressed', on ? 'true' : 'false');
       button.tabIndex = on ? 0 : -1;
     });
-    detail.innerHTML = `<h3>${escapeHtml(name)}</h3><p>${escapeHtml(shortText(summary))}</p><a href="#${escapeHtml(node.chapterId)}">${escapeHtml(isEn ? `Read ${title}` : `閱讀${title}`)}</a>`;
+    detail.innerHTML = `${icon(STATION_ICONS[node.num], 'station-detail-icon')}<h3>${escapeHtml(name)}</h3><p>${escapeHtml(shortText(summary))}</p><a href="#${escapeHtml(node.chapterId)}">${escapeHtml(isEn ? `Read ${title}` : `閱讀${title}`)}</a>`;
   };
   show(0);
   container.addEventListener('click', event => {

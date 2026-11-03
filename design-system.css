@@ -640,7 +640,7 @@ body.is-missing .app-toc {
   font: inherit;
 }
 
-.fab-station svg {
+.fab-station .station-num {
   width: 36px;
   height: 36px;
   flex: 0 0 auto;
@@ -650,12 +650,12 @@ body.is-missing .app-toc {
   min-width: 0;
 }
 
-.fab-station circle {
+.fab-station .station-num circle {
   fill: #f0fdfa;
   stroke: #0f766e;
 }
 
-.fab-station text {
+.fab-station .station-num text {
   fill: #0f172a;
   font-size: 11px;
   font-weight: 700;
@@ -874,6 +874,62 @@ body { background: var(--chrome-page, var(--bg-app)); }
   .article-body .icon-list { grid-template-columns: 1fr; gap: 6px; }
   .icon-list > li { padding: 2px 0; border: 0; background: transparent; }
   .icon-list .ui-icon, .icon-list .li-num { width: 24px; height: 24px; padding: 4px; }
+}
+
+/* 2.17.0 介面圖示：首頁十二站、各部卡、側欄、章節標頭、翻頁、各部頁與情境探索共用 icons.js；全部裝飾用（aria-hidden），文字不變 */
+/* 站號在上、站點圖示在下，疊在左欄；站名保留原本的寬度，不因加圖示而多折行 */
+.fab-station { display: grid; grid-template-columns: 34px minmax(0, 1fr); grid-template-rows: auto auto; column-gap: 10px; row-gap: 4px; align-items: center; }
+.fab-station .station-num { grid-column: 1; grid-row: 1; justify-self: center; width: 32px; height: 32px; }
+.fab-station .station-icon { grid-column: 1; grid-row: 2; justify-self: center; width: 24px; height: 24px; color: var(--semi-teal); }
+.fab-station > span { grid-column: 2; grid-row: 1 / span 2; }
+.fab-flow-detail .station-detail-icon { width: 56px; height: 56px; padding: 10px; border-radius: 12px; color: var(--semi-teal); background: var(--semi-teal-light); }
+.part-card { position: relative; display: grid; grid-template-columns: 40px minmax(0, 1fr); column-gap: 14px; align-items: start; }
+.part-card .part-icon { width: 40px; height: 40px; padding: 8px; border-radius: 10px; color: var(--semi-teal); background: var(--semi-teal-light); }
+.part-card-text { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+/* 該部各章圖示放在右上角，與「N 章」同一列，不多佔高度 */
+.part-card span.part-chapter-icons { position: absolute; top: 16px; right: 16px; display: flex; gap: 8px; color: #64748b; }
+.part-chapter-icons .ui-icon { width: 18px; height: 18px; }
+.part-title-link { display: flex; align-items: center; gap: 6px; }
+.part-title-icon { width: 14px; height: 14px; stroke-width: 2; }
+.ch-title-wrap { display: flex; align-items: flex-start; min-width: 0; }
+.ch-title-wrap .ch-number { margin-top: 1px; }
+.ch-icon { width: 16px; height: 16px; margin: 1px 6px 0 0; color: #64748b; }
+.chapter-nav-link.is-active .ch-icon { color: var(--semi-blue-dark); }
+.explored-model-badge .ui-icon, .star-indicator .ui-icon, .read-check-indicator .ui-icon { width: 12px; height: 12px; stroke-width: 2.25; vertical-align: -1px; }
+.star-indicator .ui-icon { fill: currentColor; }
+.article-part-label { display: inline-flex; align-items: center; gap: 6px; }
+.part-label-icon { width: 16px; height: 16px; }
+.article-headline { display: flex; align-items: flex-start; gap: 16px; }
+.article-headline .headline-icon { width: 48px; height: 48px; margin-top: 2px; padding: 9px; border-radius: 12px; stroke-width: 1.6; color: var(--semi-teal); background: var(--semi-teal-light); }
+.nav-direction { display: inline-flex; align-items: center; gap: 6px; }
+.nav-direction .nav-arrow { width: 16px; height: 16px; stroke-width: 2; }
+.nav-title { display: flex; align-items: flex-start; gap: 8px; }
+.nav-title .nav-chapter-icon { width: 20px; height: 20px; margin-top: 1px; color: var(--semi-teal); }
+.chapter-pagination .page-nav-card:last-child:not(:only-child) .nav-direction, .chapter-pagination .page-nav-card:last-child:not(:only-child) .nav-title { justify-content: flex-end; }
+.chapter-preview { display: grid; grid-template-columns: 32px minmax(0, 1fr); column-gap: 12px; align-content: start; }
+.chapter-preview > :not(.preview-icon) { grid-column: 2; }
+.chapter-preview .preview-icon { grid-column: 1; grid-row: 1 / span 2; width: 32px; height: 32px; padding: 6px; border-radius: 8px; color: var(--semi-teal); background: var(--semi-teal-light); }
+.glossary-cards-link { display: inline-flex; align-items: center; gap: 8px; margin: 0 0 20px; padding: 10px 14px; border: 1px solid var(--semi-teal); border-radius: 8px; color: var(--semi-teal); font-weight: 600; line-height: 1.5; text-decoration: none; }
+.glossary-cards-link:hover { background: var(--semi-teal-light); }
+.glossary-cards-link:focus-visible { outline: 3px solid var(--semi-teal); outline-offset: 2px; }
+.scenario-number .scenario-icon { width: 24px; height: 24px; color: inherit; }
+.flow-node strong { display: flex; align-items: center; gap: 8px; }
+.flow-node .node-icon { width: 24px; height: 24px; color: var(--semi-teal); }
+.flow-arrow .ui-icon { display: block; width: 18px; height: 18px; stroke-width: 2; }
+@media (max-width: 640px) {
+  .fab-station { grid-template-columns: 30px minmax(0, 1fr); column-gap: 8px; }
+  .fab-station .station-num { width: 28px; height: 28px; }
+  .fab-station .station-icon { width: 22px; height: 22px; }
+  .fab-flow-detail .station-detail-icon { float: left; width: 40px; height: 40px; padding: 7px; margin: 0 12px 4px 0; }
+  /* 窄螢幕翻頁卡只留方向箭頭：章節圖示會把章名擠成更多行 */
+  .nav-title .nav-chapter-icon { display: none; }
+  .article-headline { gap: 10px; }
+  .article-headline .headline-icon { width: 32px; height: 32px; margin-top: 3px; padding: 6px; border-radius: 8px; }
+  .chapter-preview { grid-template-columns: 28px minmax(0, 1fr); }
+  .chapter-preview .preview-icon { width: 28px; height: 28px; padding: 5px; }
+}
+@media print {
+  .article-headline .headline-icon, .nav-arrow, .nav-chapter-icon { display: none; }
 }
 .sourced-badge {
   display: inline-block;
@@ -1110,10 +1166,11 @@ body.is-home #home-fab-flow h2 { margin: 8px 0 12px; font-size: clamp(26px, 2.5v
 body.is-home #home-fab-flow .fab-flow-list { grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 10px; margin-block: 24px; }
 body.is-home #home-fab-flow .fab-station { height: 100%; min-height: 82px; padding: 12px; gap: 10px; font-size: 15px; line-height: 1.4; cursor: pointer; }
 body.is-home #home-fab-flow .fab-station[aria-pressed="true"] { border-color: #0f766e; background: #e0f4ed; box-shadow: inset 0 -3px #0f766e; }
-body.is-home #home-fab-flow .fab-flow-detail { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px 24px; padding: 20px; border-color: #bdd6ce; }
-body.is-home #home-fab-flow .fab-flow-detail h3 { grid-column: 1; margin: 0; }
-body.is-home #home-fab-flow .fab-flow-detail p { grid-column: 1; margin: 0; max-width: 68ch; font-size: 16px; line-height: 1.65; }
-body.is-home #home-fab-flow .fab-flow-detail a { grid-column: 2; grid-row: 1 / span 2; align-self: center; display: inline-flex; align-items: center; min-height: 44px; padding: 8px 14px; border: 1px solid #0f766e; border-radius: 6px; color: #0f766e; font-weight: 650; text-decoration: none; }
+body.is-home #home-fab-flow .fab-flow-detail { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 8px 24px; padding: 20px; border-color: #bdd6ce; }
+body.is-home #home-fab-flow .fab-flow-detail .station-detail-icon { grid-column: 1; grid-row: 1 / span 2; align-self: center; }
+body.is-home #home-fab-flow .fab-flow-detail h3 { grid-column: 2; margin: 0; }
+body.is-home #home-fab-flow .fab-flow-detail p { grid-column: 2; margin: 0; max-width: 68ch; font-size: 16px; line-height: 1.65; }
+body.is-home #home-fab-flow .fab-flow-detail a { grid-column: 3; grid-row: 1 / span 2; align-self: center; display: inline-flex; align-items: center; min-height: 44px; padding: 8px 14px; border: 1px solid #0f766e; border-radius: 6px; color: #0f766e; font-weight: 650; text-decoration: none; }
 
 body.is-chapter-sample .article-header { margin-bottom: 24px; max-width: 80rem; }
 body.is-chapter-sample .article-headline { max-width: 34ch; font-size: clamp(30px, 3.2vw, 44px); font-weight: 650; line-height: 1.22; }

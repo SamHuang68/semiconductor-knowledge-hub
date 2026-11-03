@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import { readdirSync } from 'node:fs';
 import { SECTION_DIAGRAMS } from '../data/section-diagrams.js';
 import { headingPattern, insertSectionDiagrams, renderSectionDiagram } from '../section-diagrams.js';
+import { ICON_NAMES } from '../icons.js';
 
 const chapters = {};
 for (const file of readdirSync(new URL('../data/chapters/', import.meta.url)).filter(f => f.endsWith('.js'))) {
@@ -73,6 +74,10 @@ for (const spec of SECTION_DIAGRAMS) {
   }
   assert.equal(zhNodes.length, enNodes.length, `${id} 中英文標籤數須一致`);
 
+  // 節點圖示：名稱須在 icons.js 註冊表內
+  const iconsOf = node => Object.entries(node).flatMap(([key, value]) => (key === 'icon' ? [value] : value && typeof value === 'object' ? iconsOf(value) : []));
+  for (const name of iconsOf(spec)) assert.ok(ICON_NAMES.includes(name), `${id} 節點圖示不存在：${name}`);
+
   // 圖說：數字須出現在該段正文
   for (const [caption, html, heading, lang] of [[spec.captionZh, chapter.contentHtml, spec.headingZh, 'zh'], [spec.captionEn, chapter.contentHtmlEn, spec.headingEn, 'en']]) {
     assert.ok([...caption].length <= LIMITS[lang].caption, `${id} 圖說過長：${caption}`);
@@ -86,7 +91,9 @@ for (const spec of SECTION_DIAGRAMS) {
     assert.ok(figure.includes(lang === 'zh' ? '示意 · 未按比例' : 'Schematic · not to scale'), `${id} 須標示示意、未按比例`);
     // 規格裡的每段文字都要畫進圖中：渲染器漏讀欄位或截字即失敗（2.10.0 曾漏畫 compare 與 cycle 的註記）
     // 圖內文字只在 SVG 內找、圖說只在 figcaption 內找，避免短標籤被圖說裡的同字誤判為已顯示
-    const [svgPart, captionPart] = figure.split('</svg>');
+    // 節點圖示是巢狀 SVG（2.17.0），以最外層的 </svg> 切開圖與圖說
+    const cut = figure.lastIndexOf('</svg>');
+    const [svgPart, captionPart] = [figure.slice(0, cut), figure.slice(cut)];
     const caption = lang === 'zh' ? spec.captionZh : spec.captionEn;
     assert.ok(shownText(captionPart).includes(caption.replace(/\s+/g, '')), `${id} ${lang} 圖說沒有出現在 figcaption`);
     const shown = shownText(svgPart);

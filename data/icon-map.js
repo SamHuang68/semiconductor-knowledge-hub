@@ -105,3 +105,36 @@ export const LABEL_ICONS = {
   '人工智慧分析': 'ai', 'AI analysis': 'ai',
   '自動化派工': 'dispatch', 'Automated dispatching': 'dispatch'
 };
+
+// 介面圖示（2.17.0）：側欄、章節標頭、翻頁、各部頁與首頁共用同一組章節圖示；
+// data/fab-flow.js 與 data/scenario-paths.js 有雜湊鎖或既有契約，對應表放這裡，不改原資料
+export const CHAPTER_ICONS = {
+  ch00: 'circuit', ch01: 'fab', ch02: 'transistor', ch03: 'ingot', ch04: 'litho', ch05: 'layers', ch06: 'etch',
+  ch07: 'implant', ch08: 'pad', ch09: 'clean', ch10: 'interconnect', ch11: 'route', ch12: 'gaa', ch13: 'array',
+  ch14: 'ruler', ch15: 'microscope', ch16: 'defect', ch17: 'control-limit', ch18: 'risk', ch19: 'probe-card',
+  ch20: 'package', ch21: 'chiplets', ch22: 'bathtub', ch23: 'network', ch24: 'firmware',
+  'app-glossary': 'term', 'app-jargon': 'usage', 'app-reading': 'books'
+};
+
+export const PART_ICONS = {
+  'part-0': 'map', 'part-1': 'atom', 'part-2': 'modules', 'part-3': 'puzzle',
+  'part-4': 'shield-check', 'part-5': 'box', 'part-6': 'door', 'part-app': 'appendix'
+};
+
+// 首頁十二站依站號對應：熱氧化與薄膜沉積同在第 5 章，各用自己的圖示
+export const STATION_ICONS = {
+  '01': 'ingot', '02': 'furnace', '03': 'litho', '04': 'etch', '05': 'implant', '06': 'layers',
+  '07': 'pad', '08': 'clean', '09': 'interconnect', '10': 'gaa', '11': 'microscope', '12': 'probe-card'
+};
+
+// 情境探索：情境卡用主題圖示（取代原本代表圖型種類的符號字元，圖型種類仍由卡片文字說明）
+export const SCENARIO_ICONS = { journey: 'wafer', pattern: 'litho', quality: 'control-limit', packaging: 'chiplets', dispatch: 'fab' };
+
+// 流程節點依節點 id；沒有列出的節點沿用其教材章節的圖示
+export const SCENARIO_NODE_ICONS = {
+  wafer: 'wafer', transistor: 'transistor', wiring: 'interconnect', probe: 'probe-card', package: 'package',
+  film: 'layers', resist: 'drop', expose: 'litho', etch: 'etch', clean: 'clean', measure: 'microscope',
+  signal: 'microscope', decision: 'why', monitor: 'control-limit', hold: 'risk', cause: 'defect', release: 'check',
+  single: 'package', interposer: 'chiplets', stack: 'layers',
+  route: 'network', dispatch: 'dispatch', transport: 'oht', recipe: 'practice', record: 'definition'
+};

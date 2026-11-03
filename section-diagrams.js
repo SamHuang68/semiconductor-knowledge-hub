@@ -2,6 +2,7 @@
 // 沿用 chapter-figures.js 的外框與圖說（示意、未按比例、名稱取自本章、不另編數字），正文文字不刪減。
 import { esc, frame } from './chapter-figures.js';
 import { SECTION_DIAGRAMS } from './data/section-diagrams.js';
+import { iconAt } from './icons.js';
 
 const INK = '#0f172a';
 const INK_2 = '#334155';
@@ -71,25 +72,31 @@ function textBlock(x, cy, lines, size, color, weight = 400) {
 }
 
 // 方框文字最多四行；各圖型依 boxHeight 算出所需高度，不截斷內容
+// 節點有圖示時（2.17.0）圖示放在方框左側，文字可用寬度少 ICON_W
 const MAX_LINES = 4;
+const ICON_W = 24;
 const labelSize = en => (en ? 11.5 : 12.5);
-function boxHeight(w, label, note, en) {
-  const labelLines = wrap(label, w - 12, labelSize(en), en, MAX_LINES).length;
-  const noteLines = note ? wrap(note, w - 12, 10.5, en, MAX_LINES).length : 0;
+function boxHeight(w, label, note, en, icon) {
+  const textW = w - 12 - (icon ? ICON_W : 0);
+  const labelLines = wrap(label, textW, labelSize(en), en, MAX_LINES).length;
+  const noteLines = note ? wrap(note, textW, 10.5, en, MAX_LINES).length : 0;
   return 16 + labelLines * labelSize(en) * 1.25 + (noteLines ? 6 + noteLines * 10.5 * 1.25 : 0);
 }
 
-function box(x, y, w, h, tone, label, note, en) {
+function box(x, y, w, h, tone, label, note, en, icon) {
   const size = labelSize(en);
-  const labelLines = wrap(label, w - 12, size, en, MAX_LINES);
-  const noteLines = note ? wrap(note, w - 12, 10.5, en, MAX_LINES) : [];
+  const textW = w - 12 - (icon ? ICON_W : 0);
+  const cx = x + w / 2 + (icon ? ICON_W / 2 : 0);
+  const labelLines = wrap(label, textW, size, en, MAX_LINES);
+  const noteLines = note ? wrap(note, textW, 10.5, en, MAX_LINES) : [];
   const block = labelLines.length * size * 1.25 + (noteLines.length ? 6 + noteLines.length * 10.5 * 1.25 : 0);
   const top = y + (h - block) / 2;
   const labelCy = top + (labelLines.length * size * 1.25) / 2;
   const noteCy = top + labelLines.length * size * 1.25 + 6 + (noteLines.length * 10.5 * 1.25) / 2;
   return `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="6" fill="${tone.fill}" stroke="${tone.stroke}" stroke-width="1.2"/>`
-    + textBlock(x + w / 2, labelCy, labelLines, size, INK, 600)
-    + (noteLines.length ? textBlock(x + w / 2, noteCy, noteLines, 10.5, INK_2) : '');
+    + (icon ? iconAt(icon, x + 7, y + h / 2 - 9, 18, tone.stroke) : '')
+    + textBlock(cx, labelCy, labelLines, size, INK, 600)
+    + (noteLines.length ? textBlock(cx, noteCy, noteLines, 10.5, INK_2) : '');
 }
 
 const arrowHead = (x, y, dir) => {
@@ -105,7 +112,7 @@ function flow(spec, en) {
   const gap = 26;
   const w = (608 - gap * (perRow - 1)) / perRow;
   const noteOf = step => (step.noteZh ? pick({ zh: step.noteZh, en: step.noteEn }, en) : '');
-  const h = Math.ceil(Math.max(58, ...steps.map(step => boxHeight(w, pick(step, en), noteOf(step), en))));
+  const h = Math.ceil(Math.max(58, ...steps.map(step => boxHeight(w, pick(step, en), noteOf(step), en, step.icon))));
   const rowGap = 34;
   const height = 40 + rows * h + (rows - 1) * rowGap + 24;
   let svg = '';
@@ -114,7 +121,7 @@ function flow(spec, en) {
     const col = row % 2 === 0 ? i % perRow : perRow - 1 - (i % perRow);
     const x = 16 + col * (w + gap);
     const y = 32 + row * (h + rowGap);
-    svg += box(x, y, w, h, TONES[i % TONES.length], pick(step, en), noteOf(step), en);
+    svg += box(x, y, w, h, TONES[i % TONES.length], pick(step, en), noteOf(step), en, step.icon);
     svg += `<circle cx="${x + 2}" cy="${y + 2}" r="8.5" fill="#ffffff" stroke="${LINE}"/><text x="${x + 2}" y="${y + 5.5}" text-anchor="middle" fill="${LINE}" font-size="10" font-weight="700">${stepMark(i)}</text>`;
     if (i < steps.length - 1) {
       const nextRow = Math.floor((i + 1) / perRow);
@@ -140,7 +147,7 @@ function cycle(spec, en) {
   const n = steps.length;
   const w = n > 5 ? 128 : 144;
   const noteOf = step => (step.noteZh ? pick({ zh: step.noteZh, en: step.noteEn }, en) : '');
-  const h = Math.ceil(Math.max(52, ...steps.map(step => boxHeight(w, pick(step, en), noteOf(step), en))));
+  const h = Math.ceil(Math.max(52, ...steps.map(step => boxHeight(w, pick(step, en), noteOf(step), en, step.icon))));
   const angle = i => -Math.PI / 2 + (i * 2 * Math.PI) / n;
   const rx = 220;
   // 同側上下相鄰、水平距離不足的節點不可重疊：依節點高度放大縱向半徑
@@ -162,7 +169,7 @@ function cycle(spec, en) {
   }
   steps.forEach((step, i) => {
     const [x, y] = pts[i];
-    svg += box(x - w / 2, y - h / 2, w, h, TONES[i % TONES.length], pick(step, en), noteOf(step), en);
+    svg += box(x - w / 2, y - h / 2, w, h, TONES[i % TONES.length], pick(step, en), noteOf(step), en, step.icon);
     svg += `<circle cx="${x - w / 2 + 2}" cy="${y - h / 2 + 2}" r="8.5" fill="#ffffff" stroke="${LINE}"/><text x="${x - w / 2 + 2}" y="${y - h / 2 + 5.5}" text-anchor="middle" fill="${LINE}" font-size="10" font-weight="700">${stepMark(i)}</text>`;
   });
   if (spec.centerZh) svg += textBlock(cx, cy, wrap(pick({ zh: spec.centerZh, en: spec.centerEn }, en), 200, 13, en, 2), 13, INK_2, 600);
@@ -197,15 +204,18 @@ function compare(spec, en) {
   const w = (608 - gap * (cols.length - 1)) / cols.length;
   const maxItems = Math.max(...cols.map(c => c.items.length));
   const SMALL = 10.5;
+  // 條目有圖示時以 16px 圖示取代項目圓點，文字再往右讓出 4px
+  const indent = item => (item.icon ? 28 : 24);
   const partsOf = item => [
-    ...(item.keyZh ? wrap(pick({ zh: item.keyZh, en: item.keyEn }, en), w - 34, SMALL, en, 2).map(text => ({ text, size: SMALL, color: INK_2, weight: 600 })) : []),
-    ...wrap(pick(item, en), w - 34, 11.5, en, MAX_LINES).map(text => ({ text, size: 11.5, color: INK, weight: 400 })),
-    ...(item.noteZh ? wrap(pick({ zh: item.noteZh, en: item.noteEn }, en), w - 34, SMALL, en, MAX_LINES).map(text => ({ text, size: SMALL, color: INK_2, weight: 400 })) : []),
+    ...(item.keyZh ? wrap(pick({ zh: item.keyZh, en: item.keyEn }, en), w - indent(item) - 10, SMALL, en, 2).map(text => ({ text, size: SMALL, color: INK_2, weight: 600 })) : []),
+    ...wrap(pick(item, en), w - indent(item) - 10, 11.5, en, MAX_LINES).map(text => ({ text, size: 11.5, color: INK, weight: 400 })),
+    ...(item.noteZh ? wrap(pick({ zh: item.noteZh, en: item.noteEn }, en), w - indent(item) - 10, SMALL, en, MAX_LINES).map(text => ({ text, size: SMALL, color: INK_2, weight: 400 })) : []),
   ];
   const blockOf = parts => parts.reduce((sum, p) => sum + p.size * 1.25, 0);
   // 同一列的要點等高，取各欄該列所需高度的最大值
   const rowH = Array.from({ length: maxItems }, (_, ii) => Math.max(38, ...cols.map(c => (c.items[ii] ? blockOf(partsOf(c.items[ii])) + 12 : 0))));
-  const titleLines = Math.max(...cols.map(c => wrap(pick({ zh: c.titleZh, en: c.titleEn }, en), w - 16, 13, en, 2).length));
+  const titleW = c => w - 16 - (c.icon ? ICON_W : 0);
+  const titleLines = Math.max(...cols.map(c => wrap(pick({ zh: c.titleZh, en: c.titleEn }, en), titleW(c), 13, en, 2).length));
   const titleH = titleLines > 1 ? 52 : 40;
   const height = 16 + titleH + 10 + rowH.reduce((a, b) => a + b + 8, 0) + 20;
   let svg = '';
@@ -214,14 +224,20 @@ function compare(spec, en) {
     const tone = TONES[(ci * 2) % TONES.length];
     svg += `<rect x="${x}" y="16" width="${w}" height="${height - 28}" rx="8" fill="#ffffff" stroke="${tone.stroke}" stroke-width="1.2"/>`;
     svg += `<rect x="${x}" y="16" width="${w}" height="${titleH}" rx="8" fill="${tone.fill}" stroke="${tone.stroke}" stroke-width="1.2"/>`;
-    svg += textBlock(x + w / 2, 16 + titleH / 2, wrap(pick({ zh: col.titleZh, en: col.titleEn }, en), w - 16, 13, en, 2), 13, INK, 700);
+    const titleText = wrap(pick({ zh: col.titleZh, en: col.titleEn }, en), titleW(col), 13, en, 2);
+    if (col.icon) {
+      // 圖示貼在標題文字左側，圖示與文字整組置中
+      const tw = Math.max(...titleText.map(line => textWidth(line, 13)));
+      const left = x + w / 2 - (tw + ICON_W) / 2;
+      svg += iconAt(col.icon, left, 16 + titleH / 2 - 9, 18, tone.stroke) + textBlock(left + ICON_W + tw / 2, 16 + titleH / 2, titleText, 13, INK, 700);
+    } else svg += textBlock(x + w / 2, 16 + titleH / 2, titleText, 13, INK, 700);
     let y = 16 + titleH + 10;
     col.items.forEach((item, ii) => {
-      svg += `<circle cx="${x + 14}" cy="${y + rowH[ii] / 2}" r="3" fill="${tone.stroke}"/>`;
+      svg += item.icon ? iconAt(item.icon, x + 6, y + rowH[ii] / 2 - 8, 16, tone.stroke) : `<circle cx="${x + 14}" cy="${y + rowH[ii] / 2}" r="3" fill="${tone.stroke}"/>`;
       const parts = partsOf(item);
       let cursor = y + rowH[ii] / 2 - blockOf(parts) / 2;
       for (const p of parts) {
-        svg += `<text x="${x + 24}" y="${cursor + p.size * 0.625 + p.size * 0.35}" fill="${p.color}" font-size="${p.size}"${p.weight > 400 ? ` font-weight="${p.weight}"` : ''}>${esc(p.text)}</text>`;
+        svg += `<text x="${x + indent(item)}" y="${cursor + p.size * 0.625 + p.size * 0.35}" fill="${p.color}" font-size="${p.size}"${p.weight > 400 ? ` font-weight="${p.weight}"` : ''}>${esc(p.text)}</text>`;
         cursor += p.size * 1.25;
       }
       y += rowH[ii] + 8;
@@ -235,17 +251,17 @@ function branch(spec, en) {
   const items = spec.branches;
   const leafOf = item => (item.leafZh ? pick({ zh: item.leafZh, en: item.leafEn }, en) : '');
   // 每列高度依該列分支與後續動作所需行數決定
-  const rowH = items.map(item => Math.ceil(Math.max(items.length > 4 ? 40 : 46, boxHeight(item.leafZh ? 180 : 390, pick(item, en), '', en), item.leafZh ? boxHeight(180, leafOf(item), '', en) : 0)));
+  const rowH = items.map(item => Math.ceil(Math.max(items.length > 4 ? 40 : 46, boxHeight(item.leafZh ? 180 : 390, pick(item, en), '', en, item.icon), item.leafZh ? boxHeight(180, leafOf(item), '', en) : 0)));
   const rootNote = spec.root.noteZh ? pick({ zh: spec.root.noteZh, en: spec.root.noteEn }, en) : '';
-  const rootH = Math.ceil(Math.max(70, boxHeight(150, pick(spec.root, en), rootNote, en)));
+  const rootH = Math.ceil(Math.max(70, boxHeight(150, pick(spec.root, en), rootNote, en, spec.root.icon)));
   const height = Math.max(150, rootH + 32, 22 + rowH.reduce((a, b) => a + b + 10, 0));
   const rootY = height / 2 - rootH / 2;
-  let svg = box(16, rootY, 150, rootH, TONES[2], pick(spec.root, en), rootNote, en);
+  let svg = box(16, rootY, 150, rootH, TONES[2], pick(spec.root, en), rootNote, en, spec.root.icon);
   let y = 16;
   items.forEach((item, i) => {
     const midY = y + rowH[i] / 2;
     svg += `<path d="M168 ${height / 2} C 200 ${height / 2}, 200 ${midY}, 230 ${midY}" fill="none" stroke="${LINE}" stroke-width="1.4"/>${arrowHead(232, midY, 'right')}`;
-    svg += box(234, y, item.leafZh ? 180 : 390, rowH[i], TONES[(i + 1) % TONES.length], pick(item, en), '', en);
+    svg += box(234, y, item.leafZh ? 180 : 390, rowH[i], TONES[(i + 1) % TONES.length], pick(item, en), '', en, item.icon);
     if (item.leafZh) {
       svg += `<path d="M416 ${midY} H440" stroke="${LINE}" stroke-width="1.4"/>${arrowHead(442, midY, 'right')}`;
       svg += box(444, y, 180, rowH[i], TONES[3], leafOf(item), '', en);

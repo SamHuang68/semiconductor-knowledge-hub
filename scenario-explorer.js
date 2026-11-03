@@ -1,6 +1,8 @@
 import { bindDiagramViewer } from './legend-viewer.js';
 import { renderConnections, bindConnections, connectionOrigin, originQuery, renderConnectionReturn, carryConnectionOrigin } from './extended-exploration.js';
 import { SCENARIOS, getScenario } from './data/scenario-paths.js';
+import { icon } from './icons.js';
+import { CHAPTER_ICONS, SCENARIO_ICONS, SCENARIO_NODE_ICONS } from './data/icon-map.js';
 import { CHAPTER_CATALOG as CHAPTERS_DATA } from './data/chapters-data.js';
 import { waferArt, crossSection, packageArt, journeyArt, dispatchArt, renderComparison, bindComparison, comparisonIsOpen } from './scenario-diagrams.js';
 import { renderExploreVisuals, bindIllustrationSlots } from './hub-visuals.js';
@@ -69,7 +71,7 @@ function flowMap(s, active, isEn = false) {
     const title = isEn ? (n.titleEn || n.title) : n.title;
     const tag = isEn ? (n.tagEn || n.tag) : n.tag;
     const inspectText = isEn ? 'Inspect station <span aria-hidden="true">↗</span>' : '查看這一站 <span aria-hidden="true">↗</span>';
-    return `<a class="flow-node ${active.id === n.id ? 'is-current' : ''} ${extra}" href="${route(s.id, n.id)}" ${active.id === n.id ? 'aria-current="step"' : ''}><span class="node-meta">${String(index + 1).padStart(2, '0')} · ${esc(tag)}</span><strong>${esc(title)}</strong><span class="node-inspect">${inspectText}</span></a>`;
+    return `<a class="flow-node ${active.id === n.id ? 'is-current' : ''} ${extra}" href="${route(s.id, n.id)}" ${active.id === n.id ? 'aria-current="step"' : ''}><span class="node-meta">${String(index + 1).padStart(2, '0')} · ${esc(tag)}</span><strong>${icon(SCENARIO_NODE_ICONS[n.id] || CHAPTER_ICONS[n.chapter], 'node-icon')}<span>${esc(title)}</span></strong><span class="node-inspect">${inspectText}</span></a>`;
   };
   const label = isEn ? (s.labelEn || s.label) : s.label;
   if (s.kind === 'branch') {
@@ -89,7 +91,7 @@ function flowMap(s, active, isEn = false) {
   const cycleReturn = isEn
     ? '↶ If metrology passes, proceed to next layer per routing; if out-of-control, trigger excursion containment.'
     : '↶ 量測合格後，依製程路徑展開下一層；不合格則進入異常處理。';
-  return `<div class="flow-map ${s.kind === 'compare' ? 'comparison-map' : ''}" aria-label="${esc(label)}">${s.nodes.map((n, i) => `${item(n, i)}${i < s.nodes.length - 1 && s.kind !== 'compare' ? '<span class="flow-arrow" aria-hidden="true">→</span>' : ''}`).join('')}</div>${s.kind === 'cycle' ? `<div class="cycle-return">${cycleReturn}</div>` : ''}`;
+  return `<div class="flow-map ${s.kind === 'compare' ? 'comparison-map' : ''}" aria-label="${esc(label)}">${s.nodes.map((n, i) => `${item(n, i)}${i < s.nodes.length - 1 && s.kind !== 'compare' ? `<span class="flow-arrow" aria-hidden="true">${icon('arrow-right')}</span>` : ''}`).join('')}</div>${s.kind === 'cycle' ? `<div class="cycle-return">${cycleReturn}</div>` : ''}`;
 }
 
 export function renderExplorer(container, hash, options = {}) {
@@ -181,7 +183,7 @@ export function renderExplorer(container, hash, options = {}) {
 
   const heroBlock = options.skipHero ? '' : `<header class="explorer-hero"><div class="hero-copy"><p class="explorer-kicker">${heroKicker}</p><h1>${heroH1}</h1><p>${heroP}</p><div class="hero-links"><a href="#explore/journey/wafer">${heroLink1} <span aria-hidden="true">↗</span></a><a href="#ch00">${heroLink2}</a></div><div class="hero-stats">${heroStats}</div></div><div class="hero-wafer">${waferArt()}<span>${heroWaferCaption}</span></div></header>`;
   const explorerBody = `${heroBlock}
-    <section class="scenario-section" aria-labelledby="scenarioHeading"><div class="section-heading"><div><p class="explorer-kicker">${scenarioKicker}</p><h2 id="scenarioHeading">${scenarioHeading}</h2></div><span class="section-index">${scenarioIndex1}</span></div><nav class="scenario-nav" aria-label="${isEn ? 'Scenarios' : '探索情境'}">${SCENARIOS.map((item, i) => `<a href="${route(item.id, item.nodes[0].id)}" class="scenario-choice ${item.id === s.id ? 'is-selected' : ''}" ${item.id === s.id ? 'aria-current="page"' : ''}><span class="scenario-number">0${i + 1} <span aria-hidden="true">${item.icon}</span></span><strong>${esc(isEn ? (item.titleEn || item.title) : item.title)}</strong><span>${esc(isEn ? (item.labelEn || item.label) : item.label)}</span></a>`).join('')}</nav></section>
+    <section class="scenario-section" aria-labelledby="scenarioHeading"><div class="section-heading"><div><p class="explorer-kicker">${scenarioKicker}</p><h2 id="scenarioHeading">${scenarioHeading}</h2></div><span class="section-index">${scenarioIndex1}</span></div><nav class="scenario-nav" aria-label="${isEn ? 'Scenarios' : '探索情境'}">${SCENARIOS.map((item, i) => `<a href="${route(item.id, item.nodes[0].id)}" class="scenario-choice ${item.id === s.id ? 'is-selected' : ''}" ${item.id === s.id ? 'aria-current="page"' : ''}><span class="scenario-number">0${i + 1} ${icon(SCENARIO_ICONS[item.id], 'scenario-icon')}</span><strong>${esc(isEn ? (item.titleEn || item.title) : item.title)}</strong><span>${esc(isEn ? (item.labelEn || item.label) : item.label)}</span></a>`).join('')}</nav></section>
     <nav class="explorer-toolbar" aria-label="${isEn ? 'Scenario Toolbar' : '情境操作'}"><label for="scenarioSelect">${toolbarLabel}<select id="scenarioSelect">${SCENARIOS.map(item => `<option value="${item.id}" ${item.id === s.id ? 'selected' : ''}>${esc(isEn ? (item.titleEn || item.title) : item.title)}</option>`).join('')}</select></label><div class="explorer-tools"><button type="button" data-explorer-view="map">${viewMapText}</button><button type="button" data-explorer-view="detail">${viewDetailText}</button>${hasPractice(s.id) ? `<button type="button" data-explorer-view="practice">${viewPracticeText}</button>` : ''}<button type="button" id="shareStep">${copyStepText}</button></div>
     <p id="shareStatus" class="share-status" role="status" aria-live="polite"></p><div id="manualShare" class="manual-share" hidden><label for="stepUrl">${manualShareLabel}</label><input id="stepUrl" type="url" readonly></div></nav>
     <section class="scenario-workbench" aria-labelledby="workbenchHeading"><div class="section-heading"><div><span class="scenario-type">${esc(sLabel)}</span><h2 id="workbenchHeading" tabindex="-1">${esc(sQuestion)}</h2><p>${esc(sIntro)}</p></div><span class="section-index">${scenarioIndex2}</span></div>

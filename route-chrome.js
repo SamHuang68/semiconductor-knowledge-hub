@@ -1,3 +1,6 @@
+import { icon } from './icons.js';
+import { CHAPTER_ICONS } from './data/icon-map.js';
+
 function escapeHtml(value) {
   return String(value).replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[char]));
 }
@@ -57,7 +60,10 @@ export function chapterPagerHtml({ isEn, prev, next, compact }) {
     if (!chapter) return '';
     const label = dir === 'prev' ? (isEn ? 'Previous chapter' : '上一章') : (isEn ? 'Next chapter' : '下一章');
     const id = escapeHtml(chapter.id);
-    return `<a class="page-nav-card" href="#${id}" data-nav-target="${id}"><span class="nav-direction">${label}</span><span class="nav-title">${escapeHtml(chapter.title)}</span></a>`;
+    // 箭頭與章節圖示都是裝飾，方向與章名仍由文字說明
+    const arrow = icon(dir === 'prev' ? 'arrow-left' : 'arrow-right', 'nav-arrow');
+    const chapterIcon = CHAPTER_ICONS[chapter.id] ? icon(CHAPTER_ICONS[chapter.id], 'nav-chapter-icon') : '';
+    return `<a class="page-nav-card" href="#${id}" data-nav-target="${id}"><span class="nav-direction">${dir === 'prev' ? arrow : ''}${label}${dir === 'next' ? arrow : ''}</span><span class="nav-title">${chapterIcon}${escapeHtml(chapter.title)}</span></a>`;
   };
   const prevHtml = link(prev, 'prev');
   const nextHtml = link(next, 'next');

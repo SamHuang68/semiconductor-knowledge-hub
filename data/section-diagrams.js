@@ -66,23 +66,28 @@ export const SECTION_DIAGRAMS = [
     "steps": [
       {
         "zh": "鋪上材料",
-        "en": "Deposit a material"
+        "en": "Deposit a material",
+        "icon": "layers"
       },
       {
         "zh": "用微影定義圖形",
-        "en": "Define a pattern with lithography"
+        "en": "Define a pattern with lithography",
+        "icon": "litho"
       },
       {
         "zh": "蝕刻或佈植",
-        "en": "Etch or implant"
+        "en": "Etch or implant",
+        "icon": "etch"
       },
       {
         "zh": "清洗",
-        "en": "Clean"
+        "en": "Clean",
+        "icon": "clean"
       },
       {
         "zh": "量測",
-        "en": "Measure"
+        "en": "Measure",
+        "icon": "microscope"
       }
     ],
     "centerZh": "逐層重複",
@@ -148,13 +153,15 @@ export const SECTION_DIAGRAMS = [
             "zh": "EDA 與矽智財供應商",
             "en": "EDA & silicon IP vendors",
             "noteZh": "導入 AI 輔助佈局",
-            "noteEn": "AI-driven physical design"
+            "noteEn": "AI-driven physical design",
+            "icon": "eda"
           },
           {
             "zh": "無廠 IC 設計與雲端業者",
             "en": "Fabless design houses & hyperscalers",
             "noteZh": "轉向多晶粒拆分",
-            "noteEn": "Shift to chiplet disaggregation"
+            "noteEn": "Shift to chiplet disaggregation",
+            "icon": "cloud"
           }
         ]
       },
@@ -166,13 +173,15 @@ export const SECTION_DIAGRAMS = [
             "zh": "純晶圓代工整合平台",
             "en": "Pure-play foundry platforms",
             "noteZh": "前段與先進封裝在廠內合一",
-            "noteEn": "Front end and packaging converge in-house"
+            "noteEn": "Front end and packaging converge in-house",
+            "icon": "fab"
           },
           {
             "zh": "整合元件製造廠 IDM",
             "en": "Integrated device manufacturers (IDM)",
             "noteZh": "記憶體廠主導 HBM 堆疊",
-            "noteEn": "Memory IDMs lead HBM stacking"
+            "noteEn": "Memory IDMs lead HBM stacking",
+            "icon": "circuit"
           }
         ]
       },
@@ -184,13 +193,15 @@ export const SECTION_DIAGRAMS = [
             "zh": "委外封裝測試廠 OSAT",
             "en": "Outsourced assembly & test (OSAT)",
             "noteZh": "升級至中道製程",
-            "noteEn": "Moves into middle-end processing"
+            "noteEn": "Moves into middle-end processing",
+            "icon": "package"
           },
           {
             "zh": "設備、材料與特氣供應商",
             "en": "Equipment & materials suppliers",
             "noteZh": "晶圓廠與封裝廠的物理基石",
-            "noteEn": "Physical foundation of fabs and packaging"
+            "noteEn": "Physical foundation of fabs and packaging",
+            "icon": "gas-cylinder"
           }
         ]
       }
@@ -374,7 +385,8 @@ export const SECTION_DIAGRAMS = [
             "zh": "FOUP 與 EFEM 內部更潔淨",
             "en": "FOUP and EFEM interiors kept cleaner"
           }
-        ]
+        ],
+        "icon": "particle"
       },
       {
         "titleZh": "自動物料搬運 AMHS",
@@ -396,7 +408,8 @@ export const SECTION_DIAGRAMS = [
             "zh": "全程零人工接觸",
             "en": "Zero human handling"
           }
-        ]
+        ],
+        "icon": "oht"
       },
       {
         "titleZh": "四類廠務系統",
@@ -418,7 +431,8 @@ export const SECTION_DIAGRAMS = [
             "zh": "機台端局部尾氣處理",
             "en": "Point-of-use local scrubbers"
           }
-        ]
+        ],
+        "icon": "valve"
       }
     ]
   },
@@ -702,7 +716,8 @@ export const SECTION_DIAGRAMS = [
             "zh": "SiC、GaN 用於電源轉換",
             "en": "SiC and GaN for power conversion"
           }
-        ]
+        ],
+        "icon": "bandgap"
       },
       {
         "titleZh": "多重臨界電壓與次臨界擺幅",
@@ -724,7 +739,8 @@ export const SECTION_DIAGRAMS = [
             "zh": "改用功函數金屬與偶極調 Vt",
             "en": "Tune Vt with work-function metal and dipoles"
           }
-        ]
+        ],
+        "icon": "threshold"
       },
       {
         "titleZh": "CMOS 功耗分量與對策",
@@ -750,7 +766,8 @@ export const SECTION_DIAGRAMS = [
             "zh": "HKMG 與 GAA 壓制漏電",
             "en": "HKMG and GAA suppress leakage"
           }
-        ]
+        ],
+        "icon": "conductor"
       }
     ]
   },
@@ -967,38 +984,44 @@ export const SECTION_DIAGRAMS = [
     "captionEn": "Five wafer substrate categories and their representative applications.",
     "root": {
       "zh": "晶圓基板種類",
-      "en": "Wafer substrate types"
+      "en": "Wafer substrate types",
+      "icon": "wafer"
     },
     "branches": [
       {
         "zh": "柴氏單晶矽與磊晶矽",
         "en": "CZ/MCZ bulk & epitaxial Si",
         "leafZh": "先進邏輯與記憶體主力基板",
-        "leafEn": "Main substrate for advanced logic and memory"
+        "leafEn": "Main substrate for advanced logic and memory",
+        "icon": "ingot"
       },
       {
         "zh": "浮區法高阻值矽",
         "en": "Float-zone high-resistivity Si",
         "leafZh": "高壓功率元件與毫米波射頻",
-        "leafEn": "High-voltage power devices and mmWave RF"
+        "leafEn": "High-voltage power devices and mmWave RF",
+        "icon": "float-zone"
       },
       {
         "zh": "絕緣層上覆矽 SOI",
         "en": "Silicon-on-insulator (SOI)",
         "leafZh": "低功耗晶片、射頻開關與矽光子",
-        "leafEn": "Low-power chips, RF switches and photonics"
+        "leafEn": "Low-power chips, RF switches and photonics",
+        "icon": "soi"
       },
       {
         "zh": "寬能隙與三五族基板",
         "en": "Wide-bandgap & III-V substrates",
         "leafZh": "電動車逆變器、氮化鎵電源、光通訊",
-        "leafEn": "EV inverters, GaN power, optical links"
+        "leafEn": "EV inverters, GaN power, optical links",
+        "icon": "hexagon"
       },
       {
         "zh": "堆疊與背面供電載片",
         "en": "Stacking & backside-power carriers",
         "leafZh": "HBM、CoWoS 與背面供電",
-        "leafEn": "HBM stacking, CoWoS and backside power"
+        "leafEn": "HBM stacking, CoWoS and backside power",
+        "icon": "carrier"
       }
     ]
   },
@@ -1272,7 +1295,8 @@ export const SECTION_DIAGRAMS = [
             "zh": "品質非常好",
             "en": "Excellent quality"
           }
-        ]
+        ],
+        "icon": "gas"
       },
       {
         "titleZh": "濕式氧化",
@@ -1290,7 +1314,8 @@ export const SECTION_DIAGRAMS = [
             "zh": "適合需要較厚氧化層處",
             "en": "Suits places that need thicker oxide"
           }
-        ]
+        ],
+        "icon": "drop"
       }
     ]
   },
@@ -1306,21 +1331,25 @@ export const SECTION_DIAGRAMS = [
         "zh": "帶電氬離子",
         "en": "Charged argon ions",
         "noteZh": "在真空腔體中撞擊靶材",
-        "noteEn": "Strike the target in a vacuum chamber"
+        "noteEn": "Strike the target in a vacuum chamber",
+        "icon": "pmos"
       },
       {
         "zh": "靶材原子被撞出",
-        "en": "Atoms knocked off the target"
+        "en": "Atoms knocked off the target",
+        "icon": "sputter"
       },
       {
         "zh": "飛到晶圓上",
-        "en": "Atoms fly onto the wafer"
+        "en": "Atoms fly onto the wafer",
+        "icon": "depth"
       },
       {
         "zh": "堆積成薄膜",
         "en": "Build up a film",
         "noteZh": "主要是鋁、鈦等金屬",
-        "noteEn": "Mainly metals such as aluminum, titanium"
+        "noteEn": "Mainly metals such as aluminum, titanium",
+        "icon": "layers"
       }
     ]
   },
@@ -1336,17 +1365,20 @@ export const SECTION_DIAGRAMS = [
         "zh": "通入第一種氣體",
         "en": "First gas flows in",
         "noteZh": "鋪滿一層後自動停止",
-        "noteEn": "Covers one layer, then stops by itself"
+        "noteEn": "Covers one layer, then stops by itself",
+        "icon": "gas"
       },
       {
         "zh": "抽乾淨",
-        "en": "Purge the chamber"
+        "en": "Purge the chamber",
+        "icon": "exhaust"
       },
       {
         "zh": "通入第二種氣體",
         "en": "Second gas flows in",
         "noteZh": "與表面那層反應",
-        "noteEn": "Reacts with that layer"
+        "noteEn": "Reacts with that layer",
+        "icon": "gas"
       }
     ],
     "centerZh": "每一輪約長一層原子",
@@ -1501,26 +1533,30 @@ export const SECTION_DIAGRAMS = [
     "captionEn": "What each thin-film and electroplating law governs in the process.",
     "root": {
       "zh": "薄膜與電鍍動力學定律",
-      "en": "Thin-film & ECD kinetic laws"
+      "en": "Thin-film & ECD kinetic laws",
+      "icon": "formula"
     },
     "branches": [
       {
         "zh": "線性－拋物線氧化模型",
         "en": "Deal-Grove linear-parabolic law",
         "leafZh": "預測氧化層厚度與矽消耗",
-        "leafEn": "Predicts oxide thickness and Si consumed"
+        "leafEn": "Predicts oxide thickness and Si consumed",
+        "icon": "thickness"
       },
       {
         "zh": "ALD 深孔飽和時間",
         "en": "ALD deep-hole saturation time",
         "leafZh": "決定深孔 ALD 最低脈衝時間",
-        "leafEn": "Sets minimum ALD pulse time in deep holes"
+        "leafEn": "Sets minimum ALD pulse time in deep holes",
+        "icon": "clock"
       },
       {
         "zh": "法拉第與曲率加速超填",
         "en": "Faraday & curvature-enhanced fill",
         "leafZh": "孔底長得比孔口快、無空洞",
-        "leafEn": "Bottom outgrows the mouth: void-free fill"
+        "leafEn": "Bottom outgrows the mouth: void-free fill",
+        "icon": "step"
       }
     ]
   },
@@ -1602,17 +1638,20 @@ export const SECTION_DIAGRAMS = [
         "zh": "去光阻",
         "en": "Ashing / strip",
         "noteZh": "氧電漿燒掉光阻",
-        "noteEn": "Oxygen plasma burns off the resist"
+        "noteEn": "Oxygen plasma burns off the resist",
+        "icon": "flame"
       },
       {
         "zh": "清洗",
-        "en": "Clean"
+        "en": "Clean",
+        "icon": "clean"
       },
       {
         "zh": "AEI 蝕刻後檢查",
         "en": "After etch inspection (AEI)",
         "noteZh": "量測線寬與缺陷",
-        "noteEn": "Measure line width and defects"
+        "noteEn": "Measure line width and defects",
+        "icon": "microscope"
       }
     ]
   },
@@ -1689,32 +1728,37 @@ export const SECTION_DIAGRAMS = [
     "captionEn": "Four etch clause categories and their representative applications.",
     "root": {
       "zh": "電漿與原子層蝕刻條例",
-      "en": "Plasma & atomic layer etch clauses"
+      "en": "Plasma & atomic layer etch clauses",
+      "icon": "etch"
     },
     "branches": [
       {
         "zh": "電容／感應耦合 RIE",
         "en": "CCP vs. ICP reactive ion etch",
         "leafZh": "鰭片、溝槽、接觸孔與雙鑲嵌",
-        "leafEn": "Fins, STI, contacts and dual damascene"
+        "leafEn": "Fins, STI, contacts and dual damascene",
+        "icon": "plasma"
       },
       {
         "zh": "極低溫高深寬比蝕刻",
         "en": "Cryogenic high-AR (Cryo-HAR) etch",
         "leafZh": "NAND 通道孔、DRAM 電容",
-        "leafEn": "NAND channel holes and DRAM capacitors"
+        "leafEn": "NAND channel holes and DRAM capacitors",
+        "icon": "snowflake"
       },
       {
         "zh": "波希法深矽蝕刻",
         "en": "Bosch deep RIE (DRIE)",
         "leafZh": "中介層與晶粒穿矽孔、MEMS",
-        "leafEn": "Interposer and die TSVs, and MEMS"
+        "leafEn": "Interposer and die TSVs, and MEMS",
+        "icon": "deep-hole"
       },
       {
         "zh": "原子層蝕刻與選擇性釋放",
         "en": "ALE & selective isotropic release",
         "leafZh": "GAA 通道釋放與內間隔壁",
-        "leafEn": "GAA channel release and inner spacers"
+        "leafEn": "GAA channel release and inner spacers",
+        "icon": "gaa"
       }
     ]
   },
@@ -1808,23 +1852,27 @@ export const SECTION_DIAGRAMS = [
     "steps": [
       {
         "zh": "離子高速撞進矽",
-        "en": "Ions slam into the silicon"
+        "en": "Ions slam into the silicon",
+        "icon": "implant"
       },
       {
         "zh": "矽原子被撞亂",
         "en": "Silicon atoms knocked out of place",
         "noteZh": "雜質尚未就定位",
-        "noteEn": "Impurities not yet in position"
+        "noteEn": "Impurities not yet in position",
+        "icon": "random"
       },
       {
         "zh": "退火：加熱晶圓",
-        "en": "Anneal: heat the wafer"
+        "en": "Anneal: heat the wafer",
+        "icon": "thermometer"
       },
       {
         "zh": "晶格修復、雜質就定位",
         "en": "Lattice repairs; impurities settle",
         "noteZh": "開始導電，稱為活化",
-        "noteEn": "They start conducting: activation"
+        "noteEn": "They start conducting: activation",
+        "icon": "dose"
       }
     ]
   },
@@ -2202,23 +2250,27 @@ export const SECTION_DIAGRAMS = [
     "steps": [
       {
         "zh": "微量銅帶進前段機台",
-        "en": "Copper carried into front-end tool"
+        "en": "Copper carried into front-end tool",
+        "icon": "particle"
       },
       {
         "zh": "污染之後經過的所有晶圓",
-        "en": "Contaminates every later wafer"
+        "en": "Contaminates every later wafer",
+        "icon": "batch"
       },
       {
         "zh": "銅跑進電晶體區域",
         "en": "Copper reaches the transistor area",
         "noteZh": "銅在矽中擴散極快",
-        "noteEn": "Copper diffuses very fast in silicon"
+        "noteEn": "Copper diffuses very fast in silicon",
+        "icon": "transistor"
       },
       {
         "zh": "電晶體漏電、良率大降",
         "en": "Transistors leak, yield drops",
         "noteZh": "源頭很難追查",
-        "noteEn": "Source is very hard to trace"
+        "noteEn": "Source is very hard to trace",
+        "icon": "risk"
       }
     ]
   },
@@ -2461,26 +2513,30 @@ export const SECTION_DIAGRAMS = [
     "captionEn": "Three critical BEOL failure modes and the countermeasure for each.",
     "root": {
       "zh": "後段導線三大核心異常",
-      "en": "Three critical BEOL failure modes"
+      "en": "Three critical BEOL failure modes",
+      "icon": "risk"
     },
     "branches": [
       {
         "zh": "雙鑲嵌通孔底部開路",
         "en": "Dual-damascene via bottom open",
         "leafZh": "無阻障層由下而上金屬填孔",
-        "leafEn": "Barrierless bottom-up metal via fill"
+        "leafEn": "Barrierless bottom-up metal via fill",
+        "icon": "step"
       },
       {
         "zh": "超低介電質電漿損傷擊穿",
         "en": "ULK plasma damage and TDDB",
         "leafZh": "還原電漿去光阻並修補孔隙",
-        "leafEn": "Reducing-plasma ash plus pore sealing"
+        "leafEn": "Reducing-plasma ash plus pore sealing",
+        "icon": "plasma"
       },
       {
         "zh": "電遷移空洞與擠出短路",
         "en": "Electromigration void and hillock",
         "leafZh": "鈷蓋層加 Blech 長度規則",
-        "leafEn": "Cobalt cap plus Blech length limits"
+        "leafEn": "Cobalt cap plus Blech length limits",
+        "icon": "electromigration"
       }
     ]
   },
@@ -2670,26 +2726,30 @@ export const SECTION_DIAGRAMS = [
     "captionEn": "Three classic integration failures and the countermeasure for each.",
     "root": {
       "zh": "跨層整合三大異常",
-      "en": "Three classic integration failures"
+      "en": "Three classic integration failures",
+      "icon": "risk"
     },
     "branches": [
       {
         "zh": "超溫矽化物團聚",
         "en": "Overheated silicide agglomeration",
         "leafZh": "熱預算金字塔並由 MES 攔截",
-        "leafEn": "Thermal budget hierarchy interlocked in MES"
+        "leafEn": "Thermal budget hierarchy interlocked in MES",
+        "icon": "thermometer"
       },
       {
         "zh": "中段接觸孔空洞與短路",
         "en": "MOL contact void and SAC short",
         "leafZh": "低介電側壁加無氟鈷／鉬填孔",
-        "leafEn": "Low-k spacers and F-free Co/Mo plugs"
+        "leafEn": "Low-k spacers and F-free Co/Mo plugs",
+        "icon": "step"
       },
       {
         "zh": "STI 凹陷與漏電駝峰",
         "en": "STI corner divot and leakage hump",
         "leafZh": "轉角圓滑化氧化並控氧化層損耗",
-        "leafEn": "Corner-rounding oxidation, oxide-loss budget"
+        "leafEn": "Corner-rounding oxidation, oxide-loss budget",
+        "icon": "excess"
       }
     ]
   },
@@ -2888,26 +2948,30 @@ export const SECTION_DIAGRAMS = [
     "captionEn": "Three critical FEOL failure modes and the countermeasure for each.",
     "root": {
       "zh": "前段三大核心異常",
-      "en": "Three critical FEOL failure modes"
+      "en": "Three critical FEOL failure modes",
+      "icon": "risk"
     },
     "branches": [
       {
         "zh": "奈米片沾黏與內間隔層掏空",
         "en": "Nanosheet stiction, spacer short",
         "leafZh": "乾式氣相釋放並以原子層蝕刻控深",
-        "leafEn": "Dry vapor release plus ALE recess control"
+        "leafEn": "Dry vapor release plus ALE recess control",
+        "icon": "gaa"
       },
       {
         "zh": "底部寄生漏電與磊晶空洞",
         "en": "Sub-fin leakage, epi merge voids",
         "leafZh": "底部介電隔離加循環沉積回蝕",
-        "leafEn": "BDI layer plus cyclic dep-etch epitaxy"
+        "leafEn": "BDI layer plus cyclic dep-etch epitaxy",
+        "icon": "transistor"
       },
       {
         "zh": "背面接觸孔疊對偏移",
         "en": "Backside contact overlay shift",
         "leafZh": "自對準背面接觸加高階畸變補償",
-        "leafEn": "Self-aligned backside contact plus CPE"
+        "leafEn": "Self-aligned backside contact plus CPE",
+        "icon": "overlay"
       }
     ]
   },
@@ -2954,26 +3018,30 @@ export const SECTION_DIAGRAMS = [
     "captionEn": "Three critical memory failure modes and one listed countermeasure for each.",
     "root": {
       "zh": "記憶體致命異常",
-      "en": "Critical memory failure modes"
+      "en": "Critical memory failure modes",
+      "icon": "risk"
     },
     "branches": [
       {
         "zh": "DRAM 保持時間變異",
         "en": "DRAM variable retention time",
         "leafZh": "晶粒內建 ECC",
-        "leafEn": "On-die ECC"
+        "leafEn": "On-die ECC",
+        "icon": "clock"
       },
       {
         "zh": "NAND 字元線置換空洞",
         "en": "NAND wordline replacement voids",
         "leafZh": "無氟 ALD 鉬取代鎢",
-        "leafEn": "Fluorine-free ALD Mo instead of W"
+        "leafEn": "Fluorine-free ALD Mo instead of W",
+        "icon": "layers"
       },
       {
         "zh": "HBM 微凸塊橋接",
         "en": "HBM micro-bump solder bridging",
         "leafZh": "無凸塊銅對銅混合鍵合",
-        "leafEn": "Bumpless Cu-Cu hybrid bonding"
+        "leafEn": "Bumpless Cu-Cu hybrid bonding",
+        "icon": "bumps"
       }
     ]
   },
@@ -3106,26 +3174,30 @@ export const SECTION_DIAGRAMS = [
       "zh": "「幾奈米」不能直接比",
       "en": "Node names not directly comparable",
       "noteZh": "各家自行命名，無統一標準",
-      "noteEn": "No common standard; each names its own"
+      "noteEn": "No common standard; each names its own",
+      "icon": "ruler"
     },
     "branches": [
       {
         "zh": "名稱相同",
         "en": "Same name",
         "leafZh": "密度可能差很多",
-        "leafEn": "Density can differ a lot"
+        "leafEn": "Density can differ a lot",
+        "icon": "confusion"
       },
       {
         "zh": "名稱數字較大",
         "en": "Larger number in the name",
         "leafZh": "密度可能反而更高",
-        "leafEn": "Can even be denser"
+        "leafEn": "Can even be denser",
+        "icon": "array"
       },
       {
         "zh": "同一世代多個版本",
         "en": "Several versions per generation",
         "leafZh": "特性不完全相同",
-        "leafEn": "Characteristics not all the same"
+        "leafEn": "Characteristics not all the same",
+        "icon": "terms"
       }
     ]
   },
@@ -3149,7 +3221,8 @@ export const SECTION_DIAGRAMS = [
             "zh": "銷量大、效能要求高才划算",
             "en": "Worth it only for high-volume, high-performance"
           }
-        ]
+        ],
+        "icon": "gaa"
       },
       {
         "titleZh": "成熟製程",
@@ -3167,7 +3240,8 @@ export const SECTION_DIAGRAMS = [
             "zh": "例：汽車電子、電源管理",
             "en": "E.g. automotive electronics, power management"
           }
-        ]
+        ],
+        "icon": "shield-check"
       }
     ]
   },
@@ -3182,26 +3256,30 @@ export const SECTION_DIAGRAMS = [
     "captionEn": "Three primary DTCO failure modes and one listed countermeasure for each.",
     "root": {
       "zh": "三大 DTCO 瓶頸",
-      "en": "Three primary DTCO failure modes"
+      "en": "Three primary DTCO failure modes",
+      "icon": "risk"
     },
     "branches": [
       {
         "zh": "矮單元繞線擁塞與壓降",
         "en": "Low-track cell congestion, IR drop",
         "leafZh": "電源移到晶圓背面",
-        "leafEn": "Move power to the wafer backside"
+        "leafEn": "Move power to the wafer backside",
+        "icon": "route"
       },
       {
         "zh": "導線與通孔電阻暴增",
         "en": "Interconnect resistivity explosion",
         "leafZh": "改用釕、鉬無阻障金屬",
-        "leafEn": "Barrierless Ru or Mo"
+        "leafEn": "Barrierless Ru or Mo",
+        "icon": "resistance"
       },
       {
         "zh": "光罩錯誤增強因子失控",
         "en": "MEEF runaway",
         "leafZh": "High-NA EUV",
-        "leafEn": "High-NA EUV"
+        "leafEn": "High-NA EUV",
+        "icon": "reticle"
       }
     ]
   },
@@ -3313,23 +3391,27 @@ export const SECTION_DIAGRAMS = [
     "steps": [
       {
         "zh": "完成重要步驟",
-        "en": "An important step is done"
+        "en": "An important step is done",
+        "icon": "check"
       },
       {
         "zh": "機台確認",
         "en": "Tools check the wafer",
         "noteZh": "厚度、線寬、有沒有缺陷",
-        "noteEn": "Thickness, line width, any defects"
+        "noteEn": "Thickness, line width, any defects",
+        "icon": "microscope"
       },
       {
         "zh": "產生數據",
         "en": "Data is produced",
         "noteZh": "製程控制與良率分析的基礎",
-        "noteEn": "Basis of process control and yield analysis"
+        "noteEn": "Basis of process control and yield analysis",
+        "icon": "tester"
       },
       {
         "zh": "決定晶圓能否往下走",
-        "en": "Decide whether the wafer moves on"
+        "en": "Decide whether the wafer moves on",
+        "icon": "dispatch"
       }
     ]
   },
@@ -3363,7 +3445,8 @@ export const SECTION_DIAGRAMS = [
             "noteZh": "以及最近出過問題的製程",
             "noteEn": "and processes that recently had problems"
           }
-        ]
+        ],
+        "icon": "microscope"
       },
       {
         "titleZh": "量得少",
@@ -3387,7 +3470,8 @@ export const SECTION_DIAGRAMS = [
             "zh": "適用穩定的製程",
             "en": "For stable processes"
           }
-        ]
+        ],
+        "icon": "output"
       }
     ]
   },
@@ -4105,27 +4189,33 @@ export const SECTION_DIAGRAMS = [
     "steps": [
       {
         "zh": "發現異常",
-        "en": "Detect"
+        "en": "Detect",
+        "icon": "risk"
       },
       {
         "zh": "擋住影響",
-        "en": "Contain"
+        "en": "Contain",
+        "icon": "stop"
       },
       {
         "zh": "找出範圍",
-        "en": "Find the scope"
+        "en": "Find the scope",
+        "icon": "search"
       },
       {
         "zh": "判定處置",
-        "en": "Disposition"
+        "en": "Disposition",
+        "icon": "selectivity"
       },
       {
         "zh": "找出根本原因",
-        "en": "Find the root cause"
+        "en": "Find the root cause",
+        "icon": "why"
       },
       {
         "zh": "防止再發",
-        "en": "Prevent recurrence"
+        "en": "Prevent recurrence",
+        "icon": "shield-check"
       }
     ]
   },
@@ -4219,21 +4309,25 @@ export const SECTION_DIAGRAMS = [
         "zh": "評估風險",
         "en": "Assess the risk",
         "noteZh": "電性、良率和可靠度",
-        "noteEn": "Electrical behavior, yield and reliability"
+        "noteEn": "Electrical behavior, yield and reliability",
+        "icon": "rate"
       },
       {
         "zh": "用實驗批驗證",
-        "en": "Verify with experimental lots"
+        "en": "Verify with experimental lots",
+        "icon": "batch"
       },
       {
         "zh": "必要時做可靠度測試",
-        "en": "Run reliability tests when needed"
+        "en": "Run reliability tests when needed",
+        "icon": "thermometer"
       },
       {
         "zh": "通過審核才正式上線",
         "en": "Production only after approval",
         "noteZh": "重大變更須事先通知客戶",
-        "noteEn": "Major changes: notify customers in advance"
+        "noteEn": "Major changes: notify customers in advance",
+        "icon": "check"
       }
     ]
   },
@@ -4377,7 +4471,8 @@ export const SECTION_DIAGRAMS = [
             "keyZh": "簡單來說",
             "keyEn": "Put simply"
           }
-        ]
+        ],
+        "icon": "tester"
       },
       {
         "titleZh": "CP",
@@ -4401,7 +4496,8 @@ export const SECTION_DIAGRAMS = [
             "keyZh": "簡單來說",
             "keyEn": "Put simply"
           }
-        ]
+        ],
+        "icon": "probe-card"
       }
     ]
   },
@@ -4881,32 +4977,37 @@ export const SECTION_DIAGRAMS = [
     "captionEn": "The main challenges of advanced packaging and what each one means.",
     "root": {
       "zh": "先進封裝的挑戰",
-      "en": "Challenges of advanced packaging"
+      "en": "Challenges of advanced packaging",
+      "icon": "chiplets"
     },
     "branches": [
       {
         "zh": "散熱",
         "en": "Heat",
         "leafZh": "熱更難散出去",
-        "leafEn": "Heat is harder to get out"
+        "leafEn": "Heat is harder to get out",
+        "icon": "heat"
       },
       {
         "zh": "翹曲",
         "en": "Warpage",
         "leafZh": "封裝越大越容易彎曲",
-        "leafEn": "Larger packages bend more"
+        "leafEn": "Larger packages bend more",
+        "icon": "stress"
       },
       {
         "zh": "測試",
         "en": "Test",
         "leafZh": "中間晶片很難單獨測試",
-        "leafEn": "Hard to test middle chips alone"
+        "leafEn": "Hard to test middle chips alone",
+        "icon": "probe-card"
       },
       {
         "zh": "良率相乘",
         "en": "Multiplied yield",
         "leafZh": "任一失敗，整個封裝受影響",
-        "leafEn": "Any failure affects the package"
+        "leafEn": "Any failure affects the package",
+        "icon": "defect"
       }
     ]
   },
@@ -5218,38 +5319,44 @@ export const SECTION_DIAGRAMS = [
       "zh": "可靠度驗證主題",
       "en": "Qualification topics",
       "noteZh": "教學應力例，非標準條文",
-      "noteEn": "Teaching examples, not standard clauses"
+      "noteEn": "Teaching examples, not standard clauses",
+      "icon": "bathtub"
     },
     "branches": [
       {
         "zh": "高溫工作壽命與預燒",
         "en": "High-temp operating life, burn-in",
         "leafZh": "逼出早夭期閘極氧化層針孔",
-        "leafEn": "Screens infant-mortality gate oxide pinholes"
+        "leafEn": "Screens infant-mortality gate oxide pinholes",
+        "icon": "thermometer"
       },
       {
         "zh": "溫度循環與熱衝擊",
         "en": "Temp. cycling and thermal shock",
         "leafZh": "焊球與微凸塊熱疲勞裂紋",
-        "leafEn": "Solder and micro-bump fatigue cracks"
+        "leafEn": "Solder and micro-bump fatigue cracks",
+        "icon": "cycle"
       },
       {
         "zh": "高加速溫濕度應力",
         "en": "Accelerated temp & humidity stress",
         "leafZh": "焊墊腐蝕與樹枝狀結晶短路",
-        "leafEn": "Pad corrosion and dendritic shorts"
+        "leafEn": "Pad corrosion and dendritic shorts",
+        "icon": "drop"
       },
       {
         "zh": "濕氣敏感度與迴焊爆米花",
         "en": "Moisture sensitivity and reflow",
         "leafZh": "氣爆脫層與翹曲風險",
-        "leafEn": "Popcorning and warpage risk"
+        "leafEn": "Popcorning and warpage risk",
+        "icon": "package"
       },
       {
         "zh": "晶圓級本質可靠度",
         "en": "Wafer-level intrinsic reliability",
         "leafZh": "電晶體漂移與互連空洞風險",
-        "leafEn": "Transistor drift and voiding risk"
+        "leafEn": "Transistor drift and voiding risk",
+        "icon": "wafer"
       }
     ]
   },
@@ -5334,38 +5441,44 @@ export const SECTION_DIAGRAMS = [
       "zh": "防呆規則",
       "en": "Interlock rules",
       "noteZh": "由系統自動擋下",
-      "noteEn": "Enforced automatically by the system"
+      "noteEn": "Enforced automatically by the system",
+      "icon": "shield-check"
     },
     "branches": [
       {
         "zh": "晶圓不在這一站",
         "en": "Lot should not be at this step",
         "leafZh": "不能進站",
-        "leafEn": "Cannot track in"
+        "leafEn": "Cannot track in",
+        "icon": "situation"
       },
       {
         "zh": "機台沒有通過驗證",
         "en": "Tool not qualified",
         "leafZh": "不能做這個產品",
-        "leafEn": "Cannot run this product"
+        "leafEn": "Cannot run this product",
+        "icon": "badge"
       },
       {
         "zh": "Recipe 版本不對",
         "en": "Wrong recipe version",
         "leafZh": "不能開始",
-        "leafEn": "Processing cannot start"
+        "leafEn": "Processing cannot start",
+        "icon": "definition"
       },
       {
         "zh": "Q-Time 超過",
         "en": "Q-time expired",
         "leafZh": "或晶圓被 Hold，不能繼續",
-        "leafEn": "Or lot on hold: cannot continue"
+        "leafEn": "Or lot on hold: cannot continue",
+        "icon": "clock"
       },
       {
         "zh": "接觸過銅的晶圓盒",
         "en": "Carrier that touched copper",
         "leafZh": "不能放上前段機台",
-        "leafEn": "Cannot go on a front-end tool"
+        "leafEn": "Cannot go on a front-end tool",
+        "icon": "foup"
       }
     ]
   },
@@ -5414,32 +5527,37 @@ export const SECTION_DIAGRAMS = [
       "zh": "工廠數據",
       "en": "Fab data",
       "noteZh": "感測器、量測與測試數據",
-      "noteEn": "Sensor, measurement and test data"
+      "noteEn": "Sensor, measurement and test data",
+      "icon": "network"
     },
     "branches": [
       {
         "zh": "預測性保養",
         "en": "Predictive maintenance",
         "leafZh": "預測零件何時更換",
-        "leafEn": "Predict when parts need replacing"
+        "leafEn": "Predict when parts need replacing",
+        "icon": "maintenance"
       },
       {
         "zh": "虛擬量測",
         "en": "Virtual metrology",
         "leafZh": "推估量測結果",
-        "leafEn": "Estimate measurement results"
+        "leafEn": "Estimate measurement results",
+        "icon": "virtual-metrology"
       },
       {
         "zh": "人工智慧分析",
         "en": "AI analysis",
         "leafZh": "辨識晶圓圖型態",
-        "leafEn": "Recognize wafer map patterns"
+        "leafEn": "Recognize wafer map patterns",
+        "icon": "ai"
       },
       {
         "zh": "自動化派工",
         "en": "Automated dispatching",
         "leafZh": "決定最佳生產順序",
-        "leafEn": "Decide the best production order"
+        "leafEn": "Decide the best production order",
+        "icon": "dispatch"
       }
     ]
   },
@@ -5675,23 +5793,27 @@ export const SECTION_DIAGRAMS = [
         "zh": "製程變異",
         "en": "Process variation",
         "noteZh": "速度和漏電不完全相同",
-        "noteEn": "Speed and leakage differ slightly"
+        "noteEn": "Speed and leakage differ slightly",
+        "icon": "random"
       },
       {
         "zh": "測試時寫入熔絲",
         "en": "Written into fuses during test",
         "noteZh": "特性或校正值",
-        "noteEn": "Characteristics or calibration values"
+        "noteEn": "Characteristics or calibration values",
+        "icon": "fuse"
       },
       {
         "zh": "韌體開機時讀取",
-        "en": "Firmware reads them at boot"
+        "en": "Firmware reads them at boot",
+        "icon": "firmware"
       },
       {
         "zh": "設定電壓和頻率",
         "en": "Sets voltage and frequency",
         "noteZh": "每顆晶片最適合的值",
-        "noteEn": "The most suitable for each chip"
+        "noteEn": "The most suitable for each chip",
+        "icon": "sliders"
       }
     ]
   },
@@ -5974,32 +6096,37 @@ export const SECTION_DIAGRAMS = [
     "captionEn": "Floor emergency callouts and the shift's immediate action",
     "root": {
       "zh": "現場緊急告警",
-      "en": "Floor emergency callout"
+      "en": "Floor emergency callout",
+      "icon": "risk"
     },
     "branches": [
       {
         "zh": "Q-Time 快爆了",
         "en": "Q-Time about to blow",
         "leafZh": "關閉上游清洗站進站",
-        "leafEn": "Block track-in at the clean step"
+        "leafEn": "Block track-in at the clean step",
+        "icon": "clock"
       },
       {
         "zh": "FDC 亮紅燈鎖批",
         "en": "FDC Auto-Hold tripped",
         "leafZh": "攔截所有姊妹批",
-        "leafEn": "Future Hold on all sister lots"
+        "leafEn": "Future Hold on all sister lots",
+        "icon": "lock"
       },
       {
         "zh": "ADI 疊對偏移",
         "en": "ADI overlay shift",
         "leafZh": "轉入黃光重工",
-        "leafEn": "Route to photo rework"
+        "leafEn": "Route to photo rework",
+        "icon": "overlay"
       },
       {
         "zh": "CP 外圍環帶死粒",
         "en": "CP edge-ring failing dies",
         "leafZh": "嫌疑腔體切 Down",
-        "leafEn": "Take the offending chamber down"
+        "leafEn": "Take the offending chamber down",
+        "icon": "edge-ring"
       }
     ]
   },
@@ -6020,19 +6147,22 @@ export const SECTION_DIAGRAMS = [
             "zh": "晶圓基板與元件物理",
             "en": "Wafer substrates & device physics",
             "noteZh": "CZ、SOI、GAA、CFET",
-            "noteEn": "CZ, SOI, GAA, CFET"
+            "noteEn": "CZ, SOI, GAA, CFET",
+            "icon": "ingot"
           },
           {
             "zh": "前段圖形化與長膜模組",
             "en": "FEOL lithography & thin-film modules",
             "noteZh": "EUV、SAQP、ALD、ECD",
-            "noteEn": "EUV, SAQP, ALD, ECD"
+            "noteEn": "EUV, SAQP, ALD, ECD",
+            "icon": "litho"
           },
           {
             "zh": "蝕刻、佈植退火、平坦化與清洗",
             "en": "Etch, implant/anneal, CMP & clean",
             "noteZh": "RIE、ALE、RTA、CMP",
-            "noteEn": "RIE, ALE, RTA, CMP"
+            "noteEn": "RIE, ALE, RTA, CMP",
+            "icon": "etch"
           }
         ]
       },
@@ -6044,19 +6174,22 @@ export const SECTION_DIAGRAMS = [
             "zh": "中後段互連與背面供電",
             "en": "MOL, BEOL & backside power delivery",
             "noteZh": "雙鑲嵌銅、ULK、BSPDN",
-            "noteEn": "Dual-damascene Cu, ULK, BSPDN"
+            "noteEn": "Dual-damascene Cu, ULK, BSPDN",
+            "icon": "interconnect"
           },
           {
             "zh": "先進記憶體與新興 NVM",
             "en": "Advanced memory & emerging NVM",
             "noteZh": "DRAM、NAND、HBM",
-            "noteEn": "DRAM, NAND, HBM"
+            "noteEn": "DRAM, NAND, HBM",
+            "icon": "array"
           },
           {
             "zh": "傳統與異質整合封裝及智慧製造",
             "en": "Packaging & smart fab CIM",
             "noteZh": "CoWoS、UCIe、MES",
-            "noteEn": "CoWoS, UCIe, MES"
+            "noteEn": "CoWoS, UCIe, MES",
+            "icon": "chiplets"
           }
         ]
       },
@@ -6068,13 +6201,15 @@ export const SECTION_DIAGRAMS = [
             "zh": "在線量測、無損檢測與故障分析",
             "en": "In-line metrology, inspection & FA",
             "noteZh": "OCD、C-SAM、STEM",
-            "noteEn": "OCD, C-SAM, STEM"
+            "noteEn": "OCD, C-SAM, STEM",
+            "icon": "microscope"
           },
           {
             "zh": "製程控制、異常防堵與可靠度測試",
             "en": "Process control, excursion & reliability",
             "noteZh": "APC、OCAP、HTOL",
-            "noteEn": "APC, OCAP, HTOL"
+            "noteEn": "APC, OCAP, HTOL",
+            "icon": "control-limit"
           }
         ]
       }
@@ -6097,37 +6232,43 @@ export const SECTION_DIAGRAMS = [
             "zh": "光學微影與圖形化",
             "en": "Lithography & patterning",
             "noteZh": "CD、DOF 與 EPE 視窗",
-            "noteEn": "CD, DOF and EPE windows"
+            "noteEn": "CD, DOF and EPE windows",
+            "icon": "litho"
           },
           {
             "zh": "薄膜、蝕刻與平坦化",
             "en": "Deposition, etch & planarization",
             "noteZh": "深孔傳導、Preston 磨耗律",
-            "noteEn": "Knudsen transport, Preston's law"
+            "noteEn": "Knudsen transport, Preston's law",
+            "icon": "layers"
           },
           {
             "zh": "電晶體物理與 CMOS 整合",
             "en": "Device physics & CMOS integration",
             "noteZh": "擺幅極限、Pelgrom 失配",
-            "noteEn": "Swing limit, Pelgrom mismatch"
+            "noteEn": "Swing limit, Pelgrom mismatch",
+            "icon": "transistor"
           },
           {
             "zh": "先進記憶體與先進封裝",
             "en": "Memory & advanced packaging",
             "noteZh": "電容保持、翹曲與熱阻",
-            "noteEn": "Retention, warpage, thermal resistance"
+            "noteEn": "Retention, warpage, thermal resistance",
+            "icon": "array"
           },
           {
             "zh": "量測、良率與 SPC／APC",
             "en": "Metrology, yield & SPC/APC",
             "noteZh": "負二項良率與 EWMA 回饋",
-            "noteEn": "Negative-binomial yield, EWMA feedback"
+            "noteEn": "Negative-binomial yield, EWMA feedback",
+            "icon": "control-limit"
           },
           {
             "zh": "測試、可靠度、智慧工廠與韌體",
             "en": "Test, reliability, CIM & firmware",
             "noteZh": "電遷移、浴缸曲線、利特爾法則",
-            "noteEn": "EM law, Weibull bathtub, Little's Law"
+            "noteEn": "EM law, Weibull bathtub, Little's Law",
+            "icon": "bathtub"
           }
         ]
       },
@@ -6137,27 +6278,33 @@ export const SECTION_DIAGRAMS = [
         "items": [
           {
             "zh": "EUV 隨機微橋接、失焦熱點",
-            "en": "EUV stochastic micro-bridges, focus hotspots"
+            "en": "EUV stochastic micro-bridges, focus hotspots",
+            "icon": "litho"
           },
           {
             "zh": "懸垂空洞、底部切角、碟形凹陷",
-            "en": "Keyhole seams, foot-notching, CMP dishing"
+            "en": "Keyhole seams, foot-notching, CMP dishing",
+            "icon": "layers"
           },
           {
             "zh": "DIBL 穿通、奈米片釋放沾黏",
-            "en": "DIBL punch-through, sheet release stiction"
+            "en": "DIBL punch-through, sheet release stiction",
+            "icon": "transistor"
           },
           {
             "zh": "DRAM 變異保持時間、哭笑臉翹曲",
-            "en": "DRAM VRT tail bits, Smile/Cry warpage"
+            "en": "DRAM VRT tail bits, Smile/Cry warpage",
+            "icon": "array"
           },
           {
             "zh": "晶圓圖指紋、過度調機",
-            "en": "Wafer-map rings, tampering"
+            "en": "Wafer-map rings, tampering",
+            "icon": "control-limit"
           },
           {
             "zh": "早夭漏放、Q-Time 鎖批",
-            "en": "Infant-mortality escapes, Q-Time gridlock"
+            "en": "Infant-mortality escapes, Q-Time gridlock",
+            "icon": "bathtub"
           }
         ]
       }
@@ -6194,7 +6341,8 @@ export const SECTION_DIAGRAMS = [
             "noteZh": "小晶片互連與堆疊測試架構",
             "noteEn": "Die-to-die links and stacked-die test access"
           }
-        ]
+        ],
+        "icon": "definition"
       },
       {
         "titleZh": "頂尖技術會議",
@@ -6218,7 +6366,8 @@ export const SECTION_DIAGRAMS = [
             "noteZh": "先進封裝與微影量測藍圖",
             "noteEn": "Advanced packaging, lithography, metrology"
           }
-        ]
+        ],
+        "icon": "usage"
       }
     ]
   },
@@ -6232,32 +6381,37 @@ export const SECTION_DIAGRAMS = [
     "captionEn": "Four career-track study roadmaps with their key conferences and standards.",
     "root": {
       "zh": "工程職能研讀路線",
-      "en": "Engineering career tracks"
+      "en": "Engineering career tracks",
+      "icon": "route"
     },
     "branches": [
       {
         "zh": "前段製程整合與元件研發",
         "en": "FEOL integration & device R&D",
         "leafZh": "IEDM、VLSI 與 IRDS",
-        "leafEn": "IEDM, VLSI Symposium, IRDS Roadmap"
+        "leafEn": "IEDM, VLSI Symposium, IRDS Roadmap",
+        "icon": "gaa"
       },
       {
         "zh": "四大模組與在線量測控制",
         "en": "Unit modules, metrology & APC",
         "leafZh": "SPIE 與 SEMI 標準",
-        "leafEn": "SPIE Advanced Lithography, SEMI standards"
+        "leafEn": "SPIE Advanced Lithography, SEMI standards",
+        "icon": "modules"
       },
       {
         "zh": "先進封裝與失效分析",
         "en": "Advanced packaging & physical FA",
         "leafZh": "ECTC、ISTFA、UCIe",
-        "leafEn": "ECTC, ISTFA, UCIe"
+        "leafEn": "ECTC, ISTFA, UCIe",
+        "icon": "chiplets"
       },
       {
         "zh": "測試、可靠度與智慧製造",
         "en": "Test, reliability & smart fab CIM",
         "leafZh": "IRPS、ITC 與 JEDEC",
-        "leafEn": "IRPS, ITC and JEDEC"
+        "leafEn": "IRPS, ITC and JEDEC",
+        "icon": "bathtub"
       }
     ]
   }

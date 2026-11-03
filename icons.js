@@ -92,7 +92,65 @@ const PATHS = {
   maintenance: '<circle cx="16" cy="8" r="4.5"/><path d="M16 6v2l1.5 1"/><path d="M11.5 11.5 4 19l1.5 1.5L13 13"/>',
   'virtual-metrology': '<path d="M4 17a8 8 0 1 1 16 0" stroke-dasharray="2.5 2"/><path d="M12 17l3-4.5"/><path d="M4 17h16"/>',
   ai: '<rect x="5" y="5" width="14" height="14" rx="2"/><path d="M12 8.5l1 2.5 2.5 1-2.5 1-1 2.5-1-2.5-2.5-1 2.5-1z"/>',
-  dispatch: '<path d="M3 12h6l4-5h5M9 12l4 5h5"/><path d="M16 5l2 2-2 2M16 15l2 2-2 2"/>'
+  dispatch: '<path d="M3 12h6l4-5h5M9 12l4 5h5"/><path d="M16 5l2 2-2 2M16 15l2 2-2 2"/>',
+  // 章節與十二站（2.17.0）：能沿用上面語意相同的圖示就沿用，其餘補畫
+  transistor: '<rect x="3" y="13" width="18" height="7" rx="1"/><rect x="9" y="6.5" width="6" height="4" rx=".5"/><path d="M8.5 12h7"/><path d="M4.5 13v1a2 2 0 0 0 2 2H8a2 2 0 0 0 2-2v-1M14 13v1a2 2 0 0 0 2 2h1.5a2 2 0 0 0 2-2v-1"/>',
+  ingot: '<path d="M5 6v11a3 1.2 0 0 0 6 0V6"/><ellipse cx="8" cy="6" rx="3" ry="1.2"/><path d="M8 4.8V2.5"/><ellipse cx="17.5" cy="10" rx="3.5" ry="1.3"/><ellipse cx="17.5" cy="15" rx="3.5" ry="1.3"/>',
+  litho: '<path d="M10.5 3v3M13.5 3v3"/><path d="M4 7.5h5.5M14.5 7.5H20"/><ellipse cx="12" cy="12" rx="6" ry="1.8"/><path d="M9.5 13.6 12 19l2.5-5.4"/><path d="M4 20.5h16"/>',
+  furnace: '<path d="M7 21V8a5 5 0 0 1 10 0v13"/><path d="M4.5 21h15"/><path d="M10 10h4M10 13h4M10 16h4"/><path d="M3.5 9c1 1.2-1 2.3 0 3.5s-1 2.3 0 3.5M20.5 9c1 1.2-1 2.3 0 3.5s-1 2.3 0 3.5"/>',
+  etch: '<path d="M3 11h5v6h8v-6h5v9H3z"/><path d="M3 8h5M16 8h5"/><path d="M10.5 3v7M13.5 3v7M9 8.5l1.5 1.5L12 8.5M12 8.5l1.5 1.5L15 8.5"/>',
+  implant: '<rect x="3" y="12.5" width="18" height="7.5" rx="1"/><path d="M7 3v6M12 3v6M17 3v6"/><path d="M5.5 7.5 7 9l1.5-1.5M10.5 7.5 12 9l1.5-1.5M15.5 7.5 17 9l1.5-1.5"/><circle cx="7" cy="15.5" r=".8"/><circle cx="12" cy="16.8" r=".8"/><circle cx="17" cy="15.5" r=".8"/>',
+  clean: '<path d="M10 3.5S5 9.5 5 13.5a5 5 0 0 0 10 0c0-4-5-10-5-10z"/><path d="M18 3.5v4M16 5.5h4M18.5 13v3M17 14.5h3"/>',
+  interconnect: '<rect x="3" y="3.5" width="18" height="3" rx=".8"/><rect x="3" y="10.5" width="10" height="3" rx=".8"/><rect x="3" y="17.5" width="18" height="3" rx=".8"/><path d="M8 6.5v4M17 6.5v11M8 13.5v4"/>',
+  route: '<circle cx="6" cy="5" r="2"/><circle cx="18" cy="12" r="2"/><circle cx="6" cy="19" r="2"/><path d="M8 5h6a4 4 0 0 1 4 4v1M16 12h-6a4 4 0 0 0-4 4v1"/>',
+  gaa: '<rect x="3" y="4" width="18" height="16" rx="3"/><rect x="6.5" y="7.5" width="11" height="1.6" rx=".8"/><rect x="6.5" y="11.2" width="11" height="1.6" rx=".8"/><rect x="6.5" y="14.9" width="11" height="1.6" rx=".8"/>',
+  ruler: '<rect x="2.5" y="8" width="19" height="8" rx="1.2"/><path d="M6.5 8v3M10.5 8v4.5M14.5 8v3M18.5 8v4.5"/>',
+  microscope: '<path d="M9 3l4 2-3.5 7-4-2z"/><path d="M7.5 11.2 6.5 13.5"/><path d="M4 16h7"/><path d="M11.5 8c4.5 1 6.5 5.5 4.5 10"/><path d="M4 21h16M16 18v3"/>',
+  bathtub: '<path d="M3 3v18h18"/><path d="M6 5c.8 6 2.5 9 5.5 9.5h2c3-.2 4.5-2.5 6-6.5"/>',
+  network: '<circle cx="12" cy="12" r="2.5"/><circle cx="5" cy="5" r="2"/><circle cx="19" cy="5" r="2"/><circle cx="5" cy="19" r="2"/><circle cx="19" cy="19" r="2"/><path d="M6.5 6.5l3.7 3.7M17.5 6.5l-3.7 3.7M6.5 17.5l3.7-3.7M17.5 17.5l-3.7-3.7"/>',
+  firmware: '<rect x="5" y="5" width="14" height="14" rx="2"/><path d="M9 2.5V5M15 2.5V5M9 19v2.5M15 19v2.5M2.5 9H5M2.5 15H5M19 9h2.5M19 15h2.5"/><path d="M10 9.5 8 12l2 2.5M14 9.5l2 2.5-2 2.5"/>',
+  books: '<rect x="4" y="4" width="4" height="16" rx=".8"/><rect x="9.5" y="6" width="4" height="14" rx=".8"/><path d="M15 7.5l3.4-.9 2.9 12.6-3.4.9z"/>',
+  // 各部
+  map: '<path d="M3 6l6-2.5 6 2.5 6-2.5v14.5l-6 2.5-6-2.5-6 2.5z"/><path d="M9 3.5V18M15 6v14.5"/>',
+  atom: '<circle cx="12" cy="12" r="1.5"/><ellipse cx="12" cy="12" rx="9" ry="3.6"/><ellipse cx="12" cy="12" rx="9" ry="3.6" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="9" ry="3.6" transform="rotate(120 12 12)"/>',
+  modules: '<rect x="3.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.5"/>',
+  puzzle: '<path d="M4 7h4a2 2 0 1 1 4 0h4v4a2 2 0 1 1 0 4v4h-4a2 2 0 1 0-4 0H4v-4a2 2 0 1 0 0-4z"/>',
+  'shield-check': '<path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/>',
+  box: '<path d="M3.5 7.5 12 3l8.5 4.5v9L12 21l-8.5-4.5z"/><path d="M3.5 7.5 12 12l8.5-4.5M12 12v9"/>',
+  door: '<path d="M13 3H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h7"/><path d="M10 12h10M17 9l3 3-3 3"/>',
+  appendix: '<path d="M6 3h12v18H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/><path d="M4 17a2 2 0 0 1 2-2h12"/><path d="M10 3v7l2-1.5 2 1.5V3"/>',
+  // 側欄狀態與翻頁
+  star: '<path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"/>',
+  check: '<path d="M5 12.5l4.5 4.5L19 7.5"/>',
+  'arrow-left': '<path d="M19 12H5M11 6l-6 6 6 6"/>',
+  'arrow-right': '<path d="M5 12h14M13 6l6 6-6 6"/>',
+  // 段落示意圖節點（2.17.0）：方框圖每個節點一個語意圖示
+  bandgap: '<rect x="3.5" y="4" width="17" height="4" rx="1"/><rect x="3.5" y="16" width="17" height="4" rx="1"/><path d="M12 9.5v5M10 11.2 12 9.5l2 1.7M10 12.8l2 1.7 2-1.7"/>',
+  threshold: '<path d="M3 20h4v-4h4v-4h4V8h5"/><path d="M3 4v16"/>',
+  hexagon: '<path d="M12 3l7.8 4.5v9L12 21l-7.8-4.5v-9z"/><path d="M12 8.5l3 1.75v3.5L12 15.5l-3-1.75v-3.5z"/>',
+  'float-zone': '<rect x="9" y="3" width="6" height="18" rx="1"/><ellipse cx="12" cy="12" rx="8" ry="2.2"/>',
+  soi: '<rect x="3" y="4.5" width="18" height="3" rx=".8"/><rect x="3" y="9.5" width="18" height="2.5" rx=".8" stroke-dasharray="2 1.6"/><rect x="3" y="14" width="18" height="6" rx=".8"/>',
+  carrier: '<rect x="4" y="5.5" width="16" height="2.5" rx="1"/><path d="M5.5 10.3h1M9.5 10.3h1M13.5 10.3h1M17.5 10.3h1"/><rect x="3" y="12.5" width="18" height="6.5" rx="1"/>',
+  sputter: '<rect x="3" y="3.5" width="18" height="4.5" rx="1"/><path d="M6 21 9 10.5M7.3 11.6 9 10.5l.9 1.9"/><circle cx="15" cy="12.5" r="2"/><path d="M15.8 15.2 17 19.5M15.7 18.4l1.3 1.1.9-1.5"/>',
+  formula: '<path d="M4 3v17h17"/><path d="M6.5 17c3-1 5-4 6.5-7s3-5 6-6"/>',
+  flame: '<path d="M12 21c-4 0-6.5-2.7-6.5-6 0-3.5 3-5.5 3.5-9 2 1.2 3 3 3 4.5 1-1 1.5-2.2 1.5-3.5 2.5 2 4.5 4.8 4.5 8 0 3.3-2 6-6 6z"/>',
+  plasma: '<path d="M3 12c2-3 4 3 6 0s4 3 6 0 4 3 6 0"/><path d="M8 5l1.2 2M12 4v2.5M16 5l-1.2 2M8 19l1.2-2M12 20v-2.5M16 19l-1.2-2"/>',
+  snowflake: '<path d="M12 3v18M4.2 7.5l15.6 9M4.2 16.5l15.6-9"/><path d="M10 4.5 12 6l2-1.5M10 19.5l2-1.5 2 1.5"/>',
+  'deep-hole': '<rect x="3" y="4" width="18" height="16" rx="1"/><path d="M10.5 4v12.5a1.5 1.5 0 0 0 3 0V4"/>',
+  overlay: '<rect x="3" y="3" width="11" height="11" rx="1"/><rect x="10" y="10" width="11" height="11" rx="1" stroke-dasharray="2.5 2"/>',
+  bumps: '<rect x="5" y="4" width="14" height="5" rx="1"/><rect x="3" y="15" width="18" height="5" rx="1"/><circle cx="7.5" cy="12" r="1.8"/><ellipse cx="14.5" cy="12" rx="3.6" ry="1.8"/>',
+  valve: '<path d="M3 12h4M17 12h4"/><path d="M7 8.5v7l10-7v7z"/><path d="M12 12V5.5M9.5 5.5h5"/>',
+  eda: '<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 8h18"/><path d="M7 12h4v4h6M14 12h3"/>',
+  cloud: '<path d="M7 18h10a4 4 0 0 0 .5-8 6 6 0 0 0-11.4 1.6A3.3 3.3 0 0 0 7 18z"/>',
+  stop: '<path d="M8.3 3h7.4L21 8.3v7.4L15.7 21H8.3L3 15.7V8.3z"/><path d="M8 12h8"/>',
+  search: '<circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21"/>',
+  cycle: '<path d="M20 11a8 8 0 0 0-14.5-4.5M4 13a8 8 0 0 0 14.5 4.5"/><path d="M5.5 2.5v4h4M18.5 21.5v-4h-4"/>',
+  badge: '<circle cx="12" cy="9" r="5.5"/><path d="M9 13.8 7.5 21l4.5-2.5 4.5 2.5-1.5-7.2"/><path d="M10 9l1.5 1.5L14 8"/>',
+  foup: '<path d="M8 3.5h8M12 3.5V6"/><rect x="4" y="6" width="16" height="14" rx="2"/><path d="M7.5 10h9M7.5 13h9M7.5 16h9"/>',
+  fuse: '<path d="M3 12h4M17 12h4"/><rect x="7" y="9" width="10" height="6" rx="1"/><path d="M9 12h2M13 12h2"/>',
+  sliders: '<path d="M6 4v16M12 4v16M18 4v16"/><circle cx="6" cy="9" r="2"/><circle cx="12" cy="15" r="2"/><circle cx="18" cy="7" r="2"/>',
+  lock: '<rect x="5" y="10.5" width="14" height="10" rx="2"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/>',
+  'edge-ring': '<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5.5" stroke-dasharray="2 2"/>'
 };
 
 // 裝飾用圖示一律 aria-hidden，文字意義由旁邊的文字承擔
@@ -100,6 +158,13 @@ export function icon(name, cls = '') {
   const paths = PATHS[name];
   if (!paths) throw new Error(`沒有這個圖示：${name}`);
   return `<svg class="ui-icon${cls ? ` ${cls}` : ''}" viewBox="0 0 24 24" aria-hidden="true" focusable="false">${paths}</svg>`;
+}
+
+// 畫進段落示意圖 SVG 內：明確寫出筆畫屬性，不依賴頁面 CSS，單獨複製圖時也完整
+export function iconAt(name, x, y, size, color) {
+  const paths = PATHS[name];
+  if (!paths) throw new Error(`沒有這個圖示：${name}`);
+  return `<svg x="${x}" y="${y}" width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="${color}" color="${color}" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${paths}</svg>`;
 }
 
 export const ICON_NAMES = Object.keys(PATHS);

@@ -10,6 +10,13 @@ import { CHAPTER_CATALOG, loadChapterRecord } from './data/chapters-data.js';
 import { FAB_FLOW_NODES } from './data/fab-flow.js';
 import { loadSearchIndex } from './data/search-index.js';
 import { renderExplorer } from './scenario-explorer.js';
+import { icon } from './icons.js';
+import { CHAPTER_ICONS, PART_ICONS } from './data/icon-map.js';
+
+// 側欄狀態徽章：SVG 取代 ⚡ ★ ✓ 字元（各平台字型顯示不一）；title 與 aria-label 承擔文字意義
+// 附錄 A 維持表格，另給一個前往既有術語卡片頁（可篩選）的入口，不另做一份卡片牆（計畫 §10.1 第 6 項，2026-11-03 核可）
+const glossaryCardsLink = isEn => `<a class="glossary-cards-link" href="#glossary">${icon('term')}<span>${isEn ? 'Browse these terms as cards, filterable by Chinese, English or abbreviation' : '改用卡片瀏覽術語：可用中文、英文或縮寫篩選'}</span>${icon('arrow-right')}</a>`;
+const statusBadge = (cls, name, title) => `<span class="${cls}" role="img" title="${title}" aria-label="${title}">${icon(name)}</span>`;
 import { connectionOrigin, originQuery } from './extended-exploration.js';
 import { scenarioForChapter, chapterReturnContext } from './data/scenario-paths.js';
 import { normalizeChapterHref } from './chapter-links.js';
@@ -76,7 +83,7 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
       explore_open: '開啟互動情境 ↗',
       no_matching_chapters: '查無相符章節',
       footer_attribution: `本專案基於開源教材 <a href="https://github.com/chenwei810/Semiconductor_Manufacturing_Introduction" target="_blank" rel="noopener">chenwei810/Semiconductor_Manufacturing_Introduction</a> （採 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hant" target="_blank" rel="noopener">CC BY-NC-SA 4.0 創用 CC 姓名標示-非商業性-相同方式分享</a> 授權）重製與架構升級。`,
-      footer_desc: '涵蓋 25 章從沙子到晶片的完整晶圓製造旅程 · 28 大模組實體電顯與機台照片並列對照 · 245 筆核心術語與現場實務行話 · 中英雙語無縫支援 · 純前端極速架構 · 零中系依賴 · 版本 2.16.0',
+      footer_desc: '涵蓋 25 章從沙子到晶片的完整晶圓製造旅程 · 28 大模組實體電顯與機台照片並列對照 · 245 筆核心術語與現場實務行話 · 中英雙語無縫支援 · 純前端極速架構 · 零中系依賴 · 版本 2.17.0',
       atlas_title: '晶圓廠 12 大核心製程全景圖譜 (Fab Flow Atlas)',
       btn_close: '關閉 (Esc)',
       jargon_title: '晶圓廠現場行話與術語字典',
@@ -198,7 +205,7 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
       explore_open: 'Open Scenario ↗',
       no_matching_chapters: 'No matching chapters found',
       footer_attribution: `Adapted from the open-source book <a href="https://github.com/chenwei810/Semiconductor_Manufacturing_Introduction" target="_blank" rel="noopener">chenwei810/Semiconductor_Manufacturing_Introduction</a> licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a>.`,
-      footer_desc: 'Comprehensive 25-chapter wafer fabrication guide from sand to chip · 28-module authentic SEM & tool photo side-by-side view · 245 core terms & 43 fab jargon · Native bilingual support · Zero Chinese-origin dependencies · v2.16.0',
+      footer_desc: 'Comprehensive 25-chapter wafer fabrication guide from sand to chip · 28-module authentic SEM & tool photo side-by-side view · 245 core terms & 43 fab jargon · Native bilingual support · Zero Chinese-origin dependencies · v2.17.0',
       theme_light_title: 'Light Precision Mode',
       theme_dark_title: 'Dark High-Contrast Mode',
       theme_amber_title: 'Cleanroom 500nm Litho Amber Mode',
@@ -461,7 +468,7 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
           const t = I18N[currentLang] || I18N.zh;
           const statusWrap = link.querySelector('span[style*="align-items: center"]');
           if (statusWrap) {
-            statusWrap.insertAdjacentHTML('beforeend', `<span class="read-check-indicator" title="${t.indicator_completed}">✓</span>`);
+            statusWrap.insertAdjacentHTML('beforeend', statusBadge('read-check-indicator', 'check', t.indicator_completed));
           }
         }
       }
@@ -485,11 +492,7 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
       const targetId = link.getAttribute('data-ch-id');
       const badgeWrap = link.querySelector('.ch-status-indicators');
       if (badgeWrap && exploredModels.has(targetId) && !badgeWrap.querySelector('.explored-model-badge')) {
-        const badge = document.createElement('span');
-        badge.className = 'explored-model-badge';
-        badge.title = currentLang === 'en' ? 'Interactive physical model explored' : '已完成微觀物理模型互動探索';
-        badge.textContent = '⚡';
-        badgeWrap.prepend(badge);
+        badgeWrap.insertAdjacentHTML('afterbegin', statusBadge('explored-model-badge', 'conductor', currentLang === 'en' ? 'Interactive physical model explored' : '已完成微觀物理模型互動探索'));
       }
     });
   }
@@ -506,11 +509,7 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
     if (sidebarNavEl) {
       sidebarNavEl.querySelectorAll(`.chapter-nav-link[data-ch-id="${chId}"] .ch-status-indicators`).forEach(wrap => {
         if (!wrap.querySelector('.explored-model-badge')) {
-          const badge = document.createElement('span');
-          badge.className = 'explored-model-badge';
-          badge.title = currentLang === 'en' ? 'Interactive physical model explored' : '已完成微觀物理模型互動探索';
-          badge.textContent = '⚡';
-          wrap.prepend(badge);
+          wrap.insertAdjacentHTML('afterbegin', statusBadge('explored-model-badge', 'conductor', currentLang === 'en' ? 'Interactive physical model explored' : '已完成微觀物理模型互動探索'));
         }
       });
     }
@@ -576,7 +575,7 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
     for (const [partName, chapters] of partsMap.entries()) {
       html += `
         <div class="part-group">
-          <a class="part-title part-title-link" href="#part/${escapeHtml(chapters[0].partId)}">${escapeHtml(partName)}</a>
+          <a class="part-title part-title-link" href="#part/${escapeHtml(chapters[0].partId)}">${icon(PART_ICONS[chapters[0].partId], 'part-title-icon')}${escapeHtml(partName)}</a>
           <ul class="chapter-nav-list">
       `;
       chapters.forEach(ch => {
@@ -591,12 +590,13 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
             <a href="#${ch.id}" class="chapter-nav-link ${isActive ? 'is-active' : ''}" data-ch-id="${ch.id}">
               <span class="ch-title-wrap">
                 <span class="ch-number">${prefix}</span>
+                ${icon(CHAPTER_ICONS[ch.id], 'ch-icon')}
                 <span>${escapeHtml(ch.shortTitle)}</span>
               </span>
               <span class="ch-status-indicators" style="display: flex; align-items: center; gap: 3px;">
-                ${isExplored ? `<span class="explored-model-badge" title="${currentLang === 'en' ? 'Interactive physical model explored' : '已完成微觀物理模型互動探索'}">⚡</span>` : ''}
-                ${isStarred ? `<span class="star-indicator" title="${t.indicator_starred}">★</span>` : ''}
-                ${isRead ? `<span class="read-check-indicator" title="${t.indicator_completed}">✓</span>` : ''}
+                ${isExplored ? statusBadge('explored-model-badge', 'conductor', currentLang === 'en' ? 'Interactive physical model explored' : '已完成微觀物理模型互動探索') : ''}
+                ${isStarred ? statusBadge('star-indicator', 'star', t.indicator_starred) : ''}
+                ${isRead ? statusBadge('read-check-indicator', 'check', t.indicator_completed) : ''}
               </span>
             </a>
           </li>
@@ -703,7 +703,7 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
       ${trackHtml}
       <header class="article-header">
         <div class="article-top-bar">
-          <span class="article-part-label">${chapter.part}</span>
+          <span class="article-part-label">${icon(PART_ICONS[chapter.partId], 'part-label-icon')}${chapter.part}</span>
           <div class="article-action-cluster">
             <button type="button" class="article-action-btn ${isBookmarked ? 'is-bookmarked' : ''}" id="toggleBookmarkBtn" title="${isBookmarked ? t.bookmark_btn_saved : t.bookmark_btn_unsaved} (${currentLang === 'en' && ['ch00', 'ch01', 'ch02', 'ch03', 'ch04', 'ch05', 'ch06', 'ch07', 'ch08', 'ch09', 'ch10', 'ch11', 'ch12', 'ch13', 'ch14', 'ch15', 'ch16', 'ch17', 'ch18', 'ch19', 'ch20', 'ch21', 'ch22', 'ch23', 'ch24', 'app-glossary', 'app-jargon', 'app-reading'].includes(chapter.id) ? 'Shortcut' : '快捷鍵'}: B)">
               ${isBookmarked ? t.bookmark_btn_saved : t.bookmark_btn_unsaved}
@@ -714,8 +714,9 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
             </button>
           </div>
         </div>
-        <h1 class="article-headline">${escapeHtml(chapter.fullTitle)}</h1>
+        <h1 class="article-headline">${icon(CHAPTER_ICONS[chapter.id], 'headline-icon')}<span>${escapeHtml(chapter.fullTitle)}</span></h1>
       </header>
+      ${chapter.id === 'app-glossary' ? glossaryCardsLink(currentLang === 'en') : ''}
       <div class="article-body">
         ${cardify(insertSectionDiagrams(insertSourcedCharts(replaceFigureComments(chapter.contentHtml, chapter.id), chapter.id, currentLang), chapter.id, currentLang))}
       </div>
@@ -1863,7 +1864,7 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
     const cards = partGroups().map(group => {
       const name = isEn ? (group.partEn || group.part) : group.part;
       const lead = PART_LEADS[group.partId]?.[isEn ? 1 : 0] || '';
-      return `<a class="part-card" href="#part/${group.partId}"><span class="ds-kicker">${escapeHtml(String(group.chapters.length))} ${isEn ? 'chapters' : '章'}</span><strong>${escapeHtml(name)}</strong><span>${escapeHtml(lead)}</span></a>`;
+      return `<a class="part-card" href="#part/${group.partId}">${icon(PART_ICONS[group.partId], 'part-icon')}<span class="part-card-text"><span class="ds-kicker">${escapeHtml(String(group.chapters.length))} ${isEn ? 'chapters' : '章'}</span><strong>${escapeHtml(name)}</strong><span>${escapeHtml(lead)}</span></span><span class="part-chapter-icons" aria-hidden="true">${group.chapters.map(c => icon(CHAPTER_ICONS[c.id])).join('')}</span></a>`;
     }).join('');
     slot.innerHTML = `<div id="home-fab-flow"></div>
       <section class="ds-section" aria-labelledby="homePartsTitle"><p class="ds-kicker">Parts</p><h2 id="homePartsTitle">${t.home_parts_title}</h2><p>${t.home_parts_lead}</p><div class="part-card-grid">${cards}</div></section>
@@ -1918,7 +1919,7 @@ import { playSound, toggleSound, isSoundEnabled } from './data/sound-fx.js';
       const title = isEn ? (chapter.fullTitleEn || chapter.fullTitle) : chapter.fullTitle;
       const num = chapter.id.startsWith('app') ? t.appendix_prefix : `CH ${String(chapter.num).padStart(2, '0')}`;
       const summary = previews[index] ? `<span class="chapter-preview-summary">${escapeHtml(previews[index])}</span>` : '';
-      return `<li><a class="chapter-preview" href="#${chapter.id}"><span class="ds-kicker">${escapeHtml(num)}</span><strong>${escapeHtml(title)}</strong>${summary}</a></li>`;
+      return `<li><a class="chapter-preview" href="#${chapter.id}">${icon(CHAPTER_ICONS[chapter.id], 'preview-icon')}<span class="ds-kicker">${escapeHtml(num)}</span><strong>${escapeHtml(title)}</strong>${summary}</a></li>`;
     }).join('');
     const crumb = breadcrumbHtml({
       isEn,
