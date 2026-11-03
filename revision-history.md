@@ -116,7 +116,17 @@
   - 手機上沿用網站既有做法：圖框維持 600px 寬、可左右滑動。
   - ch11 FEOL 的圖說取自正文的圖註，只寫 6 步，沒有淺摻雜；圖已畫成正文的 7 步。要補就得改正文，屬 §3.3 正文校勘，需另外同意。
 - 前後對照：`C:\Users\Sam\AI-Workspace\docs\semiconductor-knowledge-hub\visual-upgrade-plan-2026-11-02\batchC-2.20.0-before-after.png`（被取代的 6 張）、`batchC-2.20.0-new.png`（新增的 1 張）。
-- 提交／發布狀態：本機提交，尚未推送、尚未部署，等 Sam 看過對照圖再決定。
+- 提交／發布狀態：已推送、已部署。
+  - 2026-11-03 Sam 看過對照圖後回覆「合併並部署」。
+  - 提交 `1d21be947e393a2139bc2ec6e5194e289b2944bf`，main 由 `bf4e460` 快轉。
+  - 快轉後在 main 上重跑 `npm run verify` 與 `scripts/build-site.mjs`，都通過。
+  - GitHub Pages run `41633389365` 的 `verify` 與 `deploy` 都成功。
+- 發布後線上驗證（2026-11-03）：
+  - 本次改到的 5 個網站檔案與提交內容逐位元組相同，加不加快取參數都一樣：`index.html`、`app.js`、`chapter-figures.js`、`data/section-diagrams.js`、`pictorials.js`。
+  - 頁尾為 2.20.0；`revision-history.md`、`package.json`、`scripts/` 回應 404。
+  - 瀏覽器檢查直接跑線上網站：ch11–ch14 × 中英 × 1440／390，共 16 頁，與 main `bf4e460` 快照比較。
+    - 0 項問題，列印前收合區全部展開。
+    - 圖數、收合區與頁高的變化與本機最終掃描完全一致。
 
 ## 2.19.0 · 2026-11-03 · B 批實物示意圖（ch04–ch10）
 
