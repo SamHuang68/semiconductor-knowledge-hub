@@ -177,7 +177,18 @@
 - 前後對照：
   - 被取代的 6 張：`C:\Users\Sam\AI-Workspace\docs\semiconductor-knowledge-hub\visual-upgrade-plan-2026-11-02\batchD-2.21.0-before-after.png`；
   - 新增的 11 張：同資料夾的 `batchD-2.21.0-new.png`。
-- 提交／發布狀態：只在本機提交，尚未推送、尚未部署。
+- 提交／發布狀態：已推送、已部署。
+  - 2026-11-04 Sam 看過對照圖後回覆「合併並部署」。
+  - 提交 `7417eace0114462eb0612799d230792f91972745`，main 由 `124d0b1` 快轉。
+  - 快轉後在 main 上重跑 `npm run verify` 與 `scripts/build-site.mjs`，都通過。
+  - GitHub Pages run `41741300378` 的 `verify` 與 `deploy` 都成功。
+- 發布後線上驗證（2026-11-04）：
+  - 本次改到的 5 個網站檔案與提交內容逐位元組相同，加不加快取參數都一樣：`index.html`、`app.js`、`data/section-diagrams.js`、`pictorials.js`、`section-diagrams.js`。
+  - 頁尾為 2.21.0；`revision-history.md`、`package.json`、`scripts/` 回應 404。
+  - 瀏覽器檢查直接跑線上網站：ch14–ch21 × 中英 × 1440／390，共 32 頁，與 main `124d0b1` 快照比較。
+    - 沒有頁面錯誤、主控台錯誤、水平溢位；只有 ch19、ch20 條例總覽的預期收合，列印前收合區全部展開。
+    - 圖數、收合區與頁高的變化與本機最終掃描一致。
+    - 線上另外多報一項 ch14 中文手機版頁高 −0.4%。在 0.3／1.2／4.2 秒重新量測：線上 0.3 秒時頁面還在載入，1.2 秒起穩定在 13687，與本機、main 相同，屬量測時機造成的差異。
 
 ## 2.20.0 · 2026-11-03 · C 批實物示意圖（ch11–ch14）
 
