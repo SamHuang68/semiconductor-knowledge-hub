@@ -4413,30 +4413,189 @@ export const SECTION_DIAGRAMS = [
     ]
   },
   {
+    "chapterId": "ch11",
+    "headingZh": "一個反覆出現的循環",
+    "headingEn": "A loop that keeps repeating",
+    "type": "pictorial",
+    "draw": "processLoop",
+    "captionZh": "每層都走一次的循環，以及 FEOL、MOL、BEOL 的位置",
+    "captionEn": "The loop every layer goes through, and where FEOL, MOL and BEOL sit",
+    "labels": [
+      {
+        "key": "sameLoop",
+        "zh": "同一個循環",
+        "en": "The same loop"
+      },
+      {
+        "key": "deposit",
+        "zh": "鋪上材料",
+        "en": "Deposit a material"
+      },
+      {
+        "key": "litho",
+        "zh": "微影定義圖形",
+        "en": "Define a pattern with lithography"
+      },
+      {
+        "key": "etchImplant",
+        "zh": "蝕刻或佈植",
+        "en": "Etch or implant"
+      },
+      {
+        "key": "strip",
+        "zh": "去光阻、清洗",
+        "en": "Strip resist and clean"
+      },
+      {
+        "key": "measure",
+        "zh": "量測",
+        "en": "Measure"
+      },
+      {
+        "key": "maskLayer",
+        "zh": "光罩層",
+        "en": "Mask layer"
+      },
+      {
+        "key": "oneMask",
+        "zh": "每做一次微影，就要用到一片光罩",
+        "en": "Each lithography step uses one mask"
+      },
+      {
+        "key": "beol",
+        "zh": "BEOL",
+        "en": "BEOL"
+      },
+      {
+        "key": "beolDoes",
+        "zh": "負責做多層金屬導線",
+        "en": "Builds the multilevel metal wiring"
+      },
+      {
+        "key": "mol",
+        "zh": "MOL",
+        "en": "MOL"
+      },
+      {
+        "key": "molDoes",
+        "zh": "負責把電晶體接出來",
+        "en": "Connects the transistors to the wiring above"
+      },
+      {
+        "key": "feol",
+        "zh": "FEOL",
+        "en": "FEOL"
+      },
+      {
+        "key": "feolDoes",
+        "zh": "負責做出電晶體",
+        "en": "Builds the transistors"
+      },
+      {
+        "key": "contact",
+        "zh": "接觸窗",
+        "en": "Contact"
+      },
+      {
+        "key": "metalLayer",
+        "zh": "金屬層",
+        "en": "Metal layer"
+      },
+      {
+        "key": "varies",
+        "zh": "三段的分界在不同工廠略有不同",
+        "en": "Where the three stages divide varies slightly from fab to fab"
+      },
+      {
+        "key": "insideFab",
+        "zh": "都發生在晶圓廠內",
+        "en": "All happen inside the fab"
+      },
+      {
+        "key": "differ",
+        "zh": "和封裝測試的「後段」不同",
+        "en": "which is different from the \"back end\" of packaging and test"
+      }
+    ]
+  },
+  {
     "chapterId": "ch12",
     "headingZh": "平面電晶體的極限",
     "headingEn": "The limits of the planar transistor",
-    "type": "branch",
-    "captionZh": "平面電晶體縮小後的兩個漏電問題",
-    "captionEn": "The two leakage problems that appear as planar transistors shrink.",
-    "root": {
-      "zh": "平面電晶體縮小",
-      "en": "Shrinking planar transistors",
-      "noteZh": "解法：換材料、換結構",
-      "noteEn": "Fixes: change materials, change structure"
-    },
-    "branches": [
+    "type": "pictorial",
+    "draw": "planarLeak",
+    "captionZh": "平面電晶體縮小後的兩條漏電路徑（以 NMOS 示意）",
+    "captionEn": "Two leakage paths in a shrinking planar transistor (NMOS shown)",
+    "labels": [
       {
-        "zh": "閘極只從上方控制",
-        "en": "Gate controls only from above",
-        "leafZh": "下方深處電流偷溜過去",
-        "leafEn": "Current sneaks through deeper down"
+        "key": "fromAbove",
+        "zh": "閘極只從上方控制通道",
+        "en": "The gate controls the channel only from above"
       },
       {
+        "key": "gate",
+        "zh": "閘極",
+        "en": "Gate"
+      },
+      {
+        "key": "source",
+        "zh": "源極",
+        "en": "Source"
+      },
+      {
+        "key": "drain",
+        "zh": "汲極",
+        "en": "Drain"
+      },
+      {
+        "key": "channel",
+        "zh": "通道",
+        "en": "Channel"
+      },
+      {
+        "key": "insulator",
+        "zh": "閘極絕緣層",
+        "en": "Gate insulator"
+      },
+      {
+        "key": "tooClose",
+        "zh": "源極和汲極靠得太近",
+        "en": "The source and drain get too close together"
+      },
+      {
+        "key": "sneak",
+        "zh": "下方較深的地方就會有電流「偷偷溜過去」",
+        "en": "Current \"sneaks through\" deeper down"
+      },
+      {
+        "key": "faucet",
+        "zh": "即使閘極關閉也一樣，就像水龍頭關不緊",
+        "en": "Even when the gate is off, like a faucet that will not shut tight"
+      },
+      {
+        "key": "thinner",
         "zh": "絕緣層越做越薄",
-        "en": "Gate insulator keeps thinning",
-        "leafZh": "電子直接穿過，造成漏電",
-        "leafEn": "Electrons tunnel through: leakage"
+        "en": "The insulator was made thinner and thinner"
+      },
+      {
+        "key": "tunnel",
+        "zh": "電子會直接穿過去，造成漏電",
+        "en": "Electrons could tunnel straight through it, causing leakage"
+      },
+      {
+        "key": "twoPaths",
+        "zh": "產業的解法分成兩條路",
+        "en": "The industry took two paths to solve this"
+      },
+      {
+        "key": "materials",
+        "zh": "換材料",
+        "en": "Change the materials"
+      },
+      {
+        "key": "structure",
+        "zh": "換結構",
+        "en": "Change the structure"
       }
     ]
   },
@@ -4494,37 +4653,85 @@ export const SECTION_DIAGRAMS = [
     "chapterId": "ch12",
     "headingZh": "GAA：閘極完全包住通道",
     "headingEn": "GAA: the gate wraps all the way around",
-    "type": "flow",
-    "captionZh": "GAA 奈米片的關鍵製程順序",
-    "captionEn": "The key process sequence for building GAA nanosheet transistors.",
-    "steps": [
+    "type": "pictorial",
+    "draw": "gaaFlow",
+    "captionZh": "GAA 六步：A、C、D 沿通道，B、E、F 垂直通道剖面",
+    "captionEn": "GAA in six steps: A, C, D cut along the channel; B, E, F cut across it",
+    "labels": [
       {
+        "key": "epi",
         "zh": "交替磊晶矽與矽鍺",
         "en": "Alternate silicon and SiGe epitaxy"
       },
       {
+        "key": "fin",
         "zh": "做出鰭狀結構",
         "en": "Form fin-shaped stacks"
       },
       {
+        "key": "dummy",
         "zh": "做假閘極",
         "en": "Build dummy gate"
       },
       {
+        "key": "inner",
         "zh": "做內側間隔物",
         "en": "Form inner spacers"
       },
       {
+        "key": "release",
         "zh": "挖掉矽鍺、釋放通道",
-        "en": "Remove SiGe, release channels",
-        "noteZh": "最關鍵的一步，高選擇比蝕刻",
-        "noteEn": "Most critical: high-selectivity etch"
+        "en": "Remove SiGe to release the channels"
       },
       {
+        "key": "fill",
         "zh": "填入閘極材料",
-        "en": "Fill in the gate",
-        "noteZh": "ALD 把絕緣層與金屬填入縫隙",
-        "noteEn": "ALD fills insulator and metal between sheets"
+        "en": "Fill in the gate"
+      },
+      {
+        "key": "critical",
+        "zh": "最關鍵的一步",
+        "en": "The most critical step"
+      },
+      {
+        "key": "selective",
+        "zh": "選擇比極高的蝕刻",
+        "en": "An etch with extremely high selectivity"
+      },
+      {
+        "key": "suspended",
+        "zh": "懸空的矽通道",
+        "en": "Silicon channel suspended"
+      },
+      {
+        "key": "ald",
+        "zh": "ALD",
+        "en": "ALD"
+      },
+      {
+        "key": "insulatorMetal",
+        "zh": "閘極絕緣層和金屬",
+        "en": "The gate insulator and metal"
+      },
+      {
+        "key": "si",
+        "zh": "矽",
+        "en": "Silicon"
+      },
+      {
+        "key": "sige",
+        "zh": "矽鍺",
+        "en": "Silicon germanium"
+      },
+      {
+        "key": "dummyGate",
+        "zh": "假閘極",
+        "en": "Dummy gate"
+      },
+      {
+        "key": "innerSpacer",
+        "zh": "內側間隔物",
+        "en": "Inner spacer"
       }
     ]
   },
@@ -4532,33 +4739,100 @@ export const SECTION_DIAGRAMS = [
     "chapterId": "ch12",
     "headingZh": "背面供電：把電源線搬到背面",
     "headingEn": "Backside power delivery: moving the power lines to the back",
-    "type": "flow",
-    "captionZh": "背面供電把電源網路搬到晶圓背面的步驟",
-    "captionEn": "The steps that move the power network to the back of the wafer.",
-    "steps": [
+    "type": "pictorial",
+    "draw": "backsidePower",
+    "captionZh": "正面與背面供電對照，以及背面供電四步（翻面後方向相反）",
+    "captionEn": "Front vs. backside power, and the four steps (flipped steps face the other way)",
+    "labels": [
       {
-        "zh": "正面接合承載晶圓",
-        "en": "Bond front to a carrier wafer"
+        "key": "traditional",
+        "zh": "傳統上",
+        "en": "Traditionally"
       },
       {
+        "key": "drop",
+        "zh": "電壓下降",
+        "en": "Voltage drop"
+      },
+      {
+        "key": "congested",
+        "zh": "擁擠",
+        "en": "Congested"
+      },
+      {
+        "key": "transistors",
+        "zh": "電晶體",
+        "en": "Transistors"
+      },
+      {
+        "key": "front",
+        "zh": "正面",
+        "en": "Front"
+      },
+      {
+        "key": "back",
+        "zh": "背面",
+        "en": "Back"
+      },
+      {
+        "key": "bspdn",
+        "zh": "背面供電",
+        "en": "Backside power delivery"
+      },
+      {
+        "key": "carrier",
+        "zh": "承載晶圓",
+        "en": "Carrier wafer"
+      },
+      {
+        "key": "thin",
+        "zh": "磨到極薄",
+        "en": "Extremely thin"
+      },
+      {
+        "key": "wiring",
+        "zh": "電源導線",
+        "en": "Power wiring"
+      },
+      {
+        "key": "leavesFront",
+        "zh": "正面就能留給訊號線使用",
+        "en": "Leaves the front for signal wiring"
+      },
+      {
+        "key": "stable",
+        "zh": "電源也更穩定",
+        "en": "makes the power supply more stable"
+      },
+      {
+        "key": "signal",
+        "zh": "訊號線",
+        "en": "Signal lines"
+      },
+      {
+        "key": "power",
+        "zh": "電源線",
+        "en": "Power lines"
+      },
+      {
+        "key": "bonded",
+        "zh": "接合到另一片承載晶圓上",
+        "en": "Bonded to a carrier wafer"
+      },
+      {
+        "key": "flipped",
         "zh": "翻過來",
-        "en": "Flip the stack over"
+        "en": "The stack is flipped over"
       },
       {
-        "zh": "磨薄原本的晶圓",
-        "en": "Thin the original wafer",
-        "noteZh": "磨到極薄",
-        "noteEn": "Until it is extremely thin"
+        "key": "thinned",
+        "zh": "把原本的晶圓磨到極薄",
+        "en": "The original wafer is thinned until it is extremely thin"
       },
       {
-        "zh": "背面做出電源導線",
-        "en": "Build power wiring on the back"
-      },
-      {
-        "zh": "正面留給訊號線",
-        "en": "Front left for signal wiring",
-        "noteZh": "電源也更穩定",
-        "noteEn": "Power supply more stable"
+        "key": "built",
+        "zh": "在背面做出電源導線",
+        "en": "Power wiring is built on its back"
       }
     ]
   },
@@ -4638,31 +4912,93 @@ export const SECTION_DIAGRAMS = [
     "chapterId": "ch13",
     "headingZh": "HBM：把 DRAM 疊起來",
     "headingEn": "HBM: stacking DRAM",
-    "type": "flow",
-    "captionZh": "製作 HBM 的主要步驟",
-    "captionEn": "The main steps in making HBM.",
-    "steps": [
+    "type": "pictorial",
+    "draw": "hbmStack",
+    "sourcedNumbers": true,
+    "sourceZh": "數值出自本段表格的 HBM4／HBM4E 一列；這一列另含仍有微凸塊的無助焊劑熱壓；標尺底部的青色是基底晶粒；層間高度未按比例。",
+    "sourceEn": "Values come from the HBM4/HBM4E row of the table in this section. That row also covers fluxless TCB, which still uses micro-bumps. The teal layer at the bottom of the stack is the base die. Gaps are not to scale.",
+    "captionZh": "製作 HBM 的主要步驟，以及三種堆疊接合方式",
+    "captionEn": "The main steps in making HBM, and three ways to bond the stack",
+    "labels": [
       {
+        "key": "tsv",
         "zh": "做出 TSV",
-        "en": "Build the TSVs",
-        "noteZh": "穿過晶片的垂直導線",
-        "noteEn": "Vertical wires through the dies"
+        "en": "Build the TSVs"
       },
       {
-        "zh": "晶圓磨薄",
-        "en": "Thin the wafers",
-        "noteZh": "只剩幾十微米",
-        "noteEn": "Down to a few dozen micrometers"
+        "key": "thin",
+        "zh": "把晶圓磨薄到只剩幾十微米",
+        "en": "Thin the wafers down to only a few dozen micrometers"
       },
       {
-        "zh": "做出微小凸塊",
+        "key": "bumps",
+        "zh": "做出微小的凸塊",
         "en": "Form tiny bumps"
       },
       {
-        "zh": "堆疊並接合晶片",
-        "en": "Stack and bond the dies",
-        "noteZh": "多顆 DRAM 晶片垂直疊起",
-        "noteEn": "Several DRAM dies stacked vertically"
+        "key": "stack",
+        "zh": "疊起來接合",
+        "en": "Stack and bond"
+      },
+      {
+        "key": "tsvName",
+        "zh": "TSV",
+        "en": "TSV"
+      },
+      {
+        "key": "tsvDef",
+        "zh": "穿過晶片的垂直導線",
+        "en": "Vertical wires that pass through the dies"
+      },
+      {
+        "key": "stackDef",
+        "zh": "把多顆 DRAM 晶片垂直疊在一起",
+        "en": "Stacks several DRAM dies vertically"
+      },
+      {
+        "key": "tcncf",
+        "zh": "TC-NCF",
+        "en": "TC-NCF"
+      },
+      {
+        "key": "tcncfName",
+        "zh": "熱壓鍵合搭配非導電膜",
+        "en": "Thermal Compression with Non-Conductive Film"
+      },
+      {
+        "key": "mrmuf",
+        "zh": "MR-MUF",
+        "en": "MR-MUF"
+      },
+      {
+        "key": "mrmufName",
+        "zh": "巨量回焊搭配模塑底部填膠",
+        "en": "Mass Reflow Molded Underfill"
+      },
+      {
+        "key": "hybrid",
+        "zh": "無凸塊混合鍵合",
+        "en": "Bumpless Cu-Cu Bonding"
+      },
+      {
+        "key": "cuDesc",
+        "zh": "大幅壓縮層間高度",
+        "en": "Eliminate inter-die gap height"
+      },
+      {
+        "key": "microbump",
+        "zh": "微凸塊",
+        "en": "Micro-bumps"
+      },
+      {
+        "key": "gen",
+        "zh": "HBM4 / HBM4E（16H+）",
+        "en": "HBM4 / HBM4E (16H+)"
+      },
+      {
+        "key": "fits775",
+        "zh": "在 775 µm 封裝高度限制內容納 16 層以上堆疊",
+        "en": "Fits 16+ DRAM tiers within the ~775 µm package height limit"
       }
     ]
   },
@@ -4788,37 +5124,73 @@ export const SECTION_DIAGRAMS = [
     "chapterId": "ch14",
     "headingZh": "名稱的由來",
     "headingEn": "Where the names came from",
-    "type": "flow",
-    "captionZh": "節點名稱從對應實際尺寸到變成世代代號",
-    "captionEn": "How node names went from matching real dimensions to being generation labels.",
-    "steps": [
+    "type": "pictorial",
+    "draw": "nodeShrink",
+    "sourcedNumbers": true,
+    "sourceZh": "0.7 與 0.1 奈米出自本段正文；長方形依 0.7 倍等比例縮放，其餘為示意。",
+    "sourceEn": "0.7 and 0.1 nm come from this section. The rectangles are scaled by exactly 0.7; everything else is schematic.",
+    "captionZh": "每代縮成 0.7 倍：面積約減半；節點名稱後來與尺寸脫鉤",
+    "captionEn": "Shrinking by 0.7 halves the area; node names later came apart from real sizes",
+    "labels": [
       {
-        "zh": "名稱對應實際尺寸",
-        "en": "Names match real dimensions",
-        "noteZh": "約等於閘極長度或線寬",
-        "noteEn": "About the gate length or densest line width"
+        "key": "times07",
+        "zh": "長和寬都乘以 0.7",
+        "en": "Multiplying both the length and the width by 0.7"
       },
       {
-        "zh": "每代按比例縮小",
-        "en": "Shrink every generation",
-        "noteZh": "面積約減半，電晶體加倍",
-        "noteEn": "Area roughly halves, twice the transistors"
+        "key": "half",
+        "zh": "面積就變成大約一半",
+        "en": "Cuts the area roughly in half"
       },
       {
-        "zh": "結構越來越複雜",
-        "en": "Structures grow more complex",
-        "noteZh": "實際尺寸跟不上名稱",
-        "noteEn": "Real dimensions can't keep up with names"
+        "key": "twice",
+        "zh": "同樣面積可以放進兩倍的電晶體",
+        "en": "Twice as many transistors fit in the same area"
       },
       {
-        "zh": "名稱與尺寸脫鉤",
-        "en": "Names and dimensions come apart"
+        "key": "agreed",
+        "zh": "名稱和實際尺寸是對得上的",
+        "en": "The name and the real dimensions agreed"
       },
       {
-        "zh": "部分改用「埃」命名",
-        "en": "Some switch to angstroms",
-        "noteZh": "同樣只是世代代號",
-        "noteEn": "Likewise just generation labels"
+        "key": "roughly",
+        "zh": "大致等於電晶體閘極的長度，或是最密集線路的寬度",
+        "en": "The gate length of the transistor or the width of the densest lines"
+      },
+      {
+        "key": "shrink07",
+        "zh": "每一代把尺寸縮小到大約 0.7 倍",
+        "en": "Shrink dimensions to about 0.7 times each generation"
+      },
+      {
+        "key": "complex",
+        "zh": "電晶體的結構越來越複雜",
+        "en": "Transistor structures became more and more complex"
+      },
+      {
+        "key": "cantKeep",
+        "zh": "實際尺寸的縮小速度跟不上名稱",
+        "en": "The real dimensions could not keep up with the names"
+      },
+      {
+        "key": "apart",
+        "zh": "兩者就逐漸脫鉤了",
+        "en": "The two gradually came apart"
+      },
+      {
+        "key": "someCos",
+        "zh": "也有公司",
+        "en": "Some companies have also started"
+      },
+      {
+        "key": "angstrom",
+        "zh": "改用「埃」（Å，0.1 奈米）來命名新世代",
+        "en": "naming new generations in angstroms (Å, 0.1 nm)"
+      },
+      {
+        "key": "labelsOnly",
+        "zh": "同樣只是世代代號",
+        "en": "Likewise just generation labels"
       }
     ]
   },

@@ -272,8 +272,59 @@ function damascene(en) {
     + half(240, L(en, '阻障層、晶種層', 'Barrier, seed')) + key(420, CAP, CAP_LINE, L(en, '覆蓋層', 'Cap layer'));
 }
 
+// 平面 CMOS 的 FEOL 七步剖面（2.20.0 改畫，C 批）：左邊 NMOS（P 井、N 型源汲極）、右邊 PMOS（N 井、P 型源汲極），與第 2 章圖的左右配置相同。
+// 深度固定：淺摻雜 < 源汲極接面 < STI < 井；④⑥ 以光阻遮住 PMOS 區、只佈植 NMOS 區，PMOS 區另做一次；矽化物只在源汲極與閘極頂面（技術審查修正）
 function feol(en) {
-  return flow([L(en, '隔離', 'Isolation'), L(en, '井', 'Wells'), L(en, '閘極', 'Gate'), 'Spacer', L(en, '源汲', 'S/D'), L(en, '矽化物', 'Silicide')]);
+  const N = '#bae6fd', N_LINE = '#075985', P = '#fce7f3', P_LINE = '#9d174d', OX = '#f0fdfa', OX_LINE = '#0f766e', GATE = '#fde68a', GATE_LINE = '#92400e', SPACER = '#cbd5e1', SIL = '#334155', SI = '#e2e8f0';
+  const steps = [
+    L(en, '① 隔離', '① Isolation'), L(en, '② 做出井', '② Wells'), L(en, '③ 做閘極', '③ Gate'), L(en, '④ 淺摻雜', '④ Light doping'),
+    L(en, '⑤ 側壁間隔物', '⑤ Sidewall spacers'), L(en, '⑥ 源極與汲極', '⑥ Source and drain'), L(en, '⑦ 金屬矽化物', '⑦ Silicide')
+  ];
+  const w = 140, xs = [16, 172, 328, 484, 94, 250, 406];
+  const panel = (i, x, top) => {
+    // 剖面往下移，④⑥ 的佈植箭頭才不會壓到標題
+    const y = top + 10, s = y + 40;
+    // 兩個主動區的中心：左 x+42、右 x+98（中間 STI 在 x+66～x+74，右邊 STI 在 x+122）
+    const gl = x + 42, gr = x + 98;
+    let out = `<rect x="${x}" y="${top}" width="${w}" height="126" rx="6" fill="#ffffff" stroke="#cbd5e1"/>` + tx(x + w / 2, top + 16, steps[i], 11);
+    out += `<rect x="${x + 10}" y="${s}" width="120" height="60" fill="${SI}" stroke="#334155"/>`;
+    // ② 起：左 P 井、右 N 井，比 STI 深
+    if (i >= 1) out += `<rect x="${x + 10}" y="${s}" width="61" height="44" fill="${P}" stroke="${P_LINE}" stroke-width=".8"/><rect x="${x + 71}" y="${s}" width="59" height="44" fill="${N}" stroke="${N_LINE}" stroke-width=".8"/>`;
+    // ④ 起：淺摻雜（只延伸到閘極邊緣）；④ 當下只有 NMOS 區做了，PMOS 區被光阻遮住
+    const ldd = (g, f, l) => `<rect x="${g - 19}" y="${s}" width="9" height="4" fill="${f}" stroke="${l}" stroke-width=".6"/><rect x="${g + 10}" y="${s}" width="9" height="4" fill="${f}" stroke="${l}" stroke-width=".6"/>`;
+    if (i >= 3) out += ldd(gl, N, N_LINE);
+    if (i >= 4) out += ldd(gr, P, P_LINE);
+    // ⑥ 起：源汲極（較深），從 STI 到側壁間隔物外緣
+    const sd = (g, f, l) => `<rect x="${g - 24}" y="${s}" width="10" height="10" fill="${f}" stroke="${l}" stroke-width=".7"/><rect x="${g + 14}" y="${s}" width="10" height="10" fill="${f}" stroke="${l}" stroke-width=".7"/>`;
+    if (i >= 5) out += sd(gl, N, N_LINE);
+    if (i >= 6) out += sd(gr, P, P_LINE);
+    // STI：三道淺溝槽填氧化矽，表面磨平
+    out += [x + 10, x + 66, x + 122].map(sx => `<rect x="${sx}" y="${s}" width="8" height="22" fill="${OX}" stroke="${OX_LINE}"/>`).join('');
+    // ③ 起：閘極絕緣層與閘極
+    if (i >= 2) out += [gl, gr].map(g => `<rect x="${g - 10}" y="${s - 2}" width="20" height="2" fill="${OX}" stroke="${OX_LINE}" stroke-width=".5"/><rect x="${g - 10}" y="${s - 16}" width="20" height="14" fill="${GATE}" stroke="${GATE_LINE}"/>`).join('');
+    // ⑤ 起：側壁間隔物
+    if (i >= 4) out += [gl, gr].map(g => `<rect x="${g - 14}" y="${s - 16}" width="4" height="16" fill="${SPACER}" stroke="#334155" stroke-width=".6"/><rect x="${g + 10}" y="${s - 16}" width="4" height="16" fill="${SPACER}" stroke="#334155" stroke-width=".6"/>`).join('');
+    // ⑦：矽化物只在源汲極與閘極頂面
+    if (i === 6) out += [gl, gr].map(g => `<rect x="${g - 24}" y="${s - 2}" width="10" height="2" fill="${SIL}"/><rect x="${g + 14}" y="${s - 2}" width="10" height="2" fill="${SIL}"/><rect x="${g - 10}" y="${s - 18}" width="20" height="2" fill="${SIL}"/>`).join('');
+    // ④⑥：光阻遮住 PMOS 區，箭頭只打進 NMOS 區
+    if (i === 3 || i === 5) {
+      out += `<rect x="${x + 71}" y="${s - 24}" width="59" height="24" fill="#e1ad70" stroke="${GATE_LINE}"/>` + tx(x + 100, s - 9, L(en, '光阻', 'Resist'), 9, '#0f172a');
+      out += [24, 36, 48, 60].map(dx => arrow(x + dx, s - 27, x + dx, s - (dx > 30 && dx < 54 ? 18 : 2), '#9a3412', i === 3 ? 1 : 1.8)).join('');
+    }
+    // ⑥ 佈植後整片晶圓退火活化：記號與「退火」放在剖面下方，橫跨整格
+    if (i === 5) out += [20, 28].map(dx => `<path d="M${x + dx} ${top + 124} q-3 -3 0 -6 q3 -3 0 -6" fill="none" stroke="#92400e" stroke-width="1.2"/>`).join('') + tx(x + 36, top + 122, L(en, '接著退火活化', 'then anneal to activate'), 9, '#92400e', 'start');
+    if (i === 1) out += tx(x + 40, s + 56, L(en, 'P 井', 'P-well'), 9.5, P_LINE) + tx(x + 100, s + 56, L(en, 'N 井', 'N-well'), 9.5, N_LINE);
+    if (i === 2) out += tx(gl, s + 56, 'NMOS', 9.5, '#0f172a') + tx(gr, s + 56, 'PMOS', 9.5, '#0f172a');
+    return out;
+  };
+  let svg = xs.map((x, i) => panel(i, x, i < 4 ? 12 : 154)).join('');
+  [0, 1, 2].forEach(i => { svg += arrow(xs[i] + w + 1, 78, xs[i + 1] - 1, 78); });
+  svg += `<path d="M554 140 V146 H164 V152" fill="none" stroke="#0f766e" stroke-width="1.5"/><path d="M164 153 l-4 -6 h8 z" fill="#0f766e"/>`;
+  [4, 5].forEach(i => { svg += arrow(xs[i] + w + 1, 220, xs[i + 1] - 1, 220); });
+  const key = (x, fill, stroke, label) => `<rect x="${x}" y="296" width="12" height="12" fill="${fill}" stroke="${stroke}"/>` + tx(x + 16, 306, label, 10.5, '#334155', 'start');
+  return svg + key(20, N, N_LINE, L(en, 'N 型', 'N-type')) + key(96, P, P_LINE, L(en, 'P 型', 'P-type')) + key(172, OX, OX_LINE, L(en, '氧化矽', 'Silicon oxide'))
+    + key(286, GATE, GATE_LINE, L(en, '閘極', 'Gate')) + key(362, SPACER, '#334155', 'Spacer') + key(448, SIL, SIL, L(en, '金屬矽化物', 'Silicide'))
+    + tx(320, 330, L(en, '④⑥ 先以光阻遮住 PMOS 區、只佈植 NMOS 區；PMOS 區再另做一次', '④⑥ Resist covers PMOS while NMOS is implanted; PMOS is done separately'), 10.5, '#334155');
 }
 
 function devices(en) {
@@ -517,7 +568,7 @@ const MATCHERS = [
   [/清洗|wet bench/i, clean, 220],
   [/多層金屬|multilevel metal/i, metalStack],
   [/大馬士革|damascene/i, damascene, 336],
-  [/FEOL/i, feol],
+  [/FEOL/i, feol, 340],
   [/FinFET|GAA/i, devices],
   [/DRAM/i, dram, 256],
   [/NAND/i, nand],

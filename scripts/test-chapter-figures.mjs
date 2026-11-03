@@ -3,6 +3,7 @@ import { readdirSync } from 'node:fs';
 import { dieHits, replaceFigureComments } from '../chapter-figures.js';
 import { chapter as ch04 } from '../data/chapters/ch04.js';
 import { chapter as ch10 } from '../data/chapters/ch10.js';
+import { chapter as ch11 } from '../data/chapters/ch11.js';
 import { chapter as ch18 } from '../data/chapters/ch18.js';
 import { chapter as ch23 } from '../data/chapters/ch23.js';
 import { chapter as ch24 } from '../data/chapters/ch24.js';
@@ -40,7 +41,7 @@ assert.ok(plain.includes('class="chapter-figure"'), '沒有標題時補圖仍要
 // 2.14.0：圖說比對順序曾讓含「晶粒」的中文圖說全被畫成「晶圓→晶粒→晶片」。
 // 同一章中英文圖說描述同一張圖，畫出的圖種必須一致；並抽查幾張圖要畫成對的圖。
 const keys = html => [...html.matchAll(/<figure class="chapter-figure" data-figure="(\w+)"/g)].map(m => m[1]);
-const expected = { ch00: ['life', 'waferDieChip'], ch10: ['metalStack', 'damascene'], ch15: ['inspect'], ch16: ['yieldMap'], ch17: ['spc'], ch19: ['cp'], ch20: ['wirebond', 'flipchip'] };
+const expected = { ch00: ['life', 'waferDieChip'], ch10: ['metalStack', 'damascene'], ch11: ['feol'], ch15: ['inspect'], ch16: ['yieldMap'], ch17: ['spc'], ch19: ['cp'], ch20: ['wirebond', 'flipchip'] };
 for (const file of readdirSync(new URL('../data/chapters/', import.meta.url)).filter(f => f.endsWith('.js'))) {
   const { chapter } = await import(new URL(`../data/chapters/${file}`, import.meta.url));
   const zh = keys(replaceFigureComments(chapter.contentHtml, chapter.id));
@@ -59,5 +60,18 @@ const zhSteps = damascene(replaceFigureComments(ch10.contentHtml, 'ch10'));
 for (const step of ['鋪絕緣層', '挖出導通孔', '和溝槽', '鋪阻障層', '與晶種層', '電鍍銅', '退火', '銅 CMP', '鋪覆蓋層']) assert.ok(zhSteps.includes(step), `雙大馬士革中文圖缺少步驟：${step}`);
 const enSteps = damascene(replaceFigureComments(ch10.contentHtmlEn, 'ch10'));
 for (const step of ['Deposit', 'Etch vias', 'Barrier and', 'Copper', 'Anneal', 'Copper CMP', 'Cap layer']) assert.ok(enSteps.includes(step), `雙大馬士革英文圖缺少步驟：${step}`);
+
+// 2.20.0：FEOL 由六個方框改畫成七步剖面（補上正文的淺摻雜）；左右配置與第 2 章圖相同：NMOS／P 井在左、PMOS／N 井在右
+const feolFigure = html => html.match(/<figure class="chapter-figure" data-figure="feol">[\s\S]*?<\/figure>/)?.[0] || '';
+const xOf = (html, label) => Number(html.match(new RegExp(`<text x="([\\d.]+)"[^>]*>${label}</text>`))?.[1]);
+for (const [html, steps, wells] of [
+  [feolFigure(replaceFigureComments(ch11.contentHtml, 'ch11')), ['隔離', '做出井', '做閘極', '淺摻雜', '側壁間隔物', '源極與汲極', '金屬矽化物'], ['P 井', 'N 井']],
+  [feolFigure(replaceFigureComments(ch11.contentHtmlEn, 'ch11')), ['Isolation', 'Wells', 'Gate', 'Light doping', 'Sidewall spacers', 'Source and drain', 'Silicide'], ['P-well', 'N-well']]
+]) {
+  const shown = texts(html).join('');
+  for (const step of steps) assert.ok(shown.includes(step), `FEOL 圖缺少步驟：${step}`);
+  assert.ok(xOf(html, 'NMOS') < xOf(html, 'PMOS'), 'FEOL 圖的 NMOS 要在左、PMOS 在右');
+  assert.ok(xOf(html, wells[0]) < xOf(html, wells[1]), 'FEOL 圖的 P 井要在左、N 井在右');
+}
 
 console.log('[PASS] 第 18、23、24 章補上無數字的結構圖，圖說與既有章節圖一致；中英圖種一致，良率圖比例正確');
