@@ -165,12 +165,34 @@ function cleanroom(spec, en, kit) {
   const darkNote = para(352, legendY + 14 + lightNote.height, L('passThrough'), 250, 10.5, INK, 'start', 600);
   svg += `<rect x="334" y="${legendY + 1}" width="12" height="12" fill="#f1f5f9" stroke="${LINE}"/>` + lightNote.svg
     + `<rect x="334" y="${legendY + 5 + lightNote.height}" width="12" height="12" fill="${TEAL_L}" stroke="${TEAL}"/>` + darkNote.svg;
-  return { svg, height: Math.ceil(Math.max(leftBottom + 16 + classes.height, legendY + 14 + lightNote.height + darkNote.height) + 8) };
+  // 進無塵室前（第 3 階段 F 批併入，技術審查：提案只能併入現有圖）：人是最大的污染源 → 穿上全身包覆的無塵衣 → 走過風淋室 → 無塵室。
+  // 順序只用箭頭表示，不加編號
+  const yb = Math.ceil(Math.max(leftBottom + 16 + classes.height, legendY + 14 + lightNote.height + darkNote.height) + 12);
+  svg += `<path d="M16 ${yb} H624" stroke="${LINE}"/>` + t(16, yb + 20, L('before'), 12, INK, 'start', 700);
+  const pp = para(16, yb + 40, L('people'), 330, 11, RED, 'start', 700);
+  svg += pp.svg;
+  const py = yb + 48 + pp.height;
+  const body = (x, fill, stroke) => `<path d="M${x - 13} ${py + 46} q0 -26 13 -26 q13 0 13 26 z" fill="${fill}" stroke="${stroke}" stroke-width="1.4"/><path d="M${x - 6} ${py + 46} v14 M${x + 6} ${py + 46} v14" stroke="${stroke}" stroke-width="3" stroke-linecap="round"/>`;
+  const plain = x => body(x, '#e2e8f0', INK_2) + `<circle cx="${x}" cy="${py + 10}" r="8" fill="#e2e8f0" stroke="${INK_2}" stroke-width="1.4"/>`;
+  const suited = x => body(x, '#ffffff', TEAL) + `<path d="M${x - 10} ${py + 20} V${py + 8} a10 10 0 0 1 20 0 V${py + 20} z" fill="#ffffff" stroke="${TEAL}" stroke-width="1.4"/><rect x="${x - 6}" y="${py + 6}" width="12" height="6" rx="2" fill="${TEAL_L}" stroke="${TEAL}"/>`;
+  const px = 96;
+  svg += plain(px) + [[-18, 6], [16, 2], [-22, 36], [20, 40], [-10, 24], [12, 28]].map(([dx, dy]) => `<circle cx="${px + dx}" cy="${py + dy}" r="1.8" fill="${RED}"/>`).join('')
+    + t(px - 26, py + 8, L('skin'), 9.5, INK_2, 'end') + t(px + 24, py + 4, L('hair'), 9.5, INK_2, 'start') + t(px - 28, py + 40, L('sweat'), 9.5, INK_2, 'end') + t(px + 26, py + 44, L('cosmetics'), 9.5, INK_2, 'start');
+  svg += arrow(172, py + 30, 204, py + 30, TEAL, 1.6) + suited(236) + para(236, py + 78, L('suit'), 120, 10, INK, 'middle', 600).svg;
+  // 風淋室：兩側噴嘴吹向人
+  svg += arrow(270, py + 30, 302, py + 30, TEAL, 1.6) + `<rect x="314" y="${py - 6}" width="96" height="72" rx="4" fill="${TEAL_XL}" stroke="${INK_2}"/>`
+    + [8, 24, 40].map(d => `<circle cx="318" cy="${py + d}" r="2" fill="${INK_2}"/><circle cx="406" cy="${py + d}" r="2" fill="${INK_2}"/>` + arrow(322, py + d, 338, py + d + 4, BLUE, 1.1) + arrow(402, py + d, 386, py + d + 4, BLUE, 1.1)).join('') + suited(362);
+  svg += t(362, py + 80, L('shower'), 10.5, INK, 'middle', 700) + para(362, py + 94, L('blow'), 130, 10, INK_2, 'middle').svg;
+  // 門後就是無塵室
+  svg += arrow(422, py + 30, 454, py + 30, TEAL, 1.6) + `<rect x="464" y="${py - 10}" width="150" height="76" rx="6" fill="${TEAL_XL}" stroke="${TEAL}" stroke-dasharray="4 3"/>`
+    + `<rect x="476" y="${py - 2}" width="40" height="64" rx="2" fill="#ffffff" stroke="${INK_2}" stroke-width="1.4"/><rect x="484" y="${py + 6}" width="24" height="16" rx="1" fill="${TEAL_L}" stroke="${INK_2}"/><circle cx="510" cy="${py + 34}" r="2" fill="${INK_2}"/>`
+    + t(570, py + 34, L('room'), 11, TEAL, 'middle', 700);
+  return { svg, height: py + 94 + para(0, 0, L('blow'), 130, 10).height + 8 };
 }
 
 // ch01 機台：單片式與批次式，兩張圖底部對齊、晶圓同寬；直立爐管內晶圓水平疊放
 function toolTypes(spec, en, kit) {
-  const { L, t, para } = tools(spec, en, kit);
+  const { L, t, para, arrow } = tools(spec, en, kit);
   let svg = '';
   const base = 156;
   // 兩組往中間靠攏，手機窄螢幕左右滑動時比較容易同時看到（審查意見）
@@ -194,7 +216,39 @@ function toolTypes(spec, en, kit) {
   const left = col(sx, [['single', 13, INK, 700], ['oneAtATime', 11.5, INK_2, 400], ['singleExamples', 11, MUTED, 400]]);
   const right = col(bx, [['batch', 13, INK, 700], ['manyAtOnce', 11.5, INK_2, 400], ['furnace', 11, MUTED, 400]]);
   svg += left.svg + right.svg;
-  return { svg, height: Math.ceil(Math.max(left.bottom, right.bottom) + 8) };
+  // 保養後先 Qual（第 3 階段 F 批併入，技術審查：提案只能併入現有圖）：四種狀態，從保養往下走四步；
+  // 「沒做會怎樣」的虛線從第一步直接繞過 Qual 到紅框，紅框照正文寫「如果機台其實有問題」與「可能」，不寫成必然
+  const yb = Math.ceil(Math.max(left.bottom, right.bottom) + 10);
+  svg += `<path d="M16 ${yb} H624" stroke="${LINE}"/>`;
+  const capY = yb + 14;
+  let cx = 16, pmX = 0;
+  [['running', GREEN], ['waiting', MUTED], ['pm', BLUE], ['down', RED]].forEach(([k, c]) => {
+    const w = textW(L(k), 10.5) + 22;
+    svg += `<rect x="${cx}" y="${capY}" width="${w}" height="22" rx="11" fill="#ffffff" stroke="${c}" stroke-width="1.4"/>` + t(cx + w / 2, capY + 15, L(k), 10.5, c, 'middle', 700);
+    if (k === 'pm') pmX = cx;
+    cx += w + 10;
+  });
+  const bw = 140, bg = 16, by = capY + 62, keys = ['replaced', 'testWafers', 'check', 'released'];
+  const ps = keys.map(k => para(0, 0, L(k), bw - 16, 10));
+  const bh = Math.max(...ps.map(p => p.height)) + 18;
+  keys.forEach((k, i) => {
+    const x = 16 + i * (bw + bg), last = i === 3;
+    svg += `<rect x="${x}" y="${by}" width="${bw}" height="${bh}" rx="6" fill="${last ? '#f0fdf4' : '#ffffff'}" stroke="${last ? GREEN : INK_2}" stroke-width="${last ? 1.6 : 1}"/>`
+      + para(x + bw / 2 - (last ? 6 : 0), by + 13 + (bh - 18 - ps[i].height) / 2 + 3, L(k), bw - 16 - (last ? 12 : 0), 10, INK, 'middle', 600).svg;
+    if (!last) svg += arrow(x + bw + 2, by + bh / 2, x + bw + bg - 2, by + bh / 2, INK_2, 1.3);
+  });
+  svg += tick(16 + 3 * (bw + bg) + bw - 12, by + 14, 1);
+  // 保養膠囊往下接到第一步；Qual 括住中間兩步
+  svg += `<path d="M${pmX + 16} ${capY + 22} V${capY + 34} H${16 + bw / 2} V${by - 8}" fill="none" stroke="${BLUE}" stroke-width="1.3"/>` + arrow(16 + bw / 2, by - 12, 16 + bw / 2, by - 1, BLUE, 1.3);
+  const q1 = 16 + bw + bg, q2 = 16 + 3 * (bw + bg) - bg;
+  svg += `<path d="M${q1} ${by - 4} v-7 H${q2} v7" fill="none" stroke="${TEAL}" stroke-width="1.4"/>` + t((q1 + q2) / 2, by - 15, L('qual'), 11, TEAL, 'middle', 800);
+  // 沒做會怎樣：從第一步直接繞到紅框
+  const ry = by + bh + 18, wp = para(0, 0, L('wrong'), 270, 10.5), sp = para(0, 0, L('scrap'), 270, 10);
+  const rh = 16 + wp.height + sp.height;
+  svg += `<path d="M${16 + 30} ${by + bh} V${ry + rh / 2} H${336}" fill="none" stroke="${RED}" stroke-width="1.4" stroke-dasharray="5 3"/>` + arrow(328, ry + rh / 2, 340, ry + rh / 2, RED, 1.4)
+    + t(60, ry + rh / 2 - 5, L('skip'), 10.5, RED, 'start', 700)
+    + `<rect x="342" y="${ry}" width="282" height="${rh}" rx="6" fill="#fff1f2" stroke="${RED}"/>` + para(354, ry + 17, L('wrong'), 270, 10.5, RED, 'start', 700).svg + para(354, ry + 17 + wp.height, L('scrap'), 270, 10, INK, 'start').svg;
+  return { svg, height: ry + rh + 8 };
 }
 
 // ch01 誰在晶圓廠裡工作：圈字母釘在各自負責的物件上，職稱放在下方圖例（手機上不擠在圖中，技術審查修正）
@@ -2615,7 +2669,7 @@ function bondingPitch(spec, en, kit) {
 
 // ── E 批（ch22–ch24 與附錄）：最終測試與可靠度、工廠系統、記憶體與韌體、現場行話 ──
 
-// 圖示庫沒有的小圖：扳手、上升曲線、日、月、燈塔、汽車、素面晶圓。畫法同 icons.js 的 iconAt（24 格、線寬 1.75）（2.22.0）
+// 圖示庫沒有的小圖：扳手、上升曲線、日、月、燈塔、汽車、素面晶圓、沒有數字的月曆。畫法同 icons.js 的 iconAt（24 格、線寬 1.75）（2.22.0）
 const GLYPHS = {
   wrench: '<path d="M4.5 19.5 12.5 11.5" stroke-width="2.8"/><path d="M21 8A5 5 0 1 1 16 3M21 8h-2.8M16 3v2.8"/>',
   rise: '<path d="M4 4v16h16"/><path d="M7 16c4-1 6-4 11-9"/><path d="M14.5 6.5 18 7l-.5 3.5"/>',
@@ -2623,7 +2677,8 @@ const GLYPHS = {
   moon: '<path d="M15.5 4.2a8 8 0 1 0 4.3 12.6 6.5 6.5 0 0 1-4.3-12.6z"/>',
   tower: '<rect x="8.5" y="2.5" width="7" height="5" rx="1"/><rect x="8.5" y="7.5" width="7" height="5" rx="1"/><rect x="8.5" y="12.5" width="7" height="5" rx="1"/><path d="M12 17.5V21M8 21h8"/>',
   car: '<path d="M3 16.5V12.5L5.8 7.5h12.4L21 12.5v4z"/><path d="M3 12.5h18"/><circle cx="7.5" cy="17" r="2" fill="#ffffff"/><circle cx="16.5" cy="17" r="2" fill="#ffffff"/>',
-  blank: '<path d="M10.7 20.9A9 9 0 1 1 13.3 20.9L12 19.3z" fill="#cbd5e1"/>'
+  blank: '<path d="M10.7 20.9A9 9 0 1 1 13.3 20.9L12 19.3z" fill="#cbd5e1"/>',
+  calendar: '<rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M3.5 9.5h17M8 3v4M16 3v4M7 13.5h2M11 13.5h2M15 13.5h2M7 17h2M11 17h2"/>'
 };
 const glyph = (name, x, y, size, color) => `<svg x="${x}" y="${y}" width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="${color}" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${GLYPHS[name]}</svg>`;
 
@@ -3144,6 +3199,200 @@ function cppScale(spec, en, kit) {
   return { svg, height: cy + ch + 8 };
 }
 
+// ── 第 3 階段 F 批：ch00–ch01（每筆提案先經動筆前技術審查，再依修正指示畫）──
+
+// 文字寬度估計（中文全形一字寬、其他約 0.56 字寬），用來排膠囊與圖例的位置
+const textW = (s, size) => [...s].reduce((w, ch) => w + (/[⺀-鿿＀-￯]/.test(ch) ? 1 : 0.56), 0) * size;
+// 粗體標題後面接一段一般字重的副標，副標用 tspan 接在同一行
+const headline = (kit, x, y, title, sub, c) => `<text x="${x}" y="${y}" text-anchor="start" fill="${c}" font-size="13" font-weight="800">${kit.esc(title)}<tspan dx="8" fill="${INK_2}" font-size="11" font-weight="600">${kit.esc(sub)}</tspan></text>`;
+
+// ch00 一片晶圓的旅程：三張數據卡。數量沿用正文的文字說法，不換成阿拉伯數字；月份畫成沒有數字的月曆
+function scaleTiles(spec, en, kit) {
+  const { L, para, icon } = tools(spec, en, kit);
+  const y0 = 12, cw = 196, gap = 10, bs = en ? 15 : 18;
+  const cards = [['transistor', 'chipLead', 'transistors', 'unitTr'], ['route', 'waferLead', 'steps', 'unitSt'], ['calendar', null, 'months', 'usable']];
+  const parts = cards.map(([ic, lead, big, tail]) => ({ ic, lead, big, tail, lp: lead ? para(0, 0, L(lead), cw - 60, 10.5) : { height: 0 }, bp: para(0, 0, L(big), cw - 28, bs), tp: para(0, 0, L(tail), cw - 28, 11) }));
+  const top = Math.max(38, ...parts.map(p => p.lp.height + 14));
+  const h = Math.max(...parts.map(p => top + 10 + p.bp.height + p.tp.height)) + 12;
+  let svg = '';
+  parts.forEach(({ ic, lead, big, tail, bp }, i) => {
+    const x = 16 + i * (cw + gap), by = y0 + top + 10 + bs;
+    svg += card(x, y0, cw, h, TEAL_XL, TEAL) + (GLYPHS[ic] ? glyph : icon)(ic, x + 12, y0 + 10, 26, TEAL);
+    if (lead) svg += para(x + 46, y0 + 24, L(lead), cw - 60, 10.5, INK_2, 'start', 600).svg;
+    svg += para(x + 14, by, L(big), cw - 28, bs, TEAL, 'start', 800).svg + para(x + 14, by + bp.height - bs * 1.3 + 18, L(tail), cw - 28, 11, INK, 'start', 600).svg;
+  });
+  return { svg, height: y0 + h + 8 };
+}
+
+// ch00 前段與後段：上排是最常見的分法，前段＝晶圓製造、後段＝封裝與測試；下排把前段的晶圓放大成剖面，
+// 說明晶圓廠內部的另一種用法（FEOL 做電晶體、BEOL 做金屬導線）。技術審查修正：後段只畫到「可以焊到電路板上的晶片」，
+// 焊上電路板不算後段的一步；接觸窗畫成細柱但不標、不畫 MOL；不寫章號。取代原本的兩欄方框圖，八項資訊都保留
+function frontBack(spec, en, kit) {
+  const { L, t, para, arrow, icon } = tools(spec, en, kit);
+  const y0 = 12, y1 = y0 + 18, ph = 132;
+  const head = (x, y, k, sub, c) => headline(kit, x, y, L(k), L(sub), c);
+  let svg = t(16, y0 + 8, L('common'), 10.5, MUTED, 'start', 700);
+  // 左：前段，一片晶圓與花費的時間
+  const wx = 66, wy = y1 + 82;
+  svg += card(16, y1, 284, ph, '#ffffff', BLUE) + head(30, y1 + 22, 'fe', 'feSub', BLUE)
+    + waferTop(wx, wy, 34, '#f8fafc') + fullDies(wx, wy, 30, 6).map(c => `<rect x="${c.x + 0.8}" y="${c.y + 0.8}" width="${c.s - 1.6}" height="${c.s - 1.6}" fill="${BLUE_L}" stroke="${BLUE}" stroke-width=".5"/>`).join('');
+  const fn = para(114, y1 + 50, L('feNote'), 176, 10.5, INK, 'start', 600);
+  const mt = para(114, y1 + 56 + fn.height, L('most'), 176, 10.5, TEAL, 'start', 700);
+  svg += fn.svg + mt.svg + icon('clock', 114, y1 + 52 + fn.height + mt.height, 16, TEAL) + para(134, y1 + 64 + fn.height + mt.height, L('months'), 156, 10.5, TEAL, 'start', 600).svg;
+  // 右：後段，測試 → 切割 → 封裝 → 可以焊到電路板上的晶片
+  const rx = 316, sy = y1 + 46;
+  svg += card(rx, y1, 308, ph, '#ffffff', AMBER) + head(rx + 14, y1 + 22, 'be', 'beSub', AMBER);
+  const steps = [
+    x => `<rect x="${x + 4}" y="${sy}" width="40" height="6" rx="1" fill="${INK_2}"/>` + [14, 24, 34].map(d => `<path d="M${x + d} ${sy + 6} l-3 16" stroke="${INK}" stroke-width="1.2"/>`).join('') + `<ellipse cx="${x + 24}" cy="${sy + 26}" rx="22" ry="5" fill="#f8fafc" stroke="${INK_2}"/>`,
+    x => `<ellipse cx="${x + 24}" cy="${sy + 26}" rx="22" ry="5" fill="#f8fafc" stroke="${INK_2}"/><path d="M${x + 24} ${sy + 22} v9" stroke="${RED}" stroke-width="1.6"/><circle cx="${x + 24}" cy="${sy + 11}" r="11" fill="#cbd5e1" stroke="${INK_2}"/><circle cx="${x + 24}" cy="${sy + 11}" r="3" fill="#ffffff" stroke="${INK_2}"/>`,
+    x => `<rect x="${x + 4}" y="${sy + 22}" width="40" height="6" fill="${SI}" stroke="${INK_2}"/><rect x="${x + 14}" y="${sy + 16}" width="20" height="6" fill="${DIE_C}" stroke="${INK_2}"/><path d="M${x + 8} ${sy + 22} V${sy + 10} H${x + 40} V${sy + 22}" fill="none" stroke="${INK_2}"/>`,
+    x => `<rect x="${x + 6}" y="${sy + 6}" width="36" height="24" rx="2" fill="#475569"/>` + [12, 20, 28, 36].map(d => `<path d="M${x + d} ${sy + 30} v4 M${x + d} ${sy + 6} v-4" stroke="${INK_2}" stroke-width="1.4"/>`).join('')
+  ];
+  ['test', 'cut', 'pack'].forEach((k, i) => { const x = rx + 14 + i * 64; svg += steps[i](x) + t(x + 24, sy + 52, L(k), 10.5, INK, 'middle', 600) + arrow(x + 50, sy + 18, x + 62, sy + 18, AMBER, 1.3); });
+  svg += steps[3](rx + 206) + para(rx + 232, sy + 52, L('chip'), 100, 10, INK, 'middle', 600).svg;
+  // 放大框：從前段的晶圓拉出剖面，說明晶圓廠內部的 FEOL／BEOL
+  const y2 = y1 + ph + 26, zh2 = 124;
+  svg += `<path d="M${wx - 24} ${wy + 24} L16 ${y2} M${wx + 24} ${wy + 24} L132 ${y2}" stroke="${MUTED}" stroke-dasharray="3 3"/>`
+    + `<rect x="16" y="${y2}" width="608" height="${zh2}" rx="8" fill="${TEAL_XL}" stroke="${TEAL}" stroke-dasharray="5 3"/>` + t(28, y2 + 18, L('inside'), 11, TEAL, 'start', 700);
+  const cs = 40, ce = 380, sb = y2 + 112;
+  svg += `<rect x="${cs}" y="${sb - 18}" width="${ce - cs}" height="18" fill="${SI}" stroke="${INK_2}"/>`;
+  const gates = [70, 130, 190, 250, 310];
+  svg += gates.map(g => `<rect x="${g - 14}" y="${sb - 18}" width="8" height="5" fill="${TEAL_L}"/><rect x="${g + 6}" y="${sb - 18}" width="8" height="5" fill="${TEAL_L}"/><rect x="${g - 6}" y="${sb - 30}" width="12" height="12" fill="${METAL_GATE}"/>`).join('');
+  svg += gates.map(g => `<path d="M${g - 10} ${sb - 18} V${sb - 42} M${g} ${sb - 30} V${sb - 42} M${g + 10} ${sb - 18} V${sb - 42}" stroke="${INK_2}" stroke-width="1.2"/>`).join('');
+  const metal = (y, h, segs) => segs.map(([a, b]) => `<rect x="${a}" y="${y}" width="${b - a}" height="${h}" fill="${AMBER_L}" stroke="${AMBER}" stroke-width=".6"/>`).join('');
+  // 第一層金屬：每顆電晶體的源極、閘極、汲極各接一小段，彼此分開；第二、三層才把不同電晶體的節點連起來（F1 審查修正：原本三根接觸連在同一段，等於短路）
+  svg += metal(sb - 46, 4, gates.flatMap(g => [[g - 13, g - 7], [g - 3, g + 3], [g + 7, g + 13]])) + metal(sb - 60, 6, [[74, 136], [194, 256], [294, 372]]) + metal(sb - 80, 9, [[52, 210], [222, 376]]);
+  svg += [[78, sb - 54, 8], [128, sb - 54, 8], [198, sb - 54, 8], [248, sb - 54, 8], [298, sb - 54, 8], [102, sb - 71, 11], [224, sb - 71, 11], [338, sb - 71, 11]].map(([x, y, h]) => `<rect x="${x}" y="${y}" width="4" height="${h}" fill="${AMBER}"/>`).join('');
+  const bk = (y1b, y2b) => `<path d="M392 ${y1b} h8 V${y2b} h-8" fill="none" stroke="${TEAL}" stroke-width="1.4"/>`;
+  svg += bk(sb - 80, sb - 46) + bk(sb - 31, sb) + t(410, sb - 66, L('beol'), 11, INK, 'start', 700) + t(410, sb - 52, L('beolD'), 10, INK_2, 'start') + t(410, sb - 17, L('feol'), 11, INK, 'start', 700) + t(410, sb - 3, L('feolD'), 10, INK_2, 'start');
+  svg += t(320, y2 + zh2 + 20, L('ctx'), 10.5, INK_2, 'middle', 600);
+  return { svg, height: y2 + zh2 + 30 };
+}
+
+// ch00 工廠裡的三個基本單位：Lot 是一盒晶圓、Route 是一條路線、Recipe 是某一站機台用的參數；比喻小圖各放在自己那一格下方。
+// 技術審查修正：晶圓盒內晶圓分格平放、彼此不接觸；Recipe 畫成機台的參數畫面而不是手轉旋鈕，參數不填數值
+function threeUnits(spec, en, kit) {
+  const { L, t, para, breakAt, arrow } = tools(spec, en, kit);
+  const y0 = 12, cw = 192, gap = 16, xs = [16, 16 + cw + gap, 16 + 2 * (cw + gap)];
+  const cols = [['lot', 'lotDef', 'eggs'], ['route', 'routeDef', 'steps'], ['recipe', 'recipeDef', 'oven']];
+  const def = (x, y, d, fill) => d === 'routeDef' ? breakAt(x, y, L(d), '的所有', cw - 24, 10, fill, 'start') : para(x, y, L(d), cw - 24, 10, fill, 'start');
+  const defH = Math.max(...cols.map(([, d]) => def(0, 0, d).height));
+  const anaH = Math.max(...cols.map(([, , a]) => para(0, 0, L(a), cw - 54, 10).height));
+  const dy = y0 + 40 + defH, ay = dy + 104, h = ay - y0 + Math.max(24, anaH + 8) + 8;
+  let svg = '';
+  cols.forEach(([n, d], i) => { const x = xs[i]; svg += card(x, y0, cw, h) + t(x + 12, y0 + 20, L(n), 12.5, TEAL, 'start', 800) + def(x + 12, y0 + 38, d, INK_2).svg; });
+  // Lot：密封晶圓盒，晶圓水平分格、彼此不接觸
+  let x = xs[0];
+  svg += `<rect x="${x + 22}" y="${dy + 8}" width="66" height="80" rx="6" fill="${TEAL_XL}" stroke="${INK_2}" stroke-width="2"/><path d="M${x + 42} ${dy + 8} v-6 h26 v6" fill="none" stroke="${INK_2}" stroke-width="1.6"/>`
+    + Array.from({ length: 7 }, (_, k) => `<path d="M${x + 28} ${dy + 18 + k * 10} h-2 M${x + 84} ${dy + 18 + k * 10} h2" stroke="${INK_2}"/><path d="M${x + 31} ${dy + 18 + k * 10} h48" stroke="${TEAL}" stroke-width="2"/>`).join('');
+  svg += t(x + 100, dy + 34, L('carrier'), 10.5, INK, 'start', 600) + `<path d="M${x + 98} ${dy + 30} L${x + 88} ${dy + 34}" stroke="${MUTED}" stroke-dasharray="2 2"/>` + para(x + 100, dy + 56, L('max'), cw - 104, 11, TEAL, 'start', 800).svg;
+  svg += arrow(xs[0] + cw + 2, dy + 22, xs[1] + 12, dy + 22, TEAL, 1.4);
+  // Route：一條路線上的步驟方塊，晶圓盒沿著箭頭前進；最後一格放大到右邊的 Recipe
+  x = xs[1];
+  const box = (bx, by, hi) => `<rect x="${bx}" y="${by}" width="24" height="16" rx="3" fill="${hi ? TEAL_L : '#ffffff'}" stroke="${hi ? TEAL : INK_2}" stroke-width="${hi ? 1.6 : 1}"/>`;
+  const r1 = [x + 14, x + 58, x + 102, x + 146];
+  svg += r1.map((bx, k) => box(bx, dy + 14, false) + (k < 3 ? arrow(bx + 26, dy + 22, bx + 42, dy + 22, INK_2, 1.1) : '')).join('')
+    + `<path d="M${r1[3] + 12} ${dy + 32} V${dy + 60}" stroke="${INK_2}" stroke-width="1.1"/>` + arrow(r1[3] + 12, dy + 52, r1[3] + 12, dy + 62, INK_2, 1.1)
+    + box(r1[3], dy + 64, true) + arrow(r1[3] - 2, dy + 72, r1[2] + 28, dy + 72, INK_2, 1.1) + box(r1[2], dy + 64, false) + arrow(r1[2] - 2, dy + 72, r1[1] + 28, dy + 72, INK_2, 1.1) + box(r1[1], dy + 64, false)
+    + `<rect x="${r1[3] - 18}" y="${dy + 36}" width="22" height="24" rx="3" fill="${TEAL_XL}" stroke="${INK_2}" stroke-width="1.4"/>` + [43, 49, 55].map(y => `<path d="M${r1[3] - 14} ${dy + y - 2} h14" stroke="${TEAL}" stroke-width="1.6"/>`).join('');
+  svg += `<path d="M${r1[3] + 24} ${dy + 64} L${xs[2] + 14} ${dy + 10} M${r1[3] + 24} ${dy + 80} L${xs[2] + 14} ${dy + 90}" stroke="${TEAL}" stroke-dasharray="3 3"/>`;
+  // Recipe：機台的參數畫面，三個參數只留空格
+  x = xs[2];
+  svg += `<rect x="${x + 14}" y="${dy + 4}" width="${cw - 28}" height="90" rx="6" fill="#ffffff" stroke="${INK_2}" stroke-width="1.4"/><rect x="${x + 14}" y="${dy + 4}" width="${cw - 28}" height="12" rx="6" fill="${INK_2}"/>`
+    + ['temp', 'time', 'gas'].map((k, j) => t(x + 24, dy + 38 + j * 22, L(k), 10.5, INK, 'start', 600) + `<rect x="${x + cw - 78}" y="${dy + 27 + j * 22}" width="56" height="15" rx="2" fill="${TEAL_XL}" stroke="${TEAL}"/>`).join('');
+  // 比喻小圖：一盒雞蛋、食譜的步驟清單、烤箱的溫度與時間設定
+  const glyphs = [
+    gx => `<rect x="${gx}" y="${ay}" width="30" height="18" rx="3" fill="#ffffff" stroke="${MUTED}"/>` + [0, 1, 2].flatMap(c => [0, 1].map(r => `<ellipse cx="${gx + 6 + c * 9}" cy="${ay + 5 + r * 8}" rx="3.4" ry="3" fill="#fef3c7" stroke="${MUTED}" stroke-width=".7"/>`)).join(''),
+    gx => `<rect x="${gx + 4}" y="${ay - 2}" width="22" height="22" rx="2" fill="#ffffff" stroke="${MUTED}"/>` + [0, 1, 2].map(r => `<path d="M${gx + 8} ${ay + 4 + r * 6} h3 M${gx + 13} ${ay + 4 + r * 6} h9" stroke="${MUTED}" stroke-width="1.2"/>`).join(''),
+    gx => `<rect x="${gx}" y="${ay - 2}" width="30" height="22" rx="3" fill="#ffffff" stroke="${MUTED}"/><rect x="${gx + 4}" y="${ay + 6}" width="16" height="10" rx="1" fill="#fef3c7" stroke="${MUTED}" stroke-width=".7"/><circle cx="${gx + 25}" cy="${ay + 7}" r="2.4" fill="none" stroke="${MUTED}"/><circle cx="${gx + 25}" cy="${ay + 14}" r="2.4" fill="none" stroke="${MUTED}"/>`
+  ];
+  cols.forEach(([, , a], i) => { svg += glyphs[i](xs[i] + 12) + para(xs[i] + 50, ay + 10, L(a), cw - 54, 10, MUTED, 'start', 600).svg; });
+  return { svg, height: y0 + h + 8 };
+}
+
+// ch01 廠務：一台通用的製程機台（技術審查修正：不用曝光機外形），超純水、特殊氣體與化學品、電力從地板下往上供應，
+// 廢氣與廢液往下接到處理系統；外圍虛線框是溫濕度與振動控制。取代原本的五分支方框圖，根節點與五個葉節點的資訊都保留
+function facilities(spec, en, kit) {
+  const { L, t, para, arrow, icon } = tools(spec, en, kit);
+  const y0 = 12, yf = y0 + 182;
+  let svg = headline(kit, 16, y0 + 14, L('team'), L('steady'), INK);
+  // 機台與環境控制
+  svg += `<rect x="232" y="${y0 + 36}" width="176" height="128" rx="10" fill="none" stroke="${AMBER}" stroke-width="1.4" stroke-dasharray="5 4"/>`
+    + `<rect x="252" y="${y0 + 56}" width="136" height="94" rx="8" fill="${LIGHT}" stroke="${INK_2}" stroke-width="1.4"/><rect x="272" y="${y0 + 70}" width="96" height="56" rx="4" fill="#ffffff" stroke="${INK_2}"/>`
+    + `<rect x="290" y="${y0 + 112}" width="60" height="8" fill="${SI}" stroke="${INK_2}"/><ellipse cx="320" cy="${y0 + 110}" rx="26" ry="3" fill="#e2e8f0" stroke="${INK_2}"/>`;
+  const envP = para(420, y0 + 52, L('env'), 204, 11, AMBER, 'start', 700);
+  svg += envP.svg + icon('thermometer', 420, y0 + 54 + envP.height, 20, AMBER) + icon('cloud', 444, y0 + 54 + envP.height, 20, AMBER)
+    + `<path d="M470 ${y0 + 64 + envP.height} q4 -8 8 0 t8 0 t8 0" fill="none" stroke="${AMBER}" stroke-width="1.6"/>`;
+  const s1 = para(420, y0 + 92 + envP.height, L('sens1'), 204, 10, INK_2, 'start');
+  svg += s1.svg + para(420, y0 + 92 + envP.height + s1.height, L('sens2'), 204, 10, INK_2, 'start').svg;
+  // 地板
+  svg += `<path d="M16 ${yf} H624" stroke="${MUTED}" stroke-width="5" stroke-dasharray="7 4"/>`;
+  // 三條供應：地板下往上進機台
+  const sup = [['upw', ['upwUse', 'upwVol'], BLUE, 'drop'], ['gas', ['gasSys'], PINK, 'gas-cylinder'], ['power', ['ruin'], AMBER, null]];
+  let ly = yf + 22;
+  sup.forEach(([k, ds, c, ic], i) => {
+    const px = 274 + i * 30;
+    svg += `<path d="M234 ${ly - 4} H${px} V${y0 + 152}" fill="none" stroke="${c}" stroke-width="2.4"/>` + arrow(px, y0 + 166, px, y0 + 151, c, 2.4);
+    svg += (ic ? icon(ic, 16, ly - 16, 16, c) : `<path d="M24 ${ly - 16} l-5 9 h5 l-3 8 l8 -10 h-5 l3 -7 z" fill="${AMBER_L}" stroke="${c}" stroke-linejoin="round"/>`) + t(38, ly - 2, L(k), 11, c, 'start', 700);
+    let yy = ly + 13;
+    if (k === 'power') { svg += t(38, yy, L('dip'), 10, RED, 'start', 600) + `<path d="M38 ${yy + 7} h26 l2 7 h8 l2 -7 h26" fill="none" stroke="${RED}" stroke-width="1.6" stroke-linejoin="round"/>`; yy += 28; }
+    ds.forEach(d => { const p = para(38, yy, L(d), 152, 10, INK_2, 'start'); svg += p.svg; yy += p.height; });
+    ly = yy + 12;
+  });
+  // 廢氣與廢液：往下接到處理系統
+  const ex = 370, tx = 440, ty = yf + 18, tw2 = 184;
+  const exT = para(tx + 12, ty + 18, L('exhaust'), tw2 - 24, 11, INK, 'start', 700);
+  const exP = para(tx + 12, ty + 22 + exT.height, L('wasteD'), tw2 - 24, 10, INK_2, 'start');
+  const th = 16 + exT.height + exP.height;
+  svg += `<path d="M${ex} ${y0 + 150} V${ty + 20} H${tx - 2}" fill="none" stroke="${MUTED}" stroke-width="2.4" stroke-dasharray="6 3"/>` + arrow(tx - 14, ty + 20, tx - 1, ty + 20, MUTED, 2.4)
+    + `<rect x="${tx}" y="${ty}" width="${tw2}" height="${th}" rx="6" fill="${LIGHT}" stroke="${MUTED}"/>` + exT.svg + exP.svg;
+  // 圖例：供應往上、廢氣與廢液往下
+  const gy = Math.max(ly, ty + th + 16) + 4;
+  svg += arrow(26, gy + 6, 26, gy - 8, INK_2, 2) + t(36, gy + 2, L('supply'), 10, INK_2, 'start', 600)
+    + `<path d="M${100 + textW(L('supply'), 10)} ${gy - 8} v12" stroke="${MUTED}" stroke-width="2" stroke-dasharray="4 2"/>` + arrow(100 + textW(L('supply'), 10), gy, 100 + textW(L('supply'), 10), gy + 7, MUTED, 2) + t(110 + textW(L('supply'), 10), gy + 2, L('waste'), 10, INK_2, 'start', 600);
+  return { svg, height: gy + 14 };
+}
+
+// ch01 工廠怎麼衡量表現：生產週期被三件事拉長——機台前排隊的 WIP、插隊的急件、為了急件不等湊滿就開機的批次式機台；
+// 角落放正文的比喻「車越多，高速公路越塞」。技術審查修正：保留舊圖根節點「生產週期：投片到完成」；晶舟空位明顯但不畫成剛好一半；不標時間與片數
+function cycleTime(spec, en, kit) {
+  const { L, t, para, arrow, icon } = tools(spec, en, kit);
+  const y0 = 12;
+  let svg = t(16, y0 + 14, L('ct'), 13, TEAL, 'start', 800);
+  const cd = para(16, y0 + 32, L('ctDef'), 360, 10.5, INK_2, 'start');
+  svg += cd.svg;
+  // 生產週期的時間條，虛線延長段表示被拉長
+  const by = y0 + 40 + cd.height;
+  svg += `<rect x="16" y="${by}" width="420" height="10" rx="5" fill="${TEAL_L}" stroke="${TEAL}"/><path d="M438 ${by + 5} H592" stroke="${RED}" stroke-width="3" stroke-dasharray="6 4"/>` + arrow(584, by + 5, 604, by + 5, RED, 3);
+  // 情境：排隊、插隊、沒湊滿就開機
+  const sy = by + 96, lane = sy + 30;
+  svg += `<path d="M126 ${lane} H448" stroke="${LINE}" stroke-width="8" stroke-linecap="round"/>` + [132, 168, 204, 240, 276, 312, 348, 384].map(x => icon('foup', x, sy, 26, MUTED)).join('');
+  svg += `<rect x="456" y="${sy - 18}" width="66" height="56" rx="5" fill="${LIGHT}" stroke="${INK_2}" stroke-width="1.4"/>` + icon('etch', 474, sy - 6, 30, INK_2);
+  // 急件從隊伍後方插到最前面
+  svg += `<path d="M140 ${sy - 4} Q280 ${sy - 58} 418 ${sy - 2}" fill="none" stroke="${RED}" stroke-width="1.6" stroke-dasharray="5 3"/>` + arrow(412, sy - 6, 420, sy, RED, 1.6)
+    + icon('foup', 420, sy, 26, RED) + `<path d="M433 ${sy} v-14" stroke="${RED}" stroke-width="1.4"/><path d="M433 ${sy - 14} h10 l-3 4 l3 4 h-10" fill="${RED}"/>`;
+  const hp = para(270, sy - 50, en ? `${L('hotA')}, ${L('hotB')}` : `${L('hotA')}，${L('hotB')}`, 330, 10.5, RED, 'middle', 700);
+  svg += para(270, sy - 46 - hp.height + 13, en ? `${L('hotA')}, ${L('hotB')}` : `${L('hotA')}，${L('hotB')}`, 330, 10.5, RED, 'middle', 700).svg;
+  svg += t(287, lane + 22, L('wipTerm'), 11, INK, 'middle', 800);
+  const wp = para(287, lane + 37, L('wip'), 320, 10.5, INK, 'middle', 600);
+  svg += wp.svg;
+  // 批次式爐管：晶舟只放了急件，其餘空著，就亮燈開機
+  const fx = 584, fb = sy + 34;
+  svg += `<path d="M${fx - 30} ${fb} V${fb - 70} a30 16 0 0 1 60 0 V${fb}" fill="${AMBER_XL}" stroke="${AMBER}" stroke-width="1.4"/><path d="M${fx - 22} ${fb - 4} V${fb - 74} M${fx + 22} ${fb - 4} V${fb - 74}" stroke="${INK_2}" stroke-width="1.4"/>`
+    + Array.from({ length: 11 }, (_, k) => { const y = fb - 72 + k * 6; return k < 3 ? `<rect x="${fx - 22}" y="${y}" width="44" height="2.2" fill="#fee2e2" stroke="${RED}" stroke-width=".6"/>` : `<path d="M${fx - 22} ${y + 1} h4 M${fx + 22} ${y + 1} h-4" stroke="${INK_2}" stroke-width=".8"/>`; }).join('')
+    + `<path d="M${fx - 36} ${fb} h72" stroke="${INK_2}" stroke-width="1.6"/><circle cx="${fx + 22}" cy="${fb - 96}" r="5" fill="#4ade80" stroke="${GREEN}"/>`
+    + t(fx - 24, fb - 92, L('hot'), 9.5, RED, 'end', 700) + `<path d="M${fx - 22} ${fb - 95} L${fx - 16} ${fb - 72}" stroke="${MUTED}" stroke-dasharray="2 2"/>`;
+  const bp = para(fx + 30, fb + 18, L('batch'), 150, 10, INK, 'end', 600);
+  svg += bp.svg + t(fx + 30, fb + 18 + bp.height, L('waste'), 10.5, RED, 'end', 700);
+  // 角落：高速公路的比喻
+  const hy = sy - 4;
+  svg += `<rect x="16" y="${hy}" width="96" height="22" rx="3" fill="#cbd5e1"/><path d="M16 ${hy + 11} H112" stroke="#ffffff" stroke-dasharray="6 4"/>`
+    + [[20, 3], [38, 3], [56, 3], [74, 3], [26, 13], [46, 13], [66, 13], [88, 13]].map(([x, d]) => `<rect x="${x}" y="${hy + d}" width="12" height="6" rx="1.5" fill="${INK_2}"/>`).join('');
+  svg += para(64, hy + 38, L('highway'), 116, 10, MUTED, 'middle', 600).svg;
+  const bottom = Math.max(lane + 37 + wp.height, fb + 18 + bp.height + 14, hy + 38 + para(0, 0, L('highway'), 116, 10).height);
+  return { svg, height: bottom + 8 };
+}
+
 export const PICTORIALS = {
   industryMap, cleanroom, toolTypes, fabRoles, dopingLattice, cmosWells, sandToPoly, ingotToWafer, waferSizes, specialWafers,
   overlayCd, lithoDefects, filmStack, thermalOxidation, cvdTypes, epitaxy, filmMetrics,
@@ -3155,5 +3404,6 @@ export const PICTORIALS = {
   packagingFlow, flipChipBumps, packageFamilies, packageDefects, splitChip, interposerTypes, bondingPitch,
   finalTest, agingMechanisms, fabSystemsHub, lotArrival,
   eccSoftErrors, steppingLayers, lotJourney, toolJargon, systemVsPhysical, oocOos, areasPeople, standardsMap,
-  cppScale
+  cppScale,
+  scaleTiles, frontBack, threeUnits, facilities, cycleTime
 };

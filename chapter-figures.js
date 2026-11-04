@@ -32,8 +32,40 @@ function life(en) {
   return flow([L(en, '設計', 'Design'), L(en, '光罩', 'Mask'), L(en, '晶圓廠', 'Fab'), L(en, '測試', 'Test'), L(en, '封裝', 'Package'), L(en, '出貨', 'Ship')]);
 }
 
+// 晶圓、晶粒與晶片（2.24.0 改畫，第 3 階段 F 批）：兩片同樣是 300 mm 的晶圓，左邊排大晶粒、右邊排小晶粒，切割道一樣寬，
+// 所以小晶粒那片的切割道占比較大；邊緣被切到的格子塗淺灰。右側保留原圖的「晶粒 → 封裝後的晶片」。
+// 技術審查修正：顆數只在中間寫一次正文的範圍，不分配給左右兩片；切割道加粗一整條貫穿的橫線；只畫一個缺口
 function waferDieChip(en) {
-  return `<circle cx="90" cy="100" r="62" fill="#e2e8f0" stroke="#334155"/><circle cx="90" cy="100" r="54" fill="#f8fafc" stroke="#64748b"/>${Array.from({ length: 16 }, (_, i) => `<rect x="${58 + (i % 4) * 16}" y="${68 + Math.floor(i / 4) * 16}" width="13" height="13" fill="#99f6e4" stroke="#0f766e"/>`).join('')}<text x="90" y="178" text-anchor="middle" fill="#0f172a" font-size="13">${L(en, '晶圓', 'Wafer')}</text><path d="M170 100 h36" stroke="#0f766e"/><rect x="220" y="62" width="76" height="76" fill="#57bdb3" stroke="#0f766e"/><text x="258" y="160" text-anchor="middle" fill="#0f172a" font-size="13">${L(en, '晶粒', 'Die')}</text><path d="M314 100 h36" stroke="#0f766e"/><rect x="364" y="78" width="150" height="44" fill="#a6bdcb" stroke="#334155"/><rect x="400" y="52" width="78" height="26" fill="#57bdb3" stroke="#0f766e"/><text x="439" y="150" text-anchor="middle" fill="#0f172a" font-size="13">${L(en, '封裝後的晶片', 'Packaged chip')}</text>`;
+  // 晶粒格以晶圓的圓形裁切，邊緣被切到的格子只留在晶圓內
+  const wafer = (cx, cy, r, n) => {
+    const street = 2, s = (2 * r) / n, id = `wdc-clip-${n}`;
+    let out = `<clipPath id="${id}"><circle cx="${cx}" cy="${cy}" r="${r}"/></clipPath><circle cx="${cx}" cy="${cy}" r="${r}" fill="#e2e8f0" stroke="#334155" stroke-width="1.4"/><g clip-path="url(#${id})">`;
+    for (let i = 0; i < n; i++) for (let j = 0; j < n; j++) {
+      const x = cx - r + i * s, y = cy - r + j * s, corners = [[x, y], [x + s, y], [x, y + s], [x + s, y + s]].map(([px, py]) => Math.hypot(px - cx, py - cy) <= r - 1);
+      if (!corners.some(Boolean)) continue;
+      const full = corners.every(Boolean);
+      out += `<rect x="${(x + street / 2).toFixed(1)}" y="${(y + street / 2).toFixed(1)}" width="${(s - street).toFixed(1)}" height="${(s - street).toFixed(1)}" fill="${full ? '#99f6e4' : '#cbd5e1'}" stroke="${full ? '#0f766e' : '#94a3b8'}" stroke-width=".5"/>`;
+    }
+    return out + `</g><circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="#334155" stroke-width="1.4"/><path d="M${cx - 4} ${cy + r - 0.5} l4 -5 4 5" fill="#ffffff" stroke="#334155"/>`;
+  };
+  // 左片約幾十顆、右片約數百顆（F1 審查修正：原本左片只有 4 顆，低於正文的「幾十顆」）
+  const r = 72, c1 = 90, c2 = 256, cy = 92, s2 = (2 * r) / 18;
+  const sy = cy - r + 9 * s2;
+  return wafer(c1, cy, r, 8) + wafer(c2, cy, r, 18)
+    // 右片：一整條貫穿晶圓的橫向切割道加粗
+    + `<path d="M${(c2 - Math.sqrt(r * r - (sy - cy) ** 2)).toFixed(1)} ${sy} H${(c2 + Math.sqrt(r * r - (sy - cy) ** 2)).toFixed(1)}" stroke="#9a3412" stroke-width="2"/>`
+    + `<path d="M${c2 + 52} ${sy} L${c2 + 92} ${sy - 46}" stroke="#64748b" stroke-dasharray="2 2"/>` + tx(c2 + 94, sy - 50, L(en, '切割道', 'Scribe lines'), 11, '#9a3412', 'start')
+    + tx(c1, cy + r + 18, L(en, '300 mm 晶圓', '300 mm wafer'), 11.5, '#0f172a') + tx(c2, cy + r + 18, L(en, '300 mm 晶圓', '300 mm wafer'), 11.5, '#0f172a')
+    // 顆數範圍只寫一次，用一個跨兩片的括號，不分配給左右任何一片
+    + `<path d="M${c1 - r} ${cy + r + 26} v5 H${c2 + r} v-5" fill="none" stroke="#0f766e" stroke-width="1.2"/>`
+    + (en ? tx((c1 + c2) / 2, cy + r + 46, 'Anything from a few dozen to tens of thousands', 11, '#0f766e') + tx((c1 + c2) / 2, cy + r + 60, 'of dies, depending on the die size', 11, '#0f766e')
+      : tx((c1 + c2) / 2, cy + r + 48, '幾十顆到上萬顆晶粒', 12, '#0f766e') + tx((c1 + c2) / 2, cy + r + 64, '數量取決於晶粒的大小', 11, '#334155'))
+    // 右側：沿切割道切開 → 一顆晶粒 → 封裝起來就是晶片
+    + `<path d="M342 ${cy} h22" stroke="#0f766e" stroke-width="1.5"/><path d="M364 ${cy} l-6 -4 v8 z" fill="#0f766e"/>`
+    + `<rect x="376" y="${cy - 30}" width="60" height="60" fill="#57bdb3" stroke="#0f766e"/>` + tx(406, cy + 48, L(en, '晶粒（Die）', 'Die'), 12, '#0f172a')
+    + `<path d="M448 ${cy} h22" stroke="#0f766e" stroke-width="1.5"/><path d="M470 ${cy} l-6 -4 v8 z" fill="#0f766e"/>`
+    + `<rect x="482" y="${cy - 2}" width="140" height="34" fill="#a6bdcb" stroke="#334155"/><rect x="516" y="${cy - 22}" width="72" height="20" fill="#57bdb3" stroke="#0f766e"/>`
+    + tx(552, cy + 48, L(en, '封裝後的晶片', 'Packaged chip'), 12, '#0f172a');
 }
 
 // 多行標籤：第一行是層名，其餘是說明（章節圖不帶斷行工具，各語言分行寫好）
@@ -581,7 +613,7 @@ const MATCHERS = [
   [/覆晶|flip-chip/i, flipchip, 190],
   [/2\.5D|HBM/i, cowos],
   [/浴缸|bathtub/i, bathtub],
-  [/晶粒|die and chip/i, waferDieChip]
+  [/晶粒|die and chip/i, waferDieChip, 248, { zh: '晶圓直徑與顆數範圍出自本段正文；格子數只是示意，不代表顆數。', en: 'The wafer diameter and the die-count range come from this section. The grid is schematic and does not show the real count.' }]
 ];
 
 export function figureForCaption(caption) {

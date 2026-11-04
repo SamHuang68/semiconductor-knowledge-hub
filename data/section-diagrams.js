@@ -92,53 +92,100 @@ export const SECTION_DIAGRAMS = [
     "chapterId": "ch00",
     "headingZh": "前段與後段",
     "headingEn": "Front end and back end",
-    "type": "compare",
-    "captionZh": "前段與後段的常見分法，以及廠內 FEOL／BEOL 用法。",
-    "captionEn": "Front end versus back end: the usual split and the in-fab FEOL/BEOL meaning.",
-    "columns": [
+    "type": "pictorial",
+    "draw": "frontBack",
+    "captionZh": "前段與後段的常見分法，以及廠內 FEOL／BEOL 用法",
+    "captionEn": "Front end versus back end: the usual split and the in-fab FEOL/BEOL meaning",
+    "labels": [
       {
-        "titleZh": "前段",
-        "titleEn": "Front end",
-        "items": [
-          {
-            "zh": "一般指晶圓製造",
-            "en": "Usually means wafer fabrication"
-          },
-          {
-            "zh": "在晶圓廠裡一層層做出電路",
-            "en": "Builds the circuit layer by layer in the fab"
-          },
-          {
-            "zh": "最花時間，通常兩到三個月以上",
-            "en": "Most time-consuming: two to three months or more"
-          },
-          {
-            "zh": "廠內另指 FEOL：製造電晶體",
-            "en": "In-fab meaning, FEOL: building transistors"
-          }
-        ]
+        "key": "common",
+        "zh": "最常見的分法",
+        "en": "The most common way to divide"
       },
       {
-        "titleZh": "後段",
-        "titleEn": "Back end",
-        "items": [
-          {
-            "zh": "一般指封裝與測試",
-            "en": "Usually means packaging and test"
-          },
-          {
-            "zh": "測試、切割、封裝做好的晶圓",
-            "en": "Tests, cuts and packages the finished wafers"
-          },
-          {
-            "zh": "做成可焊到電路板上的晶片",
-            "en": "Makes chips that can be soldered onto boards"
-          },
-          {
-            "zh": "廠內另指 BEOL：製作金屬導線",
-            "en": "In-fab meaning, BEOL: building metal wiring"
-          }
-        ]
+        "key": "fe",
+        "zh": "前段",
+        "en": "Front end"
+      },
+      {
+        "key": "feSub",
+        "zh": "晶圓製造",
+        "en": "wafer fabrication"
+      },
+      {
+        "key": "feNote",
+        "zh": "在晶圓廠裡，把電路一層一層做在晶圓上",
+        "en": "Inside the fab, the circuit is built on the wafer layer by layer"
+      },
+      {
+        "key": "most",
+        "zh": "最花時間的部分",
+        "en": "The most time-consuming part"
+      },
+      {
+        "key": "months",
+        "zh": "兩到三個月甚至更久",
+        "en": "Two to three months or longer"
+      },
+      {
+        "key": "be",
+        "zh": "後段",
+        "en": "Back end"
+      },
+      {
+        "key": "beSub",
+        "zh": "封裝與測試",
+        "en": "packaging and test"
+      },
+      {
+        "key": "test",
+        "zh": "測試",
+        "en": "Tested"
+      },
+      {
+        "key": "cut",
+        "zh": "切割",
+        "en": "Cut"
+      },
+      {
+        "key": "pack",
+        "zh": "封裝",
+        "en": "Packaged"
+      },
+      {
+        "key": "chip",
+        "zh": "可以焊到電路板上的晶片",
+        "en": "Chips that can be soldered onto circuit boards"
+      },
+      {
+        "key": "inside",
+        "zh": "晶圓廠內部",
+        "en": "Inside a fab"
+      },
+      {
+        "key": "feol",
+        "zh": "前段（FEOL）",
+        "en": "Front end of line (FEOL)"
+      },
+      {
+        "key": "feolD",
+        "zh": "製造電晶體的步驟",
+        "en": "The steps that build transistors"
+      },
+      {
+        "key": "beol",
+        "zh": "後段（BEOL）",
+        "en": "Back end of line (BEOL)"
+      },
+      {
+        "key": "beolD",
+        "zh": "做金屬導線的步驟",
+        "en": "The steps that build metal wiring"
+      },
+      {
+        "key": "ctx",
+        "zh": "聽到時要看上下文判斷",
+        "en": "Use the context to tell which one is meant"
       }
     ]
   },
@@ -328,6 +375,144 @@ export const SECTION_DIAGRAMS = [
     ]
   },
   {
+    "chapterId": "ch00",
+    "headingZh": "一片晶圓的旅程",
+    "headingEn": "The journey of one wafer",
+    "type": "pictorial",
+    "draw": "scaleTiles",
+    "sourcedNumbers": true,
+    "sourceZh": "三組數量都照本段正文的說法寫，沒有換算成阿拉伯數字。",
+    "sourceEn": "All three quantities are worded as in this section and are not converted into figures.",
+    "captionZh": "一顆晶片與一片晶圓的規模",
+    "captionEn": "The scale of one chip and one wafer",
+    "labels": [
+      {
+        "key": "chipLead",
+        "zh": "一顆指甲大小的晶片上",
+        "en": "A chip the size of a fingernail can hold"
+      },
+      {
+        "key": "transistors",
+        "zh": "數十億到上千億",
+        "en": "Billions or even hundreds of billions"
+      },
+      {
+        "key": "unitTr",
+        "zh": "個電晶體",
+        "en": "transistors"
+      },
+      {
+        "key": "waferLead",
+        "zh": "一片晶圓要經過",
+        "en": "A wafer goes through"
+      },
+      {
+        "key": "steps",
+        "zh": "數百到上千",
+        "en": "Hundreds to more than a thousand"
+      },
+      {
+        "key": "unitSt",
+        "zh": "個步驟",
+        "en": "steps"
+      },
+      {
+        "key": "months",
+        "zh": "好幾個月",
+        "en": "Several months"
+      },
+      {
+        "key": "usable",
+        "zh": "才能變成可以使用的晶片",
+        "en": "before it becomes usable chips"
+      }
+    ]
+  },
+  {
+    "chapterId": "ch00",
+    "headingZh": "工廠裡的三個基本單位",
+    "headingEn": "Three basic units in the fab",
+    "type": "pictorial",
+    "draw": "threeUnits",
+    "sourcedNumbers": true,
+    "sourceZh": "最多 25 片出自本段表格；晶圓盒內的片數、路線上的步驟數與機台畫面都是示意。",
+    "sourceEn": "Up to 25 comes from the table in this section. The wafers in the carrier, the steps on the route and the tool screen are schematic.",
+    "captionZh": "Lot 沿著 Route 前進，每一站套用 Recipe",
+    "captionEn": "A lot moves along its route, and each step applies a recipe",
+    "labels": [
+      {
+        "key": "lot",
+        "zh": "Lot（批）",
+        "en": "Lot"
+      },
+      {
+        "key": "lotDef",
+        "zh": "一起移動、一起生產的一組晶圓",
+        "en": "A group of wafers that move and are processed together"
+      },
+      {
+        "key": "max",
+        "zh": "最多 25 片",
+        "en": "Up to 25 wafers"
+      },
+      {
+        "key": "carrier",
+        "zh": "晶圓盒",
+        "en": "Wafer carrier"
+      },
+      {
+        "key": "route",
+        "zh": "Route（流程）",
+        "en": "Route"
+      },
+      {
+        "key": "routeDef",
+        "zh": "一個產品從頭到尾要經過的所有步驟和順序",
+        "en": "All the steps a product must go through, in order, from start to finish"
+      },
+      {
+        "key": "recipe",
+        "zh": "Recipe（配方）",
+        "en": "Recipe"
+      },
+      {
+        "key": "recipeDef",
+        "zh": "某個步驟在機台上要用的參數",
+        "en": "The settings a tool uses for a step"
+      },
+      {
+        "key": "temp",
+        "zh": "溫度",
+        "en": "Temperature"
+      },
+      {
+        "key": "time",
+        "zh": "時間",
+        "en": "Time"
+      },
+      {
+        "key": "gas",
+        "zh": "氣體流量",
+        "en": "Gas flow"
+      },
+      {
+        "key": "eggs",
+        "zh": "一盒雞蛋",
+        "en": "A carton of eggs"
+      },
+      {
+        "key": "steps",
+        "zh": "食譜的步驟清單",
+        "en": "The list of steps in a cooking recipe"
+      },
+      {
+        "key": "oven",
+        "zh": "烤箱的溫度與時間設定",
+        "en": "The temperature and time you set on an oven"
+      }
+    ]
+  },
+  {
     "chapterId": "ch01",
     "headingZh": "誰在晶圓廠裡工作",
     "headingEn": "Who works in a fab",
@@ -389,8 +574,8 @@ export const SECTION_DIAGRAMS = [
     "headingEn": "Tools: the stars of the fab",
     "type": "pictorial",
     "draw": "toolTypes",
-    "captionZh": "單片式與批次式機台：一次處理一片，或一次處理很多片。",
-    "captionEn": "Single-wafer and batch tools: one wafer at a time, or many at once.",
+    "captionZh": "單片式與批次式機台，以及保養後要先 Qual 才能生產",
+    "captionEn": "Single-wafer and batch tools, and why a tool needs a qual after maintenance",
     "labels": [
       {
         "key": "single",
@@ -426,6 +611,66 @@ export const SECTION_DIAGRAMS = [
         "key": "hundred",
         "zh": "一次可以放進上百片",
         "en": "can hold more than a hundred wafers"
+      },
+      {
+        "key": "running",
+        "zh": "正常運轉",
+        "en": "Running"
+      },
+      {
+        "key": "waiting",
+        "zh": "待機",
+        "en": "Waiting"
+      },
+      {
+        "key": "pm",
+        "zh": "保養（PM，Preventive Maintenance）",
+        "en": "Preventive maintenance (PM)"
+      },
+      {
+        "key": "down",
+        "zh": "Down 機",
+        "en": "Down"
+      },
+      {
+        "key": "replaced",
+        "zh": "零件換新、腔體清潔過",
+        "en": "Parts have been replaced and the chamber has been cleaned"
+      },
+      {
+        "key": "testWafers",
+        "zh": "先跑測試用的晶圓",
+        "en": "Run test wafers first"
+      },
+      {
+        "key": "check",
+        "zh": "檢查微粒、膜厚、蝕刻率等是否正常",
+        "en": "Check particles, film thickness, etch rate and so on"
+      },
+      {
+        "key": "released",
+        "zh": "確認合格後才開放生產",
+        "en": "Only after the results pass is the tool released for production"
+      },
+      {
+        "key": "qual",
+        "zh": "Qual",
+        "en": "Qual"
+      },
+      {
+        "key": "skip",
+        "zh": "沒做會怎樣",
+        "en": "If you skip it"
+      },
+      {
+        "key": "wrong",
+        "zh": "如果機台其實有問題",
+        "en": "If something is actually wrong with the tool"
+      },
+      {
+        "key": "scrap",
+        "zh": "第一批跑進去的產品晶圓可能整批報廢",
+        "en": "the first lot of product wafers through it may be scrapped"
       }
     ]
   },
@@ -438,8 +683,8 @@ export const SECTION_DIAGRAMS = [
     "sourcedNumbers": true,
     "sourceZh": "數值出自本段正文；立方體裡的點數與機台構造都是示意。",
     "sourceEn": "Values come from this section. Dot counts and the tool layout are schematic.",
-    "captionZh": "無塵室要多乾淨，以及為什麼只要晶圓經過的地方最乾淨。",
-    "captionEn": "How clean a cleanroom must be, and why only the wafer path must be cleanest.",
+    "captionZh": "無塵室要多乾淨、晶圓經過的地方，以及進無塵室前要做什麼",
+    "captionEn": "How clean a cleanroom must be, the wafer path, and the steps before entering",
     "labels": [
       {
         "key": "cubicFoot",
@@ -515,6 +760,56 @@ export const SECTION_DIAGRAMS = [
         "key": "passThrough",
         "zh": "只要晶圓「經過的地方」夠乾淨就好",
         "en": "Only the places the wafers pass through have to be that clean"
+      },
+      {
+        "key": "before",
+        "zh": "進無塵室前",
+        "en": "Before entering"
+      },
+      {
+        "key": "people",
+        "zh": "人是無塵室最大的污染源",
+        "en": "People are the biggest source of contamination in a cleanroom"
+      },
+      {
+        "key": "skin",
+        "zh": "皮屑",
+        "en": "Skin flakes"
+      },
+      {
+        "key": "hair",
+        "zh": "頭髮",
+        "en": "Hair"
+      },
+      {
+        "key": "sweat",
+        "zh": "汗水",
+        "en": "Sweat"
+      },
+      {
+        "key": "cosmetics",
+        "zh": "化妝品",
+        "en": "Cosmetics"
+      },
+      {
+        "key": "suit",
+        "zh": "全身包覆的無塵衣",
+        "en": "Full-body cleanroom suit"
+      },
+      {
+        "key": "shower",
+        "zh": "風淋室",
+        "en": "Air shower"
+      },
+      {
+        "key": "blow",
+        "zh": "吹掉身上的灰塵",
+        "en": "blows dust off their body"
+      },
+      {
+        "key": "room",
+        "zh": "無塵室",
+        "en": "Cleanroom"
       }
     ]
   },
@@ -522,45 +817,95 @@ export const SECTION_DIAGRAMS = [
     "chapterId": "ch01",
     "headingZh": "工廠的血液：廠務系統",
     "headingEn": "The lifeblood of the fab: facilities",
-    "type": "branch",
-    "captionZh": "廠務系統供應機台的五類資源與各自重點。",
-    "captionEn": "The five kinds of resources the facilities team supplies to the tools.",
-    "root": {
-      "zh": "廠務系統",
-      "en": "Facilities",
-      "noteZh": "供應機台大量穩定資源",
-      "noteEn": "A large, steady supply for the tools"
-    },
-    "branches": [
+    "type": "pictorial",
+    "draw": "facilities",
+    "captionZh": "廠務供應機台的資源，以及要處理的廢氣廢液",
+    "captionEn": "What the facilities team supplies to a tool, and the waste it handles",
+    "labels": [
       {
+        "key": "team",
+        "zh": "廠務",
+        "en": "The facilities team"
+      },
+      {
+        "key": "steady",
+        "zh": "大量穩定的資源供應",
+        "en": "a large, steady supply of resources"
+      },
+      {
+        "key": "upw",
         "zh": "超純水",
-        "en": "Ultrapure water",
-        "leafZh": "清洗晶圓，用量很大",
-        "leafEn": "Cleans wafers; huge volumes used"
+        "en": "Ultrapure water"
       },
       {
+        "key": "upwUse",
+        "zh": "清洗晶圓用",
+        "en": "Used for cleaning wafers"
+      },
+      {
+        "key": "upwVol",
+        "zh": "用量非常大",
+        "en": "The fab uses huge amounts of it"
+      },
+      {
+        "key": "gas",
         "zh": "特殊氣體與化學品",
-        "en": "Specialty gases and chemicals",
-        "leafZh": "專門供應與偵測系統",
-        "leafEn": "Dedicated supply and detection"
+        "en": "Specialty gases and chemicals"
       },
       {
+        "key": "gasSys",
+        "zh": "專門的供應與偵測系統",
+        "en": "Dedicated supply and detection systems"
+      },
+      {
+        "key": "power",
         "zh": "電力",
-        "en": "Electric power",
-        "leafZh": "短暫電壓不穩就可能報廢",
-        "leafEn": "Brief voltage dips can ruin wafers"
+        "en": "Electric power"
       },
       {
+        "key": "dip",
+        "zh": "一次極短暫的電壓不穩",
+        "en": "Even a very brief voltage dip"
+      },
+      {
+        "key": "ruin",
+        "zh": "可能讓正在加工的晶圓報廢",
+        "en": "can ruin the wafers being processed"
+      },
+      {
+        "key": "exhaust",
         "zh": "排氣與廢水處理",
-        "en": "Exhaust and wastewater treatment",
-        "leafZh": "處理製程廢氣與廢液",
-        "leafEn": "Treats waste gases and liquids"
+        "en": "Exhaust and wastewater treatment"
       },
       {
+        "key": "wasteD",
+        "zh": "處理製程產生的廢氣與廢液",
+        "en": "Handle the waste gases and liquids produced by the processes"
+      },
+      {
+        "key": "env",
         "zh": "溫濕度與振動控制",
-        "en": "Temp., humidity, vibration control",
-        "leafZh": "精密機台對環境很敏感",
-        "leafEn": "Precision tools are environment-sensitive"
+        "en": "Temperature, humidity and vibration control"
+      },
+      {
+        "key": "sens1",
+        "zh": "曝光機等精密機台",
+        "en": "Precision tools such as scanners"
+      },
+      {
+        "key": "sens2",
+        "zh": "對環境變化非常敏感",
+        "en": "are very sensitive to changes in their environment"
+      },
+      {
+        "key": "supply",
+        "zh": "供應",
+        "en": "Supply"
+      },
+      {
+        "key": "waste",
+        "zh": "廢氣與廢液",
+        "en": "Waste gases and liquids"
       }
     ]
   },
@@ -568,33 +913,60 @@ export const SECTION_DIAGRAMS = [
     "chapterId": "ch01",
     "headingZh": "工廠怎麼衡量表現",
     "headingEn": "How a fab measures its performance",
-    "type": "branch",
-    "captionZh": "拉長整廠生產週期的因素與各自的作用方式。",
-    "captionEn": "What lengthens fab cycle time, and how each factor does it.",
-    "root": {
-      "zh": "拉長生產週期的因素",
-      "en": "What lengthens cycle time",
-      "noteZh": "生產週期：投片到完成",
-      "noteEn": "Cycle time: wafer start to completion"
-    },
-    "branches": [
+    "type": "pictorial",
+    "draw": "cycleTime",
+    "captionZh": "拉長生產週期的三件事：排隊、插隊與沒湊滿就開機",
+    "captionEn": "Three things that stretch cycle time: queues, hot lots and early batch runs",
+    "labels": [
       {
-        "zh": "在製品（WIP）越多",
-        "en": "More work in process (WIP)",
-        "leafZh": "每片晶圓排隊等機台更久",
-        "leafEn": "Each wafer waits longer for tools"
+        "key": "ct",
+        "zh": "生產週期（Cycle Time）",
+        "en": "Cycle time"
       },
       {
-        "zh": "急件插隊",
-        "en": "Hot lots jump the queue",
-        "leafZh": "其他晶圓得多等一下",
-        "leafEn": "Other lots wait a little longer"
+        "key": "ctDef",
+        "zh": "一批晶圓從投片到完成要花多久",
+        "en": "How long it takes a lot to go from wafer start to completion"
       },
       {
-        "zh": "批次機台為急件提早開機",
-        "en": "Batch tools run early for hot lots",
-        "leafZh": "未湊滿就開機，降低效率",
-        "leafEn": "Runs before full, wasting capacity"
+        "key": "wipTerm",
+        "zh": "在製品（WIP，Work in Process）",
+        "en": "Work in process (WIP)"
+      },
+      {
+        "key": "wip",
+        "zh": "WIP 越多，每片晶圓排隊等機台的時間就越長",
+        "en": "The more WIP there is, the longer each wafer waits in line for tools"
+      },
+      {
+        "key": "hotA",
+        "zh": "每一批急件插隊",
+        "en": "Every time a hot lot jumps the queue"
+      },
+      {
+        "key": "hotB",
+        "zh": "其他晶圓就得多等一下",
+        "en": "other lots have to wait a little longer"
+      },
+      {
+        "key": "hot",
+        "zh": "急件（Hot Lot）",
+        "en": "Hot lots"
+      },
+      {
+        "key": "batch",
+        "zh": "批次式機台還可能為了急件不等湊滿就開機",
+        "en": "A batch tool may even start a run without waiting to fill up"
+      },
+      {
+        "key": "waste",
+        "zh": "降低效率",
+        "en": "which wastes capacity"
+      },
+      {
+        "key": "highway",
+        "zh": "車越多，高速公路越塞",
+        "en": "Just as more cars make a highway more congested"
       }
     ]
   },
