@@ -62,7 +62,18 @@
   - ch14 工程物件的教學例值標尺（7nm CPP 57 nm；3nm CPP 45 nm、金屬節距 22 nm）標明是教學例值，沒有改。其中 3nm 金屬節距 22 nm 略低於新範圍。
   - 提案文件寫「改完後五格就都有節距」，實際上 WAT 那一欄正文沒有節距，有節距的是四格；圖照正文畫，沒有自行補數字。
 - 前後對照：`C:\Users\Sam\AI-Workspace\docs\semiconductor-knowledge-hub\visual-upgrade-plan-2026-11-02\text-corrections-2.23.0-before-after.png`。
-- 提交／發布狀態：本機提交於 `feat/text-corrections-p051`，尚未推送、尚未部署，等 Sam 驗收。
+- 提交／發布狀態：已推送、已部署。
+  - 2026-11-04 Sam 看過對照圖後回覆「合併並部署」。
+  - 提交 `1be066c`，main 由 `cbefad6` 快轉。
+  - 快轉後在 main 上重跑 `npm run verify` 與 `scripts/build-site.mjs`，都通過。
+  - GitHub Pages run `41820495908` 的 `verify` 與 `deploy` 都成功。
+  - 這個工作階段的 ssh 沒有自動找到私鑰，推送時以環境變數 `GIT_SSH_COMMAND` 指定 `~/.ssh/id_ed25519`，沒有修改 git 或 ssh 設定。
+- 發布後線上驗證（2026-11-04）：
+  - 本次改到的 6 個網站檔案與提交內容逐位元組相同，加不加快取參數都一樣：`index.html`、`app.js`、`data/section-diagrams.js`、`pictorials.js`、`data/chapters/ch14.js`、`data/chapters/ch19.js`。
+  - 頁尾為 2.23.0；`revision-history.md`、`package.json`、`scripts/` 回應 404。
+  - 瀏覽器檢查直接跑線上網站：ch14、ch19 × 中英 × 1440／390，共 8 頁，與 main `cbefad6` 快照比較。
+    - 沒有頁面錯誤、主控台錯誤、水平溢位；列印前收合區全部展開。
+    - 8 頁的 h2、圖數、說明框、站點橫幅、工程物件、收合區與頁高，都和本機最終掃描相同。
 
 ## 2.22.0 · 2026-11-04 · E 批實物示意圖（ch22–ch24、附錄），補上 ch21 六條例縮圖
 
