@@ -71,7 +71,8 @@ const chapterDigest = createHash('sha256').update(CHAPTERS_DATA.map(c => JSON.st
 // 2.13.2：Sam 於 2026-11-02 核可還原數學式 TeX 反斜線（ch00、ch01、ch04、ch09、ch14、ch20、ch22 共 35 處，只補反斜線、Tab／Backspace 改回指令），基準由 814a3c5f… 更新。
 // 2.15.1：Sam 於 2026-11-03 核可正文校勘 13 項：[!NOTE] 殘留中英各 6 處（名詞卡拆回獨立名詞卡框）、ch12 與 ch20 空標題移回內容、5 處錯字（ch05、ch07、ch08、ch20 兩處、ch22），基準由 2c5879f8… 更新。
 // 2.23.0：Sam 於 2026-11-04 核可正文數值校勘 3 處：ch14 CPP 與最小金屬節距兩列、ch19 懸臂式探針卡節距，中英同步；CPP 列另補一句「3nm 之後 CPP 幾乎不再縮小」，基準由 52fcef2e… 更新。
-assert.equal(chapterDigest, 'fe25d3aae0645a7ca261997e915349d52f3b01fc905a9f7c97f41c069af16ba0', '章節正文必須與 2.23.0 來源校勘基準一致');
+// 2.23.1：Sam 於 2026-11-04 核可 ch14「定量物理定律與 3D 製程視窗」例題的 M1P 由 21 nm 改為 23 nm，單元高度隨之由 126 nm 改為 138 nm（中英同步），基準由 fe25d3aa… 更新。
+assert.equal(chapterDigest, '223b4cc9a01b51b0cb1dd5f67a6dc2dab51fee46bb4c6f005af5e403b2a2424f', '章節正文必須與 2.23.1 來源校勘基準一致');
 const SEARCH_INDEX = await loadSearchIndex();
 const searchDigest = createHash('sha256').update(SEARCH_INDEX.map(e => JSON.stringify([e.chId, e.keywords, e.title, e.titleEn])).join('\n')).digest('hex');
 assert.equal(searchDigest, '4d3f6b417bb57306634dbf3438d2884a7a1db70c3dbf58c146a9b0f9ba43f07e', '檢索全文必須與拆檔前一致');
