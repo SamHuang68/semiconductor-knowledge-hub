@@ -132,7 +132,17 @@
 - 前後對照：
   - 被取代的 3 張與 ch21 3D：`C:\Users\Sam\AI-Workspace\docs\semiconductor-knowledge-hub\visual-upgrade-plan-2026-11-02\batchE-2.22.0-before-after.png`；
   - 新增的 9 張：同資料夾的 `batchE-2.22.0-new.png`。
-- 提交／發布狀態：本機提交於 `feat/batch-e-figures`，尚未推送、尚未部署，等 Sam 驗收。
+- 提交／發布狀態：已推送、已部署。
+  - 2026-11-04 Sam 看過對照圖後回覆「合併並部署」。
+  - 提交 `f8e42c1a0bb8f0fd3af21e0109007a021c3a0686`，main 由 `19f3ac6` 快轉。
+  - 快轉後在 main 上重跑 `npm run verify` 與 `scripts/build-site.mjs`，都通過。
+  - GitHub Pages run `41771791917` 的 `verify` 與 `deploy` 都成功。
+- 發布後線上驗證（2026-11-04）：
+  - 本次改到的 4 個網站檔案與提交內容逐位元組相同，加不加快取參數都一樣：`index.html`、`app.js`、`data/section-diagrams.js`、`pictorials.js`。
+  - 頁尾為 2.22.0；`revision-history.md`、`package.json`、`scripts/` 回應 404。
+  - 瀏覽器檢查直接跑線上網站：ch21–ch24、行話、延伸閱讀 × 中英 × 1440／390，共 24 頁，與 main `19f3ac6` 快照比較。
+    - 沒有頁面錯誤、主控台錯誤、水平溢位；只有 ch21 3D 長表的預期收合，列印前收合區全部展開。
+    - 24 頁的 h2、圖數、說明框、站點橫幅、工程物件、收合區與頁高，都和本機最終掃描相同。
 
 ## 2.21.0 · 2026-11-04 · D 批實物示意圖（ch15–ch21）
 
