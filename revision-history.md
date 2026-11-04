@@ -81,7 +81,18 @@
   - 被取代或併入的 5 張：`C:\Users\Sam\AI-Workspace\docs\semiconductor-knowledge-hub\visual-upgrade-plan-2026-11-02\batchF1-2.24.0-before-after.png`；
   - 新增的 2 張：同資料夾的 `batchF1-2.24.0-new.png`；
   - 內文圖左舊右新：同資料夾的 `batchF1-2.24.0-inline-figure.png`。
-- 提交／發布狀態：本機提交於 `feat/phase3-f1`，尚未推送、尚未部署，等 Sam 驗收。
+- 提交／發布狀態：已推送、已部署。
+  - 2026-11-04 Sam 看過對照圖後回覆「合併並部署」。
+  - 提交 `b8e0185`，main 由 `6ebdd8b` 快轉。
+  - 快轉後在 main 上重跑 `npm run verify` 與 `scripts/build-site.mjs`，都通過。
+  - GitHub Pages run `41859543169` 的 `verify` 與 `deploy` 都成功。
+- 發布後線上驗證（2026-11-04）：
+  - 本次改到的 5 個網站檔案與提交內容逐位元組相同，加不加快取參數都一樣：`index.html`、`app.js`、`chapter-figures.js`、`data/section-diagrams.js`、`pictorials.js`。
+  - 頁尾為 2.24.0；`revision-history.md`、`package.json`、`scripts/` 回應 404。
+  - 瀏覽器檢查直接跑線上網站：ch00、ch01 × 中英 × 1440／390，共 8 頁，與 main `6ebdd8b` 快照比較。
+    - 沒有頁面錯誤、主控台錯誤、水平溢位；列印前收合區全部展開。
+    - 圖數、收合區與其他數量都和本機最終掃描相同。
+    - 線上另外多報一項 ch00 中文桌機版頁高 15923（本機 16278）。在 0.3／1.2／4.2 秒重新量測：線上 14131／15923／16278，本機三次都是 16278。線上在前兩個時間點頁面還在載入，4.2 秒時與本機相同，屬量測時機造成的差異。
 
 ## 2.23.1 · 2026-11-04 · ch14 例題的 M1P 改為 23 nm
 
