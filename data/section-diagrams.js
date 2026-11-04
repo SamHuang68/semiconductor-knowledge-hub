@@ -6365,7 +6365,7 @@ export const SECTION_DIAGRAMS = [
       {
         "key": "looksNormal",
         "zh": "看起來一切正常",
-        "en": "everything looks normal"
+        "en": "and everything looks normal"
       },
       {
         "key": "burst",
@@ -6607,7 +6607,7 @@ export const SECTION_DIAGRAMS = [
       {
         "key": "higher",
         "zh": "Cpk 就越高",
-        "en": "the higher the Cpk"
+        "en": "and the higher the Cpk"
       },
       {
         "key": "shift",
@@ -6769,7 +6769,7 @@ export const SECTION_DIAGRAMS = [
       {
         "key": "suspect",
         "zh": "都列入可疑範圍",
-        "en": "treated as suspect"
+        "en": "is treated as suspect"
       },
       {
         "key": "frequent",
@@ -7014,7 +7014,7 @@ export const SECTION_DIAGRAMS = [
       {
         "key": "mrbMeets",
         "zh": "會召開物料審查會議",
-        "en": "a material review board (MRB) meets"
+        "en": "a material review board (MRB) meets, and"
       },
       {
         "key": "mrbWho",
@@ -7039,7 +7039,7 @@ export const SECTION_DIAGRAMS = [
       {
         "key": "confirm",
         "zh": "並確認同樣的問題不會再發生",
-        "en": "it must be confirmed that the same problem will not happen again"
+        "en": "and it must be confirmed that the same problem will not happen again"
       }
     ]
   },
@@ -8083,9 +8083,12 @@ export const SECTION_DIAGRAMS = [
     "headingEn": "3D stacking: building upward",
     "type": "pictorial",
     "draw": "bondingPitch",
+    "foldTables": [
+      1
+    ],
     "sourcedNumbers": true,
-    "sourceZh": "間距出自本段兩張表格，橫軸為對數刻度；虛線空心色條是通孔節距（TGV、層間通孔），不是晶片之間的接點；箭頭端表示範圍沒有下限或上限。覆晶凸塊的細分範圍見第 20 章。",
-    "sourceEn": "Pitches come from the two tables in this section, on a log scale. Hollow dashed bars are via pitches (TGV and inter-tier vias), not die-to-die contacts. Arrow ends mark open-ended ranges. Chapter 20 breaks down flip-chip bump pitches.",
+    "sourceZh": "間距出自本段兩張表格，橫軸為對數刻度；虛線空心色條是通孔節距（TGV、層間通孔），不是晶片之間的接點；箭頭端表示範圍沒有下限或上限。各條例左側是結構示意，3F 是電晶體層級（虛線框），比例與其他列不同。覆晶凸塊的細分範圍見第 20 章。",
+    "sourceEn": "Pitches come from the two tables in this section, on a log scale. Hollow dashed bars are via pitches (TGV and inter-tier vias), not die-to-die contacts. Arrow ends mark open-ended ranges. The small drawings show each structure; 3F (dashed frame) is at transistor level, on a different scale. Chapter 20 breaks down flip-chip bump pitches.",
     "captionZh": "接點間距的對數尺，以及四種鍵合方向與粒度",
     "captionEn": "Contact pitch on a log scale, and four bonding orientations and granularities",
     "labels": [
@@ -8765,25 +8768,65 @@ export const SECTION_DIAGRAMS = [
     "chapterId": "ch22",
     "headingZh": "最終測試",
     "headingEn": "Final test",
-    "type": "flow",
-    "captionZh": "最終測試中晶片的測試與分級順序",
-    "captionEn": "The final test sequence: handler loading, testing and binning.",
-    "steps": [
+    "type": "pictorial",
+    "draw": "finalTest",
+    "captionZh": "最終測試：放進測試座、高低溫測試、分級，部分產品再做 SLT",
+    "captionEn": "Final test: sockets, hot and cold tests, binning, and SLT for some products",
+    "labels": [
       {
-        "zh": "分類機放入測試座",
-        "en": "Handler places chips in sockets"
+        "key": "packaged",
+        "zh": "封裝好的晶片",
+        "en": "Packaged chips"
       },
       {
-        "zh": "功能與電性測試",
-        "en": "Functional and electrical tests",
-        "noteZh": "高溫與低溫分別測試",
-        "noteEn": "At both high and low temperatures"
+        "key": "handler",
+        "zh": "分類機（Handler）",
+        "en": "Handler"
       },
       {
-        "zh": "依速度或功耗分級",
-        "en": "Bin by speed or power",
-        "noteZh": "可能以不同規格出售",
-        "noteEn": "May be sold under different specifications"
+        "key": "socket",
+        "zh": "測試座",
+        "en": "Test sockets"
+      },
+      {
+        "key": "temps",
+        "zh": "在高溫和低溫下分別測試",
+        "en": "Testing at both high and low temperatures"
+      },
+      {
+        "key": "tester",
+        "zh": "測試機",
+        "en": "Tester"
+      },
+      {
+        "key": "tests",
+        "zh": "功能和電性測試",
+        "en": "Functional and electrical tests"
+      },
+      {
+        "key": "binning",
+        "zh": "分級",
+        "en": "Binning"
+      },
+      {
+        "key": "speedPower",
+        "zh": "依照實際能跑的速度或功耗",
+        "en": "According to the speed or power they actually achieve"
+      },
+      {
+        "key": "sold",
+        "zh": "可能因此以不同的規格出售",
+        "en": "May be sold under different specifications"
+      },
+      {
+        "key": "slt",
+        "zh": "系統級測試（SLT）",
+        "en": "System-level test (SLT)"
+      },
+      {
+        "key": "sltDo",
+        "zh": "執行實際的軟體來測試",
+        "en": "Runs actual software"
       }
     ]
   },
@@ -8817,37 +8860,90 @@ export const SECTION_DIAGRAMS = [
     "chapterId": "ch22",
     "headingZh": "晶片怎麼老化",
     "headingEn": "How chips age",
-    "type": "branch",
-    "captionZh": "長期電流、電壓與溫度造成的晶片老化機制",
-    "captionEn": "Chip aging mechanisms driven by long-term current, voltage and temperature.",
-    "root": {
-      "zh": "電流、電壓與溫度",
-      "en": "Current, voltage and temperature"
-    },
-    "branches": [
+    "type": "pictorial",
+    "draw": "agingMechanisms",
+    "captionZh": "四種老化機制發生在哪裡",
+    "captionEn": "Where the four aging mechanisms happen",
+    "labels": [
       {
+        "key": "stress",
+        "zh": "電流、電壓和溫度",
+        "en": "Current, voltage and temperature"
+      },
+      {
+        "key": "em",
         "zh": "電遷移（EM）",
-        "en": "Electromigration (EM)",
-        "leafZh": "導線形成空洞而斷線",
-        "leafEn": "Voids form and break the wire"
+        "en": "Electromigration (EM)"
       },
       {
+        "key": "emDo1",
+        "zh": "電流長期推動金屬原子",
+        "en": "Long-term current pushes metal atoms along"
+      },
+      {
+        "key": "emDo2",
+        "zh": "導線形成空洞而斷線",
+        "en": "forming voids that break the wire"
+      },
+      {
+        "key": "tddb",
         "zh": "介電層崩潰（TDDB）",
-        "en": "Dielectric breakdown (TDDB)",
-        "leafZh": "絕緣層最後被擊穿",
-        "leafEn": "Insulating layer breaks down"
+        "en": "Time-dependent dielectric breakdown (TDDB)"
       },
       {
+        "key": "tddbDo1",
+        "zh": "絕緣層長期承受電場",
+        "en": "An insulating layer under a long-term electric field"
+      },
+      {
+        "key": "tddbDo2",
+        "zh": "最後被擊穿",
+        "en": "eventually breaks down"
+      },
+      {
+        "key": "hci",
         "zh": "熱載子效應（HCI）",
-        "en": "Hot carrier injection (HCI)",
-        "leafZh": "電晶體特性改變",
-        "leafEn": "Transistor characteristics change"
+        "en": "Hot carrier injection (HCI)"
       },
       {
+        "key": "hciDo1",
+        "zh": "高能量的電子撞進閘極絕緣層",
+        "en": "High-energy electrons get into the gate insulator"
+      },
+      {
+        "key": "hciDo2",
+        "zh": "電晶體特性慢慢改變",
+        "en": "and the transistor's characteristics slowly change"
+      },
+      {
+        "key": "bti",
         "zh": "偏壓溫度不穩定（BTI）",
-        "en": "Bias temperature instability (BTI)",
-        "leafZh": "Vt 隨時間漂移",
-        "leafEn": "Vt drifts over time"
+        "en": "Bias temperature instability (BTI)"
+      },
+      {
+        "key": "btiDo",
+        "zh": "高溫加上電壓，讓 Vt 隨時間漂移",
+        "en": "High temperature plus voltage makes Vt drift over time"
+      },
+      {
+        "key": "electrons",
+        "zh": "電子",
+        "en": "Electrons"
+      },
+      {
+        "key": "field",
+        "zh": "電場",
+        "en": "Electric field"
+      },
+      {
+        "key": "vt",
+        "zh": "Vt",
+        "en": "Vt"
+      },
+      {
+        "key": "time",
+        "zh": "時間",
+        "en": "Time"
       }
     ]
   },
@@ -9267,6 +9363,273 @@ export const SECTION_DIAGRAMS = [
     ]
   },
   {
+    "chapterId": "ch23",
+    "headingZh": "工廠裡的主要系統",
+    "headingEn": "The main systems in a fab",
+    "type": "pictorial",
+    "draw": "fabSystemsHub",
+    "captionZh": "七大系統各管什麼：以 MES 為中心，彼此互相配合",
+    "captionEn": "Seven fab systems around the MES, each with its own job, working together",
+    "labels": [
+      {
+        "key": "mes",
+        "zh": "MES（製造執行系統）",
+        "en": "MES (manufacturing execution system)"
+      },
+      {
+        "key": "mesA",
+        "zh": "工廠的大腦和帳本",
+        "en": "The brain and the ledger of the fab"
+      },
+      {
+        "key": "mesD",
+        "zh": "記錄每批晶圓在哪裡、下一步是什麼",
+        "en": "Records where every lot is and what its next step is"
+      },
+      {
+        "key": "mesD2",
+        "zh": "控制每一次進出站",
+        "en": "controls every move in and out of a step"
+      },
+      {
+        "key": "eap",
+        "zh": "機台自動化系統",
+        "en": "Equipment automation"
+      },
+      {
+        "key": "eapA",
+        "zh": "機台的翻譯員",
+        "en": "The tools' interpreter"
+      },
+      {
+        "key": "eapD",
+        "zh": "連接機台與 MES",
+        "en": "Connects tools to the MES"
+      },
+      {
+        "key": "eapD2",
+        "zh": "下載 Recipe、啟動製程、收集數據",
+        "en": "downloads recipes, starts processing and collects data"
+      },
+      {
+        "key": "amhs",
+        "zh": "物料搬運系統",
+        "en": "Material handling control"
+      },
+      {
+        "key": "amhsA",
+        "zh": "物流中心",
+        "en": "The logistics center"
+      },
+      {
+        "key": "amhsD",
+        "zh": "指揮天車和倉儲",
+        "en": "Directs the overhead vehicles and stockers"
+      },
+      {
+        "key": "amhsD2",
+        "zh": "把晶圓盒送到正確的位置",
+        "en": "to deliver carriers to the right place"
+      },
+      {
+        "key": "disp",
+        "zh": "派工系統",
+        "en": "Dispatching"
+      },
+      {
+        "key": "dispA",
+        "zh": "交通號誌",
+        "en": "Traffic lights"
+      },
+      {
+        "key": "dispD",
+        "zh": "決定每台機台下一批要做哪一批晶圓",
+        "en": "Decides which lot each tool should run next"
+      },
+      {
+        "key": "rms",
+        "zh": "Recipe 管理系統",
+        "en": "Recipe management"
+      },
+      {
+        "key": "rmsA",
+        "zh": "食譜資料庫",
+        "en": "A recipe library"
+      },
+      {
+        "key": "rmsD",
+        "zh": "管理每台機台的 Recipe 和版本",
+        "en": "Manages the recipes of every tool and their versions"
+      },
+      {
+        "key": "pcs",
+        "zh": "製程控制系統",
+        "en": "Process control"
+      },
+      {
+        "key": "pcsA",
+        "zh": "品管員",
+        "en": "The quality inspector"
+      },
+      {
+        "key": "pcsD2",
+        "zh": "監控與控制製程品質",
+        "en": "monitor and control process quality"
+      },
+      {
+        "key": "yas",
+        "zh": "良率分析系統",
+        "en": "Yield analysis"
+      },
+      {
+        "key": "yasA",
+        "zh": "偵探",
+        "en": "The detective"
+      },
+      {
+        "key": "yasD",
+        "zh": "整合製程和測試數據，分析良率",
+        "en": "Combines process and test data to analyze yield"
+      },
+      {
+        "key": "notAll",
+        "zh": "MES 不等於工廠的所有系統",
+        "en": "The MES is not every system in the fab"
+      }
+    ]
+  },
+  {
+    "chapterId": "ch23",
+    "headingZh": "一批晶圓到站時，發生了什麼事",
+    "headingEn": "What happens when a lot arrives at a tool",
+    "type": "pictorial",
+    "draw": "lotArrival",
+    "captionZh": "一批晶圓到站的六個步驟與各步負責的系統",
+    "captionEn": "Six steps when a lot arrives at a tool, and the systems in charge of each",
+    "labels": [
+      {
+        "key": "example",
+        "zh": "以一批晶圓抵達一台蝕刻機為例",
+        "en": "Take a lot arriving at an etch tool as an example"
+      },
+      {
+        "key": "amhs",
+        "zh": "搬運系統",
+        "en": "Material handling"
+      },
+      {
+        "key": "eq",
+        "zh": "機台",
+        "en": "Tool"
+      },
+      {
+        "key": "eap",
+        "zh": "機台自動化系統",
+        "en": "Equipment automation"
+      },
+      {
+        "key": "mes",
+        "zh": "MES",
+        "en": "MES"
+      },
+      {
+        "key": "fdc",
+        "zh": "FDC",
+        "en": "FDC"
+      },
+      {
+        "key": "placed",
+        "zh": "天車把晶圓盒放到機台的 Load Port",
+        "en": "An overhead vehicle places the wafer carrier on the tool's load port"
+      },
+      {
+        "key": "readId",
+        "zh": "機台讀取晶圓盒上的編號",
+        "en": "and the tool reads the ID on the carrier"
+      },
+      {
+        "key": "q1",
+        "zh": "這批晶圓現在應該在這一站嗎？",
+        "en": "Should this lot be at this step now?"
+      },
+      {
+        "key": "q2",
+        "zh": "這台機台可以做這個產品嗎？",
+        "en": "Is this tool qualified for this product?"
+      },
+      {
+        "key": "q3",
+        "zh": "機台狀態正常嗎？",
+        "en": "Is the tool in a normal state?"
+      },
+      {
+        "key": "q4",
+        "zh": "晶圓有沒有被 Hold？",
+        "en": "Is the lot on hold?"
+      },
+      {
+        "key": "q5",
+        "zh": "Q-Time 有沒有超過？",
+        "en": "Has its Q-time been exceeded?"
+      },
+      {
+        "key": "q6",
+        "zh": "晶圓盒的污染等級和機台相符嗎？",
+        "en": "Does the carrier's contamination class match the tool?"
+      },
+      {
+        "key": "download",
+        "zh": "系統把正確版本的 Recipe 下載到機台",
+        "en": "The system downloads the correct version of the recipe to the tool"
+      },
+      {
+        "key": "trackIn",
+        "zh": "進站",
+        "en": "Track-in"
+      },
+      {
+        "key": "start",
+        "zh": "機台開始加工",
+        "en": "The tool starts processing"
+      },
+      {
+        "key": "toFdc",
+        "zh": "同時把感測器數據即時送給 FDC 監控",
+        "en": "Sends its sensor data to FDC in real time"
+      },
+      {
+        "key": "trackOut",
+        "zh": "出站",
+        "en": "Track-out"
+      },
+      {
+        "key": "items",
+        "zh": "機台、腔體、Recipe、時間",
+        "en": "Tool, chamber, recipe, time"
+      },
+      {
+        "key": "record",
+        "zh": "寫入這批晶圓的履歷",
+        "en": "written into the lot's history"
+      },
+      {
+        "key": "next",
+        "zh": "系統決定下一站",
+        "en": "The system decides the next step"
+      },
+      {
+        "key": "deliver",
+        "zh": "搬運系統把晶圓盒送過去",
+        "en": "the material handling system delivers the carrier there"
+      },
+      {
+        "key": "stocker",
+        "zh": "或先送進倉儲等待",
+        "en": "or sends it to a stocker to wait"
+      }
+    ]
+  },
+  {
     "chapterId": "ch24",
     "headingZh": "DRAM 為什麼要刷新",
     "headingEn": "Why DRAM needs refresh",
@@ -9366,53 +9729,100 @@ export const SECTION_DIAGRAMS = [
     "chapterId": "ch24",
     "headingZh": "Errata 與晶片改版",
     "headingEn": "Errata and chip revisions",
-    "type": "compare",
-    "captionZh": "Stepping 字母與數字改變的常見慣例，依公司而定",
-    "captionEn": "Common stepping convention for letter vs number changes; rules vary by company",
-    "columns": [
+    "type": "pictorial",
+    "draw": "steppingLayers",
+    "captionZh": "Stepping 字母與數字改版各改到哪幾層（依公司而定）",
+    "captionEn": "Letter vs number steppings: which layers change (rules vary by company)",
+    "labels": [
       {
-        "titleZh": "字母改變",
-        "titleEn": "Letter change",
-        "items": [
-          {
-            "zh": "底層電晶體也有修改",
-            "en": "Bottom transistors also changed"
-          },
-          {
-            "zh": "需要重做大部分光罩",
-            "en": "Most masks must be remade"
-          },
-          {
-            "zh": "底層光罩最多、最貴",
-            "en": "Bottom masks: most numerous, most expensive"
-          },
-          {
-            "zh": "底層製程時間最長",
-            "en": "Bottom layers take the longest to process"
-          }
-        ]
+        "key": "letter",
+        "zh": "字母改變",
+        "en": "A letter change"
       },
       {
-        "titleZh": "數字改變",
-        "titleEn": "Number change",
-        "items": [
-          {
-            "zh": "只修改上層金屬導線",
-            "en": "Only the upper metal wiring changed"
-          },
-          {
-            "zh": "只改上層幾道金屬層光罩",
-            "en": "Only a few upper metal-layer masks"
-          },
-          {
-            "zh": "把備用邏輯閘接進電路",
-            "en": "Connects spare logic gates into the circuit"
-          },
-          {
-            "zh": "省下大量成本和時間",
-            "en": "Saves a great deal of cost and time"
-          }
-        ]
+        "key": "letterDo",
+        "zh": "代表底層的電晶體也有修改",
+        "en": "Means the transistors at the bottom were also changed"
+      },
+      {
+        "key": "remade",
+        "zh": "需要重做大部分光罩",
+        "en": "Most masks had to be remade"
+      },
+      {
+        "key": "number",
+        "zh": "數字改變",
+        "en": "A number change"
+      },
+      {
+        "key": "numberDo",
+        "zh": "代表只修改上層的金屬導線",
+        "en": "Means only the upper metal wiring was changed"
+      },
+      {
+        "key": "fewMasks",
+        "zh": "只要修改上層幾道金屬層的光罩",
+        "en": "Changing just the masks of a few upper metal layers"
+      },
+      {
+        "key": "spare",
+        "zh": "備用的邏輯閘",
+        "en": "Spare logic gates"
+      },
+      {
+        "key": "connect",
+        "zh": "把這些備用閘接進電路",
+        "en": "Connect these spare gates into the circuit"
+      },
+      {
+        "key": "transistors",
+        "zh": "底層的電晶體",
+        "en": "The transistors at the bottom"
+      },
+      {
+        "key": "metal",
+        "zh": "上層的金屬導線",
+        "en": "Upper metal wiring"
+      },
+      {
+        "key": "masks",
+        "zh": "光罩",
+        "en": "Masks"
+      },
+      {
+        "key": "transMasks",
+        "zh": "底層電晶體的光罩",
+        "en": "The masks for the transistor layers at the bottom are"
+      },
+      {
+        "key": "mostMasks",
+        "zh": "最多、最貴",
+        "en": "the most numerous and most expensive"
+      },
+      {
+        "key": "longest",
+        "zh": "製程時間也最長",
+        "en": "and those layers take the longest to process"
+      },
+      {
+        "key": "park",
+        "zh": "先把一些晶圓停在金屬層之前等待",
+        "en": "Park some wafers just before the metal layers"
+      },
+      {
+        "key": "arrive",
+        "zh": "修正版光罩一到就繼續生產",
+        "en": "Production can continue as soon as the fixed masks arrive"
+      },
+      {
+        "key": "save",
+        "zh": "可以省下大量的成本和時間",
+        "en": "Saves a great deal of cost and time"
+      },
+      {
+        "key": "vary",
+        "zh": "實際規則依各公司而定",
+        "en": "The actual rules vary from company to company"
       }
     ]
   },
@@ -9601,6 +10011,77 @@ export const SECTION_DIAGRAMS = [
     ]
   },
   {
+    "chapterId": "ch24",
+    "headingZh": "ECC：錯誤一定會發生",
+    "headingEn": "ECC: errors will happen",
+    "type": "pictorial",
+    "draw": "eccSoftErrors",
+    "captionZh": "軟錯誤從哪裡來，ECC 怎麼補救",
+    "captionEn": "Where soft errors come from, and how ECC helps",
+    "labels": [
+      {
+        "key": "radio",
+        "zh": "封裝材料中微量的放射性物質",
+        "en": "Trace radioactive material in the package"
+      },
+      {
+        "key": "cosmic",
+        "zh": "來自宇宙射線的粒子",
+        "en": "Particles from cosmic rays"
+      },
+      {
+        "key": "flip",
+        "zh": "都可能打翻一個位元",
+        "en": "Can flip a bit"
+      },
+      {
+        "key": "soft",
+        "zh": "軟錯誤",
+        "en": "Soft errors"
+      },
+      {
+        "key": "weak",
+        "zh": "製程變異造成的體質較弱的單元",
+        "en": "Weaker cells caused by process variation"
+      },
+      {
+        "key": "data",
+        "zh": "資料",
+        "en": "Data"
+      },
+      {
+        "key": "check",
+        "zh": "檢查位元",
+        "en": "Check bits"
+      },
+      {
+        "key": "correct",
+        "zh": "偵測並更正少量的位元錯誤",
+        "en": "Detect and correct a small number of bit errors"
+      },
+      {
+        "key": "tooMany",
+        "zh": "錯誤太多時只能偵測、無法更正",
+        "en": "beyond that, it can only detect them"
+      },
+      {
+        "key": "onDie",
+        "zh": "新一代 DRAM 晶片內部的 ECC",
+        "en": "The ECC inside newer DRAM chips"
+      },
+      {
+        "key": "sysEcc",
+        "zh": "系統層級的 ECC",
+        "en": "System-level ECC"
+      },
+      {
+        "key": "differ",
+        "zh": "兩件不同的事",
+        "en": "Two different things"
+      }
+    ]
+  },
+  {
     "chapterId": "app-jargon",
     "headingZh": "晶圓廠批次狀態機與跨部門交接實戰條例",
     "headingEn": "Fab Lot State-Machine & Shift Handover Clauses",
@@ -9672,6 +10153,404 @@ export const SECTION_DIAGRAMS = [
         "leafZh": "嫌疑腔體切 Down",
         "leafEn": "Take the offending chamber down",
         "icon": "edge-ring"
+      }
+    ]
+  },
+  {
+    "chapterId": "app-jargon",
+    "headingZh": "晶圓與批次",
+    "headingEn": "Wafers and lots",
+    "type": "pictorial",
+    "draw": "lotJourney",
+    "sourcedNumbers": true,
+    "sourceZh": "最多 25 片出自本段表格；分成三組取自例句，不代表一定分三組；晶圓盒與晶圓的數量只是示意。",
+    "sourceEn": "Up to 25 comes from the table in this section. The three groups come from an example sentence and are not a rule; carrier and wafer counts are schematic.",
+    "captionZh": "一個 Lot 從投片到 Fab Out 會遇到的行話",
+    "captionEn": "Jargon a lot meets on its way from wafer start to fab out",
+    "labels": [
+      {
+        "key": "lot",
+        "zh": "Lot",
+        "en": "Lot"
+      },
+      {
+        "key": "lotDef",
+        "zh": "一批晶圓，最多 25 片",
+        "en": "A group of wafers, up to 25"
+      },
+      {
+        "key": "start",
+        "zh": "投片（Wafer Start）",
+        "en": "Wafer start"
+      },
+      {
+        "key": "split",
+        "zh": "Split",
+        "en": "Split"
+      },
+      {
+        "key": "merge",
+        "zh": "Merge",
+        "en": "Merge"
+      },
+      {
+        "key": "bank",
+        "zh": "Bank",
+        "en": "Bank"
+      },
+      {
+        "key": "fabOut",
+        "zh": "Fab Out",
+        "en": "Fab out"
+      },
+      {
+        "key": "wip",
+        "zh": "WIP",
+        "en": "WIP"
+      },
+      {
+        "key": "move",
+        "zh": "Move",
+        "en": "Moves"
+      },
+      {
+        "key": "hot",
+        "zh": "Hot Lot",
+        "en": "Hot lot"
+      },
+      {
+        "key": "monitor",
+        "zh": "控片",
+        "en": "Monitor wafer"
+      },
+      {
+        "key": "dummy",
+        "zh": "擋片",
+        "en": "Dummy wafer"
+      },
+      {
+        "key": "broken",
+        "zh": "破片",
+        "en": "Broken wafer"
+      }
+    ]
+  },
+  {
+    "chapterId": "app-jargon",
+    "headingZh": "機台",
+    "headingEn": "Tools",
+    "type": "pictorial",
+    "draw": "toolJargon",
+    "captionZh": "機台行話各在機台的哪個位置",
+    "captionEn": "Where tool jargon lives on a tool",
+    "labels": [
+      {
+        "key": "loadPort",
+        "zh": "Load Port",
+        "en": "Load port"
+      },
+      {
+        "key": "chamber",
+        "zh": "Chamber",
+        "en": "Chamber"
+      },
+      {
+        "key": "bQuote",
+        "zh": "「這片是在 B 腔做的。」",
+        "en": "\"This wafer ran in chamber B.\""
+      },
+      {
+        "key": "recipe",
+        "zh": "Recipe",
+        "en": "Recipe"
+      },
+      {
+        "key": "idle",
+        "zh": "Idle",
+        "en": "Idle"
+      },
+      {
+        "key": "down",
+        "zh": "Down（Down 機）",
+        "en": "Down"
+      },
+      {
+        "key": "pm",
+        "zh": "PM",
+        "en": "PM"
+      },
+      {
+        "key": "pmDef",
+        "zh": "定期保養",
+        "en": "Scheduled preventive maintenance"
+      },
+      {
+        "key": "seasoning",
+        "zh": "Seasoning",
+        "en": "Seasoning"
+      },
+      {
+        "key": "qual",
+        "zh": "Qual",
+        "en": "Qual"
+      },
+      {
+        "key": "backUp",
+        "zh": "復機",
+        "en": "Back up"
+      },
+      {
+        "key": "dedication",
+        "zh": "綁機（Dedication）",
+        "en": "Dedication"
+      },
+      {
+        "key": "dedDef",
+        "zh": "指定晶圓只能在特定機台上做",
+        "en": "Restricting wafers to a specific tool"
+      }
+    ]
+  },
+  {
+    "chapterId": "app-jargon",
+    "headingZh": "系統與流程",
+    "headingEn": "Systems and flow",
+    "type": "pictorial",
+    "draw": "systemVsPhysical",
+    "captionZh": "系統紀錄與實際的晶圓兩條線，以及 Hold 與帳實不符",
+    "captionEn": "The system record and the physical wafers, plus hold and mismatched records",
+    "labels": [
+      {
+        "key": "system",
+        "zh": "系統",
+        "en": "System"
+      },
+      {
+        "key": "physical",
+        "zh": "實際狀況",
+        "en": "What is physically happening"
+      },
+      {
+        "key": "dispatch",
+        "zh": "派工",
+        "en": "Dispatching"
+      },
+      {
+        "key": "trackIn",
+        "zh": "進站（Track-in）",
+        "en": "Track-in"
+      },
+      {
+        "key": "run",
+        "zh": "跑貨",
+        "en": "Run product"
+      },
+      {
+        "key": "trackOut",
+        "zh": "出站（Track-out）",
+        "en": "Track-out"
+      },
+      {
+        "key": "qtime",
+        "zh": "Q-Time",
+        "en": "Q-time"
+      },
+      {
+        "key": "qtimeDef",
+        "zh": "兩站之間允許等待的時間",
+        "en": "The time allowed to wait between two steps"
+      },
+      {
+        "key": "hold",
+        "zh": "Hold",
+        "en": "Hold"
+      },
+      {
+        "key": "holdDef",
+        "zh": "暫停晶圓或機台的生產",
+        "en": "Stopping production of a lot or a tool"
+      },
+      {
+        "key": "release",
+        "zh": "Release",
+        "en": "Release"
+      },
+      {
+        "key": "mismatch",
+        "zh": "帳實不符",
+        "en": "Records don't match"
+      },
+      {
+        "key": "mismatchEx",
+        "zh": "系統顯示已出站，晶圓卻還在機台裡",
+        "en": "The system says it tracked out, but the wafers are still in the tool"
+      }
+    ]
+  },
+  {
+    "chapterId": "app-jargon",
+    "headingZh": "品質與異常",
+    "headingEn": "Quality and abnormalities",
+    "type": "pictorial",
+    "draw": "oocOos",
+    "captionZh": "OOC 與 OOS 的落點與去向，以及晶圓圖的圖樣",
+    "captionEn": "Where OOC and OOS land and what follows, plus patterns on a wafer map",
+    "labels": [
+      {
+        "key": "cl",
+        "zh": "管制界限",
+        "en": "Control limits"
+      },
+      {
+        "key": "spec",
+        "zh": "規格",
+        "en": "Specification"
+      },
+      {
+        "key": "ooc",
+        "zh": "OOC",
+        "en": "OOC"
+      },
+      {
+        "key": "oocDef",
+        "zh": "數據超出管制界限",
+        "en": "Data outside the control limits"
+      },
+      {
+        "key": "oos",
+        "zh": "OOS",
+        "en": "OOS"
+      },
+      {
+        "key": "oosDef",
+        "zh": "數據超出規格",
+        "en": "Data outside the specification"
+      },
+      {
+        "key": "ocap",
+        "zh": "照 OCAP 處理",
+        "en": "Follow the OCAP"
+      },
+      {
+        "key": "mrb",
+        "zh": "MRB",
+        "en": "MRB"
+      },
+      {
+        "key": "rework",
+        "zh": "Rework",
+        "en": "Rework"
+      },
+      {
+        "key": "concession",
+        "zh": "特採放行",
+        "en": "Concession release"
+      },
+      {
+        "key": "scrap",
+        "zh": "Scrap",
+        "en": "Scrap"
+      },
+      {
+        "key": "excursion",
+        "zh": "Excursion",
+        "en": "Excursion"
+      },
+      {
+        "key": "excDef",
+        "zh": "突發的品質異常事件",
+        "en": "A sudden quality problem"
+      },
+      {
+        "key": "map",
+        "zh": "Map",
+        "en": "Map"
+      },
+      {
+        "key": "scratch",
+        "zh": "刮痕",
+        "en": "Scratches"
+      },
+      {
+        "key": "particle",
+        "zh": "Particle",
+        "en": "Particles"
+      }
+    ]
+  },
+  {
+    "chapterId": "app-jargon",
+    "headingZh": "區域與人",
+    "headingEn": "Areas and people",
+    "type": "pictorial",
+    "draw": "areasPeople",
+    "captionZh": "現場區域與職能的行話（區域位置只是示意）",
+    "captionEn": "Fab areas and engineering roles in jargon (the layout is schematic)",
+    "labels": [
+      {
+        "key": "photo",
+        "zh": "黃光",
+        "en": "Photo"
+      },
+      {
+        "key": "photoDef",
+        "zh": "微影區，因照明是黃色而得名",
+        "en": "The lithography area, named after its yellow lighting"
+      },
+      {
+        "key": "furnace",
+        "zh": "爐管",
+        "en": "Diffusion"
+      },
+      {
+        "key": "furnaceDef",
+        "zh": "氧化、退火等批次式高溫機台的區域",
+        "en": "The area of high-temperature batch tools for oxidation and annealing"
+      },
+      {
+        "key": "wet",
+        "zh": "Wet",
+        "en": "Wets"
+      },
+      {
+        "key": "wetDef",
+        "zh": "濕式清洗與濕蝕刻區",
+        "en": "The wet cleaning and wet etching area"
+      },
+      {
+        "key": "pe",
+        "zh": "PE",
+        "en": "PE"
+      },
+      {
+        "key": "ee",
+        "zh": "EE",
+        "en": "EE"
+      },
+      {
+        "key": "pie",
+        "zh": "PIE",
+        "en": "PIE"
+      },
+      {
+        "key": "ye",
+        "zh": "YE",
+        "en": "YE"
+      },
+      {
+        "key": "roles",
+        "zh": "製程、設備、製程整合、良率工程師",
+        "en": "Process, equipment, process integration and yield engineers"
+      },
+      {
+        "key": "handover",
+        "zh": "交接",
+        "en": "Handover"
+      },
+      {
+        "key": "handoverDef",
+        "zh": "換班時說明機台與晶圓的狀況",
+        "en": "Passing on the status of tools and wafers at shift change"
       }
     ]
   },
@@ -9957,6 +10836,130 @@ export const SECTION_DIAGRAMS = [
         "leafZh": "IRPS、ITC 與 JEDEC",
         "leafEn": "IRPS, ITC and JEDEC",
         "icon": "bathtub"
+      }
+    ]
+  },
+  {
+    "chapterId": "app-reading",
+    "headingZh": "產業標準",
+    "headingEn": "Industry standards",
+    "type": "pictorial",
+    "draw": "standardsMap",
+    "sourcedNumbers": true,
+    "sourceZh": "標準編號與章節編號都出自本段表格；章節編號取自表格的相關章節欄。",
+    "sourceEn": "Standard names and chapter numbers come from the table in this section; chapter numbers are from its Related chapters column.",
+    "captionZh": "八個產業標準各對應哪幾章",
+    "captionEn": "Which chapters each of the eight industry standards relates to",
+    "labels": [
+      {
+        "key": "related",
+        "zh": "相關章節",
+        "en": "Related chapters"
+      },
+      {
+        "key": "ch1",
+        "zh": "1",
+        "en": "1"
+      },
+      {
+        "key": "ch18",
+        "zh": "18",
+        "en": "18"
+      },
+      {
+        "key": "ch20",
+        "zh": "20",
+        "en": "20"
+      },
+      {
+        "key": "ch22",
+        "zh": "22",
+        "en": "22"
+      },
+      {
+        "key": "ch23",
+        "zh": "23",
+        "en": "23"
+      },
+      {
+        "key": "s1",
+        "zh": "ISO 14644-1",
+        "en": "ISO 14644-1"
+      },
+      {
+        "key": "c1",
+        "zh": "潔淨室的等級分類",
+        "en": "Cleanroom classification"
+      },
+      {
+        "key": "s2",
+        "zh": "SEMI E10",
+        "en": "SEMI E10"
+      },
+      {
+        "key": "c2",
+        "zh": "設備可靠度、可用率與狀態的定義",
+        "en": "Definitions of equipment reliability, availability and states"
+      },
+      {
+        "key": "s3",
+        "zh": "SEMI E5、E30、E37",
+        "en": "SEMI E5, E30, E37"
+      },
+      {
+        "key": "c3",
+        "zh": "機台通訊標準（SECS-II、GEM、HSMS）",
+        "en": "Equipment communication standards (SECS-II, GEM, HSMS)"
+      },
+      {
+        "key": "s4",
+        "zh": "IPC/JEDEC J-STD-020",
+        "en": "IPC/JEDEC J-STD-020"
+      },
+      {
+        "key": "c4",
+        "zh": "封裝的濕度敏感等級分類",
+        "en": "Moisture sensitivity classification of packages"
+      },
+      {
+        "key": "s5",
+        "zh": "IPC/JEDEC J-STD-033",
+        "en": "IPC/JEDEC J-STD-033"
+      },
+      {
+        "key": "c5",
+        "zh": "濕度敏感元件的包裝、運送與使用",
+        "en": "Packing, shipping and use of moisture-sensitive devices"
+      },
+      {
+        "key": "s6",
+        "zh": "JEDEC J-STD-046",
+        "en": "JEDEC J-STD-046"
+      },
+      {
+        "key": "c6",
+        "zh": "產品與製程變更的客戶通知",
+        "en": "Customer notification of product and process changes"
+      },
+      {
+        "key": "s7",
+        "zh": "JEDEC JESD47",
+        "en": "JEDEC JESD47"
+      },
+      {
+        "key": "c7",
+        "zh": "積體電路的可靠度驗證",
+        "en": "Reliability qualification of integrated circuits"
+      },
+      {
+        "key": "s8",
+        "zh": "AEC-Q100",
+        "en": "AEC-Q100"
+      },
+      {
+        "key": "c8",
+        "zh": "車用積體電路的可靠度驗證",
+        "en": "Reliability qualification of automotive integrated circuits"
       }
     ]
   }
