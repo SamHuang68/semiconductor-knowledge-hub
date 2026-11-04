@@ -53,8 +53,11 @@ function tools(spec, en, kit) {
   }).join('');
   // 指定斷行：每個元素一行，用於中文需要在標點處斷行、避免把詞拆開的地方（2.21.0）
   const lines = (x, y, rows, size = 11, fill = INK_2, anchor = 'middle', weight = 400) => ({ svg: rows.map((row, i) => t(x, y + i * size * 1.3, row, size, fill, anchor, weight)).join(''), height: rows.length * size * 1.3 });
-  // 英文照寬度斷行；中文在指定的字前斷成兩行
-  const breakAt = (x, y, text, at, width, size, fill, anchor, weight) => { const i = en ? -1 : text.indexOf(at); return i > 0 ? lines(x, y, [text.slice(0, i), text.slice(i)], size, fill, anchor, weight) : para(x, y, text, width, size, fill, anchor, weight); };
+  // 英文照寬度斷行；中文在指定的字前斷行，at 可以是一個字串或依序的多個字串（2.23.0 起可多個）
+  const breakAt = (x, y, text, at, width, size, fill, anchor, weight) => {
+    const cuts = en ? [] : [].concat(at).map(a => text.indexOf(a));
+    return cuts.length && cuts.every((c, j) => c > (j ? cuts[j - 1] : 0)) ? lines(x, y, [0, ...cuts].map((c, j, a) => text.slice(c, a[j + 1])), size, fill, anchor, weight) : para(x, y, text, width, size, fill, anchor, weight);
+  };
   return { L, t, para, lines, breakAt, arrow, mark, dim, lead, legend, icon: kit.iconAt };
 }
 
@@ -2159,13 +2162,14 @@ function watVsCp(spec, en, kit) {
 }
 
 // ch19 晶圓測試、探針卡與 3D KGD 條例總覽：五欄側視示意。技術審查修正：不用欄距暗示節距，探針疏密只做定性示意；
-// 每格只放一個節距與一個針數（取自正文表格）；懸臂式的節距尚待查證，不標；內建自我測試畫成晶粒內的一塊電路區塊；不放 Cobra 等商用名稱
+// 每格只放一個節距與一個針數（取自正文表格）；懸臂式的節距在 2.23.0 正文校勘後補上，用正文原句標明是細節距產品的值；
+// 內建自我測試畫成晶粒內的一塊電路區塊；不放 Cobra 等商用名稱
 function probeCards(spec, en, kit) {
   const { L, t, para, lines, breakAt } = tools(spec, en, kit);
   const cw = 114, gap = (608 - 5 * cw) / 4, y0 = 12;
   const cols = [
     ['watCard', [['kelvin', INK, 600], ['pcm', TEAL, 600], ['pinsW', INK_2, 400]]],
-    ['cantilever', [['scrub', INK, 600, '較大'], ['wbPad', TEAL, 600], ['pinsC', INK_2, 400]]],
+    ['cantilever', [['scrub', INK, 600, '較大'], ['wbPad', TEAL, 600], ['pitchC', INK, 700, ['細節距', '≥']], ['pinsC', INK_2, 400]]],
     ['vertName', [['buckled', INK, 600], ['flipBump', TEAL, 600], ['pitchV', INK, 700], ['pinsV', INK_2, 400]]],
     ['memsName', [['memsNeedle', INK, 600], ['ubump', TEAL, 600], ['pitchM', INK, 700], ['pinsM', INK_2, 400]]],
     ['preBond', [['bondPad', INK, 600], ['noProbe', RED, 700], ['sacrificial', AMBER, 600], ['bist', TEAL, 600]]]
@@ -3061,6 +3065,85 @@ function standardsMap(spec, en, kit) {
   return { svg, height: y + 10 };
 }
 
+// ── F 批：正文數值校勘後補畫 ──
+
+// ch14 真實微縮標尺與 DTCO／STCO 條例總覽（計畫 P051）：CPP 與第一層金屬最小節距的表列典型值畫在同一條從 0 nm 起的線性軸上，
+// 虛線標出「3nm」這個節點名稱的位置，對照真正的節距。技術審查修正：兩組各用一色，第三段各照正文標籤（2nm/A14 與 1.4nm/A14 預估），
+// 不暗示同一世代；預估值畫成空心虛線。圖中不放單一晶圓廠的製程名稱，世代只寫 2nm、1.4nm。3nm 與 2nm 的 CPP 相同，旁邊標出正文的說明。
+// 數值文字加白邊，避免被格線穿過。下段保留被取代方框圖的軌道高度、DTCO 與 STCO。2.23.0 正文數值校勘核可後才畫
+function cppScale(spec, en, kit) {
+  const { L, t, para, lines } = tools(spec, en, kit);
+  const halo = (x, y, text, size, fill, anchor, weight) => t(x, y, text, size, fill, anchor, weight).replace('<text ', '<text stroke="#ffffff" stroke-width="3" stroke-linejoin="round" paint-order="stroke" ');
+  const y0 = 12, xl = 168, X = v => xl + v * 7, sep = en ? ': ' : '：';
+  // 節距記號：兩端短豎線加一條連線，不用箭頭（小圖裡箭頭會疊在一起）
+  const pitch = (x1, y1, x2, y2, c) => x1 === x2
+    ? `<path d="M${x1 - 3} ${y1} h6 M${x1 - 3} ${y2} h6 M${x1} ${y1} V${y2}" stroke="${c}" stroke-width="1.2"/>`
+    : `<path d="M${x1} ${y1 - 3} v6 M${x2} ${y1 - 3} v6 M${x1} ${y1} H${x2}" stroke="${c}" stroke-width="1.2"/>`;
+  const minis = {
+    // CPP：鰭上三支閘極，標出相鄰兩支的中心距（X 方向）
+    gates: (x, y) => `<rect x="${x + 2}" y="${y + 18}" width="44" height="8" fill="${SI}" stroke="${INK_2}" stroke-width=".6"/>` + [8, 21, 34].map(d => `<rect x="${x + d}" y="${y + 9}" width="6" height="21" rx="1" fill="${TEAL_L}" stroke="${TEAL}"/>`).join('') + pitch(x + 11, y + 4, x + 24, y + 4, TEAL),
+    // M1P：三條最底層金屬線，標出相鄰兩條的中心距（Y 方向）
+    metal: (x, y) => [4, 15, 26].map(d => `<rect x="${x + 2}" y="${y + d}" width="36" height="5" rx="1" fill="${BLUE_L}" stroke="${BLUE}"/>`).join('') + pitch(x + 44, y + 6.5, x + 44, y + 17.5, BLUE),
+    // 軌道高度：單元外框內的軌道，右側標單元高度
+    tracks: (x, y) => `<rect x="${x + 2}" y="${y + 2}" width="36" height="30" fill="#ffffff" stroke="${INK_2}"/>` + [8, 14, 20, 26].map(d => `<path d="M${x + 5} ${y + d} H${x + 35}" stroke="${MUTED}" stroke-dasharray="3 2"/>`).join('') + pitch(x + 44, y + 2, x + 44, y + 32, INK_2)
+  };
+  let svg = t(16, y0 + 12, L('metrics'), 12, INK, 'start', 800);
+  let y = y0 + 26;
+  const groups = [
+    ['cpp', 'cppAbbr', 'cppItem', 'cppNote', TEAL_L, TEAL, 'gates', [['g7', 54, 57, 'v7c'], ['g3', 45, 50, 'v3c'], ['g2', 45, 50, 'v3c']], true],
+    ['m1p', 'm1pAbbr', 'm1pItem', 'm1pNote', BLUE_L, BLUE, 'metal', [['g7', 36, 40, 'v7m'], ['g3e', 23, 30, 'v3m'], ['g14', 20, 22, 'v14', true]]]
+  ];
+  const zones = [];
+  groups.forEach(([n, ab, it, nt, f, s, mini, rows, stall]) => {
+    svg += minis[mini](16, y) + t(72, y + 12, `${L(n)}${en ? ' (' : '（'}${L(ab)}${en ? ')' : '）'}`, 11.5, s, 'start', 800) + t(624, y + 12, L(nt), 10, s, 'end', 600) + t(72, y + 27, L(it), 10, INK_2, 'start');
+    let ry = y + 50;
+    const top = ry - 10;
+    rows.forEach(([g, a, b, v, proj]) => {
+      svg += t(xl - 10, ry + 4, proj ? `${L(g)}${en ? ', ' : '（'}${L('proj')}${en ? '' : '）'}` : L(g), 10.5, INK, 'end', 700)
+        + `<rect x="${X(a)}" y="${ry - 5}" width="${X(b) - X(a)}" height="10" rx="2" fill="${proj ? '#ffffff' : f}" stroke="${s}" stroke-width="${proj ? 1.4 : 1}"${proj ? ' stroke-dasharray="3 2"' : ''}/>`
+        + halo(X(b) + 6, ry + 3.5, L(v), 9.5, INK_2, 'start', 600);
+      ry += 20;
+    });
+    // 3nm 與 2nm 的 CPP 相同：左側括號加正文的說明
+    if (stall) svg += `<path d="M${X(45) - 5} ${y + 65} h-4 V${y + 95} h4" fill="none" stroke="${s}" stroke-width="1.2"/>` + halo(X(45) - 14, y + 84, L('stall'), 10, s, 'end', 700);
+    zones.push([top, ry - 10]);
+    y = ry + 6;
+  });
+  // 刻度格線只畫在色條所在的兩區；軸每 10 nm 一格，只標正文出現過的數字
+  const ay = y + 2, ticks = [0, 10, 20, 30, 40, 50, 60];
+  const grid = zones.map(([a, b]) => ticks.map(v => `<path d="M${X(v)} ${a} V${b}" stroke="${LINE}" stroke-dasharray="2 3"/>`).join('')).join('');
+  svg = grid + svg;
+  svg += `<path d="M${X(0)} ${ay} H${X(60)}" stroke="${INK_2}"/>` + ticks.map(v => `<path d="M${X(v)} ${ay} v4" stroke="${INK_2}"/>`).join('')
+    + [[0, 'a0'], [20, 'a20'], [40, 'a40']].map(([v, k]) => t(X(v), ay + 15, L(k), 9.5, MUTED, 'middle', 600)).join('') + t(X(60) + 8, ay + 4, L('nm'), 9.5, MUTED, 'start', 600);
+  // 3nm 的位置：虛線穿過兩區色條直到軸上，下方寫這是商業命名
+  svg += zones.map(([a, b]) => `<path d="M${X(3)} ${a} V${b}" stroke="${AMBER}" stroke-width="1.4" stroke-dasharray="4 3"/>`).join('') + `<path d="M${X(3)} ${zones[1][1]} V${ay}" stroke="${AMBER}" stroke-width="1.4" stroke-dasharray="4 3"/>`
+    + `<path d="M${X(3)} ${ay + 1} l-4 7 h8 z" fill="${AMBER}"/>` + t(X(3) + 8, ay + 30, `${L('g3')}${sep}${L('myth')}`, 10, AMBER, 'start', 700);
+  // 軌道高度：單元高度等於軌道數乘金屬節距
+  const yt = ay + 44;
+  svg += minis.tracks(16, yt) + t(72, yt + 12, L('track'), 11.5, INK, 'start', 800) + t(624, yt + 12, L('trackNote'), 10, INK_2, 'end', 600)
+    + t(72, yt + 27, L('trackItem'), 10, INK_2, 'start') + t(72, yt + 41, L('trackT'), 10, INK_2, 'start');
+  // 下段：DTCO 與 STCO 兩張卡
+  const yd = yt + 56;
+  svg += `<path d="M16 ${yd} H624" stroke="${LINE}"/>` + t(16, yd + 20, L('dtcoStco'), 12, INK, 'start', 800);
+  const cy = yd + 30, cw = 300;
+  const cardArt = [
+    // DTCO：電晶體下方的埋入電源軌（紅）
+    (x, y) => `<rect x="${x + 10}" y="${y + 22}" width="40" height="8" fill="${SI}" stroke="${INK_2}" stroke-width=".6"/>` + [16, 34].map(d => `<rect x="${x + d}" y="${y + 10}" width="8" height="12" rx="1" fill="${TEAL_L}" stroke="${TEAL}"/>`).join('') + `<rect x="${x + 10}" y="${y + 31}" width="40" height="4" fill="${RED}"/>`,
+    // STCO：功能不同的小晶片放在同一片基底上
+    (x, y) => `<rect x="${x + 8}" y="${y + 28}" width="44" height="6" fill="${SI}" stroke="${INK_2}"/>` + [[10, DIE_C], [24, BLUE_L], [38, AMBER_L]].map(([d, f]) => `<rect x="${x + d}" y="${y + 14}" width="12" height="13" fill="${f}" stroke="${INK_2}"/>`).join('')
+  ];
+  // 英文 DTCO 的說明在 via 前斷行，不把 3D 和 cell-level 拆開
+  const note = (x, yy, k) => { const s = L(k), i = en ? s.indexOf(' via ') : -1; return i > 0 ? lines(x, yy, [s.slice(0, i), s.slice(i + 1)], 10, TEAL, 'start', 600) : para(x, yy, s, cw - 72, 10, TEAL, 'start', 600); };
+  const cards = [['dtco', 'dtcoItem', 'dtcoNote'], ['stco', 'stcoItem', 'stcoNote']].map(([k, it, nt]) => [k, para(0, 0, L(it), cw - 72, 10), note(0, 0, nt), it, nt]);
+  const ch = Math.max(...cards.map(([, a, b]) => 24 + a.height + b.height + 8), 46);
+  cards.forEach(([k, a, , it, nt], i) => {
+    const x = 16 + i * (cw + 8);
+    svg += card(x, cy, cw, ch) + cardArt[i](x, cy + 2) + t(x + 62, cy + 18, L(k), 11.5, INK, 'start', 800)
+      + para(x + 62, cy + 34, L(it), cw - 72, 10, INK_2, 'start').svg + note(x + 62, cy + 34 + a.height, nt).svg;
+  });
+  return { svg, height: cy + ch + 8 };
+}
+
 export const PICTORIALS = {
   industryMap, cleanroom, toolTypes, fabRoles, dopingLattice, cmosWells, sandToPoly, ingotToWafer, waferSizes, specialWafers,
   overlayCd, lithoDefects, filmStack, thermalOxidation, cvdTypes, epitaxy, filmMetrics,
@@ -3071,5 +3154,6 @@ export const PICTORIALS = {
   cpkParking, r2rFdc, suspectScope, dispositions, watVsCp, probeCards,
   packagingFlow, flipChipBumps, packageFamilies, packageDefects, splitChip, interposerTypes, bondingPitch,
   finalTest, agingMechanisms, fabSystemsHub, lotArrival,
-  eccSoftErrors, steppingLayers, lotJourney, toolJargon, systemVsPhysical, oocOos, areasPeople, standardsMap
+  eccSoftErrors, steppingLayers, lotJourney, toolJargon, systemVsPhysical, oocOos, areasPeople, standardsMap,
+  cppScale
 };

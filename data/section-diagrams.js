@@ -5318,63 +5318,209 @@ export const SECTION_DIAGRAMS = [
     "chapterId": "ch14",
     "headingZh": "真實微縮標尺與 DTCO／STCO 條例總覽",
     "headingEn": "True Scaling Metrics & DTCO/STCO Clauses",
+    "type": "pictorial",
+    "draw": "cppScale",
     "foldTables": true,
-    "type": "compare",
     "foldSection": true,
-    "captionZh": "三項真實微縮標尺與兩種協同最佳化",
-    "captionEn": "Three true scaling metrics and two co-optimization strategies.",
-    "columns": [
+    "sourcedNumbers": true,
+    "sourceZh": "節距與軌道數出自本段表格，是各家公開值的典型範圍，不是單一產品的量測值；1.4nm 那一格是預估。軸從 0 nm 起，虛線標出 3nm 的位置。",
+    "sourceEn": "Pitches and track counts come from the table in this section: typical ranges of public figures across companies, not measurements of one product. The 1.4nm value is projected. The axis starts at 0 nm, and the dashed line marks 3nm.",
+    "captionZh": "CPP、金屬節距的表列典型值與軌道高度、DTCO、STCO",
+    "captionEn": "Tabulated typical CPP and metal pitch values, plus track height, DTCO and STCO",
+    "labels": [
       {
-        "titleZh": "真實微縮標尺",
-        "titleEn": "True scaling metrics",
-        "items": [
-          {
-            "keyZh": "CPP",
-            "keyEn": "CPP",
-            "zh": "相鄰閘極中心距，決定 X 軸密度",
-            "en": "Gate-to-gate pitch; sets X-axis density",
-            "noteZh": "最誠實的前段微縮尺規",
-            "noteEn": "Ground-truth metric for FEOL scaling"
-          },
-          {
-            "keyZh": "金屬節距",
-            "keyEn": "Metal pitch",
-            "zh": "最底層金屬節距，決定 Y 軸佈線密度",
-            "en": "Lowest-level metal pitch; sets Y-axis routing",
-            "noteZh": "反映 EUV 解析度與後段微縮",
-            "noteEn": "Reflects EUV resolution and BEOL scaling"
-          },
-          {
-            "keyZh": "軌道高度",
-            "keyEn": "Track height",
-            "zh": "單元高度等於軌道數乘金屬節距",
-            "en": "Cell height is tracks times metal pitch",
-            "noteZh": "減少軌道數仍可縮小邏輯面積",
-            "noteEn": "Fewer tracks still shrink logic area"
-          }
-        ]
+        "key": "metrics",
+        "zh": "真實微縮標尺",
+        "en": "True scaling metrics"
       },
       {
-        "titleZh": "DTCO 與 STCO",
-        "titleEn": "DTCO & STCO",
-        "items": [
-          {
-            "keyZh": "DTCO",
-            "keyEn": "DTCO",
-            "zh": "單擴散斷開、埋入電源軌與背面供電",
-            "en": "SDB, buried power rails, backside power",
-            "noteZh": "靠單元結構重組延續摩爾定律",
-            "noteEn": "Extends Moore's Law via cell restructuring"
-          },
-          {
-            "keyZh": "STCO",
-            "keyEn": "STCO",
-            "zh": "SoC 拆成按功能最佳化的小晶片",
-            "en": "SoC split into node-optimized chiplets",
-            "noteZh": "以立體整合突破曝光視場極限",
-            "noteEn": "Stacking breaks the reticle limit"
-          }
-        ]
+        "key": "cpp",
+        "zh": "閘極接觸節距",
+        "en": "Contacted Poly / Gate Pitch"
+      },
+      {
+        "key": "cppAbbr",
+        "zh": "CPP",
+        "en": "CPP"
+      },
+      {
+        "key": "cppItem",
+        "zh": "相鄰閘極中心距，決定 X 軸密度",
+        "en": "Gate-to-gate pitch; sets X-axis density",
+        "from": "figure"
+      },
+      {
+        "key": "cppNote",
+        "zh": "最誠實的前段微縮尺規",
+        "en": "Ground-truth metric for FEOL scaling",
+        "from": "figure"
+      },
+      {
+        "key": "m1p",
+        "zh": "第一層金屬最小節距",
+        "en": "Minimum Metal Pitch"
+      },
+      {
+        "key": "m1pAbbr",
+        "zh": "M1P",
+        "en": "M1P"
+      },
+      {
+        "key": "m1pItem",
+        "zh": "最底層金屬節距，決定 Y 軸佈線密度",
+        "en": "Lowest-level metal pitch; sets Y-axis routing",
+        "from": "figure"
+      },
+      {
+        "key": "m1pNote",
+        "zh": "反映 EUV 解析度與後段微縮",
+        "en": "Reflects EUV resolution and BEOL scaling",
+        "from": "figure"
+      },
+      {
+        "key": "g7",
+        "zh": "7nm",
+        "en": "7nm"
+      },
+      {
+        "key": "g3",
+        "zh": "3nm",
+        "en": "3nm"
+      },
+      {
+        "key": "g2",
+        "zh": "2nm",
+        "en": "2nm"
+      },
+      {
+        "key": "g3e",
+        "zh": "3nm EUV",
+        "en": "3nm EUV"
+      },
+      {
+        "key": "g14",
+        "zh": "1.4nm",
+        "en": "1.4nm"
+      },
+      {
+        "key": "proj",
+        "zh": "預估",
+        "en": "projected"
+      },
+      {
+        "key": "stall",
+        "zh": "3nm 之後 CPP 幾乎不再縮小",
+        "en": "CPP has largely stalled after 3nm"
+      },
+      {
+        "key": "v7c",
+        "zh": "54–57 nm",
+        "en": "54–57 nm"
+      },
+      {
+        "key": "v3c",
+        "zh": "45–50 nm",
+        "en": "45–50 nm"
+      },
+      {
+        "key": "v7m",
+        "zh": "36–40 nm",
+        "en": "36–40 nm"
+      },
+      {
+        "key": "v3m",
+        "zh": "23–30 nm",
+        "en": "23–30 nm"
+      },
+      {
+        "key": "v14",
+        "zh": "約 20–22 nm",
+        "en": "~20–22 nm"
+      },
+      {
+        "key": "a0",
+        "zh": "0",
+        "en": "0"
+      },
+      {
+        "key": "a20",
+        "zh": "20",
+        "en": "20"
+      },
+      {
+        "key": "a40",
+        "zh": "40",
+        "en": "40"
+      },
+      {
+        "key": "nm",
+        "zh": "nm",
+        "en": "nm"
+      },
+      {
+        "key": "myth",
+        "zh": "商業「幾奈米」命名迷思",
+        "en": "commercial \"nanometer\" marketing names"
+      },
+      {
+        "key": "track",
+        "zh": "軌道高度",
+        "en": "Track height"
+      },
+      {
+        "key": "trackItem",
+        "zh": "單元高度等於軌道數乘金屬節距",
+        "en": "Cell height is tracks times metal pitch",
+        "from": "figure"
+      },
+      {
+        "key": "trackT",
+        "zh": "軌道數由 9T / 7.5T 縮減至 6T / 5T",
+        "en": "Cell height scales from 9T / 7.5T down to 6T / 5T"
+      },
+      {
+        "key": "trackNote",
+        "zh": "減少軌道數仍可縮小邏輯面積",
+        "en": "Fewer tracks still shrink logic area",
+        "from": "figure"
+      },
+      {
+        "key": "dtcoStco",
+        "zh": "DTCO／STCO",
+        "en": "DTCO/STCO"
+      },
+      {
+        "key": "dtco",
+        "zh": "DTCO",
+        "en": "DTCO"
+      },
+      {
+        "key": "dtcoItem",
+        "zh": "單擴散斷開、埋入電源軌與背面供電",
+        "en": "SDB, buried power rails, backside power",
+        "from": "figure"
+      },
+      {
+        "key": "dtcoNote",
+        "zh": "靠三維單元結構重組延續摩爾定律",
+        "en": "Extends Moore's Law via 3D cell-level structural innovation"
+      },
+      {
+        "key": "stco",
+        "zh": "STCO",
+        "en": "STCO"
+      },
+      {
+        "key": "stcoItem",
+        "zh": "SoC 拆成按功能最佳化的小晶片",
+        "en": "SoC split into node-optimized chiplets",
+        "from": "figure"
+      },
+      {
+        "key": "stcoNote",
+        "zh": "以立體整合突破曝光視場極限",
+        "en": "Stacking breaks the reticle limit",
+        "from": "figure"
       }
     ]
   },
@@ -7311,8 +7457,8 @@ export const SECTION_DIAGRAMS = [
     "draw": "probeCards",
     "foldSection": true,
     "sourcedNumbers": true,
-    "sourceZh": "節距與針數出自本段表格；探針疏密只是定性示意。懸臂式的適用節距（≥ 80–150 µm）尚待查證，圖中不標。",
-    "sourceEn": "Pitches and pin counts come from the table in this section; probe density is qualitative only. The cantilever pitch (≥ 80–150 µm) is not shown until it is verified.",
+    "sourceZh": "節距與針數出自本段表格；探針疏密只是定性示意。懸臂式的節距是細節距產品的適用值。",
+    "sourceEn": "Pitches and pin counts come from the table in this section; probe density is qualitative only. The cantilever pitch is the value for fine-pitch versions.",
     "captionZh": "五種晶圓測試與探針卡做法（探針疏密只是定性示意）",
     "captionEn": "Five wafer-test and probe-card approaches (probe density is qualitative only)",
     "labels": [
@@ -7350,6 +7496,11 @@ export const SECTION_DIAGRAMS = [
         "key": "wbPad",
         "zh": "傳統打線焊墊（Wire-Bond Pad）",
         "en": "Perimeter wire-bond pads"
+      },
+      {
+        "key": "pitchC",
+        "zh": "用於周邊排列焊墊，細節距產品適用節距 ≥ 30–40 µm",
+        "en": "Fine-pitch versions reach ≥ 30–40 µm pitch"
       },
       {
         "key": "pinsC",
