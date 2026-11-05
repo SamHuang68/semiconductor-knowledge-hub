@@ -128,7 +128,17 @@
   - 被取代、被併入或改字的 9 張：`C:\Users\Sam\AI-Workspace\docs\semiconductor-knowledge-hub\visual-upgrade-plan-2026-11-02\batchF2-2.25.0-before-after.png`；
   - 新增的 1 張：同資料夾的 `batchF2-2.25.0-new.png`；
   - 內文圖左舊右新：同資料夾的 `batchF2-2.25.0-inline-figure.png`。
-- 提交／發布狀態：本機提交於 `feat/phase3-f2`，尚未推送、尚未部署，等 Sam 驗收。
+- 提交／發布狀態：已推送、已部署。
+  - 2026-11-05 Sam 看過對照圖後回覆「合併並部署」。
+  - 提交 `7ba728c`，main 由 `41ef40b` 快轉。
+  - 快轉後在 main 上重跑 `npm run verify` 與 `scripts/build-site.mjs`，都通過。
+  - GitHub Pages run `41966104830` 的 `verify` 與 `deploy` 都成功。
+- 發布後線上驗證（2026-11-05）：
+  - 本次改到的 5 個網站檔案與提交內容逐位元組相同，加不加快取參數都一樣：`index.html`、`app.js`、`chapter-figures.js`、`data/section-diagrams.js`、`pictorials.js`。
+  - 頁尾為 2.25.0；`revision-history.md`、`package.json`、`scripts/` 回應 404。
+  - 瀏覽器檢查直接跑線上網站：ch02、ch03 × 中英 × 1440／390，共 8 頁，與 main `41ef40b` 快照比較。
+    - 沒有頁面錯誤、主控台錯誤、水平溢位；列印前收合區全部展開。
+    - 圖數、頁高與其他數量都和本機最終掃描完全相同。
 
 ## 2.24.0 · 2026-11-04 · 第 3 階段 F1：ch00–ch01 實物示意圖
 
