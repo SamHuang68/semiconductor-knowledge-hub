@@ -310,8 +310,69 @@ function etch(en) {
     + tx(wet + 40, 124, L(en, '光阻', 'Resist'), 11, '#0f172a') + tx(dry + 52, 124, L(en, '光阻', 'Resist'), 11, '#0f172a');
 }
 
+// 佈植機（2.27.0 改畫，第 3 階段 G 批）：離子源 → 質量分析磁鐵 → 加速 → 掃描 → 晶圓。磁鐵裡畫三條曲率不同的軌跡，
+// 只有中間那一條穿過狹縫；加速段是一排電極環；掃描段把離子束掃成扇形；晶圓側放大圈畫光阻擋住離子、只有開口內的離子進到矽裡。
+// 技術審查：標籤用正文完整詞（英文不用縮寫），不標角度、不標輕重。圖說來自正文註解，沒有改
 function implanter(en) {
-  return flow([L(en, '離子源', 'Source'), L(en, '質量分析', 'Magnet'), L(en, '加速', 'Accel'), L(en, '掃描', 'Scan'), L(en, '晶圓', 'Wafer')]);
+  const PINK = '#9d174d', BLUE = '#075985', INK = '#0f172a', INK2 = '#334155', MUTED = '#64748b';
+  let svg = '';
+  // 磁鐵：三條軌跡從同一點進入，路徑長度相同、半徑不同，轉彎的程度不同
+  const E = [118, 160], phi = -35 * Math.PI / 180, S = 110 * 35 * Math.PI / 180;
+  const track = R => {
+    const c = [E[0] + R * Math.cos(phi + Math.PI / 2), E[1] + R * Math.sin(phi + Math.PI / 2)], d = S / R, pts = [];
+    for (let k = 0; k <= 16; k++) { const a = phi - Math.PI / 2 + (d * k) / 16; pts.push([c[0] + R * Math.cos(a), c[1] + R * Math.sin(a)]); }
+    return { pts, heading: phi + d };
+  };
+  const cm = [E[0] + 110 * Math.cos(phi + Math.PI / 2), E[1] + 110 * Math.sin(phi + Math.PI / 2)];
+  const arcPts = (R, a0, a1) => Array.from({ length: 13 }, (_, k) => { const a = a0 + ((a1 - a0) * k) / 12; return [cm[0] + R * Math.cos(a), cm[1] + R * Math.sin(a)]; });
+  // 磁場區的出口邊界放在中間那條軌跡轉完的位置：三條軌跡在磁場裡一路轉彎，出了磁場才走直線（G2 審查修正）
+  const a0 = phi - Math.PI / 2 - 0.06, a1 = phi - Math.PI / 2 + 35 * Math.PI / 180;
+  const band = [...arcPts(136, a0, a1), ...arcPts(84, a1, a0)];
+  svg += `<path d="${band.map(([x, y], i) => `${i ? 'L' : 'M'}${x.toFixed(1)} ${y.toFixed(1)}`).join(' ')} Z" fill="#e0f2fe" stroke="${BLUE}" stroke-width="1.2"/>`;
+  const slitX = 232;
+  [[168, '#94a3b8'], [110, PINK], [76, '#94a3b8']].forEach(([R, color], i) => {
+    const { pts, heading } = track(R), [ex, ey] = pts[pts.length - 1];
+    const stopY = ey + (slitX - 4 - ex) * Math.tan(heading);
+    const endX = i === 1 ? slitX + 4 : slitX - 4;
+    const line = `${pts.map(([x, y], k) => `${k ? 'L' : 'M'}${x.toFixed(1)} ${y.toFixed(1)}`).join(' ')} L${endX} ${(i === 1 ? ey : stopY).toFixed(1)}`;
+    svg += `<path d="${line}" fill="none" stroke="${color}" stroke-width="${i === 1 ? 2.2 : 1.5}"${i === 1 ? '' : ' stroke-dasharray="4 2"'}/>`;
+    if (i !== 1) svg += `<path d="M${slitX - 9} ${(stopY - 4).toFixed(1)} l5 4 -5 4" fill="none" stroke="#9a3412" stroke-width="1.4"/>`;
+  });
+  const by = track(110).pts[16][1];
+  // 狹縫：只有中間那一條穿過
+  svg += `<rect x="${slitX - 4}" y="${by - 46}" width="8" height="${46 - 5}" fill="#475569"/><rect x="${slitX - 4}" y="${by + 5}" width="8" height="40" fill="#475569"/>`;
+  // 離子源（斜放，出口對準磁鐵入口）與氣瓶
+  const sc = [E[0] - 56 * Math.cos(phi), E[1] - 56 * Math.sin(phi)];
+  svg += `<g transform="rotate(-35 ${sc[0].toFixed(1)} ${sc[1].toFixed(1)})"><rect x="${(sc[0] - 28).toFixed(1)}" y="${(sc[1] - 18).toFixed(1)}" width="56" height="36" rx="6" fill="#e2e8f0" stroke="${INK2}"/></g>`
+    + `<path d="M${(E[0] - 30 * Math.cos(phi)).toFixed(1)} ${(E[1] - 30 * Math.sin(phi)).toFixed(1)} L${E[0]} ${E[1]}" stroke="${PINK}" stroke-width="2.2"/>`
+    + `<rect x="26" y="96" width="16" height="36" rx="5" fill="#cbd5e1" stroke="${INK2}"/><rect x="30" y="90" width="8" height="6" fill="${INK2}"/><path d="M34 132 V150 L48 ${(sc[1] - 6).toFixed(1)}" fill="none" stroke="${INK2}" stroke-width="1.3"/>`;
+  // 加速：一排電極環；掃描：一對偏轉板把離子束掃成扇形；晶圓側面
+  svg += `<path d="M${slitX + 4} ${by} H372" stroke="${PINK}" stroke-width="2.2"/>` + [262, 282, 302, 322].map(x => `<ellipse cx="${x}" cy="${by}" rx="4" ry="18" fill="none" stroke="${BLUE}" stroke-width="2"/>`).join('')
+    + arrow(258, by - 26, 330, by - 26, BLUE, 1.2)
+    + `<rect x="372" y="${by - 16}" width="26" height="5" fill="#475569"/><rect x="372" y="${by + 11}" width="26" height="5" fill="#475569"/>`
+    + `<path d="M398 ${by} L516 ${by - 70} V${by + 70} Z" fill="${PINK}" fill-opacity=".1"/>` + [-70, -35, 0, 35, 70].map(d => `<path d="M398 ${by} L516 ${by + d}" stroke="${PINK}" stroke-width="1" stroke-dasharray="3 3"/>`).join('')
+    + `<rect x="516" y="${by - 72}" width="7" height="144" fill="#a6bdcb" stroke="${INK2}"/>`;
+  // 放大圈：光阻擋住離子，只有開口內的離子進到矽裡（離子由左往右，與上面的離子束同方向）
+  const zc = [580, by - 10], zr = 36;
+  svg += `<path d="M523 ${by - 30} L${zc[0] - zr + 2} ${zc[1] - 14} M523 ${by - 12} L${zc[0] - zr + 2} ${zc[1] + 14}" stroke="${MUTED}" stroke-dasharray="2 2"/>`
+    + `<circle cx="${zc[0]}" cy="${zc[1]}" r="${zr}" fill="#ffffff" stroke="${MUTED}"/>`
+    + `<rect x="${zc[0] + 10}" y="${zc[1] - 24}" width="16" height="48" fill="#a6bdcb"/><rect x="${zc[0]}" y="${zc[1] - 24}" width="10" height="18" fill="#e1ad70" stroke="#92400e"/><rect x="${zc[0]}" y="${zc[1] + 6}" width="10" height="18" fill="#e1ad70" stroke="#92400e"/>`
+    + `<rect x="${zc[0] + 10}" y="${zc[1] - 6}" width="9" height="12" fill="${PINK}" fill-opacity=".45"/>`
+    + [-18, -11, 0, 12, 19].map(d => arrow(zc[0] - 26, zc[1] + d, Math.abs(d) < 6 ? zc[0] + 16 : zc[0] + 5, zc[1] + d, PINK, 1.1)).join('');
+  // 文字：各段名稱與正文的說明
+  const ny = 252;
+  svg += rowsAt(48, 68, en ? ['A gas containing boron,', 'phosphorus or arsenic'] : ['含有硼、磷或砷的氣體'], 10, INK2, 'start')
+    + tx(126, 104, L(en, '磁場', 'magnetic field'), 10, BLUE, 'middle')
+    + tb(72, ny, L(en, '離子源', 'Ion source'), 11.5, INK) + tb(170, ny, L(en, '質量分析', 'Mass analysis'), 11.5, INK) + tb(292, ny, L(en, '加速', 'Acceleration'), 11.5, INK)
+    + tb(420, ny, L(en, '掃描', 'Scanning'), 11.5, INK) + tb(556, ny, L(en, '晶圓', 'Wafer'), 11.5, INK)
+    + rowsAt(170, ny + 16, en ? ['Ions of different masses', 'bend by different amounts'] : ['不同重量的離子', '轉彎的程度不同'], 10, INK2)
+    + rowsAt(292, ny + 16, en ? ['electric field'] : ['電場'], 10, BLUE)
+    + rowsAt(420, ny + 16, en ? ['swept evenly across', 'the whole wafer'] : ['均勻地掃過整片晶圓'], 10, INK2)
+    + `<path d="M${slitX} ${by + 46} V${by + 56}" stroke="${MUTED}" stroke-dasharray="2 2"/>` + rowsAt(slitX, by + 68, en ? ['only the wanted', 'species gets through'] : ['只有需要的那一種', '離子能通過'], 10, PINK)
+    + rowsAt(556, ny + 16, en ? ['Wherever photoresist covers', 'the wafer, it stops the ions,', 'so only the areas opened in', 'the resist get implanted'] : ['晶圓上有光阻覆蓋的地方，', '離子會被光阻擋住，', '只有光阻開口的區域會被佈植'], 10, INK2)
+    + tx(zc[0], zc[1] - zr - 6, L(en, '光阻', 'photoresist'), 9.5, '#92400e', 'middle');
+  // 整張上移，去掉頂端的空白
+  return `<g transform="translate(0 -34)">${svg}</g>`;
 }
 
 function cmpTool(en) {
@@ -692,7 +753,7 @@ const MATCHERS = [
   [/微影流程|lithography flow/i, lithoFlow, 326],
   [/沉積|deposition methods/i, deposition, 214],
   [/等向|isotropic/i, etch, 240],
-  [/佈植機|implanter/i, implanter],
+  [/佈植機|implanter/i, implanter, 284],
   [/Dishing|Erosion|碟/i, dishing],
   [/CMP 機台|CMP tool/i, cmpTool],
   [/清洗|wet bench/i, clean, 220],

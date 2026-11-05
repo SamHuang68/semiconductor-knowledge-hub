@@ -4120,37 +4120,99 @@ export const SECTION_DIAGRAMS = [
     "chapterId": "ch06",
     "headingZh": "怎麼知道什麼時候該停",
     "headingEn": "How to know when to stop",
-    "type": "flow",
     "captionZh": "從挖到下一層到終點偵測、再過度蝕刻的順序",
     "captionEn": "How the tool detects the endpoint from plasma light, then over etches",
-    "steps": [
+    "type": "pictorial",
+    "draw": "endpointTrace",
+    "labels": [
       {
+        "key": "etchA",
         "zh": "挖穿目標材料",
         "en": "Etch clears the target",
-        "noteZh": "碰到下一層",
-        "noteEn": "Reaches the next layer"
+        "from": "figure"
       },
       {
+        "key": "next",
+        "zh": "碰到下一層",
+        "en": "Reaches the next layer",
+        "from": "figure"
+      },
+      {
+        "key": "chem",
         "zh": "電漿化學成分改變",
-        "en": "Plasma chemistry changes"
+        "en": "Plasma chemistry changes",
+        "from": "figure"
       },
       {
+        "key": "light",
         "zh": "發光跟著改變",
         "en": "Emitted light changes",
-        "noteZh": "顏色與強度都改變",
-        "noteEn": "Color and intensity shift"
+        "from": "figure"
       },
       {
+        "key": "colorInt",
+        "zh": "顏色與強度都改變",
+        "en": "Color and intensity shift",
+        "from": "figure"
+      },
+      {
+        "key": "ep",
         "zh": "終點偵測",
         "en": "Endpoint detection",
-        "noteZh": "機台監測光判斷挖到底",
-        "noteEn": "Tool reads the light to know it is through"
+        "from": "figure"
       },
       {
+        "key": "watch",
+        "zh": "機台監測光判斷挖到底",
+        "en": "Tool reads the light to know it is through",
+        "from": "figure"
+      },
+      {
+        "key": "oe",
         "zh": "過度蝕刻",
         "en": "Over etch",
-        "noteZh": "多蝕刻一點確保清乾淨",
-        "noteEn": "A little longer to clear everywhere"
+        "from": "figure"
+      },
+      {
+        "key": "clear",
+        "zh": "多蝕刻一點確保清乾淨",
+        "en": "A little longer to clear everywhere",
+        "from": "figure"
+      },
+      {
+        "key": "plasma",
+        "zh": "電漿",
+        "en": "Plasma"
+      },
+      {
+        "key": "target",
+        "zh": "目標材料",
+        "en": "Target material"
+      },
+      {
+        "key": "nextLayer",
+        "zh": "下一層",
+        "en": "The next layer"
+      },
+      {
+        "key": "residue",
+        "zh": "殘留",
+        "en": "Residue"
+      },
+      {
+        "key": "intensity",
+        "zh": "強度",
+        "en": "Intensity"
+      },
+      {
+        "key": "under",
+        "zh": "挖不夠會留下殘留",
+        "en": "Too little leaves residue behind"
+      },
+      {
+        "key": "damage",
+        "zh": "挖太多則會傷到下層",
+        "en": "Too much damages the layer underneath"
       }
     ]
   },
@@ -4187,27 +4249,45 @@ export const SECTION_DIAGRAMS = [
     "chapterId": "ch06",
     "headingZh": "越挖越深：高深寬比蝕刻",
     "headingEn": "Digging deeper: high-aspect-ratio etching",
-    "type": "branch",
     "captionZh": "孔越深時高深寬比蝕刻可能出現的問題",
     "captionEn": "What can go wrong as a high-aspect-ratio hole gets deeper",
-    "root": {
-      "zh": "孔越挖越深",
-      "en": "The hole gets deeper",
-      "noteZh": "離子越難抵達底部",
-      "noteEn": "Ions struggle to reach the bottom"
-    },
-    "branches": [
+    "type": "pictorial",
+    "draw": "harHoles",
+    "labels": [
       {
+        "key": "deeper",
+        "zh": "孔越挖越深",
+        "en": "The hole gets deeper",
+        "from": "figure"
+      },
+      {
+        "key": "ions",
+        "zh": "離子越難抵達底部",
+        "en": "Ions struggle to reach the bottom",
+        "from": "figure"
+      },
+      {
+        "key": "slow",
         "zh": "蝕刻速度變慢",
-        "en": "The etch slows down"
+        "en": "The etch slows down",
+        "from": "figure"
       },
       {
+        "key": "bend",
         "zh": "孔變彎或扭曲",
-        "en": "The hole bends or twists"
+        "en": "The hole bends or twists",
+        "from": "figure"
       },
       {
+        "key": "wide",
         "zh": "中段被挖得較寬",
-        "en": "The middle becomes wider"
+        "en": "The middle becomes wider",
+        "from": "figure"
+      },
+      {
+        "key": "dozens",
+        "zh": "深度可以是寬度的數十倍",
+        "en": "Depths dozens of times their width"
       }
     ]
   },
@@ -4216,32 +4296,118 @@ export const SECTION_DIAGRAMS = [
     "headingZh": "現場異常徵兆與跨站根因排查",
     "headingEn": "Fab Failure Signatures & Root-Cause Diagnostics",
     "foldTables": true,
-    "type": "branch",
     "foldSection": true,
     "captionZh": "乾蝕刻三大致命異常與對應的永久防呆對策",
     "captionEn": "Three critical dry-etch failures and their permanent countermeasures",
-    "root": {
-      "zh": "乾蝕刻三大致命異常",
-      "en": "Three critical dry-etch failures"
-    },
-    "branches": [
+    "type": "pictorial",
+    "draw": "etchFailures",
+    "labels": [
       {
+        "key": "root",
+        "zh": "乾蝕刻三大致命異常",
+        "en": "Three critical dry-etch failures",
+        "from": "figure"
+      },
+      {
+        "key": "b1",
         "zh": "底部充電側向掏空",
         "en": "Charging-induced foot notching",
-        "leafZh": "過蝕刻改用同步脈衝電漿",
-        "leafEn": "Pulsed plasma during over etch"
+        "from": "figure"
       },
       {
+        "key": "l1",
+        "zh": "過蝕刻改用同步脈衝電漿",
+        "en": "Pulsed plasma during over etch",
+        "from": "figure"
+      },
+      {
+        "key": "b2",
         "zh": "超深孔鼓出與扭曲",
         "en": "Deep-hole bowing and twisting",
-        "leafZh": "超低溫蝕刻搭配硬遮罩",
-        "leafEn": "Cryogenic etch with hard masks"
+        "from": "figure"
       },
       {
+        "key": "l2",
+        "zh": "超低溫蝕刻搭配硬遮罩",
+        "en": "Cryogenic etch with hard masks",
+        "from": "figure"
+      },
+      {
+        "key": "b3",
         "zh": "密集小孔蝕刻不穿",
         "en": "Dense narrow vias not opened",
-        "leafZh": "虛設圖形與蝕刻停止層",
-        "leafEn": "Dummy fill and an etch stop layer"
+        "from": "figure"
+      },
+      {
+        "key": "l3",
+        "zh": "虛設圖形與蝕刻停止層",
+        "en": "Dummy fill and an etch stop layer",
+        "from": "figure"
+      },
+      {
+        "key": "resist",
+        "zh": "光阻",
+        "en": "Resist"
+      },
+      {
+        "key": "cond",
+        "zh": "SOI 或閘極",
+        "en": "Gate or SOI"
+      },
+      {
+        "key": "oxide",
+        "zh": "底部氧化矽絕緣層",
+        "en": "Bottom oxide"
+      },
+      {
+        "key": "elec",
+        "zh": "電子",
+        "en": "Electrons"
+      },
+      {
+        "key": "plus",
+        "zh": "正電荷",
+        "en": "Positive charge"
+      },
+      {
+        "key": "notch",
+        "zh": "凹槽（Notch）",
+        "en": "Foot notching"
+      },
+      {
+        "key": "facet",
+        "zh": "硬遮罩（Hardmask）邊緣隨蝕刻逐漸傾斜",
+        "en": "Hardmask facet erosion"
+      },
+      {
+        "key": "bow",
+        "zh": "桶狀鼓出（Bowing）",
+        "en": "Inflating hole diameter (bowing)"
+      },
+      {
+        "key": "twist",
+        "zh": "底部扭曲",
+        "en": "Hole twisting"
+      },
+      {
+        "key": "dense",
+        "zh": "密集",
+        "en": "Dense"
+      },
+      {
+        "key": "iso",
+        "zh": "孤立",
+        "en": "Isolated"
+      },
+      {
+        "key": "open",
+        "zh": "窄孔未開通",
+        "en": "Narrow via opens"
+      },
+      {
+        "key": "punch",
+        "zh": "寬孔打穿下層",
+        "en": "Wide trench punch-through"
       }
     ]
   },
@@ -4250,43 +4416,108 @@ export const SECTION_DIAGRAMS = [
     "headingZh": "電漿蝕刻、Cryo-HAR 與 Bosch TSV 條例總覽",
     "headingEn": "Plasma Etch, Cryo-HAR & Bosch TSV Clauses",
     "foldTables": true,
-    "type": "branch",
     "foldSection": true,
-    "captionZh": "四類蝕刻條例與各自的代表應用。",
-    "captionEn": "Four etch clause categories and their representative applications.",
-    "root": {
-      "zh": "電漿與原子層蝕刻條例",
-      "en": "Plasma & atomic layer etch clauses",
-      "icon": "etch"
-    },
-    "branches": [
+    "type": "pictorial",
+    "draw": "boschClauses",
+    "sourcedNumbers": true,
+    "sourceZh": "每步秒數與波紋上限出自本段表格；波紋大小與孔的比例只是示意，沒有按深寬比畫。四類條例沿用原本的分支圖。",
+    "sourceEn": "Step time and the scallop limit come from the table in this section. Scallop size and hole proportions are schematic and not drawn to the aspect ratio. The four categories are kept from the original branch diagram.",
+    "captionZh": "四類蝕刻條例的代表應用，與波希法的三步循環",
+    "captionEn": "Four etch clause categories and their uses, plus the three-step Bosch cycle",
+    "labels": [
       {
+        "key": "root",
+        "zh": "電漿與原子層蝕刻條例",
+        "en": "Plasma & atomic layer etch clauses",
+        "from": "figure"
+      },
+      {
+        "key": "b1",
         "zh": "電容／感應耦合 RIE",
         "en": "CCP vs. ICP reactive ion etch",
-        "leafZh": "鰭片、溝槽、接觸孔與雙鑲嵌",
-        "leafEn": "Fins, STI, contacts and dual damascene",
-        "icon": "plasma"
+        "from": "figure"
       },
       {
+        "key": "l1",
+        "zh": "鰭片、溝槽、接觸孔與雙鑲嵌",
+        "en": "Fins, STI, contacts and dual damascene",
+        "from": "figure"
+      },
+      {
+        "key": "b2",
         "zh": "極低溫高深寬比蝕刻",
         "en": "Cryogenic high-AR (Cryo-HAR) etch",
-        "leafZh": "NAND 通道孔、DRAM 電容",
-        "leafEn": "NAND channel holes and DRAM capacitors",
-        "icon": "snowflake"
+        "from": "figure"
       },
       {
+        "key": "l2",
+        "zh": "NAND 通道孔、DRAM 電容",
+        "en": "NAND channel holes and DRAM capacitors",
+        "from": "figure"
+      },
+      {
+        "key": "b3",
         "zh": "波希法深矽蝕刻",
         "en": "Bosch deep RIE (DRIE)",
-        "leafZh": "中介層與晶粒穿矽孔、MEMS",
-        "leafEn": "Interposer and die TSVs, and MEMS",
-        "icon": "deep-hole"
+        "from": "figure"
       },
       {
+        "key": "l3",
+        "zh": "中介層與晶粒穿矽孔、MEMS",
+        "en": "Interposer and die TSVs, and MEMS",
+        "from": "figure"
+      },
+      {
+        "key": "b4",
         "zh": "原子層蝕刻與選擇性釋放",
         "en": "ALE & selective isotropic release",
-        "leafZh": "GAA 通道釋放與內間隔壁",
-        "leafEn": "GAA channel release and inner spacers",
-        "icon": "gaa"
+        "from": "figure"
+      },
+      {
+        "key": "l4",
+        "zh": "GAA 通道釋放與內間隔壁",
+        "en": "GAA channel release and inner spacers",
+        "from": "figure"
+      },
+      {
+        "key": "fast",
+        "zh": "高速交替循環",
+        "en": "Rapid time-multiplexed cycles"
+      },
+      {
+        "key": "step",
+        "zh": "每步 1–3 秒",
+        "en": "1–3 s each"
+      },
+      {
+        "key": "sA",
+        "zh": "SF₆ 等向性蝕刻矽",
+        "en": "SF₆ isotropic Si etch"
+      },
+      {
+        "key": "sB",
+        "zh": "C₄F₈ 沉積鐵氟龍狀（-CF₂-）側壁保護膜",
+        "en": "C₄F₈ Teflon-like (-CF₂-) polymer passivation"
+      },
+      {
+        "key": "sC",
+        "zh": "底部離子轟擊破膜繼續向下挖",
+        "en": "Bottom directional ion depassivation"
+      },
+      {
+        "key": "scallop",
+        "zh": "微扇形波紋",
+        "en": "Controlled sidewall scallops"
+      },
+      {
+        "key": "lt50",
+        "zh": "控制於 < 50 nm",
+        "en": "< 50 nm"
+      },
+      {
+        "key": "why50",
+        "zh": "避免銅阻障層斷裂",
+        "en": "for continuous Ta/Cu seed coverage"
       }
     ]
   },
@@ -4295,32 +4526,86 @@ export const SECTION_DIAGRAMS = [
     "headingZh": "定量物理定律與 3D 製程視窗",
     "headingEn": "Quantitative Governing Laws & 3D Process Windows",
     "foldTables": true,
-    "type": "branch",
     "foldSection": true,
-    "captionZh": "三大蝕刻定律各自對應的深孔與奈米片對策。",
-    "captionEn": "How each etch law shapes deep-hole and nanosheet process control.",
-    "root": {
-      "zh": "電漿與原子層蝕刻定律",
-      "en": "Plasma & ALE quantitative laws"
-    },
-    "branches": [
+    "type": "pictorial",
+    "draw": "etchLaws",
+    "sourcedNumbers": true,
+    "sourceZh": "每循環剝離的厚度出自本段表格；原子大小與排列只是示意，虛線是原本的表面。三條定律與對策沿用原本的分支圖。",
+    "sourceEn": "The thickness removed per cycle comes from the table in this section. Atom size and arrangement are schematic; the dashed line is the original surface. The three laws and responses are kept from the original branch diagram.",
+    "captionZh": "三大蝕刻定律的對策，與原子層蝕刻的自限循環",
+    "captionEn": "What each etch law drives, and the self-limiting ALE cycle",
+    "labels": [
       {
+        "key": "root",
+        "zh": "電漿與原子層蝕刻定律",
+        "en": "Plasma & ALE quantitative laws",
+        "from": "figure"
+      },
+      {
+        "key": "b1",
         "zh": "鞘層與離子入射角定律",
         "en": "Sheath & ion angular spread law",
-        "leafZh": "高偏壓讓離子直射深孔底",
-        "leafEn": "High bias drives ions straight to hole bottoms"
+        "from": "figure"
       },
       {
+        "key": "l1",
+        "zh": "高偏壓讓離子直射深孔底",
+        "en": "High bias drives ions straight to hole bottoms",
+        "from": "figure"
+      },
+      {
+        "key": "b2",
         "zh": "深寬比相依蝕刻 ARDE",
         "en": "Aspect-ratio dependent etch (ARDE)",
-        "leafZh": "需高選擇比蝕刻停止層",
-        "leafEn": "Requires high-selectivity etch stop layers"
+        "from": "figure"
       },
       {
+        "key": "l2",
+        "zh": "需高選擇比蝕刻停止層",
+        "en": "Requires high-selectivity etch stop layers",
+        "from": "figure"
+      },
+      {
+        "key": "b3",
         "zh": "原子層蝕刻協同因子",
         "en": "ALE synergy factor law",
-        "leafZh": "消除 RIE Lag 與晶格損傷",
-        "leafEn": "Removes RIE lag and lattice damage"
+        "from": "figure"
+      },
+      {
+        "key": "l3",
+        "zh": "消除 RIE Lag 與晶格損傷",
+        "en": "Removes RIE lag and lattice damage",
+        "from": "figure"
+      },
+      {
+        "key": "modA",
+        "zh": "單獨通入改質氣體",
+        "en": "Neither chemical modification alone"
+      },
+      {
+        "key": "ionB1",
+        "zh": "單獨以低能",
+        "en": "nor sub-sputter-threshold"
+      },
+      {
+        "key": "ionB2",
+        "zh": "轟擊",
+        "en": "ions"
+      },
+      {
+        "key": "none",
+        "zh": "均不蝕刻",
+        "en": "etch alone"
+      },
+      {
+        "key": "alt",
+        "zh": "兩步交替",
+        "en": "Sequential cycling"
+      },
+      {
+        "key": "perCycle",
+        "zh": "每循環精準剝離 0.1–0.3 nm",
+        "en": "Removes 0.1–0.3 nm/cycle"
       }
     ]
   },
@@ -4462,6 +4747,77 @@ export const SECTION_DIAGRAMS = [
     ]
   },
   {
+    "chapterId": "ch06",
+    "headingZh": "常見異常",
+    "headingEn": "Common problems",
+    "type": "pictorial",
+    "draw": "etchDefects",
+    "captionZh": "五種蝕刻異常長什麼樣，以及各自的結果",
+    "captionEn": "Five etch problems: what each looks like and what it causes",
+    "labels": [
+      {
+        "key": "under",
+        "zh": "蝕刻不足",
+        "en": "Under etch"
+      },
+      {
+        "key": "underR",
+        "zh": "殘留材料，造成斷路",
+        "en": "Leftover material causes open circuits"
+      },
+      {
+        "key": "over",
+        "zh": "過度蝕刻",
+        "en": "Over etch"
+      },
+      {
+        "key": "overR",
+        "zh": "傷到下層材料",
+        "en": "Damage to the layer underneath"
+      },
+      {
+        "key": "cd",
+        "zh": "CD 偏移",
+        "en": "CD shift"
+      },
+      {
+        "key": "cdR",
+        "zh": "線寬不合格",
+        "en": "Line width out of spec"
+      },
+      {
+        "key": "particle",
+        "zh": "微粒",
+        "en": "Particles"
+      },
+      {
+        "key": "particleR",
+        "zh": "缺陷、短路",
+        "en": "Defects, shorts"
+      },
+      {
+        "key": "loading",
+        "zh": "負載效應",
+        "en": "Loading effect"
+      },
+      {
+        "key": "loadingR",
+        "zh": "同一顆晶粒內深度不一致",
+        "en": "Different depths within one die"
+      },
+      {
+        "key": "dense",
+        "zh": "密",
+        "en": "Dense"
+      },
+      {
+        "key": "sparse",
+        "zh": "疏",
+        "en": "Sparse"
+      }
+    ]
+  },
+  {
     "chapterId": "ch07",
     "headingZh": "兩個最重要的參數",
     "headingEn": "The two most important parameters",
@@ -4516,33 +4872,96 @@ export const SECTION_DIAGRAMS = [
     "chapterId": "ch07",
     "headingZh": "退火：修復與活化",
     "headingEn": "Annealing: repair and activation",
-    "type": "flow",
     "captionZh": "佈植撞亂晶格，退火修復並活化雜質",
     "captionEn": "Implant damage is repaired by annealing, which also activates the impurities.",
-    "steps": [
+    "type": "pictorial",
+    "draw": "annealRepair",
+    "labels": [
       {
+        "key": "ions",
         "zh": "離子高速撞進矽",
         "en": "Ions slam into the silicon",
-        "icon": "implant"
+        "from": "figure"
       },
       {
+        "key": "knock",
         "zh": "矽原子被撞亂",
         "en": "Silicon atoms knocked out of place",
-        "noteZh": "雜質尚未就定位",
-        "noteEn": "Impurities not yet in position",
-        "icon": "random"
+        "from": "figure"
       },
       {
+        "key": "notYet",
+        "zh": "雜質尚未就定位",
+        "en": "Impurities not yet in position",
+        "from": "figure"
+      },
+      {
+        "key": "heat",
         "zh": "退火：加熱晶圓",
         "en": "Anneal: heat the wafer",
-        "icon": "thermometer"
+        "from": "figure"
       },
       {
+        "key": "repair",
         "zh": "晶格修復、雜質就定位",
         "en": "Lattice repairs; impurities settle",
-        "noteZh": "開始導電，稱為活化",
-        "noteEn": "They start conducting: activation",
-        "icon": "lattice"
+        "from": "figure"
+      },
+      {
+        "key": "active",
+        "zh": "開始導電，稱為活化",
+        "en": "They start conducting: activation",
+        "from": "figure"
+      },
+      {
+        "key": "order",
+        "zh": "常見的退火方式從長到短",
+        "en": "Common annealing methods, from long to short"
+      },
+      {
+        "key": "furnace",
+        "zh": "爐管退火",
+        "en": "Furnace anneal"
+      },
+      {
+        "key": "fTime",
+        "zh": "數十分鐘以上",
+        "en": "Tens of minutes or more"
+      },
+      {
+        "key": "rta",
+        "zh": "快速熱退火（RTA）",
+        "en": "Rapid thermal anneal (RTA)"
+      },
+      {
+        "key": "lamp",
+        "zh": "用強光",
+        "en": "Strong lamps"
+      },
+      {
+        "key": "rTime",
+        "zh": "幾秒內",
+        "en": "Within seconds"
+      },
+      {
+        "key": "ms",
+        "zh": "毫秒級退火",
+        "en": "Millisecond anneal"
+      },
+      {
+        "key": "msSrc",
+        "zh": "雷射或閃光燈",
+        "en": "A laser or flash lamp"
+      },
+      {
+        "key": "msTime",
+        "zh": "極短的時間",
+        "en": "An extremely short time"
+      },
+      {
+        "key": "surface",
+        "zh": "只加熱晶圓表面",
+        "en": "Heats only the wafer surface"
       }
     ]
   },
@@ -4594,6 +5013,31 @@ export const SECTION_DIAGRAMS = [
         "key": "leak",
         "zh": "漏電變大、Vt 偏移",
         "en": "Leakage goes up and Vt shifts"
+      },
+      {
+        "key": "order",
+        "zh": "製程順序",
+        "en": "The order of the process steps"
+      },
+      {
+        "key": "early",
+        "zh": "需要高溫的步驟盡量安排在前面",
+        "en": "Steps that need high temperatures are placed as early as possible"
+      },
+      {
+        "key": "cooler",
+        "zh": "越後面的步驟溫度越低",
+        "en": "Later steps run cooler and cooler"
+      },
+      {
+        "key": "metal",
+        "zh": "有了金屬導線",
+        "en": "Once metal wiring is on the wafer"
+      },
+      {
+        "key": "drop",
+        "zh": "溫度就必須大幅降低",
+        "en": "Temperatures must drop sharply"
       }
     ]
   },
@@ -4601,26 +5045,63 @@ export const SECTION_DIAGRAMS = [
     "chapterId": "ch07",
     "headingZh": "定量物理定律與 3D 製程視窗",
     "headingEn": "Quantitative Governing Laws & 3D Process Windows",
-    "type": "flow",
     "foldSection": true,
-    "captionZh": "退火技術朝高溫、極短時間演進以壓低擴散",
-    "captionEn": "Annealing moved to high temperature and ultra-short time to curb diffusion.",
-    "steps": [
+    "type": "pictorial",
+    "draw": "annealLaws",
+    "sourcedNumbers": true,
+    "sourceZh": "溫度與深度出自本段表格；各層厚度沒有按比例畫，上方四種退火的圖示只是示意。四種退火的名稱沿用原本的流程圖。",
+    "sourceEn": "Temperatures and depth come from the table in this section. Layer thicknesses are not to scale, and the four anneal icons above are schematic. The four anneal names are kept from the original flow diagram.",
+    "captionZh": "退火時間越來越短，背面雷射只加熱頂層",
+    "captionEn": "Anneals moved to ever shorter times; a backside laser heats only the top",
+    "labels": [
       {
+        "key": "f0",
         "zh": "爐管退火",
-        "en": "Furnace anneal"
+        "en": "Furnace anneal",
+        "from": "figure"
       },
       {
+        "key": "f1",
         "zh": "尖峰快速熱退火",
-        "en": "Spike RTA"
+        "en": "Spike RTA",
+        "from": "figure"
       },
       {
+        "key": "f2",
         "zh": "毫秒閃光退火",
-        "en": "Millisecond flash anneal (FLA)"
+        "en": "Millisecond flash anneal (FLA)",
+        "from": "figure"
       },
       {
+        "key": "f3",
         "zh": "奈秒雷射退火",
-        "en": "Nanosecond laser anneal (LSA)"
+        "en": "Nanosecond laser anneal (LSA)",
+        "from": "figure"
+      },
+      {
+        "key": "laser",
+        "zh": "奈秒雷射",
+        "en": "Laser-activated"
+      },
+      {
+        "key": "top",
+        "zh": "僅表層數百奈米升至 1300°C",
+        "en": "The surface reaches 1300°C"
+      },
+      {
+        "key": "bspdn",
+        "zh": "晶圓背面供電（BSPDN）",
+        "en": "Backside Power Delivery (BSPDN)"
+      },
+      {
+        "key": "deep",
+        "zh": "5 µm 以下維持 < 400°C",
+        "en": "Layers >5 µm deep stay below 400°C"
+      },
+      {
+        "key": "cu",
+        "zh": "正面銅導線",
+        "en": "Frontside BEOL Cu/ULK"
       }
     ]
   },
@@ -4677,32 +5158,154 @@ export const SECTION_DIAGRAMS = [
     "headingZh": "現場異常徵兆與跨站根因排查",
     "headingEn": "Fab Failure Signatures & Root-Cause Diagnostics",
     "foldTables": true,
-    "type": "branch",
     "foldSection": true,
     "captionZh": "佈植與退火三大異常與對應的永久防呆對策",
     "captionEn": "Three implant and anneal failures and their permanent countermeasures",
-    "root": {
-      "zh": "佈植退火三大異常",
-      "en": "Three implant & anneal failures"
-    },
-    "branches": [
+    "type": "pictorial",
+    "draw": "implantFailures",
+    "labels": [
       {
+        "key": "root",
+        "zh": "佈植退火三大異常",
+        "en": "Three implant & anneal failures",
+        "from": "figure"
+      },
+      {
+        "key": "b1",
         "zh": "通道效應長尾穿通",
         "en": "Channeling tail punch-through",
-        "leafZh": "傾角旋轉防呆或預非晶化",
-        "leafEn": "Tilt/twist interlocks or Ge PAI"
+        "from": "figure"
       },
       {
+        "key": "l1",
+        "zh": "傾角旋轉防呆或預非晶化",
+        "en": "Tilt/twist interlocks or Ge PAI",
+        "from": "figure"
+      },
+      {
+        "key": "b2",
         "zh": "瞬態增強擴散與硼叢集",
         "en": "TED and boron clustering",
-        "leafZh": "碳共佈植並以尖峰加雷射退火",
-        "leafEn": "Carbon co-implant plus spike RTA and LSA"
+        "from": "figure"
       },
       {
+        "key": "l2",
+        "zh": "碳共佈植並以尖峰加雷射退火",
+        "en": "Carbon co-implant plus spike RTA and LSA",
+        "from": "figure"
+      },
+      {
+        "key": "b3",
         "zh": "光阻爆裂與雷射退火條紋",
         "en": "Resist popping & LSA stripes",
-        "leafZh": "分步冷卻、兩段灰化、吸收層",
-        "leafEn": "ESC He cooling, two-step strip, absorber cap"
+        "from": "figure"
+      },
+      {
+        "key": "l3",
+        "zh": "分步冷卻、兩段灰化、吸收層",
+        "en": "ESC He cooling, two-step strip, absorber cap",
+        "from": "figure"
+      },
+      {
+        "key": "conc",
+        "zh": "濃度",
+        "en": "Concentration"
+      },
+      {
+        "key": "depth",
+        "zh": "深度",
+        "en": "Depth"
+      },
+      {
+        "key": "gauss",
+        "zh": "高斯分佈",
+        "en": "Gaussian"
+      },
+      {
+        "key": "tail",
+        "zh": "長尾（Channeling Tail）",
+        "en": "Deep concentration tail"
+      },
+      {
+        "key": "after",
+        "zh": "退火後",
+        "en": "Post-anneal"
+      },
+      {
+        "key": "bics",
+        "zh": "不導電叢集（BICs）",
+        "en": "Boron-Interstitial Clusters (BICs)"
+      },
+      {
+        "key": "ted",
+        "zh": "瞬態增強擴散（TED）",
+        "en": "Transient Enhanced Diffusion (TED)"
+      },
+      {
+        "key": "crust",
+        "zh": "光阻表層碳化結殼",
+        "en": "Resist surface crust"
+      },
+      {
+        "key": "pop",
+        "zh": "微爆裂",
+        "en": "Blisters burst"
+      },
+      {
+        "key": "stripe",
+        "zh": "條紋",
+        "en": "Stripes"
+      }
+    ]
+  },
+  {
+    "chapterId": "ch07",
+    "headingZh": "為什麼要佈植",
+    "headingEn": "Why implant",
+    "type": "pictorial",
+    "draw": "diffuseVsImplant",
+    "captionZh": "早期的高溫擴散與現代的離子佈植",
+    "captionEn": "Early high-temperature diffusion versus modern ion implantation",
+    "labels": [
+      {
+        "key": "early",
+        "zh": "早期的做法",
+        "en": "The early method"
+      },
+      {
+        "key": "gas",
+        "zh": "高溫的雜質氣體",
+        "en": "A hot gas containing the impurity"
+      },
+      {
+        "key": "slow",
+        "zh": "慢慢擴散進矽裡",
+        "en": "Slowly diffuse into the silicon"
+      },
+      {
+        "key": "hard",
+        "zh": "很難精準控制",
+        "en": "Hard to control precisely"
+      },
+      {
+        "key": "modern",
+        "zh": "現代製程改用離子佈植",
+        "en": "Modern processes use ion implantation instead"
+      },
+      {
+        "key": "shot",
+        "zh": "直接「射」進矽裡",
+        "en": "Shot directly into the silicon"
+      },
+      {
+        "key": "place",
+        "zh": "指定的位置和深度",
+        "en": "The chosen place and depth"
+      },
+      {
+        "key": "si",
+        "zh": "矽",
+        "en": "Silicon"
       }
     ]
   },
