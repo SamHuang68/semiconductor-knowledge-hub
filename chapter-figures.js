@@ -375,8 +375,36 @@ function implanter(en) {
   return `<g transform="translate(0 -34)">${svg}</g>`;
 }
 
+// CMP 機台（2.28.0 改畫，第 3 階段 H 批）：側視圖。研磨墊貼在旋轉平台上，研磨頭偏離平台轉軸、把晶圓正面朝下壓在墊上，
+// 下壓箭頭以研磨頭中心線左右對稱、長短不同（不同區域的壓力）；研磨液從研磨頭上游滴到墊面；修整器在另一側壓在墊上，底面是鑽石顆粒。
+// 技術審查：只畫機台、不畫放大格（圖說只列機台零件）；研磨頭與修整器的轉動正文沒寫，不畫。圖說來自正文註解，沒有改
 function cmpTool(en) {
-  return `<ellipse cx="250" cy="150" rx="150" ry="28" fill="#e2e8f0" stroke="#334155"/><text x="250" y="154" text-anchor="middle" fill="#0f172a" font-size="12">${L(en, '研磨墊 · 旋轉平台', 'Pad · platen')}</text><rect x="190" y="70" width="120" height="36" rx="4" fill="#bae6fd" stroke="#075985"/><text x="250" y="92" text-anchor="middle" fill="#0f172a" font-size="12">${L(en, '研磨頭', 'Head')}</text><circle cx="430" cy="120" r="10" fill="#fde68a" stroke="#92400e"/><text x="470" y="124" fill="#0f172a" font-size="12">${L(en, '研磨液', 'Slurry')}</text><rect x="40" y="108" width="36" height="50" fill="#cbd5e1" stroke="#334155"/><text x="58" y="96" text-anchor="middle" fill="#0f172a" font-size="12">${L(en, '修整器', 'Conditioner')}</text>`;
+  const INK2 = '#334155', BLUE = '#075985', MUTED = '#64748b';
+  let svg = '';
+  // 平台與研磨墊、轉軸與旋轉箭頭
+  svg += `<rect x="70" y="148" width="460" height="22" rx="3" fill="#94a3b8" stroke="${INK2}"/><rect x="70" y="140" width="460" height="8" fill="#e2e8f0" stroke="${INK2}"/>`
+    + `<rect x="292" y="170" width="16" height="40" fill="#cbd5e1" stroke="${INK2}"/>`
+    + `<path d="M268 192 A32 8 0 1 0 332 192" fill="none" stroke="#0f766e" stroke-width="1.5"/>` + arrow(274, 196, 268, 192, '#0f766e', 1.5)
+    // 研磨液：噴嘴在研磨頭上游，液滴落在墊面，墊面帶著研磨液流向研磨頭
+    + `<path d="M410 52 H370 V96" fill="none" stroke="${INK2}" stroke-width="4"/><path d="M366 96 h8 l-2 6 h-4 z" fill="${INK2}"/>`
+    + [110, 124].map(y => `<path d="M370 ${y} c-3 4 -3 7 0 7 s3 -3 0 -7" fill="#bae6fd" stroke="${BLUE}"/>`).join('')
+    + `<path d="M300 139 H384" stroke="#7dd3fc" stroke-width="2.5"/>` + arrow(350, 132, 306, 132, BLUE, 1.2)
+    // 研磨頭：偏離平台轉軸，在轉軸與墊緣之間；晶圓正面朝下，壓在墊上
+    + `<rect x="232" y="48" width="16" height="40" fill="#cbd5e1" stroke="${INK2}"/><rect x="186" y="88" width="108" height="44" rx="6" fill="#bae6fd" stroke="${BLUE}"/>`
+    + `<rect x="194" y="132" width="92" height="7" fill="#a6bdcb" stroke="${INK2}"/>` + Array.from({ length: 11 }, (_, i) => `<path d="M${198 + i * 8} 139 v-2" stroke="#0f766e" stroke-width="1.4"/>`).join('')
+    + [[204, 18], [222, 26], [240, 32], [258, 26], [276, 18]].map(([x, l]) => arrow(x, 96, x, 96 + l, BLUE, 1.6)).join('')
+    // 修整器：較小的圓盤，另一側壓在墊上，底面是鑽石顆粒
+    + `<path d="M500 52 H458 V118" fill="none" stroke="${INK2}" stroke-width="4"/><rect x="430" y="118" width="56" height="14" rx="3" fill="#e2e8f0" stroke="${INK2}"/>`
+    + Array.from({ length: 7 }, (_, i) => `<path d="M${435 + i * 7.5} 132 l3 6 3 -6 z" fill="#475569"/>`).join('');
+  // 文字
+  svg += tx(240, 40, L(en, '研磨頭', 'Polishing head'), 11.5, '#0f172a')
+    + `<path d="M186 110 L150 96" stroke="${MUTED}" stroke-dasharray="2 2"/>` + rowsAt(148, 86, en ? ['pressure on', 'different zones'] : ['不同區域的壓力'], 10, BLUE, 'end')
+    + `<path d="M196 136 L150 124" stroke="${MUTED}" stroke-dasharray="2 2"/>` + rowsAt(148, 122, en ? ['wafer face down'] : ['晶圓正面朝下'], 10, INK2, 'end')
+    + tx(364, 80, L(en, '研磨液（Slurry）', 'Slurry'), 11, BLUE, 'end')
+    + tx(500, 44, L(en, '修整器', 'Conditioner'), 11.5, '#0f172a', 'start') + `<path d="M488 136 L540 124" stroke="${MUTED}" stroke-dasharray="2 2"/>` + tx(542, 126, L(en, '鑽石顆粒', 'diamond grit'), 10, INK2, 'start')
+    + `<path d="M100 144 L70 122" stroke="${MUTED}" stroke-dasharray="2 2"/>` + tx(66, 118, L(en, '研磨墊', 'Polishing pad'), 10.5, INK2, 'end')
+    + tx(342, 212, L(en, '旋轉平台', 'rotating platen'), 10.5, '#0f766e', 'start');
+  return svg;
 }
 
 function dishing(en) {
@@ -394,15 +422,29 @@ function dishing(en) {
   return dish + erosion + `<text x="320" y="222" text-anchor="middle" fill="#334155" font-size="12">${L(en, '形狀對照，沒有深度數值', 'Shape comparison, no depth values')}</text>`;
 }
 
+// 清洗機台（2.28.0 改畫，第 3 階段 H 批）：左邊批次式濕式清洗槽，一排化學槽與清水槽交替（清水最淡），晶舟裝著直立的整批晶圓，
+// 正被吊入第一個化學槽、整片浸在液面下；右邊單片式清洗機，晶圓水平放在旋轉夾頭上，噴嘴噴出扇形藥液，外圍是防濺杯。
+// 技術審查：「洗車的流水線」只寫成文字，不畫車；標籤用正文原詞。圖說來自正文註解，沒有改
 function clean(en) {
-  // 批次式：整批晶圓直立、整片浸入，依序經過一排化學槽和清水槽；單片式：一次一片，一邊旋轉一邊噴灑化學品
-  const tank = (x, liquid, label, wafers) => `<rect x="${x}" y="80" width="62" height="78" fill="${liquid}" stroke="#075985"/>${wafers ? Array.from({ length: 5 }, (_, i) => `<path d="M${x + 13 + i * 9} 88 V150" stroke="#475569" stroke-width="2"/>`).join('') : ''}${tx(x + 31, 176, label, 11, '#334155')}`;
-  return tx(160, 30, L(en, '批次式濕式清洗槽', 'Batch wet bench'), 13)
-    + tank(20, '#bae6fd', L(en, '化學槽', 'Chemical'), true) + tank(92, '#e0f2fe', L(en, '清水槽', 'Rinse')) + tank(164, '#bae6fd', L(en, '化學槽', 'Chemical')) + tank(236, '#e0f2fe', L(en, '清水槽', 'Rinse'))
-    + arrow(40, 56, 280, 56, '#0f766e')
-    + tx(500, 30, L(en, '單片式清洗機', 'Single-wafer cleaner'), 13)
-    + `<ellipse cx="500" cy="128" rx="90" ry="20" fill="#f8fafc" stroke="#334155"/><rect x="494" y="146" width="12" height="34" fill="#94a3b8"/><path d="M436 132 q64 22 128 0" fill="none" stroke="#0f766e" stroke-width="1.5"/><path d="M564 132 l-9 0 l4 -7 z" fill="#0f766e"/><path d="M470 52 h40 v14 h-40 z" fill="#cbd5e1" stroke="#334155"/>${arrow(490, 66, 490, 102, '#075985')}${arrow(482, 66, 466, 100, '#075985')}${arrow(498, 66, 516, 100, '#075985')}`
-    + tx(500, 206, L(en, '一邊旋轉一邊噴灑化學品', 'Spins while spraying'), 11, '#334155');
+  const INK2 = '#334155', BLUE = '#075985', TEAL = '#0f766e';
+  const tank = (x, liquid, label) => `<rect x="${x}" y="96" width="62" height="74" fill="#ffffff" stroke="${BLUE}"/><rect x="${x + 1}" y="104" width="60" height="65" fill="${liquid}"/><path d="M${x + 1} 104 h60" stroke="${BLUE}" stroke-width=".8"/>${rowsAt(x + 31, 186, [label], 10, INK2)}`;
+  let svg = tb(160, 26, L(en, '批次式濕式清洗槽', 'Batch wet benches'), 12.5, '#0f172a')
+    + tank(20, '#93c5fd', L(en, '化學槽', 'chemical tank')) + tank(92, '#eff6ff', L(en, '清水槽', 'rinse tank')) + tank(164, '#93c5fd', L(en, '化學槽', 'chemical tank')) + tank(236, '#eff6ff', L(en, '清水槽', 'rinse tank'))
+    // 晶舟：直立的整批晶圓，整片浸在第一槽的液面下，吊架往上連到吊臂
+    + `<path d="M51 52 V112" stroke="${INK2}" stroke-width="2"/><path d="M28 112 H74" stroke="${INK2}" stroke-width="2"/>`
+    + Array.from({ length: 6 }, (_, i) => `<path d="M${32 + i * 8} 114 V160" stroke="#475569" stroke-width="2.4"/>`).join('') + `<path d="M28 162 H74" stroke="${INK2}" stroke-width="2"/>`
+    + arrow(90, 66, 290, 66, TEAL) + rowsAt(190, 84, en ? ['like a car wash line'] : ['像洗車的流水線'], 10, TEAL)
+    + rowsAt(58, 50, en ? ['A whole batch of wafers'] : ['整批晶圓'], 10, INK2, 'start') + `<path d="M62 54 L66 116" stroke="#64748b" stroke-dasharray="2 2"/>`;
+  // 單片式：旋轉夾頭、轉軸與旋轉箭頭，噴嘴的扇形噴灑，外圍防濺杯
+  svg += tb(500, 26, L(en, '單片式清洗機', 'Single-wafer cleaners'), 12.5, '#0f172a')
+    + `<path d="M412 118 V160 H588 V118" fill="none" stroke="#94a3b8" stroke-width="3"/>`
+    + `<rect x="430" y="128" width="140" height="5" fill="#a6bdcb" stroke="${INK2}"/><rect x="484" y="133" width="32" height="8" fill="#cbd5e1" stroke="${INK2}"/><rect x="494" y="141" width="12" height="38" fill="#94a3b8" stroke="${INK2}"/>`
+    + `<path d="M470 168 A30 6 0 1 0 530 168" fill="none" stroke="${TEAL}" stroke-width="1.5"/>` + arrow(524, 172, 530, 168, TEAL, 1.5)
+    + `<path d="M486 54 h28 v14 h-28 z" fill="#cbd5e1" stroke="${INK2}"/><path d="M500 68 L456 126 H544 Z" fill="#bae6fd" fill-opacity=".55"/>`
+    + rowsAt(500, 196, en ? ['one wafer at a time'] : ['一次處理一片晶圓'], 10.5, INK2)
+    + rowsAt(500, 211, en ? ['spraying chemicals while the wafer spins'] : ['一邊旋轉一邊噴灑化學品'], 10.5, INK2)
+    + rowsAt(500, 226, en ? ['avoid cross-contamination between wafers'] : ['避免晶圓之間互相污染'], 10.5, TEAL);
+  return svg;
 }
 
 function metalStack(en) {
@@ -755,8 +797,8 @@ const MATCHERS = [
   [/等向|isotropic/i, etch, 240],
   [/佈植機|implanter/i, implanter, 284],
   [/Dishing|Erosion|碟/i, dishing],
-  [/CMP 機台|CMP tool/i, cmpTool],
-  [/清洗|wet bench/i, clean, 220],
+  [/CMP 機台|CMP tool/i, cmpTool, 232],
+  [/清洗|wet bench/i, clean, 240],
   [/多層金屬|multilevel metal/i, metalStack],
   [/大馬士革|damascene/i, damascene, 336],
   [/FEOL/i, feol, 340],

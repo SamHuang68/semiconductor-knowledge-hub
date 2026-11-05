@@ -5313,59 +5313,111 @@ export const SECTION_DIAGRAMS = [
     "chapterId": "ch08",
     "headingZh": "磨到哪裡該停",
     "headingEn": "Knowing when to stop",
-    "type": "compare",
     "captionZh": "CMP 控制研磨終點的三種方式",
     "captionEn": "Three ways CMP is made to stop at the right point.",
-    "columns": [
+    "type": "pictorial",
+    "draw": "cmpStop",
+    "labels": [
       {
-        "titleZh": "終點偵測",
-        "titleEn": "Endpoint detection",
-        "items": [
-          {
-            "zh": "磨到另一種材料時",
-            "en": "When polishing reaches another material"
-          },
-          {
-            "zh": "摩擦力與反光改變",
-            "en": "Friction and reflection change"
-          },
-          {
-            "zh": "機台據此判斷是否到目標",
-            "en": "Tool judges whether target is reached"
-          }
-        ]
+        "key": "t1",
+        "zh": "終點偵測",
+        "en": "Endpoint detection",
+        "from": "figure"
       },
       {
-        "titleZh": "停止層",
-        "titleEn": "Stop layer",
-        "items": [
-          {
-            "zh": "下方先鋪較耐磨的一層",
-            "en": "A harder layer deposited underneath"
-          },
-          {
-            "zh": "碰到時研磨自然變慢",
-            "en": "Polishing slows down on reaching it"
-          }
-        ]
+        "key": "i1a",
+        "zh": "磨到另一種材料時",
+        "en": "When polishing reaches another material",
+        "from": "figure"
       },
       {
-        "titleZh": "微調研磨時間",
-        "titleEn": "Adjusting polishing time",
-        "items": [
-          {
-            "zh": "研磨墊用久速度慢慢改變",
-            "en": "Pad wear slowly changes the rate"
-          },
-          {
-            "zh": "依前幾批的量測結果",
-            "en": "Based on previous lots' measurements"
-          },
-          {
-            "zh": "自動微調下一批時間",
-            "en": "Next lot's time adjusted automatically"
-          }
-        ]
+        "key": "i1b",
+        "zh": "摩擦力與反光改變",
+        "en": "Friction and reflection change",
+        "from": "figure"
+      },
+      {
+        "key": "i1c",
+        "zh": "機台據此判斷是否到目標",
+        "en": "Tool judges whether target is reached",
+        "from": "figure"
+      },
+      {
+        "key": "t2",
+        "zh": "停止層",
+        "en": "Stop layer",
+        "from": "figure"
+      },
+      {
+        "key": "i2a",
+        "zh": "下方先鋪較耐磨的一層",
+        "en": "A harder layer deposited underneath",
+        "from": "figure"
+      },
+      {
+        "key": "i2b",
+        "zh": "碰到時研磨自然變慢",
+        "en": "Polishing slows down on reaching it",
+        "from": "figure"
+      },
+      {
+        "key": "t3",
+        "zh": "微調研磨時間",
+        "en": "Adjusting polishing time",
+        "from": "figure"
+      },
+      {
+        "key": "i3a",
+        "zh": "研磨墊用久速度慢慢改變",
+        "en": "Pad wear slowly changes the rate",
+        "from": "figure"
+      },
+      {
+        "key": "i3b",
+        "zh": "依前幾批的量測結果",
+        "en": "Based on previous lots' measurements",
+        "from": "figure"
+      },
+      {
+        "key": "i3c",
+        "zh": "自動微調下一批時間",
+        "en": "Next lot's time adjusted automatically",
+        "from": "figure"
+      },
+      {
+        "key": "friction",
+        "zh": "摩擦力",
+        "en": "Friction"
+      },
+      {
+        "key": "reflect",
+        "zh": "反光",
+        "en": "Reflection"
+      },
+      {
+        "key": "ptime",
+        "zh": "研磨時間",
+        "en": "Polishing time"
+      },
+      {
+        "key": "wear",
+        "zh": "研磨墊用久了",
+        "en": "As a pad wears"
+      },
+      {
+        "key": "rate",
+        "zh": "研磨速度",
+        "en": "Polishing rate"
+      },
+      {
+        "key": "prev",
+        "zh": "前幾批",
+        "en": "The previous lots"
+      },
+      {
+        "key": "next",
+        "zh": "下一批",
+        "en": "Next lot"
       }
     ]
   },
@@ -5439,32 +5491,78 @@ export const SECTION_DIAGRAMS = [
     "chapterId": "ch08",
     "headingZh": "定量物理定律與 3D 製程視窗",
     "headingEn": "Quantitative Governing Laws & 3D Process Windows",
-    "type": "branch",
     "foldSection": true,
     "captionZh": "混合鍵合中銅墊太凸、受控內凹或凹陷太深的結果",
     "captionEn": "Outcomes of Cu pad recess in hybrid bonding: protruding, controlled, too deep.",
-    "root": {
-      "zh": "CMP 後的銅墊凹陷",
-      "en": "Cu pad recess after CMP"
-    },
-    "branches": [
+    "type": "pictorial",
+    "draw": "bondRecess",
+    "labels": [
       {
+        "key": "root",
+        "zh": "CMP 後的銅墊凹陷",
+        "en": "Cu pad recess after CMP",
+        "from": "figure"
+      },
+      {
+        "key": "b1",
         "zh": "銅墊太凸",
         "en": "Protruding Cu pad",
-        "leafZh": "室溫下介電質無法貼合",
-        "leafEn": "No dielectric contact at room temp"
+        "from": "figure"
       },
       {
+        "key": "l1",
+        "zh": "室溫下介電質無法貼合",
+        "en": "No dielectric contact at room temp",
+        "from": "figure"
+      },
+      {
+        "key": "b2",
         "zh": "受控內凹",
         "en": "Controlled Cu dishing",
-        "leafZh": "退火時銅膨脹橋接",
-        "leafEn": "Cu expands to bridge during anneal"
+        "from": "figure"
       },
       {
+        "key": "l2",
+        "zh": "退火時銅膨脹橋接",
+        "en": "Cu expands to bridge during anneal",
+        "from": "figure"
+      },
+      {
+        "key": "b3",
         "zh": "凹陷太深",
         "en": "Dishing too deep",
-        "leafZh": "銅膨脹不到對面，形成開路",
-        "leafEn": "Cu can't reach across: open joint"
+        "from": "figure"
+      },
+      {
+        "key": "l3",
+        "zh": "銅膨脹不到對面，形成開路",
+        "en": "Cu can't reach across: open joint",
+        "from": "figure"
+      },
+      {
+        "key": "rt",
+        "zh": "室溫下",
+        "en": "Room-temperature"
+      },
+      {
+        "key": "an",
+        "zh": "退火時",
+        "en": "After anneal"
+      },
+      {
+        "key": "die",
+        "zh": "介電質",
+        "en": "Dielectric"
+      },
+      {
+        "key": "pad",
+        "zh": "銅墊",
+        "en": "Cu pad"
+      },
+      {
+        "key": "up",
+        "zh": "向上膨脹",
+        "en": "Expands upward"
       }
     ]
   },
@@ -5473,34 +5571,99 @@ export const SECTION_DIAGRAMS = [
     "headingZh": "CMP 平坦化與 3D 混合鍵合條例總覽",
     "headingEn": "CMP & 3D Hybrid Bonding Clauses",
     "foldTables": true,
-    "type": "flow",
     "foldSection": true,
-    "captionZh": "CMP 條例從前段、中段、後段延伸到混合鍵合",
-    "captionEn": "CMP clauses run from FEOL, MOL and BEOL through to hybrid bonding.",
-    "steps": [
+    "type": "pictorial",
+    "draw": "cmpClauses",
+    "captionZh": "CMP 條例從前段到混合鍵合，展開後段銅三步研磨",
+    "captionEn": "CMP clauses from FEOL to hybrid bonding, with the three Cu steps expanded",
+    "labels": [
       {
+        "key": "s0",
         "zh": "前段淺溝槽隔離 CMP",
         "en": "FEOL STI oxide CMP",
-        "noteZh": "停在氮化矽並建立平坦基準",
-        "noteEn": "Stops on nitride; sets a flat focal plane"
+        "from": "figure"
       },
       {
+        "key": "n0",
+        "zh": "停在氮化矽並建立平坦基準",
+        "en": "Stops on nitride; sets a flat focal plane",
+        "from": "figure"
+      },
+      {
+        "key": "s1",
         "zh": "中段閘極與接觸孔 CMP",
         "en": "MOL gate and contact plug CMP",
-        "noteZh": "閘極高度決定 Vt 一致性",
-        "noteEn": "Gate height governs Vt uniformity"
+        "from": "figure"
       },
       {
+        "key": "n1",
+        "zh": "閘極高度決定 Vt 一致性",
+        "en": "Gate height governs Vt uniformity",
+        "from": "figure"
+      },
+      {
+        "key": "s2",
         "zh": "後段銅雙鑲嵌三步研磨",
         "en": "BEOL three-step Cu damascene CMP",
-        "noteZh": "假金屬填充壓低碟化與侵蝕",
-        "noteEn": "Dummy metal fill bounds dishing and erosion"
+        "from": "figure"
       },
       {
+        "key": "n2",
+        "zh": "假金屬填充壓低碟化與侵蝕",
+        "en": "Dummy metal fill bounds dishing and erosion",
+        "from": "figure"
+      },
+      {
+        "key": "s3",
         "zh": "TSV 露出與混合鍵合",
         "en": "TSV reveal and hybrid bonding CMP",
-        "noteZh": "銅墊精準內凹，退火時頂合",
-        "noteEn": "Cu pads recessed to fuse on anneal"
+        "from": "figure"
+      },
+      {
+        "key": "n3",
+        "zh": "銅墊精準內凹，退火時頂合",
+        "en": "Cu pads recessed to fuse on anneal",
+        "from": "figure"
+      },
+      {
+        "key": "bulk",
+        "zh": "高速除銅",
+        "en": "Bulk Cu"
+      },
+      {
+        "key": "soft",
+        "zh": "軟著陸清銅",
+        "en": "Soft Landing"
+      },
+      {
+        "key": "buff",
+        "zh": "阻障層與介電質微拋 Buff",
+        "en": "Barrier Buff"
+      },
+      {
+        "key": "low",
+        "zh": "低壓",
+        "en": "Low-downforce"
+      },
+      {
+        "key": "stopTa",
+        "zh": "停在 Ta/TaN 阻障層",
+        "en": "Stopping on Ta/TaN barrier"
+      },
+      {
+        "key": "cuL",
+        "zh": "銅",
+        "en": "Cu"
+      },
+      {
+        "key": "bar",
+        "zh": "Ta/TaN 阻障層",
+        "en": "Ta/TaN barrier"
+      },
+      {
+        "key": "die",
+        "zh": "介電質",
+        "en": "Dielectric"
       }
     ]
   },
@@ -5509,32 +5672,63 @@ export const SECTION_DIAGRAMS = [
     "headingZh": "現場異常徵兆與跨站根因排查",
     "headingEn": "Fab Failure Signatures & Root-Cause Diagnostics",
     "foldTables": true,
-    "type": "branch",
     "foldSection": true,
     "captionZh": "CMP 三大關鍵異常與對應的永久防呆對策",
     "captionEn": "Three critical CMP failure signatures and the countermeasure for each.",
-    "root": {
-      "zh": "CMP 三大關鍵異常",
-      "en": "Three critical CMP failures"
-    },
-    "branches": [
+    "type": "pictorial",
+    "draw": "cmpFailures",
+    "labels": [
       {
+        "key": "root",
+        "zh": "CMP 三大關鍵異常",
+        "en": "Three critical CMP failures",
+        "from": "figure"
+      },
+      {
+        "key": "b1",
         "zh": "寬銅線碟化與介電質侵蝕",
         "en": "Cu dishing and oxide erosion",
-        "leafZh": "虛設金屬填充加低壓軟拋光液",
-        "leafEn": "Dummy metal fill, low-downforce slurry"
+        "from": "figure"
       },
       {
+        "key": "l1",
+        "zh": "虛設金屬填充加低壓軟拋光液",
+        "en": "Dummy metal fill, low-downforce slurry",
+        "from": "figure"
+      },
+      {
+        "key": "b2",
         "zh": "研磨液團簇弧形刮痕",
         "en": "Slurry-cluster chatter scratches",
-        "leafZh": "使用點過濾器與大顆粒計數器",
-        "leafEn": "POU filters and large particle counters"
+        "from": "figure"
       },
       {
+        "key": "l2",
+        "zh": "使用點過濾器與大顆粒計數器",
+        "en": "POU filters and large particle counters",
+        "from": "figure"
+      },
+      {
+        "key": "b3",
         "zh": "混合鍵合銅凹陷超規",
         "en": "Hybrid-bond Cu recess out of spec",
-        "leafZh": "多區氣囊拋光頭加終點偵測",
-        "leafEn": "Multi-zone membrane head with endpointing"
+        "from": "figure"
+      },
+      {
+        "key": "l3",
+        "zh": "多區氣囊拋光頭加終點偵測",
+        "en": "Multi-zone membrane head with endpointing",
+        "from": "figure"
+      },
+      {
+        "key": "arc",
+        "zh": "圓弧形連續點狀刮痕軌跡",
+        "en": "Arc-shaped chatter mark chains"
+      },
+      {
+        "key": "debris",
+        "zh": "刮痕末端殘留顆粒",
+        "en": "Scratch-tip debris"
       }
     ]
   },
@@ -5600,36 +5794,232 @@ export const SECTION_DIAGRAMS = [
     ]
   },
   {
+    "chapterId": "ch08",
+    "headingZh": "CMP 用在哪裡",
+    "headingEn": "Where CMP is used",
+    "type": "pictorial",
+    "draw": "cmpUses",
+    "captionZh": "四種 CMP 各自磨掉什麼",
+    "captionEn": "What each of the four types of CMP polishes away",
+    "labels": [
+      {
+        "key": "sti",
+        "zh": "STI CMP",
+        "en": "STI CMP"
+      },
+      {
+        "key": "stiDo",
+        "zh": "把多餘的氧化矽磨掉",
+        "en": "Removes the excess oxide"
+      },
+      {
+        "key": "diel",
+        "zh": "介電層 CMP",
+        "en": "Dielectric CMP"
+      },
+      {
+        "key": "dielDo",
+        "zh": "把絕緣層的表面磨平",
+        "en": "Flattens the surface of an insulating layer"
+      },
+      {
+        "key": "w",
+        "zh": "鎢 CMP",
+        "en": "Tungsten CMP"
+      },
+      {
+        "key": "wDo",
+        "zh": "去除接觸窗以外多餘的鎢",
+        "en": "Removes the excess tungsten outside the contacts"
+      },
+      {
+        "key": "cu",
+        "zh": "銅 CMP",
+        "en": "Copper CMP"
+      },
+      {
+        "key": "cuDo",
+        "zh": "去除導線以外多餘的銅",
+        "en": "Removes the excess copper outside the wires"
+      },
+      {
+        "key": "exOx",
+        "zh": "多餘的氧化矽",
+        "en": "Excess oxide"
+      },
+      {
+        "key": "insul",
+        "zh": "絕緣層",
+        "en": "Insulating layer"
+      },
+      {
+        "key": "exW",
+        "zh": "多餘的鎢",
+        "en": "Excess tungsten"
+      },
+      {
+        "key": "exCu",
+        "zh": "多餘的銅",
+        "en": "Excess copper"
+      }
+    ]
+  },
+  {
+    "chapterId": "ch08",
+    "headingZh": "常見異常",
+    "headingEn": "Common problems",
+    "type": "pictorial",
+    "draw": "cmpDefects",
+    "captionZh": "五種 CMP 異常長什麼樣，以及各自的結果",
+    "captionEn": "Five CMP problems: what each looks like and what it causes",
+    "labels": [
+      {
+        "key": "over",
+        "zh": "磨過頭或磨不夠",
+        "en": "Over-polish or under-polish"
+      },
+      {
+        "key": "overR",
+        "zh": "膜厚不合格",
+        "en": "Film thickness out of spec"
+      },
+      {
+        "key": "dish",
+        "zh": "碟化與侵蝕",
+        "en": "Dishing and erosion"
+      },
+      {
+        "key": "dishR",
+        "zh": "導線變薄、電阻變高",
+        "en": "Thinner wires, higher resistance"
+      },
+      {
+        "key": "scratch",
+        "zh": "刮傷",
+        "en": "Scratches"
+      },
+      {
+        "key": "scratchR",
+        "zh": "斷路或短路",
+        "en": "Open or short circuits"
+      },
+      {
+        "key": "residue",
+        "zh": "金屬殘留",
+        "en": "Metal residue"
+      },
+      {
+        "key": "residueR",
+        "zh": "相鄰導線短路",
+        "en": "Shorts between neighboring wires"
+      },
+      {
+        "key": "corr",
+        "zh": "腐蝕",
+        "en": "Corrosion"
+      },
+      {
+        "key": "corrR",
+        "zh": "導線損傷",
+        "en": "Damaged wires"
+      }
+    ]
+  },
+  {
     "chapterId": "ch09",
     "headingZh": "Q-Time：清洗的效果會過期",
     "headingEn": "Q-time: a clean surface has an expiration date",
-    "type": "branch",
     "captionZh": "系統依 Q-Time 狀態決定晶圓的處理方式",
     "captionEn": "How the fab system handles a lot according to its Q-time status.",
-    "root": {
-      "zh": "系統計算 Q-Time",
-      "en": "System tracks each lot's Q-time",
-      "noteZh": "兩站之間可等多久",
-      "noteEn": "How long a lot may wait between steps"
-    },
-    "branches": [
+    "type": "pictorial",
+    "draw": "qtimeBar",
+    "labels": [
       {
+        "key": "root",
+        "zh": "系統計算 Q-Time",
+        "en": "System tracks each lot's Q-time",
+        "from": "figure"
+      },
+      {
+        "key": "rootN",
+        "zh": "兩站之間可等多久",
+        "en": "How long a lot may wait between steps",
+        "from": "figure"
+      },
+      {
+        "key": "b1",
         "zh": "在規定時間內",
         "en": "Within the set time",
-        "leafZh": "進入下一個步驟",
-        "leafEn": "Moves on to the next step"
+        "from": "figure"
       },
       {
+        "key": "l1",
+        "zh": "進入下一個步驟",
+        "en": "Moves on to the next step",
+        "from": "figure"
+      },
+      {
+        "key": "b2",
         "zh": "快到期",
         "en": "Close to the limit",
-        "leafZh": "優先派工",
-        "leafEn": "Gets dispatching priority"
+        "from": "figure"
       },
       {
+        "key": "l2",
+        "zh": "優先派工",
+        "en": "Gets dispatching priority",
+        "from": "figure"
+      },
+      {
+        "key": "b3",
         "zh": "超過時間",
         "en": "Limit exceeded",
-        "leafZh": "擋下，重洗或另作處理",
-        "leafEn": "Held; re-clean or other handling"
+        "from": "figure"
+      },
+      {
+        "key": "fresh",
+        "zh": "清洗完的晶圓表面非常乾淨",
+        "en": "A freshly cleaned wafer surface is extremely clean"
+      },
+      {
+        "key": "oxide",
+        "zh": "原生氧化層",
+        "en": "Native oxide"
+      },
+      {
+        "key": "contam",
+        "zh": "空氣中的污染物",
+        "en": "Contaminants from the air"
+      },
+      {
+        "key": "qt",
+        "zh": "Q-Time",
+        "en": "Q-time"
+      },
+      {
+        "key": "decide",
+        "zh": "由工程師決定",
+        "en": "An engineer decides"
+      },
+      {
+        "key": "start",
+        "zh": "清洗完",
+        "en": "After cleaning"
+      },
+      {
+        "key": "held",
+        "zh": "自動擋下",
+        "en": "Automatically held"
+      },
+      {
+        "key": "reclean",
+        "zh": "重洗",
+        "en": "Re-clean"
+      },
+      {
+        "key": "other",
+        "zh": "另作處理",
+        "en": "Handle them another way"
       }
     ]
   },
@@ -5738,28 +6128,52 @@ export const SECTION_DIAGRAMS = [
     "chapterId": "ch09",
     "headingZh": "定量物理定律與 3D 製程視窗",
     "headingEn": "Quantitative Governing Laws & 3D Process Windows",
-    "type": "branch",
     "foldSection": true,
     "captionZh": "為何超臨界二氧化碳乾燥能避免圖案倒塌",
     "captionEn": "Why supercritical carbon dioxide drying prevents pattern collapse.",
-    "root": {
-      "zh": "乾燥時的毛細拉扯應力",
-      "en": "Capillary bending stress in drying",
-      "noteZh": "隨表面張力與深寬比增大",
-      "noteEn": "Grows with surface tension and aspect ratio"
-    },
-    "branches": [
+    "type": "pictorial",
+    "draw": "dryCollapse",
+    "labels": [
       {
-        "zh": "水",
-        "en": "Water",
-        "leafZh": "拉垮高深寬比結構",
-        "leafEn": "Collapses high-AR structures"
+        "key": "root",
+        "zh": "乾燥時的毛細拉扯應力",
+        "en": "Capillary bending stress in drying",
+        "from": "figure"
       },
       {
+        "key": "rootN",
+        "zh": "隨表面張力與深寬比增大",
+        "en": "Grows with surface tension and aspect ratio",
+        "from": "figure"
+      },
+      {
+        "key": "b1",
+        "zh": "水",
+        "en": "Water",
+        "from": "figure"
+      },
+      {
+        "key": "l1",
+        "zh": "拉垮高深寬比結構",
+        "en": "Collapses high-AR structures",
+        "from": "figure"
+      },
+      {
+        "key": "b2",
         "zh": "超臨界二氧化碳",
         "en": "Supercritical carbon dioxide",
-        "leafZh": "無氣液界面，毛細力歸零",
-        "leafEn": "No meniscus; zero capillary force"
+        "from": "figure"
+      },
+      {
+        "key": "l2",
+        "zh": "無氣液界面，毛細力歸零",
+        "en": "No meniscus; zero capillary force",
+        "from": "figure"
+      },
+      {
+        "key": "men",
+        "zh": "彎月面",
+        "en": "Meniscus"
       }
     ]
   },
@@ -5768,40 +6182,114 @@ export const SECTION_DIAGRAMS = [
     "headingZh": "濕／乾式清洗與超臨界 CO₂ 乾燥條例總覽",
     "headingEn": "Wet/Dry Clean & Supercritical CO₂ Clauses",
     "foldTables": true,
-    "type": "branch",
     "foldSection": true,
-    "captionZh": "四類清洗與乾燥條例及各自的核心機制",
-    "captionEn": "Four cleaning and drying clauses and the core mechanism of each.",
-    "root": {
-      "zh": "清洗與乾燥條例",
-      "en": "Cleaning and drying clauses",
-      "noteZh": "零微粒、零金屬並防倒塌",
-      "noteEn": "Zero particles, zero metals, no collapse"
-    },
-    "branches": [
+    "type": "pictorial",
+    "draw": "cleanClauses",
+    "sourcedNumbers": true,
+    "sourceZh": "溫度出自本段表格；層厚與分子大小只是示意。四類條例沿用原本的分支圖。",
+    "sourceEn": "The temperature comes from the table in this section. Layer thickness and molecule size are schematic. The four clauses are kept from the original branch diagram.",
+    "captionZh": "四類清洗與乾燥條例，展開乾式氣相清潔",
+    "captionEn": "Four cleaning and drying clauses, with dry vapor clean expanded",
+    "labels": [
       {
+        "key": "root",
+        "zh": "清洗與乾燥條例",
+        "en": "Cleaning and drying clauses",
+        "from": "figure"
+      },
+      {
+        "key": "rootN",
+        "zh": "零微粒、零金屬並防倒塌",
+        "en": "Zero particles, zero metals, no collapse",
+        "from": "figure"
+      },
+      {
+        "key": "b1",
         "zh": "經典 RCA 濕式清洗",
         "en": "Classic RCA wet clean",
-        "leafZh": "去有機物、氧化層、微粒與金屬",
-        "leafEn": "Removes organics, oxide, particles, metals"
+        "from": "figure"
       },
       {
+        "key": "l1",
+        "zh": "去有機物、氧化層、微粒與金屬",
+        "en": "Removes organics, oxide, particles, metals",
+        "from": "figure"
+      },
+      {
+        "key": "b2",
         "zh": "單片旋轉與臭氧水清洗",
         "en": "Single-wafer spin and ozonated UPW",
-        "leafZh": "單片噴新鮮藥液，杜絕交叉污染",
-        "leafEn": "Fresh dispense, no cross-contamination"
+        "from": "figure"
       },
       {
+        "key": "l2",
+        "zh": "單片噴新鮮藥液，杜絕交叉污染",
+        "en": "Fresh dispense, no cross-contamination",
+        "from": "figure"
+      },
+      {
+        "key": "b3",
         "zh": "乾式氣相化學清潔",
         "en": "Dry vapor chemical clean",
-        "leafZh": "氧化層轉成鹽類後昇華抽走",
-        "leafEn": "Oxide turned to salt, then sublimed away"
+        "from": "figure"
       },
       {
+        "key": "l3",
+        "zh": "氧化層轉成鹽類後昇華抽走",
+        "en": "Oxide turned to salt, then sublimed away",
+        "from": "figure"
+      },
+      {
+        "key": "b4",
         "zh": "馬蘭哥尼與超臨界乾燥",
         "en": "Marangoni and supercritical drying",
-        "leafZh": "IPA 降張力，超臨界無氣液界面",
-        "leafEn": "IPA lowers tension; supercritical: no meniscus"
+        "from": "figure"
+      },
+      {
+        "key": "l4",
+        "zh": "IPA 降張力，超臨界無氣液界面",
+        "en": "IPA lowers tension; supercritical: no meniscus",
+        "from": "figure"
+      },
+      {
+        "key": "vac",
+        "zh": "真空腔體",
+        "en": "In vacuum"
+      },
+      {
+        "key": "native",
+        "zh": "原生氧化層（SiO₂）",
+        "en": "Native SiO₂"
+      },
+      {
+        "key": "gas",
+        "zh": "NF₃ / NH₃",
+        "en": "NF₃/NH₃"
+      },
+      {
+        "key": "salt",
+        "zh": "固態氟矽酸銨鹽類",
+        "en": "Solid ammonium hexafluorosilicate"
+      },
+      {
+        "key": "formula",
+        "zh": "(NH₄)₂SiF₆",
+        "en": "(NH₄)₂SiF₆"
+      },
+      {
+        "key": "heat",
+        "zh": "升溫至 > 100°C",
+        "en": "At > 100°C"
+      },
+      {
+        "key": "sub",
+        "zh": "直接昇華抽走",
+        "en": "Sublimes it away"
+      },
+      {
+        "key": "noLiquid",
+        "zh": "全程無液滴接觸",
+        "en": "Without any liquid phase"
       }
     ]
   },
@@ -5810,32 +6298,78 @@ export const SECTION_DIAGRAMS = [
     "headingZh": "現場異常徵兆與跨站根因排查",
     "headingEn": "Fab Failure Signatures & Root-Cause Diagnostics",
     "foldTables": true,
-    "type": "branch",
     "foldSection": true,
     "captionZh": "濕式清洗三大致命異常與對應的永久防呆對策",
     "captionEn": "Three critical wet-clean failure mechanisms and the countermeasure for each.",
-    "root": {
-      "zh": "濕式清洗三大致命異常",
-      "en": "Three critical wet-clean failures"
-    },
-    "branches": [
+    "type": "pictorial",
+    "draw": "cleanFailures",
+    "labels": [
       {
+        "key": "root",
+        "zh": "濕式清洗三大致命異常",
+        "en": "Three critical wet-clean failures",
+        "from": "figure"
+      },
+      {
+        "key": "b1",
         "zh": "高深寬比結構乾燥倒塌",
         "en": "High-AR pattern collapse on drying",
-        "leafZh": "改用馬蘭哥尼或超臨界乾燥",
-        "leafEn": "Switch to Marangoni or supercritical drying"
+        "from": "figure"
       },
       {
+        "key": "l1",
+        "zh": "改用馬蘭哥尼或超臨界乾燥",
+        "en": "Switch to Marangoni or supercritical drying",
+        "from": "figure"
+      },
+      {
+        "key": "b2",
         "zh": "疏水矽表面水痕",
         "en": "Evaporative silica watermarks",
-        "leafZh": "濕進濕出並用除氧超純水",
-        "leafEn": "Wet-to-wet transfer and degassed UPW"
+        "from": "figure"
       },
       {
+        "key": "l2",
+        "zh": "濕進濕出並用除氧超純水",
+        "en": "Wet-to-wet transfer and degassed UPW",
+        "from": "figure"
+      },
+      {
+        "key": "b3",
         "zh": "雙金屬電偶腐蝕",
         "en": "Bimetallic galvanic corrosion",
-        "leafZh": "添加唑類緩蝕劑並控溶氧",
-        "leafEn": "Azole inhibitors; purge dissolved oxygen"
+        "from": "figure"
+      },
+      {
+        "key": "l3",
+        "zh": "添加唑類緩蝕劑並控溶氧",
+        "en": "Azole inhibitors; purge dissolved oxygen",
+        "from": "figure"
+      },
+      {
+        "key": "paired",
+        "zh": "雙根鰭片（Paired Fins）",
+        "en": "Paired/leaning fins"
+      },
+      {
+        "key": "ring",
+        "zh": "咖啡環狀殘留物",
+        "en": "Coffee-ring stains"
+      },
+      {
+        "key": "mouse",
+        "zh": "鼠咬狀孔洞",
+        "en": "Mouse-bite voids"
+      },
+      {
+        "key": "lineL",
+        "zh": "導線",
+        "en": "Metal line"
+      },
+      {
+        "key": "barL",
+        "zh": "阻障層",
+        "en": "Barrier"
       }
     ]
   },
@@ -5922,6 +6456,113 @@ export const SECTION_DIAGRAMS = [
         "key": "drift",
         "zh": "Vt 漂移",
         "en": "Vt drift"
+      }
+    ]
+  },
+  {
+    "chapterId": "ch09",
+    "headingZh": "看不見的敵人",
+    "headingEn": "The invisible enemy",
+    "type": "pictorial",
+    "draw": "cleanEverywhere",
+    "captionZh": "幾乎每做完一個步驟都要清洗一次",
+    "captionEn": "The wafer is cleaned after almost every step and before every important one",
+    "labels": [
+      {
+        "key": "every",
+        "zh": "幾乎每做完一個步驟",
+        "en": "After almost every step"
+      },
+      {
+        "key": "before",
+        "zh": "或是開始重要步驟之前",
+        "en": "before every important one"
+      },
+      {
+        "key": "step",
+        "zh": "步驟",
+        "en": "Step"
+      },
+      {
+        "key": "clean",
+        "zh": "清洗",
+        "en": "Cleaning"
+      },
+      {
+        "key": "particle",
+        "zh": "微粒",
+        "en": "A particle"
+      },
+      {
+        "key": "metal",
+        "zh": "金屬原子",
+        "en": "Metal atoms"
+      },
+      {
+        "key": "kill",
+        "zh": "電晶體失效",
+        "en": "Kill a transistor"
+      }
+    ]
+  },
+  {
+    "chapterId": "ch09",
+    "headingZh": "常見異常",
+    "headingEn": "Common problems",
+    "type": "pictorial",
+    "draw": "cleanDefects",
+    "captionZh": "五種清洗異常長什麼樣，以及各自的結果",
+    "captionEn": "Five cleaning problems: what each looks like and what it causes",
+    "labels": [
+      {
+        "key": "more",
+        "zh": "清洗後微粒反而增加",
+        "en": "More particles after cleaning than before"
+      },
+      {
+        "key": "moreR",
+        "zh": "缺陷增加",
+        "en": "More defects"
+      },
+      {
+        "key": "water",
+        "zh": "水痕",
+        "en": "Watermarks"
+      },
+      {
+        "key": "waterR",
+        "zh": "表面殘留",
+        "en": "Residue on the surface"
+      },
+      {
+        "key": "metal",
+        "zh": "金屬污染",
+        "en": "Metal contamination"
+      },
+      {
+        "key": "metalR",
+        "zh": "漏電、良率下降",
+        "en": "Leakage, lower yield"
+      },
+      {
+        "key": "film",
+        "zh": "薄膜被吃掉太多",
+        "en": "Too much film removed"
+      },
+      {
+        "key": "filmR",
+        "zh": "膜厚不足",
+        "en": "Film too thin"
+      },
+      {
+        "key": "collapse",
+        "zh": "圖形倒塌",
+        "en": "Pattern collapse"
+      },
+      {
+        "key": "collapseR",
+        "zh": "結構損壞",
+        "en": "Damaged structures"
       }
     ]
   },
