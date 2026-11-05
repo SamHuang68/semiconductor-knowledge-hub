@@ -2505,55 +2505,133 @@ export const SECTION_DIAGRAMS = [
     "chapterId": "ch04",
     "headingZh": "怎麼印得更小",
     "headingEn": "How to print smaller",
-    "type": "compare",
-    "captionZh": "沿用 193 nm 光源時，三種繼續縮小圖形的技巧",
-    "captionEn": "Three tricks used to keep shrinking patterns during the 193 nm years",
-    "columns": [
+    "type": "pictorial",
+    "draw": "printSmaller",
+    "sourcedNumbers": true,
+    "sourceZh": "波長出自本段表格；長條長度與波長成正比，從 0 起畫。下方三個技巧只是示意。",
+    "sourceEn": "Wavelengths come from the table in this section. Bar lengths are proportional to wavelength, starting from 0. The three tricks below are schematic.",
+    "captionZh": "波長越短印得越細，以及 193 nm 時代的三個技巧",
+    "captionEn": "Shorter wavelengths print finer, plus three tricks from the 193 nm years",
+    "labels": [
       {
-        "titleZh": "浸潤式微影",
-        "titleEn": "Immersion lithography",
-        "items": [
-          {
-            "zh": "鏡頭與晶圓之間加一層水",
-            "en": "A layer of water between lens and wafer"
-          },
-          {
-            "zh": "解析能力再提升",
-            "en": "Resolution improves further"
-          }
-        ]
+        "key": "hg",
+        "zh": "汞燈",
+        "en": "Mercury lamp"
       },
       {
-        "titleZh": "OPC",
-        "titleEn": "OPC",
-        "items": [
-          {
-            "zh": "光通過極小圖形會變形",
-            "en": "Light distorts through tiny patterns"
-          },
-          {
-            "zh": "故意把光罩圖形畫歪",
-            "en": "Mask patterns deliberately drawn wrong"
-          },
-          {
-            "zh": "印出來剛好正確",
-            "en": "So they print correctly"
-          }
-        ]
+        "key": "krf",
+        "zh": "KrF 雷射（DUV）",
+        "en": "KrF laser (DUV)"
       },
       {
-        "titleZh": "多重曝光",
-        "titleEn": "Multiple patterning",
-        "items": [
-          {
-            "zh": "拆成兩次或更多次曝光",
-            "en": "Split into two or more exposures"
-          },
-          {
-            "zh": "步驟與成本都增加",
-            "en": "More steps and higher cost"
-          }
-        ]
+        "key": "arf",
+        "zh": "ArF 雷射（DUV）",
+        "en": "ArF laser (DUV)"
+      },
+      {
+        "key": "euv",
+        "zh": "EUV（極紫外光）",
+        "en": "EUV (extreme ultraviolet)"
+      },
+      {
+        "key": "v436",
+        "zh": "436",
+        "en": "436"
+      },
+      {
+        "key": "v365",
+        "zh": "365 nm",
+        "en": "365 nm"
+      },
+      {
+        "key": "v248",
+        "zh": "248 nm",
+        "en": "248 nm"
+      },
+      {
+        "key": "v193",
+        "zh": "193 nm",
+        "en": "193 nm"
+      },
+      {
+        "key": "v135",
+        "zh": "13.5 nm",
+        "en": "13.5 nm"
+      },
+      {
+        "key": "shorter",
+        "zh": "波長更短的光",
+        "en": "Light with a shorter wavelength"
+      },
+      {
+        "key": "pen",
+        "zh": "就像用更細的筆可以寫出更小的字",
+        "en": "Just as a finer pen can write smaller letters"
+      },
+      {
+        "key": "years",
+        "zh": "193 nm 用了很多年",
+        "en": "The industry used 193 nm light for many years"
+      },
+      {
+        "key": "immersion",
+        "zh": "浸潤式微影",
+        "en": "Immersion lithography"
+      },
+      {
+        "key": "water",
+        "zh": "在鏡頭和晶圓之間加一層水",
+        "en": "Adding a layer of water between the lens and the wafer"
+      },
+      {
+        "key": "better",
+        "zh": "讓解析能力再提升",
+        "en": "Improves the resolution further"
+      },
+      {
+        "key": "opc",
+        "zh": "OPC",
+        "en": "OPC"
+      },
+      {
+        "key": "mask",
+        "zh": "光罩",
+        "en": "Mask"
+      },
+      {
+        "key": "printed",
+        "zh": "印出來",
+        "en": "print"
+      },
+      {
+        "key": "distort",
+        "zh": "光通過極小的圖形時會變形",
+        "en": "Light distorts as it passes through extremely small patterns"
+      },
+      {
+        "key": "wrongly",
+        "zh": "故意把光罩上的圖形畫歪",
+        "en": "The patterns on the mask are deliberately drawn \"wrong\""
+      },
+      {
+        "key": "correct",
+        "zh": "讓它印出來剛好正確",
+        "en": "So that they print correctly"
+      },
+      {
+        "key": "multi",
+        "zh": "多重曝光",
+        "en": "Multiple patterning"
+      },
+      {
+        "key": "twoPlus",
+        "zh": "拆成兩次或更多次",
+        "en": "Split into two or more exposures"
+      },
+      {
+        "key": "cost",
+        "zh": "步驟和成本都增加",
+        "en": "More steps and higher cost"
       }
     ]
   },
@@ -2690,40 +2768,164 @@ export const SECTION_DIAGRAMS = [
     "headingZh": "微影曝光世代與 High-NA 條例總覽",
     "headingEn": "Lithography & High-NA EUV Clauses",
     "foldTables": true,
-    "type": "flow",
     "foldSection": true,
-    "captionZh": "各世代微影依解析度由粗到細排列，並附主要用途。",
-    "captionEn": "Lithography generations from coarse to fine resolution, with their main uses.",
-    "steps": [
+    "type": "pictorial",
+    "draw": "lithoGens",
+    "sourcedNumbers": true,
+    "sourceZh": "解析度、波長與 NA 出自本段表格；橫軸是對數刻度，左端約 1000 nm、右端約 8 nm，不印刻度。世代名與用途沿用原本的流程圖。",
+    "sourceEn": "Resolution, wavelength and NA come from the table in this section. The axis is logarithmic, from about 1000 nm on the left to about 8 nm on the right, without printed ticks. Generation names and uses are kept from the original flow diagram.",
+    "captionZh": "各世代微影的解析度與主要用途（橫軸為對數刻度）",
+    "captionEn": "Resolution and main uses of each lithography generation (log scale)",
+    "labels": [
       {
+        "key": "res",
+        "zh": "解析度",
+        "en": "Resolution"
+      },
+      {
+        "key": "endL",
+        "zh": "1000+ nm",
+        "en": "1000+ nm"
+      },
+      {
+        "key": "endR",
+        "zh": "~8 nm",
+        "en": "~8 nm"
+      },
+      {
+        "key": "g0",
         "zh": "紫外光 g／i-line",
         "en": "UV g-line / i-line",
-        "noteZh": "焊墊、重佈線層與凸塊",
-        "noteEn": "Pads, packaging RDL and micro-bumps"
+        "from": "figure"
       },
       {
+        "key": "u0",
+        "zh": "焊墊、重佈線層與凸塊",
+        "en": "Pads, packaging RDL and micro-bumps",
+        "from": "figure"
+      },
+      {
+        "key": "g1",
         "zh": "深紫外光 KrF／ArF",
         "en": "DUV KrF / ArF",
-        "noteZh": "上層金屬線與佈植遮罩",
-        "noteEn": "Upper BEOL and ion implant masks"
+        "from": "figure"
       },
       {
+        "key": "u1",
+        "zh": "上層金屬線與佈植遮罩",
+        "en": "Upper BEOL and ion implant masks",
+        "from": "figure"
+      },
+      {
+        "key": "g2",
         "zh": "浸潤式與多重圖形化",
         "en": "ArF immersion + multi-patterning",
-        "noteZh": "DRAM 與 FinFET 鰭片",
-        "noteEn": "DRAM and FinFET fins"
+        "from": "figure"
       },
       {
+        "key": "u2",
+        "zh": "DRAM 與 FinFET 鰭片",
+        "en": "DRAM and FinFET fins",
+        "from": "figure"
+      },
+      {
+        "key": "g3",
         "zh": "標準 NA 極紫外光",
         "en": "Low-NA EUV",
-        "noteZh": "減少多重曝光光罩層數",
-        "noteEn": "Fewer multi-patterning mask layers"
+        "from": "figure"
       },
       {
+        "key": "u3",
+        "zh": "減少多重曝光光罩層數",
+        "en": "Fewer multi-patterning mask layers",
+        "from": "figure"
+      },
+      {
+        "key": "g4",
         "zh": "High-NA 極紫外光",
         "en": "High-NA EUV",
-        "noteZh": "單次曝光取代雙重曝光",
-        "noteEn": "Single exposure replaces double patterning"
+        "from": "figure"
+      },
+      {
+        "key": "u4",
+        "zh": "單次曝光取代雙重曝光",
+        "en": "Single exposure replaces double patterning",
+        "from": "figure"
+      },
+      {
+        "key": "r0",
+        "zh": "解析度 350–1000+ nm",
+        "en": "Resolution 350–1000+ nm"
+      },
+      {
+        "key": "r1",
+        "zh": "解析度 65–180 nm",
+        "en": "Resolution 65–180 nm"
+      },
+      {
+        "key": "r2",
+        "zh": "單次曝光極限 ~38 nm",
+        "en": "Single-exposure limit ~38 nm"
+      },
+      {
+        "key": "r3",
+        "zh": "解析度 ~13 nm",
+        "en": "~13 nm CD"
+      },
+      {
+        "key": "r4",
+        "zh": "單次曝光解析度 ~8 nm",
+        "en": "Single-exposure resolution ~8 nm"
+      },
+      {
+        "key": "s0a",
+        "zh": "g-line (436 nm)",
+        "en": "g-line (436 nm)"
+      },
+      {
+        "key": "s0b",
+        "zh": "i-line (365 nm)",
+        "en": "i-line (365 nm)"
+      },
+      {
+        "key": "s0c",
+        "zh": "NA 0.30–0.65",
+        "en": "NA 0.30–0.65"
+      },
+      {
+        "key": "s1a",
+        "zh": "KrF (248 nm, NA 0.60–0.93)",
+        "en": "KrF (248 nm, NA 0.60–0.93)"
+      },
+      {
+        "key": "s1b",
+        "zh": "ArF 乾式 (193 nm, NA 0.85–0.93)",
+        "en": "ArF Dry (193 nm, NA 0.85–0.93)"
+      },
+      {
+        "key": "s2a",
+        "zh": "ArFi (193 nm + 超純水 n=1.44)",
+        "en": "ArFi (193 nm + UPW water n=1.44)"
+      },
+      {
+        "key": "s2b",
+        "zh": "NA = 1.35",
+        "en": "hyper-NA 1.35"
+      },
+      {
+        "key": "s3b",
+        "zh": "13.5 nm EUV",
+        "en": "13.5 nm EUV"
+      },
+      {
+        "key": "s3",
+        "zh": "NA = 0.33",
+        "en": "NA = 0.33"
+      },
+      {
+        "key": "s4",
+        "zh": "13.5 nm EUV，NA = 0.55",
+        "en": "13.5 nm EUV, NA = 0.55"
       }
     ]
   },
@@ -2732,32 +2934,111 @@ export const SECTION_DIAGRAMS = [
     "headingZh": "定量物理定律與 3D 製程視窗",
     "headingEn": "Quantitative Governing Laws & 3D Process Windows",
     "foldTables": true,
-    "type": "branch",
     "foldSection": true,
-    "captionZh": "微影光學與統計定律各自推動的製程對策。",
-    "captionEn": "How each lithography optical and stochastic law drives a process response.",
-    "root": {
-      "zh": "微影光學與統計定律",
-      "en": "Litho optical & stochastic laws"
-    },
-    "branches": [
+    "type": "pictorial",
+    "draw": "lithoLaws",
+    "sourcedNumbers": true,
+    "sourceZh": "數值出自本段表格；三欄的名稱與對策沿用原本的分支圖。",
+    "sourceEn": "Values come from the table in this section. Column names and responses are kept from the original branch diagram.",
+    "captionZh": "微影定律的關鍵數字與各自推動的對策",
+    "captionEn": "Key numbers of the lithography laws and the response each drives",
+    "labels": [
       {
+        "key": "root",
+        "zh": "微影光學與統計定律",
+        "en": "Litho optical & stochastic laws",
+        "from": "figure"
+      },
+      {
+        "key": "b1",
         "zh": "瑞利解析度與焦深",
         "en": "Rayleigh resolution & DOF",
-        "leafZh": "需極平坦 CMP 與超薄光阻",
-        "leafEn": "Demands atomic-flat CMP and ultra-thin resist"
+        "from": "figure"
       },
       {
+        "key": "l1",
+        "zh": "需極平坦 CMP 與超薄光阻",
+        "en": "Demands atomic-flat CMP and ultra-thin resist",
+        "from": "figure"
+      },
+      {
+        "key": "b2",
         "zh": "EUV 光子散粒雜訊",
         "en": "EUV photon shot noise",
-        "leafZh": "導入金屬氧化物光阻",
-        "leafEn": "Drives metal oxide resist (MOR) adoption"
+        "from": "figure"
       },
       {
+        "key": "l2",
+        "zh": "導入金屬氧化物光阻",
+        "en": "Drives metal oxide resist (MOR) adoption",
+        "from": "figure"
+      },
+      {
+        "key": "b3",
         "zh": "邊緣放置誤差 EPE",
         "en": "Edge placement error (EPE)",
-        "leafZh": "催生自對準接觸孔與通孔",
-        "leafEn": "Drives self-aligned contacts and vias"
+        "from": "figure"
+      },
+      {
+        "key": "l3",
+        "zh": "催生自對準接觸孔與通孔",
+        "en": "Drives self-aligned contacts and vias",
+        "from": "figure"
+      },
+      {
+        "key": "dof",
+        "zh": "焦深",
+        "en": "Depth-of-Focus"
+      },
+      {
+        "key": "big0",
+        "zh": "±15–20 nm",
+        "en": "±15–20 nm"
+      },
+      {
+        "key": "cond0",
+        "zh": "0.55 NA High-NA EUV",
+        "en": "0.55 NA High-NA EUV"
+      },
+      {
+        "key": "photon",
+        "zh": "EUV 光子",
+        "en": "EUV photon"
+      },
+      {
+        "key": "big1",
+        "zh": "91.8 eV",
+        "en": "91.8 eV"
+      },
+      {
+        "key": "x14",
+        "zh": "為 193nm 光子的 14 倍",
+        "en": "14× higher than 193nm DUV"
+      },
+      {
+        "key": "fewer",
+        "zh": "EUV 光子數量少 14 倍",
+        "en": "14× fewer photons"
+      },
+      {
+        "key": "dose",
+        "zh": "相同曝光劑量",
+        "en": "at the same dose"
+      },
+      {
+        "key": "ovl",
+        "zh": "層間疊對精度",
+        "en": "Layer-to-layer Overlay"
+      },
+      {
+        "key": "big2",
+        "zh": "Overlay < 1.2–1.5 nm",
+        "en": "Overlay < 1.2–1.5 nm"
+      },
+      {
+        "key": "cond2",
+        "zh": "Pitch = 20 nm",
+        "en": "20 nm Pitch"
       }
     ]
   },
@@ -2814,6 +3095,65 @@ export const SECTION_DIAGRAMS = [
         "key": "particle",
         "zh": "顆粒",
         "en": "Particle"
+      }
+    ]
+  },
+  {
+    "chapterId": "ch04",
+    "headingZh": "微影的三個主角",
+    "headingEn": "The three key players",
+    "type": "pictorial",
+    "draw": "scannerFields",
+    "sourcedNumbers": true,
+    "sourceZh": "縮小四倍出自本段正文：光罩圖形與一個曝光區的邊長按四比一畫；晶圓大小與格數只是示意。淡青色的格子已經曝過，箭頭是曝光的順序。",
+    "sourceEn": "The four-times reduction comes from this section: the mask pattern and one exposure field are drawn at a four-to-one edge ratio. Wafer size and field count are schematic. Pale teal fields are already exposed; arrows show the exposure order.",
+    "captionZh": "光罩、光阻與曝光機：一個曝光區接一個曝光區",
+    "captionEn": "Mask, resist and scanner: one exposure field after another",
+    "labels": [
+      {
+        "key": "mask",
+        "zh": "光罩（Reticle / Mask）",
+        "en": "Mask (reticle)"
+      },
+      {
+        "key": "quartz",
+        "zh": "石英板",
+        "en": "Quartz plate"
+      },
+      {
+        "key": "dozens",
+        "zh": "數十片",
+        "en": "Dozens"
+      },
+      {
+        "key": "quarter",
+        "zh": "縮小四倍",
+        "en": "One-quarter of its size"
+      },
+      {
+        "key": "scanner",
+        "zh": "曝光機（Scanner）",
+        "en": "Scanner"
+      },
+      {
+        "key": "field",
+        "zh": "曝光區",
+        "en": "Exposure field"
+      },
+      {
+        "key": "hundred",
+        "zh": "上百次",
+        "en": "More than a hundred repetitions"
+      },
+      {
+        "key": "pr",
+        "zh": "光阻（Photoresist，簡稱 PR）",
+        "en": "Photoresist (PR)"
+      },
+      {
+        "key": "wafer",
+        "zh": "晶圓",
+        "en": "Wafer"
       }
     ]
   },
@@ -3059,32 +3399,78 @@ export const SECTION_DIAGRAMS = [
     "headingZh": "現場異常徵兆與跨站根因排查",
     "headingEn": "Fab Failure Signatures & Root-Cause Diagnostics",
     "foldTables": true,
-    "type": "branch",
     "foldSection": true,
     "captionZh": "薄膜三大核心異常與對應的永久防呆對策",
     "captionEn": "Three core thin-film failures and the countermeasure for each",
-    "root": {
-      "zh": "薄膜三大核心異常",
-      "en": "Three core thin-film failures"
-    },
-    "branches": [
+    "type": "pictorial",
+    "draw": "filmFailures",
+    "labels": [
       {
+        "key": "root",
+        "zh": "薄膜三大核心異常",
+        "en": "Three core thin-film failures",
+        "from": "figure"
+      },
+      {
+        "key": "b1",
         "zh": "孔口懸垂夾斷空洞",
         "en": "Overhang pinch-off keyhole void",
-        "leafZh": "降溫、沉積蝕刻循環或 ALD",
-        "leafEn": "Lower temperature, dep-etch-dep, or ALD"
+        "from": "figure"
       },
       {
+        "key": "l1",
+        "zh": "降溫、沉積蝕刻循環或 ALD",
+        "en": "Lower temperature, dep-etch-dep, or ALD",
+        "from": "figure"
+      },
+      {
+        "key": "b2",
         "zh": "深孔底部 ALD 變薄",
         "en": "ALD thinning at deep-hole bottoms",
-        "leafZh": "駐留模式 ALD 並監控壓力",
-        "leafEn": "Soak-mode ALD with pressure-pulse monitoring"
+        "from": "figure"
       },
       {
+        "key": "l2",
+        "zh": "駐留模式 ALD 並監控壓力",
+        "en": "Soak-mode ALD with pressure-pulse monitoring",
+        "from": "figure"
+      },
+      {
+        "key": "b3",
         "zh": "電鍍銅底部空洞",
         "en": "Electroplated copper bottom voids",
-        "leafZh": "釕／鈷襯墊並即時補液",
-        "leafEn": "Ru/Co liners and real-time additive dosing"
+        "from": "figure"
+      },
+      {
+        "key": "l3",
+        "zh": "釕／鈷襯墊並即時補液",
+        "en": "Ru/Co liners and real-time additive dosing",
+        "from": "figure"
+      },
+      {
+        "key": "overhang",
+        "zh": "懸垂（Overhang）",
+        "en": "Overhang"
+      },
+      {
+        "key": "keyhole",
+        "zh": "鑰匙孔",
+        "en": "Keyhole"
+      },
+      {
+        "key": "thin",
+        "zh": "孔底呈現未飽和變薄",
+        "en": "Starves the hole bottom"
+      },
+      {
+        "key": "seedBreak",
+        "zh": "銅晶種層（Cu Seed）在細孔側壁斷裂不連續",
+        "en": "Discontinuous PVD Cu seed coverage on lower sidewalls"
+      },
+      {
+        "key": "bottomVoid",
+        "zh": "底部空洞",
+        "en": "Bottom voids"
       }
     ]
   },
@@ -3093,76 +3479,172 @@ export const SECTION_DIAGRAMS = [
     "headingZh": "六大薄膜沉積與電鍍超填條例總覽",
     "headingEn": "Thin-Film & ECD Superfill Clauses",
     "foldTables": true,
-    "type": "compare",
     "foldSection": true,
-    "captionZh": "六大長膜條例依生長方式分三組，並附代表應用。",
-    "captionEn": "The six film-growth clauses grouped by growth route, with key applications.",
-    "columns": [
+    "type": "pictorial",
+    "draw": "filmClauses",
+    "captionZh": "六大長膜條例分三組，以及電鍍超填的三個階段",
+    "captionEn": "The six film-growth clauses in three groups, and three stages of ECD superfill",
+    "labels": [
       {
-        "titleZh": "從矽晶長出",
-        "titleEn": "Grown from the Si crystal",
-        "items": [
-          {
-            "keyZh": "熱氧化",
-            "keyEn": "Thermal oxide",
-            "zh": "消耗矽基板自體生成",
-            "en": "Grows by consuming the Si substrate",
-            "noteZh": "I/O 閘極與溝槽內襯氧化層",
-            "noteEn": "I/O gate oxides and STI liner oxide"
-          },
-          {
-            "keyZh": "磊晶",
-            "keyEn": "Epitaxy",
-            "zh": "延續單晶晶格，可選擇性生長",
-            "en": "Extends the crystal lattice, can be selective",
-            "noteZh": "源汲極應變磊晶與超晶格",
-            "noteEn": "Strained S/D epi and Si/SiGe superlattices"
-          }
-        ]
+        "key": "c1",
+        "zh": "從矽晶長出",
+        "en": "Grown from the Si crystal",
+        "from": "figure"
       },
       {
-        "titleZh": "氣相沉積",
-        "titleEn": "Vapor-phase deposition",
-        "items": [
-          {
-            "keyZh": "CVD 家族",
-            "keyEn": "CVD family",
-            "zh": "低壓保形、電漿低溫、流動填孔",
-            "en": "LPCVD conformal, PECVD low-temp, FCVD gap-fill",
-            "noteZh": "ONO 堆疊與溝槽填充",
-            "noteEn": "ONO stacks and STI gap-fill"
-          },
-          {
-            "keyZh": "ALD",
-            "keyEn": "ALD",
-            "zh": "自限性循環，原子級保形覆蓋",
-            "en": "Self-limiting cycles, atomic-level conformality",
-            "noteZh": "高介電閘極、GAA 與電容",
-            "noteEn": "High-k gates, GAA and capacitors"
-          },
-          {
-            "keyZh": "PVD",
-            "keyEn": "PVD",
-            "zh": "視線傳播，iPVD 改善深孔覆蓋",
-            "en": "Line of sight; iPVD improves deep-via coverage",
-            "noteZh": "阻擋層、銅晶種層與鋁墊",
-            "noteEn": "Barriers, Cu seed layers and Al pads"
-          }
-        ]
+        "key": "k1a",
+        "zh": "熱氧化",
+        "en": "Thermal oxide",
+        "from": "figure"
       },
       {
-        "titleZh": "液相電鍍",
-        "titleEn": "Liquid-phase plating",
-        "items": [
-          {
-            "keyZh": "電鍍超填",
-            "keyEn": "ECD superfill",
-            "zh": "添加劑驅動由孔底往上填銅",
-            "en": "Additives drive bottom-up Cu fill",
-            "noteZh": "銅導線、穿矽孔與重佈線層",
-            "noteEn": "Cu wires, TSV fill and RDL routing"
-          }
-        ]
+        "key": "d1a",
+        "zh": "消耗矽基板自體生成",
+        "en": "Grows by consuming the Si substrate",
+        "from": "figure"
+      },
+      {
+        "key": "n1a",
+        "zh": "I/O 閘極與溝槽內襯氧化層",
+        "en": "I/O gate oxides and STI liner oxide",
+        "from": "figure"
+      },
+      {
+        "key": "k1b",
+        "zh": "磊晶",
+        "en": "Epitaxy",
+        "from": "figure"
+      },
+      {
+        "key": "d1b",
+        "zh": "延續單晶晶格，可選擇性生長",
+        "en": "Extends the crystal lattice, can be selective",
+        "from": "figure"
+      },
+      {
+        "key": "n1b",
+        "zh": "源汲極應變磊晶與超晶格",
+        "en": "Strained S/D epi and Si/SiGe superlattices",
+        "from": "figure"
+      },
+      {
+        "key": "c2",
+        "zh": "氣相沉積",
+        "en": "Vapor-phase deposition",
+        "from": "figure"
+      },
+      {
+        "key": "k2a",
+        "zh": "CVD 家族",
+        "en": "CVD family",
+        "from": "figure"
+      },
+      {
+        "key": "d2a",
+        "zh": "低壓保形、電漿低溫、流動填孔",
+        "en": "LPCVD conformal, PECVD low-temp, FCVD gap-fill",
+        "from": "figure"
+      },
+      {
+        "key": "n2a",
+        "zh": "ONO 堆疊與溝槽填充",
+        "en": "ONO stacks and STI gap-fill",
+        "from": "figure"
+      },
+      {
+        "key": "k2b",
+        "zh": "ALD",
+        "en": "ALD",
+        "from": "figure"
+      },
+      {
+        "key": "d2b",
+        "zh": "自限性循環，原子級保形覆蓋",
+        "en": "Self-limiting cycles, atomic-level conformality",
+        "from": "figure"
+      },
+      {
+        "key": "n2b",
+        "zh": "高介電閘極、GAA 與電容",
+        "en": "High-k gates, GAA and capacitors",
+        "from": "figure"
+      },
+      {
+        "key": "k2c",
+        "zh": "PVD",
+        "en": "PVD",
+        "from": "figure"
+      },
+      {
+        "key": "d2c",
+        "zh": "視線傳播，iPVD 改善深孔覆蓋",
+        "en": "Line of sight; iPVD improves deep-via coverage",
+        "from": "figure"
+      },
+      {
+        "key": "n2c",
+        "zh": "阻擋層、銅晶種層與鋁墊",
+        "en": "Barriers, Cu seed layers and Al pads",
+        "from": "figure"
+      },
+      {
+        "key": "c3",
+        "zh": "液相電鍍",
+        "en": "Liquid-phase plating",
+        "from": "figure"
+      },
+      {
+        "key": "k3a",
+        "zh": "電鍍超填",
+        "en": "ECD superfill",
+        "from": "figure"
+      },
+      {
+        "key": "d3a",
+        "zh": "添加劑驅動由孔底往上填銅",
+        "en": "Additives drive bottom-up Cu fill",
+        "from": "figure"
+      },
+      {
+        "key": "n3a",
+        "zh": "銅導線、穿矽孔與重佈線層",
+        "en": "Cu wires, TSV fill and RDL routing",
+        "from": "figure"
+      },
+      {
+        "key": "seed",
+        "zh": "銅晶種層（Cu Seed）",
+        "en": "Cu seed layers"
+      },
+      {
+        "key": "bottomUp",
+        "zh": "由孔底往上",
+        "en": "Bottom-up"
+      },
+      {
+        "key": "voidFree",
+        "zh": "無空洞超填",
+        "en": "Void-free superfilling"
+      },
+      {
+        "key": "diel",
+        "zh": "介電層",
+        "en": "Dielectrics"
+      },
+      {
+        "key": "supp",
+        "zh": "抑制劑（Suppressor，PEG 阻擋孔口）",
+        "en": "Suppressor (PEG at trench mouth)"
+      },
+      {
+        "key": "acc",
+        "zh": "加速劑（Accelerator，SPS 富集於孔底）",
+        "en": "Accelerator (SPS concentrating at bottom curvature)"
+      },
+      {
+        "key": "lev",
+        "zh": "整平劑",
+        "en": "Leveler"
       }
     ]
   },
@@ -3171,36 +3653,136 @@ export const SECTION_DIAGRAMS = [
     "headingZh": "定量物理定律與 3D 製程視窗",
     "headingEn": "Quantitative Governing Laws & 3D Process Windows",
     "foldTables": true,
-    "type": "branch",
     "foldSection": true,
-    "captionZh": "三大薄膜與電鍍定律各自決定的製程控制。",
-    "captionEn": "What each thin-film and electroplating law governs in the process.",
-    "root": {
-      "zh": "薄膜與電鍍動力學定律",
-      "en": "Thin-film & ECD kinetic laws",
-      "icon": "formula"
-    },
-    "branches": [
+    "type": "pictorial",
+    "draw": "filmLaws",
+    "sourcedNumbers": true,
+    "sourceZh": "數值出自本段表格；氧化層剖面依消耗 0.44 的比例畫，虛線是原本的矽表面。曲線、深孔與溝槽的形狀只是示意，深孔沒有按深寬比畫。",
+    "sourceEn": "Values come from the table in this section. The oxide cross-section follows the 0.44 consumption ratio, and the dashed line is the original silicon surface. The curve, hole and trench shapes are schematic, and the hole is not drawn to its aspect ratio.",
+    "captionZh": "三大薄膜與電鍍定律的關鍵數字與製程控制",
+    "captionEn": "Key numbers of three thin-film and plating laws and what each governs",
+    "labels": [
       {
+        "key": "root",
+        "zh": "薄膜與電鍍動力學定律",
+        "en": "Thin-film & ECD kinetic laws",
+        "from": "figure"
+      },
+      {
+        "key": "b1",
         "zh": "線性－拋物線氧化模型",
         "en": "Deal-Grove linear-parabolic law",
-        "leafZh": "預測氧化層厚度與矽消耗",
-        "leafEn": "Predicts oxide thickness and Si consumed",
-        "icon": "thickness"
+        "from": "figure"
       },
       {
+        "key": "l1",
+        "zh": "預測氧化層厚度與矽消耗",
+        "en": "Predicts oxide thickness and Si consumed",
+        "from": "figure"
+      },
+      {
+        "key": "b2",
         "zh": "ALD 深孔飽和時間",
         "en": "ALD deep-hole saturation time",
-        "leafZh": "決定深孔 ALD 最低脈衝時間",
-        "leafEn": "Sets minimum ALD pulse time in deep holes",
-        "icon": "clock"
+        "from": "figure"
       },
       {
+        "key": "l2",
+        "zh": "決定深孔 ALD 最低脈衝時間",
+        "en": "Sets minimum ALD pulse time in deep holes",
+        "from": "figure"
+      },
+      {
+        "key": "b3",
         "zh": "法拉第與曲率加速超填",
         "en": "Faraday & curvature-enhanced fill",
-        "leafZh": "孔底長得比孔口快、無空洞",
-        "leafEn": "Bottom outgrows the mouth: void-free fill",
-        "icon": "fill-up"
+        "from": "figure"
+      },
+      {
+        "key": "l3",
+        "zh": "孔底長得比孔口快、無空洞",
+        "en": "Bottom outgrows the mouth: void-free fill",
+        "from": "figure"
+      },
+      {
+        "key": "t1",
+        "zh": "1",
+        "en": "1.0"
+      },
+      {
+        "key": "nm",
+        "zh": "nm",
+        "en": "nm"
+      },
+      {
+        "key": "t044",
+        "zh": "0.44",
+        "en": "0.44"
+      },
+      {
+        "key": "consumed",
+        "zh": "消耗",
+        "en": "consumed"
+      },
+      {
+        "key": "si",
+        "zh": "單晶矽",
+        "en": "Substrate Si"
+      },
+      {
+        "key": "ox",
+        "zh": "氧化層",
+        "en": "Oxide"
+      },
+      {
+        "key": "thk",
+        "zh": "氧化層厚度",
+        "en": "Oxide thickness"
+      },
+      {
+        "key": "time",
+        "zh": "時間",
+        "en": "Time"
+      },
+      {
+        "key": "rate",
+        "zh": "界面反應速率常數",
+        "en": "Reaction rate"
+      },
+      {
+        "key": "diff",
+        "zh": "擴散係數",
+        "en": "Diffusion-limited"
+      },
+      {
+        "key": "v50",
+        "zh": "50:1",
+        "en": "50:1"
+      },
+      {
+        "key": "ar",
+        "zh": "深寬比",
+        "en": "Aspect ratio"
+      },
+      {
+        "key": "pulse",
+        "zh": "最低脈衝時間",
+        "en": "Minimum precursor pulse times"
+      },
+      {
+        "key": "v510",
+        "zh": "5–10 倍",
+        "en": "5–10×"
+      },
+      {
+        "key": "growth",
+        "zh": "底部生長速度",
+        "en": "Bottom Cu growth"
+      },
+      {
+        "key": "mouth",
+        "zh": "孔口",
+        "en": "Mouth"
       }
     ]
   },
@@ -3419,6 +4001,67 @@ export const SECTION_DIAGRAMS = [
         "key": "sige",
         "zh": "矽鍺",
         "en": "Silicon germanium"
+      }
+    ]
+  },
+  {
+    "chapterId": "ch05",
+    "headingZh": "常見異常",
+    "headingEn": "Common problems",
+    "type": "pictorial",
+    "draw": "filmDefects",
+    "captionZh": "五種薄膜異常長什麼樣，以及各自的結果",
+    "captionEn": "Five thin-film problems: what each looks like and what it causes",
+    "labels": [
+      {
+        "key": "thick",
+        "zh": "膜厚偏厚或偏薄",
+        "en": "Film too thick or too thin"
+      },
+      {
+        "key": "thickResult",
+        "zh": "影響電性與後續蝕刻",
+        "en": "Affects electrical behavior and later etching"
+      },
+      {
+        "key": "uniform",
+        "zh": "均勻度差",
+        "en": "Poor uniformity"
+      },
+      {
+        "key": "uniformResult",
+        "zh": "晶圓不同位置的晶粒表現不同",
+        "en": "Dies behave differently across the wafer"
+      },
+      {
+        "key": "particles",
+        "zh": "微粒",
+        "en": "Particles"
+      },
+      {
+        "key": "particlesResult",
+        "zh": "缺陷、良率下降",
+        "en": "Defects, lower yield"
+      },
+      {
+        "key": "peel",
+        "zh": "薄膜剝落或龜裂",
+        "en": "Film peeling or cracking"
+      },
+      {
+        "key": "peelResult",
+        "zh": "結構損壞",
+        "en": "Structural damage"
+      },
+      {
+        "key": "voids",
+        "zh": "空洞",
+        "en": "Voids"
+      },
+      {
+        "key": "voidsResult",
+        "zh": "斷路或可靠度問題",
+        "en": "Open circuits or reliability problems"
       }
     ]
   },

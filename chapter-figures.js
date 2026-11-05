@@ -182,30 +182,101 @@ function cz(en) {
   return svg;
 }
 
+// 粗體文字（章節圖用）
+const tb = (x, y, label, size = 12, fill = '#0f172a', anchor = 'middle') => `<text x="${x}" y="${y}" text-anchor="${anchor}" fill="${fill}" font-size="${size}" font-weight="700">${esc(label)}</text>`;
+// 多行置中文字（章節圖用）
+const rowsAt = (x, y, rows, size = 10.5, fill = '#334155', anchor = 'middle', gap = 13) => rows.map((row, i) => tx(x, y + i * gap, row, size, fill, anchor)).join('');
+
+// 攝影與微影（2.26.0 改畫，第 3 階段 G 批）：上列是攝影（光源 → 底片 → 鏡頭 → 相紙），下列是微影（光源 → 光罩 → 鏡頭 → 光阻）。
+// 技術審查修正：「光 → 底片 → 鏡頭 → 相紙」是暗房放相的順序，不畫成相機外框、也不畫收斂；下列鏡頭之後光束收斂到光阻，
+// 光罩上的圖形畫得比光阻上的大（縮小投影）；括號框住下列的光路，標「曝光機就像相機」。圖說來自正文註解，沒有改
 function photoVsLitho(en) {
-  return `${flow([L(en, '光源', 'Light'), L(en, '底片／光罩', 'Film / mask'), L(en, '鏡頭', 'Lens'), L(en, '相紙／光阻', 'Paper / resist')])}<text x="160" y="132" text-anchor="middle" fill="#334155" font-size="12">${L(en, '攝影', 'Photography')}</text><text x="480" y="132" text-anchor="middle" fill="#334155" font-size="12">${L(en, '微影用同一順序', 'Lithography uses the same order')}</text>`;
+  const cx = [150, 270, 390, 520], y1 = 66, y2 = 184;
+  const sun = (x, y) => `<circle cx="${x}" cy="${y}" r="9" fill="#fde68a" stroke="#92400e"/>` + Array.from({ length: 8 }, (_, k) => { const a = (k * Math.PI) / 4; return `<path d="M${(x + 12 * Math.cos(a)).toFixed(1)} ${(y + 12 * Math.sin(a)).toFixed(1)} L${(x + 17 * Math.cos(a)).toFixed(1)} ${(y + 17 * Math.sin(a)).toFixed(1)}" stroke="#92400e" stroke-width="1.4"/>`; }).join('');
+  const lens = (x, y) => `<ellipse cx="${x}" cy="${y}" rx="8" ry="24" fill="#e0f2fe" stroke="#075985" stroke-width="1.4"/>`;
+  const film = (x, y) => `<rect x="${x - 22}" y="${y - 16}" width="44" height="32" rx="2" fill="#475569"/>` + [-16, -6, 4, 14].map(d => `<rect x="${x + d}" y="${y - 14}" width="4" height="3" fill="#ffffff"/><rect x="${x + d}" y="${y + 11}" width="4" height="3" fill="#ffffff"/>`).join('') + `<rect x="${x - 12}" y="${y - 8}" width="24" height="16" fill="#cbd5e1"/>`;
+  const paper = (x, y) => `<path d="M${x - 17} ${y - 20} H${x + 9} L${x + 17} ${y - 12} V${y + 20} H${x - 17} Z" fill="#ffffff" stroke="#334155"/><path d="M${x + 9} ${y - 20} V${y - 12} H${x + 17}" fill="none" stroke="#334155"/><rect x="${x - 11}" y="${y - 6}" width="22" height="16" fill="#cbd5e1"/>`;
+  const bars = (x, y, w, h, c) => [0.1, 0.45, 0.8].map(f => `<rect x="${(x + f * w - w * 0.05).toFixed(1)}" y="${y}" width="${(w * 0.1).toFixed(1)}" height="${h}" fill="${c}"/>`).join('');
+  let svg = tb(24, y1 + 5, L(en, '攝影', 'Photography'), 13, '#0f172a', 'start') + tb(24, y2 + 5, L(en, '微影', 'Lithography'), 13, '#0f766e', 'start')
+    + rowsAt(24, y2 + 24, en ? ['Lithography uses', 'the same order'] : ['微影用同一順序'], 10, '#334155', 'start');
+  // 上列：攝影，只用箭頭連起四件
+  svg += sun(cx[0], y1) + film(cx[1], y1) + lens(cx[2], y1) + paper(cx[3], y1)
+    + [0, 1, 2].map(i => arrow(cx[i] + 26, y1, cx[i + 1] - 28, y1, '#334155', 1.3)).join('')
+    + [L(en, '光源', 'Light'), L(en, '底片', 'Film negative'), L(en, '鏡頭', 'Lens'), L(en, '相紙', 'Photo paper')].map((s, i) => tx(cx[i], y1 + 42, s, 11.5, '#0f172a')).join('');
+  // 下列：微影；鏡頭之後光束收斂，光阻上的圖形比光罩上的小
+  svg += sun(cx[0], y2) + `<rect x="${cx[1] - 22}" y="${y2 - 22}" width="44" height="44" rx="2" fill="#f1f5f9" stroke="#334155"/>` + bars(cx[1] - 16, y2 - 16, 32, 32, '#334155') + lens(cx[2], y2)
+    + `<path d="M${cx[2] + 6} ${y2 - 20} L${cx[3] - 6} ${y2 - 9} V${y2 + 9} L${cx[2] + 6} ${y2 + 20} Z" fill="#fde68a" fill-opacity=".45"/>`
+    + `<rect x="${cx[3] - 6}" y="${y2 - 30}" width="6" height="60" fill="#e1ad70" stroke="#92400e"/><rect x="${cx[3]}" y="${y2 - 30}" width="12" height="60" fill="#a6bdcb" stroke="#334155"/>` + `<g transform="rotate(90 ${cx[3] - 3} ${y2})">${bars(cx[3] - 12, y2 - 2, 18, 4, '#92400e')}</g>`
+    + [0, 1].map(i => arrow(cx[i] + 26, y2, cx[i + 1] - 28, y2, '#0f766e', 1.3)).join('')
+    + [L(en, '光源', 'Light'), L(en, '光罩', 'Mask'), L(en, '鏡頭', 'Lens'), L(en, '光阻', 'Photoresist')].map((s, i) => tx(cx[i], y2 + 46, s, 11.5, '#0f172a')).join('')
+    + tx(cx[3] + 18, y2 + 4, L(en, '晶圓', 'Wafer'), 10, '#334155', 'start');
+  // 兩列之間：光罩就像底片、光阻就像相紙
+  svg += `<path d="M${cx[1]} ${y1 + 50} V${y2 - 28} M${cx[3]} ${y1 + 50} V${y2 - 34}" stroke="#64748b" stroke-dasharray="3 3"/>`
+    + rowsAt(cx[1] + 8, y1 + 68, en ? ['The mask is like', 'the film negative'] : ['光罩就像底片'], 10.5, '#0f766e', 'start')
+    + rowsAt(cx[3] - 8, y1 + 68, en ? ['The photoresist is', 'like photo paper'] : ['光阻就像相紙'], 10.5, '#0f766e', 'end');
+  // 下列光路的括號：曝光機就像相機；光阻：照到光的地方會起化學變化
+  const by = y2 + 58;
+  svg += `<path d="M${cx[0] - 24} ${by} v6 H${cx[2] + 24} v-6" fill="none" stroke="#0f766e" stroke-width="1.3"/>`
+    + `<rect x="${(cx[0] + cx[2]) / 2 - 84}" y="${by + 12}" width="20" height="13" rx="2" fill="#ffffff" stroke="#0f766e"/><circle cx="${(cx[0] + cx[2]) / 2 - 74}" cy="${by + 18.5}" r="4" fill="none" stroke="#0f766e"/><rect x="${(cx[0] + cx[2]) / 2 - 80}" y="${by + 9}" width="7" height="3" fill="#0f766e"/>`
+    + tb((cx[0] + cx[2]) / 2 - 58, by + 23, L(en, '曝光機就像相機', 'The scanner is like the camera'), 11.5, '#0f766e', 'start')
+    + tx((cx[0] + cx[2]) / 2, by + 40, L(en, '把光罩上的圖形縮小投影到晶圓上', 'projecting a reduced image of the mask onto the wafer'), 10.5, '#334155')
+    + `<path d="M${(cx[0] + cx[2]) / 2 + (en ? 152 : 82)} ${by + 36} L${(cx[2] + cx[3]) / 2} ${y2 + 10}" stroke="#64748b" stroke-dasharray="2 2"/>`
+    + rowsAt(cx[3], by + 2, en ? ['Changing chemically', 'wherever light hits it'] : ['照到光的地方', '會起化學變化'], 10.5, '#92400e');
+  return svg;
 }
 
+// 微影流程（2.26.0 改畫，第 3 階段 G 批）：上帶是正文的七個步驟，括號標出塗佈到顯影由同一組機台連著曝光機做；
+// 檢查不合格就重工回到塗佈，一旦進入蝕刻就無法重來；下帶保留塗佈、曝光、顯影三格剖面，以圈字母對到上帶。
+// 技術審查修正：拿掉貼在光阻上的光罩條（看起來像一比一接觸曝光），改成鏡頭把光收斂到受光區；拿掉 ①②③ 編號。圖說來自正文註解，沒有改
 function lithoFlow(en) {
-  // 以照到光的區域在顯影時溶掉為例：曝光後光阻仍完整、只有受光區起化學變化，顯影才出現開口
-  const panel = (x, title, stage) => {
-    let out = tx(x + 85, 30, title, 13) + `<rect x="${x}" y="150" width="170" height="30" fill="#a6bdcb" stroke="#334155"/>`;
-    if (stage === 'develop') out += `<rect x="${x}" y="122" width="65" height="28" fill="#e1ad70" stroke="#92400e"/><rect x="${x + 105}" y="122" width="65" height="28" fill="#e1ad70" stroke="#92400e"/>`;
-    else out += `<rect x="${x}" y="122" width="170" height="28" fill="#e1ad70" stroke="#92400e"/>`;
-    if (stage === 'coat') out += tx(x + 85, 140, L(en, '光阻', 'Resist'), 11) + tx(x + 85, 169, L(en, '底下的材料', 'Material underneath'), 11);
-    if (stage === 'expose') {
-      out += `<rect x="${x + 65}" y="122" width="40" height="28" fill="#fef3c7" stroke="#92400e" stroke-dasharray="3 2"/><rect x="${x}" y="72" width="65" height="10" fill="#334155"/><rect x="${x + 105}" y="72" width="65" height="10" fill="#334155"/>`
-        + [75, 85, 95].map(dx => arrow(x + dx, 44, x + dx, 118, '#d97706', 1.5)).join('')
-        + tx(x + 137, 66, L(en, '光罩', 'Mask'), 11, '#334155')
-        + tx(x + 85, 198, L(en, '照到光的地方會起化學變化', 'Exposed areas change chemically'), 10, '#92400e');
-    }
-    if (stage === 'develop') out += tx(x + 85, 198, L(en, '顯影液溶掉一部分', 'Developer dissolves part'), 10.5, '#92400e');
+  const w = 80, gap = 8, xs = Array.from({ length: 7 }, (_, i) => 16 + i * (w + gap)), c = i => xs[i] + w / 2, top = 40;
+  const names = en ? [['Surface prep'], ['Resist coat'], ['Soft bake'], ['Align and', 'expose'], ['Post-exposure', 'bake'], ['Develop'], ['Inspect (ADI)']] : [['表面處理'], ['塗佈光阻'], ['軟烤'], ['對準與曝光'], ['曝後烤'], ['顯影'], ['檢查（ADI）']];
+  const wafer = (x, y) => `<rect x="${x - 18}" y="${y}" width="36" height="5" rx="1" fill="#a6bdcb" stroke="#334155" stroke-width=".8"/>`;
+  const heat = (x, y) => `<rect x="${x - 20}" y="${y + 5}" width="40" height="4" fill="#9a3412"/>` + [-10, 0, 10].map(d => `<path d="M${x + d} ${y - 2} q-2 -3 0 -6 q2 -3 0 -6" fill="none" stroke="#9a3412" stroke-width=".9"/>`).join('');
+  const icons = [
+    (x, y) => wafer(x, y + 16) + [-12, -4, 4, 12, -8, 8].map((d, k) => `<circle cx="${x + d}" cy="${y + (k > 3 ? 4 : 10)}" r="1.4" fill="#64748b"/>`).join(''),
+    (x, y) => wafer(x, y + 16) + `<rect x="${x - 18}" y="${y + 13}" width="36" height="3" fill="#e1ad70"/><path d="M${x} ${y} c-3 4 -3 7 0 7 s3 -3 0 -7" fill="#e1ad70" stroke="#92400e" stroke-width=".8"/><path d="M${x - 14} ${y + 24} a14 4 0 0 0 28 0" fill="none" stroke="#0f766e"/>`,
+    (x, y) => wafer(x, y + 10) + heat(x, y + 10),
+    (x, y) => wafer(x, y + 16) + `<rect x="${x - 18}" y="${y + 13}" width="36" height="3" fill="#e1ad70"/>` + [-6, 0, 6].map(d => arrow(x + d, y, x + d, y + 11, '#d97706', 1.2)).join(''),
+    (x, y) => wafer(x, y + 10) + heat(x, y + 10),
+    (x, y) => wafer(x, y + 16) + `<rect x="${x - 6}" y="${y}" width="12" height="5" fill="#334155"/>` + [-6, 0, 6].map(d => `<circle cx="${x + d}" cy="${y + 10}" r="1.3" fill="#075985"/>`).join(''),
+    (x, y) => wafer(x, y + 16) + `<circle cx="${x + 2}" cy="${y + 6}" r="6" fill="none" stroke="#0f766e" stroke-width="1.6"/><path d="M${x + 6} ${y + 10} l5 5" stroke="#0f766e" stroke-width="2"/>`
+  ];
+  const mk = (x, y, letter) => `<circle cx="${x}" cy="${y}" r="8" fill="#ffffff" stroke="#0f766e"/><text x="${x}" y="${y + 3.5}" text-anchor="middle" fill="#0f766e" font-size="10" font-weight="700">${letter}</text>`;
+  let svg = '';
+  // 括號：塗佈到顯影由同一組機台連著曝光機
+  svg += `<path d="M${xs[1]} 33 v-5 H${xs[5] + w} v5" fill="none" stroke="#0f766e" stroke-width="1.3"/>`
+    + rowsAt(c(3), en ? 12 : 22, en ? ['The track, which handles coating and developing,', 'is connected directly to the scanner'] : ['負責塗佈和顯影的機台會和曝光機直接相連'], 10.5, '#0f766e');
+  xs.forEach((x, i) => {
+    svg += `<rect x="${x}" y="${top}" width="${w}" height="58" rx="6" fill="#f8fafc" stroke="#334155"/>` + icons[i](c(i), top + 6)
+      + rowsAt(c(i), top + 42, names[i], 10, '#0f172a', 'middle', 11);
+    if (i < 6) svg += `<path d="M${x + w} ${top + 29} h${gap}" stroke="#0f766e" stroke-width="1.4"/>`;
+  });
+  svg += mk(xs[1] + 11, top + 11, 'A') + mk(xs[3] + 11, top + 11, 'B') + mk(xs[5] + 11, top + 11, 'C');
+  // 重工：檢查不合格，回到塗佈；出口：蝕刻
+  svg += `<path d="M${c(6) - 14} ${top + 58} V${top + 72} H${c(1)} V${top + 60}" fill="none" stroke="#9a3412" stroke-width="1.5"/>` + arrow(c(1), top + 66, c(1), top + 59, '#9a3412', 1.5)
+    // 重工：說明靠左貼著迴圈，第三行補正文的理由「底下的材料還沒被動過」（G1 審查修正）；蝕刻出口往下移，讓出空間
+    + tb(c(1) + 8, top + 88, 'Rework', 11.5, '#9a3412', 'start') + tx(c(1) + 8, top + 102, L(en, '把光阻全部去掉，重新塗佈、曝光', 'Strip off all the photoresist and coat and expose the wafer again'), 10.5, '#9a3412', 'start')
+    + tx(c(1) + 8, top + 115, L(en, '底下的材料還沒被動過', 'The material underneath has not been touched'), 10, '#64748b', 'start')
+    + `<path d="M${c(6) + 16} ${top + 58} V${top + 120}" stroke="#64748b" stroke-width="1.4"/>` + arrow(c(6) + 16, top + 112, c(6) + 16, top + 121, '#64748b', 1.4)
+    + `<rect x="${xs[6] + 8}" y="${top + 122}" width="${w - 8}" height="22" rx="4" fill="#e2e8f0" stroke="#64748b"/>` + tx(c(6) + 4, top + 137, L(en, '蝕刻', 'Etching'), 10.5, '#334155')
+    + rowsAt(xs[6] + 2, top + 134, en ? ['Once the wafer goes through etching, the wrong pattern', 'is permanently carved into the material'] : ['一旦進入蝕刻，錯誤的圖形就會永久刻進材料裡'], 10, '#64748b', 'end');
+  // 下帶：塗佈、曝光、顯影三格剖面，以圈字母對到上帶
+  const sy = top + 172, pw = 150;
+  const panel = (i, stage, letter) => {
+    const x = c(i) - pw / 2;
+    let out = `<rect x="${x}" y="${sy + 26}" width="${pw}" height="26" fill="#a6bdcb" stroke="#334155"/>` + mk(x - 2, sy - 8, letter);
+    if (stage === 'develop') out += `<rect x="${x}" y="${sy}" width="56" height="26" fill="#e1ad70" stroke="#92400e"/><rect x="${x + 94}" y="${sy}" width="56" height="26" fill="#e1ad70" stroke="#92400e"/>`;
+    else out += `<rect x="${x}" y="${sy}" width="${pw}" height="26" fill="#e1ad70" stroke="#92400e"/>`;
+    if (stage === 'coat') out += tx(x + 75, sy + 17, L(en, '光阻', 'Resist'), 11) + tx(x + 75, sy + 44, L(en, '底下的材料', 'Material underneath'), 11);
+    if (stage === 'expose') out += `<rect x="${x + 56}" y="${sy}" width="38" height="26" fill="#fef3c7" stroke="#92400e" stroke-dasharray="3 2"/><path d="M${x + 40} ${sy - 24} L${x + 56} ${sy} H${x + 94} L${x + 110} ${sy - 24} Z" fill="#fde68a" fill-opacity=".5"/>`
+      + `<ellipse cx="${x + 75}" cy="${sy - 26}" rx="36" ry="5" fill="#e0f2fe" stroke="#075985"/>` + rowsAt(x + 75, sy + 68, en ? ['Exposed areas', 'change chemically'] : ['照到光的地方', '會起化學變化'], 10, '#92400e', 'middle', 12);
+    if (stage === 'develop') out += rowsAt(x + 75, sy + 68, en ? ['Developer', 'dissolves part'] : ['顯影液溶掉一部分'], 10.5, '#92400e', 'middle', 12);
     return out;
   };
-  return panel(20, L(en, '① 塗佈', '① Coat'), 'coat') + arrow(196, 136, 228, 136)
-    + panel(235, L(en, '② 曝光', '② Expose'), 'expose') + arrow(411, 136, 443, 136)
-    + panel(450, L(en, '③ 顯影', '③ Develop'), 'develop')
-    + `<text x="320" y="222" text-anchor="middle" fill="#334155" font-size="12">${L(en, '光阻開口時，下方薄膜仍在', 'Resist opens; the film underneath remains')}</text>`;
+  svg += panel(1, 'coat', 'A') + panel(3, 'expose', 'B') + panel(5, 'develop', 'C')
+    + `<text x="320" y="${sy + 104}" text-anchor="middle" fill="#334155" font-size="12">${L(en, '光阻開口時，下方薄膜仍在', 'Resist opens; the film underneath remains')}</text>`;
+  return svg;
 }
 
 function deposition(en) {
@@ -617,8 +688,8 @@ const MATCHERS = [
   [/天車|OHT|FOUP/i, oht, 282, { zh: '重量與片數出自本段正文；其餘為示意。', en: 'The weight and wafer count come from this section. Everything else is schematic.' }],
   [/MOSFET/i, mosfet, 250],
   [/CZ|長晶|crystal growth/i, cz, 300, { zh: '溫度、晶棒直徑、長度與重量出自本段正文；坩堝與晶棒的大小只是示意。', en: 'The temperature and the ingot diameter, length and weight come from this section. Crucible and ingot sizes are schematic.' }],
-  [/攝影|photography compared/i, photoVsLitho],
-  [/微影流程|lithography flow/i, lithoFlow],
+  [/攝影|photography compared/i, photoVsLitho, 296],
+  [/微影流程|lithography flow/i, lithoFlow, 326],
   [/沉積|deposition methods/i, deposition, 214],
   [/等向|isotropic/i, etch, 240],
   [/佈植機|implanter/i, implanter],
