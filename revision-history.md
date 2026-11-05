@@ -94,7 +94,17 @@
   - 被取代的 8 張：`C:\Users\Sam\AI-Workspace\docs\semiconductor-knowledge-hub\visual-upgrade-plan-2026-11-02\batchH1-2.28.0-before-after.png`；
   - 新增的 4 張：同資料夾的 `batchH1-2.28.0-new.png`；
   - 兩張內文圖左舊右新：同資料夾的 `batchH1-2.28.0-inline-figure.png`。
-- 提交／發布狀態：本機提交於 `feat/phase3-h1`，尚未推送、尚未部署，等 Sam 驗收。
+- 提交／發布狀態：已推送、已部署。
+  - 2026-11-05 Sam 看過對照圖後回覆「合併並部署」。
+  - 提交 `641f1f5`，main 由 `5d359ab` 快轉。
+  - 快轉後在 main 上重跑 `npm run verify` 與 `scripts/build-site.mjs`，都通過。
+  - GitHub Pages run `42055312549` 的 `verify` 與 `deploy` 都成功。
+- 發布後線上驗證（2026-11-05）：
+  - 本次改到的 5 個網站檔案與提交內容逐位元組相同，加不加快取參數都一樣：`index.html`、`app.js`、`chapter-figures.js`、`data/section-diagrams.js`、`pictorials.js`。
+  - 頁尾為 2.28.0；`revision-history.md`、`package.json`、`scripts/` 回應 404。
+  - 瀏覽器檢查直接跑線上網站：ch08、ch09 × 中英 × 1440／390，共 8 頁，與 main `5d359ab` 快照比較。
+    - 沒有頁面錯誤、主控台錯誤、水平溢位；1440 寬的 4 頁列印前收合區全部展開。
+    - 圖數、頁高與其他數量都和本機最終掃描相同，一次掃描就一致。
 
 ## 2.27.0 · 2026-11-05 · 第 3 階段 G2：ch06–ch07 實物示意圖
 
