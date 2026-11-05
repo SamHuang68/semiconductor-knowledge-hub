@@ -1306,37 +1306,75 @@ export const SECTION_DIAGRAMS = [
     "chapterId": "ch02",
     "headingZh": "從電晶體到晶片",
     "headingEn": "From transistors to a chip",
-    "type": "flow",
     "captionZh": "從電晶體、邏輯閘、運算電路到以金屬導線連成晶片。",
     "captionEn": "From transistors to logic gates and circuits, then wired into a chip.",
-    "steps": [
+    "type": "pictorial",
+    "draw": "transistorsToChip",
+    "labels": [
       {
+        "key": "tr",
         "zh": "電晶體",
-        "en": "Transistors",
-        "noteZh": "先做在矽表面（FEOL）",
-        "noteEn": "Built first at the silicon surface (FEOL)"
+        "en": "Transistors"
       },
       {
+        "key": "gate",
         "zh": "邏輯閘",
-        "en": "Logic gates",
-        "noteZh": "由幾個電晶體組成",
-        "noteEn": "A few transistors make a logic gate"
+        "en": "Logic gate"
       },
       {
+        "key": "circuit",
         "zh": "運算電路",
-        "en": "Computing circuits",
-        "noteZh": "由許多邏輯閘組成",
-        "noteEn": "Many logic gates make computing circuits"
+        "en": "Computing circuits"
       },
       {
-        "zh": "多層金屬導線",
-        "en": "Layers of metal wiring",
-        "noteZh": "在上方逐層蓋出（BEOL）",
-        "noteEn": "Built above, layer by layer (BEOL)"
+        "key": "chip",
+        "zh": "晶片",
+        "en": "Chip"
       },
       {
-        "zh": "一顆晶片",
-        "en": "A chip"
+        "key": "fewTr",
+        "zh": "幾個電晶體組成一個邏輯閘",
+        "en": "A few transistors make a logic gate"
+      },
+      {
+        "key": "manyG",
+        "zh": "許多邏輯閘組成運算電路",
+        "en": "Many logic gates make computing circuits"
+      },
+      {
+        "key": "wire",
+        "zh": "用好幾層金屬導線把它們連起來",
+        "en": "Several layers of metal wiring connect them all"
+      },
+      {
+        "key": "twoStages",
+        "zh": "晶圓廠的工作可以分成兩大段",
+        "en": "The work of a fab falls into two big stages"
+      },
+      {
+        "key": "si",
+        "zh": "矽",
+        "en": "Silicon"
+      },
+      {
+        "key": "feol",
+        "zh": "FEOL",
+        "en": "FEOL"
+      },
+      {
+        "key": "feolD",
+        "zh": "先在矽的表面做出電晶體",
+        "en": "First build the transistors at the surface of the silicon"
+      },
+      {
+        "key": "beol",
+        "zh": "BEOL",
+        "en": "BEOL"
+      },
+      {
+        "key": "beolD",
+        "zh": "再在上方一層一層蓋出金屬導線",
+        "en": "Then build the metal wiring above them layer by layer"
       }
     ]
   },
@@ -1344,31 +1382,78 @@ export const SECTION_DIAGRAMS = [
     "chapterId": "ch02",
     "headingZh": "微縮：越做越小",
     "headingEn": "Scaling: making it smaller and smaller",
-    "type": "flow",
     "captionZh": "電晶體微縮的好處、漏電問題與結構走向立體的因果。",
     "captionEn": "Why shrinking transistors led to leakage and a three-dimensional structure.",
-    "steps": [
+    "type": "pictorial",
+    "draw": "shrinkWhy",
+    "sourcedNumbers": true,
+    "sourceZh": "「大約每兩年增加一倍」照本段正文寫；右格的電晶體數正好是左格的兩倍、每顆面積一半，只是示意。",
+    "sourceEn": "The doubling every two years is worded as in this section. The right square holds exactly twice as many transistors, each at half the area, as a sketch.",
+    "labels": [
       {
-        "zh": "電晶體越做越小",
-        "en": "Transistors shrink",
-        "noteZh": "更快、更省電、成本更低",
-        "noteEn": "Faster, lower power, lower cost"
+        "key": "moore",
+        "zh": "摩爾定律",
+        "en": "Moore's law"
       },
       {
-        "zh": "閘極難完全控制通道",
-        "en": "Gate loses full control of channel",
-        "noteZh": "縮小到一定程度後",
-        "noteEn": "Once past a certain point"
+        "key": "double",
+        "zh": "晶片上的電晶體數量大約每兩年增加一倍",
+        "en": "The number of transistors on a chip roughly doubled every two years"
       },
       {
-        "zh": "關掉時仍有漏電",
-        "en": "Current leaks even when off",
-        "noteZh": "像水龍頭關不緊",
-        "noteEn": "Like a faucet that will not shut tight"
+        "key": "small",
+        "zh": "電晶體越小，就能做得越快、越省電",
+        "en": "Smaller transistors can be faster and use less power"
       },
       {
-        "zh": "結構從平面走向立體",
+        "key": "more",
+        "zh": "同一面積放進更多電晶體",
+        "en": "More of them fit in the same area"
+      },
+      {
+        "key": "cost",
+        "zh": "每個電晶體的成本也更低",
+        "en": "Each transistor costs less"
+      },
+      {
+        "key": "past",
+        "zh": "縮小到一定程度後",
+        "en": "Shrink past a certain point"
+      },
+      {
+        "key": "control",
+        "zh": "閘極越來越難完全控制通道",
+        "en": "The gate finds it harder and harder to fully control the channel"
+      },
+      {
+        "key": "leak",
+        "zh": "關掉時仍有電流漏過去",
+        "en": "Current keeps leaking through even when the transistor is off"
+      },
+      {
+        "key": "faucet",
+        "zh": "水龍頭關不緊",
+        "en": "Like a faucet that will not shut tight"
+      },
+      {
+        "key": "solve",
+        "zh": "為了解決這個問題",
+        "en": "To solve this"
+      },
+      {
+        "key": "to3d",
+        "zh": "從平面走向立體",
         "en": "From planar to three-dimensional"
+      },
+      {
+        "key": "planar",
+        "zh": "平面",
+        "en": "Planar"
+      },
+      {
+        "key": "threeD",
+        "zh": "立體",
+        "en": "Three-dimensional"
       }
     ]
   },
@@ -1377,32 +1462,111 @@ export const SECTION_DIAGRAMS = [
     "headingZh": "定量物理定律與 3D 製程視窗",
     "headingEn": "Quantitative Governing Laws & 3D Process Windows",
     "foldTables": true,
-    "type": "branch",
     "foldSection": true,
-    "captionZh": "三大元件物理定律各自推動的製程演進。",
-    "captionEn": "How each device physics law drove a change in process technology.",
-    "root": {
-      "zh": "元件物理定量定律",
-      "en": "Quantitative device physics laws"
-    },
-    "branches": [
+    "type": "pictorial",
+    "draw": "swingScale",
+    "sourcedNumbers": true,
+    "sourceZh": "次臨界擺幅數值出自本段表格，是典型範圍，不是單一元件的量測值；刻度尺從 55 到 125 mV/dec 線性排列，不印刻度。",
+    "sourceEn": "Subthreshold swing values come from the table in this section: typical ranges, not measurements of one device. The scale runs linearly from 55 to 125 mV/dec without printed ticks.",
+    "captionZh": "三大元件物理定律，以及次臨界擺幅的數值位置",
+    "captionEn": "Three device physics laws, and where the subthreshold swing values fall",
+    "labels": [
       {
+        "key": "root",
+        "zh": "元件物理定量定律",
+        "en": "Quantitative device physics laws",
+        "from": "figure"
+      },
+      {
+        "key": "b1",
         "zh": "本質載子熱激發定律",
         "en": "Intrinsic carrier thermal law",
-        "leafZh": "壓低堆疊接面溫度",
-        "leafEn": "Cap junction temperature in stacks"
+        "from": "figure"
       },
       {
+        "key": "l1",
+        "zh": "壓低堆疊接面溫度",
+        "en": "Cap junction temperature in stacks",
+        "from": "figure"
+      },
+      {
+        "key": "b2",
         "zh": "次臨界擺幅極限",
         "en": "Subthreshold swing limit",
-        "leafZh": "催生 GAA 奈米片",
-        "leafEn": "Drove the move to GAA nanosheets"
+        "from": "figure"
       },
       {
+        "key": "l2",
+        "zh": "催生 GAA 奈米片",
+        "en": "Drove the move to GAA nanosheets",
+        "from": "figure"
+      },
+      {
+        "key": "b3",
         "zh": "量子穿隧閘極漏電",
         "en": "Quantum tunneling gate leakage",
-        "leafZh": "改用高介電材料",
-        "leafEn": "Switch to high-k dielectric"
+        "from": "figure"
+      },
+      {
+        "key": "l3",
+        "zh": "改用高介電材料",
+        "en": "Switch to high-k dielectric",
+        "from": "figure"
+      },
+      {
+        "key": "unit",
+        "zh": "mV/dec",
+        "en": "mV/dec"
+      },
+      {
+        "key": "v596",
+        "zh": "59.6",
+        "en": "59.6"
+      },
+      {
+        "key": "limit",
+        "zh": "熱電子發射極限",
+        "en": "Thermionic limit"
+      },
+      {
+        "key": "k300",
+        "zh": "300 K",
+        "en": "at 300 K"
+      },
+      {
+        "key": "gaa",
+        "zh": "GAA 奈米片",
+        "en": "GAA"
+      },
+      {
+        "key": "vGaa",
+        "zh": "62–65",
+        "en": "62–65"
+      },
+      {
+        "key": "fin",
+        "zh": "FinFET",
+        "en": "FinFET"
+      },
+      {
+        "key": "vFin",
+        "zh": "~70",
+        "en": "~70"
+      },
+      {
+        "key": "planar",
+        "zh": "平面短通道",
+        "en": "Short-channel planar"
+      },
+      {
+        "key": "vPlanar",
+        "zh": "95–120",
+        "en": "95–120"
+      },
+      {
+        "key": "worse",
+        "zh": "惡化",
+        "en": "Degrades"
       }
     ]
   },
@@ -1411,83 +1575,179 @@ export const SECTION_DIAGRAMS = [
     "headingZh": "半導體能隙、Multi-Vt 與功耗概覽",
     "headingEn": "Bandgap, Multi-Vt & Power Overview",
     "foldTables": true,
-    "type": "compare",
     "foldSection": true,
-    "captionZh": "能隙、多重臨界電壓與 CMOS 功耗三類主題重點。",
-    "captionEn": "Bandgap, Multi-Vt and CMOS power: key points of the three topics.",
-    "columns": [
+    "type": "pictorial",
+    "draw": "bandgapBars",
+    "sourcedNumbers": true,
+    "sourceZh": "能隙數值出自本段表格，是室溫的典型值；長條從 0 eV 起按比例。下方三欄沿用原本的重點。",
+    "sourceEn": "Bandgap values come from the table in this section and are typical room-temperature values. Bars start at 0 eV and are to scale. The three columns below keep the original key points.",
+    "captionZh": "五種半導體的能隙，以及三類主題的重點",
+    "captionEn": "Bandgaps of five semiconductors, and key points of the three topics",
+    "labels": [
       {
-        "titleZh": "能隙與載子遷移率",
-        "titleEn": "Bandgap & carrier mobility",
-        "items": [
-          {
-            "zh": "能隙決定耐溫與耐壓極限",
-            "en": "Bandgap sets heat and voltage limits"
-          },
-          {
-            "zh": "遷移率決定導通速度",
-            "en": "Mobility sets conduction speed"
-          },
-          {
-            "zh": "矽主導主流數位 CMOS",
-            "en": "Silicon powers mainstream CMOS"
-          },
-          {
-            "zh": "SiC、GaN 用於電源轉換",
-            "en": "SiC and GaN for power conversion"
-          }
-        ],
-        "icon": "bandgap"
+        "key": "eg",
+        "zh": "能隙",
+        "en": "Bandgap"
       },
       {
-        "titleZh": "多重臨界電壓與次臨界擺幅",
-        "titleEn": "Multi-Vt & subthreshold swing",
-        "items": [
-          {
-            "zh": "ULVT、LVT、SVT、HVT",
-            "en": "ULVT, LVT, SVT, HVT flavors"
-          },
-          {
-            "zh": "擺幅有室溫熱離子發射極限",
-            "en": "Swing has a room-temperature thermionic limit"
-          },
-          {
-            "zh": "降低 Vt 提速，但漏電暴增",
-            "en": "Lower Vt: faster, but leakage soars"
-          },
-          {
-            "zh": "改用功函數金屬與偶極調 Vt",
-            "en": "Tune Vt with work-function metal and dipoles"
-          }
-        ],
-        "icon": "threshold"
+        "key": "rt",
+        "zh": "室溫（300 K）",
+        "en": "Room-Temperature (300 K)"
       },
       {
-        "titleZh": "CMOS 功耗分量與對策",
-        "titleEn": "CMOS power terms & countermeasures",
-        "items": [
-          {
-            "zh": "動態切換功耗",
-            "en": "Dynamic switching power",
-            "noteZh": "與電壓平方成正比",
-            "noteEn": "Scales with supply voltage squared"
-          },
-          {
-            "zh": "瞬間短路功耗",
-            "en": "Short-circuit power"
-          },
-          {
-            "zh": "靜態漏電功耗",
-            "en": "Static leakage power",
-            "noteZh": "次臨界、閘極與接面漏電",
-            "noteEn": "Subthreshold, gate and junction leakage"
-          },
-          {
-            "zh": "HKMG 與 GAA 壓制漏電",
-            "en": "HKMG and GAA suppress leakage"
-          }
-        ],
-        "icon": "conductor"
+        "key": "ev",
+        "zh": "eV",
+        "en": "eV"
+      },
+      {
+        "key": "ge",
+        "zh": "Ge",
+        "en": "Ge"
+      },
+      {
+        "key": "si",
+        "zh": "Si",
+        "en": "Si"
+      },
+      {
+        "key": "gaas",
+        "zh": "GaAs",
+        "en": "GaAs"
+      },
+      {
+        "key": "sic",
+        "zh": "4H-SiC",
+        "en": "4H-SiC"
+      },
+      {
+        "key": "gan",
+        "zh": "GaN",
+        "en": "GaN"
+      },
+      {
+        "key": "v066",
+        "zh": "0.66",
+        "en": "0.66"
+      },
+      {
+        "key": "v112",
+        "zh": "1.12",
+        "en": "1.12"
+      },
+      {
+        "key": "v142",
+        "zh": "1.42",
+        "en": "1.42"
+      },
+      {
+        "key": "v326",
+        "zh": "3.26",
+        "en": "3.26"
+      },
+      {
+        "key": "v34",
+        "zh": "3.4",
+        "en": "3.4"
+      },
+      {
+        "key": "siUse",
+        "zh": "矽主導主流數位 CMOS",
+        "en": "Si powers mainstream CMOS"
+      },
+      {
+        "key": "power",
+        "zh": "高壓電動車與 AI 伺服器電源轉換",
+        "en": "EV traction and AI server power electronics"
+      },
+      {
+        "key": "c1",
+        "zh": "能隙與載子遷移率",
+        "en": "Bandgap & carrier mobility",
+        "from": "figure"
+      },
+      {
+        "key": "c1a",
+        "zh": "能隙決定耐溫與耐壓極限",
+        "en": "Bandgap sets heat and voltage limits",
+        "from": "figure"
+      },
+      {
+        "key": "c1b",
+        "zh": "遷移率決定導通速度",
+        "en": "Mobility sets conduction speed",
+        "from": "figure"
+      },
+      {
+        "key": "c2",
+        "zh": "多重臨界電壓與次臨界擺幅",
+        "en": "Multi-Vt & subthreshold swing",
+        "from": "figure"
+      },
+      {
+        "key": "c2a",
+        "zh": "ULVT、LVT、SVT、HVT",
+        "en": "ULVT, LVT, SVT, HVT flavors",
+        "from": "figure"
+      },
+      {
+        "key": "c2b",
+        "zh": "擺幅有室溫熱離子發射極限",
+        "en": "Swing has a room-temperature thermionic limit",
+        "from": "figure"
+      },
+      {
+        "key": "c2c",
+        "zh": "降低 Vt 提速，但漏電暴增",
+        "en": "Lower Vt: faster, but leakage soars",
+        "from": "figure"
+      },
+      {
+        "key": "c2d",
+        "zh": "改用功函數金屬與偶極調 Vt",
+        "en": "Tune Vt with work-function metal and dipoles",
+        "from": "figure"
+      },
+      {
+        "key": "c3",
+        "zh": "CMOS 功耗分量與對策",
+        "en": "CMOS power terms & countermeasures",
+        "from": "figure"
+      },
+      {
+        "key": "c3a",
+        "zh": "動態切換功耗",
+        "en": "Dynamic switching power",
+        "from": "figure"
+      },
+      {
+        "key": "c3an",
+        "zh": "與電壓平方成正比",
+        "en": "Scales with supply voltage squared",
+        "from": "figure"
+      },
+      {
+        "key": "c3b",
+        "zh": "瞬間短路功耗",
+        "en": "Short-circuit power",
+        "from": "figure"
+      },
+      {
+        "key": "c3c",
+        "zh": "靜態漏電功耗",
+        "en": "Static leakage power",
+        "from": "figure"
+      },
+      {
+        "key": "c3cn",
+        "zh": "次臨界、閘極與接面漏電",
+        "en": "Subthreshold, gate and junction leakage",
+        "from": "figure"
+      },
+      {
+        "key": "c3d",
+        "zh": "HKMG 與 GAA 壓制漏電",
+        "en": "HKMG and GAA suppress leakage",
+        "from": "figure"
       }
     ]
   },
@@ -1522,6 +1782,97 @@ export const SECTION_DIAGRAMS = [
         "en": "GIDL and latch-up burnout",
         "leafZh": "緩解邊緣電場並加保護環",
         "leafEn": "Relax peak fields, add guard rings"
+      }
+    ]
+  },
+  {
+    "chapterId": "ch02",
+    "headingZh": "半導體：可以控制的導體",
+    "headingEn": "Semiconductors: conductors you can control",
+    "type": "pictorial",
+    "draw": "semiControl",
+    "captionZh": "介於金屬與玻璃之間、可以被控制，以及為什麼用矽",
+    "captionEn": "Between metal and glass, and controllable; why silicon is the main material",
+    "labels": [
+      {
+        "key": "glass",
+        "zh": "玻璃",
+        "en": "Glass"
+      },
+      {
+        "key": "glassNote",
+        "zh": "幾乎不導電",
+        "en": "Hardly conducts at all"
+      },
+      {
+        "key": "semi",
+        "zh": "半導體",
+        "en": "Semiconductors"
+      },
+      {
+        "key": "between",
+        "zh": "介於兩者之間",
+        "en": "Sit in between"
+      },
+      {
+        "key": "metal",
+        "zh": "金屬",
+        "en": "Metals"
+      },
+      {
+        "key": "metalNote",
+        "zh": "很容易導電",
+        "en": "Conduct electricity easily"
+      },
+      {
+        "key": "control",
+        "zh": "導電能力可以被控制",
+        "en": "Their conductivity can be controlled"
+      },
+      {
+        "key": "dope",
+        "zh": "加入少量的其他元素",
+        "en": "Adding small amounts of other elements"
+      },
+      {
+        "key": "volt",
+        "zh": "施加電壓",
+        "en": "Applying a voltage"
+      },
+      {
+        "key": "siMain",
+        "zh": "矽是最主要的半導體材料",
+        "en": "Silicon is the main semiconductor material"
+      },
+      {
+        "key": "abundant",
+        "zh": "地球上的含量非常豐富",
+        "en": "Extremely abundant on Earth"
+      },
+      {
+        "key": "sand",
+        "zh": "沙子的主要成分就是矽的氧化物",
+        "en": "Sand is mostly silicon oxide"
+      },
+      {
+        "key": "sio2",
+        "zh": "二氧化矽",
+        "en": "Silicon dioxide"
+      },
+      {
+        "key": "si",
+        "zh": "矽",
+        "en": "Silicon"
+      },
+      {
+        "key": "insulator",
+        "zh": "品質很好的絕緣層",
+        "en": "A high-quality insulator"
+      },
+      {
+        "key": "useful",
+        "zh": "製程上非常好用",
+        "en": "Very useful in manufacturing"
       }
     ]
   },
@@ -1690,8 +2041,26 @@ export const SECTION_DIAGRAMS = [
         "key": "waferSingle",
         "zh": "晶圓本身是單晶矽",
         "en": "The wafer itself is single-crystal silicon"
+      },
+      {
+        "key": "mgPurity",
+        "zh": "約 98% 到 99%",
+        "en": "About 98% to 99%"
+      },
+      {
+        "key": "purity",
+        "zh": "99.999999999%",
+        "en": "99.999999999%"
+      },
+      {
+        "key": "nines",
+        "zh": "11 個 9",
+        "en": "eleven nines"
       }
-    ]
+    ],
+    "sourcedNumbers": true,
+    "sourceZh": "純度數值出自本段正文；電弧爐、反應器、蒸餾塔與沉積的小圖只是示意。",
+    "sourceEn": "The purity values come from this section. The small drawings of the arc furnace, reactor, distillation column and deposition are schematic."
   },
   {
     "chapterId": "ch03",
@@ -1699,8 +2068,8 @@ export const SECTION_DIAGRAMS = [
     "headingEn": "From ingot to wafer",
     "type": "pictorial",
     "draw": "ingotToWafer",
-    "captionZh": "晶棒依序加工成為可出貨晶圓的六個動作。",
-    "captionEn": "The six operations that turn an ingot into a wafer ready to ship.",
+    "captionZh": "晶棒加工成晶圓的六個動作，以及缺口、編號與厚度",
+    "captionEn": "Six operations from ingot to wafer, plus the notch, wafer ID and thickness",
     "labels": [
       {
         "key": "shape",
@@ -1767,8 +2136,46 @@ export const SECTION_DIAGRAMS = [
         "zh": "查平坦度、微粒與金屬污染",
         "en": "Flatness, particles, metal contamination",
         "from": "figure"
+      },
+      {
+        "key": "notch",
+        "zh": "Notch",
+        "en": "Notch"
+      },
+      {
+        "key": "vNotch",
+        "zh": "V 形缺口",
+        "en": "V-shaped notch"
+      },
+      {
+        "key": "waferId",
+        "zh": "Wafer ID",
+        "en": "Wafer ID"
+      },
+      {
+        "key": "find",
+        "zh": "機台在處理晶圓前，會先找到 Notch",
+        "en": "Before processing a wafer, a tool first finds the notch"
+      },
+      {
+        "key": "rotate",
+        "zh": "把晶圓轉到固定的方向",
+        "en": "rotates the wafer to a fixed orientation"
+      },
+      {
+        "key": "round",
+        "zh": "邊緣磨圓",
+        "en": "Edges are rounded"
+      },
+      {
+        "key": "thick",
+        "zh": "大約是 775 微米",
+        "en": "About 775 micrometers"
       }
-    ]
+    ],
+    "sourcedNumbers": true,
+    "sourceZh": "厚度出自本段正文；邊緣剖面的形狀與比例只是示意。",
+    "sourceEn": "The thickness comes from this section. The shape and proportions of the edge profile are schematic."
   },
   {
     "chapterId": "ch03",
@@ -1776,8 +2183,8 @@ export const SECTION_DIAGRAMS = [
     "headingEn": "Special wafers",
     "type": "pictorial",
     "draw": "specialWafers",
-    "captionZh": "一般拋光晶圓與兩種特殊晶圓的剖面，未按比例。",
-    "captionEn": "Cross-sections of a polished wafer and two special wafers, not to scale.",
+    "captionZh": "三種晶圓的剖面，以及控片、擋片與再生晶圓",
+    "captionEn": "Cross-sections of three wafer types, plus monitor, dummy and reclaimed wafers",
     "labels": [
       {
         "key": "polished",
@@ -1837,6 +2244,61 @@ export const SECTION_DIAGRAMS = [
         "key": "siBase",
         "zh": "矽",
         "en": "silicon"
+      },
+      {
+        "key": "notProduct",
+        "zh": "工廠裡很多晶圓不是產品",
+        "en": "Many wafers in a fab are not product"
+      },
+      {
+        "key": "product",
+        "zh": "產品晶圓",
+        "en": "Product wafers"
+      },
+      {
+        "key": "dummy",
+        "zh": "擋片（Dummy Wafer）",
+        "en": "Dummy wafers"
+      },
+      {
+        "key": "monitor",
+        "zh": "控片（Monitor Wafer）",
+        "en": "Monitor wafers"
+      },
+      {
+        "key": "check",
+        "zh": "檢查機台狀態",
+        "en": "Check the condition of tools"
+      },
+      {
+        "key": "measure",
+        "zh": "例如量測膜厚或微粒",
+        "en": "For example by measuring film thickness or particles"
+      },
+      {
+        "key": "full1",
+        "zh": "批次式機台需要放滿晶圓",
+        "en": "Batch tools need to be fully loaded"
+      },
+      {
+        "key": "full2",
+        "zh": "溫度和氣流才會均勻",
+        "en": "so that temperature and gas flow are uniform"
+      },
+      {
+        "key": "used",
+        "zh": "用過的控片和擋片",
+        "en": "Used monitor and dummy wafers"
+      },
+      {
+        "key": "reclaim",
+        "zh": "研磨後回收再用",
+        "en": "Polished and reused"
+      },
+      {
+        "key": "reclaimed",
+        "zh": "再生晶圓",
+        "en": "Reclaimed wafers"
       }
     ]
   },
@@ -1857,8 +2319,8 @@ export const SECTION_DIAGRAMS = [
       {
         "zh": "結晶空洞 COP",
         "en": "Crystal originated pits (COP)",
-        "leafZh": "磁場控制長晶或改用磊晶矽片",
-        "leafEn": "MCZ magnetic control or an epi wafer"
+        "leafZh": "校準拉速／溫梯，評估氫退火或磊晶",
+        "leafEn": "Calibrate V/G; evaluate hydrogen anneal or epi"
       },
       {
         "zh": "熱滑移差排線",
@@ -1869,8 +2331,8 @@ export const SECTION_DIAGRAMS = [
       {
         "zh": "背磨次表面微裂紋",
         "en": "Backgrind subsurface micro-cracks",
-        "leafZh": "應力釋放拋光並貼附載片",
-        "leafEn": "Stress-relief CMP on a temporary carrier"
+        "leafZh": "應力釋放拋光或蝕刻，載片支撐",
+        "leafEn": "Stress-relief polish or etch; carrier support"
       }
     ]
   },
@@ -1931,32 +2393,111 @@ export const SECTION_DIAGRAMS = [
     "headingZh": "定量物理定律與 3D 製程視窗",
     "headingEn": "Quantitative Governing Laws & 3D Process Windows",
     "foldTables": true,
-    "type": "branch",
     "foldSection": true,
-    "captionZh": "三大長晶與基板定律及其製程意義。",
-    "captionEn": "Three crystal and substrate laws and what each means for the process.",
-    "root": {
-      "zh": "長晶與基板定量定律",
-      "en": "Crystal & substrate laws"
-    },
-    "branches": [
+    "type": "pictorial",
+    "draw": "scheilIngots",
+    "sourcedNumbers": true,
+    "sourceZh": "偏析係數出自本段表格；顏色越深表示摻質越濃，深淺依本段的 Scheil 式計算，每根以自己的頭端為基準，畫到晶棒約九成處。",
+    "sourceEn": "Segregation coefficients come from the table in this section. Darker means more dopant. Shading follows the Scheil equation in this section, relative to the head end of each ingot, up to about 90% of the ingot.",
+    "captionZh": "三大長晶與基板定律，以及三種摻質沿晶棒的濃度變化",
+    "captionEn": "Three crystal and substrate laws, and how three dopants vary along an ingot",
+    "labels": [
       {
+        "key": "root",
+        "zh": "長晶與基板定量定律",
+        "en": "Crystal & substrate laws",
+        "from": "figure"
+      },
+      {
+        "key": "b1",
         "zh": "Voronkov 準則",
         "en": "Voronkov point-defect criterion",
-        "leafZh": "評估原生點缺陷風險",
-        "leafEn": "Assesses grown-in point-defect risk"
+        "from": "figure"
       },
       {
+        "key": "l1",
+        "zh": "評估原生點缺陷風險",
+        "en": "Assesses grown-in point-defect risk",
+        "from": "figure"
+      },
+      {
+        "key": "b2",
         "zh": "Scheil 摻質偏析",
         "en": "Scheil dopant segregation",
-        "leafZh": "摻硼 P 型晶圓成邏輯主流",
-        "leafEn": "Boron-doped P-type wafers dominate logic"
+        "from": "figure"
       },
       {
+        "key": "l2",
+        "zh": "摻硼 P 型晶圓成邏輯主流",
+        "en": "Boron-doped P-type wafers dominate logic",
+        "from": "figure"
+      },
+      {
+        "key": "b3",
         "zh": "SFQR 與薄化 TTV",
         "en": "SFQR & thinning TTV",
-        "leafZh": "超規致 EUV 失焦、鍵合氣泡",
-        "leafEn": "Excess causes EUV defocus and bonding voids"
+        "from": "figure"
+      },
+      {
+        "key": "l3",
+        "zh": "超規致 EUV 失焦、鍵合氣泡",
+        "en": "Excess causes EUV defocus and bonding voids",
+        "from": "figure"
+      },
+      {
+        "key": "coef",
+        "zh": "偏析係數",
+        "en": "Segregation coefficient"
+      },
+      {
+        "key": "boron",
+        "zh": "硼",
+        "en": "Boron"
+      },
+      {
+        "key": "vB",
+        "zh": "0.80",
+        "en": "0.80"
+      },
+      {
+        "key": "phos",
+        "zh": "磷",
+        "en": "Phosphorus"
+      },
+      {
+        "key": "vP",
+        "zh": "0.35",
+        "en": "0.35"
+      },
+      {
+        "key": "arsenic",
+        "zh": "砷",
+        "en": "Arsenic"
+      },
+      {
+        "key": "vAs",
+        "zh": "0.30",
+        "en": "0.30"
+      },
+      {
+        "key": "dopant",
+        "zh": "摻質",
+        "en": "Dopant"
+      },
+      {
+        "key": "tail",
+        "zh": "尾部",
+        "en": "Tail"
+      },
+      {
+        "key": "flat",
+        "zh": "晶棒頭尾電阻率均勻",
+        "en": "Flat axial resistivity"
+      },
+      {
+        "key": "rich",
+        "zh": "越往晶棒尾部熔體越濃、電阻率越低",
+        "en": "Tail enrichment"
       }
     ]
   },

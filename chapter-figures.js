@@ -146,13 +146,40 @@ function mosfet(en) {
     + tx(515, 134, L(en, '開 · 閘極電壓超過臨界電壓（Vt）', 'On · above threshold voltage (Vt)'), 11.5, '#0f766e') + mini(146, true);
 }
 
+// 長晶（2.25.0 改畫，第 3 階段 F 批）：同一個坩堝畫成四格，依正文的四個步驟：加熱熔化 → 晶種接觸液面 → 一邊旋轉一邊往上拉 → 拉出整根晶棒。
+// 圖說來自正文註解（坩堝、熔融矽、晶種、旋轉上拉的晶棒），不改。技術審查修正：拉晶時晶棒底部貼著液面；整根提出後坩堝底還剩一些熔融的矽；
+// 頸部、肩部不標；溫度、直徑、長度與重量照正文寫，不畫尺寸線，所以用「依正文數值繪製」標章（MATCHERS 第四欄）
 function cz(en) {
-  // 開口的坩堝裝著熔融矽；晶種往上拉出晶棒，晶棒底部接著熔融矽液面，一邊旋轉一邊往上拉
-  return `<path d="M230 80 V176 H410 V80" fill="none" stroke="#334155" stroke-width="2"/><rect x="232" y="132" width="176" height="42" fill="#fde68a"/>${tx(320, 160, L(en, '熔融矽', 'Molten silicon'), 12)}<rect x="300" y="28" width="40" height="28" fill="#99f6e4" stroke="#0f766e"/><rect x="292" y="56" width="56" height="76" fill="#f8fafc" stroke="#0f766e"/>${tx(320, 196, L(en, '坩堝', 'Crucible'), 12, '#334155')}`
-    + arrow(266, 110, 266, 50, '#0f766e', 2)
-    + `<path d="M294 104 q26 14 52 0" fill="none" stroke="#0f766e" stroke-width="1.5"/><path d="M346 104 l-7 -1 l3 6 z" fill="#0f766e"/>`
-    + `<path d="M340 42 H432" stroke="#334155"/>` + tx(438, 46, L(en, '晶種', 'Seed'), 12, '#0f172a', 'start')
-    + `<path d="M348 90 H432" stroke="#334155"/>` + tx(438, 94, L(en, '晶棒 · 旋轉上拉', 'Ingot · rotate and pull'), 12, '#0f172a', 'start');
+  const base = 196, rim = 140, X = i => 16 + i * 154, C = i => X(i) + 72;
+  const crucible = (cx, surface) => `<rect x="${cx - 45}" y="${surface}" width="90" height="${base - surface - 1}" fill="#fde68a"/><path d="M${cx - 46} ${rim} V${base} H${cx + 46} V${rim}" fill="none" stroke="#334155" stroke-width="2"/>`;
+  const rod = (cx, y) => `<path d="M${cx} 12 V${y}" stroke="#334155" stroke-width="1.6"/>`;
+  const seed = (cx, y) => `<rect x="${cx - 5}" y="${y}" width="10" height="10" fill="#99f6e4" stroke="#0f766e"/>`;
+  // 晶棒：晶種 → 細頸 → 肩部 → 圓柱；tail 為 true 時尾端收成錐形
+  const ingot = (cx, y, body, tail) => seed(cx, y) + `<path d="M${cx - 1.5} ${y + 10} V${y + 20} L${cx - 17} ${y + 36} V${y + 36 + body}${tail ? ` L${cx} ${y + 52 + body} L${cx + 17} ${y + 36 + body}` : ` H${cx + 17}`} V${y + 36} L${cx + 1.5} ${y + 20} V${y + 10} Z" fill="#cbd5e1" stroke="#334155"/>`;
+  const under = (cx, y, rows, color = '#334155', size = 10.5) => rows.map((row, i) => tx(cx, y + i * 14, row, size, color)).join('');
+  let svg = '';
+  // 加熱到 1,400 °C 以上熔化：坩堝兩側畫加熱線圈
+  svg += crucible(C(0), 156) + [-54, 54].map(dx => `<path d="M${C(0) + dx} 146 ${[0, 1, 2, 3, 4, 5].map(k => `l${k % 2 ? 5 : -5} 7`).join(' ')}" fill="none" stroke="#9a3412" stroke-width="1.5"/>`).join('')
+    + tx(C(0), 112, L(en, '1,400 °C 以上', 'Above 1,400 °C'), 12, '#9a3412') + [-14, 0, 14].map(dx => `<path d="M${C(0) + dx} 134 q-3 -4 0 -8 q3 -4 0 -8" fill="none" stroke="#9a3412" stroke-width="1.1"/>`).join('')
+    + tx(C(0), 182, L(en, '熔化的矽', 'Molten silicon'), 10.5, '#0f172a') + tx(C(0), 214, L(en, '石英坩堝', 'Quartz crucible'), 11, '#334155')
+    // 摻雜框：英文照正文補上 small amounts（F2 審查修正）
+    + `<rect x="${X(0) + 6}" y="226" width="132" height="${en ? 66 : 52}" rx="6" fill="#f0fdfa" stroke="#0f766e"/>`
+    + under(C(0), 242, en ? ['Small amounts of', 'boron or phosphorus'] : ['加入少量硼或磷'], '#0f766e', 10) + under(C(0), en ? 272 : 258, en ? ['Boron → P-type', 'Phosphorus → N-type'] : ['硼 → P 型', '磷 → N 型'], '#0f172a', 10.5);
+  // 晶種輕輕接觸熔化的矽（F2 審查修正：英文「Seed crystal」寫成同一行，不拆成標題加註解）
+  svg += crucible(C(1), 156) + rod(C(1), 146) + seed(C(1), 146) + `<path d="M${C(1) + 7} 150 L${C(1) + 14} 132" stroke="#64748b" stroke-dasharray="2 2"/>`
+    + tx(C(1) + 8, 126, L(en, '晶種', 'Seed crystal'), en ? 10.5 : 12, '#0f766e', 'start') + under(C(1), 214, en ? ['Gently touches', 'the molten silicon'] : ['輕輕接觸熔化的矽']);
+  // 一邊旋轉、一邊非常緩慢地往上拉：晶棒底部貼著液面
+  svg += crucible(C(2), 166) + rod(C(2), 70) + ingot(C(2), 70, 60, false)
+    + `<path d="M${C(2) - 24} 100 a24 7 0 0 0 48 0" fill="none" stroke="#0f766e" stroke-width="1.5"/><path d="M${C(2) + 24} 100 l-2 -6 l-4 5 z" fill="#0f766e"/>` + arrow(C(2) + 36, 132, C(2) + 36, 72, '#0f766e', 2)
+    + under(C(2), 214, en ? ['Rotated and pulled', 'upward very slowly'] : ['一邊旋轉、一邊', '非常緩慢地往上拉']);
+  // 最後拉出一根圓柱狀的單晶晶棒；坩堝底還剩一些熔融的矽
+  // 晶棒尾端要高過坩堝口，才看得出整根已經提出（F2 審查修正）
+  svg += crucible(C(3), 188) + rod(C(3), 16) + ingot(C(3), 16, 66, true)
+    + under(C(3), 214, en ? ['Cylindrical', 'single-crystal ingot'] : ['圓柱狀的單晶晶棒'], '#0f172a', 11)
+    + under(C(3), en ? 248 : 236, en ? ['A 300 mm ingot:', 'about two meters long,', 'several hundred kilograms'] : ['300 mm 晶棒', '長達兩公尺左右', '重達數百公斤'], '#334155', 10);
+  // 步驟之間的箭頭
+  svg += [0, 1, 2].map(i => arrow(C(i) + 60, 176, C(i + 1) - 54, 176, '#0f766e', 1.5)).join('');
+  return svg;
 }
 
 function photoVsLitho(en) {
@@ -589,7 +616,7 @@ const MATCHERS = [
   [/剖面示意|cross-section of a fab/i, fabSection, 276],
   [/天車|OHT|FOUP/i, oht, 282, { zh: '重量與片數出自本段正文；其餘為示意。', en: 'The weight and wafer count come from this section. Everything else is schematic.' }],
   [/MOSFET/i, mosfet, 250],
-  [/CZ|長晶|crystal growth/i, cz],
+  [/CZ|長晶|crystal growth/i, cz, 300, { zh: '溫度、晶棒直徑、長度與重量出自本段正文；坩堝與晶棒的大小只是示意。', en: 'The temperature and the ingot diameter, length and weight come from this section. Crucible and ingot sizes are schematic.' }],
   [/攝影|photography compared/i, photoVsLitho],
   [/微影流程|lithography flow/i, lithoFlow],
   [/沉積|deposition methods/i, deposition, 214],
