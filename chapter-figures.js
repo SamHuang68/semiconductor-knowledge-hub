@@ -447,8 +447,69 @@ function clean(en) {
   return svg;
 }
 
+// 多層金屬導線（2.29.0 改畫，第 3 階段 H 批）：底部矽基板上一排電晶體，鎢灰細柱接到第一層金屬；絕緣層只當底色。
+// 由下往上三帶：下層兩列最窄最密、中層兩列較寬（中段斷開記號表示省略的層）、上層兩列最寬最厚；
+// 每兩列相鄰金屬之間都有導通孔，粗細跟著層放大，兩端都落在金屬上。右側大括號：帶名、描述詞、比喻（圖示內無字）與功能句。
+// 「下層細密」「上層粗寬 · 導通孔相連」改用正文原句與「導通孔」標籤（技術審查修正）。圖說來自正文註解，沒有改
 function metalStack(en) {
-  return `<rect x="80" y="150" width="480" height="22" fill="#a6bdcb" stroke="#334155"/><path d="M110 150 v-16 M180 150 v-16 M250 150 v-16" stroke="#9a3412" stroke-width="3"/><path d="M120 134 h200 M360 134 h120" stroke="#9a3412" stroke-width="4"/><text x="200" y="124" fill="#92400e" font-size="12">${L(en, '下層細密', 'Lower, dense')}</text><path d="M160 118 v-18 M400 118 v-18" stroke="#9a3412" stroke-width="6"/><path d="M140 100 h300" stroke="#9a3412" stroke-width="10"/><text x="300" y="88" fill="#92400e" font-size="12">${L(en, '上層粗寬 · 導通孔相連', 'Upper, wide · vias')}</text>`;
+  const CU = '#d9ac73', CU_LINE = '#9a3412', INK2 = '#334155', MUTED = '#64748b', AMBER = '#92400e', TEAL = '#0f766e';
+  const X0 = 70, X1 = 400;
+  const k = (n, a, p) => Array.from({ length: n }, (_, i) => a + i * p);
+  // 由下往上六列：[頂邊 y, 高, 寬, 左緣位置]
+  const rows = [[240, 7, 8, k(20, 76, 16)], [220, 7, 8, k(20, 76, 16)], [188, 12, 18, k(10, 71, 32)], [146, 12, 18, k(10, 71, 32)], [106, 18, 44, k(5, 82, 64)], [62, 24, 84, k(3, 86, 112)]];
+  const vw = [4, 6, 6, 10, 14], every = [2, 1, 1, 1, 1];
+  let vias = '', wires = '';
+  const viaAt = [];
+  rows.forEach(([y, h, w, xs], i) => {
+    wires += xs.map(x => `<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="${CU}" stroke="${CU_LINE}" stroke-width=".8"/>`).join('');
+    if (!i) return;
+    const [ly, , lw, lxs] = rows[i - 1], v = vw[i - 1];
+    xs.forEach((u, j) => {
+      if (j % every[i - 1]) return;
+      const c = u + w / 2;
+      const m = lxs.map(l => [Math.max(u, l), Math.min(u + w, l + lw)]).filter(([a, b]) => b - a >= v).map(([a, b]) => (a + b) / 2).sort((a, b) => Math.abs(a - c) - Math.abs(b - c))[0];
+      if (m === undefined) return;
+      viaAt.push([i, m, y + h, ly]);
+      vias += `<rect x="${m - v / 2}" y="${y + h}" width="${v}" height="${ly - y - h}" fill="${CU}" stroke="${CU_LINE}" stroke-width=".8"/>`;
+    });
+  });
+  // 相鄰兩列至少要有一根導通孔（審查發現原本只找下排中心，邊緣剛好對齊時整排都被略過）
+  for (let i = 1; i < rows.length; i++) if (!viaAt.some(([r]) => r === i)) throw new Error(`metalStack 第 ${i} 與第 ${i + 1} 列之間沒有導通孔`);
+  let svg = `<rect x="${X0}" y="54" width="${X1 - X0}" height="208" fill="#f1f5f9"/>` + vias + wires;
+  // 中層中段的斷開記號：上下兩條波浪線之間留白，表示中間還有省略的層
+  const wave = y => `M${X0 - 6} ${y} ` + 'q6 -4 12 0 t12 0 '.repeat(14).trim();
+  svg += `<rect x="${X0 - 6}" y="167" width="${X1 - X0 + 6}" height="10" fill="#ffffff"/><path d="${wave(166)}" fill="none" stroke="${MUTED}"/><path d="${wave(178)}" fill="none" stroke="${MUTED}"/>`;
+  // 矽基板與電晶體：每個閘極兩側各一根鎢灰細柱，接到第一列金屬（不標字）
+  svg += `<rect x="${X0}" y="262" width="${X1 - X0}" height="18" fill="#a6bdcb" stroke="${INK2}"/>`
+    + k(20, 80, 16).map(c => `<rect x="${c - 1.5}" y="247" width="3" height="15" fill="#94a3b8" stroke="${INK2}" stroke-width=".4"/>`).join('')
+    + k(10, 88, 32).map(c => `<rect x="${c - 4}" y="255" width="8" height="7" fill="#fde68a" stroke="${AMBER}" stroke-width=".7"/>`).join('');
+  // 左側標籤：電晶體、導通孔（只指金屬層之間的柱子）
+  const v4 = viaAt.find(([i]) => i === 5);
+  svg += tx(62, 262, L(en, '電晶體', 'Transistors'), 10.5, INK2, 'end') + `<path d="M64 258 L84 258" stroke="${MUTED}" stroke-dasharray="2 2"/>`
+    + tx(62, 102, L(en, '導通孔', 'Vias'), 10.5, INK2, 'end') + `<path d="M64 98 L${v4[1] - 8} 98" stroke="${MUTED}" stroke-dasharray="2 2"/>`;
+  // 右側大括號與說明：帶名、描述詞、比喻圖示與比喻、功能句
+  const brace = (y1, y2) => { const m = (y1 + y2) / 2; return `<path d="M${X1 + 6} ${y1} q6 0 6 6 V${m - 5} q0 5 6 5 q-6 0 -6 5 V${y2 - 6} q0 6 -6 6" fill="none" stroke="${INK2}" stroke-width="1.2"/>`; };
+  const icons = [
+    (x, y) => `<rect x="${x}" y="${y}" width="40" height="14" rx="2" fill="#475569"/><path d="M${x + 3} ${y + 5} h34 M${x + 3} ${y + 9} h34" stroke="#ffffff" stroke-width="1" stroke-dasharray="4 3"/>`,
+    (x, y) => `<rect x="${x + 4}" y="${y + 2}" width="32" height="10" rx="2" fill="#94a3b8"/><path d="M${x + 7} ${y + 7} h26" stroke="#ffffff" stroke-width="1" stroke-dasharray="3 3"/>`,
+    (x, y) => `<rect x="${x + 4}" y="${y}" width="13" height="14" fill="#cbd5e1" stroke="${INK2}" stroke-width=".6"/><rect x="${x + 23}" y="${y}" width="13" height="14" fill="#cbd5e1" stroke="${INK2}" stroke-width=".6"/><path d="M${x + 20} ${y + 1} v12" stroke="#94a3b8" stroke-width="3"/>`
+  ];
+  const groups = en
+    ? [['Upper layers', 'The thickest and widest', 'like highways', ['carrying signals over long', 'distances and delivering power']], ['Middle layers', 'Wider', 'like city streets', ['connecting different', 'circuit blocks']], ['Lower layers', 'Narrow and dense', 'like alleys', ['connecting nearby transistors']]]
+    : [['上層', '最粗最寬', '像高速公路', ['負責長距離傳送訊號和供應電源']], ['中層', '較寬', '像市區道路', ['連接不同的電路區塊']], ['下層', '又細又密', '像巷弄', ['負責連接鄰近的電晶體']]];
+  const bands = [[62, 124], [146, 200], [220, 247]];
+  let prev = 40;
+  groups.forEach(([name, desc, like, fn], i) => {
+    const h = 14 + 14 + 18 + fn.length * 13;
+    const top = Math.max((bands[i][0] + bands[i][1]) / 2 - h / 2, prev + 6);
+    prev = top + h;
+    const x = X1 + 22;
+    svg += brace(...bands[i]) + tx(x, top + 11, name, 11.5, '#0f172a', 'start').replace('<text ', '<text font-weight="700" ')
+      + tx(x, top + 25, desc, 10.5, AMBER, 'start').replace('<text ', '<text font-weight="700" ')
+      + icons[i](x, top + 31) + tx(x + 46, top + 42, like, 10.5, TEAL, 'start')
+      + fn.map((line, j) => tx(x, top + 58 + j * 13, line, 10, INK2, 'start')).join('');
+  });
+  return `<g transform="translate(0 -40)">${svg}</g>`;
 }
 
 // 雙大馬士革七步剖面（2.19.0 改畫，B 批）：每格底部都是下層銅導線與其上的薄覆蓋層；②的導通孔打穿覆蓋層、露出下層銅；
@@ -799,7 +860,7 @@ const MATCHERS = [
   [/Dishing|Erosion|碟/i, dishing],
   [/CMP 機台|CMP tool/i, cmpTool, 232],
   [/清洗|wet bench/i, clean, 240],
-  [/多層金屬|multilevel metal/i, metalStack],
+  [/多層金屬|multilevel metal/i, metalStack, 252],
   [/大馬士革|damascene/i, damascene, 336],
   [/FEOL/i, feol, 340],
   [/FinFET|GAA/i, devices],

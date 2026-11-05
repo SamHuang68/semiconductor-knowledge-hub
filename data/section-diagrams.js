@@ -6570,33 +6570,67 @@ export const SECTION_DIAGRAMS = [
     "chapterId": "ch10",
     "headingZh": "接觸窗與導通孔",
     "headingEn": "Contacts and vias",
-    "type": "stack",
     "captionZh": "接觸窗與導通孔在導線結構中的位置",
     "captionEn": "Where contacts and vias sit between the transistor and the metal layers.",
-    "layers": [
+    "type": "pictorial",
+    "draw": "contactsVias",
+    "labels": [
       {
+        "key": "upper",
         "zh": "上層金屬",
-        "en": "Upper metal layer"
+        "en": "Upper metal layer",
+        "from": "figure"
       },
       {
+        "key": "via",
         "zh": "導通孔",
         "en": "Via",
-        "noteZh": "連接上下兩層金屬",
-        "noteEn": "Connects two metal layers"
+        "from": "figure"
       },
       {
+        "key": "viaN",
+        "zh": "連接上下兩層金屬",
+        "en": "Connects two metal layers",
+        "from": "figure"
+      },
+      {
+        "key": "m1",
         "zh": "第一層金屬",
-        "en": "First metal layer"
+        "en": "First metal layer",
+        "from": "figure"
       },
       {
+        "key": "contact",
         "zh": "接觸窗",
         "en": "Contact",
-        "noteZh": "絕緣層中的孔，通常填鎢",
-        "noteEn": "Insulator hole, usually tungsten-filled"
+        "from": "figure"
       },
       {
+        "key": "contactN",
+        "zh": "絕緣層中的孔，通常填鎢",
+        "en": "Insulator hole, usually tungsten-filled",
+        "from": "figure"
+      },
+      {
+        "key": "tr",
         "zh": "電晶體",
-        "en": "Transistor"
+        "en": "Transistor",
+        "from": "figure"
+      },
+      {
+        "key": "insul",
+        "zh": "絕緣層",
+        "en": "Insulating layer"
+      },
+      {
+        "key": "bad",
+        "zh": "導通孔沒有接好",
+        "en": "The via did not connect"
+      },
+      {
+        "key": "open",
+        "zh": "斷路",
+        "en": "Open circuit"
       }
     ]
   },
@@ -6604,33 +6638,70 @@ export const SECTION_DIAGRAMS = [
     "chapterId": "ch10",
     "headingZh": "低介電常數材料",
     "headingEn": "Low-k dielectrics",
-    "type": "flow",
     "captionZh": "低介電常數材料：降低導線間電容效應，但結構脆弱",
     "captionEn": "Why low-k dielectrics are used between wires, and why they are fragile.",
-    "steps": [
+    "type": "pictorial",
+    "draw": "lowK",
+    "labels": [
       {
-        "zh": "導線彼此靠得很近",
-        "en": "Wires sit close together"
+        "key": "insul",
+        "zh": "絕緣層",
+        "en": "Insulating material"
       },
       {
-        "zh": "像一個小電容",
-        "en": "They act like a small capacitor"
+        "key": "close",
+        "zh": "兩條靠得很近的導線就像一個小電容",
+        "en": "Two wires close together act like a small capacitor"
       },
       {
+        "key": "cap",
+        "zh": "小電容",
+        "en": "Small capacitor"
+      },
+      {
+        "key": "slow",
         "zh": "拖慢訊號、增加耗電",
-        "en": "Slower signals, more power"
+        "en": "Slows signals down and increases power consumption"
       },
       {
-        "zh": "改用低介電常數材料",
-        "en": "Use low-k between the wires",
-        "noteZh": "減少這個影響",
-        "noteEn": "To reduce this effect"
+        "key": "reduce",
+        "zh": "為了減少這個影響",
+        "en": "To reduce this effect"
       },
       {
-        "zh": "常帶微小孔洞，結構脆弱",
-        "en": "Tiny pores, mechanically weak",
-        "noteZh": "蝕刻、CMP、封裝易受損",
-        "noteEn": "Easily damaged in etch, CMP, packaging"
+        "key": "lowk",
+        "zh": "低介電常數材料（Low-k）",
+        "en": "Low dielectric constant materials (low-k)"
+      },
+      {
+        "key": "pores",
+        "zh": "常常帶有微小的孔洞",
+        "en": "Often contain tiny pores"
+      },
+      {
+        "key": "weak",
+        "zh": "結構比較脆弱",
+        "en": "Mechanically weak"
+      },
+      {
+        "key": "damage",
+        "zh": "容易受損",
+        "en": "Easily damaged"
+      },
+      {
+        "key": "etch",
+        "zh": "蝕刻",
+        "en": "Etching"
+      },
+      {
+        "key": "cmp",
+        "zh": "CMP",
+        "en": "CMP"
+      },
+      {
+        "key": "pkg",
+        "zh": "封裝",
+        "en": "Packaging"
       }
     ]
   },
@@ -6638,10 +6709,6 @@ export const SECTION_DIAGRAMS = [
     "chapterId": "ch10",
     "headingZh": "越來越細的挑戰",
     "headingEn": "The challenges of ever-thinner wires",
-    "type": "pictorial",
-    "draw": "thinWires",
-    "captionZh": "導線變細帶來的兩大問題",
-    "captionEn": "Two problems that grow as wires get thinner.",
     "labels": [
       {
         "key": "thinner",
@@ -6697,35 +6764,116 @@ export const SECTION_DIAGRAMS = [
         "key": "voids",
         "zh": "形成空洞而斷線",
         "en": "Forming voids that break the wire"
+      },
+      {
+        "key": "kh",
+        "zh": "銅磨完之後不能放太久",
+        "en": "Don't leave copper sitting after CMP"
+      },
+      {
+        "key": "done",
+        "zh": "銅 CMP 完成",
+        "en": "Copper CMP is done"
+      },
+      {
+        "key": "capDep",
+        "zh": "鋪上覆蓋層",
+        "en": "The cap layer deposition"
+      },
+      {
+        "key": "qt",
+        "zh": "Q-Time 限制",
+        "en": "Q-time limit"
+      },
+      {
+        "key": "over",
+        "zh": "超過時間",
+        "en": "If it is exceeded"
+      },
+      {
+        "key": "corrode",
+        "zh": "裸露的銅很容易氧化和腐蝕",
+        "en": "Bare copper oxidizes and corrodes easily"
+      },
+      {
+        "key": "eng",
+        "zh": "工程師判斷處理方式",
+        "en": "An engineer decides how to handle the lot"
       }
-    ]
+    ],
+    "type": "pictorial",
+    "draw": "thinWires",
+    "captionZh": "導線變細的兩大問題，與銅 CMP 後的 Q-Time",
+    "captionEn": "Two problems that grow as wires get thinner, and the Q-time after copper CMP"
   },
   {
     "chapterId": "ch10",
     "headingZh": "定量物理定律與 3D 製程視窗",
     "headingEn": "Quantitative Governing Laws & 3D Process Windows",
-    "type": "branch",
     "foldSection": true,
-    "captionZh": "降低互連延遲的兩條路：降介電常數與縮短導線",
-    "captionEn": "Two levers on interconnect RC delay: lower k and shorter wires.",
-    "root": {
-      "zh": "互連 RC 延遲",
-      "en": "Interconnect RC delay",
-      "noteZh": "與導線長度平方成正比",
-      "noteEn": "Scales with wire length squared"
-    },
-    "branches": [
+    "type": "pictorial",
+    "draw": "rcLevers",
+    "sourcedNumbers": true,
+    "captionZh": "降低互連延遲的兩條路，與細導線的電阻率暴增",
+    "captionEn": "Two levers on interconnect RC delay, and the resistivity spike in thin wires",
+    "sourceZh": "30–45% 與 5–10 倍出自本段表格；導線與孔洞的大小只是示意。根與兩條分支沿用原本的分支圖。",
+    "sourceEn": "The 30–45% and 5–10× come from the table in this section. Wire and pore sizes are schematic. The root and both branches are kept from the original branch diagram.",
+    "labels": [
       {
-        "zh": "降低有效介電常數",
-        "en": "Lower the effective k",
-        "leafZh": "多孔超低介電質與氣隙",
-        "leafEn": "Porous ultra-low-k and air gaps"
+        "key": "root",
+        "zh": "互連 RC 延遲",
+        "en": "Interconnect RC delay",
+        "from": "figure"
       },
       {
+        "key": "rootN",
+        "zh": "與導線長度平方成正比",
+        "en": "Scales with wire length squared",
+        "from": "figure"
+      },
+      {
+        "key": "b1",
+        "zh": "降低有效介電常數",
+        "en": "Lower the effective k",
+        "from": "figure"
+      },
+      {
+        "key": "l1",
+        "zh": "多孔超低介電質與氣隙",
+        "en": "Porous ultra-low-k and air gaps",
+        "from": "figure"
+      },
+      {
+        "key": "b2",
         "zh": "縮短導線長度",
         "en": "Shorten the wire length",
-        "leafZh": "垂直堆疊使延遲功耗驟降",
-        "leafEn": "Vertical stacks slash delay, power"
+        "from": "figure"
+      },
+      {
+        "key": "l2",
+        "zh": "垂直堆疊使延遲功耗驟降",
+        "en": "Vertical stacks slash delay, power",
+        "from": "figure"
+      },
+      {
+        "key": "pct",
+        "zh": "30–45%",
+        "en": "30–45%"
+      },
+      {
+        "key": "rho",
+        "zh": "奈米導線電阻率",
+        "en": "Size-Effect Resistivity"
+      },
+      {
+        "key": "x",
+        "zh": "5–10 倍",
+        "en": "5–10×"
+      },
+      {
+        "key": "spike",
+        "zh": "銅電阻率暴增",
+        "en": "Causing resistivity to spike"
       }
     ]
   },
@@ -7003,31 +7151,82 @@ export const SECTION_DIAGRAMS = [
     "chapterId": "ch11",
     "headingZh": "第二段：MOL，把電晶體接出來",
     "headingEn": "Stage 2: MOL, connecting the transistors",
-    "type": "flow",
     "captionZh": "MOL 接觸窗的製作順序",
     "captionEn": "The order of steps that build the MOL contacts.",
-    "steps": [
+    "type": "pictorial",
+    "draw": "molSteps",
+    "labels": [
       {
+        "key": "s0",
         "zh": "鋪上絕緣層",
         "en": "Deposit an insulating layer",
-        "noteZh": "覆蓋在電晶體上方",
-        "noteEn": "Over the transistors"
+        "from": "figure"
       },
       {
+        "key": "n0",
+        "zh": "覆蓋在電晶體上方",
+        "en": "Over the transistors",
+        "from": "figure"
+      },
+      {
+        "key": "s1",
         "zh": "挖出接觸窗",
         "en": "Open contacts",
-        "noteZh": "對準源極、汲極和閘極",
-        "noteEn": "Aligned to the source, drain and gate"
+        "from": "figure"
       },
       {
+        "key": "n1",
+        "zh": "對準源極、汲極和閘極",
+        "en": "Aligned to the source, drain and gate",
+        "from": "figure"
+      },
+      {
+        "key": "s2",
         "zh": "填入鎢",
-        "en": "Fill with tungsten"
+        "en": "Fill with tungsten",
+        "from": "figure"
       },
       {
+        "key": "s3",
         "zh": "CMP 磨平",
         "en": "Polish flat with CMP",
-        "noteZh": "形成連到外面的插座",
-        "noteEn": "Sockets that connect to the outside"
+        "from": "figure"
+      },
+      {
+        "key": "n3",
+        "zh": "形成連到外面的插座",
+        "en": "Sockets that connect to the outside",
+        "from": "figure"
+      },
+      {
+        "key": "socket",
+        "zh": "插座",
+        "en": "Sockets"
+      },
+      {
+        "key": "insul",
+        "zh": "絕緣層",
+        "en": "Insulating layer"
+      },
+      {
+        "key": "src",
+        "zh": "源極",
+        "en": "Source"
+      },
+      {
+        "key": "drn",
+        "zh": "汲極",
+        "en": "Drain"
+      },
+      {
+        "key": "gate",
+        "zh": "閘極",
+        "en": "Gate"
+      },
+      {
+        "key": "w",
+        "zh": "鎢",
+        "en": "Tungsten"
       }
     ]
   },
@@ -7035,31 +7234,72 @@ export const SECTION_DIAGRAMS = [
     "chapterId": "ch11",
     "headingZh": "第三段：BEOL，蓋出導線",
     "headingEn": "Stage 3: BEOL, building the wiring",
-    "type": "flow",
     "captionZh": "BEOL 從銅導線到晶圓離開晶圓廠的順序",
     "captionEn": "The BEOL order, from copper wiring until the wafer leaves the fab for test.",
-    "steps": [
+    "type": "pictorial",
+    "draw": "beolSteps",
+    "labels": [
       {
+        "key": "s0",
         "zh": "逐層做出銅導線",
         "en": "Copper wiring, layer by layer",
-        "noteZh": "大馬士革製程，最上面幾層最粗",
-        "noteEn": "Damascene process; top layers thickest"
+        "from": "figure"
       },
       {
+        "key": "n0",
+        "zh": "大馬士革製程，最上面幾層最粗",
+        "en": "Damascene process; top layers thickest",
+        "from": "figure"
+      },
+      {
+        "key": "s1",
         "zh": "鋪上保護層",
-        "en": "Cover with a passivation layer"
+        "en": "Cover with a passivation layer",
+        "from": "figure"
       },
       {
+        "key": "s2",
         "zh": "只在焊墊位置開口",
         "en": "Openings only at the bond pads",
-        "noteZh": "讓探針與封裝打線接觸晶片",
-        "noteEn": "So probes and package wires reach the chip"
+        "from": "figure"
       },
       {
+        "key": "n2",
+        "zh": "讓探針與封裝打線接觸晶片",
+        "en": "So probes and package wires reach the chip",
+        "from": "figure"
+      },
+      {
+        "key": "s3",
         "zh": "晶圓離開晶圓廠",
         "en": "The wafer leaves the fab",
-        "noteZh": "進入測試階段",
-        "noteEn": "Moves on to test"
+        "from": "figure"
+      },
+      {
+        "key": "n3",
+        "zh": "進入測試階段",
+        "en": "Moves on to test",
+        "from": "figure"
+      },
+      {
+        "key": "pad",
+        "zh": "焊墊（Pad）",
+        "en": "Bond pads"
+      },
+      {
+        "key": "probe",
+        "zh": "測試探針",
+        "en": "Test probes"
+      },
+      {
+        "key": "bond",
+        "zh": "封裝打線",
+        "en": "Package wires"
+      },
+      {
+        "key": "later",
+        "zh": "之後",
+        "en": "Later"
       }
     ]
   },
@@ -7067,41 +7307,117 @@ export const SECTION_DIAGRAMS = [
     "chapterId": "ch11",
     "headingZh": "光罩層數",
     "headingEn": "Mask count",
-    "type": "compare",
-    "captionZh": "比較生產效率：只看總天數與看每層光罩天數",
-    "captionEn": "Comparing fab efficiency by total days versus days per mask layer.",
-    "columns": [
+    "type": "pictorial",
+    "draw": "maskCount",
+    "captionZh": "晶圓重複進入微影區，與用每層光罩天數比較生產效率",
+    "captionEn": "Re-entrant flow at lithography, and fab efficiency in days per mask layer",
+    "labels": [
       {
-        "titleZh": "只看總天數",
-        "titleEn": "Total days only",
-        "items": [
-          {
-            "zh": "層數多，總天數自然較長",
-            "en": "More layers, naturally more total days"
-          },
-          {
-            "zh": "誤以為層數多的效率較差",
-            "en": "Wrongly makes more layers look less efficient"
-          }
-        ]
+        "key": "dep",
+        "zh": "沉積",
+        "en": "Deposit"
       },
       {
-        "titleZh": "每層光罩幾天",
-        "titleEn": "Days per mask layer",
-        "items": [
-          {
-            "zh": "生產週期除以光罩層數",
-            "en": "Cycle time divided by mask layers"
-          },
-          {
-            "zh": "層數不同也能公平比較",
-            "en": "Fair across different mask counts"
-          },
-          {
-            "zh": "數字越小，效率越好",
-            "en": "Lower is better"
-          }
-        ]
+        "key": "litho",
+        "zh": "微影",
+        "en": "Lithography"
+      },
+      {
+        "key": "etch",
+        "zh": "蝕刻",
+        "en": "Etch"
+      },
+      {
+        "key": "clean",
+        "zh": "清洗",
+        "en": "Clean"
+      },
+      {
+        "key": "meas",
+        "zh": "量測",
+        "en": "Measure"
+      },
+      {
+        "key": "back",
+        "zh": "要回到微影區數十次",
+        "en": "Returns to the lithography area dozens of times"
+      },
+      {
+        "key": "neck",
+        "zh": "瓶頸機台",
+        "en": "Bottleneck tools"
+      },
+      {
+        "key": "re",
+        "zh": "重複進入",
+        "en": "Re-entrant"
+      },
+      {
+        "key": "newW",
+        "zh": "剛投片的晶圓",
+        "en": "Newly started wafers"
+      },
+      {
+        "key": "oldW",
+        "zh": "快完成的晶圓",
+        "en": "Nearly finished wafers"
+      },
+      {
+        "key": "fight",
+        "zh": "搶同一批機台",
+        "en": "Compete for the same tools"
+      },
+      {
+        "key": "pile",
+        "zh": "大量堆積",
+        "en": "Pile up"
+      },
+      {
+        "key": "two",
+        "zh": "兩個光罩層數不同的產品",
+        "en": "Two products with different mask counts"
+      },
+      {
+        "key": "t1",
+        "zh": "只看總天數",
+        "en": "Total days only",
+        "from": "figure"
+      },
+      {
+        "key": "i1a",
+        "zh": "層數多，總天數自然較長",
+        "en": "More layers, naturally more total days",
+        "from": "figure"
+      },
+      {
+        "key": "i1b",
+        "zh": "誤以為層數多的效率較差",
+        "en": "Wrongly makes more layers look less efficient",
+        "from": "figure"
+      },
+      {
+        "key": "t2",
+        "zh": "每層光罩幾天",
+        "en": "Days per mask layer",
+        "from": "figure"
+      },
+      {
+        "key": "i2a",
+        "zh": "生產週期除以光罩層數",
+        "en": "Cycle time divided by mask layers",
+        "from": "figure"
+      },
+      {
+        "key": "i2b",
+        "zh": "層數不同也能公平比較",
+        "en": "Fair across different mask counts",
+        "from": "figure"
+      },
+      {
+        "key": "i2c",
+        "zh": "數字越小，效率越好",
+        "en": "Lower is better",
+        "from": "figure"
       }
     ]
   },
@@ -7109,34 +7425,98 @@ export const SECTION_DIAGRAMS = [
     "chapterId": "ch11",
     "headingZh": "CMOS 跨層整合與背面供電條例總覽",
     "headingEn": "Cross-Tier CMOS & BSPDN Clauses",
-    "type": "flow",
     "foldSection": true,
     "captionZh": "跨層整合中，越往後段熱預算越低",
     "captionEn": "Each later integration tier works under a lower thermal budget.",
-    "steps": [
+    "type": "pictorial",
+    "draw": "tierThermal",
+    "sourcedNumbers": true,
+    "sourceZh": "溫度出自本段表格；縱軸為線性，只有上限的兩段往下淡出。段名沿用原本的流程圖。",
+    "sourceEn": "The temperatures come from the table in this section. The axis is linear; the two tiers with only an upper limit fade downward. Tier names are kept from the original flow.",
+    "labels": [
       {
+        "key": "s0",
         "zh": "前段 FEOL",
         "en": "Front-end-of-line (FEOL)",
-        "noteZh": "最高溫：磊晶與活化退火",
-        "noteEn": "Highest: epitaxy and spike anneal"
+        "from": "figure"
       },
       {
+        "key": "s1",
         "zh": "中段 MOL",
         "en": "Middle-of-line (MOL)",
-        "noteZh": "中溫：避免 NiPtSi 聚集",
-        "noteEn": "Moderate: avoids NiPtSi agglomeration"
+        "from": "figure"
       },
       {
+        "key": "s2",
         "zh": "後段 BEOL",
         "en": "Back-end-of-line (BEOL)",
-        "noteZh": "嚴格低溫：防止銅擴散",
-        "noteEn": "Strict low temp: prevents Cu diffusion"
+        "from": "figure"
       },
       {
+        "key": "s3",
         "zh": "晶圓背面與封裝介面",
         "en": "Backside & packaging interface",
-        "noteZh": "超低溫製程",
-        "noteEn": "Ultra-low thermal budget"
+        "from": "figure"
+      },
+      {
+        "key": "z0",
+        "zh": "最高溫階段",
+        "en": "Highest thermal regime"
+      },
+      {
+        "key": "z1",
+        "zh": "中溫預算",
+        "en": "Moderate thermal budget"
+      },
+      {
+        "key": "z2",
+        "zh": "嚴格低溫限制",
+        "en": "Strict low-temperature cap"
+      },
+      {
+        "key": "z3",
+        "zh": "超低溫製程",
+        "en": "Ultra-low thermal budget"
+      },
+      {
+        "key": "v0",
+        "zh": "600–1050°C",
+        "en": "600–1050°C"
+      },
+      {
+        "key": "v1",
+        "zh": "400–550°C",
+        "en": "400–550°C"
+      },
+      {
+        "key": "v2",
+        "zh": "≤ 400°C",
+        "en": "≤ 400°C"
+      },
+      {
+        "key": "v3",
+        "zh": "≤ 350–400°C",
+        "en": "≤ 350–400°C"
+      },
+      {
+        "key": "r0",
+        "zh": "磊晶與活化退火",
+        "en": "Epitaxy & spike RTA"
+      },
+      {
+        "key": "r1",
+        "zh": "避免高溫導致 NiPtSi 聚集惡化",
+        "en": "Prevents NiPtSi agglomeration"
+      },
+      {
+        "key": "r2",
+        "zh": "防止銅擴散",
+        "en": "To prevent Cu diffusion"
+      },
+      {
+        "key": "deg",
+        "zh": "°C",
+        "en": "°C"
       }
     ]
   },
