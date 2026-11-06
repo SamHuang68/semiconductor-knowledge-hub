@@ -99,7 +99,22 @@
   - 附錄 B 外圍環帶的中英槽位不一致與「每隔 4 片」用語，只在圖上避開，正文未改（待決第 11 項）。
   - K 批的正文疑點都還沒查原始出處。
 - 前後對照：`C:\Users\Sam\AI-Workspace\docs\semiconductor-knowledge-hub\visual-upgrade-plan-2026-11-02\batchK1-2.34.0-before-after-1.png`、`-before-after-2.png`、`batchK1-2.34.0-new.png`。
-- 提交／發布狀態：本機提交於 `feat/phase3-k1`，尚未推送、尚未部署，等 Sam 驗收。
+- 提交／發布狀態：已推送、已部署。
+  - 2026-11-07 Sam 看過對照圖後回覆「合併並部署」。
+  - 提交 `889a430`，main 由 `fb5cea1` 快轉。
+  - 快轉後在 main 上重跑 `npm run verify`（106 項通過）與 `scripts/build-site.mjs`，都通過。
+  - GitHub Pages run `42274991821` 的 `verify` 與 `deploy` 都成功。
+- 發布後線上驗證（2026-11-07）：
+  - 本次改到的 4 個網站檔案與提交內容逐位元組相同，加不加快取參數都一樣：`index.html`、`app.js`、`data/section-diagrams.js`、`pictorials.js`。
+  - 頁尾為 2.34.0；`revision-history.md`、`package.json`、`scripts/` 回應 404。
+  - 瀏覽器檢查直接跑線上網站：ch22、ch23、ch24、附錄 B × 中英 × 1440／390，共 16 頁，與 main `fb5cea1` 快照比較。
+    - 沒有頁面錯誤、主控台錯誤、水平溢位；1440 寬的 8 頁列印前收合區全部展開。
+    - 圖數與其他數量都和本機最終掃描相同。頁高只有 ch24 中文 1440 不同：線上 11698、本機 12082，差 384px。
+  - 頁高差異的查證：
+    - 差值等於 ch24 晶片照片 `assets/photos/ch24-decapped-cpu-die.jpg` 的顯示高度。
+    - 照片的 `<img class="eng-real-photo">` 沒有寬高屬性，下載完成前高度是 0。掃描在頁面載入後 1.2 秒量測，線上第一次量時照片還沒下載完。
+    - 同條件本機、線上各重量兩次，1.2 秒與 6 秒都是 12082，線上與本機一致。
+    - 這個版面位移不是本版引入：繪製照片的 `engineering-object-controls.js` 與 `data/real-photos.js` 最後一次修改在 2.12.2，本版沒有動，也沒有修。
 
 ## 2.33.0 · 2026-11-06 · 第 3 階段 J2：ch19–ch21 實物示意圖
 
