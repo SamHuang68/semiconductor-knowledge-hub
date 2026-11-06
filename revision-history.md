@@ -107,7 +107,17 @@
   - 被取代或併入的 10 張段落圖左舊右新：`C:\Users\Sam\AI-Workspace\docs\semiconductor-knowledge-hub\visual-upgrade-plan-2026-11-02\batchI2-2.31.0-before-after-1.png`（ch14–ch15）與同資料夾的 `batchI2-2.31.0-before-after-2.png`（ch16）；
   - 新增的 3 張中英並排：同資料夾的 `batchI2-2.31.0-new.png`；
   - 閘極間距與金屬間距內文圖左舊右新：同資料夾的 `batchI2-2.31.0-inline-figure.png`。
-- 提交／發布狀態：本機提交於 `feat/phase3-i2`，尚未推送、尚未部署，等 Sam 驗收。
+- 提交／發布狀態：已推送、已部署。
+  - 2026-11-06 Sam 看過對照圖後回覆「合併並部署」。
+  - 提交 `0c27571`，main 由 `697ff7b` 快轉。
+  - 快轉後在 main 上重跑 `npm run verify` 與 `scripts/build-site.mjs`，都通過。
+  - GitHub Pages run `42160847196` 的 `verify` 與 `deploy` 都成功。
+- 發布後線上驗證（2026-11-06）：
+  - 本次改到的 5 個網站檔案與提交內容逐位元組相同，加不加快取參數都一樣：`index.html`、`app.js`、`chapter-figures.js`、`data/section-diagrams.js`、`pictorials.js`。
+  - 頁尾為 2.31.0；`revision-history.md`、`package.json`、`scripts/` 回應 404。
+  - 瀏覽器檢查直接跑線上網站：ch14、ch15、ch16 × 中英 × 1440／390，共 12 頁，與 main `697ff7b` 快照比較。
+    - 沒有頁面錯誤、主控台錯誤、水平溢位；1440 寬的 6 頁列印前收合區全部展開。
+    - 圖數、頁高與其他數量都和本機最終掃描相同，一次掃描就一致。
 
 ## 2.30.0 · 2026-11-06 · 第 3 階段 I1：ch12–ch13 實物示意圖
 
