@@ -695,8 +695,31 @@ function nand(en) {
     + tx(569, 206, L(en, '金屬字元線', 'Metal word lines'), 10.5, '#9a3412') + tx(569, 220, L(en, '每一階接上接觸窗', 'Contacts on each step'), 10.5, '#9a3412');
 }
 
+// 閘極間距與金屬間距（2.31.0 改畫）：從上方看，直立的閘極（淺藍）上方交疊水平的金屬導線（銅色）。閘極中心到中心是閘極間距（CPP），
+// 金屬中心到中心是最小金屬間距（MMP），約為閘極間距的五到七成；右邊放大一對金屬線：線寬加間隔是 Pitch，Pitch 的一半是半間距。
+// 舊圖的「金屬間距」改用正文的「最小金屬間距（MMP）」；不放數字，也不畫 CD、密度與 SRAM（技術審查修正）
 function pitch(en) {
-  return `<rect x="70" y="70" width="28" height="90" fill="#bae6fd" stroke="#075985"/><rect x="140" y="70" width="28" height="90" fill="#bae6fd" stroke="#075985"/><rect x="210" y="70" width="28" height="90" fill="#bae6fd" stroke="#075985"/><path d="M84 60 h70" stroke="#0f172a"/><text x="119" y="52" text-anchor="middle" fill="#0f172a" font-size="12">${L(en, '閘極間距', 'Gate pitch')}</text><rect x="340" y="78" width="220" height="16" fill="#d9ac73" stroke="#92400e"/><rect x="340" y="120" width="220" height="16" fill="#d9ac73" stroke="#92400e"/><path d="M580 86 v42" stroke="#0f172a"/><text x="560" y="168" text-anchor="middle" fill="#0f172a" font-size="12">${L(en, '金屬間距', 'Metal pitch')}</text>`;
+  const GATE = '#bae6fd', GATE_S = '#075985', CU = '#d9ac73', CU_S = '#92400e', INK = '#0f172a', INK_2 = '#334155', MUTED = '#64748b', TEAL = '#0f766e';
+  const gx = [52, 107, 162, 217, 272], gw = 18, my = [74, 104, 134, 164], mh = 13;
+  const dim = (x1, y1, x2, y2, c = INK_2) => arrow((x1 + x2) / 2, (y1 + y2) / 2, x1, y1, c, 1.1) + arrow((x1 + x2) / 2, (y1 + y2) / 2, x2, y2, c, 1.1);
+  const bold = (x, y, s, size = 12, fill = INK, anchor = 'middle') => `<text x="${x}" y="${y}" text-anchor="${anchor}" fill="${fill}" font-size="${size}" font-weight="700">${esc(s)}</text>`;
+  let s = gx.map(x => `<rect x="${x - gw / 2}" y="46" width="${gw}" height="160" fill="${GATE}" stroke="${GATE_S}"/>`).join('')
+    + my.map(y => `<rect x="34" y="${y - mh / 2}" width="256" height="${mh}" rx="1.5" fill="${CU}" stroke="${CU_S}"/>`).join('');
+  // 閘極間距：兩根閘極的中心線
+  s += `<path d="M52 30 V46 M107 30 V46" stroke="${MUTED}" stroke-dasharray="2 2"/>` + dim(52, 36, 107, 36, TEAL) + bold(30, 22, L(en, '閘極間距（CPP）', 'Contacted poly pitch (CPP)'), 12, TEAL, 'start');
+  // 最小金屬間距：兩條金屬線的中心線
+  s += `<path d="M290 134 H310 M290 164 H310" stroke="${MUTED}" stroke-dasharray="2 2"/>` + dim(304, 134, 304, 164, CU_S)
+    + bold(316, 146, L(en, '最小金屬間距', 'Minimum metal pitch'), 12, CU_S, 'start') + bold(316, 162, L(en, '（MMP）', '(MMP)'), 12, CU_S, 'start');
+  // 放大一對金屬線
+  s += `<rect x="252" y="58" width="44" height="62" fill="none" stroke="${MUTED}" stroke-dasharray="3 2"/><path d="M296 58 L452 40 M296 120 L452 120" stroke="${MUTED}" stroke-dasharray="3 2"/>`
+    + `<rect x="452" y="30" width="172" height="176" rx="6" fill="#ffffff" stroke="#cbd5e1"/>`
+    + bold(538, 52, L(en, 'Pitch ＝ 線寬 ＋ 間隔', 'Pitch = line + space'), 12);
+  s += `<rect x="494" y="68" width="66" height="26" rx="2" fill="${CU}" stroke="${CU_S}"/><rect x="494" y="128" width="66" height="26" rx="2" fill="${CU}" stroke="${CU_S}"/>`
+    + `<path d="M560 68 H576 M560 94 H576 M560 128 H576 M484 68 H494 M484 128 H494" stroke="${MUTED}" stroke-dasharray="2 2"/>`
+    + dim(570, 68, 570, 94) + tx(580, 85, L(en, '線寬', 'Line'), 11.5, INK, 'start') + dim(570, 94, 570, 128) + tx(580, 115, L(en, '間隔', 'Space'), 11.5, INK, 'start')
+    + dim(484, 68, 484, 128, TEAL) + `<text x="474" y="98" text-anchor="middle" fill="${TEAL}" font-size="12" font-weight="700" transform="rotate(-90 474 98)">Pitch</text>`;
+  s += en ? tx(538, 182, 'Half of the pitch is', 10.5, INK_2) + tx(538, 196, 'called the half pitch', 10.5, INK_2) : tx(538, 188, 'Pitch 的一半稱為半間距', 11, INK_2);
+  return s;
 }
 
 function inspect(en) {

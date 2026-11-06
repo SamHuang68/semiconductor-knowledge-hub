@@ -8682,8 +8682,8 @@ export const SECTION_DIAGRAMS = [
     "type": "pictorial",
     "draw": "nodeShrink",
     "sourcedNumbers": true,
-    "sourceZh": "0.7 與 0.1 奈米出自本段正文；長方形依 0.7 倍等比例縮放，其餘為示意。",
-    "sourceEn": "0.7 and 0.1 nm come from this section. The rectangles are scaled by exactly 0.7; everything else is schematic.",
+    "sourceZh": "0.7、0.1 奈米與節點數列出自本段正文；長方形依 0.7 倍等比例縮放，節點依數值放在對數軸上，其餘為示意。",
+    "sourceEn": "The 0.7, the 0.1 nm and the node sequence come from this section. The rectangles are scaled by exactly 0.7 and the nodes sit on a log axis by value; everything else is schematic.",
     "captionZh": "每代縮成 0.7 倍：面積約減半；節點名稱後來與尺寸脫鉤",
     "captionEn": "Shrinking by 0.7 halves the area; node names later came apart from real sizes",
     "labels": [
@@ -8746,6 +8746,101 @@ export const SECTION_DIAGRAMS = [
         "key": "labelsOnly",
         "zh": "同樣只是世代代號",
         "en": "Likewise just generation labels"
+      },
+      {
+        "key": "names",
+        "zh": "節點名稱",
+        "en": "Node names"
+      },
+      {
+        "key": "halfNode",
+        "zh": "半世代",
+        "en": "Half-node"
+      },
+      {
+        "key": "nm",
+        "zh": "奈米",
+        "en": "nm"
+      },
+      {
+        "key": "n180",
+        "zh": "180",
+        "en": "180"
+      },
+      {
+        "key": "n130",
+        "zh": "130",
+        "en": "130"
+      },
+      {
+        "key": "n90",
+        "zh": "90",
+        "en": "90"
+      },
+      {
+        "key": "n65",
+        "zh": "65",
+        "en": "65"
+      },
+      {
+        "key": "n45",
+        "zh": "45",
+        "en": "45"
+      },
+      {
+        "key": "n32",
+        "zh": "32",
+        "en": "32"
+      },
+      {
+        "key": "n22",
+        "zh": "22",
+        "en": "22"
+      },
+      {
+        "key": "n14",
+        "zh": "14",
+        "en": "14"
+      },
+      {
+        "key": "n10",
+        "zh": "10",
+        "en": "10"
+      },
+      {
+        "key": "n7",
+        "zh": "7",
+        "en": "7"
+      },
+      {
+        "key": "n5",
+        "zh": "5",
+        "en": "5"
+      },
+      {
+        "key": "n3",
+        "zh": "3",
+        "en": "3"
+      },
+      {
+        "key": "h40",
+        "zh": "40",
+        "en": "40"
+      },
+      {
+        "key": "h28",
+        "zh": "28",
+        "en": "28"
+      },
+      {
+        "key": "h20",
+        "zh": "20",
+        "en": "20"
+      },
+      {
+        "key": "h16",
+        "zh": "16",
+        "en": "16"
       }
     ]
   },
@@ -8878,8 +8973,8 @@ export const SECTION_DIAGRAMS = [
     "foldTables": true,
     "foldSection": true,
     "sourcedNumbers": true,
-    "sourceZh": "節距與軌道數出自本段表格，是各家公開值的典型範圍，不是單一產品的量測值；1.4nm 那一格是預估。軸從 0 nm 起，虛線標出 3nm 的位置。",
-    "sourceEn": "Pitches and track counts come from the table in this section: typical ranges of public figures across companies, not measurements of one product. The 1.4nm value is projected. The axis starts at 0 nm, and the dashed line marks 3nm.",
+    "sourceZh": "節距與軌道數出自本段表格，是各家公開值的典型範圍，不是單一產品的量測值；1.4nm 那一格是預估。DTCO 的 15–25% 與 858 mm² 是表格所列數值。軸從 0 nm 起，虛線標出 3nm 的位置。",
+    "sourceEn": "Pitches and track counts come from the table in this section: typical ranges of public figures across companies, not measurements of one product. The 1.4nm value is projected. The 15–25% DTCO gain and the 858 mm² limit are values listed in the table. The axis starts at 0 nm, and the dashed line marks 3nm.",
     "captionZh": "CPP、金屬節距的表列典型值與軌道高度、DTCO、STCO",
     "captionEn": "Tabulated typical CPP and metal pitch values, plus track height, DTCO and STCO",
     "labels": [
@@ -9076,6 +9171,21 @@ export const SECTION_DIAGRAMS = [
         "zh": "以立體整合突破曝光視場極限",
         "en": "Stacking breaks the reticle limit",
         "from": "figure"
+      },
+      {
+        "key": "perNode",
+        "zh": "單世代",
+        "en": "Per node"
+      },
+      {
+        "key": "dtcoGain",
+        "zh": "可額外榨出 15–25% 等效面積微縮",
+        "en": "Extracts an additional 15–25% area scaling"
+      },
+      {
+        "key": "reticleV",
+        "zh": "858 mm²",
+        "en": "858 mm²"
       }
     ]
   },
@@ -9110,6 +9220,146 @@ export const SECTION_DIAGRAMS = [
         "en": "Heterogeneous chiplet cost law",
         "leafZh": "運算用先進，I/O 留成熟節點",
         "leafEn": "Compute on advanced nodes, I/O on mature"
+      }
+    ]
+  },
+  {
+    "chapterId": "ch14",
+    "headingZh": "「3 奈米」裡沒有 3 奈米",
+    "headingEn": "There is nothing 3 nm in \"3 nm\"",
+    "type": "pictorial",
+    "draw": "noThreeNm",
+    "sourcedNumbers": true,
+    "captionZh": "叫做 3 奈米，閘極之間卻相距四、五十奈米",
+    "captionEn": "Called 3 nm, yet the gates sit forty to fifty nanometers apart",
+    "sourceZh": "「3 奈米」與「四、五十奈米」出自本段正文；閘極的中心距與 3 奈米短段按同一比例畫，淡色帶表示四十到五十奈米的範圍，閘極寬度只是示意。",
+    "sourceEn": "The 3 nm and the forty to fifty nanometers come from this section. The gate spacing and the 3 nm segment are drawn to the same scale; the light band marks forty to fifty nanometers, and the gate width is schematic.",
+    "labels": [
+      {
+        "key": "process",
+        "zh": "3 奈米製程",
+        "en": "3 nm process"
+      },
+      {
+        "key": "assume",
+        "zh": "很多人以為晶片上有某個東西只有 3 奈米寬",
+        "en": "Many people assume something on the chip is only 3 nm wide"
+      },
+      {
+        "key": "inFact",
+        "zh": "事實上",
+        "en": "In fact"
+      },
+      {
+        "key": "gen",
+        "zh": "3 奈米世代",
+        "en": "3 nm generation"
+      },
+      {
+        "key": "gates",
+        "zh": "電晶體閘極之間的距離",
+        "en": "The distance between transistor gates"
+      },
+      {
+        "key": "pitch",
+        "zh": "四、五十奈米",
+        "en": "Forty to fifty nanometers"
+      },
+      {
+        "key": "three",
+        "zh": "3 奈米",
+        "en": "3 nm"
+      },
+      {
+        "key": "none",
+        "zh": "找不到任何一個結構是 3 奈米",
+        "en": "You will not find any structure that is 3 nm"
+      },
+      {
+        "key": "name",
+        "zh": "「幾奈米」其實是一個世代的名稱",
+        "en": "The \"nanometer\" figure is really the name of a generation"
+      },
+      {
+        "key": "notSize",
+        "zh": "而不是實際的尺寸",
+        "en": "not an actual dimension"
+      }
+    ]
+  },
+  {
+    "chapterId": "ch14",
+    "headingZh": "微縮不只靠製程",
+    "headingEn": "Scaling is not only about the process",
+    "type": "pictorial",
+    "draw": "dtcoPdk",
+    "captionZh": "減少軌道數讓標準元件變矮；PDK 是晶圓廠給設計者的資料",
+    "captionEn": "Fewer tracks make a shorter cell; the PDK is the package a fab gives designers",
+    "labels": [
+      {
+        "key": "dtco",
+        "zh": "設計與製程的共同最佳化（DTCO）",
+        "en": "Design-technology co-optimization (DTCO)"
+      },
+      {
+        "key": "cells",
+        "zh": "標準元件",
+        "en": "Standard cells"
+      },
+      {
+        "key": "fewer",
+        "zh": "減少每個元件需要的金屬導線軌道數",
+        "en": "Reducing the number of metal tracks each cell needs"
+      },
+      {
+        "key": "notShrunk",
+        "zh": "製程尺寸沒有縮小太多",
+        "en": "The process dimensions have not shrunk much"
+      },
+      {
+        "key": "smaller",
+        "zh": "也能讓晶片面積變小",
+        "en": "Can make a chip smaller"
+      },
+      {
+        "key": "pdk",
+        "zh": "PDK（Process Design Kit）",
+        "en": "The PDK (process design kit)"
+      },
+      {
+        "key": "fab",
+        "zh": "晶圓廠",
+        "en": "Fab"
+      },
+      {
+        "key": "designers",
+        "zh": "設計者",
+        "en": "Designers"
+      },
+      {
+        "key": "rules",
+        "zh": "設計規則",
+        "en": "Design rules"
+      },
+      {
+        "key": "models",
+        "zh": "電晶體的電性模型",
+        "en": "Electrical models of the transistors"
+      },
+      {
+        "key": "follow",
+        "zh": "依照 PDK 設計",
+        "en": "Designing according to the PDK"
+      },
+      {
+        "key": "made",
+        "zh": "做得出來",
+        "en": "Can actually be made"
+      },
+      {
+        "key": "expected",
+        "zh": "符合預期",
+        "en": "Will behave as expected"
       }
     ]
   },
@@ -9317,32 +9567,91 @@ export const SECTION_DIAGRAMS = [
     "headingZh": "定量物理定律與 3D 製程視窗",
     "headingEn": "Quantitative Governing Laws & 3D Process Windows",
     "foldTables": true,
-    "type": "branch",
     "foldSection": true,
-    "captionZh": "量測與無損檢測三大定律及其工程意義",
-    "captionEn": "Three metrology and NDT laws and the engineering impact of each.",
-    "root": {
-      "zh": "量測與無損檢測定律",
-      "en": "Metrology & NDT laws"
-    },
-    "branches": [
+    "type": "pictorial",
+    "draw": "metrologyLaws",
+    "sourcedNumbers": true,
+    "captionZh": "量測與無損檢測三大定律與工程意義，加上超音波照出鍵合空洞",
+    "captionEn": "Three metrology and NDT laws and their impact, plus how C-SAM finds bond voids",
+    "sourceZh": "反射率 99.99% 出自本段表格；上半的根與三條分支沿用原本的分支圖。聲波箭頭的粗細與氣泡大小只是示意。",
+    "sourceEn": "The 99.99% reflection comes from the table in this section. The root and three branches are kept from the original branch diagram. Arrow widths and the void size are schematic.",
+    "labels": [
       {
+        "key": "root",
+        "zh": "量測與無損檢測定律",
+        "en": "Metrology & NDT laws",
+        "from": "figure"
+      },
+      {
+        "key": "b0",
         "zh": "橢偏與 OCD 逆散射",
         "en": "Ellipsometry & OCD inverse law",
-        "leafZh": "線上形貌直接作為 APC 輸入",
-        "leafEn": "Inline geometry feeds APC run-to-run loops"
+        "from": "figure"
       },
       {
+        "key": "l0",
+        "zh": "線上形貌直接作為 APC 輸入",
+        "en": "Inline geometry feeds APC run-to-run loops",
+        "from": "figure"
+      },
+      {
+        "key": "b1",
         "zh": "瑞利散射與聲阻抗反射",
         "en": "Rayleigh & acoustic reflection law",
-        "leafZh": "暗場抓微粒，超音波照鍵合空洞",
-        "leafEn": "Dark-field finds particles; C-SAM finds voids"
+        "from": "figure"
       },
       {
+        "key": "l1",
+        "zh": "暗場抓微粒，超音波照鍵合空洞",
+        "en": "Dark-field finds particles; C-SAM finds voids",
+        "from": "figure"
+      },
+      {
+        "key": "b2",
         "zh": "量測重複性與公差比",
         "en": "Gauge R&R P/T ratio law",
-        "leafZh": "量測雜訊不吃掉製程視窗",
-        "leafEn": "Gauge noise must not eat the process window"
+        "from": "figure"
+      },
+      {
+        "key": "l2",
+        "zh": "量測雜訊不吃掉製程視窗",
+        "en": "Gauge noise must not eat the process window",
+        "from": "figure"
+      },
+      {
+        "key": "csam",
+        "zh": "3D 混合鍵合超音波（C-SAM）無損空洞檢測",
+        "en": "Non-destructive 3D hybrid bonding C-SAM acoustic inspection"
+      },
+      {
+        "key": "bondVoid",
+        "zh": "鍵合空洞",
+        "en": "Bond void"
+      },
+      {
+        "key": "si",
+        "zh": "矽",
+        "en": "Silicon"
+      },
+      {
+        "key": "void",
+        "zh": "次微米空氣氣泡",
+        "en": "Sub-micron air void"
+      },
+      {
+        "key": "refl",
+        "zh": "反射率",
+        "en": "total reflection"
+      },
+      {
+        "key": "v",
+        "zh": "99.99",
+        "en": "99.99"
+      },
+      {
+        "key": "pct",
+        "zh": "%",
+        "en": "%"
       }
     ]
   },
@@ -9462,8 +9771,8 @@ export const SECTION_DIAGRAMS = [
     "headingEn": "Common measurements",
     "type": "pictorial",
     "draw": "fiveMeasurements",
-    "captionZh": "五種常見量測：量什麼、怎麼量、什麼時候量",
-    "captionEn": "Five common measurements: what is measured, how, and when",
+    "captionZh": "五種常見量測：量什麼、怎麼量、何時量，與切割道上的量測圖形",
+    "captionEn": "Five common measurements: what, how, when, and the patterns in scribe lines",
     "labels": [
       {
         "key": "thickness",
@@ -9554,6 +9863,36 @@ export const SECTION_DIAGRAMS = [
         "key": "timing",
         "zh": "常見時機",
         "en": "Typical timing"
+      },
+      {
+        "key": "notReal",
+        "zh": "很多量測不是在真正的電路上進行",
+        "en": "Many measurements are not taken on the real circuits"
+      },
+      {
+        "key": "scribe",
+        "zh": "切割道",
+        "en": "Scribe lines"
+      },
+      {
+        "key": "patterns",
+        "zh": "量測圖形",
+        "en": "Measurement patterns"
+      },
+      {
+        "key": "circuits",
+        "zh": "電路",
+        "en": "Circuits"
+      },
+      {
+        "key": "dies",
+        "zh": "晶粒",
+        "en": "Dies"
+      },
+      {
+        "key": "stable",
+        "zh": "量測結果也比較穩定",
+        "en": "Gives more stable results"
       }
     ]
   },
@@ -9604,62 +9943,186 @@ export const SECTION_DIAGRAMS = [
     ]
   },
   {
+    "chapterId": "ch15",
+    "headingZh": "量測常見的陷阱",
+    "headingEn": "Common metrology pitfalls",
+    "type": "pictorial",
+    "draw": "metrologyPitfalls",
+    "captionZh": "量測常見的四種陷阱",
+    "captionEn": "Four common metrology pitfalls",
+    "labels": [
+      {
+        "key": "wrong",
+        "zh": "量到錯的位置",
+        "en": "Measuring the wrong place"
+      },
+      {
+        "key": "wrongD",
+        "zh": "量測點偏離目標結構",
+        "en": "The measurement site misses the target structure"
+      },
+      {
+        "key": "toolDiff",
+        "zh": "機台之間有差異",
+        "en": "Tool-to-tool differences"
+      },
+      {
+        "key": "toolDiffD",
+        "zh": "不同機台量同一片晶圓，結果不同",
+        "en": "Different tools give different results on the same wafer"
+      },
+      {
+        "key": "effect",
+        "zh": "量測本身造成影響",
+        "en": "The measurement itself has an effect"
+      },
+      {
+        "key": "effectD",
+        "zh": "例如電子束照射讓光阻輕微收縮",
+        "en": "For example, the electron beam makes photoresist shrink slightly"
+      },
+      {
+        "key": "sampling",
+        "zh": "抽樣漏掉異常",
+        "en": "Sampling misses the problem"
+      },
+      {
+        "key": "samplingD",
+        "zh": "異常剛好發生在沒有被量測的晶圓上",
+        "en": "The abnormality happens on wafers that were not measured"
+      }
+    ]
+  },
+  {
     "chapterId": "ch16",
     "headingZh": "良率就是錢",
     "headingEn": "Yield is money",
-    "type": "cycle",
-    "captionZh": "新製程靠一個個找出並解決問題，讓良率逐步爬升",
-    "captionEn": "Yield climbs as engineers find and solve problems one by one.",
-    "steps": [
+    "type": "pictorial",
+    "draw": "yieldMoney",
+    "captionZh": "好晶片越多越便宜；新製程靠一個個找出並解決問題爬升良率",
+    "captionEn": "More good chips, lower cost; yield climbs as engineers solve problems one by one",
+    "labels": [
       {
+        "key": "fixed",
+        "zh": "一片晶圓的製造成本大致是固定的",
+        "en": "The cost of making one wafer is roughly fixed"
+      },
+      {
+        "key": "costEach",
+        "zh": "每顆晶片的成本",
+        "en": "The cost of each chip"
+      },
+      {
+        "key": "good",
+        "zh": "好晶片",
+        "en": "Good chips"
+      },
+      {
+        "key": "more",
+        "zh": "上面的好晶片越多，每顆晶片的成本就越低",
+        "en": "The more good chips on it, the lower the cost of each chip"
+      },
+      {
+        "key": "curve",
+        "zh": "良率學習曲線",
+        "en": "Yield learning curve"
+      },
+      {
+        "key": "yieldAxis",
+        "zh": "良率",
+        "en": "Yield"
+      },
+      {
+        "key": "low",
+        "zh": "剛開始量產時，良率通常不高",
+        "en": "When a new process first enters volume production, yield is usually low"
+      },
+      {
+        "key": "faster",
+        "zh": "誰能讓良率爬得更快，誰就更有競爭力",
+        "en": "Whoever climbs it faster is more competitive"
+      },
+      {
+        "key": "find",
         "zh": "找出問題",
-        "en": "Find problems"
+        "en": "Find problems",
+        "from": "figure"
       },
       {
+        "key": "solve",
         "zh": "解決問題",
-        "en": "Solve problems"
+        "en": "Solve problems",
+        "from": "figure"
       },
       {
+        "key": "climb",
         "zh": "良率逐步爬升",
         "en": "Yield gradually climbs",
-        "noteZh": "爬得越快越有競爭力",
-        "noteEn": "Faster climb, more competitive"
+        "from": "figure"
       }
-    ],
-    "centerZh": "良率學習曲線",
-    "centerEn": "Yield learning curve"
+    ]
   },
   {
     "chapterId": "ch16",
     "headingZh": "良率怎麼算",
     "headingEn": "How yield is calculated",
-    "type": "flow",
+    "type": "pictorial",
+    "draw": "yieldStages",
+    "sourcedNumbers": true,
     "captionZh": "良率分階段計算，整體良率是各階段相乘",
     "captionEn": "Yield is tracked in stages, and overall yield is the product of the stages.",
-    "steps": [
+    "sourceZh": "98%、90%、99% 與 87% 出自本段正文；正文沒有指定各百分比屬於哪一階段，所以算式橫跨三格。晶圓與晶片的數量只是示意。",
+    "sourceEn": "The 98%, 90%, 99% and 87% come from this section. The text does not assign each percentage to a stage, so the formula spans all three. Wafer and chip counts are schematic.",
+    "labels": [
       {
-        "zh": "晶圓良率",
-        "en": "Line yield",
-        "noteZh": "完成前段製程、未中途報廢",
-        "noteEn": "Finish the front end without scrap"
+        "key": "line",
+        "zh": "晶圓良率（Line Yield）",
+        "en": "Line yield"
       },
       {
-        "zh": "晶粒良率",
-        "en": "Die yield",
-        "noteZh": "通過晶圓測試的晶粒比例",
-        "noteEn": "Fraction of dies passing wafer test"
+        "key": "lineD",
+        "zh": "順利完成前段製程，沒有在中途報廢",
+        "en": "Make it through the front end without being scrapped"
       },
       {
+        "key": "scrap",
+        "zh": "中途報廢",
+        "en": "Scrapped along the way"
+      },
+      {
+        "key": "die",
+        "zh": "晶粒良率（Die Yield）",
+        "en": "Die yield"
+      },
+      {
+        "key": "dieD",
+        "zh": "有多少比例的晶粒通過晶圓測試",
+        "en": "What fraction of the dies pass wafer test"
+      },
+      {
+        "key": "final",
         "zh": "最終測試良率",
-        "en": "Final test yield",
-        "noteZh": "封裝後通過最終測試的比例",
-        "noteEn": "Packaged chips passing final test"
+        "en": "Final test yield"
       },
       {
-        "zh": "整體良率",
-        "en": "Overall yield",
-        "noteZh": "各階段相乘",
-        "noteEn": "Product of all stages"
+        "key": "finalD",
+        "zh": "封裝後的晶片中，有多少比例通過最終測試",
+        "en": "Of the packaged chips, what fraction pass final test"
+      },
+      {
+        "key": "product",
+        "zh": "整體良率是這幾個階段相乘",
+        "en": "The overall yield is the product of these stages"
+      },
+      {
+        "key": "eq",
+        "zh": "98% × 90% × 99%",
+        "en": "98% × 90% × 99%"
+      },
+      {
+        "key": "result",
+        "zh": "大約只剩 87%",
+        "en": "Only about 87%"
       }
     ]
   },
@@ -9667,27 +10130,51 @@ export const SECTION_DIAGRAMS = [
     "chapterId": "ch16",
     "headingZh": "共通性分析",
     "headingEn": "Commonality analysis",
-    "type": "flow",
+    "type": "pictorial",
+    "draw": "commonality",
     "captionZh": "共通性分析靠晶圓履歷找出壞晶圓的共同點",
     "captionEn": "Commonality analysis uses wafer histories to find what bad wafers share.",
-    "steps": [
+    "labels": [
       {
-        "zh": "幾批良率特別差",
-        "en": "Several lots have poor yield"
+        "key": "lots",
+        "zh": "幾批晶圓的良率特別差",
+        "en": "Several lots have unusually poor yield"
       },
       {
+        "key": "history",
+        "zh": "每片晶圓的完整履歷",
+        "en": "The complete history of every wafer"
+      },
+      {
+        "key": "compare",
         "zh": "逐站比對好壞晶圓",
         "en": "Compare bad vs normal wafers",
-        "noteZh": "機台、腔體、時間與材料",
-        "noteEn": "Tools, chambers, times and materials"
+        "from": "figure"
       },
       {
-        "zh": "找出壞晶圓獨有共同點",
-        "en": "Find what only bad wafers share"
+        "key": "what",
+        "zh": "機台、腔體、時間與材料",
+        "en": "Tools, chambers, times and materials"
       },
       {
+        "key": "bad",
+        "zh": "良率差的晶圓",
+        "en": "Low-yield wafers"
+      },
+      {
+        "key": "good",
+        "zh": "良率正常的晶圓",
+        "en": "Normal-yield wafers"
+      },
+      {
+        "key": "only",
+        "zh": "只有壞晶圓才有的共同點",
+        "en": "What only the bad wafers share"
+      },
+      {
+        "key": "narrow",
         "zh": "範圍縮小到少數幾站",
-        "en": "Narrow the search to a few steps"
+        "en": "Narrows the search to a few steps"
       }
     ]
   },
@@ -9695,37 +10182,96 @@ export const SECTION_DIAGRAMS = [
     "chapterId": "ch16",
     "headingZh": "故障分析：找到「兇手」",
     "headingEn": "Failure analysis: finding the culprit",
-    "type": "flow",
+    "type": "pictorial",
+    "draw": "faSteps",
     "captionZh": "故障分析從電性定位到剖面觀察，找出失效的實際證據",
     "captionEn": "Failure analysis finds physical evidence, from fault isolation to imaging.",
-    "steps": [
+    "labels": [
       {
-        "zh": "統計分析：可能是哪裡",
-        "en": "Statistics: where it might be"
+        "key": "fa",
+        "zh": "故障分析（FA，Failure Analysis）",
+        "en": "Failure analysis (FA)"
       },
       {
+        "key": "evidence",
+        "zh": "找到實際的證據",
+        "en": "Find the physical evidence"
+      },
+      {
+        "key": "stat",
+        "zh": "統計分析",
+        "en": "Statistical analysis"
+      },
+      {
+        "key": "where",
+        "zh": "可能是哪裡",
+        "en": "Where it might be"
+      },
+      {
+        "key": "iso",
         "zh": "電性定位",
-        "en": "Electrical fault isolation",
-        "noteZh": "故障點常發出微弱光或熱",
-        "noteEn": "Failures often give off faint light or heat"
+        "en": "Electrical fault isolation"
       },
       {
+        "key": "glow",
+        "zh": "故障點常會發出微弱的光或熱",
+        "en": "A failure point often gives off faint light or heat"
+      },
+      {
+        "key": "peel",
         "zh": "逐層剝除",
-        "en": "Deprocessing",
-        "noteZh": "逐層去除並觀察",
-        "noteEn": "Remove and inspect layer by layer"
+        "en": "Deprocessing"
       },
       {
+        "key": "peelD",
+        "zh": "逐層去除並觀察",
+        "en": "Remove and inspect layer by layer",
+        "from": "figure"
+      },
+      {
+        "key": "cut",
         "zh": "精準切割",
-        "en": "Precise cross-sectioning",
-        "noteZh": "用聚焦離子束切出剖面",
-        "noteEn": "FIB cuts a cross-section at the failure"
+        "en": "Precise cross-sectioning"
       },
       {
+        "key": "fib",
+        "zh": "聚焦離子束（FIB）",
+        "en": "Focused ion beam (FIB)"
+      },
+      {
+        "key": "cutAt",
+        "zh": "在故障位置精準地切出剖面",
+        "en": "Cut a cross-section exactly at the failure location"
+      },
+      {
+        "key": "obs",
         "zh": "觀察與分析",
-        "en": "Observation and analysis",
-        "noteZh": "確認短路、斷路、空洞或污染",
-        "noteEn": "Confirm a short, open, void or contamination"
+        "en": "Observation and analysis"
+      },
+      {
+        "key": "sem",
+        "zh": "電子顯微鏡",
+        "en": "Electron microscope"
+      },
+      {
+        "key": "short",
+        "zh": "短路",
+        "en": "Short"
+      },
+      {
+        "key": "open",
+        "zh": "斷路",
+        "en": "Open"
+      },
+      {
+        "key": "void",
+        "zh": "空洞",
+        "en": "Void"
+      },
+      {
+        "key": "contam",
+        "zh": "污染",
+        "en": "Contamination"
       }
     ]
   },
@@ -9820,32 +10366,83 @@ export const SECTION_DIAGRAMS = [
     "headingZh": "定量物理定律與 3D 製程視窗",
     "headingEn": "Quantitative Governing Laws & 3D Process Windows",
     "foldTables": true,
-    "type": "branch",
     "foldSection": true,
-    "captionZh": "良率與故障分析三大定律及其工程意義",
-    "captionEn": "Three yield and failure-analysis laws and the engineering impact of each.",
-    "root": {
-      "zh": "良率與故障分析定律",
-      "en": "Yield & failure analysis laws"
-    },
-    "branches": [
+    "type": "pictorial",
+    "draw": "yieldLaws",
+    "captionZh": "良率與故障分析三大定律與工程意義，加上線距縮小讓微粒變成短路",
+    "captionEn": "Three yield and FA laws and their impact, plus how a tighter pitch makes a short",
+    "labels": [
       {
+        "key": "root",
+        "zh": "良率與故障分析定律",
+        "en": "Yield & failure analysis laws",
+        "from": "figure"
+      },
+      {
+        "key": "b0",
         "zh": "良率統計模型與叢集度",
         "en": "Yield models & defect clustering",
-        "leafZh": "報價、學習曲線與拆分評估",
-        "leafEn": "Pricing, learning curves, chiplet split ROI"
+        "from": "figure"
       },
       {
+        "key": "l0",
+        "zh": "報價、學習曲線與拆分評估",
+        "en": "Pricing, learning curves, chiplet split ROI",
+        "from": "figure"
+      },
+      {
+        "key": "b1",
         "zh": "缺陷粒徑與關鍵面積",
         "en": "Defect size & critical area law",
-        "leafZh": "拉寬線距並加雙重通孔",
-        "leafEn": "Wire spreading and via doubling"
+        "from": "figure"
       },
       {
+        "key": "l1",
+        "zh": "拉寬線距並加雙重通孔",
+        "en": "Wire spreading and via doubling",
+        "from": "figure"
+      },
+      {
+        "key": "b2",
         "zh": "鎖相熱成像相位深度",
         "en": "Lock-in thermography phase depth",
-        "leafZh": "不開蓋算出漏電層，指引下刀",
-        "leafEn": "Finds the shorted tier before FIB milling"
+        "from": "figure"
+      },
+      {
+        "key": "l2",
+        "zh": "不開蓋算出漏電層，指引下刀",
+        "en": "Finds the shorted tier before FIB milling",
+        "from": "figure"
+      },
+      {
+        "key": "pitch",
+        "zh": "金屬線距",
+        "en": "Interconnect pitch"
+      },
+      {
+        "key": "half",
+        "zh": "縮小一半",
+        "en": "Halving"
+      },
+      {
+        "key": "benign",
+        "zh": "原本無害的微小顆粒",
+        "en": "Previously benign sub-pitch particles"
+      },
+      {
+        "key": "killer",
+        "zh": "致命短路缺陷",
+        "en": "Killer bridges"
+      },
+      {
+        "key": "spread",
+        "zh": "拉寬線距（Wire Spreading）",
+        "en": "Wire-spreading"
+      },
+      {
+        "key": "doubleVia",
+        "zh": "雙重通孔（Double Via）",
+        "en": "Via doubling"
       }
     ]
   },
@@ -9854,32 +10451,111 @@ export const SECTION_DIAGRAMS = [
     "headingZh": "現場異常徵兆與跨站根因排查",
     "headingEn": "Fab Failure Signatures & Root-Cause Diagnostics",
     "foldTables": true,
-    "type": "branch",
     "foldSection": true,
-    "captionZh": "良率與故障分析三類異常與表中列出的對策",
-    "captionEn": "Three yield and FA failure modes and the listed countermeasures.",
-    "root": {
-      "zh": "良率與故障分析異常",
-      "en": "Yield and FA failure modes"
-    },
-    "branches": [
+    "type": "pictorial",
+    "draw": "chamberMask",
+    "sourcedNumbers": true,
+    "captionZh": "三類良率與故障分析異常與對策，加上整批平均掩蓋單一腔體",
+    "captionEn": "Three yield and FA failure modes and fixes, plus how lot averages hide a chamber",
+    "sourceZh": "25 片、4 個腔體與 C 腔的 6 片出自本段表格；腔體輪流分派的順序與長條高度只是示意，整批的下降約為 C 腔的四分之一。根與三條分支沿用原本的分支圖。",
+    "sourceEn": "The 25 wafers, 4 chambers and the 6 wafers through chamber C come from the table in this section. The round-robin order and bar heights are schematic; the drop of the whole lot is about a quarter of the drop in chamber C. The root and three branches are kept from the original branch diagram.",
+    "labels": [
       {
+        "key": "root",
+        "zh": "良率與故障分析異常",
+        "en": "Yield and FA failure modes",
+        "from": "figure"
+      },
+      {
+        "key": "b0",
         "zh": "晶圓圖空間圖騰",
         "en": "Spatial wafer-map signatures",
-        "leafZh": "AI 分類晶圓圖並鎖住嫌疑腔體",
-        "leafEn": "AI map classification holds suspect chambers"
+        "from": "figure"
       },
       {
+        "key": "l0",
+        "zh": "AI 分類晶圓圖並鎖住嫌疑腔體",
+        "en": "AI map classification holds suspect chambers",
+        "from": "figure"
+      },
+      {
+        "key": "b1",
         "zh": "單一腔體異常被平均掩蓋",
         "en": "Single-chamber excursion masked",
-        "leafZh": "腔體槽位級追蹤並自動鎖腔",
-        "leafEn": "Chamber/slot genealogy auto-locks the chamber"
+        "from": "figure"
       },
       {
+        "key": "l1",
+        "zh": "腔體槽位級追蹤並自動鎖腔",
+        "en": "Chamber/slot genealogy auto-locks the chamber",
+        "from": "figure"
+      },
+      {
+        "key": "b2",
         "zh": "盲目劈開樣品毀掉證據",
         "en": "Blind FIB cut destroys evidence",
-        "leafZh": "先非破壞定位，才准去層切割",
-        "leafEn": "Localize non-destructively before any FIB cut"
+        "from": "figure"
+      },
+      {
+        "key": "l2",
+        "zh": "先非破壞定位，才准去層切割",
+        "en": "Localize non-destructively before any FIB cut",
+        "from": "figure"
+      },
+      {
+        "key": "lot",
+        "zh": "25 片晶圓",
+        "en": "25-wafer lot"
+      },
+      {
+        "key": "four",
+        "zh": "4 個腔體",
+        "en": "4 parallel chambers"
+      },
+      {
+        "key": "abcd",
+        "zh": "A/B/C/D",
+        "en": "A/B/C/D"
+      },
+      {
+        "key": "a",
+        "zh": "A",
+        "en": "A"
+      },
+      {
+        "key": "b",
+        "zh": "B",
+        "en": "B"
+      },
+      {
+        "key": "c",
+        "zh": "C",
+        "en": "C"
+      },
+      {
+        "key": "d",
+        "zh": "D",
+        "en": "D"
+      },
+      {
+        "key": "six",
+        "zh": "6 片晶圓",
+        "en": "6 wafers"
+      },
+      {
+        "key": "avg",
+        "zh": "看整批平均",
+        "en": "Lot-average yield"
+      },
+      {
+        "key": "byCh",
+        "zh": "依腔體分組",
+        "en": "Grouped by tool chamber"
+      },
+      {
+        "key": "yieldAxis",
+        "zh": "良率",
+        "en": "Yield"
       }
     ]
   },
