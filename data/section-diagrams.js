@@ -14339,25 +14339,85 @@ export const SECTION_DIAGRAMS = [
     "chapterId": "ch22",
     "headingZh": "可靠度：能用多久",
     "headingEn": "Reliability: how long it lasts",
-    "type": "flow",
+    "type": "pictorial",
+    "draw": "accelTests",
     "captionZh": "加速可靠度測試如何推算正常使用壽命",
     "captionEn": "How accelerated reliability tests estimate lifetime under normal use.",
-    "steps": [
+    "labels": [
       {
+        "key": "s0",
         "zh": "加速測試",
         "en": "Accelerated testing",
-        "noteZh": "更高的溫度、電壓或濕度",
-        "noteEn": "Higher temperature, voltage or humidity"
+        "from": "figure"
       },
       {
+        "key": "n0",
+        "zh": "更高的溫度、電壓或濕度",
+        "en": "Higher temperature, voltage or humidity",
+        "from": "figure"
+      },
+      {
+        "key": "s1",
         "zh": "失效更快發生",
-        "en": "Failures happen sooner"
+        "en": "Failures happen sooner",
+        "from": "figure"
       },
       {
+        "key": "s2",
         "zh": "以模型推算壽命",
         "en": "Estimate lifetime with models",
-        "noteZh": "正常使用下的壽命",
-        "noteEn": "Lifetime under normal use"
+        "from": "figure"
+      },
+      {
+        "key": "n2",
+        "zh": "正常使用下的壽命",
+        "en": "Lifetime under normal use",
+        "from": "figure"
+      },
+      {
+        "key": "common",
+        "zh": "常見的測試如下",
+        "en": "Common tests include"
+      },
+      {
+        "key": "htol",
+        "zh": "高溫操作壽命（HTOL）",
+        "en": "High temperature operating life (HTOL)"
+      },
+      {
+        "key": "htolDo",
+        "zh": "在高溫下持續通電運作上千小時",
+        "en": "Run powered at high temperature for a thousand hours or more"
+      },
+      {
+        "key": "tc",
+        "zh": "溫度循環",
+        "en": "Temperature cycling"
+      },
+      {
+        "key": "tcDo",
+        "zh": "反覆在高溫和低溫之間切換",
+        "en": "Switch repeatedly between high and low temperatures"
+      },
+      {
+        "key": "hast",
+        "zh": "高加速溫濕度測試（HAST）",
+        "en": "Highly accelerated stress test (HAST)"
+      },
+      {
+        "key": "hastDo",
+        "zh": "高溫、高濕、加壓",
+        "en": "High temperature, high humidity and pressure"
+      },
+      {
+        "key": "esd",
+        "zh": "靜電放電測試（ESD）",
+        "en": "Electrostatic discharge (ESD) test"
+      },
+      {
+        "key": "esdDo",
+        "zh": "施加模擬的靜電放電",
+        "en": "Apply simulated electrostatic discharges"
       }
     ]
   },
@@ -14632,33 +14692,113 @@ export const SECTION_DIAGRAMS = [
     "chapterId": "ch23",
     "headingZh": "履歷：每一片晶圓的完整紀錄",
     "headingEn": "History: the complete record of every wafer",
-    "type": "branch",
+    "type": "pictorial",
+    "draw": "waferHistory",
     "captionZh": "晶圓履歷在良率、機台與客戶問題上的用途",
     "captionEn": "How the wafer history is used for yield, tool and customer problems",
-    "root": {
-      "zh": "晶圓履歷",
-      "en": "Wafer history",
-      "noteZh": "整座工廠的記憶",
-      "noteEn": "The memory of the whole factory"
-    },
-    "branches": [
+    "labels": [
       {
+        "key": "root",
+        "zh": "晶圓履歷",
+        "en": "Wafer history",
+        "from": "figure"
+      },
+      {
+        "key": "rootN",
+        "zh": "整座工廠的記憶",
+        "en": "The memory of the whole factory",
+        "from": "figure"
+      },
+      {
+        "key": "b0",
         "zh": "良率異常",
         "en": "Abnormal yield",
-        "leafZh": "共通性分析",
-        "leafEn": "Commonality analysis"
+        "from": "figure"
       },
       {
+        "key": "l0",
+        "zh": "共通性分析",
+        "en": "Commonality analysis",
+        "from": "figure"
+      },
+      {
+        "key": "b1",
         "zh": "機台出問題",
         "en": "Tool problem",
-        "leafZh": "找出受影響的範圍",
-        "leafEn": "Find which wafers were affected"
+        "from": "figure"
       },
       {
+        "key": "l1",
+        "zh": "找出受影響的範圍",
+        "en": "Find which wafers were affected",
+        "from": "figure"
+      },
+      {
+        "key": "b2",
         "zh": "客戶回報問題",
         "en": "Customer reports a problem",
-        "leafZh": "追溯到晶圓與批次",
-        "leafEn": "Trace back to wafer and lot"
+        "from": "figure"
+      },
+      {
+        "key": "l2",
+        "zh": "追溯到晶圓與批次",
+        "en": "Trace back to wafer and lot",
+        "from": "figure"
+      },
+      {
+        "key": "f0",
+        "zh": "經過哪些步驟",
+        "en": "Which steps it went through"
+      },
+      {
+        "key": "f1",
+        "zh": "用了哪台機台和腔體",
+        "en": "Which tools and chambers it used"
+      },
+      {
+        "key": "f2",
+        "zh": "哪個 Recipe 版本",
+        "en": "Which recipe versions"
+      },
+      {
+        "key": "f3",
+        "zh": "什麼時間",
+        "en": "When"
+      },
+      {
+        "key": "f4",
+        "zh": "量測結果是多少",
+        "en": "What the measurements were"
+      },
+      {
+        "key": "many",
+        "zh": "用在很多地方",
+        "en": "Used in many ways"
+      },
+      {
+        "key": "share",
+        "zh": "找出共同點",
+        "en": "Find what the bad wafers share"
+      },
+      {
+        "key": "c0",
+        "zh": "一顆晶片",
+        "en": "A chip"
+      },
+      {
+        "key": "c1",
+        "zh": "晶圓",
+        "en": "Its wafer"
+      },
+      {
+        "key": "c2",
+        "zh": "批次",
+        "en": "Its lot"
+      },
+      {
+        "key": "c3",
+        "zh": "每一站的生產條件",
+        "en": "The conditions at every step"
       }
     ]
   },
@@ -15135,62 +15275,215 @@ export const SECTION_DIAGRAMS = [
     ]
   },
   {
+    "chapterId": "ch23",
+    "headingZh": "一座不可能靠人記住的工廠",
+    "headingEn": "A factory no one could keep in their head",
+    "type": "pictorial",
+    "draw": "fabScale",
+    "sourcedNumbers": true,
+    "captionZh": "晶圓廠的規模大到只能靠系統指揮和記錄",
+    "captionEn": "A fab is too large to keep in anyone's head, so systems direct and record it",
+    "sourceZh": "「24 小時」出自本段第一句；數千、數百、上千照正文的概數寫。",
+    "sourceEn": "The 24 hours comes from the opening paragraph of this section; thousands, hundreds and a thousand are rough counts in the text.",
+    "labels": [
+      {
+        "key": "lots",
+        "zh": "數千",
+        "en": "Thousands"
+      },
+      {
+        "key": "lotsD",
+        "zh": "批晶圓在生產",
+        "en": "of lots are in production"
+      },
+      {
+        "key": "steps",
+        "zh": "數百個步驟",
+        "en": "Hundreds of steps"
+      },
+      {
+        "key": "stepsD",
+        "zh": "每一批都要經過",
+        "en": "each one has to go through"
+      },
+      {
+        "key": "tools",
+        "zh": "上千台機台",
+        "en": "More than a thousand tools"
+      },
+      {
+        "key": "toolsD",
+        "zh": "各有自己的狀態和 Recipe",
+        "en": "each have their own status and recipes"
+      },
+      {
+        "key": "hours",
+        "zh": "24 小時不停運轉",
+        "en": "Runs 24 hours a day"
+      },
+      {
+        "key": "noOne",
+        "zh": "這樣的工廠不可能靠人記住一切",
+        "en": "No one could keep a factory like this in their head"
+      },
+      {
+        "key": "systems",
+        "zh": "由系統指揮和記錄",
+        "en": "Directed and recorded by systems"
+      },
+      {
+        "key": "like",
+        "zh": "就像機場的塔台和物流中心的結合",
+        "en": "Like an airport control tower combined with a logistics center"
+      }
+    ]
+  },
+  {
     "chapterId": "ch24",
     "headingZh": "DRAM 為什麼要刷新",
     "headingEn": "Why DRAM needs refresh",
-    "type": "cycle",
-    "captionZh": "DRAM 電容漏電與定期刷新的循環",
-    "captionEn": "The DRAM cycle of capacitor leakage and regular refresh",
-    "steps": [
+    "type": "pictorial",
+    "draw": "dramRefresh",
+    "captionZh": "DRAM 電容漏電，需定期刷新、通常每幾十毫秒一輪",
+    "captionEn": "DRAM capacitors leak; data is typically refreshed every few tens of milliseconds",
+    "labels": [
       {
+        "key": "s0",
         "zh": "電容存放電荷",
-        "en": "Capacitors store charge"
+        "en": "Capacitors store charge",
+        "from": "figure"
       },
       {
+        "key": "s1",
         "zh": "電容慢慢漏電",
         "en": "Capacitors slowly leak",
-        "noteZh": "溫度越高漏電越快",
-        "noteEn": "Faster leakage at higher temperature"
+        "from": "figure"
       },
       {
+        "key": "n1",
+        "zh": "溫度越高漏電越快",
+        "en": "Faster leakage at higher temperature",
+        "from": "figure"
+      },
+      {
+        "key": "s2",
         "zh": "讀出每一列資料",
         "en": "Read out every row",
-        "noteZh": "由記憶體控制器執行",
-        "noteEn": "Done by the memory controller"
+        "from": "figure"
       },
       {
+        "key": "n2",
+        "zh": "由記憶體控制器執行",
+        "en": "Done by the memory controller",
+        "from": "figure"
+      },
+      {
+        "key": "s3",
         "zh": "寫回補充電荷",
-        "en": "Write back, replacing lost charge"
+        "en": "Write back, replacing lost charge",
+        "from": "figure"
+      },
+      {
+        "key": "center",
+        "zh": "定期刷新",
+        "en": "Regular refresh",
+        "from": "figure"
+      },
+      {
+        "key": "cap",
+        "zh": "電容",
+        "en": "Capacitors"
+      },
+      {
+        "key": "charge",
+        "zh": "電荷",
+        "en": "Charge"
+      },
+      {
+        "key": "time",
+        "zh": "時間",
+        "en": "Time"
+      },
+      {
+        "key": "more",
+        "zh": "刷新的頻率通常要提高",
+        "en": "Refresh usually has to happen more often"
+      },
+      {
+        "key": "lost",
+        "zh": "避免資料消失",
+        "en": "So the data is not lost"
+      },
+      {
+        "key": "ctrl",
+        "zh": "記憶體控制器",
+        "en": "Memory controller"
+      },
+      {
+        "key": "noAccess",
+        "zh": "刷新期間記憶體無法正常存取",
+        "en": "During refresh, the memory cannot be accessed normally"
       }
-    ],
-    "centerZh": "定期刷新",
-    "centerEn": "Regular refresh"
+    ]
   },
   {
     "chapterId": "ch24",
     "headingZh": "NAND Flash 的脾氣",
     "headingEn": "The quirks of NAND flash",
-    "type": "flow",
+    "type": "pictorial",
+    "draw": "nandStates",
     "captionZh": "每單元位元數越多，耐用度越低、ECC 需求越高",
     "captionEn": "Why storing more bits per cell lowers endurance and needs stronger ECC",
-    "steps": [
+    "labels": [
       {
+        "key": "s0",
         "zh": "每單元存的位元越多",
-        "en": "More bits stored per cell"
+        "en": "More bits stored per cell",
+        "from": "figure"
       },
       {
+        "key": "s1",
         "zh": "要分辨的電荷狀態越多",
-        "en": "More charge states to tell apart"
+        "en": "More charge states to tell apart",
+        "from": "figure"
       },
       {
+        "key": "s2",
         "zh": "彼此的間隔越窄",
-        "en": "Narrower gaps between them"
+        "en": "Narrower gaps between them",
+        "from": "figure"
       },
       {
+        "key": "s3",
         "zh": "可抹寫次數越少",
         "en": "Cells can be erased fewer times",
-        "noteZh": "需要的 ECC 也越強",
-        "noteEn": "And stronger ECC is needed"
+        "from": "figure"
+      },
+      {
+        "key": "n3",
+        "zh": "需要的 ECC 也越強",
+        "en": "And stronger ECC is needed",
+        "from": "figure"
+      },
+      {
+        "key": "slc",
+        "zh": "SLC",
+        "en": "SLC"
+      },
+      {
+        "key": "mlc",
+        "zh": "MLC",
+        "en": "MLC"
+      },
+      {
+        "key": "tlc",
+        "zh": "TLC",
+        "en": "TLC"
+      },
+      {
+        "key": "qlc",
+        "zh": "QLC",
+        "en": "QLC"
       }
     ]
   },
@@ -15587,34 +15880,156 @@ export const SECTION_DIAGRAMS = [
     ]
   },
   {
+    "chapterId": "ch24",
+    "headingZh": "Row Hammer：記憶單元靠得太近",
+    "headingEn": "Row Hammer: memory cells packed too close",
+    "type": "pictorial",
+    "draw": "rowHammer",
+    "captionZh": "反覆存取一列會干擾相鄰列，要靠偵測與刷新防範",
+    "captionEn": "Hammering one row disturbs its neighbors; detection and refresh defend them",
+    "labels": [
+      {
+        "key": "name",
+        "zh": "Row Hammer",
+        "en": "Row Hammer"
+      },
+      {
+        "key": "hammer",
+        "zh": "反覆、快速地存取同一列記憶體",
+        "en": "Accessing the same row of memory repeatedly and rapidly"
+      },
+      {
+        "key": "disturb",
+        "zh": "相鄰的單元之間也越容易互相干擾",
+        "en": "Neighboring cells disturb each other more easily"
+      },
+      {
+        "key": "flip",
+        "zh": "相鄰列的資料翻轉",
+        "en": "Can flip the data in neighboring rows"
+      },
+      {
+        "key": "security",
+        "zh": "也是安全問題",
+        "en": "Also a security problem"
+      },
+      {
+        "key": "attack",
+        "zh": "攻擊者可能利用它修改不該修改的資料",
+        "en": "An attacker may use it to change data they should not be able to change"
+      },
+      {
+        "key": "who",
+        "zh": "DRAM 和記憶體控制器",
+        "en": "DRAM and memory controllers"
+      },
+      {
+        "key": "defend",
+        "zh": "偵測與額外刷新相鄰列",
+        "en": "Detect this pattern and refresh the neighboring rows"
+      }
+    ]
+  },
+  {
     "chapterId": "app-jargon",
     "headingZh": "晶圓廠批次狀態機與跨部門交接實戰條例",
     "headingEn": "Fab Lot State-Machine & Shift Handover Clauses",
-    "type": "flow",
-    "captionZh": "機台開腔修機後，由 EE 交給 PE 驗證再放行的流程",
-    "captionEn": "How a repaired tool passes from EE to PE for qualification before release",
-    "steps": [
+    "type": "pictorial",
+    "draw": "lotStates",
+    "captionZh": "批次 Hold，與開腔修機後由 EE 交給 PE 驗證再放行",
+    "captionEn": "Lot holds; repaired tools pass from EE to PE for qualification before release",
+    "labels": [
       {
+        "key": "lotSM",
+        "zh": "批次狀態轉換（Lot State Machine）",
+        "en": "MES Lot State Machine"
+      },
+      {
+        "key": "run",
+        "zh": "Run",
+        "en": "Run"
+      },
+      {
+        "key": "wait",
+        "zh": "Wait",
+        "en": "Wait"
+      },
+      {
+        "key": "hold",
+        "zh": "Hold",
+        "en": "Hold"
+      },
+      {
+        "key": "trig",
+        "zh": "SPC/FDC 違規或超時",
+        "en": "SPC/FDC alarms or Q-time expiry"
+      },
+      {
+        "key": "auto",
+        "zh": "即自動轉入 Hold（鎖批）",
+        "en": "Trigger immediate Auto-Hold"
+      },
+      {
+        "key": "future",
+        "zh": "Future Hold",
+        "en": "Future Hold"
+      },
+      {
+        "key": "split",
+        "zh": "Split Lot 實驗批",
+        "en": "Split Lots for DOE experiments"
+      },
+      {
+        "key": "metro",
+        "zh": "於量測站攔截比對",
+        "en": "At inline metrology for split comparison"
+      },
+      {
+        "key": "toolQ",
+        "zh": "機台腔體狀態與復機條例",
+        "en": "Tool & Chamber Qualification Clause"
+      },
+      {
+        "key": "s0",
         "zh": "EE 修機",
         "en": "EE completes the repair",
-        "noteZh": "開腔後嚴禁直接跑產品",
-        "noteEn": "No product directly after chamber open"
+        "from": "figure"
       },
       {
+        "key": "n0",
+        "zh": "開腔後嚴禁直接跑產品",
+        "en": "No product directly after chamber open",
+        "from": "figure"
+      },
+      {
+        "key": "s1",
         "zh": "跑 Season 與控片",
         "en": "Run seasoning and monitor wafers",
-        "noteZh": "交由製程工程師",
-        "noteEn": "Handed off to PE"
+        "from": "figure"
       },
       {
+        "key": "n1",
+        "zh": "交由製程工程師",
+        "en": "Handed off to PE",
+        "from": "figure"
+      },
+      {
+        "key": "s2",
         "zh": "確認壓回管制線內",
         "en": "Confirm back within control limits",
-        "noteZh": "微粒、膜厚與蝕刻率",
-        "noteEn": "Particles, film thickness and etch rate"
+        "from": "figure"
       },
       {
+        "key": "n2",
+        "zh": "微粒、膜厚與蝕刻率",
+        "en": "Particles, film thickness and etch rate",
+        "from": "figure"
+      },
+      {
+        "key": "s3",
         "zh": "簽核 Release",
-        "en": "Sign off the tool release"
+        "en": "Sign off the tool release",
+        "from": "figure"
       }
     ]
   },
@@ -15622,42 +16037,97 @@ export const SECTION_DIAGRAMS = [
     "chapterId": "app-jargon",
     "headingZh": "現場異常告警與跨班別緊急處置行話速查",
     "headingEn": "Fab Excursion Alarm & Triage Jargon Lookup",
-    "type": "branch",
-    "captionZh": "現場緊急告警與當班的立即處置",
-    "captionEn": "Floor emergency callouts and the shift's immediate action",
-    "root": {
-      "zh": "現場緊急告警",
-      "en": "Floor emergency callout",
-      "icon": "risk"
-    },
-    "branches": [
+    "type": "pictorial",
+    "draw": "edgeRingCase",
+    "sourcedNumbers": true,
+    "captionZh": "現場緊急告警與當班的立即處置，並展開外圍環帶的推論",
+    "captionEn": "Floor emergency callouts, the shift's immediate action and the edge-ring case",
+    "sourceZh": "第 3、7、11 片、每隔 4 片與 4 腔體出自本段表格最後一列；圖只畫中英正文都有的三片。",
+    "sourceEn": "Slots 3, 7 and 11, the every-4th-wafer period and the 4-chamber tool come from the last table row; only slots in both languages are drawn.",
+    "labels": [
       {
+        "key": "root",
+        "zh": "現場緊急告警",
+        "en": "Floor emergency callout",
+        "from": "figure"
+      },
+      {
+        "key": "b0",
         "zh": "Q-Time 快爆了",
         "en": "Q-Time about to blow",
-        "leafZh": "關閉上游清洗站進站",
-        "leafEn": "Block track-in at the clean step",
-        "icon": "clock"
+        "from": "figure"
       },
       {
+        "key": "l0",
+        "zh": "關閉上游清洗站進站",
+        "en": "Block track-in at the clean step",
+        "from": "figure"
+      },
+      {
+        "key": "b1",
         "zh": "FDC 亮紅燈鎖批",
         "en": "FDC Auto-Hold tripped",
-        "leafZh": "攔截所有姊妹批",
-        "leafEn": "Future Hold on all sister lots",
-        "icon": "lock"
+        "from": "figure"
       },
       {
+        "key": "l1",
+        "zh": "攔截所有姊妹批",
+        "en": "Future Hold on all sister lots",
+        "from": "figure"
+      },
+      {
+        "key": "b2",
         "zh": "ADI 疊對偏移",
         "en": "ADI overlay shift",
-        "leafZh": "轉入黃光重工",
-        "leafEn": "Route to photo rework",
-        "icon": "overlay"
+        "from": "figure"
       },
       {
+        "key": "l2",
+        "zh": "轉入黃光重工",
+        "en": "Route to photo rework",
+        "from": "figure"
+      },
+      {
+        "key": "b3",
         "zh": "CP 外圍環帶死粒",
         "en": "CP edge-ring failing dies",
-        "leafZh": "嫌疑腔體切 Down",
-        "leafEn": "Take the offending chamber down",
-        "icon": "edge-ring"
+        "from": "figure"
+      },
+      {
+        "key": "l3",
+        "zh": "嫌疑腔體切 Down",
+        "en": "Take the offending chamber down",
+        "from": "figure"
+      },
+      {
+        "key": "slots",
+        "zh": "第 3、7、11 片",
+        "en": "Slots 3, 7, 11"
+      },
+      {
+        "key": "every",
+        "zh": "每隔 4 片出現一次",
+        "en": "Every-4th-wafer periodicity"
+      },
+      {
+        "key": "tool",
+        "zh": "4 腔體製程機台",
+        "en": "4-chamber cluster tool"
+      },
+      {
+        "key": "rogue",
+        "zh": "特定單一腔體",
+        "en": "A single rogue chamber"
+      },
+      {
+        "key": "ring",
+        "zh": "如耗材聚焦環已腐蝕",
+        "en": "e.g., eroded plasma focus ring"
+      },
+      {
+        "key": "edge",
+        "zh": "Edge Ring",
+        "en": "Edge Ring"
       }
     ]
   },
