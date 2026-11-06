@@ -12087,37 +12087,90 @@ export const SECTION_DIAGRAMS = [
     "chapterId": "ch19",
     "headingZh": "晶圓圖交給封裝",
     "headingEn": "Handing the wafer map to packaging",
-    "type": "flow",
+    "type": "pictorial",
+    "draw": "mapToPack",
     "captionZh": "CP 後晶圓圖交到封裝廠挑出好晶粒的流程",
     "captionEn": "How the wafer map travels from CP to packaging, where good dies are picked.",
-    "steps": [
+    "labels": [
       {
-        "zh": "CP 完成",
-        "en": "CP completed"
+        "key": "after",
+        "zh": "CP 完成後",
+        "en": "After CP"
       },
       {
-        "zh": "晶圓圖隨晶圓送出",
-        "en": "Wafer map travels with wafer",
-        "noteZh": "以電子資料送到封裝廠",
-        "noteEn": "As electronic data, to the packaging house"
+        "key": "travel",
+        "zh": "跟著晶圓一起送到封裝廠",
+        "en": "Travels with the wafer to the packaging house"
       },
       {
-        "zh": "核對晶圓編號",
-        "en": "Check the wafer ID",
-        "noteZh": "確認資料與實體是同一片",
-        "noteEn": "Data and physical wafer are the same"
+        "key": "mapT",
+        "zh": "晶圓圖",
+        "en": "Wafer map"
       },
       {
-        "zh": "以記號確認方向",
-        "en": "Confirm orientation by marks",
-        "noteZh": "圖上位置對應正確晶粒",
-        "noteEn": "Each map position matches the right die"
+        "key": "data",
+        "zh": "電子資料",
+        "en": "Electronic data"
       },
       {
-        "zh": "只挑合格晶粒",
-        "en": "Pick only good dies",
-        "noteZh": "已知良好晶粒 KGD",
-        "noteEn": "Known good dies (KGD)"
+        "key": "phys",
+        "zh": "實體晶圓",
+        "en": "The physical wafer"
+      },
+      {
+        "key": "house",
+        "zh": "封裝廠",
+        "en": "Packaging house"
+      },
+      {
+        "key": "id1",
+        "zh": "用晶圓編號確認資料",
+        "en": "Use the wafer ID to confirm that the data"
+      },
+      {
+        "key": "id2",
+        "zh": "和實體晶圓是同一片",
+        "en": "and the physical wafer are the same wafer"
+      },
+      {
+        "key": "mark",
+        "zh": "用晶圓上的記號確認方向",
+        "en": "Use the marks on the wafer to confirm its orientation"
+      },
+      {
+        "key": "every",
+        "zh": "確保圖上的每個位置都對應到正確的晶粒",
+        "en": "Every position on the map corresponds to the right die"
+      },
+      {
+        "key": "pick",
+        "zh": "機台只會挑出被標為合格的晶粒",
+        "en": "The tools pick only the dies marked as good"
+      },
+      {
+        "key": "kgd",
+        "zh": "KGD（Known Good Die，已知良好晶粒）",
+        "en": "KGD (known good dies)"
+      },
+      {
+        "key": "wrong",
+        "zh": "如果對應錯了",
+        "en": "If it is matched incorrectly"
+      },
+      {
+        "key": "onlyData",
+        "zh": "晶圓圖只是一份資料",
+        "en": "A wafer map is only data"
+      },
+      {
+        "key": "bad",
+        "zh": "壞的晶粒被封裝、出貨",
+        "en": "Bad dies get packaged and shipped"
+      },
+      {
+        "key": "good",
+        "zh": "好的晶粒反而被丟掉",
+        "en": "Good dies get thrown away"
       }
     ]
   },
@@ -12125,37 +12178,76 @@ export const SECTION_DIAGRAMS = [
     "chapterId": "ch19",
     "headingZh": "常見異常",
     "headingEn": "Common problems",
-    "type": "branch",
-    "captionZh": "晶圓測試常見異常與各自造成的結果",
-    "captionEn": "Common wafer test problems and the result each one leads to.",
-    "root": {
-      "zh": "晶圓測試常見異常",
-      "en": "Common wafer test problems"
-    },
-    "branches": [
+    "type": "pictorial",
+    "draw": "probeProblems",
+    "captionZh": "晶圓測試常見異常、可能原因與各自造成的結果",
+    "captionEn": "Common wafer test problems, possible causes and the result each one leads to.",
+    "labels": [
       {
+        "key": "root",
+        "zh": "晶圓測試常見異常",
+        "en": "Common wafer test problems",
+        "from": "figure"
+      },
+      {
+        "key": "n0",
         "zh": "接觸不良",
-        "en": "Poor contact",
-        "leafZh": "好的晶粒被誤判為壞",
-        "leafEn": "Good dies judged bad"
+        "en": "Poor contact"
       },
       {
+        "key": "c0",
+        "zh": "探針磨損或沾污、焊墊表面異常",
+        "en": "Worn or contaminated probes, abnormal pad surface"
+      },
+      {
+        "key": "r0",
+        "zh": "好的晶粒被誤判為壞的",
+        "en": "Good dies judged bad"
+      },
+      {
+        "key": "n1",
         "zh": "針痕過深",
-        "en": "Probe marks too deep",
-        "leafZh": "焊墊受損影響打線",
-        "leafEn": "Damaged pads affect wire bonding"
+        "en": "Probe marks too deep"
       },
       {
+        "key": "c1",
+        "zh": "探針壓力太大、重複測試太多次",
+        "en": "Too much probe force, too many retests"
+      },
+      {
+        "key": "r1",
+        "zh": "焊墊受損，影響後續打線",
+        "en": "Damaged pads that affect later wire bonding"
+      },
+      {
+        "key": "n2",
         "zh": "測試機台之間有差異",
-        "en": "Tester-to-tester differences",
-        "leafZh": "良率因機台而異",
-        "leafEn": "Yield depends on the tester"
+        "en": "Tester-to-tester differences"
       },
       {
+        "key": "c2",
+        "zh": "不同機台或探針卡的特性不同",
+        "en": "Different testers or probe cards behave differently"
+      },
+      {
+        "key": "r2",
+        "zh": "良率因機台而異",
+        "en": "Yield depends on the tester"
+      },
+      {
+        "key": "n3",
         "zh": "晶圓圖錯置",
-        "en": "Wafer map mismatch",
-        "leafZh": "封裝時挑錯晶粒",
-        "leafEn": "Wrong dies picked in packaging"
+        "en": "Wafer map mismatch"
+      },
+      {
+        "key": "c3",
+        "zh": "晶圓編號或方向對應錯誤",
+        "en": "Wrong wafer ID or orientation"
+      },
+      {
+        "key": "r3",
+        "zh": "封裝時挑錯晶粒",
+        "en": "The wrong dies are picked during packaging"
       }
     ]
   },
@@ -12198,32 +12290,98 @@ export const SECTION_DIAGRAMS = [
     "headingZh": "定量物理定律與 3D 製程視窗",
     "headingEn": "Quantitative Governing Laws & 3D Process Windows",
     "foldTables": true,
-    "type": "branch",
     "foldSection": true,
-    "captionZh": "晶圓測試三大定量定律與對應的工程意義",
-    "captionEn": "Three wafer-test laws and what each means for probing and KGD.",
-    "root": {
-      "zh": "晶圓測試與 KGD 定律",
-      "en": "Wafer test and KGD laws"
-    },
-    "branches": [
+    "type": "pictorial",
+    "draw": "overdriveLaw",
+    "captionZh": "晶圓測試三大定量定律與對應的工程意義，展開探針下壓超程",
+    "captionEn": "Three wafer-test laws and what each means for probing and KGD; overdrive shown",
+    "labels": [
       {
+        "key": "root",
+        "zh": "晶圓測試與 KGD 定律",
+        "en": "Wafer test and KGD laws",
+        "from": "figure"
+      },
+      {
+        "key": "b0",
         "zh": "開爾文四線量測",
         "en": "Kelvin four-wire measurement",
-        "leafZh": "消除線纜與探針接觸電阻",
-        "leafEn": "Cancels cable and probe contact resistance"
+        "from": "figure"
       },
       {
+        "key": "l0",
+        "zh": "消除線纜與探針接觸電阻",
+        "en": "Cancels cable and probe contact resistance",
+        "from": "figure"
+      },
+      {
+        "key": "b1",
         "zh": "Holm 接觸與過壓行程",
         "en": "Holm contact and probe overdrive",
-        "leafZh": "太小假性開路，太大打裂低介電質",
-        "leafEn": "Low OD false-fails; high OD cracks low-k"
+        "from": "figure"
       },
       {
+        "key": "l1",
+        "zh": "太小假性開路，太大打裂低介電質",
+        "en": "Low OD false-fails; high OD cracks low-k",
+        "from": "figure"
+      },
+      {
+        "key": "b2",
         "zh": "測試逃逸率與 KGD",
         "en": "Test escape and KGD break-even",
-        "leafZh": "提高覆蓋率，免整組模組報廢",
-        "leafEn": "Higher coverage avoids scrapping the module"
+        "from": "figure"
+      },
+      {
+        "key": "l2",
+        "zh": "提高覆蓋率，免整組模組報廢",
+        "en": "Higher coverage avoids scrapping the module",
+        "from": "figure"
+      },
+      {
+        "key": "od",
+        "zh": "下壓超程（Overdrive, OD）",
+        "en": "Overdrive (OD)"
+      },
+      {
+        "key": "odLow",
+        "zh": "OD 太小",
+        "en": "Insufficient OD"
+      },
+      {
+        "key": "scrub",
+        "zh": "刺破氧化層",
+        "en": "Scrub native oxide"
+      },
+      {
+        "key": "odHigh",
+        "zh": "OD 太大",
+        "en": "Excessive OD"
+      },
+      {
+        "key": "falseFail",
+        "zh": "假性開路",
+        "en": "False fails"
+      },
+      {
+        "key": "oxide",
+        "zh": "氧化層",
+        "en": "Native oxide"
+      },
+      {
+        "key": "pad",
+        "zh": "鋁墊",
+        "en": "Al pads"
+      },
+      {
+        "key": "lowk",
+        "zh": "脆弱多孔 Low-k",
+        "en": "Porous ULK dielectrics"
+      },
+      {
+        "key": "cup",
+        "zh": "CUP 結構裂傷",
+        "en": "Cracks fragile Circuit-Under-Pad (CUP) porous ULK dielectrics"
       }
     ]
   },
@@ -12425,6 +12583,92 @@ export const SECTION_DIAGRAMS = [
         "key": "bist",
         "zh": "內建自我測試",
         "en": "MBIST / LBIST"
+      }
+    ]
+  },
+  {
+    "chapterId": "ch19",
+    "headingZh": "WAT：製程的成績單",
+    "headingEn": "WAT: the report card of the process",
+    "type": "pictorial",
+    "draw": "watKeys",
+    "captionZh": "切割道上的測試鍵（正文舉例）與 WAT 量測的參數",
+    "captionEn": "Examples of test keys in the scribe line and the parameters WAT measures",
+    "labels": [
+      {
+        "key": "scribe",
+        "zh": "切割道",
+        "en": "Scribe lines"
+      },
+      {
+        "key": "dies",
+        "zh": "晶粒",
+        "en": "Dies"
+      },
+      {
+        "key": "keys",
+        "zh": "測試鍵（Test Key）",
+        "en": "Test keys"
+      },
+      {
+        "key": "kTr",
+        "zh": "單獨的電晶體",
+        "en": "Individual transistors"
+      },
+      {
+        "key": "kR",
+        "zh": "電阻",
+        "en": "Resistors"
+      },
+      {
+        "key": "kC",
+        "zh": "電容",
+        "en": "Capacitors"
+      },
+      {
+        "key": "kVia",
+        "zh": "一長串的導通孔",
+        "en": "Long chains of vias"
+      },
+      {
+        "key": "probes",
+        "zh": "探針",
+        "en": "Probes"
+      },
+      {
+        "key": "pTr",
+        "zh": "電晶體的 Vt、導通電流、漏電流",
+        "en": "Transistor Vt, drive current and leakage current"
+      },
+      {
+        "key": "pRC",
+        "zh": "電阻、接觸電阻、電容",
+        "en": "Resistance, contact resistance and capacitance"
+      },
+      {
+        "key": "reflect",
+        "zh": "反映了製程的結果",
+        "en": "Reflect the results of the process"
+      },
+      {
+        "key": "shift1",
+        "zh": "線寬、膜厚",
+        "en": "Whether line widths, film thicknesses"
+      },
+      {
+        "key": "shift2",
+        "zh": "和摻雜濃度有沒有偏移",
+        "en": "and doping concentrations have shifted"
+      },
+      {
+        "key": "gate",
+        "zh": "WAT 不合格的晶圓，通常不會出貨",
+        "en": "Wafers that fail WAT are usually not shipped"
+      },
+      {
+        "key": "notProduct",
+        "zh": "WAT 測的是測試鍵，不是產品電路本身",
+        "en": "WAT tests the test keys, not the product circuits themselves"
       }
     ]
   },
@@ -12755,10 +12999,10 @@ export const SECTION_DIAGRAMS = [
     "type": "pictorial",
     "draw": "flipChipBumps",
     "sourcedNumbers": true,
-    "sourceZh": "間距範圍出自本段表格，間距尺為對數刻度；凸塊大小只示意排序。微凸塊下方畫的是中介層或下層晶粒，不是有機基板。",
-    "sourceEn": "Pitch ranges come from the table in this section, on a log scale. Bump sizes only show the order. Below the micro-bump is an interposer or a lower die, not an organic substrate.",
-    "captionZh": "打線與覆晶的連接路徑，以及三種覆晶凸塊與接點間距",
-    "captionEn": "Wire bonding vs. flip chip, and three flip-chip bump types with their pitch",
+    "sourceZh": "間距範圍出自本段表格，間距尺為對數刻度；凸塊大小只示意排序。微凸塊下方畫的是中介層或下層晶粒，不是有機基板。底部填充三格只示意做法，不按比例。",
+    "sourceEn": "Pitch ranges come from the table in this section, on a log scale. Bump sizes only show the order. Below the micro-bump is an interposer or a lower die, not an organic substrate. The three underfill cells only illustrate each method and are not to scale.",
+    "captionZh": "打線與覆晶的連接路徑、三種覆晶凸塊與接點間距、三種底部填充",
+    "captionEn": "Wire bonding vs. flip chip; three flip-chip bumps and pitch; three underfills",
     "labels": [
       {
         "key": "wb",
@@ -12914,6 +13158,41 @@ export const SECTION_DIAGRAMS = [
         "key": "barMicro",
         "zh": "微凸塊",
         "en": "Micro-Bump"
+      },
+      {
+        "key": "ufT",
+        "zh": "三大底部填充製程條例（Underfill Clauses）",
+        "en": "Three Underfill Process Clauses"
+      },
+      {
+        "key": "cuf",
+        "zh": "CUF",
+        "en": "CUF"
+      },
+      {
+        "key": "cufD",
+        "zh": "回焊後於晶粒邊緣點膠，靠毛細力吸入縫隙",
+        "en": "Post-reflow edge dispensing via capillary wicking"
+      },
+      {
+        "key": "ncf",
+        "zh": "NCF",
+        "en": "NCF"
+      },
+      {
+        "key": "ncfD",
+        "zh": "熱壓鍵合前預貼絕緣膜，適合極窄間距微凸塊",
+        "en": "Pre-applied film laminated prior to TCB for ultra-fine micro-bumps"
+      },
+      {
+        "key": "muf",
+        "zh": "MUF",
+        "en": "MUF"
+      },
+      {
+        "key": "mufD",
+        "zh": "封膠與底部填充一次模塑完成",
+        "en": "Simultaneous overmolding and gap-filling"
       }
     ]
   },
@@ -13033,32 +13312,149 @@ export const SECTION_DIAGRAMS = [
     ]
   },
   {
+    "chapterId": "ch20",
+    "headingZh": "為什麼要封裝",
+    "headingEn": "Why chips need packages",
+    "type": "pictorial",
+    "draw": "packageJobs",
+    "captionZh": "封裝的四個任務：保護、連接、散熱、支撐",
+    "captionEn": "The four jobs of a package: protection, connection, heat dissipation, support",
+    "labels": [
+      {
+        "key": "house",
+        "zh": "封裝就像替晶粒蓋一間房子",
+        "en": "A package is like a house for the die"
+      },
+      {
+        "key": "fragile",
+        "zh": "又小又脆弱",
+        "en": "Tiny and fragile"
+      },
+      {
+        "key": "protect",
+        "zh": "保護",
+        "en": "Protection"
+      },
+      {
+        "key": "protectD",
+        "zh": "隔絕濕氣、灰塵和外力",
+        "en": "Keeping out moisture, dust and mechanical force"
+      },
+      {
+        "key": "connect",
+        "zh": "連接",
+        "en": "Connection"
+      },
+      {
+        "key": "connectD1",
+        "zh": "把晶粒上微小的焊墊",
+        "en": "Turning the tiny pads on the die into pins or solder balls"
+      },
+      {
+        "key": "connectD2",
+        "zh": "轉接成電路板能焊接的接腳或錫球",
+        "en": "that a circuit board can be soldered to"
+      },
+      {
+        "key": "heat",
+        "zh": "散熱",
+        "en": "Heat dissipation"
+      },
+      {
+        "key": "heatD",
+        "zh": "把晶片運作時產生的熱帶走",
+        "en": "Carrying away the heat the chip produces while it runs"
+      },
+      {
+        "key": "support",
+        "zh": "支撐",
+        "en": "Support"
+      },
+      {
+        "key": "supportD",
+        "zh": "提供足夠的機械強度，方便搬運和組裝",
+        "en": "Providing enough mechanical strength for handling and assembly"
+      },
+      {
+        "key": "pads",
+        "zh": "微小的焊墊",
+        "en": "Tiny pads"
+      },
+      {
+        "key": "balls",
+        "zh": "錫球",
+        "en": "Solder balls"
+      },
+      {
+        "key": "board",
+        "zh": "電路板",
+        "en": "Circuit board"
+      }
+    ]
+  },
+  {
     "chapterId": "ch21",
     "headingZh": "扇出型封裝",
     "headingEn": "Fan-out packaging",
-    "type": "flow",
+    "type": "pictorial",
+    "draw": "fanOutSteps",
     "captionZh": "扇出型封裝不用傳統基板的製作順序",
     "captionEn": "How fan-out packaging is built without a traditional substrate, step by step.",
-    "steps": [
+    "labels": [
       {
-        "zh": "晶粒排列於承載板",
-        "en": "Arrange dies on a carrier"
+        "key": "noSub",
+        "zh": "扇出型封裝不使用傳統的基板",
+        "en": "Fan-out packaging does not use a traditional substrate"
       },
       {
-        "zh": "封膠包成重組晶圓",
-        "en": "Mold into a reconstituted wafer"
+        "key": "aT",
+        "zh": "先把晶粒排列在一片承載板上",
+        "en": "The dies are first arranged on a carrier"
       },
       {
-        "zh": "做出重佈線層",
-        "en": "Build the redistribution layer",
-        "noteZh": "RDL",
-        "noteEn": "RDL"
+        "key": "carrier",
+        "zh": "承載板",
+        "en": "Carrier"
       },
       {
-        "zh": "接點往外扇出",
-        "en": "Contacts fan out from the die",
-        "noteZh": "擴展到比晶粒更大的面積",
-        "noteEn": "To an area larger than the die"
+        "key": "bT",
+        "zh": "用封膠把它們包成一片",
+        "en": "Encapsulated in mold compound"
+      },
+      {
+        "key": "mold",
+        "zh": "封膠",
+        "en": "Mold compound"
+      },
+      {
+        "key": "recon",
+        "zh": "重組晶圓",
+        "en": "Reconstituted wafer"
+      },
+      {
+        "key": "cT",
+        "zh": "再在上面做出重佈線層（RDL）",
+        "en": "A redistribution layer (RDL) is then built on top"
+      },
+      {
+        "key": "dT",
+        "zh": "把接點從晶粒往外「扇」出去",
+        "en": "Spreading the contacts \"out\" from the die"
+      },
+      {
+        "key": "dT2",
+        "zh": "擴展到比晶粒更大的面積",
+        "en": "To an area larger than the die itself"
+      },
+      {
+        "key": "thin",
+        "zh": "這種封裝又薄又小",
+        "en": "These packages are thin and small"
+      },
+      {
+        "key": "phones",
+        "zh": "常用在手機等輕薄的產品中",
+        "en": "and they are common in thin, light products such as phones"
       }
     ]
   },
@@ -13284,55 +13680,118 @@ export const SECTION_DIAGRAMS = [
     "headingZh": "小晶片（Chiplet）",
     "headingEn": "Chiplets",
     "foldTables": true,
-    "type": "compare",
-    "captionZh": "小晶片之間互連介面的主要類別對照",
-    "captionEn": "The main kinds of chiplet interconnect compared side by side.",
-    "columns": [
+    "type": "pictorial",
+    "draw": "chipletYield",
+    "sourcedNumbers": true,
+    "captionZh": "小晶片之間互連介面的主要類別對照，與良率相乘",
+    "captionEn": "The main kinds of chiplet interconnect side by side, and why yields multiply",
+    "sourceZh": "99% 與大約 92% 出自本段說明框；八顆 99% 相乘約為 92%。",
+    "sourceEn": "The 99% and about 92% come from the know-how box in this section; eight 99% yields multiply to about 92%.",
+    "labels": [
       {
-        "titleZh": "UCIe",
-        "titleEn": "UCIe",
-        "items": [
-          {
-            "zh": "開放通用標準",
-            "en": "Industry-wide open specification"
-          },
-          {
-            "zh": "定義物理層與協定層",
-            "en": "Defines the physical and protocol layers"
-          },
-          {
-            "zh": "跨生態系小晶片隨插即用",
-            "en": "Plug-and-play multi-vendor chiplets"
-          }
-        ]
+        "key": "eight",
+        "zh": "一個先進封裝裡放了八顆晶片",
+        "en": "An advanced package contains eight chips"
       },
       {
-        "titleZh": "AIB 與 BoW",
-        "titleEn": "AIB and BoW",
-        "items": [
-          {
-            "zh": "平行訊號、時脈轉發架構",
-            "en": "Parallel clock-forwarded interfaces"
-          },
-          {
-            "zh": "高頻寬、低延遲互連",
-            "en": "High bandwidth, low latency links"
-          }
-        ]
+        "key": "y99",
+        "zh": "99%",
+        "en": "99%"
       },
       {
-        "titleZh": "專屬高速架構互連",
-        "titleEn": "Dedicated high-speed fabric links",
-        "items": [
-          {
-            "zh": "記憶體一致性互連",
-            "en": "Cache-coherent die-to-die fabric"
-          },
-          {
-            "zh": "針對 AI 超算最佳化",
-            "en": "Tailored for AI supercomputing"
-          }
-        ]
+        "key": "std",
+        "zh": "標準介面",
+        "en": "Standard interfaces"
+      },
+      {
+        "key": "multiply",
+        "zh": "良率會相乘",
+        "en": "Yields multiply"
+      },
+      {
+        "key": "v92",
+        "zh": "大約 92%",
+        "en": "About 92%"
+      },
+      {
+        "key": "chance",
+        "zh": "八顆全部都好的機率",
+        "en": "The chance that all eight are good"
+      },
+      {
+        "key": "scrap1",
+        "zh": "整個昂貴的封裝連同其他好晶片",
+        "en": "The whole expensive package, along with all the other good chips in it"
+      },
+      {
+        "key": "scrap2",
+        "zh": "都一起報廢",
+        "en": "is scrapped"
+      },
+      {
+        "key": "kgd",
+        "zh": "已知良好晶粒（KGD）",
+        "en": "Known good die (KGD)"
+      },
+      {
+        "key": "t0",
+        "zh": "UCIe",
+        "en": "UCIe",
+        "from": "figure"
+      },
+      {
+        "key": "i0a",
+        "zh": "開放通用標準",
+        "en": "Industry-wide open specification",
+        "from": "figure"
+      },
+      {
+        "key": "i0b",
+        "zh": "定義物理層與協定層",
+        "en": "Defines the physical and protocol layers",
+        "from": "figure"
+      },
+      {
+        "key": "i0c",
+        "zh": "跨生態系小晶片隨插即用",
+        "en": "Plug-and-play multi-vendor chiplets",
+        "from": "figure"
+      },
+      {
+        "key": "t1",
+        "zh": "AIB 與 BoW",
+        "en": "AIB and BoW",
+        "from": "figure"
+      },
+      {
+        "key": "i1a",
+        "zh": "平行訊號、時脈轉發架構",
+        "en": "Parallel clock-forwarded interfaces",
+        "from": "figure"
+      },
+      {
+        "key": "i1b",
+        "zh": "高頻寬、低延遲互連",
+        "en": "High bandwidth, low latency links",
+        "from": "figure"
+      },
+      {
+        "key": "t2",
+        "zh": "專屬高速架構互連",
+        "en": "Dedicated high-speed fabric links",
+        "from": "figure"
+      },
+      {
+        "key": "i2a",
+        "zh": "記憶體一致性互連",
+        "en": "Cache-coherent die-to-die fabric",
+        "from": "figure"
+      },
+      {
+        "key": "i2b",
+        "zh": "針對 AI 超算最佳化",
+        "en": "Tailored for AI supercomputing",
+        "from": "figure"
       }
     ]
   },
@@ -13606,32 +14065,93 @@ export const SECTION_DIAGRAMS = [
     "headingZh": "現場異常徵兆與跨站根因排查",
     "headingEn": "Fab Failure Signatures & Root-Cause Diagnostics",
     "foldTables": true,
-    "type": "branch",
     "foldSection": true,
+    "type": "pictorial",
+    "draw": "warpFlip",
     "captionZh": "先進封裝三大核心異常與對應的防呆對策",
     "captionEn": "Three critical advanced-packaging failures and their countermeasures.",
-    "root": {
-      "zh": "先進封裝三大核心異常",
-      "en": "Three critical packaging failures"
-    },
-    "branches": [
+    "labels": [
       {
+        "key": "root",
+        "zh": "先進封裝三大核心異常",
+        "en": "Three critical packaging failures",
+        "from": "figure"
+      },
+      {
+        "key": "b0",
         "zh": "哭笑臉翹曲反轉",
         "en": "Smile/cry warpage inversion",
-        "leafZh": "補強環並導入玻璃核心基板",
-        "leafEn": "Stiffener rings and glass core substrates"
+        "from": "figure"
       },
       {
+        "key": "l0",
+        "zh": "補強環並導入玻璃核心基板",
+        "en": "Stiffener rings and glass core substrates",
+        "from": "figure"
+      },
+      {
+        "key": "b1",
         "zh": "混合鍵合微粒空洞",
         "en": "Hybrid-bond particle blister voids",
-        "leafZh": "貼合前於機台內刷洗並活化",
-        "leafEn": "In-situ scrub and activation before contact"
+        "from": "figure"
       },
       {
+        "key": "l1",
+        "zh": "貼合前於機台內刷洗並活化",
+        "en": "In-situ scrub and activation before contact",
+        "from": "figure"
+      },
+      {
+        "key": "b2",
         "zh": "垂直熱耦合降頻",
         "en": "Vertical thermal cross-heating",
-        "leafZh": "結構矽、導熱矽穿孔與銦片導熱",
-        "leafEn": "Structural silicon, thermal TSVs, indium TIM"
+        "from": "figure"
+      },
+      {
+        "key": "l2",
+        "zh": "結構矽、導熱矽穿孔與銦片導熱",
+        "en": "Structural silicon, thermal TSVs, indium TIM",
+        "from": "figure"
+      },
+      {
+        "key": "cry",
+        "zh": "哭臉（Cry / Convex）",
+        "en": "Convex \"Cry\""
+      },
+      {
+        "key": "aT",
+        "zh": "室溫下矽晶片與載板收縮不均",
+        "en": "CTE mismatch bends the assembly"
+      },
+      {
+        "key": "smile",
+        "zh": "笑臉（Smile / Concave）",
+        "en": "Concave \"Smile\""
+      },
+      {
+        "key": "reflow",
+        "zh": "迴焊高溫",
+        "en": "Reflow"
+      },
+      {
+        "key": "inv",
+        "zh": "翹曲反轉",
+        "en": "Warpage Inversion"
+      },
+      {
+        "key": "bridge",
+        "zh": "中央錫球被壓扁橋接",
+        "en": "Crushes center bumps into shorts"
+      },
+      {
+        "key": "nwo",
+        "zh": "不沾錫開路",
+        "en": "Non-Wet Opens (NWO)"
+      },
+      {
+        "key": "stiff",
+        "zh": "補強環（Stiffener Ring）",
+        "en": "Stiffener Ring"
       }
     ]
   },
