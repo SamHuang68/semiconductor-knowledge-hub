@@ -621,15 +621,30 @@ function feol(en) {
     + tx(320, 330, L(en, '④⑥ 先以光阻遮住 PMOS 區、只佈植 NMOS 區；PMOS 區再另做一次', '④⑥ Resist covers PMOS while NMOS is implanted; PMOS is done separately'), 10.5, '#334155');
 }
 
+// 平面、FinFET、GAA 剖面（2.30.0 改畫）：閘極淺藍、通道淺青，閘極包覆通道的面用橘線標出；標題與圖例沿用舊圖。
+// FinFET 的鰭由基板穿過淺溝槽隔離長出，閘極兩腳落在隔離層上；GAA 三片奈米片懸空，閘極填滿片間與最下片下方，
+// 整塊落在隔離層上；基板凸起的矽墩頂面低於隔離層頂面，閘極底下全是隔離層（技術審查修正：舊圖的閘極直接壓在基板上；畫完後審查又指出矽墩頂與隔離層齊平）
 function devices(en) {
-  // 剖面：閘極（淺藍）控制通道（淺青）的面數。平面從上方一面；FinFET 倒 U 形包住鰭的上方與兩側；GAA 包住每一片奈米片的四面
-  return tx(110, 36, L(en, '平面 · 上方', 'Planar · from above'), 13)
-    + `<rect x="40" y="120" width="140" height="36" fill="#a6bdcb" stroke="#334155"/><rect x="80" y="120" width="60" height="6" fill="#99f6e4" stroke="#0f766e"/><rect x="80" y="96" width="60" height="24" fill="#bae6fd" stroke="#075985"/>`
-    + tx(320, 36, L(en, 'FinFET · 三面', 'FinFET · three sides'), 13)
-    + `<rect x="250" y="130" width="140" height="26" fill="#a6bdcb" stroke="#334155"/><rect x="300" y="86" width="28" height="44" fill="#99f6e4" stroke="#0f766e"/><path d="M290 130 V76 H338 V130 H328 V86 H300 V130 Z" fill="#bae6fd" stroke="#075985"/>`
-    + tx(520, 36, L(en, 'GAA · 四面', 'GAA · four sides'), 13)
-    + `<rect x="470" y="150" width="120" height="16" fill="#a6bdcb" stroke="#334155"/><rect x="488" y="58" width="84" height="92" rx="4" fill="#bae6fd" stroke="#075985"/>` + [72, 98, 124].map(y => `<rect x="500" y="${y}" width="60" height="10" fill="#99f6e4" stroke="#0f766e"/>`).join('')
-    + `<rect x="236" y="190" width="14" height="10" fill="#bae6fd" stroke="#075985"/>${tx(256, 199, L(en, '閘極', 'Gate'), 12, '#0f172a', 'start')}<rect x="330" y="190" width="14" height="10" fill="#99f6e4" stroke="#0f766e"/>${tx(350, 199, L(en, '通道', 'Channel'), 12, '#0f172a', 'start')}`;
+  const SUB = '#a6bdcb', SUB_S = '#334155', STI = '#f1f5f9', STI_S = '#94a3b8', GATE = '#bae6fd', GATE_S = '#075985', CH = '#99f6e4', CH_S = '#0f766e', HL = '#ea580c';
+  const sub = (x, y, h) => `<rect x="${x}" y="${y}" width="140" height="${h}" fill="${SUB}" stroke="${SUB_S}"/>`;
+  const sti = (x, y, h) => `<rect x="${x}" y="${y}" width="140" height="${h}" fill="${STI}" stroke="${STI_S}"/>`;
+  const planar = tx(110, 30, L(en, '平面 · 上方', 'Planar · from above'), 13)
+    + sub(40, 126, 40) + `<rect x="80" y="126" width="60" height="6" fill="${CH}" stroke="${CH_S}"/><rect x="80" y="98" width="60" height="26" fill="${GATE}" stroke="${GATE_S}"/>`
+    + `<path d="M80 126 H140" stroke="${HL}" stroke-width="3"/>`;
+  const fin = tx(320, 30, L(en, 'FinFET · 三面', 'FinFET · three sides'), 13)
+    + sub(250, 142, 24) + sti(250, 124, 18) + `<rect x="312" y="124" width="16" height="18" fill="${SUB}" stroke="${SUB_S}"/>`
+    + `<rect x="312" y="70" width="16" height="54" fill="${CH}" stroke="${CH_S}"/>`
+    + `<path d="M300 124 V58 H340 V124 H330 V68 H310 V124 Z" fill="${GATE}" stroke="${GATE_S}"/>`
+    + `<path d="M312 124 V70 H328 V124" fill="none" stroke="${HL}" stroke-width="3"/>`
+    + `<path d="M322 98 H354" stroke="#64748b" stroke-dasharray="2 2"/>` + tx(358, 102, L(en, '鰭', 'Fin'), 12, '#0f172a', 'start');
+  const gaa = tx(530, 30, L(en, 'GAA · 四面', 'GAA · four sides'), 13)
+    + sub(460, 150, 16) + sti(460, 136, 14) + `<rect x="506" y="141" width="48" height="9" fill="${SUB}" stroke="${SUB_S}"/>`
+    + `<rect x="494" y="50" width="72" height="85" rx="4" fill="${GATE}" stroke="${GATE_S}"/>`
+    + [64, 88, 112].map(y => `<rect x="506" y="${y}" width="48" height="10" fill="${CH}" stroke="${HL}" stroke-width="2.5"/>`).join('');
+  const legend = `<rect x="150" y="191" width="14" height="10" fill="${GATE}" stroke="${GATE_S}"/>` + tx(170, 200, L(en, '閘極', 'Gate'), 12, '#0f172a', 'start')
+    + `<rect x="230" y="191" width="14" height="10" fill="${CH}" stroke="${CH_S}"/>` + tx(250, 200, L(en, '通道', 'Channel'), 12, '#0f172a', 'start')
+    + `<path d="M318 196 H336" stroke="${HL}" stroke-width="3"/>` + tx(342, 200, L(en, '閘極包覆通道的面', 'Sides of the channel the gate wraps'), 12, '#0f172a', 'start');
+  return planar + fin + gaa + legend;
 }
 
 function dram(en) {
@@ -863,7 +878,7 @@ const MATCHERS = [
   [/多層金屬|multilevel metal/i, metalStack, 252],
   [/大馬士革|damascene/i, damascene, 336],
   [/FEOL/i, feol, 340],
-  [/FinFET|GAA/i, devices],
+  [/FinFET|GAA/i, devices, 214],
   [/DRAM/i, dram, 256],
   [/NAND/i, nand],
   [/間距|pitch/i, pitch],

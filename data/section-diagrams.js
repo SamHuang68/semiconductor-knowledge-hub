@@ -7783,49 +7783,110 @@ export const SECTION_DIAGRAMS = [
     "chapterId": "ch12",
     "headingZh": "換材料：應變矽與 HKMG",
     "headingEn": "Changing the materials: strained silicon and HKMG",
-    "type": "compare",
     "captionZh": "換材料的兩種做法：應變矽與 HKMG",
     "captionEn": "The two materials-based fixes compared: strained silicon and HKMG.",
-    "columns": [
+    "type": "pictorial",
+    "draw": "strainHkmg",
+    "labels": [
       {
-        "titleZh": "應變矽",
-        "titleEn": "Strained silicon",
-        "items": [
-          {
-            "zh": "輕微拉開或擠壓矽晶格",
-            "en": "Slightly stretch or squeeze the lattice"
-          },
-          {
-            "zh": "電子和電洞跑得更快",
-            "en": "Electrons and holes move faster"
-          },
-          {
-            "zh": "例：PMOS 源汲極長入矽鍺",
-            "en": "E.g. silicon germanium in PMOS source/drain"
-          }
-        ]
+        "key": "strained",
+        "zh": "應變矽",
+        "en": "Strained silicon"
       },
       {
-        "titleZh": "HKMG",
-        "titleEn": "HKMG",
-        "items": [
-          {
-            "zh": "改用高介電常數絕緣層",
-            "en": "High-k gate insulator"
-          },
-          {
-            "zh": "較厚絕緣層，同樣控制力",
-            "en": "Same control with a thicker layer"
-          },
-          {
-            "zh": "減少漏電",
-            "en": "Reduces leakage"
-          },
-          {
-            "zh": "閘極從多晶矽改回金屬",
-            "en": "Gate moves from polysilicon back to metal"
-          }
-        ]
+        "key": "stretch",
+        "zh": "把矽的晶格輕微拉開或擠壓",
+        "en": "Slightly stretching or squeezing the silicon crystal lattice"
+      },
+      {
+        "key": "faster",
+        "zh": "讓電子和電洞跑得更快",
+        "en": "Lets electrons and holes move faster"
+      },
+      {
+        "key": "eg",
+        "zh": "例如",
+        "en": "For example"
+      },
+      {
+        "key": "pmos",
+        "zh": "PMOS",
+        "en": "PMOS"
+      },
+      {
+        "key": "sdSige",
+        "zh": "源極和汲極長入矽鍺",
+        "en": "Silicon germanium is grown into the source and drain"
+      },
+      {
+        "key": "gate",
+        "zh": "閘極",
+        "en": "Gate"
+      },
+      {
+        "key": "squeeze",
+        "zh": "擠壓通道",
+        "en": "Squeeze the channel"
+      },
+      {
+        "key": "lattice",
+        "zh": "晶格",
+        "en": "Lattice"
+      },
+      {
+        "key": "hkmg",
+        "zh": "HKMG",
+        "en": "HKMG"
+      },
+      {
+        "key": "highkUse",
+        "zh": "改用高介電常數的絕緣層",
+        "en": "A high-k gate insulator"
+      },
+      {
+        "key": "moved",
+        "zh": "閘極也從多晶矽改回金屬",
+        "en": "The gate also moved from polysilicon back to metal"
+      },
+      {
+        "key": "poly",
+        "zh": "多晶矽",
+        "en": "Polysilicon"
+      },
+      {
+        "key": "metal",
+        "zh": "金屬",
+        "en": "Metal"
+      },
+      {
+        "key": "insul",
+        "zh": "絕緣層",
+        "en": "Gate insulator"
+      },
+      {
+        "key": "highk",
+        "zh": "高介電常數",
+        "en": "High-k"
+      },
+      {
+        "key": "leak",
+        "zh": "漏電",
+        "en": "Leakage"
+      },
+      {
+        "key": "thicker",
+        "zh": "比較厚的絕緣層",
+        "en": "A thicker layer"
+      },
+      {
+        "key": "same",
+        "zh": "同樣的控制力",
+        "en": "the same control"
+      },
+      {
+        "key": "less",
+        "zh": "減少漏電",
+        "en": "Reducing leakage"
       }
     ]
   },
@@ -8089,6 +8150,87 @@ export const SECTION_DIAGRAMS = [
     ]
   },
   {
+    "chapterId": "ch12",
+    "headingZh": "結構演進一覽",
+    "headingEn": "The evolution at a glance",
+    "type": "pictorial",
+    "draw": "sacrificial",
+    "captionZh": "先做一個假的，再換成真的：三種犧牲層",
+    "captionEn": "Build a fake one first, then swap in the real one: three sacrificial layers",
+    "labels": [
+      {
+        "key": "heavy",
+        "zh": "先進製程大量使用犧牲層",
+        "en": "Advanced processes make heavy use of sacrificial layers"
+      },
+      {
+        "key": "dummy",
+        "zh": "先做假閘極再換成金屬閘極",
+        "en": "Building a dummy gate and replacing it with a metal gate"
+      },
+      {
+        "key": "sige",
+        "zh": "先長矽鍺再把它挖掉",
+        "en": "Growing SiGe and then removing it"
+      },
+      {
+        "key": "helper",
+        "zh": "多重曝光中先做出、之後再移除的輔助圖形",
+        "en": "Helper patterns in multiple patterning that are removed afterward"
+      },
+      {
+        "key": "dummyGate",
+        "zh": "假閘極",
+        "en": "Dummy gate"
+      },
+      {
+        "key": "metalGate",
+        "zh": "金屬閘極",
+        "en": "Metal gate"
+      },
+      {
+        "key": "sigeName",
+        "zh": "矽鍺",
+        "en": "SiGe"
+      },
+      {
+        "key": "helperName",
+        "zh": "輔助圖形",
+        "en": "Helper patterns"
+      },
+      {
+        "key": "spacer",
+        "zh": "間隔物",
+        "en": "Spacers"
+      },
+      {
+        "key": "why",
+        "zh": "為什麼",
+        "en": "Why"
+      },
+      {
+        "key": "why1a",
+        "zh": "最終要的材料",
+        "en": "The final material"
+      },
+      {
+        "key": "why1b",
+        "zh": "可能承受不了前面步驟的高溫",
+        "en": "may not survive the high temperatures of earlier steps"
+      },
+      {
+        "key": "why2",
+        "zh": "或者根本無法直接做成那個形狀",
+        "en": "or it simply cannot be formed into that shape directly"
+      },
+      {
+        "key": "hold",
+        "zh": "只好先用容易加工的材料「佔位」",
+        "en": "so an easy-to-process material \"holds the place\" first"
+      }
+    ]
+  },
+  {
     "chapterId": "ch13",
     "headingZh": "HBM：把 DRAM 疊起來",
     "headingEn": "HBM: stacking DRAM",
@@ -8224,45 +8366,143 @@ export const SECTION_DIAGRAMS = [
     "chapterId": "ch13",
     "headingZh": "3D 記憶體與新興 NVM 條例總覽",
     "headingEn": "3D Memory & Emerging NVM Clauses",
-    "foldTables": true,
-    "type": "branch",
-    "foldSection": true,
     "captionZh": "DRAM 微縮演進與各類嵌入式非揮發性記憶體的儲存機制",
     "captionEn": "The DRAM scaling roadmap and the storage physics of each embedded NVM family.",
-    "root": {
-      "zh": "記憶體架構與新興 NVM",
-      "en": "Memory roadmap & emerging NVM"
-    },
-    "branches": [
+    "foldTables": true,
+    "foldSection": true,
+    "type": "pictorial",
+    "draw": "nvmCells",
+    "labels": [
       {
+        "key": "root",
+        "zh": "記憶體架構與新興 NVM",
+        "en": "Memory roadmap & emerging NVM",
+        "from": "figure"
+      },
+      {
+        "key": "b0",
         "zh": "DRAM 微縮與立體化",
         "en": "DRAM scaling & stacking roadmap",
-        "leafZh": "垂直通道、無電容與水平疊層",
-        "leafEn": "Vertical channel, capacitorless, stacked DRAM"
+        "from": "figure"
       },
       {
+        "key": "l0",
+        "zh": "垂直通道、無電容與水平疊層",
+        "en": "Vertical channel, capacitorless, stacked DRAM",
+        "from": "figure"
+      },
+      {
+        "key": "b1",
         "zh": "嵌入式快閃記憶體",
         "en": "Embedded flash (eFlash)",
-        "leafZh": "分閘式浮閘或氮化矽電荷捕捉",
-        "leafEn": "Split-gate floating gate or SONOS charge trap"
+        "from": "figure"
       },
       {
+        "key": "l1",
+        "zh": "分閘式浮閘或氮化矽電荷捕捉",
+        "en": "Split-gate floating gate or SONOS charge trap",
+        "from": "figure"
+      },
+      {
+        "key": "b2",
         "zh": "自旋磁阻記憶體 MRAM",
         "en": "Spin-torque MRAM (STT / SOT)",
-        "leafZh": "後段金屬層間的磁性穿隧接面",
-        "leafEn": "Magnetic tunnel junction inside BEOL metals"
+        "from": "figure"
       },
       {
+        "key": "l2",
+        "zh": "後段金屬層間的磁性穿隧接面",
+        "en": "Magnetic tunnel junction inside BEOL metals",
+        "from": "figure"
+      },
+      {
+        "key": "b3",
         "zh": "電阻式與相變化記憶體",
         "en": "Resistive & phase-change memory",
-        "leafZh": "氧空位導電細絲或硫族相變",
-        "leafEn": "Oxygen-vacancy filaments or GST phase change"
+        "from": "figure"
       },
       {
+        "key": "l3",
+        "zh": "氧空位導電細絲或硫族相變",
+        "en": "Oxygen-vacancy filaments or GST phase change",
+        "from": "figure"
+      },
+      {
+        "key": "b4",
         "zh": "氧化鉿基鐵電記憶體",
         "en": "Hafnia-based ferroelectric memory",
-        "leafZh": "氧化鉿鋯自發極化雙穩態",
-        "leafEn": "Bistable polarization in doped HZO"
+        "from": "figure"
+      },
+      {
+        "key": "l4",
+        "zh": "氧化鉿鋯自發極化雙穩態",
+        "en": "Bistable polarization in doped HZO",
+        "from": "figure"
+      },
+      {
+        "key": "sonos",
+        "zh": "SONOS",
+        "en": "SONOS"
+      },
+      {
+        "key": "trap",
+        "zh": "電荷捕捉",
+        "en": "Charge trap"
+      },
+      {
+        "key": "cofeb",
+        "zh": "CoFeB",
+        "en": "CoFeB"
+      },
+      {
+        "key": "mgo",
+        "zh": "MgO",
+        "en": "MgO"
+      },
+      {
+        "key": "par",
+        "zh": "平行",
+        "en": "Parallel"
+      },
+      {
+        "key": "anti",
+        "zh": "反平行",
+        "en": "Antiparallel"
+      },
+      {
+        "key": "rram",
+        "zh": "RRAM",
+        "en": "RRAM"
+      },
+      {
+        "key": "fil",
+        "zh": "導電細絲",
+        "en": "Conductive filaments"
+      },
+      {
+        "key": "pcram",
+        "zh": "PCRAM",
+        "en": "PCRAM"
+      },
+      {
+        "key": "amor",
+        "zh": "非晶態（高阻）",
+        "en": "Amorphous (high-R)"
+      },
+      {
+        "key": "cryst",
+        "zh": "結晶態（低阻）",
+        "en": "Crystalline (low-R)"
+      },
+      {
+        "key": "hzo",
+        "zh": "HZO",
+        "en": "HZO"
+      },
+      {
+        "key": "pol",
+        "zh": "極化",
+        "en": "Polarization"
       }
     ]
   },
@@ -8271,32 +8511,167 @@ export const SECTION_DIAGRAMS = [
     "headingZh": "定量物理定律與 3D 製程視窗",
     "headingEn": "Quantitative Governing Laws & 3D Process Windows",
     "foldTables": true,
-    "type": "branch",
     "foldSection": true,
-    "captionZh": "記憶體三大定量定律與各自的工程意義",
-    "captionEn": "Three memory physics and bandwidth laws and the engineering impact of each.",
-    "root": {
-      "zh": "記憶體物理與頻寬定律",
-      "en": "Memory physics & bandwidth laws"
-    },
-    "branches": [
+    "type": "pictorial",
+    "draw": "memoryLaws",
+    "sourcedNumbers": true,
+    "captionZh": "記憶體三大定量定律與工程意義，加上多態視窗與 HBM 介面",
+    "captionEn": "Three memory laws and their impact, plus the Vt window and HBM interface width",
+    "sourceZh": "TLC、QLC 的狀態數、約 5 V 視窗、HBM 的介面位元數與頻寬出自本段表格；分佈寬度、間隔與匯流排線數只是示意。根與三條分支沿用原本的分支圖。",
+    "sourceEn": "The TLC and QLC state counts, the ~5 V window, and the HBM interface widths and bandwidth come from the table in this section. Distribution widths, spacing and bus line counts are schematic. The root and three branches are kept from the original branch diagram.",
+    "labels": [
       {
+        "key": "root",
+        "zh": "記憶體物理與頻寬定律",
+        "en": "Memory physics & bandwidth laws",
+        "from": "figure"
+      },
+      {
+        "key": "b0",
         "zh": "DRAM 電容分壓定律",
         "en": "DRAM capacitor charge-sharing law",
-        "leafZh": "催生垂直通道與水平堆疊 DRAM",
-        "leafEn": "Drives vertical-channel and stacked DRAM"
+        "from": "figure"
       },
       {
+        "key": "l0",
+        "zh": "催生垂直通道與水平堆疊 DRAM",
+        "en": "Drives vertical-channel and stacked DRAM",
+        "from": "figure"
+      },
+      {
+        "key": "b1",
         "zh": "NAND 穿隧與多態視窗",
         "en": "NAND F-N tunneling & Vt window",
-        "leafZh": "QLC 需 CBA 與 LDPC",
-        "leafEn": "QLC needs CBA and LDPC"
+        "from": "figure"
       },
       {
+        "key": "l1",
+        "zh": "QLC 需 CBA 與 LDPC",
+        "en": "QLC needs CBA and LDPC",
+        "from": "figure"
+      },
+      {
+        "key": "b2",
         "zh": "HBM 超寬匯流排頻寬",
         "en": "HBM wide-I/O bandwidth law",
-        "leafZh": "打破記憶體頻寬牆",
-        "leafEn": "Breaks the memory wall"
+        "from": "figure"
+      },
+      {
+        "key": "l2",
+        "zh": "打破記憶體頻寬牆",
+        "en": "Breaks the memory wall",
+        "from": "figure"
+      },
+      {
+        "key": "tlc",
+        "zh": "TLC",
+        "en": "TLC"
+      },
+      {
+        "key": "qlc",
+        "zh": "QLC",
+        "en": "QLC"
+      },
+      {
+        "key": "n8",
+        "zh": "8",
+        "en": "8"
+      },
+      {
+        "key": "n16",
+        "zh": "16",
+        "en": "16"
+      },
+      {
+        "key": "window",
+        "zh": "約 5 V 的閾值電壓視窗",
+        "en": "~5 V window"
+      },
+      {
+        "key": "states",
+        "zh": "窄高斯分佈態",
+        "en": "Tight Gaussian Vt states"
+      },
+      {
+        "key": "vt",
+        "zh": "閾值電壓",
+        "en": "Vt"
+      },
+      {
+        "key": "hbm3e",
+        "zh": "HBM3E",
+        "en": "HBM3E"
+      },
+      {
+        "key": "w1",
+        "zh": "1024-bit",
+        "en": "1024-bit"
+      },
+      {
+        "key": "hbm4",
+        "zh": "HBM4",
+        "en": "HBM4"
+      },
+      {
+        "key": "w2",
+        "zh": "2048-bit",
+        "en": "2048-bit"
+      },
+      {
+        "key": "dbl",
+        "zh": "翻倍",
+        "en": "Doubles"
+      },
+      {
+        "key": "bw",
+        "zh": "單顆堆疊頻寬突破 1.6–2.0+ TB/s",
+        "en": "Exceeding 1.6–2.0+ TB/s per stack"
+      }
+    ]
+  },
+  {
+    "chapterId": "ch13",
+    "headingZh": "記憶體和邏輯晶片有什麼不同",
+    "headingEn": "How memory differs from logic",
+    "type": "pictorial",
+    "draw": "memoryChip",
+    "captionZh": "記憶體晶片：巨大的陣列加一圈周邊電路",
+    "captionEn": "A memory chip: a huge array plus a ring of periphery",
+    "labels": [
+      {
+        "key": "twoParts",
+        "zh": "一顆記憶體晶片通常包含兩個部分",
+        "en": "A memory chip usually has two parts"
+      },
+      {
+        "key": "goal",
+        "zh": "追求的是密度和每個位元的成本",
+        "en": "Built for density and cost per bit"
+      },
+      {
+        "key": "array",
+        "zh": "記憶陣列",
+        "en": "Memory array"
+      },
+      {
+        "key": "arrayDo",
+        "zh": "占晶片大部分的面積",
+        "en": "They take up most of the chip area"
+      },
+      {
+        "key": "peri",
+        "zh": "周邊電路",
+        "en": "Periphery"
+      },
+      {
+        "key": "periDo",
+        "zh": "負責讀寫、選擇位址等工作的邏輯電路",
+        "en": "The logic circuits that handle reading, writing and address selection"
+      },
+      {
+        "key": "identical",
+        "zh": "完全相同的記憶單元",
+        "en": "Identical memory cells"
       }
     ]
   },
