@@ -2189,8 +2189,10 @@ function r2rFdc(spec, en, kit) {
   const l1 = para(30, ya + 82, L('basedOn'), 270, 11, INK, 'start', 700), l2 = para(30, ya + 82 + l1.height, L('tune'), 270, 11, INK, 'start', 700);
   let yl = ya + 82 + l1.height + l2.height + 2;
   const l3 = para(30, yl, en ? `${L('exIf')}, ${L('exThen')}` : `${L('exIf')}，${L('exThen')}`, 270, 10.5, INK_2, 'start'); yl += l3.height + 2;
+  // 正文的第二個例子：研磨墊磨損（2.32.0 併入）
+  const l3b = para(30, yl, en ? `${L('padIf')}, ${L('padThen')}` : `${L('padIf')}，${L('padThen')}`, 270, 10.5, INK_2, 'start'); yl += l3b.height + 2;
   const l4 = para(30, yl, L('shower'), 270, 10.5, MUTED, 'start'); yl += l4.height;
-  svg += l1.svg + l2.svg + l3.svg + l4.svg;
+  svg += l1.svg + l2.svg + l3.svg + l3b.svg + l4.svg;
   // 右：FDC，製程進行中看感測器曲線，一不正常就警報
   svg += t(342, y0 + 22, L('fdc'), 14, INK, 'start', 700) + chip(386, y0 + 21, L('during')).svg;
   svg += `<rect x="346" y="${ya + 16}" width="64" height="54" rx="6" fill="${LIGHT}" stroke="${INK_2}"/><rect x="356" y="${ya + 52}" width="44" height="4" fill="${DIE_C}" stroke="${INK_2}" stroke-width=".6"/>`
@@ -2201,8 +2203,10 @@ function r2rFdc(spec, en, kit) {
   const r1 = para(342, ya + 82, L('sensorData'), 270, 11, INK, 'start', 700); let yr = ya + 82 + r1.height;
   const r2 = para(342, yr, L('sensors'), 270, 10.5, INK_2, 'start'); yr += r2.height + 2;
   const r3 = para(342, yr, L('alarm'), 270, 11, RED, 'start', 700); yr += r3.height + 2;
+  // FDC 與 R2R 的關鍵差別：在量測之前就攔下問題（2.32.0 併入）
+  const r3b = para(342, yr, L('noMeasure'), 270, 10.5, INK_2, 'start'); yr += r3b.height + 2;
   const r4 = para(342, yr, L('dashboard'), 270, 10.5, MUTED, 'start'); yr += r4.height;
-  svg += r1.svg + r2.svg + r3.svg + r4.svg;
+  svg += r1.svg + r2.svg + r3.svg + r3b.svg + r4.svg;
   const cardH = Math.max(yl, yr) - y0 + 4;
   svg = card(16, y0, 296, cardH) + card(328, y0, 296, cardH) + svg;
   const yApc = y0 + cardH + 20;
@@ -6164,6 +6168,408 @@ function chamberMask(spec, en, kit) {
   return { svg, height: bottom + 12 };
 }
 
+// ── J1 批（2.32.0，第 3 階段 ch17–ch18）──
+// 每筆提案先經動筆前技術審查（審查者 A），主控逐條對照正文查證後畫；舊方框圖的文字以 from:'figure' 原樣保留
+
+// 小人像：只畫頭與肩，不畫臉
+const person = (x, y, s, fill, stroke) => `<circle cx="${x}" cy="${y}" r="${4.4 * s}" fill="${fill}" stroke="${stroke}"/><path d="M${x - 7.5 * s} ${y + 16 * s} q0 -9.5 ${7.5 * s} -9.5 q${7.5 * s} 0 ${7.5 * s} 9.5 z" fill="${fill}" stroke="${stroke}" stroke-linejoin="round"/>`;
+// 旋鈕：deg 為指針角度（0 指向正上方，順時針為正）
+const knob = (x, y, r, deg, stroke, fill = '#ffffff') => {
+  const a = (deg - 90) * Math.PI / 180;
+  return `<circle cx="${x}" cy="${y}" r="${r}" fill="${fill}" stroke="${stroke}" stroke-width="1.4"/><path d="M${x} ${y} L${(x + Math.cos(a) * (r - 2.5)).toFixed(1)} ${(y + Math.sin(a) * (r - 2.5)).toFixed(1)}" stroke="${stroke}" stroke-width="2.2" stroke-linecap="round"/>`;
+};
+// 旗子：x、y 是旗桿底部
+const flag = (x, y, color, h = 22) => `<path d="M${x} ${y} v${-h}" stroke="${INK_2}" stroke-width="1.3"/><path d="M${x} ${y - h} h14 l-4 5 l4 5 h-14 z" fill="${color}" stroke="${color}" stroke-linejoin="round"/>`;
+// 柵欄：兩根立柱加兩條紅白橫桿
+const fence = (x, y, color = RED) => `<path d="M${x} ${y - 15} v30 M${x + 14} ${y - 15} v30" stroke="${INK_2}" stroke-width="1.6"/>`
+  + [y - 11, y - 1].map(yy => `<rect x="${x - 4}" y="${yy}" width="22" height="6" rx="1.5" fill="#ffffff" stroke="${color}"/><path d="M${x + 1} ${yy + 6} l5 -6 M${x + 9} ${yy + 6} l5 -6" stroke="${color}" stroke-width="2"/>`).join('');
+// 晶圓批（晶圓盒圖示）：x、y 是中心
+const lotAt = (icon, x, y, color = INK_2, size = 22) => icon('foup', x - size / 2, y - size / 2, size, color);
+// 電話聽筒（通知誰）；畫完後審查修正：鈴鐺容易讀成發出警報
+const phoneIcon = (x, y, color) => `<path d="M${x + 4.5} ${y + 3} c-2.2 0 -3.2 2.4 -2.4 5.4 c1.8 5.8 6 10 11.8 11.8 c3 .8 5.4 -.2 5.4 -2.4 l-.8 -3.2 l-4.2 -1.2 l-2 2 c-2.8 -1.2 -5 -3.4 -6.2 -6.2 l2 -2 l-1.2 -4.2 z" fill="none" stroke="${color}" stroke-width="1.6" stroke-linejoin="round"/>`;
+// 條件卡：三條滑桿，各組的旋鈕位置不同（畫完後審查修正：三格原本用同一個圖示，只靠顏色區分）
+const condCard = (x, y, color, pos) => pos.map((f, i) => `<path d="M${x + 12 + i * 8} ${y - 7} V${y + 7}" stroke="${color}" stroke-width="1.2"/><circle cx="${x + 12 + i * 8}" cy="${(y + 7 - 14 * f).toFixed(1)}" r="2.6" fill="#ffffff" stroke="${color}" stroke-width="1.4"/>`).join('');
+
+// 多列強調的樹狀圖：照搬被取代的分支方框圖；his 裡的分支用琥珀色，並在分支卡左側加圈字母，與下方面板的同一個字母對應
+function treeRows(L, para, arrow, mark, y0, rootKey, rows, his) {
+  const rx = 16, rw = 132, bx = 176, bw = 200, lx = 404, lw = 220, gap = 8;
+  let y = y0, svg = '';
+  const mids = [];
+  rows.forEach(([b, l], i) => {
+    const bp = para(0, 0, L(b), bw - 44, 11, INK, 'middle', 700), lp = para(0, 0, L(l), lw - 20, 10.5);
+    const h = Math.max(bp.height, lp.height) + 16, k = his.indexOf(i), on = k >= 0, cy = y + h / 2;
+    svg += card(bx, y, bw, h, on ? AMBER_XL : '#ffffff', on ? AMBER : LINE, 6) + card(lx, y, lw, h, LIGHT, LINE, 6)
+      + para(bx + bw / 2 + 10, midY(cy, bp.height, 11), L(b), bw - 44, 11, on ? AMBER : INK, 'middle', 700).svg
+      + para(lx + lw / 2, midY(cy, lp.height, 10.5), L(l), lw - 20, 10.5, INK_2).svg
+      + arrow(bx + bw + 2, cy, lx - 2, cy, TEAL, 1.3) + (on ? mark(bx + 15, cy, 'AB'[k]) : '');
+    mids.push(cy);
+    y += h + gap;
+  });
+  const bottom = y - gap, ry = (y0 + bottom) / 2;
+  const rp = para(0, 0, L(rootKey), rw - 20, 11.5, INK, 'middle', 700), rh = Math.max(40, rp.height + 18);
+  svg += card(rx, ry - rh / 2, rw, rh, TEAL_XL, TEAL, 6) + para(rx + rw / 2, midY(ry, rp.height, 11.5), L(rootKey), rw - 20, 11.5, INK, 'middle', 700).svg;
+  svg += mids.map(m => `<path d="M${rx + rw} ${ry} C ${rx + rw + 18} ${ry}, ${bx - 22} ${m}, ${bx - 8} ${m}" fill="none" stroke="${TEAL}" stroke-width="1.3"/>` + arrow(bx - 9, m, bx - 2, m, TEAL, 1.3)).join('');
+  return { svg, bottom };
+}
+
+// ch17 每一次都會有一點不同：左邊三個來源匯成一支箭頭，指向走勢圖裡往上偏的點；前段的點在淡色窄帶內小幅擺動。
+// 兩列受影響的晶圓都從開始偏移的地方算起，上列止於綠旗（剛離開窄帶就發現）、下列止於紅旗（偏移變嚴重才發現）（技術審查修正）
+function driftWhy(spec, en, kit) {
+  const { L, t, para, arrow, icon } = tools(spec, en, kit);
+  const yc = 12, cx0 = 206, cx1 = 624, bc = yc + 108;
+  const X = i => 226 + i * 22, start = 7, rise = i => (i <= start ? 0 : (i - start) * 5.4);
+  const jit = [-3, 2, -1, 4, -2, 3, -4, 1, 2, -1, 3, -2, 1, 0, -2, 2, -1, 1];
+  const ig = 9, ir = 16, xg = X(ig), xr = X(ir), xs = X(start) + 11;
+  const yw1 = bc + 54, yw2 = bc + 80, rw = 6.5;
+  let svg = card(cx0, yc, cx1 - cx0, bc + 32 - yc, '#ffffff', LINE);
+  svg += `<rect x="${cx0 + 8}" y="${bc - 8}" width="${cx1 - cx0 - 16}" height="16" fill="${TEAL_XL}" stroke="${TEAL_L}"/>`;
+  svg += para(cx0 + 14, yc + 24, L('same'), 190, 11.5, INK, 'start', 700).svg + t(cx0 + 14, bc - 14, L('stable'), 10.5, TEAL, 'start', 700);
+  // 發現的時間點：虛線由旗子一路拉到下方的晶圓列
+  svg += `<path d="M${xg} ${yc + 32} V${yw2 + 10} M${xr} ${yc + 32} V${yw2 + 10}" stroke="${MUTED}" stroke-dasharray="3 3"/><path d="M${xs} ${bc + 10} V${yw2 + 10}" stroke="${MUTED}" stroke-dasharray="2 3"/>`;
+  svg += flag(xg, yc + 34, GREEN) + flag(xr, yc + 34, RED) + t(xr - 6, yc + 26, L('serious'), 10.5, RED, 'end', 700);
+  for (let i = 0; i < 18; i++) {
+    const y = bc + jit[i] - rise(i), out = rise(i) > 8;
+    svg += `<circle cx="${X(i)}" cy="${y}" r="3.3" fill="${out ? BAD : TEAL}" stroke="${out ? BAD_S : TEAL}"/>`;
+  }
+  svg += arrow(cx0 + 10, bc + 22, cx1 - 10, bc + 22, MUTED, 1.2);
+  // 左：三個來源
+  const src = [['wear', 'maintenance'], ['age', 'drop'], ['temp', 'thermometer']];
+  const rows = [yc + 30, yc + 68, yc + 106];
+  src.forEach(([k, ic], i) => {
+    const p = para(46, rows[i] + 4, L(k), 136, 11, INK, 'start', 700);
+    svg += icon(ic, 16, rows[i] - 12, 24, AMBER) + (k === 'age' ? icon('clock', 30, rows[i] - 2, 13, AMBER) : '') + p.svg
+      + `<path d="M${186} ${rows[i] - 2} L196 ${bc - 44}" stroke="${AMBER}" stroke-width="1.3"/>`;
+  });
+  svg += arrow(196, bc - 44, X(11) - 8, bc - rise(11) - 6, AMBER, 1.6);
+  svg += para(300, bc - 52, L('drift'), 180, 10.5, AMBER, 'middle', 700).svg;
+  // 下：受影響的晶圓
+  const wafers = (x1, y) => {
+    const span = x1 - 1 - xs, n = Math.max(2, Math.round(span / 16)), step = (span - 2 * rw - 2) / (n - 1);
+    let o = '';
+    for (let k = 0; k < n; k++) o += waferTop(+(xs + rw + 1 + k * step).toFixed(1), y, rw, BAD, BAD_S);
+    return o;
+  };
+  svg += wafers(xg, yw1) + wafers(xr, yw2);
+  svg += para(xs - 12, yw1 + 4, L('earlier'), xs - 12 - (cx0 + 10), 10.5, GREEN, 'end', 700).svg;
+  return { svg, height: yw2 + rw + 12 };
+}
+
+// ch17 規格界限與管制界限：上半是俯視的道路，下半是同一配色的示意管制圖；左側細虛線把路的邊緣接到規格界限、車道線接到管制界限。
+// 碰線的黃點之後軌跡轉回中間（一壓線就修正）；另一條淡色假想軌跡越過路的邊緣（OOS）（技術審查修正）
+function limitsRoad(spec, en, kit) {
+  const { L, t, para } = tools(spec, en, kit);
+  const x0 = 150, x1 = 624, ye1 = 70, yl1 = 90, ym = 114, yl2 = 138, ye2 = 158;
+  const solid = y => `<path d="M${x0} ${y} H${x1}" stroke="${INK_2}" stroke-width="2.2"/>`;
+  const dashed = y => `<path d="M${x0} ${y} H${x1}" stroke="${AMBER}" stroke-width="1.6" stroke-dasharray="8 5"/>`;
+  const car = (x, y, ghost) => `<g${ghost ? ' opacity=".5"' : ''}><rect x="${x}" y="${y}" width="26" height="14" rx="4" fill="${ghost ? '#ffffff' : TEAL_L}" stroke="${ghost ? RED : TEAL}"${ghost ? ' stroke-dasharray="3 2"' : ''} stroke-width="1.3"/><rect x="${x + 16}" y="${y + 3}" width="6" height="8" rx="1.5" fill="#ffffff" stroke="${ghost ? RED : TEAL}" stroke-width=".8"/></g>`;
+  let svg = `<rect x="${x0}" y="${ye1}" width="${x1 - x0}" height="${ye2 - ye1}" fill="#f1f5f9"/>` + solid(ye1) + solid(ye2) + dashed(yl1) + dashed(yl2);
+  const tx = 330;
+  svg += `<path d="M162 ${ym} C190 ${ym + 8} 232 ${ym - 6} 262 ${ym - 14} C292 ${ym - 20} 314 ${yl1} ${tx} ${yl1} C352 ${yl1} 380 ${ym - 6} 420 ${ym} C470 ${ym + 7} 530 ${ym - 5} 588 ${ym - 1}" fill="none" stroke="${TEAL}" stroke-width="1.8" stroke-dasharray="1.5 3.5" stroke-linecap="round"/>`;
+  svg += `<path d="M${tx} ${yl1} C352 ${yl1 - 4} 384 ${ye1 + 4} 402 ${ye1 - 2} C412 ${ye1 - 6} 420 ${ye1 - 14} 428 ${ye1 - 22}" fill="none" stroke="${RED}" stroke-width="1.4" stroke-dasharray="3 4" opacity=".55"/>`;
+  svg += car(590, ym - 8) + car(424, ye1 - 38, true) + `<circle cx="${tx}" cy="${yl1}" r="5.5" fill="${AMBER_L}" stroke="${AMBER}" stroke-width="1.6"/>`;
+  svg += t(318, 28, L('ooc'), 12.5, AMBER, 'end', 800) + para(318, 44, L('touch'), 296, 10.5, AMBER, 'end', 700).svg + `<path d="M322 50 L${tx - 2} ${yl1 - 8}" stroke="${MUTED}" stroke-dasharray="2 2"/>`;
+  svg += t(458, 28, L('oos'), 12.5, RED, 'start', 800) + para(458, 44, L('accident'), 162, 10.5, RED, 'start', 700).svg;
+  svg += t(132, ye1 + 4, L('edge'), 10.5, INK, 'end', 700) + t(132, yl1 + 4, L('lane'), 10.5, AMBER, 'end', 700);
+  // 下半：示意管制圖（中心線只畫不標）
+  const ct = 186, ys1 = 200, yc1 = 222, yc0 = 244, yc2 = 266, ys2 = 288;
+  svg += `<rect x="${x0}" y="${ct}" width="${x1 - x0}" height="${ys2 + 12 - ct}" fill="#ffffff" stroke="${LINE}"/>` + solid(ys1) + solid(ys2) + dashed(yc1) + dashed(yc2) + `<path d="M${x0} ${yc0} H${x1}" stroke="${TEAL}"/>`;
+  const jit = [-8, 5, -3, 9, -6, 2, -9, 6, -2, 8, -5, 3, -7, 4];
+  svg += jit.map((d, i) => `<circle cx="${170 + i * 24}" cy="${yc0 + d}" r="3" fill="${TEAL}"/>`).join('');
+  svg += `<circle cx="514" cy="${(ys1 + yc1) / 2}" r="5" fill="${AMBER_L}" stroke="${AMBER}" stroke-width="1.6"/><circle cx="574" cy="${ct + 6}" r="5" fill="${BAD}" stroke="${BAD_S}" stroke-width="1.6"/>`;
+  svg += t(132, ys1 + 4, L('spec'), 10.5, INK, 'end', 700) + t(132, yc1 + 4, L('cl'), 10.5, AMBER, 'end', 700);
+  // 左側細虛線：路的邊緣接規格界限、車道線接管制界限
+  svg += `<path d="M${x0} ${ye2} H146 V${ys1} H${x0}" fill="none" stroke="${INK_2}" stroke-dasharray="2 2"/><path d="M${x0} ${yl2} H141 V${yc1} H${x0}" fill="none" stroke="${AMBER}" stroke-dasharray="2 2"/>`;
+  // 圖例：左欄兩種界限的定義，右欄兩種點的意義
+  const y1 = ys2 + 36, cw = 284;
+  const join = (a, b, sep) => (en ? `${a}${sep === '，' ? ',' : ';'} ${b}` : `${a}${sep}${b}`);
+  const cells = [
+    [16, y => `<path d="M16 ${y - 4} H34" stroke="${INK_2}" stroke-width="2.2"/>`, null, L('specDef')],
+    [16, y => `<path d="M16 ${y - 4} H34" stroke="${AMBER}" stroke-width="1.6" stroke-dasharray="5 3"/>`, null, join(L('clDef'), L('narrower'), '，')],
+    [332, y => `<circle cx="338" cy="${y - 4}" r="5" fill="${AMBER_L}" stroke="${AMBER}" stroke-width="1.6"/>`, ['oocT', AMBER], join(L('unusual'), L('notBad'), '；')],
+    [332, y => `<circle cx="338" cy="${y - 4}" r="5" fill="${BAD}" stroke="${BAD_S}" stroke-width="1.6"/>`, ['oosT', RED], join(L('already'), L('mrb'), '；')]
+  ];
+  let yl = y1, yr = y1, bottom = y1;
+  cells.forEach(([x, sym, head, body], i) => {
+    const left = i < 2, yy = left ? yl : yr;
+    let h = 0, o = sym(yy);
+    if (head) { o += t(x + 24, yy, L(head[0]), 11, head[1], 'start', 800); h += 15; }
+    const p = para(x + 24, yy + h, body, cw - 24, 10.5, INK_2, 'start');
+    o += p.svg; h += p.height + 10;
+    svg += o;
+    if (left) yl += h; else yr += h;
+    bottom = Math.max(bottom, left ? yl : yr);
+  });
+  return { svg, height: bottom + 2 };
+}
+
+// ch17 實驗設計與分批實驗：同一批晶圓分成三組，三條色帶穿過同一排灰色站點（同一站、同一做法），只有一站分成三格放各組的條件卡；
+// 右邊比較各組結果與理由；下方小框對照「一次只改一個參數」與 DOE「同時改變多個因子」（技術審查修正：不畫成單一旋鈕轉不同角度）
+function splitLot(spec, en, kit) {
+  const { L, t, para, arrow, icon } = tools(spec, en, kit);
+  const G = [[BLUE_XL, BLUE], [AMBER_XL, AMBER], [PINK_L, PINK]];
+  const ly = [82, 108, 134], lx0 = 140, lx1 = 452;
+  let svg = t(16, 26, L('splitName'), 13, INK, 'start', 800);
+  svg += lotAt(icon, 42, 108, INK_2, 40) + para(42, 148, L('lot'), 84, 10.5, INK, 'middle', 700).svg + arrow(66, 108, 86, 108, MUTED, 1.3);
+  svg += para(112, 48, L('groups'), 96, 10.5, INK, 'middle', 700).svg;
+  ly.forEach((y, i) => {
+    svg += `<rect x="${lx0}" y="${y - 8}" width="${lx1 - lx0}" height="16" rx="8" fill="${G[i][0]}" stroke="${G[i][1]}" stroke-width=".8"/>`;
+    for (let k = 0; k < 3; k++) svg += `<ellipse cx="112" cy="${y + 4 - k * 3.4}" rx="13" ry="3.4" fill="#ffffff" stroke="${G[i][1]}"/>`;
+  });
+  svg += arrow(128, 108, lx0 - 2, 108, MUTED, 1.3);
+  const gray = [168, 228, 348, 408], sx = 288, sw = 40, st = ly[0] - 16, sh = ly[2] - ly[0] + 32;
+  svg += gray.map(x => `<rect x="${x}" y="${st}" width="${sw}" height="${sh}" rx="5" fill="#e2e8f0" stroke="${MUTED}" opacity=".95"/>`).join('');
+  const POS = [[0.2, 0.8, 0.5], [0.75, 0.3, 0.9], [0.5, 0.95, 0.1]];
+  ly.forEach((y, i) => { svg += `<rect x="${sx}" y="${y - 12}" width="${sw}" height="24" rx="4" fill="#ffffff" stroke="${G[i][1]}" stroke-width="1.4"/>` + condCard(sx, y, G[i][1], POS[i]); });
+  const same = para(318, 46, L('same'), 260, 10.5, INK_2, 'middle', 700);
+  svg += same.svg + gray.map(x => `<path d="M${x + sw / 2} ${46 + same.height - 8} V${st - 2}" stroke="${MUTED}" stroke-dasharray="2 2"/>`).join('');
+  svg += para(sx + sw / 2, st + sh + 16, L('diff'), 200, 10.5, INK, 'middle', 700).svg;
+  // 右：比較各組結果
+  const bx = 486, base = 142;
+  svg += arrow(lx1 + 4, 108, bx - 8, 108, MUTED, 1.3) + para(555, 58, L('compare'), 136, 11, INK, 'middle', 700).svg;
+  [[46, 0], [62, 1], [34, 2]].forEach(([h, i], k) => { svg += `<rect x="${bx + 14 + k * 34}" y="${base - h}" width="22" height="${h}" fill="${G[i][0]}" stroke="${G[i][1]}" stroke-width="1.2"/>`; });
+  svg += `<path d="M${bx + 4} ${base} H${bx + 120}" stroke="${INK_2}"/>`;
+  const fair = para(555, base + 18, L('fair'), 136, 11, TEAL, 'middle', 700), why = para(555, base + 18 + fair.height, L('why'), 136, 10, INK_2);
+  svg += fair.svg + why.svg;
+  // 下方 DOE 小框
+  const top = Math.max(base + 18 + fair.height + why.height, st + sh + 34) + 14;
+  const one = para(98, top + 50, L('oneAtTime'), 196, 10.5, MUTED, 'start');
+  const sev = para(414, top + 50, L('several'), 200, 10.5, TEAL, 'start', 700), few = para(414, top + 52 + sev.height, L('fewest'), 200, 10, INK_2, 'start');
+  const ch = Math.max(one.height, sev.height + few.height + 2) + 44;
+  svg += card(16, top, 608, ch, LIGHT, LINE) + t(30, top + 24, L('doe'), 12, INK, 'start', 800);
+  svg += knob(60, top + 52, 14, 40, MUTED) + xmark(78, top + 38, 4.5, RED) + one.svg;
+  svg += knob(334, top + 52, 12, -50, TEAL) + knob(362, top + 52, 12, 30, TEAL) + knob(390, top + 52, 12, 110, TEAL) + sev.svg + few.svg;
+  return { svg, height: top + ch + 6 };
+}
+
+// ch17 SPC 判異規則、Cpk 與 APC 四大支柱：上方 Cpk 三階（高低只表示順序），下方兩卡逐字沿用被取代的對照圖。
+// 技術審查修正：σ 只在數學式裡，不上圖；「四標準差」用舊圖的「四標準差為量產最低門檻」保留；不寫「關鍵站點」「雙側」
+function cpkLadder(spec, en, kit) {
+  const { L, t, para, breakAt } = tools(spec, en, kit);
+  const kv = (k, v) => (en ? `${L(k)}: ${L(v)}` : `${L(k)}：${L(v)}`);
+  let svg = t(16, 26, L('capT'), 13, AMBER, 'start', 800) + para(16, 44, kv('defK', 'capDef'), 600, 10.5, INK_2, 'start').svg;
+  const xs = [88, 269, 450], w = 174, tops = [124, 98, 72], bot = 206, yp = 194;
+  const fills = [['#ffffff', AMBER], [AMBER_XL, AMBER], [AMBER_L, AMBER]];
+  [['c100', 'ppm100'], ['c133', 'ppm133'], ['c167', 'ppm167']].forEach(([c, p], i) => {
+    const x = xs[i], top = tops[i];
+    svg += card(x, top, w, bot - top, fills[i][0], fills[i][1], 6) + t(x + 12, top + 24, L(c), 15, INK, 'start', 800) + t(x + 12, yp, L(p), 12, RED, 'start', 700);
+    if (i === 1) svg += para(x + 12, top + 44, kv('threshK', 'base'), w - 24, 10.5, INK_2, 'start').svg;
+    if (i === 2) svg += breakAt(x + 12, top + 44, kv('reqK', 'mandate'), '多晶粒', w - 24, 10.5, INK_2, 'start').svg;
+  });
+  svg += t(16, yp, L('fallout'), 10.5, MUTED, 'start', 700);
+  // 下方兩卡：SPC 判異規則、APC 四大支柱
+  const yb = bot + 18;
+  const block = (x, title, color, rows) => {
+    const kw = Math.max(...rows.map(([k]) => textW(L(k), 10.5) * (en ? 1.08 : 1))) + 12;
+    let o = t(x + 12, yb + 24, L(title), 12, color, 'start', 800), y = yb + 46;
+    for (const [k, v] of rows) {
+      const p = para(x + 22 + kw, y, L(v), 296 - 32 - kw, 10.5, INK_2, 'start');
+      o += `<circle cx="${x + 15}" cy="${y - 4}" r="2.6" fill="${color}"/>` + t(x + 22, y, L(k), 10.5, INK, 'start', 700) + p.svg;
+      y += p.height + 8;
+    }
+    return { o, h: y - yb };
+  };
+  const spc = block(16, 'spcT', TEAL, [['limK', 'limV'], ['purK', 'purV'], ['intK', 'intV']]);
+  const apc = block(328, 'apcT', PINK, [['r2rK', 'r2rV'], ['fdcK', 'fdcV'], ['vmK', 'vmV'], ['pdmK', 'pdmV']]);
+  const h = Math.max(spc.h, apc.h) + 4;
+  svg += card(16, yb, 296, h, '#ffffff', TEAL) + card(328, yb, 296, h, '#ffffff', PINK) + spc.o + apc.o;
+  return { svg, height: yb + h + 8 };
+}
+
+// ch17 現場異常徵兆：上半照搬被取代的分支方框圖，第二列展開「量測假值如何污染 R2R」。A 量測頭對焦在灰塵上，B 讀值跳出 CD 暴增，
+// 之後分兩路：未設防呆直接採信 → C 極端補償 → D 下一批晶圓被做壞；有三重防呆閘門 → 假值被擋在盾牌前，下一批正常（技術審查修正）
+function r2rPoison(spec, en, kit) {
+  const { L, t, para, arrow, mark, icon } = tools(spec, en, kit);
+  const tree = treeRow(L, para, arrow, 12, 'root', [['b0', 'l0'], ['b1', 'l1'], ['b2', 'l2']], 1);
+  const py = tree.bottom + 26;
+  let svg = tree.zoom(py) + tree.svg, band = '';
+  // A：灰塵與量測頭
+  const ax = 74, sy = py + 96;
+  band += mark(30, py + 22, 'A') + `<rect x="28" y="${sy}" width="92" height="10" fill="${SI_CH}" stroke="${INK_2}"/><circle cx="${ax}" cy="${sy - 4.5}" r="4.5" fill="${MUTED}"/>`
+    + `<path d="M${ax - 14} ${py + 40} h28 l-6 14 h-16 z" fill="${LIGHT}" stroke="${INK_2}" stroke-linejoin="round"/><path d="M${ax - 8} ${py + 56} L${ax} ${sy - 9} L${ax + 8} ${py + 56}" fill="none" stroke="${BLUE}" stroke-dasharray="2 2"/>`;
+  band += para(ax, sy + 26, L('dust'), 112, 10.5, INK, 'middle', 700).svg;
+  // B：讀值框
+  const bx = 144, by = py + 50;
+  band += arrow(124, by + 24, bx - 4, by + 24, MUTED, 1.3) + mark(bx + 6, py + 22, 'B') + card(bx, by, 96, 52, '#fff1f2', RED, 6)
+    + t(bx + 48, by + 19, L('spike'), 11, RED, 'middle', 800) + t(bx + 46, by + 42, L('v15'), 17, RED, 'end', 800) + t(bx + 50, by + 42, L('nm'), 11, RED, 'start', 700);
+  // 上路：未設防呆直接採信
+  const yu = py + 52;
+  band += arrow(bx + 100, by + 14, 372, yu, RED, 1.6) + para(296, py + 26, L('unguarded'), 136, 10.5, RED, 'middle', 700).svg;
+  band += mark(382, yu - 30, 'C') + `<path d="M${400 - 19} ${yu + 10} A21 21 0 1 1 ${400 + 19} ${yu + 10}" fill="none" stroke="${LINE}" stroke-width="3"/>` + knob(400, yu, 15, 132, RED, '#fff1f2')
+    + para(400, yu + 34, L('extreme'), 150, 10.5, RED, 'middle', 700).svg;
+  band += arrow(424, yu, 536, yu, RED, 1.6) + mark(538, yu - 30, 'D') + waferTop(560, yu, 18, BAD, BAD_S) + xmark(560, yu, 6, RED) + para(560, yu + 34, L('nextLot'), 112, 10.5, INK, 'middle', 700).svg;
+  // 下路：三重防呆閘門
+  const gx = 306, gw = 186, rows = en ? [`${L('g1a')} ${L('g1b')} ${L('gof')} ${L('v098')}`, L('outliers'), L('clamp')] : [`${L('g1a')} ${L('gof')} ${L('v098')} ${L('g1b')}`, L('outliers'), L('clamp')];
+  const rp = rows.map(r => para(0, 0, r, gw - 34, 10.5));
+  const gh = 40 + rp.reduce((s, p) => s + p.height + 6, 0), gy = Math.max(yu + 74, sy + 50);
+  const fy = gy + gh / 2;
+  band += arrow(bx + 48, by + 56, gx - 24, fy - 6, MUTED, 1.3) + `<rect x="${gx - 20}" y="${fy - 9}" width="19" height="18" rx="3" fill="#fff1f2" stroke="${RED}" stroke-width="1.3"/><path d="M${gx - 10.5} ${fy - 5} l4.5 8 h-9 z" fill="none" stroke="${RED}" stroke-width="1.2" stroke-linejoin="round"/>`;
+  band += card(gx, gy, gw, gh, TEAL_XL, TEAL, 8) + icon('shield-check', gx + 10, gy + 8, 22, TEAL) + t(gx + 38, gy + 24, L('gate'), 11.5, TEAL, 'start', 800);
+  let yy = gy + 46;
+  rows.forEach((r, i) => { band += `<circle cx="${gx + 16}" cy="${yy - 4}" r="2.6" fill="${TEAL}"/>` + para(gx + 24, yy, r, gw - 34, 10.5, INK_2, 'start').svg; yy += rp[i].height + 6; });
+  const cy = gy + gh / 2;
+  band += arrow(gx + gw + 4, cy, 518, cy, TEAL, 1.6) + knob(536, cy, 13, 20, TEAL) + arrow(552, cy, 572, cy, TEAL, 1.6) + waferTop(594, cy, 17, TEAL_XL, TEAL) + tick(594, cy, 1.1);
+  const bottom = Math.max(gy + gh, yu + 34 + 40) + 14;
+  svg += card(16, py, 608, bottom - py, '#ffffff', AMBER) + band;
+  return { svg, height: bottom + 12 };
+}
+
+// ch18 OCAP：左邊半夜當班的人與機台，中間一張事先寫好的 OCAP 卡（要檢查什麼、要做什麼、要通知誰，附正文例子），
+// 卡底說明它不是事後的檢討報告；右邊不同班別的人拿同一張卡（技術審查修正：補上當下的行動指引與不同班別那句）
+function ocapCard(spec, en, kit) {
+  const { L, t, para, lines, icon } = tools(spec, en, kit);
+  let svg = glyph('moon', 16, 14, 24, VIOLET) + para(46, 32, L('night'), 136, 11.5, VIOLET, 'start', 800).svg;
+  svg += person(50, 76, 1.5, '#ede9fe', VIOLET) + `<rect x="86" y="64" width="62" height="58" rx="5" fill="${LIGHT}" stroke="${INK_2}"/><rect x="96" y="72" width="26" height="14" rx="2" fill="#ffffff" stroke="${INK_2}" stroke-width=".8"/><path d="M98 108 h40" stroke="${INK_2}"/>`;
+  const sh = en ? para(16, 146, `${L('shift1')} ${L('shift2')}`, 172, 10.5, INK_2, 'start') : lines(16, 146, [L('shift1'), L('shift2')], 10.5, INK_2, 'start');
+  svg += sh.svg;
+  // 中：OCAP 卡
+  const cx = 204, cw = 244;
+  let y = 76, body = '';
+  const row = (draw, k, c = INK) => { body += draw(cx + 14, y - 15) + t(cx + 42, y, L(k), 11.5, c, 'start', 700); };
+  row((x, yy) => icon('search', x, yy, 20, TEAL), 'check'); y += 30;
+  row((x, yy) => glyph('wrench', x, yy, 20, AMBER), 'todo');
+  const ex = para(cx + 52, y + 22, L('example'), cw - 70, 10.5, AMBER, 'start', 600);
+  body += `<rect x="${cx + 42}" y="${y + 8}" width="${cw - 56}" height="${ex.height + 10}" rx="4" fill="${AMBER_XL}" stroke="${AMBER_L}"/>` + ex.svg;
+  y += ex.height + 44;
+  row((x, yy) => phoneIcon(x, yy, BLUE), 'notify');
+  const fy = y + 18, nr = para(cx + 34, fy + 20, L('notReport'), cw - 46, 10.5, MUTED, 'start'), mo = para(cx + 34, fy + 26 + nr.height, L('moment'), cw - 46, 10.5, TEAL, 'start', 700);
+  body += `<path d="M${cx + 10} ${fy} H${cx + cw - 10}" stroke="${LINE}"/>` + xmark(cx + 20, fy + 16, 4, RED) + nr.svg + tick(cx + 20, fy + 22 + nr.height, 0.9) + mo.svg;
+  const cb = fy + 26 + nr.height + mo.height - 4, ch = cb - 14;
+  svg += card(cx, 14, cw, ch, '#fffdf5', AMBER, 8) + `<rect x="${cx + cw / 2 - 26}" y="8" width="52" height="12" rx="3" fill="${INK_2}"/>`
+    + t(cx + 14, 44, L('ocap'), 16, AMBER, 'start', 800) + t(cx + 76, 43, L('advance'), 10.5, INK_2, 'start', 600) + body;
+  // 右：不同班別、不同的人拿同一張卡
+  const shifts = [['sun', AMBER, AMBER_XL], ['moon', VIOLET, '#ede9fe'], ['sun', AMBER, AMBER_XL]];
+  shifts.forEach(([g, c, f], i) => {
+    const px = 486 + i * 52;
+    svg += glyph(g, px - 8, 26, 16, c) + person(px, 62, 1.25, f, c) + `<rect x="${px + 7}" y="70" width="14" height="18" rx="2" fill="#fffdf5" stroke="${AMBER}"/><path d="M${px + 10} 76 h8 M${px + 10} 80 h8 M${px + 10} 84 h6" stroke="${AMBER}" stroke-width=".8"/>`;
+  });
+  const same = para(538, 118, L('same'), 160, 11, TEAL, 'middle', 700);
+  svg += same.svg;
+  return { svg, height: Math.max(cb, 146 + sh.height, 118 + same.height) + 8 };
+}
+
+// ch18 Hold：兩條製程路線。Hold：第 2 站是有問題的機台被停用，排隊的批被擋住；已經過的批停在柵欄前，掛牌記錄原因與負責人、鎖頭表示授權才能解除。
+// 預約 Hold：不畫停用；批先繼續走，經過量測站後在插旗的指定步驟自動停下，等量測結果出來再判斷（技術審查修正）
+function holdLines(spec, en, kit) {
+  const { L, t, para, icon } = tools(spec, en, kit);
+  const sx = [44, 112, 180, 248, 316], lead = (x1, y1, x2, y2) => `<path d="M${x1} ${y1} L${x2} ${y2}" stroke="${MUTED}" stroke-dasharray="2 2"/>`;
+  const st = (x, y, fill = '#ffffff', stroke = INK_2, op = 1) => `<circle cx="${x}" cy="${y}" r="12" fill="${fill}" stroke="${stroke}" stroke-width="1.3" opacity="${op}"/>`;
+  const panel = (y, items) => {
+    let o = '', yy = y;
+    for (const [k, c, w, ic] of items) {
+      const p = para(ic ? 398 : 372, yy, L(k), ic ? 226 : 252, 10.5, c, 'start', w);
+      o += (ic ? ic(372, yy - 13) : '') + p.svg; yy += p.height + 8;
+    }
+    return { o, bottom: yy - 8 };
+  };
+  // 上：Hold
+  const y1 = 92;
+  let svg = t(16, 30, L('hold'), 14, RED, 'start', 800);
+  svg += `<path d="M28 ${y1} H214" stroke="${LINE}" stroke-width="4" stroke-linecap="round"/><path d="M214 ${y1} H336" stroke="${LINE}" stroke-width="4" stroke-dasharray="2 6" stroke-linecap="round"/>`;
+  svg += st(sx[0], y1) + st(sx[1], y1, '#fff1f2', RED) + icon('stop', sx[1] - 8, y1 - 8, 16, RED) + st(sx[2], y1) + st(sx[3], y1, '#ffffff', LINE, 0.6) + st(sx[4], y1, '#ffffff', LINE, 0.6);
+  svg += para(sx[1], 50, L('toolOff'), 150, 10, RED, 'middle', 700).svg;
+  svg += lotAt(icon, 76, y1, INK_2, 20) + `<path d="M93 ${y1 - 13} v26" stroke="${RED}" stroke-width="3" stroke-linecap="round"/>` + para(80, y1 + 30, L('noMore'), 124, 10, INK_2, 'middle').svg;
+  svg += lotAt(icon, sx[2], y1, RED, 22) + fence(200, y1) + icon('tag', 194, y1 + 17, 13, AMBER) + icon('lock', 210, y1 + 17, 13, AMBER);
+  const p1 = panel(50, [['stopped', RED, 700], ['pause', INK_2, 600], ['reason', INK_2, 400, (x, y) => icon('tag', x, y, 18, AMBER)], ['auth', INK_2, 400, (x, y) => icon('lock', x, y, 18, AMBER)]]);
+  svg += lead(220, y1 - 16, 366, 46) + p1.o;
+  // 下：預約 Hold
+  const top2 = Math.max(p1.bottom, y1 + 64) + 22, y2 = top2 + 66;
+  svg += `<path d="M16 ${top2 - 10} H624" stroke="${LINE}"/>` + t(16, top2 + 18, L('future'), 14, AMBER, 'start', 800);
+  svg += `<path d="M28 ${y2} H336" stroke="${LINE}" stroke-width="4" stroke-linecap="round"/>`;
+  svg += st(sx[0], y2) + st(sx[1], y2) + st(sx[2], y2, TEAL_XL, TEAL) + icon('microscope', sx[2] - 8, y2 - 8, 16, TEAL) + st(sx[3], y2, AMBER_XL, AMBER) + st(sx[4], y2, '#ffffff', LINE, 0.6);
+  svg += [78, 146].map((x, i) => `<g opacity="${0.25 + i * 0.2}">${lotAt(icon, x, y2, INK_2, 20)}</g>`).join('') + lotAt(icon, 222, y2, AMBER, 22) + flag(sx[3] + 4, y2 - 14, AMBER, 20);
+  svg += para(112, y2 - 26, L('keep'), 170, 10.5, INK_2, 'middle', 600).svg;
+  svg += `<path d="M${sx[2]} ${y2 + 13} C${sx[2]} ${y2 + 30} 222 ${y2 + 30} 222 ${y2 + 13}" fill="none" stroke="${TEAL}" stroke-dasharray="3 3"/>`;
+  const w2 = para(200, y2 + 42, en ? `${L('eg')} ${L('wait')}` : `${L('eg')}${L('wait')}`, 236, 10.5, TEAL, 'middle', 600);
+  svg += w2.svg;
+  const p2 = panel(y2 - 30, [['auto', AMBER, 700]]);
+  svg += lead(sx[3] + 20, y2 - 30, 366, y2 - 34) + p2.o;
+  return { svg, height: Math.max(y2 + 42 + w2.height, p2.bottom) + 6 };
+}
+
+// ch18 OCAP、MRB／PAT、8D 與 PCN：上半照搬被取代的分支方框圖（含根的註記），第三列展開 8D 八步；兩列各四格用 Z 字箭頭排順序。
+// 技術審查修正：中英正文的 D5／D6 內容不同，D5 取兩語同義的「永久矯正對策」，D6 只放編號；D7 旁加警示框
+function eightD(spec, en, kit) {
+  const { L, t, para, breakAt, arrow, icon } = tools(spec, en, kit);
+  const tree = treeRow(L, para, arrow, 12, 'root', [['b0', 'l0'], ['b1', 'l1'], ['b2', 'l2'], ['b3', 'l3']], 2);
+  // 根的註記放在根卡片下方
+  const ry = (12 + tree.bottom) / 2, rp = para(0, 0, L('root'), 112, 11.5, INK, 'middle', 700), rh = Math.max(40, rp.height + 18);
+  const py = tree.bottom + 26;
+  let svg = tree.zoom(py) + tree.svg + breakAt(82, ry + rh / 2 + 16, L('rootNote'), '不擅改', 128, 10, INK_2, 'middle').svg, band = '';
+  const cw = 136, gap = 14, x0 = 27, ch = 74;
+  const art = {
+    D1: (x, y) => person(x - 11, y + 4, 0.8, TEAL_XL, TEAL) + person(x + 11, y + 4, 0.8, TEAL_XL, TEAL) + person(x, y, 0.9, '#ffffff', TEAL),
+    D2: (x, y) => `<rect x="${x - 9}" y="${y - 6}" width="18" height="22" rx="2" fill="#ffffff" stroke="${TEAL}" stroke-width="1.3"/><rect x="${x - 4}" y="${y - 9}" width="8" height="5" rx="1" fill="${TEAL}"/><path d="M${x - 5} ${y + 2} h10 M${x - 5} ${y + 7} h10 M${x - 5} ${y + 12} h6" stroke="${TEAL}"/>`,
+    D3: (x, y) => fence(x - 7, y + 5, AMBER),
+    D4: (x, y) => `<path d="M${x - 16} ${y + 5} H${x + 8}" stroke="${TEAL}" stroke-width="1.6"/><path d="M${x + 8} ${y - 2} l9 7 l-9 7 z" fill="${TEAL}"/><path d="M${x - 16} ${y + 5} l-5 -6 v12 z" fill="${TEAL}"/>` + [-9, -2, 5].map(d => `<path d="M${x + d} ${y + 5} l-5 -9 M${x + d} ${y + 5} l-5 9" stroke="${TEAL}" stroke-width="1.3"/>`).join(''),
+    D5: (x, y) => glyph('wrench', x - 10, y - 6, 20, TEAL),
+    D7: (x, y) => icon('lock', x - 10, y - 6, 20, AMBER),
+    D8: (x, y) => `<circle cx="${x}" cy="${y + 4}" r="3" fill="${TEAL}"/>` + [0, 90, 180, 270].map(a => { const c = Math.cos(a * Math.PI / 180), s = Math.sin(a * Math.PI / 180); return thinArrow(x + c * 5, y + 4 + s * 5, x + c * 13, y + 4 + s * 13, TEAL, 1.3, 4); }).join('')
+  };
+  const keys = ['D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'D7', 'D8'];
+  const y1 = py + 16, y2 = y1 + ch + 30;
+  keys.forEach((k, i) => {
+    const x = x0 + (i % 4) * (cw + gap), y = i < 4 ? y1 : y2, on = k === 'D7';
+    band += card(x, y, cw, ch, on ? AMBER_XL : LIGHT, on ? AMBER : LINE, 6) + (art[k] ? art[k](x + cw / 2, y + 14) : '')
+      + breakAt(x + cw / 2, y + (art[k] ? 46 : 36), k === 'D8' ? `${L('D8')} ${L('D8b')}` : L(k), '（', cw - 14, 10.5, on ? AMBER : INK, 'middle', 700).svg;
+    if (i % 4 < 3) band += arrow(x + cw + 1, y + ch / 2, x + cw + gap - 1, y + ch / 2, TEAL, 1.3);
+  });
+  band += arrow(x0 + 3 * (cw + gap) + cw / 2, y1 + ch + 2, x0 + cw / 2, y2 - 2, TEAL, 1.3);
+  // D7 警示框
+  const wx = 196, ww = 420, w1 = para(wx + 30, y2 + ch + 40, L('warn1'), ww - 40, 10.5, RED, 'start', 700);
+  const w2 = para(wx + 30, y2 + ch + 46 + w1.height, L('warn2'), ww - 40, 10.5, TEAL, 'start', 700);
+  const wy = y2 + ch + 18, wh = 32 + w1.height + w2.height;
+  const d7x = x0 + 2 * (cw + gap) + cw / 2;
+  band += `<path d="M${d7x} ${y2 + ch} V${wy}" stroke="${AMBER}" stroke-dasharray="3 2"/>` + card(wx, wy, ww, wh, '#fff1f2', RED, 6)
+    + xmark(wx + 16, y2 + ch + 36, 4, RED) + w1.svg + tick(wx + 16, y2 + ch + 42 + w1.height, 0.9) + w2.svg;
+  const bottom = wy + wh + 12;
+  svg += card(16, py, 608, bottom - py, '#ffffff', AMBER) + band;
+  return { svg, height: bottom + 12 };
+}
+
+// ch18 定量物理定律：上半照搬被取代的分支方框圖，第二、三列用圈字母 A、B 對應下方兩格。
+// A 動態 PAT：窄鐘形直方圖、中位數、兩側動態鐵籠、更外側的產品規格上限；一格最矮的孤立長條落在鐵籠與規格上限之間，被剔除。
+// B 空間鄰近：一團叢集缺陷邊緣、仍然通過測試的晶粒被框起來（技術審查修正：不畫成四周全被包圍；不放 ± 6 這類數學式數值）
+function patScreens(spec, en, kit) {
+  const { L, t, para, arrow, mark } = tools(spec, en, kit);
+  const tree = treeRows(L, para, arrow, mark, 12, 'root', [['b0', 'l0'], ['b1', 'l1'], ['b2', 'l2']], [1, 2]);
+  const py = tree.bottom + 22;
+  let svg = tree.svg;
+  // A：動態 PAT 直方圖
+  const yb = py + 150, cx = 128, bw = 10;
+  const hs = [4, 9, 18, 32, 50, 62, 50, 32, 18, 9, 4];
+  let a = mark(30, py + 20, 'A') + para(46, py + 24, L('b1'), 250, 11, AMBER, 'start', 800).svg;
+  a += hs.map((h, i) => `<rect x="${cx + (i - 5.5) * bw}" y="${yb - h}" width="${bw}" height="${h}" fill="${TEAL_XL}" stroke="${TEAL}" stroke-width=".8"/>`).join('');
+  const lo = 50, hi = 206, usl = 272, mx = 236;
+  a += `<path d="M${cx} ${py + 80} V${yb}" stroke="${TEAL}" stroke-width="1.6"/><path d="M${lo} ${py + 80} V${yb} M${hi} ${py + 80} V${yb}" stroke="${HOT}" stroke-width="1.6" stroke-dasharray="5 3"/><path d="M${usl} ${py + 62} V${yb}" stroke="${INK_2}" stroke-width="2"/>`;
+  a += `<rect x="${mx - bw / 2}" y="${yb - 4}" width="${bw}" height="4" fill="${BAD}" stroke="${BAD_S}"/><rect x="${mx - bw / 2 - 4}" y="${yb - 9}" width="${bw + 8}" height="13" rx="2" fill="none" stroke="${RED}" stroke-width="1.6"/>`;
+  a += `<path d="M30 ${yb} H306" stroke="${INK_2}"/>` + t(306, yb + 15, L('leak'), 10, MUTED, 'end', 600);
+  a += t(cx, py + 74, L('median'), 10, TEAL, 'middle', 700) + t(hi, py + 74, L('cage'), 10, HOT, 'middle', 700) + t(306, py + 56, L('usl'), 10, INK_2, 'end', 700);
+  const m1 = para(36, yb + 36, L('maverick'), 266, 10.5, RED, 'start', 800);
+  let my = yb + 36 + m1.height;
+  const m2 = para(36, my, L('deviate'), 266, 10, INK_2, 'start'); my += m2.height;
+  const m3 = para(36, my, L('within'), 266, 10, INK_2, 'start'); my += m3.height + 2;
+  const m4 = para(36, my, L('screen'), 266, 10.5, RED, 'start', 800); my += m4.height;
+  a += `<path d="M${mx} ${yb + 4} L${mx - 20} ${yb + 24}" stroke="${RED}" stroke-dasharray="2 2"/>` + m1.svg + m2.svg + m3.svg + m4.svg;
+  // B：空間鄰近篩選
+  let b = mark(338, py + 20, 'B') + para(354, py + 24, L('b2'), 260, 11, AMBER, 'start', 800).svg;
+  const gx = 356, gy = py + 52, cwd = 20, chh = 15, cols = 9, nrow = 6;
+  const bad = new Set(['5,1', '6,1', '4,2', '5,2', '6,2', '7,2', '5,3', '6,3', '7,3', '6,4']), wounded = ['3,2', '8,2'];
+  for (let r = 0; r < nrow; r++) for (let c = 0; c < cols; c++) {
+    const k = `${c},${r}`, isBad = bad.has(k);
+    b += `<rect x="${gx + c * cwd}" y="${gy + r * chh}" width="${cwd - 2}" height="${chh - 2}" rx="1.5" fill="${isBad ? BAD : TEAL_XL}" stroke="${isBad ? BAD_S : TEAL}" stroke-width=".8"/>`;
+  }
+  b += wounded.map(k => { const [c, r] = k.split(',').map(Number); return `<rect x="${gx + c * cwd - 1.5}" y="${gy + r * chh - 1.5}" width="${cwd + 1}" height="${chh + 1}" rx="2" fill="none" stroke="${RED}" stroke-width="1.8"/>`; }).join('');
+  const gr = gx + cols * cwd;
+  // 叢集缺陷標在格子上方，引線直落到叢集最上面一格；兩顆半傷晶粒用直落的括號接到同一個標籤，引線不穿過叢集
+  b += `<path d="M${gx + 6.5 * cwd - 1} ${gy - 3} V${gy + chh + 1}" stroke="${MUTED}" stroke-dasharray="2 2"/>` + t(gx + 6.5 * cwd - 1, gy - 7, L('cluster'), 10.5, BAD_S, 'middle', 700);
+  const ly0 = gy + nrow * chh + 8, xa = gx + 3.5 * cwd - 1, xb = gx + 8.5 * cwd - 1;
+  const wl = para((xa + xb) / 2, ly0 + 18, L('walking'), 250, 10.5, RED, 'middle', 800);
+  b += `<path d="M${xa} ${gy + 3 * chh - 0.5} V${ly0} H${xb} V${gy + 3 * chh - 0.5} M${(xa + xb) / 2} ${ly0} v4" fill="none" stroke="${RED}" stroke-dasharray="2 2"/>` + wl.svg;
+  const bottom = Math.max(my, ly0 + 18 + wl.height) + 10;
+  svg += card(16, py, 300, bottom - py, '#ffffff', AMBER) + card(324, py, 300, bottom - py, '#ffffff', AMBER) + a + b;
+  return { svg, height: bottom + 12 };
+}
+
 export const PICTORIALS = {
   industryMap, cleanroom, toolTypes, fabRoles, dopingLattice, cmosWells, sandToPoly, ingotToWafer, waferSizes, specialWafers,
   overlayCd, lithoDefects, filmStack, thermalOxidation, cvdTypes, epitaxy, filmMetrics,
@@ -6183,5 +6589,6 @@ export const PICTORIALS = {
   cmpUses, cmpStop, cmpDefects, cmpClauses, bondRecess, cmpFailures, cleanEverywhere, qtimeBar, cleanDefects, cleanClauses, dryCollapse, cleanFailures,
   contactsVias, lowK, rcLevers, molSteps, beolSteps, maskCount, tierThermal,
   strainHkmg, sacrificial, memoryChip, nvmCells, memoryLaws,
-  noThreeNm, dtcoPdk, metrologyPitfalls, metrologyLaws, yieldMoney, yieldStages, commonality, faSteps, yieldLaws, chamberMask
+  noThreeNm, dtcoPdk, metrologyPitfalls, metrologyLaws, yieldMoney, yieldStages, commonality, faSteps, yieldLaws, chamberMask,
+  driftWhy, limitsRoad, splitLot, cpkLadder, r2rPoison, ocapCard, holdLines, eightD, patScreens
 };

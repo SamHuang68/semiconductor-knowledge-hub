@@ -10563,55 +10563,100 @@ export const SECTION_DIAGRAMS = [
     "chapterId": "ch17",
     "headingZh": "規格界限與管制界限",
     "headingEn": "Specification limits and control limits",
-    "type": "compare",
+    "type": "pictorial",
+    "draw": "limitsRoad",
     "captionZh": "OOC 代表製程可能異常，OOS 代表產品已不合格",
     "captionEn": "OOC signals an abnormal process; OOS means the product is already out of spec.",
-    "columns": [
+    "labels": [
       {
-        "titleZh": "OOC：超出管制界限",
-        "titleEn": "OOC: outside control limits",
-        "items": [
-          {
-            "zh": "依製程平常表現算出的範圍",
-            "en": "Range calculated from normal behavior",
-            "noteZh": "通常比規格界限窄",
-            "noteEn": "Usually narrower than spec limits"
-          },
-          {
-            "zh": "製程不像平常，可能有異常",
-            "en": "Not behaving as usual; something may be wrong"
-          },
-          {
-            "zh": "產品不一定不合格，但須處理",
-            "en": "Product not necessarily bad, but act on it"
-          },
-          {
-            "zh": "像車道線：一壓線就修正",
-            "en": "Like lane markings: correct when touched"
-          }
-        ]
+        "key": "edge",
+        "zh": "路的邊緣",
+        "en": "The edges of the road"
       },
       {
-        "titleZh": "OOS：超出規格界限",
-        "titleEn": "OOS: outside spec limits",
-        "items": [
-          {
-            "zh": "產品要求的範圍",
-            "en": "The range the product requires"
-          },
-          {
-            "zh": "產品已不符合要求",
-            "en": "Product already out of spec"
-          },
-          {
-            "zh": "要開 MRB 判定",
-            "en": "Needs an MRB disposition"
-          },
-          {
-            "zh": "像路的邊緣：開出去就出事",
-            "en": "Like the road edge: going over is an accident"
-          }
-        ]
+        "key": "lane",
+        "zh": "車道線",
+        "en": "Lane markings"
+      },
+      {
+        "key": "ooc",
+        "zh": "OOC",
+        "en": "OOC"
+      },
+      {
+        "key": "touch",
+        "zh": "一壓線就該修正方向",
+        "en": "As soon as you touch them, you should correct your steering"
+      },
+      {
+        "key": "oos",
+        "zh": "OOS",
+        "en": "OOS"
+      },
+      {
+        "key": "accident",
+        "zh": "開出去就會出事",
+        "en": "Going over them means an accident"
+      },
+      {
+        "key": "spec",
+        "zh": "規格界限",
+        "en": "Specification limits"
+      },
+      {
+        "key": "cl",
+        "zh": "管制界限",
+        "en": "Control limits"
+      },
+      {
+        "key": "specDef",
+        "zh": "產品要求的範圍",
+        "en": "The range the product requires"
+      },
+      {
+        "key": "clDef",
+        "zh": "根據製程平常的表現計算出來的範圍",
+        "en": "A range calculated from how the process normally behaves"
+      },
+      {
+        "key": "narrower",
+        "zh": "通常比規格界限窄",
+        "en": "usually narrower than the specification limits"
+      },
+      {
+        "key": "oocT",
+        "zh": "OOC：超出管制界限",
+        "en": "OOC: outside control limits",
+        "from": "figure"
+      },
+      {
+        "key": "unusual",
+        "zh": "製程不像平常，可能有異常",
+        "en": "Not behaving as usual; something may be wrong",
+        "from": "figure"
+      },
+      {
+        "key": "notBad",
+        "zh": "產品不一定不合格，但須處理",
+        "en": "product not necessarily bad, but act on it",
+        "from": "figure"
+      },
+      {
+        "key": "oosT",
+        "zh": "OOS：超出規格界限",
+        "en": "OOS: outside spec limits",
+        "from": "figure"
+      },
+      {
+        "key": "already",
+        "zh": "產品本身已經不合格",
+        "en": "the product itself is already out of spec"
+      },
+      {
+        "key": "mrb",
+        "zh": "要開 MRB 判定",
+        "en": "needs an MRB disposition",
+        "from": "figure"
       }
     ]
   },
@@ -10619,29 +10664,71 @@ export const SECTION_DIAGRAMS = [
     "chapterId": "ch17",
     "headingZh": "實驗設計與分批實驗",
     "headingEn": "Design of experiments and split lots",
-    "type": "flow",
+    "type": "pictorial",
+    "draw": "splitLot",
     "captionZh": "分批實驗把同一批晶圓分組，各組條件不同、其他步驟相同",
     "captionEn": "A split lot divides one lot into groups, each under a different condition.",
-    "steps": [
+    "labels": [
       {
+        "key": "splitName",
+        "zh": "分批實驗（Split Lot）",
+        "en": "The split lot"
+      },
+      {
+        "key": "lot",
         "zh": "同一批晶圓",
-        "en": "One lot of wafers"
+        "en": "One lot"
       },
       {
+        "key": "groups",
         "zh": "分成幾組",
-        "en": "Divide into several groups"
+        "en": "Divided into several groups"
       },
       {
-        "zh": "每組使用不同條件",
-        "en": "Each group: a different condition",
-        "noteZh": "其他步驟完全相同",
-        "noteEn": "Everything else stays the same"
+        "key": "diff",
+        "zh": "每組使用不同的條件",
+        "en": "Each group uses a different condition"
       },
       {
+        "key": "same",
+        "zh": "其他步驟完全相同",
+        "en": "Everything else stays the same"
+      },
+      {
+        "key": "compare",
         "zh": "比較各組結果",
         "en": "Compare the groups",
-        "noteZh": "經歷幾乎一樣，比較最公平",
-        "noteEn": "Near-identical histories: the fairest test"
+        "from": "figure"
+      },
+      {
+        "key": "fair",
+        "zh": "比較起來最公平",
+        "en": "The fairest comparison"
+      },
+      {
+        "key": "why",
+        "zh": "同一批晶圓的經歷幾乎一樣",
+        "en": "The wafers in one lot have almost identical histories"
+      },
+      {
+        "key": "doe",
+        "zh": "實驗設計（DOE）",
+        "en": "Design of experiments (DOE)"
+      },
+      {
+        "key": "oneAtTime",
+        "zh": "一次只改一個參數慢慢試",
+        "en": "Changing one parameter at a time and slowly trying"
+      },
+      {
+        "key": "several",
+        "zh": "同時改變多個因子",
+        "en": "Changes several factors at once"
+      },
+      {
+        "key": "fewest",
+        "zh": "用最少的實驗次數找出最佳組合",
+        "en": "To find the best combination with as few experiments as possible"
       }
     ]
   },
@@ -10783,6 +10870,21 @@ export const SECTION_DIAGRAMS = [
         "key": "watch2",
         "zh": "「調整量」本身",
         "en": "adjustments themselves"
+      },
+      {
+        "key": "padIf",
+        "zh": "研磨墊磨損讓研磨變慢",
+        "en": "If a worn pad makes polishing slower"
+      },
+      {
+        "key": "padThen",
+        "zh": "就自動延長研磨時間",
+        "en": "the polishing time is extended"
+      },
+      {
+        "key": "noMeasure",
+        "zh": "甚至在量測之前就攔下問題",
+        "en": "and can stop a problem even before the wafer is measured"
       }
     ]
   },
@@ -10791,32 +10893,126 @@ export const SECTION_DIAGRAMS = [
     "headingZh": "現場異常徵兆與跨站根因排查",
     "headingEn": "Fab Failure Signatures & Root-Cause Diagnostics",
     "foldTables": true,
-    "type": "branch",
     "foldSection": true,
-    "captionZh": "常見控制失效與各自的永久對策",
-    "captionEn": "The classic control failures and the countermeasure for each.",
-    "root": {
-      "zh": "常見控制失效",
-      "en": "Classic control failures"
-    },
-    "branches": [
+    "type": "pictorial",
+    "draw": "r2rPoison",
+    "sourcedNumbers": true,
+    "captionZh": "常見控制失效與各自的永久對策；量測假值如何污染 R2R",
+    "captionEn": "The classic control failures and the countermeasure for each; R2R poisoning",
+    "sourceZh": "+15 nm 與 GOF 門檻 0.98 出自本段表格；4σ 只在數學式裡，不畫進圖。",
+    "sourceEn": "The +15 nm spike and the 0.98 GOF threshold come from the table in this section. The 4σ limit appears only in a formula and is not drawn.",
+    "labels": [
       {
+        "key": "root",
+        "zh": "常見控制失效",
+        "en": "Classic control failures",
+        "from": "figure"
+      },
+      {
+        "key": "b0",
         "zh": "過度干預調機",
         "en": "Over-control tampering",
-        "leafZh": "交由自動控制器微調",
-        "leafEn": "Delegate trim to automatic control"
+        "from": "figure"
       },
       {
+        "key": "l0",
+        "zh": "交由自動控制器微調",
+        "en": "Delegate trim to automatic control",
+        "from": "figure"
+      },
+      {
+        "key": "b1",
         "zh": "量測假值污染回饋迴路",
         "en": "Bad metrology poisons feedback",
-        "leafZh": "回饋迴路前端設防呆閘門",
-        "leafEn": "Gate the feedback loop's inputs"
+        "from": "figure"
       },
       {
+        "key": "l1",
+        "zh": "回饋迴路前端設防呆閘門",
+        "en": "Gate the feedback loop's inputs",
+        "from": "figure"
+      },
+      {
+        "key": "b2",
         "zh": "保養後 FDC 基準漂移",
         "en": "Post-PM FDC baseline shift",
-        "leafZh": "保養驗證後重設基準",
-        "leafEn": "Re-center baseline after PM"
+        "from": "figure"
+      },
+      {
+        "key": "l2",
+        "zh": "保養驗證後重設基準",
+        "en": "Re-center baseline after PM",
+        "from": "figure"
+      },
+      {
+        "key": "dust",
+        "zh": "對焦在灰塵上",
+        "en": "Measures a particle or fails autofocus"
+      },
+      {
+        "key": "spike",
+        "zh": "CD 暴增",
+        "en": "CD spike"
+      },
+      {
+        "key": "v15",
+        "zh": "+15",
+        "en": "+15"
+      },
+      {
+        "key": "nm",
+        "zh": "nm",
+        "en": "nm"
+      },
+      {
+        "key": "unguarded",
+        "zh": "未設防呆直接採信",
+        "en": "An unguarded R2R controller"
+      },
+      {
+        "key": "extreme",
+        "zh": "極端的反向曝光劑量補償",
+        "en": "An extreme dose/etch correction"
+      },
+      {
+        "key": "nextLot",
+        "zh": "下一批正常晶圓",
+        "en": "The next production lot"
+      },
+      {
+        "key": "gate",
+        "zh": "三重防呆閘門",
+        "en": "3-Stage R2R Input Gate"
+      },
+      {
+        "key": "g1a",
+        "zh": "剔除",
+        "en": "Filter out"
+      },
+      {
+        "key": "g1b",
+        "zh": "之無效量測點",
+        "en": "sites with"
+      },
+      {
+        "key": "gof",
+        "zh": "GOF",
+        "en": "GOF"
+      },
+      {
+        "key": "v098",
+        "zh": "< 0.98",
+        "en": "< 0.98"
+      },
+      {
+        "key": "outliers",
+        "zh": "離群值",
+        "en": "Metrology outliers"
+      },
+      {
+        "key": "clamp",
+        "zh": "單批補償步幅硬上限",
+        "en": "Clamp maximum per-lot actuator step size"
       }
     ]
   },
@@ -10825,88 +11021,187 @@ export const SECTION_DIAGRAMS = [
     "headingZh": "SPC 判異規則、Cpk 與 APC 四大支柱條例總覽",
     "headingEn": "SPC Rules, Cpk & APC 4-Pillar Clauses",
     "foldTables": true,
-    "type": "compare",
     "foldSection": true,
-    "captionZh": "SPC 判異、製程能力與 APC 四大支柱三大條例對照",
-    "captionEn": "SPC rules, process capability and the four APC pillars side by side.",
-    "columns": [
+    "type": "pictorial",
+    "draw": "cpkLadder",
+    "sourcedNumbers": true,
+    "captionZh": "SPC 判異、Cpk 階梯與 APC 四大支柱三大條例對照",
+    "captionEn": "SPC rules, the Cpk capability ladder and the four APC pillars side by side.",
+    "sourceZh": "Cpk 與 ppm 數值出自本段表格；階梯高低只表示順序，不按比例。",
+    "sourceEn": "The Cpk and ppm values come from the table in this section. The step heights only show the order and are not to scale.",
+    "labels": [
       {
-        "titleZh": "SPC 判異規則",
-        "titleEn": "SPC out-of-control rules",
-        "items": [
-          {
-            "keyZh": "界限",
-            "keyEn": "Limits",
-            "zh": "管制界限不是規格界限",
-            "en": "Control limits are not spec limits"
-          },
-          {
-            "keyZh": "目的",
-            "keyEn": "Purpose",
-            "zh": "超規前先抓非隨機偏移",
-            "en": "Catch non-random drift before out-of-spec"
-          },
-          {
-            "keyZh": "攔截",
-            "keyEn": "Interlock",
-            "zh": "觸發即自動扣留批與腔體",
-            "en": "Any rule hit auto-holds lot and chamber"
-          }
-        ]
+        "key": "capT",
+        "zh": "製程能力 Cp／Cpk",
+        "en": "Process capability Cp vs. Cpk",
+        "from": "figure"
       },
       {
-        "titleZh": "製程能力 Cp／Cpk",
-        "titleEn": "Process capability Cp vs. Cpk",
-        "items": [
-          {
-            "keyZh": "定義",
-            "keyEn": "Definition",
-            "zh": "Cp 看潛在、Cpk 計入偏移",
-            "en": "Cp is potential; Cpk accounts for centering"
-          },
-          {
-            "keyZh": "門檻",
-            "keyEn": "Threshold",
-            "zh": "四標準差為量產最低門檻",
-            "en": "Four sigma is the minimum production baseline"
-          },
-          {
-            "keyZh": "要求",
-            "keyEn": "Mandate",
-            "zh": "車用與多晶粒堆疊要求更高 Cpk",
-            "en": "Automotive, multi-die stacks require higher Cpk"
-          }
-        ]
+        "key": "defK",
+        "zh": "定義",
+        "en": "Definition",
+        "from": "figure"
       },
       {
-        "titleZh": "APC 四大支柱",
-        "titleEn": "Four pillars of APC",
-        "items": [
-          {
-            "keyZh": "批次間控制",
-            "keyEn": "Run-to-run",
-            "zh": "逐批自動微調配方",
-            "en": "Trims recipes lot by lot"
-          },
-          {
-            "keyZh": "FDC",
-            "keyEn": "FDC",
-            "zh": "加工中即抓電弧等異常",
-            "en": "Catches plasma arcing mid-wafer"
-          },
-          {
-            "keyZh": "VM",
-            "keyEn": "VM",
-            "zh": "以感測數據預測每片晶圓",
-            "en": "Predicts every wafer from FDC traces"
-          },
-          {
-            "keyZh": "PdM",
-            "keyEn": "PdM",
-            "zh": "預測性維護",
-            "en": "Predictive maintenance"
-          }
-        ]
+        "key": "capDef",
+        "zh": "Cp 看潛在、Cpk 計入偏移",
+        "en": "Cp is potential; Cpk accounts for centering",
+        "from": "figure"
+      },
+      {
+        "key": "c100",
+        "zh": "Cpk = 1.00",
+        "en": "Cpk = 1.00"
+      },
+      {
+        "key": "ppm100",
+        "zh": "~2,700 ppm",
+        "en": "~2,700 ppm"
+      },
+      {
+        "key": "c133",
+        "zh": "Cpk = 1.33",
+        "en": "Cpk = 1.33"
+      },
+      {
+        "key": "ppm133",
+        "zh": "~63 ppm",
+        "en": "~63 ppm"
+      },
+      {
+        "key": "threshK",
+        "zh": "門檻",
+        "en": "Threshold",
+        "from": "figure"
+      },
+      {
+        "key": "base",
+        "zh": "四標準差為量產最低門檻",
+        "en": "Four sigma is the minimum production baseline",
+        "from": "figure"
+      },
+      {
+        "key": "c167",
+        "zh": "Cpk ≥ 1.67–2.00",
+        "en": "Cpk ≥ 1.67–2.00"
+      },
+      {
+        "key": "ppm167",
+        "zh": "< 0.6 ppm 至 ppb 級",
+        "en": "< 0.6 ppm to ppb level"
+      },
+      {
+        "key": "fallout",
+        "zh": "不良率",
+        "en": "Fallout"
+      },
+      {
+        "key": "reqK",
+        "zh": "要求",
+        "en": "Mandate",
+        "from": "figure"
+      },
+      {
+        "key": "mandate",
+        "zh": "車用與多晶粒堆疊要求更高 Cpk",
+        "en": "Automotive, multi-die stacks require higher Cpk",
+        "from": "figure"
+      },
+      {
+        "key": "spcT",
+        "zh": "SPC 判異規則",
+        "en": "SPC out-of-control rules",
+        "from": "figure"
+      },
+      {
+        "key": "limK",
+        "zh": "界限",
+        "en": "Limits",
+        "from": "figure"
+      },
+      {
+        "key": "limV",
+        "zh": "管制界限不是規格界限",
+        "en": "Control limits are not spec limits",
+        "from": "figure"
+      },
+      {
+        "key": "purK",
+        "zh": "目的",
+        "en": "Purpose",
+        "from": "figure"
+      },
+      {
+        "key": "purV",
+        "zh": "超規前先抓非隨機偏移",
+        "en": "Catch non-random drift before out-of-spec",
+        "from": "figure"
+      },
+      {
+        "key": "intK",
+        "zh": "攔截",
+        "en": "Interlock",
+        "from": "figure"
+      },
+      {
+        "key": "intV",
+        "zh": "觸發即自動扣留批與腔體",
+        "en": "Any rule hit auto-holds lot and chamber",
+        "from": "figure"
+      },
+      {
+        "key": "apcT",
+        "zh": "APC 四大支柱",
+        "en": "Four pillars of APC",
+        "from": "figure"
+      },
+      {
+        "key": "r2rK",
+        "zh": "批次間控制",
+        "en": "Run-to-run",
+        "from": "figure"
+      },
+      {
+        "key": "r2rV",
+        "zh": "逐批自動微調配方",
+        "en": "Trims recipes lot by lot",
+        "from": "figure"
+      },
+      {
+        "key": "fdcK",
+        "zh": "FDC",
+        "en": "FDC",
+        "from": "figure"
+      },
+      {
+        "key": "fdcV",
+        "zh": "加工中即抓電弧等異常",
+        "en": "Catches plasma arcing mid-wafer",
+        "from": "figure"
+      },
+      {
+        "key": "vmK",
+        "zh": "VM",
+        "en": "VM",
+        "from": "figure"
+      },
+      {
+        "key": "vmV",
+        "zh": "以感測數據預測每片晶圓",
+        "en": "Predicts every wafer from FDC traces",
+        "from": "figure"
+      },
+      {
+        "key": "pdmK",
+        "zh": "PdM",
+        "en": "PdM",
+        "from": "figure"
+      },
+      {
+        "key": "pdmV",
+        "zh": "預測性維護",
+        "en": "Predictive maintenance",
+        "from": "figure"
       }
     ]
   },
@@ -11014,6 +11309,57 @@ export const SECTION_DIAGRAMS = [
     ]
   },
   {
+    "chapterId": "ch17",
+    "headingZh": "每一次都會有一點不同",
+    "headingEn": "Every run is a little different",
+    "type": "pictorial",
+    "draw": "driftWhy",
+    "captionZh": "零件磨損、化學品老化、溫度變化讓製程偏移；越早發現越好",
+    "captionEn": "Wear, aging and temperature make a process drift; catch it early",
+    "labels": [
+      {
+        "key": "same",
+        "zh": "同一台機台、同一個 Recipe",
+        "en": "The same tool with the same recipe"
+      },
+      {
+        "key": "wear",
+        "zh": "機台零件會磨損",
+        "en": "Tool parts wear"
+      },
+      {
+        "key": "age",
+        "zh": "化學品會老化",
+        "en": "Chemicals age"
+      },
+      {
+        "key": "temp",
+        "zh": "環境溫度會變化",
+        "en": "The room temperature changes"
+      },
+      {
+        "key": "drift",
+        "zh": "讓製程慢慢偏移",
+        "en": "Makes a process slowly drift"
+      },
+      {
+        "key": "stable",
+        "zh": "讓變化保持在小而穩定的範圍內",
+        "en": "Keep variation small and stable"
+      },
+      {
+        "key": "earlier",
+        "zh": "越早發現，受影響的晶圓就越少",
+        "en": "The earlier it is caught, the fewer wafers are affected"
+      },
+      {
+        "key": "serious",
+        "zh": "偏移變嚴重",
+        "en": "It becomes serious"
+      }
+    ]
+  },
+  {
     "chapterId": "ch18",
     "headingZh": "異常一定會發生",
     "headingEn": "Abnormalities will happen",
@@ -11057,45 +11403,71 @@ export const SECTION_DIAGRAMS = [
     "chapterId": "ch18",
     "headingZh": "Hold：先擋下來",
     "headingEn": "Hold: stop it first",
-    "type": "compare",
+    "type": "pictorial",
+    "draw": "holdLines",
     "captionZh": "Hold 先擋下晶圓，預約 Hold 到指定步驟才擋下",
     "captionEn": "A hold stops suspect wafers; a future hold stops them at a specified step.",
-    "columns": [
+    "labels": [
       {
-        "titleZh": "Hold",
-        "titleEn": "Hold",
-        "items": [
-          {
-            "zh": "擋下可能受影響的晶圓",
-            "en": "Stops the wafers that may be affected"
-          },
-          {
-            "zh": "暫停生產",
-            "en": "Production pauses"
-          },
-          {
-            "zh": "問題機台也停用",
-            "en": "The problem tool is taken out of service"
-          }
-        ]
+        "key": "hold",
+        "zh": "Hold",
+        "en": "Hold"
       },
       {
-        "titleZh": "預約 Hold",
-        "titleEn": "Future hold",
-        "items": [
-          {
-            "zh": "晶圓先繼續生產",
-            "en": "Wafers keep moving"
-          },
-          {
-            "zh": "到指定步驟自動擋下",
-            "en": "Stopped automatically at a specified step"
-          },
-          {
-            "zh": "例如等下一站量測結果",
-            "en": "e.g. to wait for next-step measurements"
-          }
-        ]
+        "key": "future",
+        "zh": "預約 Hold（Future Hold）",
+        "en": "Future hold"
+      },
+      {
+        "key": "toolOff",
+        "zh": "有問題的機台也會被停用",
+        "en": "The problem tool is taken out of service"
+      },
+      {
+        "key": "noMore",
+        "zh": "不讓更多晶圓進去",
+        "en": "So that no more wafers go into it"
+      },
+      {
+        "key": "stopped",
+        "zh": "把可能受影響的晶圓擋下來",
+        "en": "The wafers that may be affected are stopped"
+      },
+      {
+        "key": "pause",
+        "zh": "暫停生產",
+        "en": "Production pauses",
+        "from": "figure"
+      },
+      {
+        "key": "reason",
+        "zh": "每一個 Hold 都要記錄原因和負責人",
+        "en": "Every hold must record its reason and an owner"
+      },
+      {
+        "key": "auth",
+        "zh": "只有被授權的人才能解除 Hold",
+        "en": "Only authorized people can release a hold"
+      },
+      {
+        "key": "keep",
+        "zh": "讓晶圓先繼續生產",
+        "en": "The wafers keep moving"
+      },
+      {
+        "key": "auto",
+        "zh": "等走到指定的步驟時再自動擋下",
+        "en": "They are automatically stopped when they reach a specified step"
+      },
+      {
+        "key": "eg",
+        "zh": "例如",
+        "en": "For example"
+      },
+      {
+        "key": "wait",
+        "zh": "等下一站的量測結果出來再判斷",
+        "en": "to wait for the measurement results at the next step before deciding"
       }
     ]
   },
@@ -11204,40 +11576,129 @@ export const SECTION_DIAGRAMS = [
     "headingZh": "OCAP 防堵、MRB／PAT、8D 與 PCN 條例總覽",
     "headingEn": "OCAP, MRB/PAT, 8D & PCN Governance Clauses",
     "foldTables": true,
-    "type": "branch",
     "foldSection": true,
-    "captionZh": "異常與變更管理四大條例各自的核心準則",
-    "captionEn": "The four excursion and change clauses and the core rule of each.",
-    "root": {
-      "zh": "異常與變更管理條例",
-      "en": "Excursion and change clauses",
-      "noteZh": "不放過受損晶圓、不擅改配方",
-      "noteEn": "No defect escapes, no unauthorized changes"
-    },
-    "branches": [
+    "type": "pictorial",
+    "draw": "eightD",
+    "sourcedNumbers": true,
+    "captionZh": "異常與變更管理四大條例各自的核心準則，加上 8D 八步",
+    "captionEn": "Four excursion and change clauses and the core rule of each, plus the 8D steps",
+    "sourceZh": "D1–D8 與 5W2H 是本段正文的步驟與方法名稱，不是量測值。",
+    "sourceEn": "D1–D8 and 5W2H are step and method names from this section, not measured values.",
+    "labels": [
       {
+        "key": "root",
+        "zh": "異常與變更管理條例",
+        "en": "Excursion and change clauses",
+        "from": "figure"
+      },
+      {
+        "key": "rootNote",
+        "zh": "不放過受損晶圓、不擅改配方",
+        "en": "No defect escapes, no unauthorized changes",
+        "from": "figure"
+      },
+      {
+        "key": "b0",
         "zh": "OCAP 與章魚防堵",
         "en": "OCAP and octopus containment",
-        "leafZh": "先止血防堵，再分析原因",
-        "leafEn": "Contain first, debug second"
+        "from": "figure"
       },
       {
+        "key": "l0",
+        "zh": "先止血防堵，再分析原因",
+        "en": "Contain first, debug second",
+        "from": "figure"
+      },
+      {
+        "key": "b1",
         "zh": "MRB 物料審查",
         "en": "Material review board (MRB)",
-        "leafZh": "四種處置；PAT 剔除離群晶粒",
-        "leafEn": "Four dispositions; PAT scraps outlier dies"
+        "from": "figure"
       },
       {
+        "key": "l1",
+        "zh": "四種處置；PAT 剔除離群晶粒",
+        "en": "Four dispositions; PAT scraps outlier dies",
+        "from": "figure"
+      },
+      {
+        "key": "b2",
         "zh": "八步法根因改善",
         "en": "Eight-discipline root cause",
-        "leafZh": "再教育不算對策，須自動互鎖",
-        "leafEn": "Retraining is not a fix; interlocks required"
+        "from": "figure"
       },
       {
+        "key": "l2",
+        "zh": "再教育不算對策，須自動互鎖",
+        "en": "Retraining is not a fix; interlocks required",
+        "from": "figure"
+      },
+      {
+        "key": "b3",
         "zh": "ECN／PCN 變更管理",
         "en": "ECN/PCN change control",
-        "leafZh": "重大變更須提前通知客戶",
-        "leafEn": "Major changes need advance customer notice"
+        "from": "figure"
+      },
+      {
+        "key": "l3",
+        "zh": "重大變更須提前通知客戶",
+        "en": "Major changes need advance customer notice",
+        "from": "figure"
+      },
+      {
+        "key": "D1",
+        "zh": "D1 組建跨部門小組",
+        "en": "D1 Team"
+      },
+      {
+        "key": "D2",
+        "zh": "D2 量化問題描述（5W2H）",
+        "en": "D2 5W2H Problem Statement"
+      },
+      {
+        "key": "D3",
+        "zh": "D3 暫時防堵措施（Containment）",
+        "en": "D3 Interim Containment"
+      },
+      {
+        "key": "D4",
+        "zh": "D4 真因分析",
+        "en": "D4 Root Cause Analysis"
+      },
+      {
+        "key": "D5",
+        "zh": "D5 永久矯正對策",
+        "en": "D5 Permanent Corrective Action"
+      },
+      {
+        "key": "D6",
+        "zh": "D6",
+        "en": "D6"
+      },
+      {
+        "key": "D7",
+        "zh": "D7 系統防再發",
+        "en": "D7 Systemic Prevention"
+      },
+      {
+        "key": "D8",
+        "zh": "D8",
+        "en": "D8"
+      },
+      {
+        "key": "D8b",
+        "zh": "水平展開（Yokoten）",
+        "en": "Yokoten"
+      },
+      {
+        "key": "warn1",
+        "zh": "嚴禁把「人為疏失、重新教育訓練」當成最終對策",
+        "en": "\"Operator retraining\" is never accepted as a root-cause fix"
+      },
+      {
+        "key": "warn2",
+        "zh": "建立硬體或軟體自動防呆互鎖",
+        "en": "Hardware or software interlocks"
       }
     ]
   },
@@ -11246,32 +11707,103 @@ export const SECTION_DIAGRAMS = [
     "headingZh": "定量物理定律與 3D 製程視窗",
     "headingEn": "Quantitative Governing Laws & 3D Process Windows",
     "foldTables": true,
-    "type": "branch",
     "foldSection": true,
-    "captionZh": "三大統計定律在異常防堵與零缺陷篩選中的作用",
-    "captionEn": "How three statistical laws drive containment and zero-defect screening.",
-    "root": {
-      "zh": "防堵與篩選統計定律",
-      "en": "Containment and screening laws"
-    },
-    "branches": [
+    "type": "pictorial",
+    "draw": "patScreens",
+    "captionZh": "三大統計定律在異常防堵與零缺陷篩選中的作用，展開兩種篩選",
+    "captionEn": "Three statistical laws for containment and zero-defect screening; two drawn out",
+    "labels": [
       {
+        "key": "root",
+        "zh": "防堵與篩選統計定律",
+        "en": "Containment and screening laws",
+        "from": "figure"
+      },
+      {
+        "key": "b0",
         "zh": "機台共性超幾何檢定",
         "en": "Hypergeometric tool commonality",
-        "leafZh": "鎖定問題腔體並追回姊妹批",
-        "leafEn": "Inhibits the chamber, recalls sister lots"
+        "from": "figure"
       },
       {
+        "key": "l0",
+        "zh": "鎖定問題腔體並追回姊妹批",
+        "en": "Inhibits the chamber, recalls sister lots",
+        "from": "figure"
+      },
+      {
+        "key": "b1",
         "zh": "穩健四分位距動態 PAT",
         "en": "Robust IQR dynamic PAT",
-        "leafZh": "剔除偏離同晶圓群體的晶粒",
-        "leafEn": "Scraps dies abnormal within their own wafer"
+        "from": "figure"
       },
       {
+        "key": "l1",
+        "zh": "剔除偏離同晶圓群體的晶粒",
+        "en": "Scraps dies abnormal within their own wafer",
+        "from": "figure"
+      },
+      {
+        "key": "b2",
         "zh": "空間鄰近篩選與 SBL",
         "en": "Spatial neighborhood PAT and SBL",
-        "leafZh": "攔截叢集缺陷旁的半傷晶粒",
-        "leafEn": "Catches walking-wounded dies near clusters"
+        "from": "figure"
+      },
+      {
+        "key": "l2",
+        "zh": "攔截叢集缺陷旁的半傷晶粒",
+        "en": "Catches walking-wounded dies near clusters",
+        "from": "figure"
+      },
+      {
+        "key": "leak",
+        "zh": "靜態漏電",
+        "en": "Leakage"
+      },
+      {
+        "key": "median",
+        "zh": "中位數",
+        "en": "Median"
+      },
+      {
+        "key": "cage",
+        "zh": "動態鐵籠",
+        "en": "Screening bounds"
+      },
+      {
+        "key": "usl",
+        "zh": "產品規格上限（USL）",
+        "en": "Static datasheet specs"
+      },
+      {
+        "key": "maverick",
+        "zh": "離群怪胎晶粒（Maverick Die）",
+        "en": "Maverick dies"
+      },
+      {
+        "key": "deviate",
+        "zh": "明顯偏離同晶圓鄰居群體",
+        "en": "Abnormal relative to their own wafer distribution"
+      },
+      {
+        "key": "within",
+        "zh": "尚未超過產品規格上限",
+        "en": "within static datasheet specs"
+      },
+      {
+        "key": "screen",
+        "zh": "強制剔除",
+        "en": "Screens out"
+      },
+      {
+        "key": "cluster",
+        "zh": "叢集缺陷",
+        "en": "Defect clusters"
+      },
+      {
+        "key": "walking",
+        "zh": "半傷隱性壞品（Walking Wounded）",
+        "en": "Walking wounded"
       }
     ]
   },
@@ -11417,6 +11949,77 @@ export const SECTION_DIAGRAMS = [
         "key": "confirm",
         "zh": "並確認同樣的問題不會再發生",
         "en": "and it must be confirmed that the same problem will not happen again"
+      }
+    ]
+  },
+  {
+    "chapterId": "ch18",
+    "headingZh": "OCAP：事先寫好的應變步驟",
+    "headingEn": "OCAP: response steps written in advance",
+    "type": "pictorial",
+    "draw": "ocapCard",
+    "captionZh": "事先寫好的 OCAP：要檢查什麼、要做什麼、要通知誰",
+    "captionEn": "An OCAP written in advance: what to check, what to do and whom to notify",
+    "labels": [
+      {
+        "key": "night",
+        "zh": "半夜",
+        "en": "In the middle of the night"
+      },
+      {
+        "key": "shift1",
+        "zh": "當班的人不一定是",
+        "en": "The person on shift is not necessarily the engineer"
+      },
+      {
+        "key": "shift2",
+        "zh": "最熟悉這個製程的工程師",
+        "en": "who knows the process best"
+      },
+      {
+        "key": "ocap",
+        "zh": "OCAP",
+        "en": "OCAP"
+      },
+      {
+        "key": "advance",
+        "zh": "事先寫好處理步驟",
+        "en": "Predefined response steps"
+      },
+      {
+        "key": "check",
+        "zh": "要檢查什麼",
+        "en": "What to check"
+      },
+      {
+        "key": "todo",
+        "zh": "要做什麼",
+        "en": "What to do"
+      },
+      {
+        "key": "notify",
+        "zh": "要通知誰",
+        "en": "Whom to notify"
+      },
+      {
+        "key": "example",
+        "zh": "先停機台、量控片",
+        "en": "Stop the tool and run a monitor wafer first"
+      },
+      {
+        "key": "notReport",
+        "zh": "不是事後的檢討報告",
+        "en": "Not a report written afterward"
+      },
+      {
+        "key": "moment",
+        "zh": "異常發生「當下」的行動指引",
+        "en": "The action guide for the moment the abnormality happens"
+      },
+      {
+        "key": "same",
+        "zh": "不同班別、不同的人都用同樣的方式處理",
+        "en": "Every shift and every person responds in the same way"
       }
     ]
   },
