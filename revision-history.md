@@ -62,7 +62,22 @@
   | 報讀器讀到的表格語意 | Edge 無障礙樹 | 數量相同，另多 5 個 rowgroup；明確角色用來保住 Safari 的表格語意 | 經驗證的等價替換（Safari 未實測） |
   | 英文章首「second column」的指涉 | 表格第二欄 | 表頭說明列仍依序列出欄名 | 已批准變更（待決事項第 3 項選 (a)） |
 
-- 提交／發布狀態：在本機分支 `feat/k2-jargon-compact`，還沒推送，也還沒部署。
+- 提交／發布狀態：已推送、已部署。
+  - 2026-11-07 Sam 回覆「合併並部署」。
+  - 提交 `c600726`，main 由 `1fb41f3` 快轉。
+  - 快轉後在 main 上重跑 `npm run verify`（106 項通過）與 `scripts/build-site.mjs`，都通過。
+  - GitHub Pages run `42371096982` 的 `verify` 與 `deploy` 都成功。
+- 發布後線上驗證（2026-11-07）：
+  - 本次改到的 5 個網站檔案，與提交內容逐位元組相同，加不加快取參數都一樣：
+    - `index.html`
+    - `app.js`
+    - `section-diagrams.js`
+    - `data/section-diagrams.js`
+    - `design-system.css`
+  - 頁尾為 2.35.0；`revision-history.md`、`package.json`、`scripts/` 回應 404。
+  - 頁面檢查直接跑線上網站：三個附錄 × 中英 × 1440／390，共 12 頁，與 main `1fb41f3` 快照比較。
+    - 問題 0。
+    - 變化 2 項：附錄 B 手機頁高中文 +1.6%、英文 −5.4%，與本機掃描相同。
 
 ## 2.34.2 · 2026-11-07 · ch16 晶圓圖載入前先預留版面
 
