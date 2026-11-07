@@ -494,7 +494,7 @@ export const TEXTS = {
     ch14_leak_power: '靜態漏電功耗 Leakage Power (P_leak):',
     ch14_power_density: '功率密度模型估算：',
     ch14_scaling_status: '教學模型條件：',
-    ch14_pitch_desc: '「3nm / 2nm」等節點名稱不等於單一物理尺寸。本圖保留 N3 CPP 約 45nm、M1P 約 22nm 等原教學例值，未核實為晶圓廠規格。右側 Lg 約 12nm、Tox 約 1.5nm 為獨立尺寸示例，不隨所選節點變動；不可當成各節點量測值。',
+    ch14_pitch_desc: '「3nm / 2nm」等節點名稱不等於單一物理尺寸。本圖保留 N3 CPP 約 45nm、M1P 約 23nm 等原教學例值，未核實為晶圓廠規格。右側 Lg 約 12nm、Tox 約 1.5nm 為獨立尺寸示例，不隨所選節點變動；不可當成各節點量測值。',
     ch14_dennard_desc: '1974 年 Dennard 縮放的理想假設下，尺寸縮小 30% 且電壓同比例下降時，功耗密度保持不變。本圖以簡化教學模型示意縮放受限；原教材的 1.5nm 氧化層、65nm 節點及約 0.7V 僅作參考，不是普適界線。曲線、功率密度與頻率未經實測校準，不作散熱安全或製程效能預測。',
     ch14_density_desc: '本圖以「軌道數 × M1P」示例計算標準單元高度，保留 9-Track、6-Track、5-Track 與 290+ MTr/mm² 等原教學例值。節點對應、N2/A16 背面供電示意及 +15% 頻率／-20% 面積的基準與條件未核實，不是晶圓廠規格或效能保證。',
 
@@ -1044,7 +1044,7 @@ export const TEXTS = {
     ch14_leak_power: 'Static Leakage Power (P_leak):',
     ch14_power_density: 'Power-density model estimate:',
     ch14_scaling_status: 'Teaching-model condition:',
-    ch14_pitch_desc: 'Node names such as "3nm / 2nm" do not denote a single physical dimension. Original teaching values, including N3 CPP ~45nm and M1P ~22nm, are retained but are not verified foundry specifications. The right-hand Lg ~12nm and Tox ~1.5nm are separate dimension examples that do not change with the selected node, not measurements for every node.',
+    ch14_pitch_desc: 'Node names such as "3nm / 2nm" do not denote a single physical dimension. Original teaching values, including N3 CPP ~45nm and M1P ~23nm, are retained but are not verified foundry specifications. The right-hand Lg ~12nm and Tox ~1.5nm are separate dimension examples that do not change with the selected node, not measurements for every node.',
     ch14_dennard_desc: 'Under the ideal assumptions of Dennard scaling (1974), a 30% dimensional reduction with proportional voltage scaling keeps power density constant. This simplified teaching model illustrates scaling limits; the original 1.5nm oxide, 65nm node and ~0.7V references are not universal boundaries. Curves, power density and frequency are uncalibrated, not predictions of cooling safety or process performance.',
     ch14_density_desc: 'This diagram uses "track count × M1P" to illustrate cell-height calculations, retaining the original 9-Track, 6-Track, 5-Track and 290+ MTr/mm² teaching values. Node mappings, the N2/A16 backside-power illustration, and the baseline and conditions for +15% frequency / -20% area are unverified, not foundry specifications or performance guarantees.',
 

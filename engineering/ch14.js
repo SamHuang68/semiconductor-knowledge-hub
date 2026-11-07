@@ -18,8 +18,8 @@ export function renderProcessScalingObject(container, lang = 'zh') {
       const nodes = {
         n28: { name: '28nm Planar (2011)', cpp: 115, mp: 90, finp: 60, height: 900, dens: '15 MTr/mm²' },
         n7: { name: '7nm FinFET (2018)', cpp: 57, mp: 40, finp: 27, height: 240, dens: '95 MTr/mm²' },
-        n3: { name: '3nm FinFET/GAA (2022)', cpp: 45, mp: 22, finp: 21, height: 135, dens: '290 MTr/mm²' },
-        a16: { name: 'A16 1.6nm GAA + BSPDN (2026)', cpp: 40, mp: 18, finp: 18, height: 90, dens: '450 MTr/mm²' }
+        n3: { name: '3nm FinFET/GAA (2022)', cpp: 45, mp: 23, finp: 21, height: 138, dens: '290 MTr/mm²' },
+        a16: { name: 'A16 1.6nm GAA + BSPDN (2026)', cpp: 48, mp: 22, finp: 18, height: 90, dens: '~350 MTr/mm²' }
       };
       const cur = nodes[activeNode];
 

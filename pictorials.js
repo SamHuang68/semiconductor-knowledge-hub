@@ -1895,7 +1895,7 @@ function nodeShrink(spec, en, kit) {
     + `<circle cx="${(616 - hw).toFixed(1)}" cy="${y + 4}" r="3.5" fill="#ffffff" stroke="${TEAL}" stroke-width="1.4"/>` + t(624, y + 8, L('halfNode'), 10.5, INK_2, 'end')
     + arrow(26, ya, 604, ya, INK_2, 1.2);
   [180, 130, 90, 65, 45, 32, 22, 14, 10, 7, 5, 3].forEach(v => { svg += `<circle cx="${X(v).toFixed(1)}" cy="${ya}" r="4.5" fill="${TEAL}"/>` + t(X(v).toFixed(1), ya - 9, L(`n${v}`), 10.5, INK, 'middle', 600); });
-  [40, 28, 20, 16].forEach(v => { svg += `<circle cx="${X(v).toFixed(1)}" cy="${ya}" r="3.5" fill="#ffffff" stroke="${TEAL}" stroke-width="1.4"/>` + t(X(v).toFixed(1), ya + 19, L(`h${v}`), 10, MUTED); });
+  [40, 28, 20, 12].forEach(v => { svg += `<circle cx="${X(v).toFixed(1)}" cy="${ya}" r="3.5" fill="#ffffff" stroke="${TEAL}" stroke-width="1.4"/>` + t(X(v).toFixed(1), ya + 19, L(`h${v}`), 10, MUTED); });
   svg += t(X(3) + 10, ya - 9, L('nm'), 10.5, INK, 'start', 600);
   y = ya + 40;
   svg += `<path d="M16 ${y - 8} H624" stroke="${LINE}"/>`;
@@ -3339,13 +3339,13 @@ function cppScale(spec, en, kit) {
   // 3nm 的位置：虛線穿過兩區色條直到軸上，下方寫這是商業命名
   svg += zones.map(([a, b]) => `<path d="M${X(3)} ${a} V${b}" stroke="${AMBER}" stroke-width="1.4" stroke-dasharray="4 3"/>`).join('') + `<path d="M${X(3)} ${zones[1][1]} V${ay}" stroke="${AMBER}" stroke-width="1.4" stroke-dasharray="4 3"/>`
     + `<path d="M${X(3)} ${ay + 1} l-4 7 h8 z" fill="${AMBER}"/>` + t(X(3) + 8, ay + 30, `${L('g3')}${sep}${L('myth')}`, 10, AMBER, 'start', 700);
-  // 軌道高度：單元高度等於軌道數乘金屬節距
+  // 軌道高度：單元高度等於軌道數乘金屬節距；軌道數依 2.36.0 正文校勘 I11-1 分兩行（由 9T、7.5T/6T 縮減至 6T、5T）
   const yt = ay + 44;
   svg += minis.tracks(16, yt) + t(72, yt + 12, L('track'), 11.5, INK, 'start', 800) + t(624, yt + 12, L('trackNote'), 10, INK_2, 'end', 600)
-    + t(72, yt + 27, L('trackItem'), 10, INK_2, 'start') + t(72, yt + 41, L('trackT'), 10, INK_2, 'start');
-  // 下段：DTCO 與 STCO 兩張卡
-  const yd = yt + 56;
-  svg += `<path d="M16 ${yd} H624" stroke="${LINE}"/>` + t(16, yd + 20, L('dtcoStco'), 12, INK, 'start', 800);
+    + t(72, yt + 27, L('trackItem'), 10, INK_2, 'start') + t(72, yt + 41, L('trackT'), 10, INK_2, 'start') + t(72, yt + 55, L('trackT2'), 10, INK_2, 'start');
+  // 下段：DTCO 與 STCO 兩張卡。小標題由兩張卡的標籤組成（2.36.0 軌道數多一行標籤後，原本的 dtcoStco 標籤併入，畫面文字不變）
+  const yd = yt + 70;
+  svg += `<path d="M16 ${yd} H624" stroke="${LINE}"/>` + t(16, yd + 20, `${L('dtco')}${en ? '/' : '／'}${L('stco')}`, 12, INK, 'start', 800);
   const cy = yd + 30, cw = 300;
   const cardArt = [
     // DTCO：電晶體下方的埋入電源軌（紅）
@@ -5715,7 +5715,7 @@ function nvmCells(spec, en, kit) {
   return { svg, height: bottom + 10 };
 }
 
-// ch13 定量物理定律：上半照搬分支圖（根、三條分支與結論，含「QLC 需 CBA 與 LDPC」，正文疑點另列）；
+// ch13 定量物理定律：上半照搬分支圖（根、三條分支與結論，含「QLC 需高速周邊與 LDPC」：2.36.0 正文校勘 I7-1 拿掉原本的 CBA）；
 // 下半兩張數據卡：TLC 與 QLC 在同寬的約 5 V 視窗內切出 8 與 16 個互不重疊的窄鐘形；
 // HBM3E 與 HBM4 的介面位元數與頻寬，匯流排線數只是示意，不放只在 TeX 裡的 9.6 與 1.2（技術審查修正）
 function memoryLaws(spec, en, kit) {
@@ -7346,25 +7346,25 @@ function lotStates(spec, en, kit) {
 }
 
 // 附錄 B 現場異常告警：上半照搬分支方框圖（根、四支、四個處置），第四支「CP 外圍環帶死粒」展開到下方：
-// 晶圓盒裡第 3、7、11 片是紅的 → 三片都接到 4 腔體製程機台的同一個腔體 → 晶圓圖外圈死粒（Edge Ring）。
-// 技術審查修正：只畫到第 12 片（中英正文都有的三片），其他片不連線、不標號；腔體不標字母；圖上不放「100%」
+// 晶圓盒裡第 3、7、11、15 片是紅的 → 四片都接到 4 腔體製程機台的同一個腔體 → 晶圓圖外圈死粒（Edge Ring）。
+// 技術審查修正：其他片不連線、不標號（2.36.0 正文校勘 K11-1 中文補上第 15 片後，晶圓盒改畫 16 槽、四片紅）；腔體不標字母；圖上不放「100%」
 function edgeRingCase(spec, en, kit) {
   const { L, t, para, arrow, mark } = tools(spec, en, kit);
   const tree = treeRows(L, para, arrow, mark, 12, 'root', [['b0', 'l0'], ['b1', 'l1'], ['b2', 'l2'], ['b3', 'l3']], [3]);
   const py = tree.bottom + 22;
   let svg = tree.svg, band = mark(32, py + 18, 'A') + para(48, py + 22, L('b3'), 260, 11, AMBER, 'start', 800).svg;
-  // 晶圓盒：12 片，第 3、7、11 片紅
-  const top = py + 74, cx = 92, gap = 9.5, red = [9, 5, 1];
-  band += t(cx, top - 30, L('slots'), 10.5, RED, 'middle', 700) + `<path d="M${cx - 34} ${top - 22} V${top + 12 * gap} M${cx + 34} ${top - 22} V${top + 12 * gap}" stroke="${INK_2}" stroke-width="1.6"/>`;
-  for (let k = 0; k < 12; k++) {
+  // 晶圓盒：16 槽（槽數只是示意），由下往上數第 3、7、11、15 片紅（2.36.0 正文校勘 K11-1 補上第 15 片）
+  const top = py + 74, cx = 92, slotsN = 16, gap = 8, red = [13, 9, 5, 1];
+  band += t(cx, top - 30, L('slots'), 10.5, RED, 'middle', 700) + `<path d="M${cx - 34} ${top - 22} V${top + slotsN * gap} M${cx + 34} ${top - 22} V${top + slotsN * gap}" stroke="${INK_2}" stroke-width="1.6"/>`;
+  for (let k = 0; k < slotsN; k++) {
     const y = top + k * gap, on = red.includes(k);
     band += `<path d="M${cx - 34} ${y} h4 M${cx + 34} ${y} h-4" stroke="${INK_2}"/><ellipse cx="${cx}" cy="${y}" rx="27" ry="3.4" fill="${on ? BAD : '#e2e8f0'}" stroke="${on ? BAD_S : MUTED}"/>`;
   }
-  const yEnd = top + 12 * gap;
+  const yEnd = top + slotsN * gap;
   band += [0, 1, 2].map(k => `<circle cx="${cx}" cy="${top - 18 + k * 5}" r="1.4" fill="${MUTED}"/>`).join('');
-  // 括號跨過三片紅晶圓
-  const y3 = top + 9 * gap, y11 = top + 1 * gap;
-  band += `<path d="M${cx - 40} ${y3} h-6 V${y11} h6" fill="none" stroke="${RED}" stroke-width="1.3"/>`;
+  // 括號跨過四片紅晶圓
+  const y3 = top + 13 * gap, y15 = top + 1 * gap;
+  band += `<path d="M${cx - 40} ${y3} h-6 V${y15} h6" fill="none" stroke="${RED}" stroke-width="1.3"/>`;
   const ev = para(cx, yEnd + 22, L('every'), 132, 10.5, RED, 'middle', 700);
   band += ev.svg;
   // 4 腔體製程機台：中央傳送腔，四周四個腔體，下方那一個是紅的

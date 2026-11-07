@@ -243,12 +243,12 @@ export const SECTION_DIAGRAMS = [
         "noteEn": "Fewer gross dies, more edge loss"
       },
       {
-        "zh": "良率超線性崩跌",
-        "en": "Yield decays super-linearly"
+        "zh": "良率下降",
+        "en": "Yield drops"
       },
       {
-        "zh": "好晶粒成本暴增",
-        "en": "Good-die cost escalates"
+        "zh": "好晶粒成本超線性上升",
+        "en": "Good-die cost rises super-linearly"
       },
       {
         "zh": "拆解為高良率小晶片",
@@ -2491,8 +2491,8 @@ export const SECTION_DIAGRAMS = [
       },
       {
         "key": "flat",
-        "zh": "晶棒頭尾電阻率均勻",
-        "en": "Flat axial resistivity"
+        "zh": "晶棒頭尾電阻率相對均勻",
+        "en": "Relatively flat axial resistivity"
       },
       {
         "key": "rich",
@@ -5075,7 +5075,7 @@ export const SECTION_DIAGRAMS = [
       {
         "key": "f3",
         "zh": "奈秒雷射退火",
-        "en": "Nanosecond laser anneal (LSA)",
+        "en": "Nanosecond laser anneal",
         "from": "figure"
       },
       {
@@ -8546,8 +8546,8 @@ export const SECTION_DIAGRAMS = [
       },
       {
         "key": "l1",
-        "zh": "QLC 需 CBA 與 LDPC",
-        "en": "QLC needs CBA and LDPC",
+        "zh": "QLC 需高速周邊與 LDPC",
+        "en": "QLC needs fast periphery and LDPC",
         "from": "figure"
       },
       {
@@ -8619,7 +8619,7 @@ export const SECTION_DIAGRAMS = [
       },
       {
         "key": "dbl",
-        "zh": "翻倍",
+        "zh": "加寬一倍",
         "en": "Doubles"
       },
       {
@@ -8838,9 +8838,9 @@ export const SECTION_DIAGRAMS = [
         "en": "20"
       },
       {
-        "key": "h16",
-        "zh": "16",
-        "en": "16"
+        "key": "h12",
+        "zh": "12",
+        "en": "12"
       }
     ]
   },
@@ -9125,19 +9125,19 @@ export const SECTION_DIAGRAMS = [
       },
       {
         "key": "trackT",
-        "zh": "軌道數由 9T / 7.5T 縮減至 6T / 5T",
-        "en": "Cell height scales from 9T / 7.5T down to 6T / 5T"
+        "zh": "軌道數由 9T（28nm 級）、7.5T / 6T（7nm）",
+        "en": "Cell height scales from 9T (28nm-class) and 7.5T / 6T (7nm)"
+      },
+      {
+        "key": "trackT2",
+        "zh": "縮減至約 6T（3nm）與 5T（2nm 級搭配背面供電）",
+        "en": "down to ~6T (3nm) and 5T (2nm-class with backside power)"
       },
       {
         "key": "trackNote",
         "zh": "減少軌道數仍可縮小邏輯面積",
         "en": "Fewer tracks still shrink logic area",
         "from": "figure"
-      },
-      {
-        "key": "dtcoStco",
-        "zh": "DTCO／STCO",
-        "en": "DTCO/STCO"
       },
       {
         "key": "dtco",
@@ -9272,8 +9272,8 @@ export const SECTION_DIAGRAMS = [
       },
       {
         "key": "none",
-        "zh": "找不到任何一個結構是 3 奈米",
-        "en": "You will not find any structure that is 3 nm"
+        "zh": "不對應晶片上任何一個特定結構的尺寸",
+        "en": "Does not correspond to the size of any particular structure on the chip"
       },
       {
         "key": "name",
@@ -11672,8 +11672,8 @@ export const SECTION_DIAGRAMS = [
       },
       {
         "key": "D6",
-        "zh": "D6",
-        "en": "D6"
+        "zh": "D6 實施與驗證對策",
+        "en": "D6 Implement & Validate"
       },
       {
         "key": "D7",
@@ -14141,7 +14141,7 @@ export const SECTION_DIAGRAMS = [
       {
         "key": "bridge",
         "zh": "中央錫球被壓扁橋接",
-        "en": "Crushes center bumps into shorts"
+        "en": "Crushes center solder balls into shorts"
       },
       {
         "key": "nwo",
@@ -14530,7 +14530,7 @@ export const SECTION_DIAGRAMS = [
     },
     "branches": [
       {
-        "zh": "高溫工作壽命與預燒",
+        "zh": "高溫操作壽命與預燒",
         "en": "High-temp operating life, burn-in",
         "leafZh": "逼出早夭期閘極氧化層針孔",
         "leafEn": "Screens infant-mortality gate oxide pinholes",
@@ -15283,8 +15283,8 @@ export const SECTION_DIAGRAMS = [
     "sourcedNumbers": true,
     "captionZh": "晶圓廠的規模大到只能靠系統指揮和記錄",
     "captionEn": "A fab is too large to keep in anyone's head, so systems direct and record it",
-    "sourceZh": "「24 小時」出自本段第一句；數千、數百、上千照正文的概數寫。",
-    "sourceEn": "The 24 hours comes from the opening paragraph of this section; thousands, hundreds and a thousand are rough counts in the text.",
+    "sourceZh": "「24 小時」出自本段第一句；數千、數百到上千、上千照正文的概數寫。",
+    "sourceEn": "The 24 hours comes from the opening paragraph of this section; thousands, hundreds to more than a thousand, and more than a thousand are rough counts in the text.",
     "labels": [
       {
         "key": "lots",
@@ -15298,8 +15298,8 @@ export const SECTION_DIAGRAMS = [
       },
       {
         "key": "steps",
-        "zh": "數百個步驟",
-        "en": "Hundreds of steps"
+        "zh": "數百到上千個步驟",
+        "en": "Hundreds to more than a thousand steps"
       },
       {
         "key": "stepsD",
@@ -16042,8 +16042,8 @@ export const SECTION_DIAGRAMS = [
     "sourcedNumbers": true,
     "captionZh": "現場緊急告警與當班的立即處置，並展開外圍環帶的推論",
     "captionEn": "Floor emergency callouts, the shift's immediate action and the edge-ring case",
-    "sourceZh": "第 3、7、11 片、每隔 4 片與 4 腔體出自本段表格最後一列；圖只畫中英正文都有的三片。",
-    "sourceEn": "Slots 3, 7 and 11, the every-4th-wafer period and the 4-chamber tool come from the last table row; only slots in both languages are drawn.",
+    "sourceZh": "第 3、7、11、15 片、每 4 片與 4 腔體出自本段表格最後一列；晶圓盒的槽數只是示意。",
+    "sourceEn": "Slots 3, 7, 11 and 15, the every-4th-wafer period and the 4-chamber tool come from the last table row; the number of slots in the carrier is schematic.",
     "labels": [
       {
         "key": "root",
@@ -16101,12 +16101,12 @@ export const SECTION_DIAGRAMS = [
       },
       {
         "key": "slots",
-        "zh": "第 3、7、11 片",
-        "en": "Slots 3, 7, 11"
+        "zh": "第 3、7、11、15 片",
+        "en": "Slots 3, 7, 11, 15"
       },
       {
         "key": "every",
-        "zh": "每隔 4 片出現一次",
+        "zh": "每 4 片出現一次",
         "en": "Every-4th-wafer periodicity"
       },
       {
