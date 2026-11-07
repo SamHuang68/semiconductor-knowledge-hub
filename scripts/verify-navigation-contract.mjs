@@ -72,7 +72,8 @@ const chapterDigest = createHash('sha256').update(CHAPTERS_DATA.map(c => JSON.st
 // 2.15.1：Sam 於 2026-11-03 核可正文校勘 13 項：[!NOTE] 殘留中英各 6 處（名詞卡拆回獨立名詞卡框）、ch12 與 ch20 空標題移回內容、5 處錯字（ch05、ch07、ch08、ch20 兩處、ch22），基準由 2c5879f8… 更新。
 // 2.23.0：Sam 於 2026-11-04 核可正文數值校勘 3 處：ch14 CPP 與最小金屬節距兩列、ch19 懸臂式探針卡節距，中英同步；CPP 列另補一句「3nm 之後 CPP 幾乎不再縮小」，基準由 52fcef2e… 更新。
 // 2.23.1：Sam 於 2026-11-04 核可 ch14「定量物理定律與 3D 製程視窗」例題的 M1P 由 21 nm 改為 23 nm，單元高度隨之由 126 nm 改為 138 nm（中英同步），基準由 fe25d3aa… 更新。
-assert.equal(chapterDigest, '223b4cc9a01b51b0cb1dd5f67a6dc2dab51fee46bb4c6f005af5e403b2a2424f', '章節正文必須與 2.23.1 來源校勘基準一致');
+// 2.34.2：Sam 於 2026-11-07 核可 ch16 正文晶圓圖 `<img>` 補上 SVG 實際寬高 `width="724" height="488"`（中英各一處，只加屬性，文字未動；移除這兩個屬性後雜湊等於 223b4cc9…），讓圖片下載前先預留版面，基準由 223b4cc9… 更新。
+assert.equal(chapterDigest, '500baef5141ba05d65d1d3576d0b75ece14a98be064b8144504f9efa63515c14', '章節正文必須與 2.34.2 核可基準一致');
 const SEARCH_INDEX = await loadSearchIndex();
 const searchDigest = createHash('sha256').update(SEARCH_INDEX.map(e => JSON.stringify([e.chId, e.keywords, e.title, e.titleEn])).join('\n')).digest('hex');
 assert.equal(searchDigest, '4d3f6b417bb57306634dbf3438d2884a7a1db70c3dbf58c146a9b0f9ba43f07e', '檢索全文必須與拆檔前一致');

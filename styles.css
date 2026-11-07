@@ -1122,7 +1122,10 @@ hr.semi-hr::after {
 }
 
 .semi-img {
-  max-width: 100%;
+  /* 正文圖片的 width／height 屬性等於圖檔實際尺寸，只用來在下載前預留版面。
+     改用內容框計算，載完後的大小才會和沒寫屬性時相同；最大寬度扣掉左右各 1px 框線 */
+  box-sizing: content-box;
+  max-width: calc(100% - 2px);
   height: auto;
   border-radius: var(--radius-md);
   border: 1px solid var(--border-subtle);

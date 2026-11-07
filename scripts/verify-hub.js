@@ -83,10 +83,22 @@ async function verify() {
         if (alert) fail(`含未轉換的提示語法 ${alert[0]}（位置 ${alert.index}）`);
         // 空標題：h2 後面直接接分隔線或下一個 h2，代表內容被放在上一段（2.15.1 修正 ch12、ch20）
         for (const m of html.matchAll(/<h2 id="([^"]*)"[^>]*>(?:(?!<\/h2>)[\s\S])*<\/h2>\s*(?=<hr\b|<h2\b)/g)) fail(`h2#${m[1]} 底下沒有內容`);
+        // 正文圖片要寫 width／height，下載前才會預留版面；本機 SVG 的數值須等於檔案根元素的寬高（2.34.2 修正 ch16）
+        for (const m of html.matchAll(/<img\b[^>]*>/g)) {
+          const attr = (tag, name) => (tag.match(new RegExp(`\\s${name}="([^"]*)"`)) || [])[1];
+          const src = attr(m[0], 'src'), w = attr(m[0], 'width'), h = attr(m[0], 'height');
+          if (!w || !h) { fail(`圖片 ${src} 缺少 width／height`); continue; }
+          const file = src && /\.svg$/.test(src) ? path.join(ROOT_DIR, src) : null;
+          if (file && fs.existsSync(file)) {
+            const svg = fs.readFileSync(file, 'utf8').match(/<svg\b[^>]*>/)?.[0] || '';
+            const sw = attr(svg, 'width'), sh = attr(svg, 'height');
+            if (sw !== w || sh !== h) fail(`圖片 ${src} 的 width／height（${w}×${h}）與 SVG 實際尺寸（${sw}×${sh}）不符`);
+          }
+        }
       }
     });
     errors += structureIssues;
-    if (!structureIssues) console.log('[PASS] 28 章中英正文結構完整（無表格內標題、無錨點殘留、分隔線獨立成行、TeX 反斜線完整）');
+    if (!structureIssues) console.log('[PASS] 28 章中英正文結構完整（無表格內標題、無錨點殘留、分隔線獨立成行、TeX 反斜線完整、正文圖片有寬高）');
 
     const { FAB_FLOW_NODES } = await import(`file://${ROOT_DIR}/data/fab-flow.js`);
     console.log(`[PASS] FAB_FLOW_NODES 成功載入，共有 ${FAB_FLOW_NODES.length} 個節點`);
