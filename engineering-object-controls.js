@@ -899,7 +899,7 @@ export function renderEngineeringCard(container, markup, labels) {
         </div>
 
         <div class="photo-img-wrap ${state.showHotspots ? 'has-hotspots' : ''}" title="${lang === 'en' ? 'Double click to open Lightbox' : '點擊在模式間切換，雙擊開啟微觀燈箱'}">
-          <img src="${escapeHtml(photo.src)}" alt="${escapeHtml(title)}" class="eng-real-photo">
+          <img src="${escapeHtml(photo.src)}" alt="${escapeHtml(title)}" class="eng-real-photo" width="${photo.width}" height="${photo.height}">
           ${hotspots.length ? `
             <div class="photo-hotspots-layer" role="region" aria-label="Microscopic Hotspots">
               ${hotspots.map((h, idx) => `

@@ -7,6 +7,8 @@ export const REAL_PHOTOS_DATA = {
   "ch00": {
     "id": "ch00",
     "src": "assets/photos/ch00-wafer-300mm.jpg",
+    "width": 1280,
+    "height": 1180,
     "categoryZh": "圖樣晶圓參考照片",
     "categoryEn": "Patterned Wafer Reference",
     "titleZh": "重複矩形圖樣與彩色反光",
@@ -66,6 +68,8 @@ export const REAL_PHOTOS_DATA = {
   "ch01": {
     "id": "ch01",
     "src": "assets/photos/ch01-cleanroom-amhs.jpg",
+    "width": 1280,
+    "height": 992,
     "categoryZh": "作業環境參考照片",
     "categoryEn": "Work-Area Reference Photo",
     "titleZh": "黃光房間中的人員、工作檯與設備",
@@ -125,6 +129,8 @@ export const REAL_PHOTOS_DATA = {
   "ch02": {
     "id": "ch02",
     "src": "assets/photos/ch02-mosfet-sem.jpg",
+    "width": 1280,
+    "height": 1280,
     "categoryZh": "平面電路影像",
     "categoryEn": "Plan-View Circuit Image",
     "titleZh": "帶有 50 µm 尺標的重複電路圖樣",
@@ -184,6 +190,8 @@ export const REAL_PHOTOS_DATA = {
   "ch03": {
     "id": "ch03",
     "src": "assets/photos/ch03-silicon-boule.jpg",
+    "width": 1280,
+    "height": 960,
     "categoryZh": "展示品參考照片",
     "categoryEn": "Exhibit Reference Photo",
     "titleZh": "展示櫃中的反光晶棒與相鄰樣品",
@@ -243,6 +251,8 @@ export const REAL_PHOTOS_DATA = {
   "ch04": {
     "id": "ch04",
     "src": "assets/photos/ch04-stepper-scanner.jpg",
+    "width": 1280,
+    "height": 856,
     "categoryZh": "微影對準曝光設備",
     "categoryEn": "Lithography alignment equipment",
     "titleZh": "LAAS-CNRS 的 EVG-620 與 MA-150",
@@ -316,6 +326,8 @@ export const REAL_PHOTOS_DATA = {
   "ch05": {
     "id": "ch05",
     "src": "assets/photos/ch05-pecvd-ald.jpg",
+    "width": 856,
+    "height": 1280,
     "categoryZh": "薄膜機台實景",
     "categoryEn": "Thin Film Deposition Tool",
     "titleZh": "電漿增強型化學氣相沉積機台 (STS Multiplex PECVD)",
@@ -372,6 +384,8 @@ export const REAL_PHOTOS_DATA = {
   "ch06": {
     "id": "ch06",
     "src": "assets/photos/ch06-rie-plasma-etch.jpg",
+    "width": 856,
+    "height": 1280,
     "categoryZh": "蝕刻機台實景",
     "categoryEn": "Plasma Etch Tool",
     "titleZh": "反應離子電漿乾式蝕刻系統 (Reactive-Ion Etching RIE)",
@@ -428,6 +442,8 @@ export const REAL_PHOTOS_DATA = {
   "ch07": {
     "id": "ch07",
     "src": "assets/photos/ch07-ion-implanter.jpg",
+    "width": 856,
+    "height": 1280,
     "categoryZh": "離子佈植機",
     "categoryEn": "Ion Implantation Equipment",
     "titleZh": "LAAS-CNRS 的離子佈植機前端",
@@ -487,6 +503,8 @@ export const REAL_PHOTOS_DATA = {
   "ch08": {
     "id": "ch08",
     "src": "assets/photos/ch08-cmp-conditioner.jpg",
+    "width": 1024,
+    "height": 768,
     "categoryZh": "CMP 實體配件",
     "categoryEn": "CMP Hardware Component",
     "titleZh": "CMP 研磨墊鑽石修整盤實物 (Pad Diamond Conditioner)",
@@ -543,6 +561,8 @@ export const REAL_PHOTOS_DATA = {
   "ch09": {
     "id": "ch09",
     "src": "assets/photos/ch09-wet-bench-clean.jpg",
+    "width": 1280,
+    "height": 856,
     "categoryZh": "晶圓清洗機台",
     "categoryEn": "Wafer Wet Bench Tool",
     "titleZh": "LAAS-CNRS 的 6 吋濕式蝕刻酸槽",
@@ -602,6 +622,8 @@ export const REAL_PHOTOS_DATA = {
   "ch10": {
     "id": "ch10",
     "src": "assets/photos/ch10-metal-deposition.jpg",
+    "width": 986,
+    "height": 1280,
     "categoryZh": "金屬化設備",
     "categoryEn": "Metallization Equipment",
     "titleZh": "LAAS-CNRS 的金屬化蒸鍍機",
@@ -661,6 +683,8 @@ export const REAL_PHOTOS_DATA = {
   "ch11": {
     "id": "ch11",
     "src": "assets/photos/ch11-diffusion-furnace.jpg",
+    "width": 856,
+    "height": 1280,
     "categoryZh": "擴散爐管實景",
     "categoryEn": "Thermal Diffusion Furnace",
     "titleZh": "高溫熱氧化與熱退火臥式石英爐管陣列",
@@ -717,6 +741,8 @@ export const REAL_PHOTOS_DATA = {
   "ch12": {
     "id": "ch12",
     "src": "assets/photos/ch12-transistor-micrograph.jpg",
+    "width": 1280,
+    "height": 1280,
     "categoryZh": "晶片區塊參考圖",
     "categoryEn": "Chip-Region Reference Image",
     "titleZh": "Intel Celeron D 320 晶片區塊的 SEM 影像",
@@ -776,6 +802,8 @@ export const REAL_PHOTOS_DATA = {
   "ch13": {
     "id": "ch13",
     "src": "assets/photos/ch13-nand-flash-die.jpg",
+    "width": 967,
+    "height": 1206,
     "categoryZh": "邏輯閘晶片照片",
     "categoryEn": "Logic-Gate Chip Photo",
     "titleZh": "4 輸入 TTL NAND 邏輯閘晶片（不是 NAND 快閃記憶體）",
@@ -835,6 +863,8 @@ export const REAL_PHOTOS_DATA = {
   "ch14": {
     "id": "ch14",
     "src": "assets/photos/ch14-node-pitch-scaling.jpg",
+    "width": 1280,
+    "height": 857,
     "categoryZh": "設備環境參考照片",
     "categoryEn": "Equipment Reference Photo",
     "titleZh": "LAAS-CNRS 黃光區的 MA-150 設備",
@@ -894,6 +924,8 @@ export const REAL_PHOTOS_DATA = {
   "ch15": {
     "id": "ch15",
     "src": "assets/photos/ch15-metrology-profilometer.jpg",
+    "width": 856,
+    "height": 1280,
     "categoryZh": "桌面設備參考照片",
     "categoryEn": "Desktop Equipment Reference Photo",
     "titleZh": "LAAS-CNRS 的接觸式輪廓儀",
@@ -953,6 +985,8 @@ export const REAL_PHOTOS_DATA = {
   "ch16": {
     "id": "ch16",
     "src": "assets/photos/ch16-defect-inspection-him.jpg",
+    "width": 1280,
+    "height": 565,
     "categoryZh": "顯微影像對照",
     "categoryEn": "Microscope Image Comparison",
     "titleZh": "SEM 與氦離子顯微鏡的影像對照（NIST）",
@@ -1012,6 +1046,8 @@ export const REAL_PHOTOS_DATA = {
   "ch17": {
     "id": "ch17",
     "src": "assets/photos/ch17-parametric-test-spc.jpg",
+    "width": 1280,
+    "height": 857,
     "categoryZh": "實驗室工作區參考圖",
     "categoryEn": "Laboratory Work Area Reference",
     "titleZh": "LAAS-CNRS 的量測工作台",
@@ -1071,6 +1107,8 @@ export const REAL_PHOTOS_DATA = {
   "ch18": {
     "id": "ch18",
     "src": "assets/photos/ch18-foup-wafer-carrier.jpg",
+    "width": 1280,
+    "height": 960,
     "categoryZh": "晶圓出貨盒照片",
     "categoryEn": "Wafer Shipping Box Photo",
     "titleZh": "前開式晶圓出貨盒（FOSB）",
@@ -1130,6 +1168,8 @@ export const REAL_PHOTOS_DATA = {
   "ch19": {
     "id": "ch19",
     "src": "assets/photos/ch19-probe-card-testing.jpg",
+    "width": 959,
+    "height": 1280,
     "categoryZh": "探針卡實體",
     "categoryEn": "Wafer Test Probe Card",
     "titleZh": "半導體晶圓測試探針卡實體 (Semiconductor Probe Card)",
@@ -1186,6 +1226,8 @@ export const REAL_PHOTOS_DATA = {
   "ch20": {
     "id": "ch20",
     "src": "assets/photos/ch20-wire-bonding-micro.jpg",
+    "width": 1280,
+    "height": 844,
     "categoryZh": "打線參考照片",
     "categoryEn": "Wire-Bonding Reference Photo",
     "titleZh": "07R01 積體電路的球楔打線",
@@ -1245,6 +1287,8 @@ export const REAL_PHOTOS_DATA = {
   "ch21": {
     "id": "ch21",
     "src": "assets/photos/ch21-advanced-3d-packaging.jpg",
+    "width": 1280,
+    "height": 720,
     "categoryZh": "封裝研究樣品",
     "categoryEn": "Packaging research sample",
     "titleZh": "3D Orthogonal Quilt Packaging 樣品",
@@ -1314,6 +1358,8 @@ export const REAL_PHOTOS_DATA = {
   "ch22": {
     "id": "ch22",
     "src": "assets/photos/ch22-reliability-leak-test.jpg",
+    "width": 880,
+    "height": 1280,
     "categoryZh": "早期晶圓廠作業照片",
     "categoryEn": "Early Fab Operation Photo",
     "titleZh": "早期 Intel 晶圓廠的 Veeco 檢漏機",
@@ -1373,6 +1419,8 @@ export const REAL_PHOTOS_DATA = {
   "ch23": {
     "id": "ch23",
     "src": "assets/photos/ch23-cim-fab-automation.jpg",
+    "width": 1280,
+    "height": 858,
     "categoryZh": "潔淨作業參考照片",
     "categoryEn": "Clean Work-Area Reference Photo",
     "titleZh": "防護衣人員與金屬組件裝配工作區",
@@ -1432,6 +1480,8 @@ export const REAL_PHOTOS_DATA = {
   "ch24": {
     "id": "ch24",
     "src": "assets/photos/ch24-decapped-cpu-die.jpg",
+    "width": 960,
+    "height": 952,
     "categoryZh": "晶粒平面參考照片",
     "categoryEn": "Plan-View Die Reference Photo",
     "titleZh": "Intel 80286 處理器晶粒",
@@ -1491,6 +1541,8 @@ export const REAL_PHOTOS_DATA = {
   "app-glossary": {
     "id": "app-glossary",
     "src": "assets/photos/app-glossary-ellipsometer.jpg",
+    "width": 1280,
+    "height": 857,
     "categoryZh": "光學計量設備",
     "categoryEn": "Optical Metrology Reference Tool",
     "titleZh": "半導體薄膜橢圓偏光量測儀 (Optical Ellipsometer)",
@@ -1547,6 +1599,8 @@ export const REAL_PHOTOS_DATA = {
   "app-jargon": {
     "id": "app-jargon",
     "src": "assets/photos/app-jargon-fab-tool.jpg",
+    "width": 1280,
+    "height": 857,
     "categoryZh": "現場作業機台",
     "categoryEn": "Fab Floor Operations Workstation",
     "titleZh": "光阻塗佈顯影機台與現場操作控制台 (Coater-Developer Track)",
@@ -1603,6 +1657,8 @@ export const REAL_PHOTOS_DATA = {
   "app-reading": {
     "id": "app-reading",
     "src": "assets/photos/app-reading-silicon-wafer.jpg",
+    "width": 1280,
+    "height": 1180,
     "categoryZh": "製造技術結晶",
     "categoryEn": "Manufacturing Milestone Artifact",
     "titleZh": "現代半導體製造工程結晶 300mm 晶圓實體",

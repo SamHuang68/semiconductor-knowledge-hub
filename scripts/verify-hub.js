@@ -10,6 +10,20 @@ import { fileURLToPath } from 'url';
 // 依腳本位置推導專案根目錄，於工作樹或 CI 執行時才會驗證到正確的檔案
 const ROOT_DIR = fileURLToPath(new URL('..', import.meta.url)).replace(/\\/g, '/').replace(/\/$/, '');
 
+// 讀 JPEG 的 SOF 區段取得像素寬高；不是 JPEG 或找不到 SOF 時回傳 null
+function jpegSize(buf) {
+  if (buf[0] !== 0xff || buf[1] !== 0xd8) return null;
+  let i = 2;
+  while (i + 9 < buf.length) {
+    if (buf[i] !== 0xff) { i++; continue; }
+    const marker = buf[i + 1];
+    if (marker === 0x01 || (marker >= 0xd0 && marker <= 0xd8) || marker === 0xff) { i += marker === 0xff ? 1 : 2; continue; }
+    if (marker >= 0xc0 && marker <= 0xcf && ![0xc4, 0xc8, 0xcc].includes(marker)) return { width: buf.readUInt16BE(i + 7), height: buf.readUInt16BE(i + 5) };
+    i += 2 + buf.readUInt16BE(i + 2);
+  }
+  return null;
+}
+
 async function verify() {
   console.log('=== 開始檢驗 Semiconductor Knowledge Hub (中英雙語旗艦版) ===');
   let errors = 0;
@@ -141,6 +155,12 @@ async function verify() {
         const stats = fs.statSync(pFile);
         if (stats.size < 1000) {
           console.error(`[FAIL] 實體照片檔案大小異常 (<1KB): ${pData.src}`);
+          errors++;
+        }
+        // 頁內照片用 width／height 在載入前預留版面；數值必須等於檔案實際像素，否則載入後比例會變
+        const real = jpegSize(fs.readFileSync(pFile));
+        if (!real || pData.width !== real.width || pData.height !== real.height) {
+          console.error(`[FAIL] REAL_PHOTOS_DATA [${pid}] width／height（${pData.width}×${pData.height}）與照片實際尺寸（${real ? `${real.width}×${real.height}` : '無法讀取'}）不符`);
           errors++;
         }
       }
