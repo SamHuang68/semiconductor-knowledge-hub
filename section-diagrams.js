@@ -321,6 +321,18 @@ export function foldSection(body, en) {
   return `<details class="section-fold"><summary>${label}</summary>${inner}</details>${tail}`;
 }
 
+// 附錄 B 行話表在手機寬改排成緊湊列表（2.35.0，Sam 2026-11-07 核可「只改行話表」；版面在 design-system.css）。
+// 外框加 table-compact，表格元素補上 ARIA 角色：改了 display 之後，部分瀏覽器（如 Safari）會丟掉表格語意。文字一字不改
+export function compactTables(section) {
+  return section.replace(TABLE, table => table
+    .replace('<div class="table-container">', '<div class="table-container table-compact">')
+    .replace('<table class="semi-table">', '<table class="semi-table" role="table">')
+    .replace(/<(thead|tbody)>/g, '<$1 role="rowgroup">')
+    .replace(/<tr>/g, '<tr role="row">')
+    .replace(/<th>/g, '<th role="columnheader">')
+    .replace(/<td>/g, '<td role="cell">'));
+}
+
 // 以函式型 replacer 插入，避免輸出內容中的 `$&`、`$1` 被當成替換樣式（見 8D 陷阱 0028）
 export function insertSectionDiagrams(html, chapterId, lang, specs = SECTION_DIAGRAMS) {
   let next = String(html);
@@ -330,7 +342,7 @@ export function insertSectionDiagrams(html, chapterId, lang, specs = SECTION_DIA
     const heading = headingPattern(en ? spec.headingEn : spec.headingZh);
     // 限定在單一 h2 內比對，避免標題文字先出現在正文時跨段插錯位置；第二組為該段正文（到下一個 h2 為止）
     const pattern = new RegExp(`(<h2\\b[^>]*>(?:(?!</h2>)[\\s\\S])*?${heading}(?:(?!</h2>)[\\s\\S])*?</h2>)((?:(?!<h2\\b)[\\s\\S])*)`);
-    const fold = body => (spec.foldSection ? foldSection(body, en) : spec.foldTables ? foldTables(body, spec.foldTables, en) : body);
+    const fold = body => (spec.foldSection ? foldSection(body, en) : spec.foldTables ? foldTables(body, spec.foldTables, en) : spec.compactTables ? compactTables(body) : body);
     next = next.replace(pattern, (match, h2, body) => h2 + renderSectionDiagram(spec, lang) + fold(body));
   }
   return next;

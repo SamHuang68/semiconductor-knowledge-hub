@@ -1419,5 +1419,25 @@ body.is-chapter-sample .eng-obj-card[aria-labelledby="engObjCh20Title"] .ch20-mo
   .article-body:has(#engObjGlossaryTitle, #engObjJargonTitle, #engObjReadingTitle) > .table-container .semi-table :is(th, td):first-child, .article-body:has(#engObjGlossaryTitle, #engObjJargonTitle, #engObjReadingTitle) > .table-fold > .table-container .semi-table :is(th, td):first-child { position: static; box-shadow: none; }
 }
 
+/* 2.35.0 附錄 B 行話表：手機寬改排成緊湊列表（Sam 2026-11-07 核可「只改行話表」）。
+   同一張表只改顯示方式：表頭留作一行欄名說明；第 1、2 欄排同一行，其餘欄往下排；列與列之間用細線分隔。
+   文字不變，也不必左右捲。桌機與列印仍是表格；改 display 後的表格角色由 section-diagrams.js 的 compactTables 補上。
+   選擇器沿用上方附錄規則的 :has() 範圍且權重較高，該規則（含列印時的最小寬度）本身不動。 */
+@media screen and (max-width: 600px) {
+  .article-body:has(#engObjJargonTitle) > .table-container.table-compact { overflow: visible; border: 0; border-radius: 0; box-shadow: none; background: transparent; }
+  .article-body:has(#engObjJargonTitle) > .table-container.table-compact .semi-table { display: block; width: 100%; min-width: 0; }
+  .article-body:has(#engObjJargonTitle) > .table-container.table-compact .semi-table :is(thead, tbody, tr, th, td) { display: block; min-width: 0; position: static; box-shadow: none; }
+  .article-body:has(#engObjJargonTitle) > .table-container.table-compact .semi-table thead tr { display: flex; flex-wrap: wrap; row-gap: 2px; padding: 0 2px 8px; }
+  .article-body:has(#engObjJargonTitle) > .table-container.table-compact .semi-table thead th { padding: 0 8px; border: 0; background: none; font-size: 13px; line-height: 1.5; font-weight: 650; color: var(--text-muted); }
+  .article-body:has(#engObjJargonTitle) > .table-container.table-compact .semi-table thead th:first-child { padding-left: 0; }
+  .article-body:has(#engObjJargonTitle) > .table-container.table-compact .semi-table thead th + th { border-left: 1px solid var(--border-subtle); }
+  .article-body:has(#engObjJargonTitle) > .table-container.table-compact .semi-table tbody tr { padding: 8px 2px; border-bottom: 1px solid var(--border-subtle); }
+  .article-body:has(#engObjJargonTitle) > .table-container.table-compact .semi-table tbody td { padding: 0; border: 0; background: none; }
+  .article-body:has(#engObjJargonTitle) > .table-container.table-compact .semi-table tbody td:first-child { display: inline; margin-right: 8px; font-weight: 650; color: var(--text-main); }
+  .article-body:has(#engObjJargonTitle) > .table-container.table-compact .semi-table tbody td:nth-child(2) { display: inline; }
+  .article-body:has(#engObjJargonTitle) > .table-container.table-compact .semi-table tbody td:nth-child(n+3) { margin-top: 2px; }
+  .article-body:has(#engObjJargonTitle) > .table-container.table-compact .semi-table tbody td:nth-child(n+3):last-child { font-size: 14px; }
+}
+
 /* Remaining chapters: remove nonsemantic decoration that crosses labels; retain all model graphics and controls. */
 .eng-obj-card:is([aria-labelledby="engObjCh02Title"], [aria-labelledby="engObjCh03Title"], [aria-labelledby="engObjCh22Title"], [aria-labelledby="engObjCh23Title"], [aria-labelledby="engObjCh24Title"], [aria-labelledby="engObjGlossaryTitle"], [aria-labelledby="engObjJargonTitle"], [aria-labelledby="engObjReadingTitle"]) :is(.eng-kinetic-overlay, .eng-kinetic-wave) { display: none; }

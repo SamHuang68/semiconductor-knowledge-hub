@@ -137,11 +137,25 @@ for (const [chapterId, chapter] of Object.entries(chapters)) {
   for (const [html, lang] of [[chapter.contentHtml, 'zh'], [chapter.contentHtmlEn, 'en']]) {
     const out = insertSectionDiagrams(html, chapterId, lang);
     assert.equal((out.match(/class="chapter-figure"/g) || []).length - (html.match(/class="chapter-figure"/g) || []).length, specs.length, `${chapterId} ${lang} 插入圖數須等於規格數`);
-    // 收合只加 details 外框：拿掉圖與外框後須與原文相同，表格與文字一字不少
-    const unfold = s => s.replace(/<figure class="chapter-figure">[\s\S]*?<\/figure>/g, '')
+    // 收合只加 details 外框、緊湊列表只加 class 與表格角色：拿掉這些之後須與原文相同，表格與文字一字不少
+    const uncompact = s => s.replace(/<div class="table-container table-compact">([\s\S]*?<\/table>)<\/div>/g, (m, table) => `<div class="table-container">${table.replace(/ role="(?:table|rowgroup|row|columnheader|cell)"/g, '')}</div>`);
+    const unfold = s => uncompact(s).replace(/<figure class="chapter-figure">[\s\S]*?<\/figure>/g, '')
       .replace(/<details class="table-fold"><summary>[^<]*<\/summary>([\s\S]*?<\/table><\/div>)<\/details>/g, '$1')
       .replace(/<details class="section-fold"><summary>[^<]*<\/summary>([\s\S]*?)<\/details>/g, '$1');
     assert.equal(unfold(out), unfold(html), `${chapterId} ${lang} 加圖後正文須一字不變`);
+    // 緊湊列表：指定段落的每張表都要加 class，且每個表格元素都補上角色（改 display 後才不會丟掉表格語意）
+    const sectionOf = heading => html.split(/(?=<h2\b)/).find(p => headings(p)[0]?.includes(heading)) || '';
+    const compactWant = specs.filter(s => s.compactTables).reduce((sum, s) => sum + (sectionOf(lang === 'en' ? s.headingEn : s.headingZh).match(/<table\b/g) || []).length, 0);
+    const compactOut = [...out.matchAll(/<div class="table-container table-compact">([\s\S]*?<\/table>)<\/div>/g)].map(m => m[1]);
+    assert.equal(compactOut.length, compactWant, `${chapterId} ${lang} 緊湊列表的表格數須等於指定段落內的表格數`);
+    for (const table of compactOut) {
+      const count = re => (table.match(re) || []).length;
+      assert.equal(count(/<table class="semi-table" role="table">/g), 1, `${chapterId} ${lang} 緊湊列表的 table 須有 role="table"`);
+      assert.equal(count(/<(?:thead|tbody) role="rowgroup">/g), count(/<(?:thead|tbody)\b/g), `${chapterId} ${lang} 緊湊列表的 thead／tbody 須有 role="rowgroup"`);
+      assert.equal(count(/<tr role="row">/g), count(/<tr\b/g), `${chapterId} ${lang} 緊湊列表的每一列須有 role="row"`);
+      assert.equal(count(/<th role="columnheader">/g), count(/<th\b/g), `${chapterId} ${lang} 緊湊列表的表頭須有 role="columnheader"`);
+      assert.equal(count(/<td role="cell">/g), count(/<td\b/g), `${chapterId} ${lang} 緊湊列表的每格須有 role="cell"`);
+    }
     // 整段收合的規格不再另外收合表格
     const folds = specs.filter(s => !s.foldSection).reduce((sum, s) => sum + (s.foldTables === true ? 1 : s.foldTables ? s.foldTables.length : 0), 0);
     assert.equal((out.match(/<details class="table-fold">/g) || []).length, folds, `${chapterId} ${lang} 收合表格數須等於規格指定數`);
@@ -164,6 +178,14 @@ for (const [chapterId, chapter] of Object.entries(chapters)) {
 // 美元符號：插入內容含 `$&`、`$1` 時不得被當成替換樣式
 const probe = insertSectionDiagrams('<h2 id="x">T</h2><p>a</p>', 'probe', 'zh', [{ chapterId: 'probe', headingZh: 'T', headingEn: 'T', type: 'flow', captionZh: 'US$1 與 $& 測試', captionEn: 'x', steps: [{ zh: '甲', en: 'a' }, { zh: '乙', en: 'b' }, { zh: '丙', en: 'c' }] }]);
 assert.ok(probe.includes('US$1 與 $&amp; 測試') && !probe.includes('US<h2'), '插入內容中的 $ 符號須原樣保留');
+
+// 緊湊列表只用在 Sam 2026-11-07 核可的附錄 B 五張行話表（2.35.0）；其他表格維持表格，擴大範圍須另行核可
+const compactSpecs = SECTION_DIAGRAMS.filter(s => s.compactTables);
+assert.deepEqual(compactSpecs.map(s => `${s.chapterId}／${s.headingZh}`), ['app-jargon／晶圓與批次', 'app-jargon／機台', 'app-jargon／系統與流程', 'app-jargon／品質與異常', 'app-jargon／區域與人'], '緊湊列表只限附錄 B 五個行話段落');
+assert.ok(compactSpecs.every(s => !s.foldTables && !s.foldSection), '緊湊列表的段落不可同時收合');
+for (const [html, lang] of [[chapters['app-jargon'].contentHtml, 'zh'], [chapters['app-jargon'].contentHtmlEn, 'en']]) {
+  assert.equal((insertSectionDiagrams(html, 'app-jargon', lang).match(/<div class="table-container table-compact">/g) || []).length, 5, `附錄 B ${lang} 須有 5 張緊湊列表`);
+}
 
 const byType = SECTION_DIAGRAMS.reduce((m, s) => ({ ...m, [s.type]: (m[s.type] || 0) + 1 }), {});
 console.log(`[PASS] ${SECTION_DIAGRAMS.length} 張段落示意圖（實物示意 ${pictorials} 張，其中 ${fromFigure} 個標籤沿用被取代的方框圖；${Object.entries(byType).map(([k, v]) => `${k} ${v}`).join('、') || '尚無'}）標題錨點、無數字標籤、長度、繁體與正文不變檢查通過`);
