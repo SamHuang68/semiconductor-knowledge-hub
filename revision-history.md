@@ -96,7 +96,17 @@
   | 術語表、fab-flow 的其他條目 | 雜湊基準 | 只有 RTA、Lot、佈植站變 | 已批准變更 |
   | 其餘 4 個章節（ch05、ch11、ch12、ch20）與附錄 C | 正文 | 沒動 | 原樣保留 |
 
-- 提交／發布狀態：本機提交，未推送。推送與部署等 Sam 授權。
+- 提交／發布狀態：已推送、已部署。
+  - 2026-11-08 Sam 回覆「合併並部署」。
+  - 提交 `3ef1b3e`，main 由 `667aa15` 快轉。
+  - 快轉後在 main 上重跑 `npm run verify`（106 項通過）與 `scripts/build-site.mjs`，都通過。
+  - GitHub Pages run `42441665160` 的 `verify` 與 `deploy` 都成功。
+- 發布後線上驗證（2026-11-08）：
+  - 本次改到的 31 個網站檔案（23 個章節檔、`data/fab-flow.js`、`data/glossary-data.js`、`data/section-diagrams.js`、`pictorials.js`、`engineering/ch14.js`、`engineering/shared.js`、`app.js`、`index.html`），與提交內容逐位元組相同，加不加快取參數都一樣。
+  - 頁尾為 2.36.0；`revision-history.md`、`package.json`、`scripts/` 回應 404。
+  - 頁面檢查直接跑線上網站：受影響的 23 頁 × 中英 × 1440／390，共 92 頁，與 main `667aa15` 快照比較。
+    - 問題 0。
+    - 變化 22 項，都是頁高 −0.2%～+0.8%；92 頁的量測結果逐頁與本機掃描相同。
 
 ## 2.35.0 · 2026-11-07 · 第 3 階段 K2：附錄 B 行話表在手機改排成緊湊列表
 
