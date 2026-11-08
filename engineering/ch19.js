@@ -26,8 +26,8 @@ export function renderWaferTestObject(container, lang = 'zh') {
     const vSense = (forceCurrent * 1e-3 * rDUT * 1000).toFixed(2); // mV
 
     // CP 探針下壓行程 (Overdrive) 與接觸電阻物理 (Scrubbing Mechanics)
-    // 探針彈簧係數 k = 0.08 gf/um
-    const contactForce = (probeOD * 0.08).toFixed(1); // gf/pin
+    // 探針彈簧係數 k = 0.05 gf/µm（示意值，2.36.1 由 0.08 調整）
+    const contactForce = (probeOD * 0.05).toFixed(1); // gf/pin（OD 20–60 µm ≈ 1–3 gf/pin，與正文微凸塊低針壓一致）
     // 接觸電阻 Rc (隨著下壓破除微凸塊表面氧化膜而急遽下降)
     let rcProbe = 0;
     let cpStatus = 'pass';
@@ -408,7 +408,7 @@ export function renderWaferTestObject(container, lang = 'zh') {
           <div class="eng-obj-metric-card">
             <div class="eng-obj-metric-label">${lang === 'en' ? 'Kelvin 4-Wire, Holm & Williams-Brown Law' : 'Kelvin 四線與 3D 測試逃逸率律 (Test Law)'}</div>
             <div class="eng-obj-metric-value" style="font-size: 13.5px; color: #0284c7;">${lang === 'en' ? 'R_DUT = V_sense/I_force · DL = 1 - Y^(1-FC)' : 'R_DUT = V_sense/I_force · DL = 1 - Y^(1-FC)'}</div>
-            <div class="eng-obj-metric-note">${lang === 'en' ? 'Nullifies lead resistance, controls 5–15 µm OD & bounds 3D DL' : '消除探針引線電阻、微凸塊 5–15 µm 受控超程與 KGD 逃逸率壓縮'}</div>
+            <div class="eng-obj-metric-note">${lang === 'en' ? 'Nullifies lead resistance, ~50 µm micro-bump OD with low force & bounds 3D DL' : '消除探針引線電阻、微凸塊 OD 約 50 µm 搭配低針壓與 KGD 逃逸率壓縮'}</div>
           </div>
                   <div class="eng-obj-metric-card">
             <div class="eng-obj-metric-label">${lang === 'en' ? 'Failure Diagnostics & OCAP' : '現場異常診斷與防呆 (Failure & OCAP)'}</div>

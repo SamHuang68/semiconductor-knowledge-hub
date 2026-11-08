@@ -60,9 +60,11 @@ assert.match(packaging.boundary, /並列選項.*並非先後步驟/, '比較應�
 // 2.36.0：Sam 於 2026-11-08 對 F–K 正文校勘提案回覆「照建議核可」。fab-flow.js 佈植站把 LSA 歸到毫秒級、奈秒另稱「奈秒雷射退火」
 // （summary／summaryZh／summaryEn 與 keyTool／keyToolZh／keyToolEn 共 6 處，G3-3d），基準由 5cbccd27… 更新；glossary-data.js 的 RTA 條目
 // 同樣改寫（desc 三欄，G3-3c），Lot 條目改為「對濕氣敏感的站點會再充氮」「代工計價多以片為單位」（meaning 三欄，K9），基準由 0ee4bd99… 更新。
+// 2.36.1：Sam 於 2026-11-08 對範圍外後續校勘提案（docs/…/text-corrections-followups-2026-11-08.md）回覆「照建議核可」：glossary-data.js 的
+// Dishing 條目英文 `exactly 1–3 nm` 改 `within 1–3 nm`（descEn 一欄，C6），基準由 de80ce4e… 更新。
 const sourceHashes = {
   'fab-flow.js': '738e3c5b24bf2f122c16667f603a3a5e082b15405e81edee09887cb07b19c73c',
-  'glossary-data.js': 'de80ce4e47825993ce56c44a0cc9f7ad9fd212141a8d789bd6356b85c1ec95f1'
+  'glossary-data.js': '8f5966d843fed917d3ed03d42079ad20c09870081af9344b23b9a6a6e4779485'
 };
 for (const [file, expected] of Object.entries(sourceHashes)) {
   const source = readFileSync(new URL(`../data/${file}`, import.meta.url), 'utf8').replace(/\r\n/g, '\n');
@@ -80,10 +82,15 @@ const chapterDigest = createHash('sha256').update(CHAPTERS_DATA.map(c => JSON.st
 // 23 個章節檔中英同步（ch00–ch04、ch06–ch10、ch13–ch19、ch21–ch24、附錄 A、B）；建議不改的 7 項與另案 K12 未動。英文 H3-2a 第二處依原意寫成
 // 「recessed within」（照字面會是不合文法的「recessed by within」）；英文 I11-1 的 `~` 放進 `<code>~6T</code>`（可見文字相同，
 // 與同表 `<code>~90–100 MTr/mm² (7nm)</code>` 寫法一致，圖的標籤才比對得到）。基準由 500baef5… 更新。
-assert.equal(chapterDigest, 'b5e82ef0007e513a2f58acc86b655786f0deb86852e873d958165a50d64e9136', '章節正文必須與 2.36.0 核可基準一致');
+// 2.36.1：Sam 於 2026-11-08 對範圍外後續校勘提案（docs/…/text-corrections-followups-2026-11-08.md）回覆「照建議核可」：ch03 英文背磨列子句順序（C3）、
+// ch07 英文現場異常列名第二個 & 改 and（C4）、ch24 中文「是否提供與實際效果」兩處（C5）、附錄 A 英文 Dishing 的 exactly 改 within（C6），基準由 b5e82ef0… 更新。
+assert.equal(chapterDigest, 'e012934c4dfb5d391e907bdb6fa3624293d9022f6bbe9ebe6208cdfc25a1d7e1', '章節正文必須與 2.36.1 核可基準一致');
 const SEARCH_INDEX = await loadSearchIndex();
 const searchDigest = createHash('sha256').update(SEARCH_INDEX.map(e => JSON.stringify([e.chId, e.keywords, e.title, e.titleEn])).join('\n')).digest('hex');
-assert.equal(searchDigest, '4d3f6b417bb57306634dbf3438d2884a7a1db70c3dbf58c146a9b0f9ba43f07e', '檢索全文必須與拆檔前一致');
+// 2.36.1：同一提案 C7。檢索全文自拆檔（0896238）後未隨正文校勘同步，搜尋會找到並顯示改前的句子。依已核可的 2.36.0 替換，
+// 把仍整段留在 keywords／snippet 的 23 處舊句與本次 C5a 換成新句（去標記後的同樣形式）；另刪除 Markdown 名詞卡語法「[!NOTE]」89 處
+// （正文已無，其中中英各 6 處是 2.15.1 從正文拿掉的）、ch20 一個簡體字改回「無」。其餘內容與拆檔時相同，基準由 4d3f6b41… 更新。
+assert.equal(searchDigest, 'db1ba079f6b13f2650d88a3cab5a0656dc5e08fefbda60091b7810ab060bf87f', '檢索全文必須與 2.36.1 核可基準一致');
 
 const linkCases = [
   ['#node-00', '#ch00'],

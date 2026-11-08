@@ -504,7 +504,7 @@ export const GLOSSARY_DATA = [
     "zh": "碟化",
     "desc": "寬金屬導線中央被磨得凹陷（在 BEOL 需靠假金屬填充壓低至 <15 nm；但在 3D Cu-Cu 混合鍵合 CMP 中，則必須將銅墊凹陷精準控制在 1–3 nm 以確保室溫介電質先鍵合、退火時銅膨脹熔合）",
     "descZh": "寬金屬導線中央被磨得凹陷（在 BEOL 需靠假金屬填充壓低至 <15 nm；但在 3D Cu-Cu 混合鍵合 CMP 中，則必須將銅墊凹陷精準控制在 1–3 nm 以確保室溫介電質先鍵合、退火時銅膨脹熔合）",
-    "descEn": "The center of a wide metal line polished into a dip (minimized to <15 nm in BEOL via dummy fill, whereas in 3D Cu-Cu hybrid bonding CMP, Cu dishing recess is engineered to exactly 1–3 nm so dielectric bonds at RT before Cu expands during annealing)",
+    "descEn": "The center of a wide metal line polished into a dip (minimized to <15 nm in BEOL via dummy fill, whereas in 3D Cu-Cu hybrid bonding CMP, Cu dishing recess is engineered to within 1–3 nm so dielectric bonds at RT before Cu expands during annealing)",
     "chapter": "8"
   },
   {
