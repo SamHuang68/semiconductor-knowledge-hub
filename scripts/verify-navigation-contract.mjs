@@ -90,7 +90,9 @@ const searchDigest = createHash('sha256').update(SEARCH_INDEX.map(e => JSON.stri
 // 2.36.1：同一提案 C7。檢索全文自拆檔（0896238）後未隨正文校勘同步，搜尋會找到並顯示改前的句子。依已核可的 2.36.0 替換，
 // 把仍整段留在 keywords／snippet 的 23 處舊句與本次 C5a 換成新句（去標記後的同樣形式）；另刪除 Markdown 名詞卡語法「[!NOTE]」89 處
 // （正文已無，其中中英各 6 處是 2.15.1 從正文拿掉的）、ch20 一個簡體字改回「無」。其餘內容與拆檔時相同，基準由 4d3f6b41… 更新。
-assert.equal(searchDigest, 'db1ba079f6b13f2650d88a3cab5a0656dc5e08fefbda60091b7810ab060bf87f', '檢索全文必須與 2.36.1 核可基準一致');
+// 2.36.2：Sam 於 2026-11-08 對 2.36.1 列出的兩項觀察回覆「處理」：刪除 keywords 裡的 Markdown 名詞卡語法「[!TIP]」84 處
+// （21 章各 4 處，正文沒有），其餘內容不變，基準由 db1ba079… 更新。
+assert.equal(searchDigest, 'd97be7b7971614041f4bb73698c0f14bebedba46c3cd59389e16af7d7fa0e000', '檢索全文必須與 2.36.2 核可基準一致');
 
 const linkCases = [
   ['#node-00', '#ch00'],
